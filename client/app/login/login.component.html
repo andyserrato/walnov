@@ -1,0 +1,42 @@
+<div class="ui middle aligned center aligned grid" style="margin-top: 7em">
+    <div class="column">
+        <h2 class="ui teal image header">
+            <img src="assets/images/logo.png" class="image">
+            <div class="content">
+                Inicia sesión
+            </div>
+        </h2>
+        <form class="ui large form" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                        <i class="user icon"></i>
+                        <input type="text" placeholder="E-mail/Usuario" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required/>
+                        <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input  form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                        <i class="lock icon"></i>
+                        <input type="password" placeholder="Contraseña" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required/>
+                        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                    </div>
+                </div>
+                <!--<div class="ui fluid large teal submit button"></div>-->
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">Login</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                    />
+                </div>
+            </div>
+
+            <div class="ui error message"></div>
+
+        </form>
+
+        <div class="ui message">
+            <!--<a href="#">Registrarse</a>-->
+            <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+        </div>
+    </div>
+</div>

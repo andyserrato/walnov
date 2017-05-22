@@ -1,10 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+
 body {
     background-color: #FFFFFF;
-}
-
-.ui.menu .item img.logo {
-    margin-right: 1.5em;
 }
 
 .main.container {
@@ -13,9 +10,4 @@ body {
 
 .wireframe {
     margin-top: 2em;
-}
-
-.ui.footer.segment {
-    margin: 5em 0em 0em;
-    padding: 5em 0em;
 }
