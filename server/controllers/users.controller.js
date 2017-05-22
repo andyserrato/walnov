@@ -14,6 +14,7 @@ router.delete('/:_id', _delete);
 module.exports = router;
 
 function authenticate(req, res) {
+    console.log("Atendiendo petición");
     userService.authenticate(req.body.username, req.body.password)
         .then(function(user) {
             if (user) {

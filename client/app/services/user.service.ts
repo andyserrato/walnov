@@ -9,11 +9,12 @@ export class UserService {
     constructor(private http: Http, private config: AppConfig) { }
  
     getAll() {
-        return this.http.get(this.config.apiUrl + '/users', this.jwt()).map((response: Response) => response.json());
+        console.log("Inicio UserService.getAll");
+        return this.http.get('/users', this.jwt()).map((response: Response) => response.json());
     }
  
     getById(_id: string) {
-        return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get('/users/' + _id, this.jwt()).map((response: Response) => response.json());
     }
  
     create(user: User) {
@@ -21,7 +22,7 @@ export class UserService {
     }
  
     update(user: User) {
-        return this.http.put(this.config.apiUrl + '/users/' + user._id, user, this.jwt());
+        return this.http.put('/users/' + user._id, user, this.jwt());
     }
  
     delete(_id: string) {
@@ -33,6 +34,7 @@ export class UserService {
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log("Current User", currentUser);
         if (currentUser && currentUser.token) {
             let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             return new RequestOptions({ headers: headers });
