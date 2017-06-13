@@ -41,6 +41,7 @@ function register(req, res) {
 }
 
 function getAll(req, res) {
+    console.log("Obteniendo todos los usuarios");
     userService.getAll()
         .then(function(users) {
             res.send(users);

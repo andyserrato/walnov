@@ -1,0 +1,39 @@
+<div class="ui raised very padded text container segment">
+    <form class="ui form">
+        <h2 class="ui header">¡Crea tu Wall ahora!</h2>
+        <div class="field">
+            <label>Título del Wall</label>
+            <input type="text" name="first-name" placeholder="Título">
+        </div>
+        <div class="field">
+            <label>Categorías</label>
+            <div class="ui fluid search selection dropdown">
+                <input type="hidden" name="country">
+                <i class="dropdown icon"></i>
+                <div class="default text">Selecciona una categoría</div>
+                <div class="menu">
+                    <div class="item" data-value="af"><i class="af flag"></i>Afghanistan</div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Imagen del Wall</label>
+            <input type="file" (change)="fileLoad($event)"><br>
+            <img class="ui fluid image" *ngIf="imageSRC" [src]="imageSRC" alt="Image preview...">
+        </div>
+
+        <button class="ui primary button" type="submit">Publicar Wall</button>
+        <button class="ui button" type="submit">Guardar Borrador</button>
+
+        <div class="ui selection dropdown">
+            <input type="hidden" name="gender">
+            <i class="dropdown icon"></i>
+            <div class="default text">Gender</div>
+            <div class="menu">
+                <div class="item" data-value="1">Male</div>
+                <div class="item" data-value="0">Female</div>
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -4,15 +4,22 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var userSchema = new Schema({
-    name: String,
+    firstname: String,
+    lastname: String,
     username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    admin: Boolean,
+    isAdmin: { type: Boolean , default: false},
     location: String,
+    token: String,
+    verificado: Boolean,
+    profileComplete: Boolean,
+    urlImage: String,
     meta: {
         age: Number,
         website: String
     },
+    is_active: { type: Boolean , default: true},
     created_at: Date,
     updated_at: Date
 });

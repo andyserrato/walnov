@@ -7,11 +7,8 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 var config = require('./config.json');
-/*var config = {
-    "connectionString": "mongodb://root:root@ds137101.mlab.com:37101/mongoose",
-    "apiUrl": "http://localhost:3000",
-    "secret": "WALNOVWEB"
-};*/
+const logger = require('morgan');
+require('./models/db');
 
 // Get our API routes
 const api = require('./routes/api');
@@ -23,11 +20,14 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// loggin
+app.use(logger('dev'));
+
 // Point static path to dist
 app.use(express.static(path.join(__dirname, '../dist')));
 
 // use JWT auth to secure the api
-app.use(expressJwt({ secret: config.secret }).unless({ path: ['/users/authenticate', '/users/register'] }));
+app.use(expressJwt({ secret: config.secret }).unless({ path: ['/users/authenticate', '/users/register', '/api'] }));
 
 // routes
 app.use('/users', require('./controllers/users.controller'));

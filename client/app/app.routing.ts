@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guards/auth-guard.guard';
 import { InicioComponent } from "./inicio/inicio.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { CrearWallComponent } from "./crear-wall/crear-wall.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
     { path: 'inicio', component: InicioComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'crear-wall', component: CrearWallComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: '**', component: PageNotFoundComponent }
  
