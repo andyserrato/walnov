@@ -34,6 +34,7 @@ var wallSchema = new Schema({
     likes: Number,
     views: Number,
     historias: [storySchema],
+    privado: Boolean,
     created_at: Date,
     updated_at: Date,
     is_active: { type: Boolean , default: true}

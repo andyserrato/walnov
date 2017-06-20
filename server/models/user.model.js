@@ -1,5 +1,6 @@
 // grab the things we need
 var mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
 var Schema = mongoose.Schema;
 
 // create a schema
@@ -21,18 +22,44 @@ var userSchema = new Schema({
     },
     is_active: { type: Boolean , default: true},
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+  // =======================
+    // pruebas de passport ===========
+  // =====================
+  local            : {
+    email        : String,
+    password     : String,
+  },
+  facebook         : {
+    id           : String,
+    token        : String,
+    email        : String,
+    name         : String
+  },
+  twitter          : {
+    id           : String,
+    token        : String,
+    displayName  : String,
+    username     : String
+  },
+  google           : {
+    id           : String,
+    token        : String,
+    email        : String,
+    name         : String
+  }
 });
 
-// custom method to add string to end of name
-// you can create more important methods like name validations or formatting
-// you can also do queries and find similar users 
-userSchema.methods.dudify = function() {
-    // add some stuff to the users name
-    this.name = this.name + '-dude';
-
-    return this.name;
+// methods ======================
+// generating a hash
+userSchema.methods.generateHash = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
+
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.local.password);
+}
 
 // on every save, add the date
 userSchema.pre('save', function(next) {

@@ -1,57 +1,14 @@
-// Get dependencies
-require('rootpath')();
-const express = require('express');
-var cors = require('cors');
-var expressJwt = require('express-jwt');
-const path = require('path');
-const http = require('http');
-const bodyParser = require('body-parser');
-var config = require('./config.json');
-const logger = require('morgan');
-require('./models/db');
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Get our API routes
-const api = require('./routes/api');
+const configureMongoose = require('./config/mongoose');
+const configureExpress = require('./config/express');
+const configurePassport = require('./config/passport');
 
-const app = express();
+const db = configureMongoose();
+const app = configureExpress();
+const passport = configurePassport();
+app.listen(3000);
 
-// Parsers for POST data
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+module.exports = app;
 
-// loggin
-app.use(logger('dev'));
-
-// Point static path to dist
-app.use(express.static(path.join(__dirname, '../dist')));
-
-// use JWT auth to secure the api
-app.use(expressJwt({ secret: config.secret }).unless({ path: ['/users/authenticate', '/users/register', '/api'] }));
-
-// routes
-app.use('/users', require('./controllers/users.controller'));
-
-// Set our api routes
-app.use('/api', api);
-
-// Catch all other routes and return the index file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
-
-/**
- * Get port from environment and store in Express.
- */
-const port = process.env.PORT === 'production' ? 80 : 3000;
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+console.log('Server running at http://localhost:3000/');

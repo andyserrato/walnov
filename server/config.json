@@ -1,5 +1,6 @@
 {
     "connectionString": "mongodb://root:root@ds137101.mlab.com:37101/mongoose",
     "apiUrl": "http://localhost:3000",
-    "secret": "WALNOVWEB"
+    "secret": "WALNOVWEB",
+    "email_secret": "something"
 }
