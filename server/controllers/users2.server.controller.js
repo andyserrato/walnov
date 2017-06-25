@@ -126,3 +126,21 @@ exports.signout = function(req, res) {
   // Redirect the user back to the main application page
   res.redirect('/');
 };
+
+// Middleware
+exports.isLoggedIn = function(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.json({ message : 'error iniciando sesión'});
+  }
+};
+
+exports.findUserByProviderId = function(req, res) {
+  User.findOne({
+    provider: req.user.provider,
+    providerId: req.user.providerId}, function(err, fulluser) {
+    if (err) throw err;
+    res.json(fulluser);
+  })
+};

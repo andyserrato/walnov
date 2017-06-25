@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
-const api = require('../routes/api');
+const api1 = require('../routes/api1');
 const config = require('./config');
 const session = require('express-session');
 const compress = require('compression');
@@ -58,7 +58,7 @@ module.exports = function () {
   require('../routes/users.server.routes.js')(app);
 
   // Set our api routes
-  app.use('/api', api);
+  app.use('/api1', api1);
 
   // Catch all other routes and return the index file
   app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '../../dist/index.html'));
