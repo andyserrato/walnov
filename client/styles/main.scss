@@ -1,0 +1,173 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,900,700,600,500,300,200,100,800');
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+
+body {
+  padding-top: 4.5em;
+}
+
+/* Color palette */
+
+$main-1: #8427bf;
+$main-2: #4d1274;
+$main-3: #984cce;
+$main-4: #b75df8;
+$main-5: #7b48a0;
+$grey-1: #ffffff;
+$grey-2: #f7f7f7;
+$grey-3: #f0f0f0;
+$grey-4: #d8d8d8;
+$grey-5: #c0c0c0;
+$grey-6: #9b9b9b;
+$grey-7: #808080;
+$grey-8: #4a4a4a;
+$grey-9: #2f2f2f;
+$grey-10: #000000;
+$cat-1: #e65e20;
+$cat-2: #29ba6f;
+$cat-3: #e15abe;
+$cat-4: #df9c00;
+$cat-5: #21b3dd;
+$cat-6: #b8764e;
+$cat-7: #de196d;
+$cat-8: #2074e6;
+$cat-9: #16d7d3;
+$cat-10: #4b082e;
+$error: #f12840;
+$alert: #f1b028;
+
+
+/* Text styles */
+
+.title-wall {
+  font-family: Maven Pro;
+  font-size: 26px;
+  font-weight: 500;
+  text-align: left;
+  color: $grey-1;
+}
+
+.Button-Large {
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: $main-1;
+}
+
+.Wall-title-feed {
+  font-family: Maven Pro;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  color: $grey-8;
+}
+
+.Button-medium {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: $main-1;
+}
+
+.Link-2 {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $main-1;
+}
+
+.Link-1 {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $main-2;
+}
+
+.Note {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.43;
+  text-align: center;
+  color: $main-3;
+}
+
+.Paragraph {
+  font-family: Raleway;
+  font-size: 14px;
+  text-align: left;
+  color: $grey-8;
+}
+
+.Note-Grey {
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: italic;
+  text-align: left;
+  color: $grey-8;
+}
+
+.Left-menu-options-selected {
+  font-family: Raleway;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  color: $main-3;
+}
+
+.Left-menu-options {
+  font-family: Raleway;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+}
+
+.Button-Small {
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: $main-1;
+}
+
+.Sidenav-link {
+  font-family: Raleway;
+  font-size: 12px;
+  text-align: left;
+  color: $main-2;
+}
+
+.Sidenav-note {
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: left;
+  color: $grey-8;
+}
+
+.Button-Tiny {
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: $main-1;
+}
+
+.Note-mini {
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: right;
+  color: $grey-6;
+}
+
+.cols-no-padding {
+  padding-left: 0px;
+  padding-right: 0px;
+}

@@ -1,39 +1,92 @@
-<div class="ui raised very padded text container segment">
-    <form class="ui form">
-        <h2 class="ui header">¡Crea tu Wall ahora!</h2>
-        <div class="field">
-            <label>Título del Wall</label>
-            <input type="text" name="first-name" placeholder="Título">
-        </div>
-        <div class="field">
-            <label>Categorías</label>
-            <div class="ui fluid search selection dropdown">
-                <input type="hidden" name="country">
-                <i class="dropdown icon"></i>
-                <div class="default text">Selecciona una categoría</div>
-                <div class="menu">
-                    <div class="item" data-value="af"><i class="af flag"></i>Afghanistan</div>
-                </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 cols-no-padding">
+      <app-card-informativo></app-card-informativo>
+    </div>
+    <!-- /.col -->
+    <div class="col-8">
+      <div class="card Rectangle-3-Copy-8">
+        <h3 class="Creacin-de-Wall">Creación de Wall</h3>
+
+        <div class="Rectangle-5">
+          <div class="Ttulo-del-wall" contenteditable="true">
+            Título del Wall <i class="fa fa-pencil lapiz"></i>
+          </div>
+          <div class="imagen-categoria-seleccion">
+            <i class="fa fa-image fa-lg fa-2x fa-inverse"></i>
+            <div class="cambiar-imagen">Cambiar Imagen</div>
+            <div class="categoria-titulo">Categoría</div>
+
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categorías
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" *ngFor="let categoria of categorias">{{ categoria }}</a>
+              </div>
             </div>
-        </div>
-        <div class="field">
-            <label>Imagen del Wall</label>
-            <input type="file" (change)="fileLoad($event)"><br>
-            <img class="ui fluid image" *ngIf="imageSRC" [src]="imageSRC" alt="Image preview...">
+
+          </div>
         </div>
 
-        <button class="ui primary button" type="submit">Publicar Wall</button>
-        <button class="ui button" type="submit">Guardar Borrador</button>
+        <label for="exampleTextarea">Escribe tu inicio de historia</label>
+        <textarea class="form-control" id="exampleTextarea" rows="5"
+                  placeholder="Texto Máximo 750 caracteres"></textarea>
 
-        <div class="ui selection dropdown">
-            <input type="hidden" name="gender">
-            <i class="dropdown icon"></i>
-            <div class="default text">Gender</div>
-            <div class="menu">
-                <div class="item" data-value="1">Male</div>
-                <div class="item" data-value="0">Female</div>
-            </div>
+        <fieldset class="form-group">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"
+                     checked>
+              Wall Público
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+              Wall Privado
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <label for="dedicatoria">¿Quiéres dedicar tu Wall?</label>
+          <input type="email" class="form-control" id="dedicatoria" aria-describedby="emailHelp"
+                 placeholder="nombre@mail.com; @nombreusuario; ...">
+          <a>Vista Previa</a>
+          <button>Publicar</button>
         </div>
 
-    </form>
+      </div>
+    </div>
+    <!-- /.col -->
+    <div class="col-2 hidden-md-down cols-no-padding">
+      <div class="card Rectangle-3-Copy-3">
+        <div class="card-block">
+          <h4 class="card-title Check-Label-Copy-10">Añade tags a tu Wall</h4>
+          <input type="text" class="Input-Background-Copy-3" placeholder="tags...">
+          <div class="chip">
+            John Doe
+            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card Rectangle-3-Copy-3" style="margin-top: 13px">
+        <div class="card-block">
+          <h4 class="card-title Check-Label-Copy-10">Histórico de versiones</h4>
+          <br/>
+          <p class="card-text Actual">Actual</p>
+          <ul class="list-group list-group-flush layer">
+            <li class="list-group-item">10/06/2010 <span>19:25h</span></li>
+            <li class="list-group-item">10/06/2010 <span>19:25h</span></li>
+            <li class="list-group-item">10/06/2010 <span>19:25h</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
 </div>
+<!-- /.container -->
