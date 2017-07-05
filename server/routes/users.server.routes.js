@@ -1,7 +1,7 @@
 // Load the module dependencies
 const users = require('../controllers/users2.server.controller');
 const passport = require('passport');
-const User = require('mongoose').model('User');
+const User = require('mongoose').model('usuarios');
 // Define the routes module' method
 module.exports = function(app) {
   // Set up the 'signup' routes

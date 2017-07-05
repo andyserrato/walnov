@@ -260,7 +260,7 @@ mensajePrivado.pre('save', function (next){
     next();
 });
 
-userSchema.statics.findUniqueUsername = function(username, suffix,
+usuario.statics.findUniqueUsername = function(username, suffix,
                                                  callback) {
   var possibleUsername = username + (suffix || '');
   this.findOne({
@@ -279,7 +279,7 @@ userSchema.statics.findUniqueUsername = function(username, suffix,
   });
 };
 
-userSchema.set('toJSON', {
+usuario.set('toJSON', {
   getters: true,
   virtuals: true
 });
