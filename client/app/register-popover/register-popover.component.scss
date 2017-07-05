@@ -1,0 +1,16 @@
+.popover {
+  width: 420px;
+  position: absolute;
+}
+.popover.top {
+  bottom: -11px;
+}
+.popover.bottom {
+  top: -11px;
+}
+.popover.left {
+  right: -11px;
+}
+.popover.right {
+  left: -11px;
+}

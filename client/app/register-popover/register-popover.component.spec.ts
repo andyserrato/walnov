@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HomeComponent } from './home.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+import { RegisterPopoverComponent } from './register-popover.component';
+
+describe('RegisterPopoverComponent', () => {
+  let component: RegisterPopoverComponent;
+  let fixture: ComponentFixture<RegisterPopoverComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ RegisterPopoverComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(RegisterPopoverComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

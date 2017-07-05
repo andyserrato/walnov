@@ -3,103 +3,66 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
+const providerSchema = {
+  provider: String,
+  providerId: String,
+  providerData: {}
+};
+
 // create a schema
 const userSchema = new Schema({
-    firstname: String,
-    lastname: String,
-    username: {
-      type: String,
-      //required: true,
-      unique: true,
-      trim: true
-    },
-    email: {
-      type: String,
-      //required: true,
-      //unique: true,
-      //match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
-    },
-    password: {
-      type: String,
-      //required: true,
-      //validate: [(password) => {
-       // return password && password.length > 6;
-      //}, 'Password should be longer']
-    },
-    isAdmin: { type: Boolean , default: false},
-    location: String,
-    token: String,
-    verificado: Boolean,
-    profileComplete: Boolean,
-    urlImage: String,
-    meta: {
-        age: Number,
-        website: String
-    },
-    is_active: { type: Boolean , default: true},
-    created_at: Date,
-    updated_at: Date,
-  // =======================
-    // pruebas de passport ===========
-  // =====================
-  provider: {
+  firstname: String,
+  lastname: String,
+  username: {
     type: String,
-    //required: 'Provider is required'
+    unique: true,
+    trim: true
   },
-  providerId: String,
-  providerData: {},
-  local            : {
-    email        : String,
-    password     : String,
+  email: {
+    type: String,
+    unique: true
   },
-  facebook         : {
-    id           : String,
-    token        : String,
-    email        : String,
-    name         : String
-  },
-  twitter          : {
-    id           : String,
-    token        : String,
-    displayName  : String,
-    username     : String
-  },
-  google           : {
-    id           : String,
-    token        : String,
-    email        : String,
-    name         : String
-  }
+  password: String,
+  isAdmin: {type: Boolean, default: false},
+  location: String,
+  verificado: Boolean,
+  profileComplete: {type: Boolean, default: false},
+  urlImage: String,
+  fechaNacimiento: Date,
+  is_active: {type: Boolean, default: true},
+  created_at: Date,
+  updated_at: Date,
+  providers: [providerSchema]
 });
 
 // methods ======================
 // generating a hash
-userSchema.methods.generateHash = function(password) {
+userSchema.methods.generateHash = function (password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 // checking if password is valid
-userSchema.methods.authenticate = function(password) {
+userSchema.methods.authenticate = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
 // on every save, add the date
-userSchema.pre('save', function(next) {
-    // get the current date
-    const currentDate = new Date();
+userSchema.pre('save', function (next) {
+  // get the current date
+  const currentDate = new Date();
 
-    // change the updated_at field to current date
-    this.updated_at = currentDate;
+  // change the updated_at field to current date
+  this.updated_at = currentDate;
 
-    // if created_at doesn't exist, add to that field
-    if (!this.created_at)
-        this.created_at = currentDate;
+  // if created_at doesn't exist, add to that field
+  if (!this.created_at)
+    this.created_at = currentDate;
 
-    next();
+  next();
 });
 
-userSchema.statics.findUniqueUsername = function(username, suffix,
-                                                 callback) {
+userSchema.statics.findUniqueUsername = function (username, suffix,
+                                                  callback) {
   var possibleUsername = username + (suffix || '');
   this.findOne({
     username: possibleUsername

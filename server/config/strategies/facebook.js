@@ -12,7 +12,9 @@ module.exports = function() {
 			clientID: config.facebook.clientID,
 			clientSecret: config.facebook.clientSecret,
 			callbackURL: config.facebook.callbackURL,
-			passReqToCallback: true
+			passReqToCallback: true,
+      enableProof: true,
+      profileFields: ['email']
 		},
 		(req, accessToken, refreshToken, profile, done) => {
 			// Set the user's provider data and include tokens
@@ -24,11 +26,6 @@ module.exports = function() {
 
 			// Create the user OAuth profile
 			const providerUserProfile = {
-				firstName: profile.name.givenName,
-				lastName: profile.name.familyName,
-				fullName: profile.displayName,
-				email: (profile.hasOwnProperty('emails')) ? profile.emails[0].value : '',
-				username: profile.username,
 				provider: 'facebook',
 				providerId: profile.id,
 				providerData: providerData

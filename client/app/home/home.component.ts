@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit} from '@angular/core';
+import $ from 'jquery/dist/jquery';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 
@@ -29,4 +29,8 @@ export class HomeComponent implements OnInit {
     this.userService.getAll().subscribe(users => { this.users = users; });
   }
 
+  tetas() {
+    console.log('tetas');
+    $('#tetas').popover('show');
+  }
 }

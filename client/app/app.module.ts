@@ -24,6 +24,7 @@ import { CrearWallComponent } from './crear-wall/crear-wall.component';
 import { LandingComponent } from './landing/landing.component';
 import { FeedComponent } from './feed/feed.component';
 import { CardInformativoComponent } from './cards/card-informativo/card-informativo.component';
+import { RegisterPopoverComponent } from './register-popover/register-popover.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CardInformativoComponent } from './cards/card-informativo/card-informat
     CrearWallComponent,
     LandingComponent,
     FeedComponent,
-    CardInformativoComponent
+    CardInformativoComponent,
+    RegisterPopoverComponent
   ],
   imports: [
     BrowserModule,
