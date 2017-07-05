@@ -10,6 +10,7 @@ import { AuthGuard } from "./guards/auth-guard.guard";
 import { AlertService } from "./services/alert.service";
 import { AuthenticationService } from "./services/authentication.service";
 import { UserService } from "./services/user.service";
+import { RepositorioService } from './services/repositorio.service';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -43,6 +44,7 @@ import { CrearWallComponent } from './crear-wall/crear-wall.component';
   providers: [
     AppConfig,
     AuthGuard,
+    RepositorioService,
     AlertService,
     AuthenticationService,
     UserService

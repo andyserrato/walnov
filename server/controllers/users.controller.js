@@ -3,14 +3,19 @@ var express = require('express');
 var router = express.Router();
 var userService = require('../services/user.service');
 
+//Modelos
+var MensajePrivado = require('mongoose').model('mensajePrivado');
+var Usuario = require('mongoose').model('usuarios');
+var Utils = require("../services/utils.service").Utils;
+
 // routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
-router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:_id', update);
 router.delete('/:_id', _delete);
-//Llámame pa tras baby
+router.post('/nuevoMensajePrivado', nuevoMensajePrivado);
+
 module.exports = router;
 
 function authenticate(req, res) {
@@ -34,17 +39,6 @@ function register(req, res) {
     userService.create(req.body)
         .then(function() {
             res.sendStatus(200);
-        })
-        .catch(function(err) {
-            res.status(400).send(err);
-        });
-}
-
-function getAll(req, res) {
-    console.log("Obteniendo todos los usuarios");
-    userService.getAll()
-        .then(function(users) {
-            res.send(users);
         })
         .catch(function(err) {
             res.status(400).send(err);
@@ -75,6 +69,14 @@ function update(req, res) {
         });
 }
 
+function nuevoMensajePrivado(req, res){
+    let nuevoMensajePrivado = _crearNuevoMensajePrivado(req.body);
+
+    Usuario.findOneAndUpdate({_id: req.body.destinatario},{$push: {mensajesPrivados: nuevoMensajePrivado}}, function(err, usuario){
+        _devolverResultados(err, {resultado:"OK"}, res);
+    });
+}
+
 function _delete(req, res) {
     userService.delete(req.params._id)
         .then(function() {
@@ -83,4 +85,31 @@ function _delete(req, res) {
         .catch(function(err) {
             res.status(400).send(err);
         });
+}
+
+function _crearNuevoMensajePrivado(params){
+    let fechaHora = new Date();
+
+    let nuevoMensajePrivado = new MensajePrivado({
+        fecha: Utils.getFecha(fechaHora),
+        hora: Utils.getHora(fechaHora),
+        timestamp: fechaHora,
+        leido: false,
+        destinatario: params.destinatario,
+        destinatarioName: params.destinatarioName,
+        mensaje: params.mensaje,
+        remitenteName: params.remitenteName,
+        remitente: params.remitente
+    });
+
+    return nuevoMensajePrivado;
+}
+
+function _devolverResultados(err, item, resp){
+
+    if (err){
+        resp.send("ERROR");
+    }else{
+        resp.send(item);
+    }
 }

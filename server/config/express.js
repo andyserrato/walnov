@@ -14,6 +14,9 @@ const config = require('./config');
 module.exports = function () {
   const app = express();
 
+  //Timezone
+  process.env.TZ = 'Europe/Madrid';
+
   // Parsers for POST data
   app.use(cors());
   app.use(bodyParser.json());
@@ -38,14 +41,17 @@ module.exports = function () {
 
   // routes
   app.use('/users', require('../controllers/users.controller'));
+  app.use('/walls', require('../controllers/wall.controller'));
+  app.use('/tests', require('../controllers/test.controller'));
+  app.use('/relatos', require('../controllers/relatos.controller'));
+  app.use('/chatstories', require('../controllers/chatstories.controller'));
 
   // Set our api routes
   app.use('/api', api);
 
   // Catch all other routes and return the index file
-  app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '../dist/index.html'));
+  app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '../../dist/index.html'));
   });
 
   return app;
 }
-
