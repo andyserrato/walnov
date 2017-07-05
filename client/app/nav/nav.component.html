@@ -1,35 +1,58 @@
-<div class="ui fixed menu">
-    <div class="ui container">
-        <a routerLink="/home" routerLinkActive="active" class="header item">
-            <img class="logo" src="assets/images/logo.png">
-        </a>
-        <a routerLink="/inicio" routerLinkActive="active" class="item">Inicio</a>
-        <a href="#" class="item">Walls</a>
-        <a href="#" class="item">Chat Stories</a>
-        <a href="#" class="item">Relatos</a>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search icon"></i>
-                </div>
-            </div>
-            <a class="item">
-                <i class="bell icon"></i>
-            </a>
-            <a class="item">
-                <i class="mail icon"></i>
-            </a>
-            <a class="item">
-                <img src="assets/images/square-image.png" class="ui avatar image">
-            </a>
-            <a routerLink="/login" class="item">Log In</a>
-            <div class="item">
-                <button class="ui labeled icon button" routerLink="/crear-wall">
-                    <i class="book icon"></i>
-                    Crear Wall
-                </button>
-            </div>
-        </div>
+<nav [hidden]="isNavBarHidden" class=" justify-content navbar navbar-toggleable-md navbar-inverse fixed-top"
+     style="background-color: #4d1274">
+  <div class="container">
+    <div class="col-2">
+      <a class="navbar-brand mb-0" href="#">
+        <img src="assets/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Walnov
+      </a>
     </div>
-</div>
+    <div class="dropdown col-2">
+      <a class="btn btn-sm btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink"
+         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Comunidad
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Walls</a>
+        <a class="dropdown-item" href="#">ChatStories</a>
+        <a class="dropdown-item" href="#">Relatos Cortos</a>
+      </div>
+    </div>
+
+    <input class="form-control h-75 col-3" type="text" placeholder="Search">
+
+    <span class="fa-stack fal-lg hidden-lg-up col-1">
+    <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i>
+    <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+    </span>
+
+    <div class="dropdown col-1">
+      <a class="btn btn-sm btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuCrear"
+         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-pencil"></i>
+        Crear...
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuCrear">
+        <a class="dropdown-item" routerLink="/crear-wall">Crear Walls</a>
+        <a class="dropdown-item" href="#">Crear ChatStories</a>
+        <a class="dropdown-item" href="#">Crear Relatos Cortos</a>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <button class="btn btn-secondary btn-sm hidden-lg-down">Cómo Funciona</button>
+    </div>
+
+    <div class="col-1">
+      <i class="fa fa-bell"></i>
+      <i class="fa fa-inbox"></i>
+    </div>
+
+    <div class="col-1">
+      <img src="https://lorempixel.com/22/22/cats" class="rounded-circle">
+    </div>
+  </div>
+</nav>
+

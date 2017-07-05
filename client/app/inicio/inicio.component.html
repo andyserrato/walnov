@@ -14,6 +14,11 @@
             {{ notificacion }}
         </div>
 
+        <div *ngIf="user">
+          <h1>Hello {{user.username}}</h1>
+          <a href="/api/auth/signout">Signout</a>
+        </div>
+
     </div>
     <div class="three wide column">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum porttitor odio euismod bibendum. Sed sit amet imperdiet lectus. In eget lacus ac ipsum mattis condimentum. Vivamus nisi neque, blandit non leo auctor, ultrices condimentum

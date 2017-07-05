@@ -99,7 +99,7 @@ var continuacionSchema = new Schema({
 });
 
 // Story schema
-var storySchema = new Schema({
+var historiaSchema = new Schema({
     autor: String,
     body: String,
     continuaciones: [continuacionSchema],
@@ -121,8 +121,7 @@ var wallSchema = new Schema({
     tags: [String],
     likes: Number,
     views: Number,
-    historias: [storySchema],
-    privado: Boolean,
+    historias: [historiaSchema],
     created_at: Date,
     updated_at: Date,
     is_active: { type: Boolean , default: true}

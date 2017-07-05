@@ -1,18 +1,34 @@
 // grab the things we need
-var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const Schema = mongoose.Schema;
 
 var Constantes = require("../constantes/constantes");
 
 
 // create a schema
-/*var userSchema = new Schema({
+/*const userSchema = new Schema({
     firstname: String,
     lastname: String,
-    username: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    username: {
+      type: String,
+      //required: true,
+      unique: true,
+      trim: true
+    },
+    email: {
+      type: String,
+      //required: true,
+      //unique: true,
+      //match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
+    },
+    password: {
+      type: String,
+      //required: true,
+      //validate: [(password) => {
+       // return password && password.length > 6;
+      //}, 'Password should be longer']
+    },
     isAdmin: { type: Boolean , default: false},
     location: String,
     token: String,
@@ -29,6 +45,12 @@ var Constantes = require("../constantes/constantes");
   // =======================
     // pruebas de passport ===========
   // =====================
+  provider: {
+    type: String,
+    //required: 'Provider is required'
+  },
+  providerId: String,
+  providerData: {},
   local            : {
     email        : String,
     password     : String,
@@ -189,14 +211,14 @@ var usuario = Schema({
 };
 
 // checking if password is valid
-usuario.methods.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.local.password);
-}
+userSchema.methods.authenticate = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 // on every save, add the date
 usuario.pre('save', function(next) {
     // get the current date
-    var currentDate = new Date();
+    const currentDate = new Date();
 
     // change the updated_at field to current date
     this.updated_at = currentDate;
@@ -236,6 +258,30 @@ mensajePrivado.pre('save', function (next){
     this.hora = Utils.getHora(fechaCreacion);
 
     next();
+});
+
+userSchema.statics.findUniqueUsername = function(username, suffix,
+                                                 callback) {
+  var possibleUsername = username + (suffix || '');
+  this.findOne({
+    username: possibleUsername
+  }, (err, user) => {
+    if (!err) {
+      if (!user) {
+        callback(possibleUsername);
+      } else {
+        return this.findUniqueUsername(username, (suffix || 0) +
+          1, callback);
+      }
+    } else {
+      callback(null);
+    }
+  });
+};
+
+userSchema.set('toJSON', {
+  getters: true,
+  virtuals: true
 });
 
 // the schema is useless so far

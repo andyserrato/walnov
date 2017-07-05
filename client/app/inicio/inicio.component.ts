@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositorioService } from '../services/repositorio.service';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Component({
   selector: 'app-inicio',
@@ -7,8 +8,16 @@ import { RepositorioService } from '../services/repositorio.service';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+  user: any;
 
-  constructor(private repositorio: RepositorioService) {
+  constructor (private repositorio: RepositorioService, private _authenticationService: AuthenticationService) {
+    console.log('Obteniendo el usuario');
+    this._authenticationService.primerLogueoSocial()
+      .subscribe(result  => console.log(result),
+        error =>  console.log(error));
+
+    this.user = _authenticationService.user;
+    console.log(this.user);
 
   }
 

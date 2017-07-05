@@ -1,6 +1,4 @@
 <app-nav></app-nav>
-
-<div class="main container">
-    <alert></alert>
-    <router-outlet></router-outlet>
+<div [class.container]="!isNavBarHidden">
+<router-outlet></router-outlet>
 </div>

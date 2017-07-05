@@ -1,0 +1,136 @@
+@import 'main';
+
+.fondo {
+  background-color: #fafafa;
+}
+
+.Rectangle-3-Copy-3 {
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Check-Label-Copy-10 {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: #4a4a4a;
+  color: var($grey-8);
+}
+
+.Input-Background-Copy-3 {
+  border-radius: 3px;
+  background-color: #ffffff;
+  background-color: var($grey-1);
+  border: solid 1px #c0c0c0;
+  border: solid 1px var($grey-5);
+}
+
+.Actual {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: #4a4a4a;
+  color: var($grey-8);
+}
+
+.layer {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: #4a4a4a;
+  color: var($grey-8);
+}
+
+
+.chip {
+  display: inline-block;
+  padding: 0 25px;
+  height: 22px;
+  font-size: 18px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+}
+
+.chip img {
+  float: left;
+  margin: 0 10px 0 -25px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.closebtn {
+  padding-left: 10px;
+  color: #888;
+  font-weight: bold;
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: #000;
+}
+.Creacin-de-Wall {
+  font-family: Raleway;
+  font-size: 16px;
+  text-align: left;
+  color: #4d1274;
+  color: var($main-2);
+  padding: 32px 0 0 25px;
+}
+
+.Ttulo-del-wall {
+  font-family: Maven Pro;
+  font-size: 26px;
+  font-weight: 500;
+  text-align: left;
+  padding-left: 30px;
+  padding-top: 20px;
+  color: #ffffff;
+  color: var($grey-1);
+}
+
+.Rectangle-5 {
+  width: 92%;
+  *height: 19.1%;
+  //width: 756.5px;
+  //height: 128.6px;
+  margin-left: 24px;
+  margin-right: 38px;
+  background: var($grey-1);
+  background-image: url('https://lorempixel.com/757/129/');
+  background-image: url('https://lorempixel.com/757/129/'), linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-2);
+}
+
+.Rectangle-3-Copy-8 {
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.lapiz {
+  padding-left: 40px;
+}
+
+.categoria-titulo {
+ color: white;
+}
+
+.cambiar-imagen {
+  color: white;
+  width: 110px;
+}
+
+.imagen-categoria-seleccion {
+  padding-left: 30px;
+  display: inline-flex;
+  padding-top: 30px;
+  width: 100%;
+}
