@@ -21,6 +21,8 @@ module.exports = function () {
   // Create a new Express application instance
   const app = express();
 
+  process.env.TZ = 'Europe/Madrid';
+
   // Use the 'NDOE_ENV' variable to activate the 'morgan' logger or 'compress' middleware
   if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
@@ -55,10 +57,17 @@ module.exports = function () {
 
   // routes
   app.use('/users', require('../controllers/users.controller'));
-  require('../routes/users.server.routes.js')(app);
+  app.use('/walls', require('../controllers/wall.controller'));
+  app.use('/tests', require('../controllers/test.controller'));
+  app.use('/relatos', require('../controllers/relatos.controller'));
+  app.use('/chatstories', require('../controllers/chatstories.controller'));
 
   // Set our api routes
   app.use('/api1', api1);
+
+  //Pruebas andy
+  require('../routes/users.server.routes.js')(app)
+
 
   // Catch all other routes and return the index file
   app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '../../dist/index.html'));
@@ -66,4 +75,3 @@ module.exports = function () {
 
   return app;
 }
-

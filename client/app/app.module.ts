@@ -8,9 +8,10 @@ import { routing } from './app.routing';
 import { AppConfig } from './app.config';
 import { AuthGuard } from './guards/auth-guard.guard';
 
-import { AlertService } from './services/alert.service';
-import { AuthenticationService } from './services/authentication.service';
-import { UserService } from './services/user.service';
+import { AlertService } from "./services/alert.service";
+import { AuthenticationService } from "./services/authentication.service";
+import { UserService } from "./services/user.service";
+import { RepositorioService } from './services/repositorio.service';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -53,6 +54,7 @@ import { RegisterPopoverComponent } from './register-popover/register-popover.co
   providers: [
     AppConfig,
     AuthGuard,
+    RepositorioService,
     AlertService,
     AuthenticationService,
     UserService

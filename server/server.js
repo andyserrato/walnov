@@ -15,11 +15,14 @@ const app = configureExpress();
 // Configure the Passport middleware
 const passport = configurePassport();
 
-// Use the Express application instance to listen to the '3000' port
-app.listen(3000);
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-// Log the server status to the console
-console.log('Server running at http://localhost:3000/');
+http.listen(3000, function(){
+    console.log('Server running at http://localhost:3000/');
+});
 
-// Use the module.exports property to expose our Express application instance for external usage
 module.exports = app;
+module.exports.io = io;
+
+const startSockets = require('./services/sockets.service');

@@ -23,6 +23,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "bootstrap": "^4.0.0-alpha.6",
+    "buffer-crc32": "^0.2.13",
     "compression": "^1.6.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
@@ -39,6 +40,7 @@
     "mongoose": "^4.9.9",
     "mongoskin": "^2.1.0",
     "morgan": "^1.8.2",
+    "mysql": "^2.13.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
@@ -48,6 +50,7 @@
     "request": "^2.81.0",
     "rootpath": "^0.1.2",
     "rxjs": "^5.1.0",
+    "socket.io": "^2.0.3",
     "tether": "^1.4.0",
     "url": "^0.11.0",
     "zone.js": "^0.8.4"
