@@ -10,8 +10,8 @@ io.sockets.on('connection', function(socket){
       socket.id = datosUsuario.id;
       hashmapUsuarios.set(datosUsuario.id, socket);
       console.log(hashmapUsuarios.size);
-
-      setInterval(function(){console.log('enviando notificacion'); socket.emit('notificacionFeed', "Hola, esto es una nueva notificacion")}, 3000)
+      // TODO comentado momentáneamente
+      //setInterval(function(){console.log('enviando notificacion'); socket.emit('notificacionFeed', "Hola, esto es una nueva notificacion")}, 3000)
   })
 
   socket.on('message', function(data){
