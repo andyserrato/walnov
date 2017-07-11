@@ -14,7 +14,10 @@ module.exports = function(app) {
   app.route('/auth/signout').get(users.signout);
 
   // Obtiene los datos del usuario
-  app.get('/oauth/userdata', users.isLoggedIn, users.findUserByProviderId);
+  app.get('/oauth/userdataPassportLoggedIn', users.isLoggedIn, users.findUserByProviderIdPassportLoggedIn);
+
+  app.post('/oauth/userdata', users.isUserRegisteredByProviderId);
+  // app.post('/oauth/userdata3', users.isUserRegisteredByProviderId);
 
   // Set up the Facebook OAuth routes
   app.get('/oauth/facebook', passport.authenticate('facebook', {
@@ -22,7 +25,7 @@ module.exports = function(app) {
     scope: ['public_profile', 'email', 'user_friends']
   }));
   app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
-    failureRedirect: '/signin',
+    failureRedirect: '/home',
     successRedirect: '/'
   }));
 

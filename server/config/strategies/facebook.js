@@ -22,8 +22,6 @@ module.exports = function() {
 			providerData.accessToken = accessToken;
 			providerData.refreshToken = refreshToken;
 
-			console.log(providerData);
-
 			// Create the user OAuth profile
 			const providerUserProfile = {
 				provider: 'facebook',
@@ -31,8 +29,15 @@ module.exports = function() {
 				providerData: providerData
 			};
 
-			// Save the user OAuth profile
-			users.saveOAuthUserProfile(req, providerUserProfile, done);
+			console.log(providerUserProfile);
+      let usuario = users.findUserByProviderId(providerUserProfile);
+
+			if (!usuario) {
+        usuario = users.saveOAuthUserProfile(providerUserProfile);
+      }
+
+      console.log(usuario);
+      return done(null, usuario);
 		}
 	));
 };
