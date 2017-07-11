@@ -8,16 +8,17 @@
         <p></p>
     </div>
     <div class="ten wide column">
-      <div *ngIf="user">
-        <h1>Hello {{user.username}}</h1>
-        <a href="/api/auth/signout">Signout</a>
-      </div>
-        <p>hello  hello Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum porttitor odio euismod bibendum. Sed sit amet imperdiet lectus. In eget lacus ac ipsum mattis condimentum. Vivamus nisi neque, blandit non leo auctor, ultrices condimentum
-            mauris. Vestibulum ultrices turpis ac quam vestibulum finibus. Phasellus euismod eget metus et pulvinar. Aenean non volutpat massa. Duis a quam quis lectus eleifend malesuada. Suspendisse potenti. Vivamus elementum nunc eu odio faucibus, a
-            blandit lectus fermentum. Donec purus ex, posuere in fermentum vel, elementum in mi.</p>
-        <p></p>
-        <p></p>
-        <p></p>
+        <p>Pruebas Feed</p>
+
+        <div *ngFor="let notificacion of repositorio.notificaciones;">
+            {{ notificacion }}
+        </div>
+
+        <div *ngIf="user">
+          <h1>Hello {{user.username}}</h1>
+          <a href="/api/auth/signout">Signout</a>
+        </div>
+
     </div>
     <div class="three wide column">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum porttitor odio euismod bibendum. Sed sit amet imperdiet lectus. In eget lacus ac ipsum mattis condimentum. Vivamus nisi neque, blandit non leo auctor, ultrices condimentum

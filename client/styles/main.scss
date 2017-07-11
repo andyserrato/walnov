@@ -3,11 +3,14 @@
 @import url('https://fonts.googleapis.com/css?family=Maven+Pro');
 
 body {
-  padding-top: 4.5em;
+  padding-top: 5em;
+}
+
+:root {
+  font-size: calc(0.5em + 0.35vw);
 }
 
 /* Color palette */
-
 $main-1: #8427bf;
 $main-2: #4d1274;
 $main-3: #984cce;
@@ -172,6 +175,83 @@ $alert: #f1b028;
   padding-right: 0px;
 }
 
+.margen {
+    margin: 0em 0em 2em 2em;
+}
+
+.product-menu {
+  height: 50px;
+  margin-top: 22px;
+}
+
+.product-slide-item {
+  margin-bottom: 25px;
+}
+
+.product-item {
+  height: 171px;
+  width: 100%;
+  display: block;
+}
+
+.nav-padding {
+  padding-top: 50px;
+}
+
+.img-avatar {
+  width: 22px;
+  height: 22px;
+}
+
+.Rectangle-2 {
+  width: 107px;
+  height: 26px;
+  border-radius: 4px;
+  border: solid 1px rgb(152, 77, 206);
+  border: solid 1px var(--main-3);
+  margin-top: 13px;
+  margin-bottom: 15px;
+}
+
+.Comunidad {
+  padding: 2px 6px 21px 6px;
+  width: 84px;
+  height: 14px;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff !important;
+  color: var(--grey-1);
+}
+
+.Shape1 {
+  width: 16.4px;
+  height: 14.6px;
+  background-color: #ffffff;
+  background-color: var(--grey-1);
+}
+
+.Shape2 {
+  width: 13.5px;
+  height: 14.6px;
+  background-color: #ffffff;
+  background-color: var(--grey-1);
+}
+
+.Oval {
+  width: 3.5px;
+  height: 3.6px;
+  background-color: #ffffff;
+  background-color: var(--grey-1);
+}
+
+.ellipsis{
+  white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
 .closebtn {
   margin-right: 9px;
   color: #888;
@@ -282,4 +362,5 @@ $alert: #f1b028;
   background-color: #ffffff;
   background-color: $grey-1;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+
 }

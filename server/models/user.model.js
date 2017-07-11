@@ -2,104 +2,158 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
+const Constantes = require("../constantes/constantes");
 
-// create a schema
-const userSchema = new Schema({
-    firstname: String,
-    lastname: String,
-    username: {
-      type: String,
-      //required: true,
-      unique: true,
-      trim: true
-    },
-    email: {
-      type: String,
-      //required: true,
-      //unique: true,
-      //match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
-    },
-    password: {
-      type: String,
-      //required: true,
-      //validate: [(password) => {
-       // return password && password.length > 6;
-      //}, 'Password should be longer']
-    },
-    isAdmin: { type: Boolean , default: false},
-    location: String,
-    token: String,
-    verificado: Boolean,
-    profileComplete: Boolean,
-    urlImage: String,
-    meta: {
-        age: Number,
-        website: String
-    },
-    is_active: { type: Boolean , default: true},
-    created_at: Date,
-    updated_at: Date,
-  // =======================
-    // pruebas de passport ===========
-  // =====================
-  provider: {
-    type: String,
-    //required: 'Provider is required'
-  },
-  providerId: String,
-  providerData: {},
-  local            : {
-    email        : String,
-    password     : String,
-  },
-  facebook         : {
-    id           : String,
-    token        : String,
-    email        : String,
-    name         : String
-  },
-  twitter          : {
-    id           : String,
-    token        : String,
-    displayName  : String,
-    username     : String
-  },
-  google           : {
-    id           : String,
-    token        : String,
-    email        : String,
-    name         : String
-  }
+const notificacionNuevaHistoria = Schema({
+  texto: String,
+  tituloWall: String,
+  idWall: mongoose.Schema.Types.ObjectId,
+  indiceHistoria: Number,
+  refAutor: mongoose.Schema.Types.ObjectId,
+  nombreAutor: String,
 });
+
+const notificacionNuevoWall = Schema({
+  texto: String,
+  tituloWall: String,
+  idWall: mongoose.Schema.Types.ObjectId,
+  refAutor: mongoose.Schema.Types.ObjectId,
+  nombreAutor: String,
+});
+
+const notificacionNuevaContinuacionHistoria = Schema({
+  texto: String,
+  tituloWall: String,
+  idWall: mongoose.Schema.Types.ObjectId,
+  refAutor: mongoose.Schema.Types.ObjectId,
+  nombreAutor: String,
+  idHistoria: mongoose.Schema.Types.ObjectId,
+});
+
+const notificacionNuevoRelato = Schema({
+  texto: String,
+  tituloRelato: String,
+  idRelato: mongoose.Schema.Types.ObjectId,
+  refAutor: mongoose.Schema.Types.ObjectId,
+  nombreAutor: String,
+});
+
+const notificacionNuevoChatStory = Schema({
+  texto: String,
+  tituloChatStory: String,
+  idChatStory: mongoose.Schema.Types.ObjectId,
+  refAutor: mongoose.Schema.Types.ObjectId,
+  nombreAutor: String,
+});
+
+const notificacionNuevaOpinionRelato = Schema({
+  texto: String,
+  tituloRelato: String,
+  idRelato: mongoose.Schema.Types.ObjectId,
+  refAutor: mongoose.Schema.Types.ObjectId,
+  nombreAutor: String
+});
+
+const notificacionNuevaOpinionChatStory = Schema({
+  texto: String,
+  tituloChatStory: String,
+  idChatStory: mongoose.Schema.Types.ObjectId,
+  refAutor: mongoose.Schema.Types.ObjectId,
+  nombreAutor: String,
+});
+
+const notificacionFeed = Schema({
+  tipo: Number,
+  //Este es el texto de lo que se quiere mostrar, la accion en si ira en tipo, es decir,
+  //Pepe ha conrinuado tu historia, se sacará a partir del nombre del autor y el wall que sea.
+  notificacionNuevaHistoria: notificacionNuevaHistoria,
+  notificacionNuevoWall: notificacionNuevoWall,
+  notificacionContinuacionHistoria: notificacionNuevaContinuacionHistoria,
+  notificacionNuevoRelato: notificacionNuevoRelato,
+  notificacionNuevoChatStory: notificacionNuevoChatStory,
+  notificacionNuevaOpinionRelato: notificacionNuevaOpinionRelato,
+  notificacionNuevaOpinionChatStory: notificacionNuevaOpinionChatStory,
+  fechaCreacion: {type: Date, default: Date.now},
+  fecha: String,
+  hora: String
+});
+
+const notificacionGlobal = Schema({
+  tipo: Number,
+  texto: String,
+  fechaCreacion: {type: Date, default: Date.now},
+  fecha: String,
+  hora: String
+});
+
+const mensajePrivado = Schema({
+  fecha: String,
+  hora: String,
+  fechaCreacion: {type: Date, default: Date.now},
+  leido: {type: Boolean, default: false},
+  destinatario: mongoose.Schema.Types.ObjectId,
+  destinatarioName: String,
+  mensaje: String,
+  remitenteName: String,
+  remitente: mongoose.Schema.Types.ObjectId
+});
+
+const perfil = Schema({
+  nombre: String,
+  apellidos: String,
+  sexo: String,
+  foto_portada: String,
+  foto_perfil: String,
+  email: String,
+  pais: String,
+  lenguajes: String,
+  descripcion: String,
+  display_name: String,
+  perfilCompleto: Boolean,
+
+});
+
+const providerSchema = Schema({
+  provider: String,
+  providerId: String,
+  providerData: {}
+});
+
+const usuario = Schema({
+  login: String,
+  name: String,
+  password: String,
+  siguiendo: [mongoose.Schema.Types.ObjectId],
+  seguidores: [mongoose.Schema.Types.ObjectId],
+  suscriptores: [mongoose.Schema.Types.ObjectId],
+  suscritoA: [mongoose.Schema.Types.ObjectId],
+  notificacionesFeed: [notificacionFeed],
+  notificacionesGlobales: [notificacionGlobal],
+  mensajesPrivados: [mensajePrivado],
+  fechaCreacion: {type: Date, default: Date.now},
+  perfil: perfil,
+  estado: {type: Number, default: Constantes.Usuario.ESTADO_SIN_VERIFICAR},
+  //Normal o partner
+  tipo: {type: Number, default: Constantes.Usuario.TIPO_NORMAL},
+  necesitaRevalidarPassword: {type: Boolean, default: false},
+  activo: {type: Boolean, default: true},
+  providers: [providerSchema]
+});
+
 
 // methods ======================
 // generating a hash
-userSchema.methods.generateHash = function(password) {
+usuario.methods.generateHash = function (password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 // checking if password is valid
-userSchema.methods.authenticate = function(password) {
+usuario.methods.authenticate = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-// on every save, add the date
-userSchema.pre('save', function(next) {
-    // get the current date
-    const currentDate = new Date();
-
-    // change the updated_at field to current date
-    this.updated_at = currentDate;
-
-    // if created_at doesn't exist, add to that field
-    if (!this.created_at)
-        this.created_at = currentDate;
-
-    next();
-});
-
-userSchema.statics.findUniqueUsername = function(username, suffix,
-                                                 callback) {
+usuario.statics.findUniqueUsername = function (username, suffix,
+                                               callback) {
   var possibleUsername = username + (suffix || '');
   this.findOne({
     username: possibleUsername
@@ -117,15 +171,23 @@ userSchema.statics.findUniqueUsername = function(username, suffix,
   });
 };
 
-userSchema.set('toJSON', {
+usuario.set('toJSON', {
   getters: true,
   virtuals: true
 });
 
 // the schema is useless so far
 // we need to create a model using it
-var User = mongoose.model('User', userSchema);
-
-// make this available to our users in our Node applications
-module.exports = User;
-
+const Usuario = mongoose.model('usuarios', usuario);
+const NotificacionFeed = mongoose.model('notificacionFeed', notificacionFeed);
+const NotificacionGlobal = mongoose.model('notificacionGlobal', notificacionGlobal);
+const MensajePrivado = mongoose.model('mensajePrivado', mensajePrivado);
+const NotificacionNuevoWall = mongoose.model('notificacionNuevoWall', notificacionNuevoWall);
+const NotificacionNuevaHistoria = mongoose.model('notificacionNuevaHistoria', notificacionNuevaHistoria);
+const NotificacionNuevaContinuacionHistoria = mongoose.model('notificacionNuevaContinuacionHistoria', notificacionNuevaContinuacionHistoria);
+const NotificacionNuevoRelato = mongoose.model('notificacionNuevoRelato', notificacionNuevoRelato);
+const NotificacionNuevoChatStory = mongoose.model('notificacionNuevoChatStory', notificacionNuevoChatStory);
+const NotificacionNuevaOpinionRelato = mongoose.model('notificacionNuevaOpinionRelato', notificacionNuevaOpinionRelato);
+const NotificacionNuevaOpinionChatStory = mongoose.model('notificacionNuevaOpinionChatStory', notificacionNuevaOpinionChatStory);
+const Perfil = mongoose.model('perfil', perfil);
+const ProviderSchema = mongoose.model('provider', providerSchema);

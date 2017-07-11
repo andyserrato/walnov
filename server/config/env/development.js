@@ -1,5 +1,6 @@
 module.exports = {
   db: 'mongodb://root:root@ds137101.mlab.com:37101/mongoose',
+  //  db: 'mongodb://localhost:27017/walnov',
   jwtSecret: 'WALNOVWEB',
   sessionSecret: 'developmentSessionSecret',
   facebook: {

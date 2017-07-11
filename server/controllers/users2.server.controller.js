@@ -1,9 +1,10 @@
 // Load the module dependencies
-const User = require('mongoose').model('User');
+const User = require('mongoose').model('usuarios');
+const Provider = require('mongoose').model('provider');
 const passport = require('passport');
 
 // Create a new error handling controller method
-const getErrorMessage = function(err) {
+const getErrorMessage = function (err) {
   // Define the error message variable
   let message = '';
 
@@ -31,7 +32,7 @@ const getErrorMessage = function(err) {
 };
 
 // Create a new controller method that signin users
-exports.signin = function(req, res, next) {
+exports.signin = function (req, res, next) {
   passport.authenticate('local', (err, user, info) => {
     if (err || !user) {
       res.status(400).send(info);
@@ -53,7 +54,7 @@ exports.signin = function(req, res, next) {
 };
 
 // Create a new controller method that creates new 'regular' users
-exports.signup = function(req, res) {
+exports.signup = function (req, res) {
   const user = new User(req.body);
   user.provider = 'local';
 
@@ -69,7 +70,7 @@ exports.signup = function(req, res) {
       user.salt = undefined;
 
       // Login the user
-      req.login(user, function(err) {
+      req.login(user, function (err) {
         if (err) {
           res.status(400).send(err);
         } else {
@@ -81,45 +82,34 @@ exports.signup = function(req, res) {
 }
 
 // Create a new controller method that creates new 'OAuth' users
-exports.saveOAuthUserProfile = function(req, profile, done) {
+exports.saveOAuthUserProfile = function (profile) {
   // Try finding a user document that was registered using the current OAuth provider
-  User.findOne({
+  user = new User();
+  console.log('saveOAuthUserProfile');
+
+  user.perfil = {
+    email: profile.providerData.email
+  };
+
+  provider = new Provider({
     provider: profile.provider,
-    providerId: profile.providerId
-  }, (err, user) => {
-    // If an error occurs continue to the next middleware
-    if (err) {
-      return done(err);
-    } else {
-      // If a user could not be found, create a new user, otherwise, continue to the next middleware
-      if (!user) {
-        // Set a possible base username
-        const possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
+    providerId: profile.providerId,
+    providerData: profile.providerData
+  })
 
-        // Find a unique available username
-        User.findUniqueUsername(possibleUsername, null, (availableUsername) => {
-          // Set the available user name
-          profile.username = availableUsername;
+  user.providers().push(provider);
 
-          // Create the user
-          user = new User(profile);
+  console.log('provider');
+  cosole.log(profile.provider);
+  console.log('providerId');
+  console.log(profile.providerId);
 
-          // Try saving the new user document
-          user.save(function(err) {
-            // Continue to the next middleware
-            return done(err, user);
-          });
-        });
-      } else {
-        // Continue to the next middleware
-        return done(err, user);
-      }
-    }
-  });
+  user.save();
+  return user;
 };
 
 // Create a new controller method for signing out
-exports.signout = function(req, res) {
+exports.signout = function (req, res) {
   // Use the Passport 'logout' method to logout
   req.logout();
 
@@ -128,19 +118,130 @@ exports.signout = function(req, res) {
 };
 
 // Middleware
-exports.isLoggedIn = function(req, res, next) {
+exports.isLoggedIn = function (req, res, next) {
   if (req.isAuthenticated()) {
     next();
   } else {
-    res.json({ message : 'error iniciando sesión'});
+    res.json({message: 'error iniciando sesión'});
   }
 };
 
-exports.findUserByProviderId = function(req, res) {
+exports.findUserByProviderIdPassportLoggedIn = function (req, res) {
   User.findOne({
     provider: req.user.provider,
-    providerId: req.user.providerId}, function(err, fulluser) {
+    providerId: req.user.providerId
+  }, function (err, fulluser) {
     if (err) throw err;
     res.json(fulluser);
   })
 };
+
+exports.findUserByProviderId = function (providerUserProfile) {
+  console.log('holis1');
+  console.log(providerUserProfile.provider);
+  console.log(providerUserProfile.providerId);
+  User.findOne({
+    providers: {
+      $elemMatch: {
+        provider: providerUserProfile.provider,
+        providerId: providerUserProfile.providerData.id
+      }
+    }
+  }, function (err, user) {
+    if (err) throw err;
+    console.log('holis2');
+    console.log(user);
+    return user;
+  })
+};
+
+exports.isUserRegisteredByProviderId = function (req, res) {
+  User.find({
+    providers: {
+      $elemMatch: {
+        provider: req.body.providers.provider,
+        providerId: req.body.providers.providerId
+      }
+    }
+  }, function (err, fulluser) {
+    if (err) throw err;
+    console.log('holis');
+    console.log(fulluser);
+    res.json(fulluser);
+  })
+};
+
+
+const salvarUserOAuth = function (user, profile, done) {
+  console.log('Inicio salvarUserOAuth');
+
+  // If a user could not be found, create a new user, otherwise, continue to the next middleware
+  if (!user) {
+    // Set a possible base username
+    if (profile.provider === 'facebook') {
+      user = new (factoryUserFacebook(profile));
+    } else if (profile.provider === 'twitter') {
+    } else if (profile.provider === 'google') {
+    }
+
+    // Try saving the new user document
+    user.save(function (err) {
+      // Continue to the next middleware
+      return done(err, user);
+    });
+  }
+
+  console.log('Fin salvarUserOAuth');
+};
+
+const factoryUserFacebook = function (profile) {
+  var user = {};
+
+  // const possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
+  // User.findUniqueUsername(possibleUsername, null, (availableUsername) => {
+  //   user.username = availableUsername;
+  // });
+
+  user.perfil = {
+    email: profile.providerData.email
+  };
+  user.providers[{
+    provider: profile.provider,
+    providerId: profile.providerId,
+    providerData: profile.providerData
+  }];
+
+  return user;
+}
+
+
+const retorno = function (err, user) {
+  // If an error occurs continue to the next middleware
+  if (err) {
+    return done(err);
+  } else {
+    // If a user could not be found, create a new user, otherwise, continue to the next middleware
+    if (!user) {
+      // Set a possible base username
+      const possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
+
+      // Find a unique available username
+      User.findUniqueUsername(possibleUsername, null, (availableUsername) => {
+        // Set the available user name
+        profile.username = availableUsername;
+
+        // Create the user
+        user = new User(profile);
+
+        // Try saving the new user document
+        user.save(function (err) {
+          // Continue to the next middleware
+          return done(err, user);
+        });
+      });
+    } else {
+      // Continue to the next middleware
+      return done(err, user);
+    }
+  }
+}

@@ -6,10 +6,9 @@ var Schema = mongoose.Schema;
 var inboxSchema = new Schema({
     from: {type:mongoose.Schema.Types.ObjectId, ref:'User'}, // Notification creator
     to: [{type:mongoose.Schema.Types.ObjectId, ref:'User'}], // Ids of the receivers of the notification
-    message: String, // any description of the notification message 
+    message: String, // any description of the notification message
     read: Boolean,
-    sent: read_at: {type: Date, default: Date.now}
-    
+    sent: {type: Date, default: Date.now}
 });
 
 // the schema is useless so far
