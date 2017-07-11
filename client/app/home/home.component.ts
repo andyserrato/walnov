@@ -1,5 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import $ from 'jquery/dist/jquery';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 
@@ -11,6 +10,7 @@ import { UserService } from '../services/user.service';
 export class HomeComponent implements OnInit {
   currentUser: User;
   users: User[] = [];
+  name: string = 'hola';
 
   constructor(private userService: UserService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));

@@ -32,6 +32,7 @@ class Usuario{
     static get ESTADO_VERIFICADO(){return 1;}
     static get TIPO_NORMAL(){return 0;}
     static get TIPO_PARTNER(){return 1;}
+    static get TIPO_ADMIN(){return 1;}
 }
 
 module.exports = Constantes;

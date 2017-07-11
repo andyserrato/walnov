@@ -1,5 +1,6 @@
 // Load the module dependencies
 const User = require('mongoose').model('usuarios');
+const Provider = require('mongoose').model('provider');
 const passport = require('passport');
 
 // Create a new error handling controller method
@@ -81,28 +82,30 @@ exports.signup = function (req, res) {
 }
 
 // Create a new controller method that creates new 'OAuth' users
-exports.saveOAuthUserProfile = function (req, profile, done) {
+exports.saveOAuthUserProfile = function (profile) {
   // Try finding a user document that was registered using the current OAuth provider
+  user = new User();
+  console.log('saveOAuthUserProfile');
 
-  if (profile.provider === 'facebook') {
-    User.findOne({
-      'providers.providerId': profile.provider
-    }, function (err, user, profile, done) {
-      if (err) {
-        return done(err);
-      } else {
-        salvarUserOAuth(user, profile, done);
-      }
-    })
-  } else if (profile.provider === 'twitter') {
-    User.findOne({
-      'providers.providerId': profile.provider
-    }, salvarUserOAuth(err, user, profile, done));
-  } else if (profile.provider === 'google') {
-    User.findOne({
-      'providers.providerId': profile.provider
-    }, salvarUserOAuth(err, user, profile, done));
-  }
+  user.perfil = {
+    email: profile.providerData.email
+  };
+
+  provider = new Provider({
+    provider: profile.provider,
+    providerId: profile.providerId,
+    providerData: profile.providerData
+  })
+
+  user.providers().push(provider);
+
+  console.log('provider');
+  cosole.log(profile.provider);
+  console.log('providerId');
+  console.log(profile.providerId);
+
+  user.save();
+  return user;
 };
 
 // Create a new controller method for signing out
@@ -123,7 +126,7 @@ exports.isLoggedIn = function (req, res, next) {
   }
 };
 
-exports.findUserByProviderId = function (req, res) {
+exports.findUserByProviderIdPassportLoggedIn = function (req, res) {
   User.findOne({
     provider: req.user.provider,
     providerId: req.user.providerId
@@ -133,24 +136,60 @@ exports.findUserByProviderId = function (req, res) {
   })
 };
 
+exports.findUserByProviderId = function (providerUserProfile) {
+  console.log('holis1');
+  console.log(providerUserProfile.provider);
+  console.log(providerUserProfile.providerId);
+  User.findOne({
+    providers: {
+      $elemMatch: {
+        provider: providerUserProfile.provider,
+        providerId: providerUserProfile.providerData.id
+      }
+    }
+  }, function (err, user) {
+    if (err) throw err;
+    console.log('holis2');
+    console.log(user);
+    return user;
+  })
+};
+
+exports.isUserRegisteredByProviderId = function (req, res) {
+  User.find({
+    providers: {
+      $elemMatch: {
+        provider: req.body.providers.provider,
+        providerId: req.body.providers.providerId
+      }
+    }
+  }, function (err, fulluser) {
+    if (err) throw err;
+    console.log('holis');
+    console.log(fulluser);
+    res.json(fulluser);
+  })
+};
+
+
 const salvarUserOAuth = function (user, profile, done) {
   console.log('Inicio salvarUserOAuth');
 
-    // If a user could not be found, create a new user, otherwise, continue to the next middleware
-    if (!user) {
-      // Set a possible base username
-      if (profile.provider === 'facebook') {
-        user = new (factoryUserFacebook(profile));
-      } else if (profile.provider === 'twitter') {
-      } else if (profile.provider === 'google') {
-      }
-
-      // Try saving the new user document
-      user.save(function (err) {
-        // Continue to the next middleware
-        return done(err, user);
-      });
+  // If a user could not be found, create a new user, otherwise, continue to the next middleware
+  if (!user) {
+    // Set a possible base username
+    if (profile.provider === 'facebook') {
+      user = new (factoryUserFacebook(profile));
+    } else if (profile.provider === 'twitter') {
+    } else if (profile.provider === 'google') {
     }
+
+    // Try saving the new user document
+    user.save(function (err) {
+      // Continue to the next middleware
+      return done(err, user);
+    });
+  }
 
   console.log('Fin salvarUserOAuth');
 };
@@ -158,12 +197,14 @@ const salvarUserOAuth = function (user, profile, done) {
 const factoryUserFacebook = function (profile) {
   var user = {};
 
-  const possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
-  User.findUniqueUsername(possibleUsername, null, (availableUsername) => {
-    user.username = availableUsername;
-  });
+  // const possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
+  // User.findUniqueUsername(possibleUsername, null, (availableUsername) => {
+  //   user.username = availableUsername;
+  // });
 
-  user.email = profile.providerData.email;
+  user.perfil = {
+    email: profile.providerData.email
+  };
   user.providers[{
     provider: profile.provider,
     providerId: profile.providerId,

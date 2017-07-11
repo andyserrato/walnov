@@ -9,7 +9,6 @@ var inboxSchema = new Schema({
     message: String, // any description of the notification message
     read: Boolean,
     sent: {type: Date, default: Date.now}
-
 });
 
 // the schema is useless so far

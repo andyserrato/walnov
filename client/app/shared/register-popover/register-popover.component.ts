@@ -9,7 +9,7 @@ export class RegisterPopoverComponent implements OnInit {
   textoBoton: string;
   popoverDisplay: boolean;
   constructor() {
-    this.textoBoton = 'Registrarse';
+    this.textoBoton = 'Publicar';
   }
 
   ngOnInit() {
