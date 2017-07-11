@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { AuthenticationModule } from './authentication/authentication.module';
 
@@ -24,6 +24,7 @@ import { CrearWallComponent } from './crear-wall/crear-wall.component';
 import { LandingComponent } from './landing/landing.component';
 import { FeedComponent } from './feed/feed.component';
 import { CardInformativoComponent } from './cards/card-informativo/card-informativo.component';
+import { CardTagsComponent } from './cards/card-tags/card-tags.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CardInformativoComponent } from './cards/card-informativo/card-informat
     CrearWallComponent,
     LandingComponent,
     FeedComponent,
-    CardInformativoComponent
+    CardInformativoComponent,
+    CardTagsComponent
   ],
   imports: [
     BrowserModule,

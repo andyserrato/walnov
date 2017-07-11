@@ -1,0 +1,121 @@
+@import 'main';
+
+.fondo {
+  background-color: #fafafa;
+}
+
+.Rectangle-3-Copy-2 {
+  //width: 175px;
+  //height: 262px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-color: var(--grey-1);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.entrada {
+  margin-top: 61px;
+  margin-left: 47px;
+  margin-right: 49.3px;
+
+}
+.Rectangle-3-Copy-12 {
+  //width: 175px;
+  //height: 127px;
+  margin-top: 18px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-color: var(--grey-1);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Combined-Shape {
+  //width: 956px;
+  //height: 719px;
+  margin-left: 19px;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+
+.Rectangle-7-Copy-5 {
+  width: 275px;
+  height: 248px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-color: var(--grey-1);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Rectangle-5 {
+  //width: 100%;
+  //height: 78px;
+  opacity: 0.5;
+  background-image: linear-gradient(to bottom, rgba(37, 2, 73, 0), #250148);
+}
+
+.Rectangle-3-Copy-3 {
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Titulo {
+  width: 100%;
+  height: 36px;
+  margin-top: -10px;
+  font-family: 'Maven Pro';
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: left;
+  color: #ffffff;
+  //max-width: 56px;
+  //max-height: 40px;
+  //white-space: nowrap;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  //color: var(--grey-1);
+}
+
+.Rectangle-7-Copy-10 {
+  width: 56px;
+  height: 12px;
+  background-color: #4b082e;
+  //background-color: var(--cat-10);
+}
+
+.Category {
+  //margin-left: 20px;
+  margin-top: -14px;
+  //padding-top: 90px;
+
+}
+
+.Contenido {
+    font-family: Raleway;
+    font-size: 8px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+
+}
+
+.fa-unlock {
+  color: white;
+  font-size: 0.78em;
+
+}
+
+.Candado {
+  //padding-top: 13px;
+  //padding-right: 20px;
+  border: 0;
+  background: 0;
+  width: 100%;
+  //margin-bottom: 5px;
+  text-align: right;
+  cursor: pointer;
+  outline: none;
+}
