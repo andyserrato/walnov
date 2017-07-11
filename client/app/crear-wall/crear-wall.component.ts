@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Wall } from "../models/wall";
 import { AlertService } from '../services/alert.service';
 
+export class Categoria {
+  nombre: string;
+  color: string;
+  constructor(n: string, c: string){
+    this.nombre=n;
+    this.color=c;
+  }
+}
 @Component({
   selector: 'app-crear-wall',
   templateUrl: './crear-wall.component.html',
@@ -11,24 +19,26 @@ export class CrearWallComponent implements OnInit {
   wall: Wall;
   imageSRC: string;
   imgTitle: string;
-  categorias: Array<String>;
+
   categoria: string;
+  categorias: Array<Categoria> = new Array<Categoria>();
 
   constructor(private alertSerive: AlertService) {
-    this.categorias = new Array<string>();
-    this.categorias.push('Acción');
-    this.categorias.push('Aventura');
-    this.categorias.push('Ciencia-Ficción');
-    this.categorias.push('Drama');
-    this.categorias.push('Romance');
-    this.categorias.push('FanFiction');
-    this.categorias.push('Poesía');
-    this.categorias.push('Humor');
-    this.categorias.push('Terror');
-    this.categorias.push('Reflexión');
   }
 
+
+
   ngOnInit() {
+    this.categorias.push(new Categoria('Acción','#e65e20'));
+    this.categorias.push(new Categoria('Aventura','#29ba6f'));
+    this.categorias.push(new Categoria('Ciencia-Ficción','#16d7d3'));
+    this.categorias.push(new Categoria('Drama','#e15abe'));
+    this.categorias.push(new Categoria('Romance','#de196d'));
+    this.categorias.push(new Categoria('FanFiction','#df9c00'));
+    this.categorias.push(new Categoria('Poesía','#21b3dd'));
+    this.categorias.push(new Categoria('Humor','#b8764e'));
+    this.categorias.push(new Categoria('Terror','#4b082e'));
+    this.categorias.push(new Categoria('Reflexión','#2074e6'));
 
   }
 
@@ -46,5 +56,23 @@ export class CrearWallComponent implements OnInit {
             this.imageSRC = e.target.result;
         }
     }
+
+  onChange($event: any){
+    console.log('Select con value cambiado: '+$event.target.value);
+    document.getElementById('category-filter').style.backgroundImage = "linear-gradient(to bottom, rgba(0, 0, 0, 0), "+$event.target.value+")"
+
+  }
+
+  focusTitle(){
+    document.getElementById('titulo-wall').focus();
+  }
+  
+  focusOutTitle($event) {
+    $event.preventDefault();
+    $event.target.blur();
+    // remove extra lines
+    let text = $event.target.outerText.replace(/(\r\n|\n|\r)/gm,"");
+    // do whatever you need with the text
+  }
 
 }

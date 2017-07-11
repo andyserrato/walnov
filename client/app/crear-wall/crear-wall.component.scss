@@ -1,7 +1,7 @@
 @import 'main';
 
 .fondo {
-  background-color: #fafafa;
+  background-color: #fafa;
 }
 
 .Rectangle-3-Copy-3 {
@@ -18,6 +18,26 @@
   text-align: left;
   color: #4a4a4a;
   color: var($grey-8);
+}
+
+.Check-Label-Copy-6 {
+  width: 127.9px;
+  height: 16px;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-1;
+}
+
+.Check-Label-Copy-7 {
+  width: 140.1px;
+  height: 28px;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  // color: $grey-1;
 }
 
 .Input-Background-Copy-3 {
@@ -83,33 +103,50 @@
   text-align: left;
   color: #4d1274;
   color: var($main-2);
-  padding: 32px 0 0 25px;
 }
 
 .Ttulo-del-wall {
   font-family: Maven Pro;
   font-size: 26px;
   font-weight: 500;
-  text-align: left;
-  padding-left: 30px;
+  //text-align: left;
+  padding-left: 20px;
   padding-top: 20px;
+  padding-bottom: 20px;
   color: #ffffff;
   color: var($grey-1);
 }
+.Ttulo-del-wall:hover{
+  cursor: pointer;
+}
+
+.Rectangle-5-image{
+  width: 100%;
+  *height: 19.1%;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  //width: 756.5px;
+  //height: 128.6px;
+  // margin-left: 24px;
+  //margin-right: 38px;
+  background: var($grey-1);
+  background-image: url('https://lorempixel.com/757/200/');
+}
 
 .Rectangle-5 {
-  width: 92%;
+  width: 100%;
   *height: 19.1%;
   //width: 756.5px;
   //height: 128.6px;
-  margin-left: 24px;
-  margin-right: 38px;
+  // margin-left: 24px;
+  // margin-right: 38px;
   background: var($grey-1);
-  background-image: url('https://lorempixel.com/757/129/');
-  background-image: url('https://lorempixel.com/757/129/'), linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-2);
+  padding:20px;
+  background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-2);
 }
 
 .Rectangle-3-Copy-8 {
+  padding: 24px 24px;
   border-radius: 8px;
   background-color: #fdfdfd;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
@@ -133,4 +170,120 @@
   display: inline-flex;
   padding-top: 30px;
   width: 100%;
+}
+
+textarea::placeholder{
+  font-style: italic;
+}
+
+.Rectangle-7 {
+  height:3em;
+  line-height: 3em;
+  border-radius: 4px;
+  background-color: $main-1;
+  text-align: center;
+}
+
+.Radio-Label {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: $grey-1;
+}
+
+.tituloWall br{
+  display: none;
+}
+
+.tituloWall:focus + .lapiz{
+  display:none;
+}
+
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+label input[type="radio"] {
+  display: none;
+}
+
+
+label .radio{
+  width: 16px;
+  height: 16px;
+  background-color: $grey-1;
+  border: solid 1px #979797;
+  border-radius: 50%;
+}
+
+label input[type="radio"]:checked+.radio {
+  border: solid 0.3em #7b48a0;
+}
+
+label .radio-text{
+  padding-left: 1em;
+}
+
+.row-margin-top{
+  margin-top: 1em;
+}
+
+.etiqueta-form{
+
+  font-family: Raleway;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+}
+
+.etiqueta-form-padding{
+    padding:1rem 1.5rem;
+}
+
+.vista-previa{
+  line-height: 3em;
+  font-family: Raleway;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: left;
+  color: $main-1;
+}
+
+.vista-previa:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.fa-4{
+  font-size: 3em !important;
+  vertical-align: middle;
+}
+
+.unestyled{
+  background: 0;
+  border: 0;
+}
+
+.change-img:hover{
+  cursor: pointer;
+}
+
+.change-img:focus{
+  background-color: gray;
+}
+
+.change-img{
+  padding: 1em 3em;
+  background-color:white;
+  color: gray !important;
+  padding-top: 1em;
+  position: absolute;
+  width: 100%;
+  height: 8em;
+  border-radius: 0.8em;
+  color: gray !important;
+  padding-left: 1.2em;
+  background: white;
 }

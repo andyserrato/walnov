@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-informativo',
@@ -11,6 +11,8 @@ export class CardInformativoComponent implements OnInit {
   buttonText: string;
   titulo: string;
   parrafos: Array<string>;
+  @Input() cats: any;
+
   constructor() {
     // de forma momentánea pues no
     this.showButton = true;
@@ -27,6 +29,7 @@ export class CardInformativoComponent implements OnInit {
 
   public entendido () {
     this.showCard = false;
+    console.log(this.cats);
   }
 
 }
