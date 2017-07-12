@@ -36,6 +36,7 @@ import { MisChatstoriesComponent } from './chatstory/mis-chatstories/mis-chatsto
 import { SelectImageComponent } from './shared/image-picker/select-image/select-image.component';
 import { UploadImageComponent } from './shared/image-picker/upload-image/upload-image.component';
 import { VerifyUserComponent } from './shared/image-picker/verify-user/verify-user.component';
+import { CrearChatstoryMiddleComponentComponent } from './chatstory/crear-chatstory-step-1/crear-chatstory-middle-component/crear-chatstory-middle-component.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { VerifyUserComponent } from './shared/image-picker/verify-user/verify-us
     SelectImageComponent,
     UploadImageComponent,
     VerifyUserComponent,
-    CardTagsComponent
+    CardTagsComponent,
+    CrearChatstoryMiddleComponentComponent
   ],
   imports: [
     BrowserModule,

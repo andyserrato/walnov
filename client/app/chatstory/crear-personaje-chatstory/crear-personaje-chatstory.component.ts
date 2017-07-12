@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearPersonajeChatstoryComponent implements OnInit {
 
-  constructor() { }
+  cols: Array<Array<string>> = new Array<Array<string>>(3);
+  rows: Array<string> = new Array<string>(8);
+
+  constructor() {
+    // this.cols.find(this.cols.keys()[0]).push('Hola');
+  }
 
   ngOnInit() {
   }

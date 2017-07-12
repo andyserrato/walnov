@@ -60,13 +60,18 @@ export class CrearWallComponent implements OnInit {
   onChange($event: any){
     console.log('Select con value cambiado: '+$event.target.value);
     document.getElementById('category-filter').style.backgroundImage = "linear-gradient(to bottom, rgba(0, 0, 0, 0), "+$event.target.value+")"
+  }
 
+  changeImage($event: any){
+    let cibox = document.getElementById('ci-box');
+    cibox.style.backgroundColor = "white";
+    cibox.style.color = "gray";
   }
 
   focusTitle(){
     document.getElementById('titulo-wall').focus();
   }
-  
+
   focusOutTitle($event) {
     $event.preventDefault();
     $event.target.blur();
