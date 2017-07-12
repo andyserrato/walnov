@@ -36,6 +36,9 @@ import { MisChatstoriesComponent } from './chatstory/mis-chatstories/mis-chatsto
 import { SelectImageComponent } from './shared/image-picker/select-image/select-image.component';
 import { UploadImageComponent } from './shared/image-picker/upload-image/upload-image.component';
 import { VerifyUserComponent } from './shared/image-picker/verify-user/verify-user.component';
+import { CardPublicidadComponent } from './shared/card-publicidad/card-publicidad.component';
+import { CardUsuarioTendenciaComponent } from './shared/card-usuario-tendencia/card-usuario-tendencia.component';
+import { CardWallRelevanteComponent } from './shared/card-wall-relevante/card-wall-relevante.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { VerifyUserComponent } from './shared/image-picker/verify-user/verify-us
     SelectImageComponent,
     UploadImageComponent,
     VerifyUserComponent,
-    CardTagsComponent
+    CardTagsComponent,
+    CardPublicidadComponent,
+    CardUsuarioTendenciaComponent,
+    CardWallRelevanteComponent
   ],
   imports: [
     BrowserModule,
