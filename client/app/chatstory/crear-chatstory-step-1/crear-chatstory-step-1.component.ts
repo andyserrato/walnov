@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crear-chatstory-step-1.component.scss']
 })
 export class CrearChatstoryStep1Component implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit() {
