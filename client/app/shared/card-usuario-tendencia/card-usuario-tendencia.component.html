@@ -2,18 +2,29 @@
   <div class="card-block">
     <h4 class="Card-title">Usuarios que son tendencia</h4>
     <div class="Rectangle-3" *ngFor="let usuario of usuarios">
-      <div class="row-fluid" style="padding-left:12px; padding-top:12px">
-        <img class="Imagen-Usuario" src={{usuario.imagen}} alt="Foto de perfil">
-        <span class="Nombre-Usuario">{{usuario.nombre}}</span>
+      <div class="row" style="padding-left:12px; padding-top:12px">
+        <div class="col-2">
+          <img class="Imagen-Usuario" src={{usuario.imagen}} alt="Foto de perfil">
+        </div>
+        <div class="col-8 ellipsis">
+          <span class="Nombre-Usuario">{{usuario.nombre}}</span>
+        </div>
+        <button type="button" class="btn-close" name="button">
+          <img src="assets/images/close-copy@2x.png" class="close-Copy  img-responsive" alt="No seguir">
+        </button>
       </div>
-      <ul class="Estadisticas-Usuario">
+      <ul class="list-unstyled Estadisticas-Usuario">
         <li>{{usuario.walls}} Walls</li>
         <li>{{usuario.chatstories}} Chatstories</li>
-        <li>{{usuario.relatos}} Relatos cortos</li>
+        <div class="row">
+          <div class="col-8">
+            <li>{{usuario.relatos}} Relatos cortos</li>
+          </div>
+          <div class="col-4">
+            <button type="button" class="btn-usuario" name="button">Seguir</button>
+          </div>
+        </div>
       </ul>
     </div>
-    <button id="tetas" (click)="tetas()" type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title"
-            data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover
-    </button>
   </div>
 </div>
