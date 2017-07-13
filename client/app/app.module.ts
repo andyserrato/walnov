@@ -37,6 +37,7 @@ import { SelectImageComponent } from './shared/image-picker/select-image/select-
 import { UploadImageComponent } from './shared/image-picker/upload-image/upload-image.component';
 import { VerifyUserComponent } from './shared/image-picker/verify-user/verify-user.component';
 import { CrearChatstoryMiddleComponentComponent } from './chatstory/crear-chatstory-step-1/crear-chatstory-middle-component/crear-chatstory-middle-component.component';
+import { PersonajeLiComponent } from './chatstory/crear-personaje-chatstory/personaje-li/personaje-li.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { CrearChatstoryMiddleComponentComponent } from './chatstory/crear-chatst
     UploadImageComponent,
     VerifyUserComponent,
     CardTagsComponent,
-    CrearChatstoryMiddleComponentComponent
+    CrearChatstoryMiddleComponentComponent,
+    PersonajeLiComponent
   ],
   imports: [
     BrowserModule,

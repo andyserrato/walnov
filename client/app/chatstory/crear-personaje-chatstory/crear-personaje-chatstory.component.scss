@@ -1,3 +1,5 @@
+@import 'main';
+
 .outside-container{
   border-radius: 0.5em;
   background-color: #ededed;
@@ -21,8 +23,48 @@
 .no-padding{
   padding:0;
 }
-
 .row-margin{
   margin-top:0.5em;
   margin-bottom: 0.5em;
+}
+
+.row-margin-top{
+  margin-top: 2em !important;
+}
+
+.no-padding{
+  margin:0;
+  padding:0;
+}
+
+.input-character{
+  // padding-left: 1em;
+  padding-right: 1em;
+  width: 50%;
+  border-radius: 3px;
+  background-color: $grey-1;
+  border: solid 1px $grey-5;
+}
+.input-character input{
+  // width: 90%;
+  line-height: inherit;
+}
+
+.input-character .fa{
+  line-height: inherit;
+  font-size: 1.5em;
+  color:$main-1;
+}
+
+.fa:hover{
+  cursor: pointer;
+}
+input::placeholder{
+  font-style: italic;
+  color:$grey-6;
+}
+
+input{
+  background: 0;
+  border: 0;
 }

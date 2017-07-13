@@ -1,0 +1,56 @@
+@import 'main';
+
+.change-img:hover{
+  cursor: pointer;
+}
+
+.change-img:focus{
+  background-color: gray;
+}
+
+.change-img{
+  padding: 1em 3em;
+  // background-color:white;
+  padding-top: 1em;
+  // position: absolute;
+  width: 15em;
+  // height: 8em;
+  border-top-left-radius: 0.8em;
+  border-top-right-radius: 0.8em;
+  padding-left: 1.2em;
+  transition: background-color 0.3s linear, color 0.3s linear;
+}
+
+.color-white{
+    color: white;
+}
+
+
+.fa-4{
+  font-size: 3em !important;
+  vertical-align: middle;
+}
+
+.Check-Label-Copy-7 {
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  // color: $grey-1;
+}
+
+.Rectangle-10 {
+  margin-top: 5em;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  position: absolute;
+  height: 363px;
+  border-bottom-left-radius:8px;
+  border-bottom-right-radius: 8px;
+  background-color: $grey-1;
+  box-shadow: 0 47px 94px 29px rgba(0, 0, 0, 0.24);
+  transition: opacity 0.3s linear;
+
+}
