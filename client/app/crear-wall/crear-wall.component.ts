@@ -2,14 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Wall } from "../models/wall";
 import { AlertService } from '../services/alert.service';
 
-export class Categoria {
-  nombre: string;
-  color: string;
-  constructor(n: string, c: string){
-    this.nombre=n;
-    this.color=c;
-  }
-}
+import { Categoria } from '../models/cats'
+
 @Component({
   selector: 'app-crear-wall',
   templateUrl: './crear-wall.component.html',
@@ -66,7 +60,7 @@ export class CrearWallComponent implements OnInit {
   focusTitle(){
     document.getElementById('titulo-wall').focus();
   }
-  
+
   focusOutTitle($event) {
     $event.preventDefault();
     $event.target.blur();

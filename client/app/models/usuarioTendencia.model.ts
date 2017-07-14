@@ -5,5 +5,6 @@ export class UsuarioTendecia {
   walls:number;
   chatstories:number;
   relatos:number;
+  visible: boolean = false;
 
 }

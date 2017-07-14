@@ -16,12 +16,9 @@ export class CardInformativoComponent implements OnInit {
 
   constructor() {
     // de forma momentánea pues no
-
-
   }
 
   ngOnInit() {
-
     this.showButton = true;
     this.buttonText = 'Entendido';
     this.parrafos = new Array<string>();
