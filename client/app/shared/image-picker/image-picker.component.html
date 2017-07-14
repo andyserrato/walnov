@@ -3,5 +3,21 @@
       <span class="Check-Label-Copy-7 pull-right">Cambiar <br> Imagen</span>
 </div>
 <div #selectBox class="Rectangle-10">
+  <span class="fixed-title"> Selecciona una imagen {{this.view}}</span>
+  <span class="fixed-title-right pull-right" (click)="changeView('upload')">Sube tu imagen</span>
+  <div class="app-select-image" [ngSwitch]="view">
+    <div *ngSwitchCase="'select'">
+      <app-select-image></app-select-image>
+    </div>
+    <div *ngSwitchCase="'verify'">
+      <app-verify-user></app-verify-user>
+    </div>
+    <div *ngSwitchCase="'upload'">
+      <app-upload-image></app-upload-image>
+    </div>
+    <div *ngSwitchDefault>
+      Oops
+    </div>
 
+  </div>
 </div>

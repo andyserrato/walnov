@@ -2,6 +2,9 @@
 
 .change-img:hover{
   cursor: pointer;
+  // position: absolute;
+  // height: 100%;
+  // border: solid 0.01em white;
 }
 
 .change-img:focus{
@@ -18,7 +21,7 @@
   border-top-left-radius: 0.8em;
   border-top-right-radius: 0.8em;
   padding-left: 1.2em;
-  transition: background-color 0.3s linear, color 0.3s linear;
+  // transition: background-color 0.3s linear, color 0.3s linear;
 }
 
 .color-white{
@@ -40,17 +43,42 @@
 }
 
 .Rectangle-10 {
-  margin-top: 5em;
+  display: none;
+  padding: 1em;
+  left:0;
+  top:100%;
   width: 100%;
-  visibility: hidden;
-  opacity: 0;
   z-index: 1;
   position: absolute;
-  height: 363px;
+  max-height: 363px;
   border-bottom-left-radius:8px;
   border-bottom-right-radius: 8px;
   background-color: $grey-1;
   box-shadow: 0 47px 94px 29px rgba(0, 0, 0, 0.24);
-  transition: opacity 0.3s linear;
+  // transition: opacity 0.3s linear;
+}
 
+.app-select-image{
+  overflow: auto;
+  max-height: 20em;
+}
+
+.fixed-title{
+  font-family: Raleway;
+  font-size: 1.3em;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+}
+
+.fixed-title-right{
+  font-family: Raleway;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: right;
+  color: $main-1;
+}
+
+.fixed-title-right{
+  cursor: pointer;
 }

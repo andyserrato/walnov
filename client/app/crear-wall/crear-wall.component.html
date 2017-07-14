@@ -17,38 +17,38 @@
           <div class="col-lg-12">
 
             <div class="Rectangle-5-image">
-              <div class="Rectangle-5 no-padding" id="category-filter">
-                <div class="Ttulo-del-wall row">
+              <div class="Rectangle-5" id="category-filter">
+                <div class="Ttulo-del-wall row no-padding padding-title-row padding-title-left">
                   <span contenteditable="true" id="titulo-wall" class="tituloWall" (keydown.enter)="focusOutTitle($event)">Título del Wall </span><i id="titulo-pencil" class="fa fa-pencil lapiz" (click)="focusTitle()"></i>
                 </div>
                 <div class="row no-padding">
-                  <div class="col-lg-12 no-padding">
-                    <div class="col-lg-3 no-relative">
-                      <app-image-picker [white]=true></app-image-picker>
+                  <div class="col-lg-12">
+                    <div class="row height-img-picker">
+                      <div class="col-lg-7 no-padding no-relative padding-title-left height-img-picker">
+                        <app-image-picker [white]=true></app-image-picker>
 
-                    </div>
-                    <div class="col-lg-4">
+                      </div>
 
-                    </div>
-                    <div class="col-lg-5">
-                      <div class="row">
-                        <div class="col-lg-4">
-                          <div class="Check-Label-Copy-6">Categoría</div>
-                        </div>
-                        <div class="col-lg-8">
-                          <!-- <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Categorías
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#" *ngFor="let categoria of categorias">{{ categoria }}</a>
+                      <div class="col-lg-5 no-padding">
+                        <div class="row no-padding padding-bottom-3">
+                          <div class="col-lg-4">
+                            <div class="Check-Label-Copy-6">Categoría</div>
+                          </div>
+                          <div class="col-lg-8">
+                            <!-- <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Categorías
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" *ngFor="let categoria of categorias">{{ categoria }}</a>
+                              </div>
+                            </div> -->
+                            <div class="form-group">
+                              <select class="form-control" id="sel1" (change)="onChange($event)">
+
+                                <option *ngFor="let categoria of this.categorias" value="{{categoria.color}}">{{ categoria.nombre }}</option>
+                              </select>
                             </div>
-                          </div> -->
-                          <div class="form-group">
-                            <select class="form-control" id="sel1" (change)="onChange($event)">
-
-                              <option *ngFor="let categoria of this.categorias" value="{{categoria.color}}">{{ categoria.nombre }}</option>
-                            </select>
                           </div>
                         </div>
                       </div>

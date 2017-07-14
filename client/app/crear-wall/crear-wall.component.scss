@@ -133,7 +133,7 @@
   // margin-left: 24px;
   // margin-right: 38px;
   background: var($grey-1);
-  padding:20px;
+
   background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-2);
 }
 
@@ -260,4 +260,20 @@ label .radio-text{
 
 .no-relative{
   position: inherit;
+}
+
+.padding-title-row{
+  padding: 0.5em;
+}
+
+.padding-title-left{
+  padding-left:1em;
+}
+
+.padding-bottom-3{
+  padding-bottom: 2em;
+}
+
+.height-img-picker{
+  height: 5em;
 }

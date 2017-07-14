@@ -36,14 +36,12 @@ import { MisChatstoriesComponent } from './chatstory/mis-chatstories/mis-chatsto
 import { SelectImageComponent } from './shared/image-picker/select-image/select-image.component';
 import { UploadImageComponent } from './shared/image-picker/upload-image/upload-image.component';
 import { VerifyUserComponent } from './shared/image-picker/verify-user/verify-user.component';
-<<<<<<< HEAD
-import { CrearChatstoryMiddleComponentComponent } from './chatstory/crear-chatstory-step-1/crear-chatstory-middle-component/crear-chatstory-middle-component.component';
-import { PersonajeLiComponent } from './chatstory/crear-personaje-chatstory/personaje-li/personaje-li.component';
-=======
 import { CardPublicidadComponent } from './shared/card-publicidad/card-publicidad.component';
 import { CardUsuarioTendenciaComponent } from './shared/card-usuario-tendencia/card-usuario-tendencia.component';
 import { CardWallRelevanteComponent } from './shared/card-wall-relevante/card-wall-relevante.component';
->>>>>>> 816a2f22a54981c35a41470137eaba3673986f35
+import { CrearChatstoryMiddleComponentComponent } from './chatstory/crear-chatstory-step-1/crear-chatstory-middle-component/crear-chatstory-middle-component.component';
+import { PersonajeLiComponent } from './chatstory/crear-personaje-chatstory/personaje-li/personaje-li.component';
+
 
 @NgModule({
   declarations: [
@@ -68,14 +66,11 @@ import { CardWallRelevanteComponent } from './shared/card-wall-relevante/card-wa
     UploadImageComponent,
     VerifyUserComponent,
     CardTagsComponent,
-<<<<<<< HEAD
-    CrearChatstoryMiddleComponentComponent,
-    PersonajeLiComponent
-=======
     CardPublicidadComponent,
     CardUsuarioTendenciaComponent,
-    CardWallRelevanteComponent
->>>>>>> 816a2f22a54981c35a41470137eaba3673986f35
+    CardWallRelevanteComponent,
+    CrearChatstoryMiddleComponentComponent,
+    PersonajeLiComponent
   ],
   imports: [
     BrowserModule,
