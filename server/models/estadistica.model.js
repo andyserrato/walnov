@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const usuarios = mongoose.model('usuarios');
+const datosComunes = require('./comunes.model');
 
 const EstadisticaSchema = Schema({
   vecesVisto: {type:Number, default: 0},
@@ -18,7 +19,7 @@ const EstadisticaSchema = Schema({
   relato: {type:mongoose.Schema.Types.ObjectId, ref:'relato'}
 });
 
-
+EstadisticaSchema.plugin(datosComunes);
 
 const Estadistica = mongoose.model('Estadistica', EstadisticaSchema);
 

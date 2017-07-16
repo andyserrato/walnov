@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 const Constantes = require("../constantes/constantes");
+const datosComunes = require('./comunes.model');
 
 const notificacionNuevaHistoria = Schema({
   texto: String,
@@ -130,16 +131,16 @@ const usuario = Schema({
   notificacionesFeed: [notificacionFeed],
   notificacionesGlobales: [notificacionGlobal],
   mensajesPrivados: [mensajePrivado],
-  fechaCreacion: {type: Date, default: Date.now},
   perfil: perfil,
   estado: {type: Number, default: Constantes.Usuario.ESTADO_SIN_VERIFICAR},
   //Normal o partner
   tipo: {type: Number, default: Constantes.Usuario.TIPO_NORMAL},
   necesitaRevalidarPassword: {type: Boolean, default: false},
-  activo: {type: Boolean, default: true},
   providers: [providerSchema]
 });
 
+// plugins ============
+usuario.plugin(datosComunes);
 
 // methods ======================
 // generating a hash

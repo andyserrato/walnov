@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const usuarios = mongoose.model('usuarios');
 const Estadistica = mongoose.model('Estadistica');
 const Schema = mongoose.Schema;
+const datosComunes = require('./comunes.model');
 
 const ChatSchema = Schema({
   personaje: String,
@@ -15,9 +16,6 @@ const ChatStorySchema = Schema({
   autorNombre: String,
   categoria: String,
   imagenFondo: String,
-  activo: {type: Boolean, default:true},
-  fechaCreacion: {type: Date, default: Date.now},
-  fechaModificacion: {type: Date, default: Date.now},
   chats: [ChatSchema],
   estadistica: {type: Schema.Types.ObjectId, ref:'Estadistica'},
   links: [{
@@ -25,6 +23,8 @@ const ChatStorySchema = Schema({
     href: String
   }]
 });
+
+ChatStorySchema.plugin(datosComunes);
 
 ChatStorySchema.set('toJSON', {
   getters: true,
