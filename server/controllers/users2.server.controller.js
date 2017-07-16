@@ -171,6 +171,15 @@ exports.isUserRegisteredByProviderId = function (req, res) {
   })
 };
 
+exports.getUserByUserName = function (userName) {
+  console.log('El nombre de usuario es: ' + userName);
+  User
+    .findOne({login: userName},
+      function (err, usuario) {
+      return usuario;
+    })
+}
+
 
 const salvarUserOAuth = function (user, profile, done) {
   console.log('Inicio salvarUserOAuth');

@@ -47,7 +47,9 @@ module.exports = function () {
   require('../models/user.model');
   require('../models/wall.model');
   require('../models/relato.model');
-
+  require('../models/estadistica.model');
+  require('../models/chatstory.model');
+  require('../models/biblioteca.model');
   // Return the Mongoose connection instance
   return db;
 };
