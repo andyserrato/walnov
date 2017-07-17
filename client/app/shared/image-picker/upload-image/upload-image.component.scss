@@ -12,11 +12,11 @@ label{
   width: 20em;
   height: 2em;
   line-height: 2em;
-  border-radius: 4px;
+  border-radius: 0.3em;
   background-color: $grey-6;
-  box-shadow: 0 1px 0 0 $grey-1;
+  box-shadow: 0 0.01em 0 0 $grey-1;
   font-family: Raleway;
-  font-size: 12px;
+  font-size: 1em;
   font-weight: bold;
   text-align: center;
   color: $grey-1;
@@ -25,8 +25,8 @@ label{
 .file-box{
   border-radius: 0.3em;
   background-color: $grey-1;
-  border: solid 1px $grey-5;
-  padding:5px !important;
+  border: solid 0.01em $grey-5;
+  padding:0.3em !important;
 }
 
 .padding-box{
@@ -52,7 +52,7 @@ label{
 
 .fixed-title{
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.2em;
   font-weight: 600;
   text-align: left;
   color: $grey-8;
@@ -60,18 +60,21 @@ label{
 
 .placeholder{
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.2em;
   font-style: italic;
   text-align: left;
   color: $grey-6;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .btn-cancelar{
   padding: 0.5em 2em;
-  border-radius: 4px;
+  border-radius: 0.3em;
   background-color: $grey-6;
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.2em;
   font-weight: bold;
   text-align: center;
   color: $grey-1;
@@ -79,10 +82,10 @@ label{
 
 .btn-hecho{
   padding: 0.5em 2em;
-  border-radius: 4px;
+  border-radius: 0.3em;
   background-color: $main-1;
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.2em;
   font-weight: bold;
   text-align: center;
   color: $grey-1;
@@ -99,7 +102,7 @@ label{
 
 .info-text{
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.2em;
   font-style: italic;
   text-align: left;
   color: $grey-8;
@@ -109,18 +112,22 @@ label{
   padding:0.5em;
   background-color: #faf1ff;
   font-family: Raleway;
-  font-size: 18px;
+  font-size: 1.5em;
   font-weight: 600;
   // line-height: 1;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   text-align: center;
   color: $main-3;
 }
 
 .truncate{
-  width: 250px;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: $grey-6;
+}
+
+.relative{
+  position: relative;
 }

@@ -42,9 +42,11 @@ export class ImagePickerComponent implements OnInit {
     }
   }
 
-  uploadImage(event){
-    this.imageUploaded.emit(event);
-    this.changeView('select');
+  uploadImage(event,$event,selectBox){
+    if(event){
+        this.imageUploaded.emit(event);
+    }
+    this.expand($event, selectBox);
   }
 
 }

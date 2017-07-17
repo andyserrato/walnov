@@ -4,10 +4,10 @@
   padding:0.5em;
   background-color: #faf1ff;
   font-family: Raleway;
-  font-size: 18px;
+  font-size: 1.5em;
   font-weight: 600;
   // line-height: 1;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   text-align: center;
   color: $main-3;
 }
@@ -35,7 +35,7 @@
 
 .fixed-title{
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.1em;
   font-weight: 600;
   text-align: left;
   color: $grey-8;
@@ -43,10 +43,10 @@
 
 .btn-cancelar{
   padding: 0.5em 2em;
-  border-radius: 4px;
+  border-radius: 0.3em;
   background-color: $grey-6;
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.2em;
   font-weight: bold;
   text-align: center;
   color: $grey-1;
@@ -54,10 +54,10 @@
 
 .btn-hecho{
   padding: 0.5em 2em;
-  border-radius: 4px;
+  border-radius: 0.3em;
   background-color: $main-1;
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.2em;
   font-weight: bold;
   text-align: center;
   color: $grey-1;
