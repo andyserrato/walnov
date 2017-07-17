@@ -8,28 +8,31 @@ import { Component, OnInit } from '@angular/core';
 export class CardPublicidadComponent implements OnInit {
   image: any;
   currentPos: number;
-  images: Array<string>;
-
-
+  images: Array<string> = new Array<string>();
 
   constructor() { }
 
   ngOnInit() {
     this.image = document.getElementById("image");
     this.currentPos = 0;
-    this.images = ["https://lorempixel.com/254/134","https://lorempixel.com/254/343","https://lorempixel.com/254/443"];
+    this.images = ["https://lorempixel.com/254/171","https://lorempixel.com/254/171","https://lorempixel.com/254/171"];
 
-    this.startTimer();
+    setInterval(this.changeImage.bind(this), 30000,);
 
   }
 
-  startTimer () {
-    setInterval(this.volgendefoto(), 1000);
+  ngAfterViewInit() {
+
   }
 
-  volgendefoto() {
-    if (++this.currentPos >= this.images.length) this.currentPos = 0;
-    this.image.src = this.images[this.currentPos];
+  changeImage(images, image, currentPos) {
+    this.image.setAttribute("src", this.images[this.currentPos]);
+    this.currentPos++;
+    if(this.currentPos >= this.images.length)
+    {
+      this.currentPos=0;
+    }
+
   }
 
 }

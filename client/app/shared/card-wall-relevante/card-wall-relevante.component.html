@@ -1,27 +1,27 @@
 <div class="card Rectangle-3-Copy-4 hidden-md-down">
   <div class="card-block">
     <h4 class="Card-title">Walls más relevantes</h4>
-    <div class="Rectangle-3" *ngFor="let wall of walls">
-      <div class="row">
-        <div class="col-10">
-          <div class="Wall-title">
-            {{wall.titulo}}
+    <div *ngFor="let wall of walls">
+      <div class="Rectangle-3" *ngIf = "wall.visible">
+        <div class="row">
+          <div class="col-10">
+            <div class="Wall-title">
+              {{wall.titulo}}
+            </div>
           </div>
-        </div>
-        <!-- <div class="col-2"> -->
-          <button type="button" class="btn-close" name="button">
+          <button type="button" (click)="showAnother(wall)" class="btn-close" name="button">
             <img src="assets/images/close-copy@2x.png" class="close-Copy  img-responsive" alt="No seguir">
           </button>
-        <!-- </div> -->
+        </div>
+        <div class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(wall)' [style.color] = 'getColor(wall)'>
+          {{wall.categoria.nombre}}
+        </div>
+        <ul class="list-unstyled Estadisticas-Usuario">
+          <li>{{wall.participantes}} Participantes</li>
+          <li>{{wall.historias}} Historias</li>
+        </ul>
+        <button type="button" class="btn-wall pull-right" name="button">Participar</button>
       </div>
-      <div class="Rectangle-7-Copy-4 Categoria">
-        {{wall.categoria}}
-      </div>
-      <ul class="list-unstyled Estadisticas-Usuario">
-        <li>{{wall.participantes}} Participantes</li>
-        <li>{{wall.historias}} Historias</li>
-      </ul>
-      <button type="button" class="btn-wall pull-right" name="button">Participar</button>
     </div>
   </div>
 </div>

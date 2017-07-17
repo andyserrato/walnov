@@ -34,7 +34,7 @@ export class MisChatstoriesComponent implements OnInit {
 
   deleteStory(oldStory: Story){
     this.stories.splice(this.stories.indexOf(oldStory), 1);
-    
+
   }
 
 }
