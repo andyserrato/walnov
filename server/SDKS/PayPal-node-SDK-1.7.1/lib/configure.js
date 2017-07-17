@@ -6,8 +6,13 @@ var userAgent = exports.userAgent = 'PayPalSDK/PayPal-node-SDK ' + sdkVersion + 
 
 var default_options = exports.default_options = {
     'mode': 'sandbox',
+<<<<<<< HEAD
     'client_id': 'ATg3PSzrcaABZs5Pw0yY-1zVDhSwPGeyo9ISEDLxbkcNMVi1dKGm0L42rzAGEDdG4Ti7PVS4NalnZEGi',
     'client_secret': 'EDNl6mJFVIZom6uu3apowJmjoUKKRbdo5JRW_QsgEMyPFoNK4JOutT30NmbPVizwEPnbKH8q-Mb8UuXb',
+=======
+    'client_id': '',
+    'client_secret': '',
+>>>>>>> a3c2760bf157b6af71efa939068d852da9b8a783
     'schema': 'https',
     'host': 'api.sandbox.paypal.com',
     'port': '',

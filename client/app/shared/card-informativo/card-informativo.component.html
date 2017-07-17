@@ -1,0 +1,7 @@
+<div *ngIf="showCard" class="card Card3">
+  <div class="card-block">
+    <h4 *ngIf="titulo" class="Card-title">{{titulo}}</h4>
+    <p class="card-text Card-content" *ngFor="let parrafo of parrafos">{{parrafo}}</p>
+    <button *ngIf="showButton" (click)="entendido()" class="btn btn-secondary btn-sm Rectangle-7-Copy-3 Radio-Label-Copy-2">{{buttonText}}</button>
+  </div>
+</div>

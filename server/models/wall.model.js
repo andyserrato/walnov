@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 //Utilidades
 var Utils = require("../services/utils.service").Utils;
 var Constantes = require("../constantes/constantes");
+const datosComunes = require('./comunes.model');
 
 //Schemas
 var continuacion = Schema({
@@ -33,7 +34,6 @@ var wall = Schema({
     likes: {type:Number, default: 0},
     likers: [mongoose.Schema.Types.ObjectId],
     urlImagen:String,
-    fechaCreacion: Date,
     fecha: String,
     hora: String,
     //Publico o privado
@@ -46,12 +46,14 @@ var wall = Schema({
     compartidoGoogle: {type:Number, default: 0},
     //Publicado o borrador, suspendido, baneado por reports, etc...
     estado: {type:Number, default: 1},
-    activo: {type: Boolean, default:true},
     contenidoTexto: String,
     autor: mongoose.Schema.Types.ObjectId,
     nombreAutor: String,
     participantes:[mongoose.Schema.Types.ObjectId]
 });
+
+// plugin
+wall.plugin(datosComunes);
 
 //Pre Middlewares
 wall.pre('save', function (next){

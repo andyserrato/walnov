@@ -12,7 +12,9 @@ module.exports = function() {
 			clientID: config.facebook.clientID,
 			clientSecret: config.facebook.clientSecret,
 			callbackURL: config.facebook.callbackURL,
-			passReqToCallback: true
+			passReqToCallback: true,
+      enableProof: true,
+      profileFields: ['email']
 		},
 		(req, accessToken, refreshToken, profile, done) => {
 			// Set the user's provider data and include tokens
@@ -20,22 +22,22 @@ module.exports = function() {
 			providerData.accessToken = accessToken;
 			providerData.refreshToken = refreshToken;
 
-			console.log(providerData);
-
 			// Create the user OAuth profile
 			const providerUserProfile = {
-				firstName: profile.name.givenName,
-				lastName: profile.name.familyName,
-				fullName: profile.displayName,
-				email: (profile.hasOwnProperty('emails')) ? profile.emails[0].value : '',
-				username: profile.username,
 				provider: 'facebook',
 				providerId: profile.id,
 				providerData: providerData
 			};
 
-			// Save the user OAuth profile
-			users.saveOAuthUserProfile(req, providerUserProfile, done);
+			console.log(providerUserProfile);
+      let usuario = users.findUserByProviderId(providerUserProfile);
+
+			if (!usuario) {
+        usuario = users.saveOAuthUserProfile(providerUserProfile);
+      }
+
+      console.log(usuario);
+      return done(null, usuario);
 		}
 	));
 };

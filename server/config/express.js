@@ -61,6 +61,7 @@ module.exports = function () {
   app.use('/tests', require('../controllers/test.controller'));
   app.use('/relatos', require('../controllers/relatos.controller'));
   app.use('/chatstories', require('../controllers/chatstories.controller'));
+  app.use('/biblioteca', require('../controllers/biblioteca.controller'));
 
   // Set our api routes
   app.use('/api1', api1);
