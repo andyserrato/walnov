@@ -74,4 +74,8 @@ export class CrearWallComponent implements OnInit {
     // do whatever you need with the text
   }
 
+  changeImage(event,imagebox: HTMLElement){
+    imagebox.style.backgroundImage= "url('"+event+"')";
+  }
+
 }

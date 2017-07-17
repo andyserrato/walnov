@@ -1,0 +1,72 @@
+@import "main";
+
+.info-box{
+  padding:0.5em;
+  background-color: #faf1ff;
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  // line-height: 1;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: $main-3;
+}
+
+.padding-box{
+  padding:1.5em;
+}
+
+.row-margin-top-1{
+  margin-top: 1em;
+}
+
+.row-margin-top-2{
+  margin-top:2em;
+}
+
+.no-padding-margin{
+  margin:0;
+  padding: 0;
+}
+
+.no-padding{
+  padding:0;
+}
+
+.fixed-title{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+}
+
+.btn-cancelar{
+  padding: 0.5em 2em;
+  border-radius: 4px;
+  background-color: $grey-6;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
+
+.btn-hecho{
+  padding: 0.5em 2em;
+  border-radius: 4px;
+  background-color: $main-1;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
+
+.btn-hecho:hover, .btn-cancelar:hover{
+  cursor: pointer;
+}
+
+.margin-left{
+  margin-left: 1em;
+}

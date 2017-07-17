@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-image-picker',
@@ -9,9 +9,11 @@ export class ImagePickerComponent implements OnInit {
   view:string;
   focus: boolean;
   @Input() white: boolean;
+  @Output() imageUploaded: EventEmitter<any>;
   constructor() {
     this.focus=false;
     this.view="select";
+    this.imageUploaded = new EventEmitter<any>();
   }
 
   ngOnInit() {
@@ -21,7 +23,7 @@ export class ImagePickerComponent implements OnInit {
     this.view=int;
   }
 
-  changeImage($event: HTMLElement, selectBox: HTMLElement){
+  expand($event: HTMLElement, selectBox: HTMLElement){
     let cibox = $event;
     if(!this.focus){
       cibox.style.backgroundColor = "white";
@@ -36,7 +38,13 @@ export class ImagePickerComponent implements OnInit {
       cibox.removeAttribute("style");
       selectBox.removeAttribute("style");
       this.focus=false;
+      this.view="select";
     }
+  }
+
+  uploadImage(event){
+    this.imageUploaded.emit(event);
+    this.changeView('select');
   }
 
 }

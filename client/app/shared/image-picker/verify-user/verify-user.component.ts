@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-verify-user',
@@ -6,10 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./verify-user.component.scss']
 })
 export class VerifyUserComponent implements OnInit {
+  @Output() canceled: EventEmitter<any>;
+  @Output() verified: EventEmitter<any>;
 
-  constructor() { }
+  constructor() {
+    this.canceled = new EventEmitter<any>();
+    this.verified = new EventEmitter<any>();
+   }
 
   ngOnInit() {
+  }
+
+  verify(){
+    this.verified.emit();
+  }
+
+  cancel(){
+    this.canceled.emit();
   }
 
 }

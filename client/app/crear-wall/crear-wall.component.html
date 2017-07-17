@@ -16,7 +16,7 @@
         <div class="row row-margin-top">
           <div class="col-lg-12">
 
-            <div class="Rectangle-5-image">
+            <div #image class="Rectangle-5-image">
               <div class="Rectangle-5" id="category-filter">
                 <div class="Ttulo-del-wall row no-padding padding-title-row padding-title-left">
                   <span contenteditable="true" id="titulo-wall" class="tituloWall" (keydown.enter)="focusOutTitle($event)">Título del Wall </span><i id="titulo-pencil" class="fa fa-pencil lapiz" (click)="focusTitle()"></i>
@@ -25,7 +25,7 @@
                   <div class="col-lg-12">
                     <div class="row height-img-picker">
                       <div class="col-lg-7 no-padding no-relative padding-title-left height-img-picker">
-                        <app-image-picker [white]=true></app-image-picker>
+                        <app-image-picker [white]=true (imageUploaded)="changeImage($event,image)"></app-image-picker>
 
                       </div>
 
@@ -71,7 +71,7 @@
               <div class="col-lg-12">
                 <label for="exampleTextarea" class="etiqueta-form">Escribe tu inicio de historia</label>
                 <textarea class="form-control" id="exampleTextarea" rows="5"
-                          placeholder="Texto Máximo 750 caracteres"></textarea>
+                          placeholder="Texto Máximo 750 caracteres" spellcheck="false"></textarea>
               </div>
             </div>
             <div class="row row-margin-top">

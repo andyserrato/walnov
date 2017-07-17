@@ -1,0 +1,126 @@
+@import 'main';
+
+label{
+  display: initial;
+}
+
+.file-input{
+  display: none;
+}
+
+.file-button{
+  width: 20em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 4px;
+  background-color: $grey-6;
+  box-shadow: 0 1px 0 0 $grey-1;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
+
+.file-box{
+  border-radius: 0.3em;
+  background-color: $grey-1;
+  border: solid 1px $grey-5;
+  padding:5px !important;
+}
+
+.padding-box{
+  padding:1.5em;
+}
+
+.row-margin-top-1{
+  margin-top: 1em;
+}
+
+.row-margin-top-2{
+  margin-top:2em;
+}
+
+.no-padding-margin{
+  margin:0;
+  padding: 0;
+}
+
+.no-padding{
+  padding:0;
+}
+
+.fixed-title{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+}
+
+.placeholder{
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: italic;
+  text-align: left;
+  color: $grey-6;
+}
+
+.btn-cancelar{
+  padding: 0.5em 2em;
+  border-radius: 4px;
+  background-color: $grey-6;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
+
+.btn-hecho{
+  padding: 0.5em 2em;
+  border-radius: 4px;
+  background-color: $main-1;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
+
+.btn-hecho:hover, .btn-cancelar:hover{
+  cursor: pointer;
+}
+
+
+.margin-left{
+  margin-left: 1em;
+}
+
+.info-text{
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: italic;
+  text-align: left;
+  color: $grey-8;
+}
+
+.info-box{
+  padding:0.5em;
+  background-color: #faf1ff;
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  // line-height: 1;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: $main-3;
+}
+
+.truncate{
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $grey-6;
+}

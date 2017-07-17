@@ -1,3 +1,58 @@
-<p>
-  upload-image works!
-</p>
+<div class="container padding-box">
+  <div class="row">
+    <div class="col-12 no-padding">
+      <div class="info-box">
+        <span class="fa fa-check-circle"></span>
+        ¡Enhorabuena, eres un usuario verficado!
+      </div>
+    </div>
+  </div>
+  <div class="row row-margin-top-2">
+    <div class="col-12 no-padding-margin">
+      <span class="fixed-title">
+        Cargar imagen
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 no-padding-margin">
+      <div class="file-box">
+        <div class="row no-padding-margin">
+          <div class="col no-padding-margin truncate">
+            <span #filePlaceholder class="placeholder">
+              Placeholder
+            </span>
+          </div>
+          <div class="col no-padding-margin">
+            <div class="pull-right">
+              <label for="file-picker">
+                <div class="btn-cancelar">
+                  Busca en tu ordenador
+                </div>
+
+                <input id="file-picker" class="file-input" type="file" name="" value="" (change)="handleFileUpload($event, filePlaceholder)">
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row row-margin-top-1">
+    <div class="col-4 no-padding-margin">
+      <span class="info-text">
+        Formato JPG - Tamaño mínimo 1200x1600px
+      </span>
+    </div>
+  </div>
+  <div class="row row-margin-top">
+    <div class="offset-5 col-7 no-padding">
+      <div class="btn-hecho margin-left pull-right" (click)="upload()">Hecho</div>
+      <div class="btn-cancelar pull-right" (click)="cancel()">Cancelar</div>
+
+    </div>
+  </div>
+
+</div>
