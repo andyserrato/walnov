@@ -17,7 +17,7 @@ module.exports = function() {
       profileFields: ['email']
 		},
 		(req, accessToken, refreshToken, profile, done) => {
-			// Set the user's provider data and include tokens
+			// Set the user's provider da|ta and include tokens
 			const providerData = profile._json;
 			providerData.accessToken = accessToken;
 			providerData.refreshToken = refreshToken;

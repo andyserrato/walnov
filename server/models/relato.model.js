@@ -1,6 +1,7 @@
 // grab the things we need
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const Constantes = require("../constantes/constantes");
 const datosComunes = require('./comunes.model');
 
 //Utilidades
@@ -20,23 +21,23 @@ var opinionRelato = Schema({
 
 var relato = Schema({
     textoContenido: String,
-    tituloRelato: String,
+    titulo: String,
     fecha: String,
     hora: String,
-    likes: {type:Number, default: 0},
-    vecesVisto: {type:Number, default: 0},
-    compartidoFacebook:{type:Number, default: 0},
-    compartidoTwitter: {type:Number, default: 0},
-    compartidoGoogle: {type:Number, default: 0},
     urlImagen: String,
-    autor: mongoose.Schema.Types.ObjectId,
-    autorName: String,
+    autor: {type: Schema.Types.ObjectId, ref:'usuarios'},
+    autorNombre: String,
     opiniones: [opinionRelato],
-    categoria: String,
+    categoria: {type: String , enum: Constantes.Categorias.CATEGORIAS},
+    tipo: {type:Number, default: Constantes.Tipo.PUBLICO},
+    lang: {type: String , enum: Constantes.Idiomas.IDIOMAS},
+    estadistica: {type: Schema.Types.ObjectId, ref:'Estadistica'},
     tags: [String]
 });
 
 relato.plugin(datosComunes);
+relato.index({titulo: 'text'});
+relato.index({textoContenido: 'text'});
 
 //Pre Middlewares
 relato.pre('save', function (next){
