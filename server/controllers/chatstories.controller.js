@@ -10,17 +10,7 @@ const usersController = require('../controllers/users2.server.controller');
 const User = mongoose.model('usuarios');
 const GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
 const NotificacionNuevoChatStory = mongoose.model('notificacionNuevoChatStory');
-
-const mensajes = {
-  es : {
-    error : "Ha ocurrido un error",
-    creado: "Ha creado un ChatStory"
-  },
-  en : {
-    error: "Bad Request",
-    created: "Created a ChaStory"
-  }
-}
+const Constantes = require("../constantes/constantes");
 
 // Rutas
 router.post('/', crearChatStory);
@@ -47,23 +37,23 @@ function crearChatStory(req, res) {
   let peticion = req.body.chatStory;
 
   if (!peticion) {
-    res.status(400).send(req.body.lang === 'es' ? mensajes.es.error : mensajes.en.error);
+    res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
   } else {
 
     let chatStory = new ChatStory(peticion);
     let estadistica = new Estadistica();
     estadistica.save(function (err) {
       if (err)
-        res.status(400).send(req.body.lang === 'es' ? mensajes.es.error : mensajes.en.error);
+        res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
     })
     chatStory.estadistica = estadistica;
 
     chatStory.save(function (err, newChatStory) {
       if (err) {
-        res.status(400).send("No se ha podido guardar la entidad");
+        res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
       } else {
         var notificacionNuevoChatStory = GestorNotificaciones.crearNotificacionNuevoChatstory(
-          req.body.lang === 'es' ? mensajes.es.creado : mensajes.en.created,
+          req.body.lang === 'es' ?  Constantes.Mensajes.MENSAJES.es.creado :  Constantes.Mensajes.MENSAJES.en.created,
           Date.now().toString(),
           newChatStory.autor,
           newChatStory.autorNombre,
@@ -71,13 +61,14 @@ function crearChatStory(req, res) {
           newChatStory.titulo
           );
 
-
         if (!peticion.seguidores) {
           User.findOne({_id: peticion.autor}, function (err, usu) {
+            if (err)
+              res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
             notificar(notificacionNuevoChatStory, usu.seguidores, newChatStory);
           });
         } else {
-          notificar(notificacionNuevoChatStory, peticion.seguidores, newChatStory);
+          notificar(notificacionNuevoChatStory, peticion.usuario.seguidores, newChatStory);
         }
       }
     });
@@ -188,7 +179,7 @@ function updateChatStory(req, res) {
   let id = req.params.id;
 
   ChatStory.where({_id: id})
-    .update(req.body, function (err, writeOpResult) {
+    .update(req.body.chatStory, function (err, writeOpResult) {
       if (err)
         res.status(400).send("Algo malo ha ocurrido");
 
@@ -198,7 +189,7 @@ function updateChatStory(req, res) {
 
 function updateVisitas(req, res) {
   let id = req.params.id;
-  let idUsuario = req.body.idUsuario;
+  let idUsuario = req.body.usuario.id;
   ChatStory.findById(id)
     .populate('estadistica autor')
     .exec(function (err, chatStory) {
@@ -223,7 +214,7 @@ function updateVisitas(req, res) {
 
 function updateCompartido(req, res) {
   let id = req.params.id;
-  let idUsuario = req.body.idUsuario;
+  let idUsuario = req.body.usuario.id;
   let redSocial = req.body.redSocial;
   ChatStory.findById(id)
     .populate('estadistica autor')
@@ -284,7 +275,7 @@ function updateCompartido(req, res) {
 
 function updateLike(req, res) {
   let id = req.params.id;
-  let idUsuario = req.body.idUsuario;
+  let idUsuario = req.body.usuario.id;
 
   ChatStory.findById(id)
     .populate('estadistica autor')

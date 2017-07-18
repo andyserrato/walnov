@@ -27,6 +27,10 @@ class Constantes {
     return Idiomas;
   }
 
+  static get Mensajes() {
+    return Mensajes;
+  }
+
 }
 
 class Wall {
@@ -139,6 +143,21 @@ class Categorias {
 class Idiomas {
   static get IDIOMAS() {
     return [ 'es', 'en'];
+  }
+}
+
+class Mensajes {
+  static get MENSAJES() {
+    return {
+      es : {
+        error : "Ha ocurrido un error",
+        creado: "Ha creado un ChatStory"
+      },
+      en : {
+        error: "Bad Request",
+        created: "Created a ChaStory"
+      }
+    };
   }
 }
 
