@@ -11,6 +11,17 @@ const User = mongoose.model('usuarios');
 const GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
 const NotificacionNuevoChatStory = mongoose.model('notificacionNuevoChatStory');
 
+const mensajes = {
+  es : {
+    error : "Ha ocurrido un error",
+    creado: "Ha creado un ChatStory"
+  },
+  en : {
+    error: "Bad Request",
+    created: "Created a ChaStory"
+  }
+}
+
 // Rutas
 router.post('/', crearChatStory);
 router.get('/', getChatStories);
@@ -33,34 +44,53 @@ module.exports = router;
 
 // Implementaciones de las rutas
 function crearChatStory(req, res) {
-  let peticion = req.body;
+  let peticion = req.body.chatStory;
 
   if (!peticion) {
-    res.status(400).send("La entidad enviada se encuentra vacía");
+    res.status(400).send(req.body.lang === 'es' ? mensajes.es.error : mensajes.en.error);
+  } else {
+
+    let chatStory = new ChatStory(peticion);
+    let estadistica = new Estadistica();
+    estadistica.save(function (err) {
+      if (err)
+        res.status(400).send(req.body.lang === 'es' ? mensajes.es.error : mensajes.en.error);
+    })
+    chatStory.estadistica = estadistica;
+
+    chatStory.save(function (err, newChatStory) {
+      if (err) {
+        res.status(400).send("No se ha podido guardar la entidad");
+      } else {
+        var notificacionNuevoChatStory = GestorNotificaciones.crearNotificacionNuevoChatstory(
+          req.body.lang === 'es' ? mensajes.es.creado : mensajes.en.created,
+          Date.now().toString(),
+          newChatStory.autor,
+          newChatStory.autorNombre,
+          newChatStory.id,
+          newChatStory.titulo
+          );
+
+
+        if (!peticion.seguidores) {
+          User.findOne({_id: peticion.autor}, function (err, usu) {
+            notificar(notificacionNuevoChatStory, usu.seguidores, newChatStory);
+          });
+        } else {
+          notificar(notificacionNuevoChatStory, peticion.seguidores, newChatStory);
+        }
+      }
+    });
   }
 
-  let chatStory = new ChatStory(peticion);
-  let estadistica = new Estadistica();
-  estadistica.save(function (err) {
-    if (err)
-      console.log('oops');
-  })
-  chatStory.estadistica = estadistica;
-
-  chatStory.save(function (err, newChatStory) {
-    if (err)
-      res.status(400).send("No se ha podido guardar la entidad");
-    // Construir el link del chatStory
-    // MiddleWare de notificaciones
-    // Devolver la entidad
+  function notificar(notificacionNuevoChatStory, seguidores, newChatStory) {
+    GestorNotificaciones.addNotificacionFeed(notificacionNuevoChatStory, seguidores);
     res.status(200).send(newChatStory);
-
-  });
+  }
 }
 
 //  TODO paginacion
 function getChatStories(req, res) {
-  console.log('GETCHATSTORIES');
   let limit;
   let sort; // Relevantes (los que tengan mejores estadísticas en un intervalo de tiempo), seguidos, no seguidos,
   let offset;
@@ -281,7 +311,6 @@ function updateLike(req, res) {
 }
 
 function getChatStoriesByUserName(req, res) {
-  console.log('getchatstoriesbyusername');
   let userName = req.params.userName;
 
   User.findOne({login: userName}, '_id', function (err, usu) {

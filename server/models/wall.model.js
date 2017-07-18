@@ -53,6 +53,7 @@ var wall = Schema({
 
 // plugin
 wall.plugin(datosComunes);
+wall.index({titulo: 'text'});
 
 //Pre Middlewares
 wall.pre('save', function (next){
@@ -146,6 +147,11 @@ var Wall = mongoose.model('Wall', wallSchema);
 // make this available to our API in our Node applications
 module.exports = Wall;
 */
+
+wall.set('toJSON', {
+  getters: true,
+  virtuals: true
+});
 
 //Modelos
 var Wall = mongoose.model('wall', wall);

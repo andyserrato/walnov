@@ -58,5 +58,10 @@ opinionRelato.pre('save', function (next){
     next();
 });
 
+relato.set('toJSON', {
+  getters: true,
+  virtuals: true
+});
+
 var Relato = mongoose.model('relato', relato);
 var OpinionRelato = mongoose.model('opinionRelato', opinionRelato);

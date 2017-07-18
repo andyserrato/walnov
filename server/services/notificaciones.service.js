@@ -38,7 +38,6 @@ class GestorNotificaciones{
         let nuevaNotificacion = new NotificacionFeed();
 
         nuevaNotificacion.tipo = notificacion.tipo;
-
         console.log(notificacion);
 
         switch(notificacion.tipo){
@@ -133,15 +132,22 @@ class GestorNotificaciones{
     }
 
 
-    static crearNotificacionNuevoChatstory(textoNotificacion, fechaHora, idAutor, nombreAutor, idChatStory, tituloChatStory){
+    static crearNotificacionNuevoChatstory(textoNotificacion,
+                                           fechaHora,
+                                           idAutor,
+                                           nombreAutor,
+                                           idChatStory,
+                                           tituloChatStory){
         let nuevaNotificacion = new NotificacionNuevoChatStory({
             texto: textoNotificacion,
-            tituloChatStory:tituloChatStory,
-            idChatStory: idChatStory,
+            fechaHora: fechaHora,
             refAutor: idAutor,
             nombreAutor: nombreAutor,
-            fechaHora: fechaHora
+            idChatStory: idChatStory,
+            tituloChatStory:tituloChatStory,
         });
+
+        nuevaNotificacion.tipo =  Constantes.Notificacion.NUEVO_CHAT_STORY;
 
         return nuevaNotificacion;
     }
