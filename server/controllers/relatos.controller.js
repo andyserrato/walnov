@@ -9,21 +9,21 @@ var OpinionRelato = require('mongoose').model('opinionRelato');
 var GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
 var Constantes = require("../constantes/constantes");
 
-router.post("/crearNuevoRelato", crearNuevoRelato);
-router.post("/nuevaOpinion", crearNuevaOpinion);
+router.post("/", crearNuevoRelato);
+router.post("/opinion", crearNuevaOpinion);
 router.post("/responderOpinion", responderOpinion);
 router.get("/:idRelato", getRelatoById);
 router.post("/lista", obtenerRelatos);
-router.delete("/borrarRelato", borrarRelato);
+router.delete("/", borrarRelato);
 
 module.exports = router;
 
 function crearNuevoRelato(req, resp){
     let peticion = req.body;
-    let nuevoRelato = new Relato(peticion.nuevoRelato)
+    let nuevoRelato = new Relato(peticion.relato);
 
     nuevoRelato.save(function (err, nuevoRelato){
-        let notificacionNuevoRelato = GestorNotificaciones.crearNotificacionNuevoRelato(nuevoRelato.textoContenido, null, nuevoRelato.autor, nuevoRelato.autorName, nuevoRelato._id, nuevoRelato.tituloRelato);
+        let notificacionNuevoRelato = GestorNotificaciones.crearNotificacionNuevoRelato(nuevoRelato.textoContenido, null, nuevoRelato.autor, nuevoRelato.autorNombre, nuevoRelato._id, nuevoRelato.tituloRelato);
         GestorNotificaciones.addNotificacionFeed(notificacionNuevoRelato, peticion.seguidores);
         _devolverResultados(err, {resultado:"OK"}, resp);
     });
@@ -68,7 +68,7 @@ function crearNuevaOpinion(req, resp){
     let nuevaOpinionRelato = new OpinionRelato(peticion.nuevaOpinion);
 
     Relato.findOneAndUpdate({_id : peticion.idRelato}, {$push:{opiniones: nuevaOpinionRelato}}, function(err, relato){
-        let nuevaNotificacionOpinionRelato = GestorNotificaciones.crearNotificacionNuevaOpinionRelato(nuevaOpinionRelato.textoContenido, new Date(), nuevaOpinionRelato.autor, nuevaOpinionRelato.autorName, relato._id, relato.tituloRelato);
+        let nuevaNotificacionOpinionRelato = GestorNotificaciones.crearNotificacionNuevaOpinionRelato(nuevaOpinionRelato.textoContenido, new Date(), nuevaOpinionRelato.autor, nuevaOpinionRelato.autorNombre, relato._id, relato.tituloRelato);
         GestorNotificaciones.addNotificacionFeed(nuevaNotificacionOpinionRelato, peticion.seguidores);
         _devolverResultados(err, {resultado:"OK"}, resp);
     });

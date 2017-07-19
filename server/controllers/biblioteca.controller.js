@@ -186,28 +186,245 @@ function deleteChatStoryOnBibliotecaByUserName(req, res) {
   }
 }
 
+// TODO probar endpoint y paginarlo
 function getWallsOnBibliotecaByUserName(req, res) {
- // TODO [ANDY] Biblioteca
+  let userName = req.params.userName;
+
+  User.findOne({login: userName}, '_id', function (err, userId) {
+    if (err) {
+      res.status(400).send('Ha ocurrido un error');
+    }
+    if (userId) {
+      findWallsBibliotecaByUserName(userId);
+    } else {
+      res.status(400).send('El usuario no se ha encontrado');
+    }
+  });
+
+  var findWallsBibliotecaByUserName = function (userId) {
+    var query = {usuario: userId};
+
+    Biblioteca.find(query, '_id usuario walls', function (err, biblioteca) {
+      if (err) {
+        res.status(400).send("Ha ocurrido un error");
+      }
+      else {
+        res.status(200).send(biblioteca);
+      }
+    });
+  }
 }
 
+// TODO probar endpoint
 function addWallOnBibliotecaByUserName(req, res) {
-// TODO [ANDY] Biblioteca
+  let userName = req.params.userName;
+  let wallId = req.body.id;
+
+  User.findOne({login: userName}, '_id', function (err, userId) {
+    if (err) {
+      res.status(400).send('Ha ocurrido un error');
+    }
+    if (userId) {
+      findOrCreateBiblioteca(userId);
+    } else {
+      res.status(400).send('El usuario no se ha encontrado');
+    }
+  });
+
+  var findOrCreateBiblioteca = function (userId) {
+    var query = {usuario: userId}; // colocar el not in
+
+    Biblioteca.findOne(query, function (err, biblioteca) {
+      if (err) {
+        res.status(400).send("No se puede guardar");
+      }
+      else {
+        if (!biblioteca) {
+          // la biblioteca no está creada
+          biblioteca = new Biblioteca({
+            usuario: userId,
+            walls: [wallId],
+            chatStories: [],
+            relatos: []
+          });
+
+          biblioteca.save(sendSave(err, biblioteca, res));
+        } else {
+          if (biblioteca.walls.indexOf(wallId) === -1) {
+            // hay que comprobar que el wall exista o que no se metan ids mal formados
+            if (mongoose.Types.ObjectId.isValid(wallId)) {
+              biblioteca.walls.push(wallId);
+              biblioteca.save(sendSave(err, biblioteca, res));
+            } else {
+              res.status(400).send("No es un ID válido");
+            }
+
+          } else {
+            res.status(200).send(biblioteca);
+          }
+        }
+      }
+    });
+  }
 }
 
+// TODO probar endpoint
 function deleteWallOnBibliotecaByUserName(req, res) {
-// TODO [ANDY] Biblioteca
+  let userName = req.params.userName;
+  let wallId = req.body.id;
+
+  User.findOne({login: userName}, '_id', function (err, userId) {
+    if (err) {
+      res.status(400).send('Ha ocurrido un error');
+    }
+    if (userId) {
+      deleteWallOnUsersBiblioteca(userId);
+    } else {
+      res.status(400).send('El usuario no se ha encontrado');
+    }
+  });
+
+  var deleteWallOnUsersBiblioteca = function (userId) {
+    var query = {usuario: userId};
+
+    Biblioteca.findOne(query, function (err, biblioteca) {
+      if (err) {
+        res.status(400).send("Error");
+      }
+
+      if (!biblioteca) {
+        res.status(400).send("No existe biblioteca");
+      } else if (biblioteca && !biblioteca.walls) {
+        res.status(400).send("No existe biblioteca");
+      }
+
+      if (biblioteca.walls.indexOf(wallId) !== -1) {
+        biblioteca.walls.splice(biblioteca.walls.indexOf(wallId),1);
+        biblioteca.save(sendSave(err, biblioteca, res));
+      } else {
+        res.status(200).send(biblioteca);
+      }
+    });
+  }
 }
 
 function getRelatosOnBibliotecaByUserName(req, res) {
-// TODO [ANDY] Biblioteca
+  let userName = req.params.userName;
+
+  User.findOne({login: userName}, '_id', function (err, userId) {
+    if (err) {
+      res.status(400).send('Ha ocurrido un error');
+    }
+    if (userId) {
+      findRelatosBibliotecaByUserName(userId);
+    } else {
+      res.status(400).send('El usuario no se ha encontrado');
+    }
+  });
+
+  var findRelatosBibliotecaByUserName = function (userId) {
+    var query = {usuario: userId};
+
+    Biblioteca.find(query, '_id usuario relatos', function (err, biblioteca) {
+      if (err) {
+        res.status(400).send("Ha ocurrido un error");
+      }
+      else {
+        res.status(200).send(biblioteca);
+      }
+    });
+  }
 }
 
 function addRelatoOnBibliotecaByUserName(req, res) {
-// TODO [ANDY] Biblioteca
+  let userName = req.params.userName;
+  let relatoId = req.body.id;
+
+  User.findOne({login: userName}, '_id', function (err, userId) {
+    if (err) {
+      res.status(400).send('Ha ocurrido un error');
+    }
+    if (userId) {
+      findOrCreateBiblioteca(userId);
+    } else {
+      res.status(400).send('El usuario no se ha encontrado');
+    }
+  });
+
+  var findOrCreateBiblioteca = function (userId) {
+    var query = {usuario: userId}; // colocar el not in
+
+    Biblioteca.findOne(query, function (err, biblioteca) {
+      if (err) {
+        res.status(400).send("No se puede guardar");
+      }
+      else {
+        if (!biblioteca) {
+          // la biblioteca no está creada
+          biblioteca = new Biblioteca({
+            usuario: userId,
+            walls: [],
+            chatStories: [],
+            relatos: [relatoId]
+          });
+
+          biblioteca.save(sendSave(err, biblioteca, res));
+        } else {
+          if (biblioteca.relatos.indexOf(relatoId) === -1) {
+            // hay que comprobar que el wall exista o que no se metan ids mal formados
+            if (mongoose.Types.ObjectId.isValid(wallId)) {
+              biblioteca.relatos.push(wallId);
+              biblioteca.save(sendSave(err, biblioteca, res));
+            } else {
+              res.status(400).send("No es un ID válido");
+            }
+
+          } else {
+            res.status(200).send(biblioteca);
+          }
+        }
+      }
+    });
+  }
 }
 
 function deleteRelatoOnBibliotecaByUserName(req, res) {
-// TODO [ANDY] Biblioteca
+  let userName = req.params.userName;
+  let relatoId = req.body.id;
+
+  User.findOne({login: userName}, '_id', function (err, userId) {
+    if (err) {
+      res.status(400).send('Ha ocurrido un error');
+    }
+    if (userId) {
+      deleteRelatoOnUsersBiblioteca(userId);
+    } else {
+      res.status(400).send('El usuario no se ha encontrado');
+    }
+  });
+
+  var deleteRelatoOnUsersBiblioteca = function (userId) {
+    var query = {usuario: userId};
+
+    Biblioteca.findOne(query, function (err, biblioteca) {
+      if (err) {
+        res.status(400).send("Error");
+      }
+
+      if (!biblioteca) {
+        res.status(400).send("No existe biblioteca");
+      } else if (biblioteca && !biblioteca.relatos) {
+        res.status(400).send("No existe biblioteca");
+      }
+
+      if (biblioteca.relatos.indexOf(relatoId) !== -1) {
+        biblioteca.relatos.splice(biblioteca.relatos.indexOf(relatoId),1);
+        biblioteca.save(sendSave(err, biblioteca, res));
+      } else {
+        res.status(200).send(biblioteca);
+      }
+    });
+  }
 }
 
 function getUserByLogin(userName, cb) {
