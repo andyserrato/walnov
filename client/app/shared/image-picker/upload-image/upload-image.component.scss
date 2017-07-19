@@ -8,19 +8,6 @@ label{
   display: none;
 }
 
-.file-button{
-  width: 20em;
-  height: 2em;
-  line-height: 2em;
-  border-radius: 0.3em;
-  background-color: $grey-6;
-  box-shadow: 0 0.01em 0 0 $grey-1;
-  font-family: Raleway;
-  font-size: 1em;
-  font-weight: bold;
-  text-align: center;
-  color: $grey-1;
-}
 
 .file-box{
   border-radius: 0.3em;
@@ -114,7 +101,6 @@ label{
   font-family: Raleway;
   font-size: 1.5em;
   font-weight: 600;
-  // line-height: 1;
   letter-spacing: 0.05em;
   text-align: center;
   color: $main-3;

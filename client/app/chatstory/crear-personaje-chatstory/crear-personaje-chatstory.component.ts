@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Personaje } from './personaje';
+import { Component, OnInit, Input } from '@angular/core';
+import { Personaje } from './personaje.model';
 
 @Component({
   selector: 'app-crear-personaje-chatstory',
@@ -8,18 +8,19 @@ import { Personaje } from './personaje';
 })
 export class CrearPersonajeChatstoryComponent implements OnInit {
 
-  cols: Array<Personaje> = new Array<Personaje>(24);
-  chars: Array<Personaje> = new Array<Personaje>();
+  cols: Array<string> = new Array<string>(24);
+  @Input() chars: Array<string>;
   constructor() {
     // this.cols.find(this.cols.keys()[0]).push('Hola');
 
   }
 
   ngOnInit() {
+    this.refreshArray();
   }
 
   refreshArray(){
-    this.cols = new Array<Personaje>(24);
+    this.cols = new Array<string>(24);
     for(let i = 0; i < this.chars.length; i++){
       this.cols[(this.chars.length-i)-1]=this.chars[i];
     }
@@ -28,7 +29,7 @@ export class CrearPersonajeChatstoryComponent implements OnInit {
   newPerosnaje(event: HTMLInputElement){
     // console.log(event);
     if(event.value && this.chars.length<24){
-      this.chars.push(new Personaje(event.value));
+      this.chars.push(event.value);
       this.refreshArray();
       event.value="";
     }

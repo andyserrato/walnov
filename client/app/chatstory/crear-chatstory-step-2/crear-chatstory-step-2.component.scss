@@ -1,0 +1,113 @@
+@import "main";
+
+textarea {
+    resize: none;
+    height: 233px;
+}
+
+
+.click-span{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+  color: $main-2;
+}
+.click-span:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+.btn-hecho{
+  padding: 0.5em 2em;
+  border-radius: 0.3em;
+  background-color: $main-1;
+  font-family: Raleway;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
+
+.btn-hecho:hover{
+  cursor: pointer;
+}
+
+.relative{
+  position: relative;
+}
+
+.no-padding{
+  margin:0;
+  padding:0;
+}
+
+.vertical-center{
+  position: absolute;
+  top: 50%;
+  left:0;
+  transform: translateY(-50%);
+
+  font-family: Raleway;
+  font-size: 1em;
+  text-align: right;
+}
+
+.fixed-title{
+  font-family: Raleway;
+  font-size:1.5em;
+}
+
+.wall-title{
+  font-family: 'Maven Pro';
+  font-size: 26px;
+  font-weight: bold;
+  text-align: left;
+  color: $grey-8;
+}
+
+.row-margin-top{
+  margin-top: 2em !important;
+}
+
+.category{
+  width: 7em;
+  font-family: Raleway;
+  font-size: 8px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+  background-color: $cat-2;
+}
+
+.chatstory-message-creator{
+  padding: 1em 3em;
+  border-radius: 8px;
+  background-color: #ededed;
+}
+
+.chatstory-preview{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  padding: 1em 2em;
+  border-radius: 8px;
+  background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-2);
+}
+
+.padding-right{
+  padding-right: 1em !important;
+}
+
+.form-title{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+}
+
+.right{
+  position: absolute;
+  right:0;
+}

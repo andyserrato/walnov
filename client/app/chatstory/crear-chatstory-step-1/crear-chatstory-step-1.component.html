@@ -1,18 +1,46 @@
-<div class="container-fluid outside-container">
-  <div class="row">
-    <div class="col-2 cols-no-padding">
-      <app-card-informativo [view] = "'chat-story'"></app-card-informativo>
+
+  <span class="fixed-title">Creación de Chatstories - <b>Paso 1/2</b></span>
+  <div class="row row-margin-top">
+    <div class="col-lg-8">
+      <span class="fixed-title-2"><b>Nombre del ChatStroy</b></span>
+
     </div>
-    <!-- /.col -->
-    <div class="col-8">
-      <app-crear-chatstory-middle-component></app-crear-chatstory-middle-component>
+    <div class="col-lg-4">
+      <span class="fixed-title-2"><b>Categoría</b></span>
+
     </div>
-    <!-- /.col -->
-    <div class="col-2 hidden-md-down cols-no-padding">
-      <app-mis-chatstories></app-mis-chatstories>
-    </div>
-    <!-- /.col -->
   </div>
-  <!-- /.row -->
-</div>
-<!-- /.container -->
+  <div class="row">
+    <div class="col-lg-8">
+      <input #titulo maxlength="48" class="form-control" type="text" name="" value="{{ chatStory.titulo ? chatStory.titulo : null }}">
+    </div>
+    <div class="col-lg-4">
+      <select class="form-control" [(ngModel)]="cat">
+        <option *ngFor="let categoria of this.categorias" [selected]="this.chatStory.categoria && categoria.nombre === this.chatStory.categoria.nombre" [ngValue]="categoria">{{ categoria.nombre }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row row-margin-top">
+    <div class="col-lg-12 no-padding height-img-picker">
+      <app-image-picker></app-image-picker>
+    </div>
+
+  </div>
+  <div class="row no-padding row-margin-top">
+    <div class="col-lg-12 no-padding">
+      <app-crear-personaje-chatstory [chars]="chars"></app-crear-personaje-chatstory>
+    </div>
+  </div>
+  <div class="row no-padding row-margin-top">
+    <div class="col-lg-8 relative">
+      <span class="pull-right vertical-center">
+        Ya tenemos la base de tu Chatstory ¡Hora de escribir!
+      </span>
+
+    </div>
+    <div class="col-lg-4 no-padding">
+      <div class="btn-hecho" (click)="nextStep(titulo)">
+        Siguiente paso
+      </div>
+    </div>
+  </div>

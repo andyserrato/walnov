@@ -39,8 +39,10 @@ import { VerifyUserComponent } from './shared/image-picker/verify-user/verify-us
 import { CardPublicidadComponent } from './shared/card-publicidad/card-publicidad.component';
 import { CardUsuarioTendenciaComponent } from './shared/card-usuario-tendencia/card-usuario-tendencia.component';
 import { CardWallRelevanteComponent } from './shared/card-wall-relevante/card-wall-relevante.component';
-import { CrearChatstoryMiddleComponentComponent } from './chatstory/crear-chatstory-step-1/crear-chatstory-middle-component/crear-chatstory-middle-component.component';
 import { PersonajeLiComponent } from './chatstory/crear-personaje-chatstory/personaje-li/personaje-li.component';
+import { CrearChatstoryStep2Component } from './chatstory/crear-chatstory-step-2/crear-chatstory-step-2.component';
+import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
+import { ChatstoryMessageComponent } from './chatstory/crear-chatstory-step-2/chatstory-message/chatstory-message.component';
 
 
 @NgModule({
@@ -69,8 +71,10 @@ import { PersonajeLiComponent } from './chatstory/crear-personaje-chatstory/pers
     CardPublicidadComponent,
     CardUsuarioTendenciaComponent,
     CardWallRelevanteComponent,
-    CrearChatstoryMiddleComponentComponent,
-    PersonajeLiComponent
+    PersonajeLiComponent,
+    CrearChatstoryStep2Component,
+    CrearChatstoryComponent,
+    ChatstoryMessageComponent
   ],
   imports: [
     BrowserModule,

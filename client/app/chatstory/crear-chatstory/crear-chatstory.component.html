@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 cols-no-padding">
+      <app-card-informativo [view] = "'chat-story'"></app-card-informativo>
+    </div>
+    <!-- /.col -->
+    <div class="col-8">
+      <div class="outside-container" [ngSwitch]="view">
+        <app-crear-chatstory-step-1 *ngSwitchCase="'step1'" (done)="changeView('step2',$event)" [chatStory]="chatStory"></app-crear-chatstory-step-1>
+        <app-crear-chatstory-step-2 *ngSwitchCase="'step2'" (back)="changeView('step1',$event)" [chatStory]="chatStory"></app-crear-chatstory-step-2>
+
+      </div>
+    </div>
+    <!-- /.col -->
+    <div class="col-2 hidden-md-down cols-no-padding">
+        <app-mis-chatstories></app-mis-chatstories>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->

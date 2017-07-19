@@ -1,0 +1,75 @@
+
+<div class="row no-padding">
+  <div class="col-12 no-padding">
+    <span class="fixed-title">Creación de Chatstories - <b>Paso 2/2</b></span>
+    <span class="click-span pull-right" (click)="getBack()">< Volver al paso 1 </span>
+  </div>
+
+</div>
+<div class="row no-padding">
+
+</div>
+
+<div class="row no-padding row-margin-top">
+  <div class="col-lg-12 no-padding">
+    <span class="wall-title" *ngIf="!chatStory.titulo">Sin titulo</span>
+    <span class="wall-title">{{chatStory.titulo}}</span>
+  </div>
+</div>
+<div class="row no-padding">
+    <div class="category no-padding" [ngStyle]="{'background-color': this.chatStory.categoria.color}">
+      {{this.chatStory.categoria.nombre.toUpperCase()}}
+    </div>
+</div>
+
+<div class="row no-padding row-margin-top ">
+  <div class="col-lg-6 no-padding padding-right">
+    <div class="chatstory-message-creator">
+      <div class="row">
+        <span class="form-title">Personaje</span>
+        <select class="form-control">
+            <option *ngIf="chatStory.personajes.length === 0" value="none" >Ninguno</option>
+            <option *ngFor="let char of chatStory.personajes" value="{{char}}">{{char}}</option>
+        </select>
+      </div>
+      <div class="row row-margin-top">
+        <span class="form-title">Texto</span>
+        <textarea class="form-control" rows="8" cols="80" maxlength="485"></textarea>
+      </div>
+      <div class="row row-margin-top">
+        <input type="file" class="form-control" name="" value="">
+      </div>
+      <div class="row row-margin-top">
+        <div class="col-3 relative">
+          <span class="time vertical-center">3" <span class="fa fa-clock-o"></span></span>
+        </div>
+        <div class="col no-padding">
+          <div class="btn-hecho pull-right">Añadir mensaje</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-lg-6 no-padding padding-right relative">
+    <div class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria.color+')'}">
+      <app-chatstory-message></app-chatstory-message>
+      <app-chatstory-message></app-chatstory-message>
+      <app-chatstory-message></app-chatstory-message>
+    </div>
+  </div>
+</div>
+
+
+<div class="row no-padding row-margin-top">
+  <div class="col-lg-8 relative">
+    <span class="pull-right vertical-center">
+      Frase motivadora que tendrá que pensar David
+    </span>
+
+  </div>
+  <div class="col-lg-4 no-padding">
+    <div class="btn-hecho">
+      Publicar Chatstory
+    </div>
+  </div>
+</div>
