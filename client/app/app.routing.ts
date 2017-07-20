@@ -16,7 +16,7 @@ import { ListadoWalls } from './walls/listado-walls.component';
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
+    { path: 'inicio', component: InicioComponent}, //canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'walls/listado-walls', component: ListadoWalls },

@@ -14,9 +14,7 @@ const EstadisticaSchema = Schema({
   vecesCompartidoFacebook:{type:Number, default: 0},
   vecesCompartidoTwitter: {type:Number, default: 0},
   vecesCompartidoGoogle: {type:Number, default: 0},
-  wall: {type:mongoose.Schema.Types.ObjectId, ref:'wall'},
-  chatStory: {type:mongoose.Schema.Types.ObjectId, ref:'ChatStory'},
-  relato: {type:mongoose.Schema.Types.ObjectId, ref:'relato'}
+  vecesCompartido: {type:Number, default: 0},
 });
 
 EstadisticaSchema.plugin(datosComunes);

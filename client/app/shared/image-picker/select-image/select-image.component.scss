@@ -1,0 +1,39 @@
+.container{
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.no-padding{
+  margin:0;
+  padding:0;
+}
+
+.img-item{
+    // position: absolute;
+
+}
+
+.img-item:hover{
+  cursor: pointer;
+}
+
+.padding-top{
+  margin-top: 1em;
+}
+
+.fa{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  text-size:5em;
+}
+
+.hidden{
+  display: none;
+}
+
+.padding-left-right{
+  padding: 0em 0.5em;
+}

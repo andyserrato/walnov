@@ -1,3 +1,8 @@
-<p>
-  select-image works!
-</p>
+<div class="container no-padding">
+  <div class="row no-padding">
+    <div class="col-lg-4 col-md-4 col-sm-4 no-padding padding-top padding-left-right" *ngFor="let image of imgs" (click)="selectImage(image)">
+      <img src="https://lorempixel.com/588/294" class="img-fluid img-item">
+      <span [ngClass]="{ 'hidden' : !image.selected }" class="fa fa-check fa-4x"></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="outside-container">
+  <span class="fixed-title">Creación de Chatstories - <b>Paso 1/2</b></span>
+  <div class="row row-margin-top">
+    <div class="col-lg-8">
+      <span class="fixed-title-2"><b>Nombre del ChatStroy</b></span>
+
+    </div>
+    <div class="col-lg-4">
+      <span class="fixed-title-2"><b>Categoría</b></span>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <input maxlength="48" class="form-control" type="text" name="" value="">
+    </div>
+    <div class="col-lg-4">
+      <select class="form-control">
+        <option *ngFor="let categoria of this.categorias" value="{{categoria.color}}">{{ categoria.nombre }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row row-margin-top">
+    <div class="col-lg-12 no-padding height-img-picker">
+      <app-image-picker></app-image-picker>
+    </div>
+
+  </div>
+  <div class="row no-padding row-margin-top">
+    <div class="col-lg-12 no-padding">
+      <app-crear-personaje-chatstory></app-crear-personaje-chatstory>
+    </div>
+  </div>
+  <div class="row no-padding row-margin-top">
+    <div class="col-lg-8 no-padding">
+
+    </div>
+    <div class="col-lg-4 no-padding">
+
+    </div>
+  </div>
+
+
+</div>

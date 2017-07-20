@@ -1,7 +1,59 @@
 // Load the module dependencies
-const User = require('mongoose').model('usuarios');
-const Provider = require('mongoose').model('provider');
+const mongoose = require('mongoose');
+const User = mongoose.model('usuarios');
+const Provider = mongoose.model('provider');
 const passport = require('passport');
+const express = require('express');
+const router = express.Router();
+
+// Rutas
+// Set up the 'signup' routes
+router.post('/auth/signup', signup);
+// Set up the 'signin' routes
+router.post('/auth/signin', signin);
+// Set up the 'signout' route
+router.post('/auth/signout', signout);
+
+// Obtiene los datos del usuario
+router.get('/oauth/userdataPassportLoggedIn', isLoggedIn, findUserByProviderIdPassportLoggedIn);
+
+router.post('/oauth/userdata', isUserRegisteredByProviderId);
+// router.post('/oauth/userdata3', users.isUserRegisteredByProviderId);
+
+// Set up the Facebook OAuth routes
+router.get('/oauth/facebook', passport.authenticate('facebook', {
+  failureRedirect: '/signin',
+  scope: ['public_profile', 'email', 'user_friends']
+}));
+
+router.get('/oauth/facebook/callback', passport.authenticate('facebook', {
+  failureRedirect: '/home',
+  successRedirect: '/'
+}));
+
+// Set up the Twitter OAuth routes
+router.get('/oauth/twitter', passport.authenticate('twitter', {
+  failureRedirect: '/signin'
+}));
+router.get('/oauth/twitter/callback', passport.authenticate('twitter', {
+  failureRedirect: '/signin',
+  successRedirect: '/inicio'
+}));
+
+// Set up the Google OAuth routes
+router.get('/oauth/google', passport.authenticate('google', {
+  scope: [
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email'
+  ],
+  failureRedirect: '/signin'
+}));
+router.get('/oauth/google/callback', passport.authenticate('google', {
+  failureRedirect: '/signin',
+  successRedirect: '/'
+}));
+
+module.exports = router;
 
 // Create a new error handling controller method
 const getErrorMessage = function (err) {
@@ -32,7 +84,7 @@ const getErrorMessage = function (err) {
 };
 
 // Create a new controller method that signin users
-exports.signin = function (req, res, next) {
+function signin (req, res, next) {
   passport.authenticate('local', (err, user, info) => {
     if (err || !user) {
       res.status(400).send(info);
@@ -54,7 +106,7 @@ exports.signin = function (req, res, next) {
 };
 
 // Create a new controller method that creates new 'regular' users
-exports.signup = function (req, res) {
+function signup(req, res) {
   const user = new User(req.body);
   user.provider = 'local';
 
@@ -82,7 +134,7 @@ exports.signup = function (req, res) {
 }
 
 // Create a new controller method that creates new 'OAuth' users
-exports.saveOAuthUserProfile = function (profile) {
+exports.saveOAuthUserProfile = function(profile) {
   // Try finding a user document that was registered using the current OAuth provider
   user = new User();
   console.log('saveOAuthUserProfile');
@@ -109,7 +161,7 @@ exports.saveOAuthUserProfile = function (profile) {
 };
 
 // Create a new controller method for signing out
-exports.signout = function (req, res) {
+function signout(req, res) {
   // Use the Passport 'logout' method to logout
   req.logout();
 
@@ -118,7 +170,7 @@ exports.signout = function (req, res) {
 };
 
 // Middleware
-exports.isLoggedIn = function (req, res, next) {
+function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -126,7 +178,7 @@ exports.isLoggedIn = function (req, res, next) {
   }
 };
 
-exports.findUserByProviderIdPassportLoggedIn = function (req, res) {
+function findUserByProviderIdPassportLoggedIn(req, res) {
   User.findOne({
     provider: req.user.provider,
     providerId: req.user.providerId
@@ -155,7 +207,7 @@ exports.findUserByProviderId = function (providerUserProfile) {
   })
 };
 
-exports.isUserRegisteredByProviderId = function (req, res) {
+function isUserRegisteredByProviderId(req, res) {
   User.find({
     providers: {
       $elemMatch: {

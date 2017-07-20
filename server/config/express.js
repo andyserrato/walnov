@@ -67,7 +67,7 @@ module.exports = function () {
   app.use('/api1', api1);
 
   //Pruebas andy
-  require('../routes/users.server.routes.js')(app)
+  // require('../routes/users.server.routes.js')(app)
 
 
   // Catch all other routes and return the index file

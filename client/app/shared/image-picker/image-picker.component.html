@@ -1,3 +1,23 @@
-<p>
-  image-picker works!
-</p>
+<div #ciBox class="change-img" [ngClass]="{ 'color-white': white}" (click)="expand(ciBox, selectBox)">
+      <i class="fa fa-image fa-lg fa-2x fa-4"></i>
+      <span class="Check-Label-Copy-7 pull-right">Cambiar <br> Imagen</span>
+</div>
+<div #selectBox class="Rectangle-10">
+  <span class="fixed-title"> Selecciona una imagen</span>
+  <span class="fixed-title-right pull-right" (click)="changeView('verify')">Sube tu imagen</span>
+  <div class="app-select-image" [ngSwitch]="view">
+    <div *ngSwitchCase="'select'">
+      <app-select-image></app-select-image>
+    </div>
+    <div *ngSwitchCase="'verify'">
+      <app-verify-user (verified)="changeView('upload')" (canceled)="changeView('select')"></app-verify-user>
+    </div>
+    <div *ngSwitchCase="'upload'">
+      <app-upload-image (uploaded)="uploadImage($event,ciBox,selectBox)" (canceled)="changeView('select')"></app-upload-image>
+    </div>
+    <div *ngSwitchDefault>
+      Oops
+    </div>
+
+  </div>
+</div>
