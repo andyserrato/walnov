@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
@@ -81,6 +82,7 @@ import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-b
     HttpModule,
     JsonpModule,
     routing,
+    BrowserAnimationsModule,
     AuthenticationModule,
     NgbModule.forRoot()
   ],
