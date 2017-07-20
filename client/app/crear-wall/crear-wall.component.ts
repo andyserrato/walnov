@@ -54,7 +54,6 @@ export class CrearWallComponent implements OnInit {
   onChange($event: any){
     console.log('Select con value cambiado: '+$event.target.value);
     document.getElementById('category-filter').style.backgroundImage = "linear-gradient(to bottom, rgba(0, 0, 0, 0), "+$event.target.value+")"
-
   }
 
   focusTitle(){
@@ -67,6 +66,10 @@ export class CrearWallComponent implements OnInit {
     // remove extra lines
     let text = $event.target.outerText.replace(/(\r\n|\n|\r)/gm,"");
     // do whatever you need with the text
+  }
+
+  changeImage(event,imagebox: HTMLElement){
+    imagebox.style.backgroundImage= "url('"+event+"')";
   }
 
 }

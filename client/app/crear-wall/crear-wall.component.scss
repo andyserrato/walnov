@@ -30,15 +30,7 @@
   color: $grey-1;
 }
 
-.Check-Label-Copy-7 {
-  width: 140.1px;
-  height: 28px;
-  font-family: Raleway;
-  font-size: 12px;
-  font-weight: 600;
-  text-align: left;
-  // color: $grey-1;
-}
+
 
 .Input-Background-Copy-3 {
   border-radius: 3px;
@@ -129,6 +121,7 @@
   //height: 128.6px;
   // margin-left: 24px;
   //margin-right: 38px;
+  background-size: cover;
   background: var($grey-1);
   background-image: url('https://lorempixel.com/757/200/');
 }
@@ -141,7 +134,7 @@
   // margin-left: 24px;
   // margin-right: 38px;
   background: var($grey-1);
-  padding:20px;
+
   background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-2);
 }
 
@@ -256,9 +249,9 @@ label .radio-text{
   text-decoration: underline;
 }
 
-.fa-4{
-  font-size: 3em !important;
-  vertical-align: middle;
+.no-padding{
+  margin:0;
+  padding:0;
 }
 
 .unestyled{
@@ -266,23 +259,22 @@ label .radio-text{
   border: 0;
 }
 
-.change-img:hover{
-  cursor: pointer;
+.no-relative{
+  position: inherit;
 }
 
-.change-img:focus{
-  background-color: gray;
+.padding-title-row{
+  padding: 0.5em;
 }
 
-.change-img{
-  padding: 1em 3em;
-  // background-color:white;
-  color: gray !important;
-  padding-top: 1em;
-  position: absolute;
-  width: 100%;
-  height: 8em;
-  border-radius: 0.8em;
-  color: white !important;
-  padding-left: 1.2em;
+.padding-title-left{
+  padding-left:1em;
+}
+
+.padding-bottom-3{
+  padding-bottom: 2em;
+}
+
+.height-img-picker{
+  height: 5em;
 }

@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 //Utilidades
 var Utils = require("../services/utils.service").Utils;
-var Constantes = require("../constantes/constantes");
+const Constantes = require("../constantes/constantes");
 const datosComunes = require('./comunes.model');
 
 //Schemas
@@ -34,30 +34,26 @@ var historia = Schema({
 //Schema del wall
 var wall = Schema({
     titulo: String,
-    categoria: String,
-    likes: {type:Number, default: 0},
-    likers: [mongoose.Schema.Types.ObjectId],
+    categoria: {type: String , enum: Constantes.Categorias.CATEGORIAS},
+    lang: {type: String , enum: Constantes.Idiomas.IDIOMAS},
     urlImagen:String,
     fecha: String,
     hora: String,
-    //Publico o privado
-    tipo: {type:Number, default: Constantes.Wall.PUBLICO},
     colaboradoresPermitidos: [mongoose.Schema.Types.ObjectId],
-    vecesVisto:{type:Number, default: 0},
+    tipo: {type:Number, default: Constantes.Tipo.PUBLICO},
     iniciosHistorias: [item],
-    compartidoFacebook:{type:Number, default: 0},
-    compartidoTwitter: {type:Number, default: 0},
-    compartidoGoogle: {type:Number, default: 0},
     //Publicado o borrador, suspendido, baneado por reports, etc...
     estado: {type:Number, default: 1},
     contenidoTexto: String,
     autor: mongoose.Schema.Types.ObjectId,
-    nombreAutor: String,
+    autorNombre: String,
+    estadistica: {type: Schema.Types.ObjectId, ref:'Estadistica'},
     participantes:[mongoose.Schema.Types.ObjectId]
 });
 
 // plugin
 wall.plugin(datosComunes);
+wall.index({titulo: 'text'});
 
 //Pre Middlewares
 wall.pre('save', function (next){
@@ -151,6 +147,11 @@ var Wall = mongoose.model('Wall', wallSchema);
 // make this available to our API in our Node applications
 module.exports = Wall;
 */
+
+wall.set('toJSON', {
+  getters: true,
+  virtuals: true
+});
 
 //Modelos
 var Wall = mongoose.model('wall', wall);
