@@ -43,7 +43,8 @@ import { PersonajeLiComponent } from './chatstory/crear-personaje-chatstory/pers
 import { CrearChatstoryStep2Component } from './chatstory/crear-chatstory-step-2/crear-chatstory-step-2.component';
 import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
 import { ChatstoryMessageComponent } from './chatstory/crear-chatstory-step-2/chatstory-message/chatstory-message.component';
-
+import { TagBgComponent } from './shared/components/tag-bg/tag-bg.component';
+import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-biblioteca.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,9 @@ import { ChatstoryMessageComponent } from './chatstory/crear-chatstory-step-2/ch
     CardPublicidadComponent,
     CardUsuarioTendenciaComponent,
     CardWallRelevanteComponent,
+    TagBgComponent,
+    CardMiBibliotecaComponent,
+    PersonajeLiComponent,
     PersonajeLiComponent,
     CrearChatstoryStep2Component,
     CrearChatstoryComponent,

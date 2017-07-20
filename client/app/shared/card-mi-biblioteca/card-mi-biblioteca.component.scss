@@ -1,0 +1,257 @@
+@import 'main';
+
+.Rectangle-3-Copy-2 {
+  //width: 274px;
+  //height: 644px;
+  //padding-bottom: 0px;
+  border-radius: 8px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Card-title {
+  padding-top: 10px;
+  font-family: Raleway;
+  font-size: 1.125em;
+  font-weight: 500;
+  text-align: center;
+  //color: #808080;
+  color: $grey-7;
+
+}
+
+.Input-Background-Copy-3-fuera {
+  margin-top: 14px;
+  width: 100%;
+  height: 36px;
+  border-radius: 3px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  //border: solid 1px #c0c0c0;
+  border: solid 1px $grey-5;
+
+}
+
+.Input-Background-Copy-3-dentro {
+  //margin-top: 14px;
+  width: 100%;
+  height: 36px;
+  border: 0;
+  background: 0;
+  outline: none;
+  cursor: pointer;
+  //border-radius: 3px;
+  //background-color: #ffffff;
+  //background-color: $grey-1;
+  //border: solid 1px #c0c0c0;
+  //border: solid 1px $grey-5;
+}
+
+.Input-Background-Copy-3-dentro:focus {
+  cursor: pointer;
+
+}
+
+.Drop-title {
+  padding-left: 10px;
+  font-family: Raleway;
+  font-size: 1.125em;
+  font-weight: 500;
+  line-height: 1.43;
+  text-align: left;
+  //color: #4a4a4a;
+  color: $grey-8;
+
+}
+
+select:focus {
+  outline: none;
+  cursor: pointer;
+}
+
+select:hover {
+  cursor: pointer;
+//background-color: #ffffff;
+//outline-color: $main-2;
+//border: solid 1px $main-2;
+}
+
+select {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+
+}
+
+.fa-sort {
+
+  font-size: 1.4em;
+  color: $grey-7;
+  float: right;
+  position: relative;
+  top:-26px;
+  right: 10px;
+  //margin-left: -30px;
+  //text-align: left;
+
+}
+
+.fa-sort:hover {
+  cursor: pointer;
+
+}
+
+.Rectangle-3-Copy-3 {
+  //width: 100%;
+  margin-left: -12px;
+  margin-right: -12px;
+  //height: 531px;
+  margin-top: 15px;
+  padding: 10px 7px 20px;
+  border-radius: 8px;
+  //background-color: #f0f0f0;
+  background-color: $grey-3;
+}
+
+.Rectangle-3-Copy-4 {
+  //position: relative;
+  //width: 253px;
+  //height: 81px;
+  //margin: 0px 7px;
+  border-radius: 8px;
+  padding-left: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  border: solid 1px #e0e0e0;
+}
+
+.Chat-Image {
+  border-radius: 5px;
+  //margin-right: 15px;
+  //margin-bottom: -35px;
+  height: 100%;
+  width: 45px;
+
+}
+
+// .Rectangle-3-Copy-5-fluid {
+//   //width: 70%;
+//   position: absolute;
+//   left: 65px;
+//   top: 2px;
+//   margin-bottom: 50px;
+//   //margin-right: 60px;
+//   //margin-bottom: -15px;
+//
+// }
+
+.Chat-Title {
+  font-family: 'Maven Pro';
+  font-size: 1.125em;
+  font-weight: bold;
+  text-align: left;
+  //color: #000000;
+  color: $grey-10;
+  margin-bottom: -2px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.block-with-text {
+  overflow: hidden;
+  position: relative;
+  //line-height: 1.2em;
+  max-height: 3em;
+  text-align: left;
+  //margin-right: -1em;
+  margin-right: 1.5em;
+  padding-right: 1em;
+}
+.block-with-text:before {
+  content: '...';
+  position: absolute;
+  right: 0.9em;
+  bottom: 0;
+}
+.block-with-text:after {
+  content: '';
+  position: absolute;
+  font-weight: bold;
+  right: 0.9em;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+}
+
+.Rectangle-7-Copy-4 {
+  //width: 100%;
+  //padding: 2px 4px 0px 5px;
+  padding: 0 4px;
+  height: 12px;
+  //border: solid 1px #e65e20;
+  //border: solid 1px $cat-1;
+  //margin-left: 12px;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.Categoria {
+  font-family: Raleway;
+  font-size: 0.6em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  //color: #e65e20;
+  //color: $cat-1;
+}
+
+.Chat-Estadisticas {
+  //width: 80px;
+  // position: absolute;
+  // top:-17px;
+  // left: 70px;
+  margin-top: 6px;
+
+}
+.Chat-Views {
+  margin-right: 15px;
+  font-family: Arial;
+  //Fuente real(Falta añadir): .SFNSText
+  font-size: 0.92em;
+  text-align: left;
+  //color: #9b9b9b;
+  color: $grey-6;
+
+}
+
+.Chat-Likes {
+  //margin-left: 15px;
+  font-family: Arial;
+  //Fuente real(Falta añadir): .SFNSText
+  font-size: 0.92em;
+  text-align: left;
+  //color: #9b9b9b;
+  color: $grey-6;
+
+}
+
+.Chat-Message {
+  font-family: 'Maven Pro';
+  font-size: 1.125em;
+  font-style: italic;
+  //font-weight: bold;
+  text-align: center;
+  //color: #000000;
+  color: $grey-10;
+  //margin-bottom: -2px;
+  //margin-top: 10px;
+  //width: 100%;
+
+}

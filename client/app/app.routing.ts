@@ -13,7 +13,7 @@ import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chats
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
+    { path: 'inicio', component: InicioComponent}, //canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'crear-wall', component: CrearWallComponent},
