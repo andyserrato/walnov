@@ -22,7 +22,14 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './alert/alert.component';
+//Walls
+import { Walls } from './walls/walls.component';
 import { CrearWallComponent } from './crear-wall/crear-wall.component';
+import { VisorWall } from './visor-wall/visor-wall.component';
+import { InfoItemAutor } from './walls/info-item-autor.component';
+import { ListadoWalls } from './walls/listado-walls.component';
+import { MiniaturaWall } from './walls/miniatura-wall.component';
+
 import { LandingComponent } from './landing/landing.component';
 import { FeedComponent } from './feed/feed.component';
 import { CardInformativoComponent } from './shared/card-informativo/card-informativo.component';
@@ -65,7 +72,12 @@ import { CardWallRelevanteComponent } from './shared/card-wall-relevante/card-wa
     CardTagsComponent,
     CardPublicidadComponent,
     CardUsuarioTendenciaComponent,
-    CardWallRelevanteComponent
+    CardWallRelevanteComponent,
+    VisorWall,
+    Walls,
+    InfoItemAutor,
+    ListadoWalls,
+    MiniaturaWall,
   ],
   imports: [
     BrowserModule,
