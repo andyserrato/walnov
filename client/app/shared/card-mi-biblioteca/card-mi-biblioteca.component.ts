@@ -39,24 +39,29 @@ export class CardMiBibliotecaComponent implements OnInit {
   filtradosVacio: boolean = true;
   state: string = 'in';
 
+  categorias = new Array();
 
   chatst1: Chatstory;
   chatst2: Chatstory;
   chatst3: Chatstory;
 
-  constructor(private repositorio: RepositorioService) { }
+  constructor(private repositorio: RepositorioService) {
+
+  }
 
   ngOnInit() {
 
+    console.log(this.categorias);
+
     this.chatst1 = new Chatstory();
-    this.chatst1.categoria = this.repositorio.categorias[5];
+    this.chatst1.categoria = this.repositorio.categoriasHM.get("Romance");
     this.chatst1.titulo = "El paseo millonario por la Gran Vía de Madrid entre dos enamorados";
     this.chatst1.imagen_url = "https://lorempixel.com/45/56";
     this.chatst1.likes = 784;
     this.chatst1.views = 2000;
 
     this.chatst2 = new Chatstory();
-    this.chatst2.categoria = this.repositorio.categorias[6];
+    this.chatst2.categoria = this.repositorio.categoriasHM.get("Romance");
     this.chatst2.titulo = "El hombre palo";
     this.chatst2.imagen_url = "https://lorempixel.com/45/67";
     this.chatst2.likes = 46434;
@@ -64,7 +69,7 @@ export class CardMiBibliotecaComponent implements OnInit {
 
     this.chatst3 = new Chatstory();
 
-    this.chatst3.categoria = this.repositorio.categorias[7];
+    this.chatst3.categoria = this.repositorio.categoriasHM.get("Romance");
     this.chatst3.titulo = "La mujer barbuda";
     this.chatst3.imagen_url = "https://lorempixel.com/45/52";
     this.chatst3.likes = 444;

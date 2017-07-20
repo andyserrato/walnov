@@ -28,15 +28,15 @@ export class ListadoWalls {
       constructor() {
           this.walls = new Array();
 
-          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Accion", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
-          this.walls.push({urlImagen:"https://lorempixel.com/757/200/",titulo:"Esto es un titulo", categoria:"Accion", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
-          this.walls.push({urlImagen:"https://lorempixel.com/757/200/",titulo:"Esto es un titulo", categoria:"Accion", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
-          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Accion", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
-          this.walls.push({urlImagen:"https://lorempixel.com/757/200/",titulo:"Esto es un titulo", categoria:"Accion", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
-          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Accion", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
-          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Accion", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
-          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Accion", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
-          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Accion", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
+          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Acción", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
+          this.walls.push({urlImagen:"https://lorempixel.com/757/200/",titulo:"Esto es un titulo", categoria:"Romance", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
+          this.walls.push({urlImagen:"https://lorempixel.com/757/200/",titulo:"Esto es un titulo", categoria:"Terror", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
+          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Aventura", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
+          this.walls.push({urlImagen:"https://lorempixel.com/757/200/",titulo:"Esto es un titulo", categoria:"SCI-FI", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
+          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"FanFiction", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
+          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Reflexión", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
+          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Poesía", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
+          this.walls.push({urlImagen:"https://lorempixel.com/757/200/", titulo:"Esto es un titulo", categoria:"Humor", texto:"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ", numeroHistorias: 10});
       }
 
       ngOnInit() {

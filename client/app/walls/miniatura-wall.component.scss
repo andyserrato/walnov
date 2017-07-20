@@ -42,7 +42,6 @@
 }
 
 .header-filtro2{
-    background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-8);
     height: 80px;
     width: 290px;
     opacity: 0.5;
@@ -68,7 +67,6 @@
 .categoria{
     position: absolute;
     z-index:4;
-    background-color: $cat-1;
     padding-left: 10px;
     padding-right: 10px;
     color: $grey-1;

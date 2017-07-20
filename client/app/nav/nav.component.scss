@@ -1,3 +1,5 @@
+@import 'main';
+
 .margen {
     margin: 0em 0em 2em 2em;
 }
@@ -78,4 +80,26 @@
 .nav-user-img{
   width: 2em;
   height: auto;
+}
+
+#buscador{
+    margin-top: 4px;
+    border-radius: 12px;
+    border: solid 1px $main-1;
+    background: transparent;
+    color: $grey-1;
+    height: 30px;
+    line-height: 30px;
+}
+
+#buscador .inputtext{
+    background-color: transparent;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: $grey-1;
+    width: 100%;
+    height: 30px;
+    outline: none;
+    text-align: center;
 }

@@ -3,7 +3,7 @@
     <h4 class="Card-title">Mi biblioteca</h4>
       <form role="form" class="Input-Background-Copy-3-fuera">
         <select name="Categoria" class="Input-Background-Copy-3-dentro Drop-title" (change)="sameCategoryArray($event.target.value)">
-          <option *ngFor="let categoria of repositorio.categorias">
+          <option *ngFor="let categoria of this.repositorio.categoriasAL">
             {{categoria.nombre}}
           </option>
         </select>
