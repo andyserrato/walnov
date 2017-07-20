@@ -6,8 +6,70 @@ textarea {
 }
 
 .img{
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
+}
+
+.img:hover{
+  cursor: pointer;
+}
+.img:hover + .img-cross{
+  display: block;
+}
+
+.img-cross:hover{
+  display: block;
+  cursor: pointer;
+}
+
+.img-cross{
+  display: none;
+  position: absolute;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  font-size:5em;
+}
+
+.img-input{
+  display: none;
+}
+
+label{
+  display:block;
+  border-radius: 3px;
+  background-color: $grey-1;
+  border: solid 1px $grey-5;
+  padding: .3em;
+}
+
+.img-placeholder{
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: italic;
+  text-align: left !important;
+  color: $grey-6;
+  left:inherit !important;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.btn-img{
+  border-radius: 4px;
+  background-color: $grey-6;
+  box-shadow: 0 1px 0 0 $grey-1;
+  color: white;
+  padding: .5em 1em;
+  &:hover{
+    cursor: pointer;
+  }
+
 }
 
 .phrase{
@@ -106,6 +168,25 @@ textarea {
   padding: 1em 2em;
   border-radius: 8px;
   background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-2);
+}
+
+.chatstory-preview-image{
+  border-radius: 8px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px);
+}
+
+.col-chatstory-preview{
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.margin-top{
+  margin-top: 1em;
 }
 
 .padding-right{

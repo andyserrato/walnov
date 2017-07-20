@@ -22,9 +22,17 @@
   </div>
   <div class="row row-margin-top">
     <div class="col-12 no-padding height-img-picker">
-      <app-image-picker></app-image-picker>
-    </div>
+      <div class="row no-padding no-relative">
+        <div class="col no-padding no-relative">
+          <app-image-picker (imageUploaded)="changeImage($event)"></app-image-picker>
+        </div>
+        <div class="col no-padding">
+          <img class="img-preview" *ngIf="this.chatStory.img" src="{{this.chatStory.img}}" >
+        </div>
+      </div>
 
+
+    </div>
   </div>
   <div class="row no-padding row-margin-top">
     <div class="col-12 no-padding">

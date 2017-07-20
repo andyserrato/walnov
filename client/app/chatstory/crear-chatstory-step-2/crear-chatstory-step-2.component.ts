@@ -36,17 +36,29 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
       } catch(err) { }
   }
 
-  newMessage(character: any, text: any, preview: HTMLElement){
-    let message = new ChatstoryMessage(character.value, text.value, this.message.image_url);
-    this.chatStory.messages.push(message);
-    this.message = new ChatstoryMessage();
-    this.editing = false;
+  newMessage(character: any, text: any, preview: HTMLElement, input){
+    if(character.value && character.value != "none" && text.value){
+      let message = new ChatstoryMessage(character.value, text.value, this.message.image_url);
+      this.chatStory.messages.push(message);
+      this.message = new ChatstoryMessage();
+      this.editing = false;
+      input.value="";
+    }
+
   }
 
   forceNewMessage(){
     this.message = new ChatstoryMessage();
     this.editing = false;
   }
+
+  deleteMessage(){
+    this.chatStory.messages.splice(this.chatStory.messages.indexOf(this.message),1);
+    this.editing = false;
+    this.message= new ChatstoryMessage();
+  }
+
+
 
   loadMessage(m: ChatstoryMessage){
     this.message=m;
@@ -62,16 +74,22 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
         var reader = e.target;
         this.message.image_url=reader.result;
   }
-  uploadImage(event: any){
+  uploadImage(event: any, placeholder){
     if(event.target.files[0].size < 5000000){
       var reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsDataURL(event.target.files[0]);
-
+      placeholder.innerHTML=event.target.files[0].name;
     }else{
 
       console.log("Error al subir");
     }
+  }
+
+  deleteImage(event, placeholder){
+    placeholder.innerHTML="Añadir imagen";
+    event.value="";
+    this.message.image_url="";
   }
 
 

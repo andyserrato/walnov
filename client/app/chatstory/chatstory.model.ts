@@ -2,6 +2,7 @@ import { Categoria } from '../models/cats';
 import { ChatstoryMessage } from './crear-chatstory-step-2/chatstory-message/chatstory-message.component';
 export class ChatStory{
   titulo: string;
+  img: string;
   personajes: Array<string>;
   categoria: Categoria;
   messages: Array<ChatstoryMessage>;
