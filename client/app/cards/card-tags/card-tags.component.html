@@ -18,5 +18,17 @@
         </div>
       </div>
     </div>
+    <ul  class="list-unstyled">
+        <li class="chip" *ngFor="let tag of tags">
+          <div class="row">
+            <div class="col truncate" title="{{tag}}">
+              {{tag}}
+            </div>
+              <button (click)="deleteTag(tag)" class="closebtn">
+                <img src="assets/images/close-copy@2x.png" class="close-Copy  img-responsive" alt="Eliminar">
+              </button>
+          </div>
+      </li>
+    </ul>
   </div>
 </div>
