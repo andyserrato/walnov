@@ -39,7 +39,7 @@ label{
 
 .fixed-title{
   font-family: Raleway;
-  font-size: 1.2em;
+  font-size: 1.05em;
   font-weight: 600;
   text-align: left;
   color: $grey-8;
@@ -47,7 +47,7 @@ label{
 
 .placeholder{
   font-family: Raleway;
-  font-size: 1.2em;
+  font-size: 1.05em;
   font-style: italic;
   text-align: left;
   color: $grey-6;
@@ -57,22 +57,24 @@ label{
 }
 
 .btn-cancelar{
-  padding: 0.5em 2em;
+  width: 9.25em;
+  padding: 0.5em 1em;
   border-radius: 0.3em;
   background-color: $grey-6;
   font-family: Raleway;
-  font-size: 1.2em;
+  font-size: 1.05em;
   font-weight: bold;
   text-align: center;
   color: $grey-1;
 }
 
 .btn-hecho{
-  padding: 0.5em 2em;
+  width: 9.25em;
+  padding: 0.5em 1em;
   border-radius: 0.3em;
   background-color: $main-1;
   font-family: Raleway;
-  font-size: 1.2em;
+  font-size: 1.05em;
   font-weight: bold;
   text-align: center;
   color: $grey-1;
@@ -82,6 +84,9 @@ label{
   cursor: pointer;
 }
 
+.btn-subir{
+  width: inherit;
+}
 
 .margin-left{
   margin-left: 1em;
@@ -89,7 +94,7 @@ label{
 
 .info-text{
   font-family: Raleway;
-  font-size: 1.2em;
+  font-size: 1.05em;
   font-style: italic;
   text-align: left;
   color: $grey-8;

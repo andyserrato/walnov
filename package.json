@@ -12,7 +12,6 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@angular/animations": "^4.3.0",
     "@angular/common": "^4.3.0",
     "@angular/compiler": "^4.3.0",
@@ -24,19 +23,6 @@
     "@angular/router": "^4.3.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.28",
     "aws-sdk": "^2.85.0",
-=======
-    "@angular/animations": "^4.2.5",
-    "@angular/common": "^4.2.5",
-    "@angular/compiler": "^4.2.5",
-    "@angular/core": "^4.2.5",
-    "@angular/forms": "^4.2.5",
-    "@angular/http": "^4.2.5",
-    "@angular/platform-browser": "^4.2.5",
-    "@angular/platform-browser-dynamic": "^4.2.5",
-    "@angular/router": "^4.2.5",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.27",
-    "aws-sdk": "^2.82.0",
->>>>>>> f78b8cbc6abaf2ad58ba4a63427bec00d8c277bf
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "bootstrap": "^4.0.0-alpha.6",

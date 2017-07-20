@@ -30,8 +30,10 @@ export class CrearChatstoryStep1Component implements OnInit {
   }
 
   nextStep(titulo){
-      let chat = new ChatStory(titulo.value, this.chars, this.cat);
-      this.done.emit(chat);
+      this.chatStory.categoria=this.cat;
+      this.chatStory.titulo=titulo.value;
+      this.chatStory.personajes=this.chars;
+      this.done.emit(this.chatStory);
   }
 
 }

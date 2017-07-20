@@ -17,6 +17,7 @@ export class CrearChatstoryComponent implements OnInit {
   }
 
   changeView(str: string, chatstory: ChatStory){
+    console.log(chatstory);
     this.chatStory=chatstory;
     this.view=str;
   }

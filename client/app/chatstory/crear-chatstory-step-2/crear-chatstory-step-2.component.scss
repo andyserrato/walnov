@@ -5,10 +5,23 @@ textarea {
     height: 233px;
 }
 
+.img{
+  width: 100%;
+  height: 100%;
+}
+
+.phrase{
+  right: 5%;
+  font-family: Raleway;
+  font-size: 1em;
+  font-style: italic;
+  text-align: right;
+  color: $grey-6;
+}
 
 .click-span{
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.1em;
   font-weight: 600;
   text-align: right;
   color: $main-2;
@@ -18,11 +31,11 @@ textarea {
   text-decoration: underline;
 }
 .btn-hecho{
-  padding: 0.5em 2em;
+  padding: 0.5em 1em;
   border-radius: 0.3em;
   background-color: $main-1;
   font-family: Raleway;
-  font-size: 1.2em;
+  font-size: 1.05em;
   font-weight: bold;
   text-align: center;
   color: $grey-1;
@@ -101,7 +114,7 @@ textarea {
 
 .form-title{
   font-family: Raleway;
-  font-size: 14px;
+  font-size: 1.1em;
   font-weight: 600;
   text-align: left;
   color: $grey-8;
@@ -110,4 +123,8 @@ textarea {
 .right{
   position: absolute;
   right:0;
+}
+
+.title-error{
+  color:red;
 }

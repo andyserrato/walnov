@@ -1,3 +1,5 @@
 <div class="bubble">
-  <span>Hola</span>
+  <span class="character">{{message.character}}</span>
+  <p class="text">{{message.text}}</p>
+  <img *ngIf="this.message.image_url" class="img" src="{{message.image_url}}" alt="">
 </div>
