@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, AfterViewChecked, ViewChild } from '@angular/core';
 import { ChatStory } from '../chatstory.model';
-import { ChatstoryMessage } from './chatstory-message/chatstory-message.component';
+import { ChatstoryMessage } from '../../models/chatstory-message';
 @Component({
   selector: 'app-crear-chatstory-step-2',
   templateUrl: './crear-chatstory-step-2.component.html',
