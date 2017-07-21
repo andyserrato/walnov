@@ -38,7 +38,7 @@ import { Paginator } from '../../models/paginador';
 export class CardMiBibliotecaComponent implements OnInit {
   chatstories: Array<Chatstory> = new Array<Chatstory>();
   chatStoriesFiltrados: Array<Chatstory> = new Array<Chatstory>();
-  filtradosVacio: boolean = false;
+  filtradosVacio: boolean = true;
   state: string = 'in';
   isIn:boolean = true;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
@@ -55,7 +55,12 @@ export class CardMiBibliotecaComponent implements OnInit {
 
   ngOnInit() {
 
-
+    this.chatst1 = new Chatstory();
+    this.chatst1.categoria = this.repositorio.categorias[0];
+    this.chatst1.titulo = "El paseo millonario por la Gran Vía de Madrid entre dos enamorados";
+    this.chatst1.imagen_url = "https://lorempixel.com/45/56";
+    this.chatst1.likes = 784;
+    this.chatst1.views = 2000;
 
     this.chatst2 = new Chatstory();
     this.chatst2.categoria = this.repositorio.categorias[6];
@@ -65,51 +70,20 @@ export class CardMiBibliotecaComponent implements OnInit {
     this.chatst2.views = 2304;
 
     this.chatst3 = new Chatstory();
-
     this.chatst3.categoria = this.repositorio.categorias[7];
     this.chatst3.titulo = "La mujer barbuda";
     this.chatst3.imagen_url = "https://lorempixel.com/45/52";
     this.chatst3.likes = 444;
     this.chatst3.views = 3420;
 
-    for(let i=0; i<20; i++) {
-      this.chatst1 = new Chatstory();
-      this.chatst1.categoria = this.repositorio.categorias[0];
-      this.chatst1.titulo = "El paseo millonario por la Gran Vía de Madrid entre dos enamorados";
-      this.chatst1.imagen_url = "https://lorempixel.com/45/56";
-      this.chatst1.likes = 784;
-      this.chatst1.views = 2000;
-
-      this.chatst1.titulo = "la vida" + i;
-      this.addChat(this.chatst1);
-      //this.chatst2.titulo = "la vida es dura " + i;
-      // this.addChat(this.chatst2);
-      // this.chatst3.titulo = "la vida es dura " + i;
-      // this.addChat(this.chatst3);
-
-    }
-
+    this.addChat(this.chatst1);
+    this.addChat(this.chatst2);
+    this.addChat(this.chatst3);
 
     this.sameCategoryArray("Acción");
-    //this.filtradosVacio = (this.chatStoriesFiltrados.length === 0);
   }
 
   ngAfterViewInit() {
-    this.paginador = new Paginator(this.chatstories, this.contenedorBiblioteca, 5);
-
-    // let items = new Array();
-    // for(let i= 0; i<20; i++) {
-    //   let nuevoItem = {posicion:i};
-    //   items.push(nuevoItem);
-    //
-    // }
-    //
-    // let paginador = new Paginator(items, this.contenedorBiblioteca, 3);
-    // // console.log(paginador);
-    // paginador.paginarDelante();
-    // // console.log(paginador);
-    // paginador.paginarDetras();
-    // console.log(paginador);
 
   }
 
@@ -143,13 +117,17 @@ export class CardMiBibliotecaComponent implements OnInit {
 
 
   sameCategoryArray(categoria) {
+    this.paginador = null;
     if (this.chatstories != null && categoria != null){
       this.chatStoriesFiltrados = this.chatstories.filter(Chatstory => Chatstory.categoria.nombre === categoria);
       this.filtradosVacio = this.emptyFiltrados(this.chatStoriesFiltrados);
+      if(!this.filtradosVacio) {
+        let limite = this.chatStoriesFiltrados.length;
+        this.paginador = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 10,5);
+      }
       if(this.state === 'out') this.state = 'in';
       if(!this.isIn) this.isIn = true;
     }
-
   }
 
   emptyFiltrados(chats: any) {
@@ -159,7 +137,6 @@ export class CardMiBibliotecaComponent implements OnInit {
   toggleState() {
     this.state = (this.state === 'in' ? 'out' : 'in');
     this.isIn = !this.isIn;
-    console.log(this.state);
   }
 
 }
