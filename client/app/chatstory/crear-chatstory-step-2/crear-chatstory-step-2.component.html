@@ -71,25 +71,30 @@
     </div>
   </div>
   <div class="col-6 no-padding padding-right relative col-chatstory-preview">
-    <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.img+'\')'}">
-    </div>
+    <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.img+'\')'}"></div>
     <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria.color+')'}" #preview>
-      <app-chatstory-message *ngFor="let m of this.chatStory.messages" [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
+      <div class="row no-padding" *ngFor="let m of this.chatStory.messages">
+          <app-chatstory-message  [big]='false' [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
+      </div>
+
     </div>
-
-
   </div>
 </div>
 
 
 <div class="row no-padding row-margin-top">
-  <div class="col-9 relative">
+  <div class="col-6 relative">
     <span class="pull-right vertical-center phrase">
       Frase motivadora que tendrá que pensar David
     </span>
   </div>
   <div class="col-3 no-padding">
     <div class="btn-hecho pull-right">
+      Guardar Borrador
+    </div>
+  </div>
+  <div class="col-3 no-padding">
+    <div class="btn-hecho pull-right" (click)="viewChatStory()">
       Publicar Chatstory
     </div>
   </div>

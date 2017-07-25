@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CrearWallComponent } from './crear-wall/crear-wall.component';
 import {LandingComponent} from './landing/landing.component';
 import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
+import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'crear-wall', component: CrearWallComponent},
     { path: 'crear-chatstory', component: CrearChatstoryComponent },
+    { path: 'ver-chatstory', component: VerChatstoryComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: '**', component: PageNotFoundComponent }
 

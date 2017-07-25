@@ -38,8 +38,9 @@
 }
 
 .input-character{
+  position: relative;
   // padding-left: 1em;
-  padding-right: 1em;
+  // padding-right: 1em;
   width: 50%;
   border-radius: 3px;
   background-color: $grey-1;
@@ -54,17 +55,21 @@
   line-height: inherit;
   font-size: 1.5em;
   color:$main-1;
+  position: absolute;
+  right: .5em;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.fa:hover{
+.input-character .fa:hover{
   cursor: pointer;
 }
-input::placeholder{
+.input-character input::placeholder{
   font-style: italic;
   color:$grey-6;
 }
 
-input{
+.input-character input{
   background: 0;
   border: 0;
 }

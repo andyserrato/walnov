@@ -7,6 +7,7 @@ import { ChatstoryMessage } from '../../../models/chatstory-message';
 })
 export class ChatstoryMessageComponent implements OnInit {
   @Input() message: ChatstoryMessage;
+  @Input() big: boolean = false;
   constructor() { }
 
   ngOnInit() {

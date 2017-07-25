@@ -1,0 +1,70 @@
+@import "main";
+
+.outside-container{
+  // padding: 2.5em;
+  padding: 2em;
+  position: relative;
+  height: 588px;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+.messages-content{
+  position: absolute;
+  height: 80%;
+  width: 100%;
+  overflow: auto;
+  padding-left: 1em;
+}
+.chatstory-preview{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 1em 2em;
+  border-radius: 8px;
+  background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-2);
+}
+.messages-content::-webkit-scrollbar{
+  display: none;
+}
+.chatstory-preview-image{
+  border-radius: 8px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(.2em);
+}
+
+.col-chatstory-preview{
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.no-padding{
+  padding: 0;
+  margin: 0;
+}
+
+.full-height{
+  height: 100%;
+}
+
+.click-box{
+  text-align: center;
+  user-select: none;
+  width: 97%;
+  position: absolute;
+  bottom: 2%;
+  background-color: rgba(0,0,0,0.50);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1em 3em;
+  border-radius: 8px;
+  color: wheat;
+}
+
+.click-box:focus{
+  background-color: rgba(0,0,0,0.25);
+}

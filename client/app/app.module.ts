@@ -46,6 +46,7 @@ import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chats
 import { ChatstoryMessageComponent } from './chatstory/crear-chatstory-step-2/chatstory-message/chatstory-message.component';
 import { TagBgComponent } from './shared/components/tag-bg/tag-bg.component';
 import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-biblioteca.component';
+import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-b
     PersonajeLiComponent,
     CrearChatstoryStep2Component,
     CrearChatstoryComponent,
-    ChatstoryMessageComponent
+    ChatstoryMessageComponent,
+    VerChatstoryComponent
   ],
   imports: [
     BrowserModule,

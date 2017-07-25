@@ -10,16 +10,20 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
 
   @Input() chatStory: ChatStory;
   @Output() back: EventEmitter<any>;
+  @Output() done: EventEmitter<any>;
   // messages: Array<ChatstoryMessage> = new Array<ChatstoryMessage>();
   @ViewChild('preview') private preview: ElementRef;
   message: ChatstoryMessage = new ChatstoryMessage('none','');
   editing: boolean = false;
   constructor() {
     this.back = new EventEmitter<any>();
+    this.done = new EventEmitter<any>();
 
   }
 
   ngOnInit() {
+
+    // console.log(this.chatStory.personajes);
     if(!this.chatStory.messages){
       this.chatStory.messages= new Array<ChatstoryMessage>();
     }
@@ -66,8 +70,12 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   getBack(){
-    console.log(this.chatStory.messages);
+    // console.log(this.chatStory.messages);
     this.back.emit(this.chatStory);
+  }
+
+  viewChatStory(){
+    this.done.emit(this.chatStory);
   }
 
   _handleReaderLoaded(e) {

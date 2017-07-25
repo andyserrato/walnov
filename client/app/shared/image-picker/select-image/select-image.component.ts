@@ -13,7 +13,7 @@ export class SelectImageComponent implements OnInit {
   constructor() {
     this.imgs=new Array<Image>();
     for(let i = 0; i<12; i++){
-      this.imgs.push(new Image('https://lorempixel.com/147/73', false));
+      this.imgs.push(new Image('https://lorempixel.com/1600/1200', false));
     }
   }
 

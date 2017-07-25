@@ -6,22 +6,80 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
 }
 
+.form-right{
+  position: absolute;
+  right: 1em;
+}
+
 .fixed-title{
   font-family: Raleway;
   font-size:1.5em;
 }
 
+input{
+  font-family: Raleway;
+  font-size: 1.1em;
+}
+
+option{
+  font-family: Raleway;
+  font-size: 1.1em;
+}
+select{
+  font-family: Raleway;
+}
+
+
+input::placeholder{
+  font-family: Raleway;
+  font-size: 1.1em;
+  font-style: italic;
+  text-align: left;
+  color: $grey-6;
+}
 
 .img-preview{
-  width: auto;
-  max-height: 200%;
-  position: absolute;
-  right: 2em;
+  // position: absolute !important;
+  // top: 0;
+  background-size: cover;
+  min-height: 0px;
+  border-radius: 8px;
+}
+
+
+.description-box{
+  display: flex;
+  flex-direction: column;
+  height: 115%;
+    position:absolute;
+    right:28px;
+    top:-31%;
+    width:60%;
+}
+
+textarea{
+  font-family: Raleway;
+  font-size: 1.1em;
+  resize: none;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+textarea::placeholder{
+  font-family: Raleway;
+  font-size: 1.1em;
+  font-style: italic;
+  text-align: left;
+  color: $grey-6;
 }
 
 .fixed-title-2{
   font-family: Raleway;
   font-size:1.05em;
+}
+
+.row-margin-top-4{
+  margin-top: 4em !important;
 }
 
 .row-margin-top{
@@ -47,6 +105,7 @@
 
 .height-img-picker{
   height: 5em;
+  margin-left: 1.15em;
 }
 
 .btn-hecho{
@@ -80,4 +139,63 @@
   font-style: italic;
   text-align: right;
   color: $grey-6;
+}
+
+.input-character{
+  position: relative;
+  padding: 0 !important;
+  // padding-left: 1em;
+  // padding-right: 1em;
+  width: 50%;
+  border-radius: 3px;
+  background-color: $grey-1;
+  border: solid 1px $grey-5;
+}
+.input-character input{
+  // width: 90%;
+  line-height: inherit;
+}
+
+.input-character .fa{
+  line-height: inherit;
+  font-size: 1.5em;
+  color:$main-1;
+  position: absolute;
+  right: .5em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input-character .fa:hover{
+  cursor: pointer;
+}
+.input-character input::placeholder{
+  font-style: italic;
+  color:$grey-6;
+}
+
+.input-character input{
+  background: 0;
+  border: 0;
+}
+
+label input[type="checkbox"] {
+  display: none;
+}
+
+
+label .radio{
+  width: 16px;
+  height: 16px;
+  background-color: $grey-1;
+  border: solid 1px #979797;
+  border-radius: 50%;
+}
+
+label input[type="checkbox"]:checked+.radio {
+  border: solid 0.3em #7b48a0;
+}
+
+label .radio-text{
+  padding-left: 1em;
 }
