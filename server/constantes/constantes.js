@@ -151,11 +151,13 @@ class Mensajes {
     return {
       es : {
         error : "Ha ocurrido un error",
-        creado: "Ha creado un ChatStory"
+        creado: "Ha creado un ChatStory",
+        usuarioYaSeEncuentra: "Nombre de usuario ya registrado"
       },
       en : {
         error: "Bad Request",
-        created: "Created a ChaStory"
+        created: "Created a ChaStory",
+        usuarioYaSeEncuentra: "User name already taken"
       }
     };
   }
