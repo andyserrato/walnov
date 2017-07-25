@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef,ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Categoria } from '../../models/cats';

@@ -1,0 +1,145 @@
+@import 'main';
+
+.Rectangle-3-Copy-2 {
+  border-radius: 8px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Card-title {
+  padding-top: 10px;
+  font-family: Raleway;
+  font-size: 1.125em;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 30px;
+  //color: #808080;
+  color: $grey-7;
+
+}
+
+.Input-Background-Copy-3-fuera {
+  margin-top: 8px;
+  width: 100%;
+  height: 36px;
+  border-radius: 3px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  //border: solid 1px #c0c0c0;
+  border: solid 1px $grey-5;
+
+}
+
+.Input-Background-Copy-3-dentro {
+  width: 100%;
+  height: 36px;
+  border: 0;
+  background: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.Input-Background-Copy-3-dentro:focus {
+  cursor: pointer;
+
+}
+
+.Drop-title {
+  padding-left: 10px;
+  padding-right: 22px;
+  font-family: Raleway;
+  font-size: 1.125em;
+  font-weight: 500;
+  line-height: 1.43;
+  text-align: left;
+  //color: #4a4a4a;
+  color: $grey-8;
+
+}
+
+select:focus {
+  outline: none;
+  cursor: pointer;
+}
+
+select:hover {
+  cursor: pointer;
+
+}
+
+select {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+
+}
+
+.fa-sort {
+
+  font-size: 1.4em;
+  color: $grey-7;
+  float: right;
+  position: relative;
+  top:-27px;
+  right: 10px;
+  //margin-left: -30px;
+  //text-align: left;
+
+}
+
+.fa-sort:hover {
+  cursor: pointer;
+
+}
+
+.Categoria{
+  font-family: Raleway;
+  font-size: 1.05em;
+  font-weight: left;
+  text-align: center;
+  font-weight: 600;
+  color: $grey-8;
+  margin-bottom: 10px;
+  //text-transform: uppercase;
+  //color: #e65e20;
+  //color: $cat-1;
+}
+
+// .Categoria:focus {
+//   cursor:pointer;
+// }
+//
+// .Categoria:hover {
+//   cursor:pointer;
+// }
+
+.Oval {
+  width: 5.5px;
+  height: 5.5px;
+  margin-left: 5px;
+  margin-right: 7.5px;
+  //background-color: #e65e20;
+  border-radius: 2.5px;
+  //background-color: var(--cat-1);
+}
+
+// .Oval:focus {
+//   cursor:pointer;
+// }
+//
+// .Oval:hover {
+//   cursor:pointer;
+// }
+
+.Filtrado {
+  margin-top: 45px;
+  font-family: Raleway;
+  font-size: 1.125em;
+  font-weight: 600;
+  text-align: left;
+  //color: #4a4a4a;
+  color: $grey-8;
+}

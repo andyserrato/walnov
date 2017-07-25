@@ -47,6 +47,7 @@ import { ChatstoryMessageComponent } from './chatstory/crear-chatstory-step-2/ch
 import { TagBgComponent } from './shared/components/tag-bg/tag-bg.component';
 import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-biblioteca.component';
 import { CardMiBibliotecaBuscadorComponent } from './shared/card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
+import { CardCategoriasComponent } from './shared/card-categorias/card-categorias.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { CardMiBibliotecaBuscadorComponent } from './shared/card-mi-biblioteca-b
     CrearChatstoryStep2Component,
     CrearChatstoryComponent,
     ChatstoryMessageComponent,
-    CardMiBibliotecaBuscadorComponent
+    CardMiBibliotecaBuscadorComponent,
+    CardCategoriasComponent
   ],
   imports: [
     BrowserModule,
