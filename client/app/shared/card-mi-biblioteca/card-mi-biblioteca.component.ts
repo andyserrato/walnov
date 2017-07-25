@@ -15,10 +15,11 @@ import { Paginator } from '../../models/paginador';
   animations: [
     trigger("changeBackgroundColor", [
       state('in', style({
-        //transform: 'scale(1)'
+        cursor: 'pointer'
       })),
       state('out', style({
-        backgroundColor : '#4d1274'
+        backgroundColor : '#4d1274',
+        cursor: 'pointer'
       })),
       transition('in => out', animate(0)),
       transition('out => in', animate(0))
@@ -28,7 +29,8 @@ import { Paginator } from '../../models/paginador';
         //transform: 'scale(1)'
       })),
       state('out', style({
-        color: '#ffffff'
+        color: '#ffffff',
+        fontWeight:500
       })),
       transition('in => out', animate(100)),
       transition('out => in', animate(100))
@@ -76,9 +78,18 @@ export class CardMiBibliotecaComponent implements OnInit {
     this.chatst3.likes = 444;
     this.chatst3.views = 3420;
 
-    this.addChat(this.chatst1);
-    this.addChat(this.chatst2);
-    this.addChat(this.chatst3);
+    for(let i=0; i<20; i++) {
+      this.chatst1 = new Chatstory();
+      this.chatst1.categoria = this.repositorio.categorias[4];
+      this.chatst1.titulo = "El paseo millonario";
+      this.chatst1.imagen_url = "https://lorempixel.com/45/56";
+      this.chatst1.likes = 784;
+      this.chatst1.views = 2000;
+      this.addChat(this.chatst1);
+    }
+    // this.addChat(this.chatst1);
+    // this.addChat(this.chatst2);
+    // this.addChat(this.chatst3);
 
     this.sameCategoryArray("Acción");
   }
@@ -100,7 +111,7 @@ export class CardMiBibliotecaComponent implements OnInit {
   }
 
   getBorder(chatstory: Chatstory) {
-    return 'solid 1.2px ' + chatstory.categoria.color;
+    return 'solid 1.5px ' + chatstory.categoria.color;
 
   }
 
