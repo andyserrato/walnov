@@ -27,7 +27,7 @@ export class Paginator {
      if((this.indice - this.limite) > 0) {
        this.paginador[posicion] = this.paginador[i];
        this.paginador[i] = this.items[avanza];
-       console.log(this.indice-this.limite);
+      //  console.log(this.indice-this.limite);
        posicion++;
        avanza++;
        this.indice--;

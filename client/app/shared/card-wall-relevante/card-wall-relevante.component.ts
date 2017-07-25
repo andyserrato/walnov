@@ -67,7 +67,7 @@ export class CardWallRelevanteComponent implements OnInit {
   }
 
   getBorder(wall: wallRelevante) {
-    return 'solid 1.2px ' + wall.categoria.color;
+    return 'solid 1.5px ' + wall.categoria.color;
 
   }
 

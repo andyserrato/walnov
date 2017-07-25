@@ -23,26 +23,34 @@
               <img src="{{chatstory.imagen_url}}" class="Chat-Image" alt="Chatstory">
             </div>
             <div class="d-flex flex-column">
-              <div *ngIf = 'isIn' class="Chat-Title block-with-text" [@changeColor]='state' title="{{chatstory.titulo}}">
-                {{chatstory.titulo}}
+              <div *ngIf = 'isIn' class="d-flex flex-row">
+                <div class="Chat-Title" [@changeColor]='state' title="{{chatstory.titulo}}">
+                  {{chatstory.titulo}}
+                </div>
               </div>
-              <div *ngIf = '!isIn' class="Chat-Title block-with-text-2" [@changeColor]='state' title="{{chatstory.titulo}}">
-                {{chatstory.titulo}}
+              <div *ngIf = '!isIn' class="d-flex flex-row">
+                <div class="Chat-Title" [@changeColor]='state' title="{{chatstory.titulo}}">
+                  {{chatstory.titulo}}
+                </div>
               </div>
-              <div class="d-flex flex-row" style="margin-bottom:10px;">
-                <div class="d-flex align-content-stretch flex-wrap">
-                  <span class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(chatstory)' [style.color] = 'getColor(chatstory)'>
+              <div class="d-flex flex-row flex-wrap" style="margin-bottom:10px;">
+                <div class="d-flex flex-colum">
+                  <div class="Rectangle-7-Copy-4" [style.border] = 'getBorder(chatstory)' [style.color] = 'getColor(chatstory)'>
+                    <div class="Categoria">
                       {{chatstory.categoria.nombre}}
-                  </span>
-                  <div class="Chat-Estadisticas">
-                    <span class="Chat-Views">
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex flex-colum">
+                  <div class="Chat-Estadisticas d-flex justify-content-end" style="padding:0;">
+                    <div class="Chat-Views d-flex flex-colum mr-auto p-2">
                       <i class="fa fa-eye" aria-hidden="true"></i>
                       {{getNumber(chatstory.views)}}
-                    </span>
-                    <span class="Chat-Likes">
+                    </div>
+                    <div class="Chat-Likes d-flex flex-colum p-2">
                       <i class="fa fa-heart-o" aria-hidden="true"></i>
                       {{getNumber(chatstory.likes)}}
-                    </span>
+                    </div>
                   </div>
                 </div>
               </div>
