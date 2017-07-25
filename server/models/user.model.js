@@ -1,6 +1,6 @@
 // grab the things we need
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 const Constantes = require("../constantes/constantes");
 const datosComunes = require('./comunes.model');
@@ -145,7 +145,8 @@ usuario.plugin(datosComunes);
 // methods ======================
 // generating a hash
 usuario.methods.generateHash = function (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  console.log((password));
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };
 
 // checking if password is valid
@@ -170,6 +171,57 @@ usuario.statics.findUniqueUsername = function (username, suffix,
       callback(null);
     }
   });
+};
+
+usuario.statics.findLoginDuplicate= function (user, callback) {
+
+  this.findOne({
+    'login': {'$regex' : '^' + user.login + '$', $options: 'i'}
+  }, (err, userResult) => {
+    if (!err) {
+      if (!userResult) {
+        // el Usuario no existe
+        callback(user);
+      } else {
+        // el usario existe
+        callback(null);
+      }
+    } else {
+      callback(null);
+    }
+  });
+};
+
+usuario.statics.findEmailDuplicate = function (user, callback) {
+
+  this.findOne({
+    'email': {'$regex' : '^' + user.email + '$', $options: 'i'}
+  }, (err, userResult) => {
+    if (!err) {
+      if (!userResult) {
+        // el Usuario no existe
+        callback(user);
+      } else {
+        // el usario existe
+        callback(null);
+      }
+    } else {
+      callback(null);
+    }
+  });
+};
+
+usuario.methods.findByUserProviderId = function findByUserProviderId (cb) {
+
+  return this.model('usuarios').findOne({
+    providers: {
+      $elemMatch: {
+        provider: this.providers[0].provider,
+        providerId: this.providers[0].providerId
+      }
+    }
+  },cb);
+
 };
 
 usuario.set('toJSON', {

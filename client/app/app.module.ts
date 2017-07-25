@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { AuthenticationModule } from './authentication/authentication.module';
 
@@ -48,6 +48,7 @@ import { TagBgComponent } from './shared/components/tag-bg/tag-bg.component';
 import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-biblioteca.component';
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 import { CardMiBibliotecaBuscadorComponent } from './shared/card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
+import { CardCategoriasComponent } from './shared/card-categorias/card-categorias.component';
 
 @NgModule({
   declarations: [
@@ -83,11 +84,13 @@ import { CardMiBibliotecaBuscadorComponent } from './shared/card-mi-biblioteca-b
     CrearChatstoryComponent,
     ChatstoryMessageComponent,
     CardMiBibliotecaBuscadorComponent,
+    CardCategoriasComponent,
     VerChatstoryComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     JsonpModule,
     routing,

@@ -18,7 +18,7 @@ export class UserService {
     }
 
     create(user: User) {
-        return this.http.post('/users/register', user, this.jwt());
+        return this.http.post('/users/auth/signup', user, this.jwt());
     }
 
     update(user: User) {
@@ -27,6 +27,10 @@ export class UserService {
 
     delete(_id: string) {
         return this.http.delete(this.config.apiUrl + '/users/' + _id, this.jwt());
+    }
+
+    createByFaceBook() {
+      return this.http.get('/users/oauth/facebook');
     }
 
     // private helper methods

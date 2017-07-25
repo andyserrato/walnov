@@ -1,0 +1,27 @@
+<div class="card Rectangle-3-Copy-2 hidden-md-down">
+  <div class="card-block">
+    <h4 class="Card-title">Categorias</h4>
+    <div class="" *ngFor="let categoria of repositorio.categorias">
+      <div class="d-flex flex-row" (click)='filtrarCategoria($event, categoria)'>
+        <div class="d-flex flex-column" style="padding-top:7px; cursor:pointer;">
+          <div class="Oval" style="cursor:pointer;" [style.backgroundColor] = 'getColor(categoria)'>
+          </div>
+        </div>
+        <div class="d-flex flex-column">
+          <div class="Categoria" style="cursor:pointer;">
+            {{categoria.nombre}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Filtrado">
+      Ordenar por:
+    </div>
+    <form role="form" class="Input-Background-Copy-3-fuera">
+      <select name="Categoria" class="Input-Background-Copy-3-dentro Drop-title ellipsis" (change)="sameCategoryArray($event.target.value)">
+        <option title="Más relevantes">Más relevantes</option>
+      </select>
+      <i class="fa fa-sort" aria-hidden="true"></i>
+    </form>
+  </div>
+</div>
