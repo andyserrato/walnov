@@ -5,7 +5,8 @@ const Provider = mongoose.model('provider');
 const passport = require('passport');
 const express = require('express');
 const router = express.Router();
-
+const Constantes = require("../constantes/constantes");
+var redirection = '';
 // Rutas
 // Set up the 'signup' routes
 router.post('/auth/signup', signup);
@@ -26,19 +27,30 @@ router.get('/oauth/facebook', passport.authenticate('facebook', {
   scope: ['public_profile', 'email', 'user_friends']
 }));
 
-router.get('/oauth/facebook/callback', passport.authenticate('facebook', {
-  failureRedirect: '/home',
-  successRedirect: '/'
-}));
+router.get('/oauth/facebook/callback', passport.authenticate('facebook'));
 
 // Set up the Twitter OAuth routes
-router.get('/oauth/twitter', passport.authenticate('twitter', {
+router.get('/oauth/twitter', getUrl, passport.authenticate('twitter', {
   failureRedirect: '/signin'
 }));
-router.get('/oauth/twitter/callback', passport.authenticate('twitter', {
-  failureRedirect: '/signin',
-  successRedirect: '/inicio'
-}));
+
+function getUrl (req, res, next){
+  req.session.returnTo = req.query.url;
+  redirection = req.query.url;
+  console.log(req.query.url);
+  next();
+};
+
+function setUrl(req, res, next) {
+  console.log(redirection);
+  req.session.returnTo = redirection;
+  next();
+}
+
+router.get('/oauth/twitter/callback', setUrl, passport.authenticate('twitter', { failureRedirect: '/' }),
+  function(req, res) {
+      res.redirect(req.session.returnTo);
+  });
 
 // Set up the Google OAuth routes
 router.get('/oauth/google', passport.authenticate('google', {
@@ -48,10 +60,7 @@ router.get('/oauth/google', passport.authenticate('google', {
   ],
   failureRedirect: '/signin'
 }));
-router.get('/oauth/google/callback', passport.authenticate('google', {
-  failureRedirect: '/signin',
-  successRedirect: '/'
-}));
+router.get('/oauth/google/callback', passport.authenticate('google'));
 
 module.exports = router;
 
@@ -84,7 +93,7 @@ const getErrorMessage = function (err) {
 };
 
 // Create a new controller method that signin users
-function signin (req, res, next) {
+function signin(req, res, next) {
   passport.authenticate('local', (err, user, info) => {
     if (err || !user) {
       res.status(400).send(info);
@@ -107,34 +116,45 @@ function signin (req, res, next) {
 
 // Create a new controller method that creates new 'regular' users
 function signup(req, res) {
-  const user = new User(req.body);
+  const user = new User({
+    login: req.body.login
+  });
+  user.password = user.generateHash(req.body.password);
   user.provider = 'local';
 
-  // Try saving the User
-  user.save((err) => {
-    if (err) {
-      return res.status(400).send({
-        message: getErrorMessage(err)
-      });
+  User.findLoginDuplicate(user, function (user) {
+    // Ocurrió un error o el usuario ya se encuentra registrado
+    if (!user) {
+      res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra : Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra);
     } else {
-      // Remove sensitive data before login
-      user.password = undefined;
-      user.salt = undefined;
+      User.findEmailDuplicate(user, function (user) {
+        // Try saving the User
+        user.save((err) => {
+          if (err) {
+            return res.status(400).send({
+              message: getErrorMessage(err)
+            });
+          } else {
+            // Remove sensitive data before login
+            user.password = undefined;
 
-      // Login the user
-      req.login(user, function (err) {
-        if (err) {
-          res.status(400).send(err);
-        } else {
-          res.json(user);
-        }
+            // Login the user
+            req.login(user, function (err) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.status(200).send(user);
+              }
+            });
+          }
+        });
       });
     }
   });
 }
 
 // Create a new controller method that creates new 'OAuth' users
-exports.saveOAuthUserProfile = function(profile) {
+exports.saveOAuthUserProfile = function (profile) {
   // Try finding a user document that was registered using the current OAuth provider
   user = new User();
   console.log('saveOAuthUserProfile');
@@ -228,8 +248,8 @@ exports.getUserByUserName = function (userName) {
   User
     .findOne({login: userName},
       function (err, usuario) {
-      return usuario;
-    })
+        return usuario;
+      })
 }
 
 

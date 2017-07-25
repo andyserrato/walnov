@@ -3,7 +3,8 @@ const passport = require('passport');
 const url = require('url');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const config = require('../config');
-const users = require('../../controllers/users2.server.controller');
+const mongoose = require('mongoose');
+const User = mongoose.model('usuarios');
 
 // Create the Google strategy configuration method
 module.exports = function() {
@@ -34,8 +35,27 @@ module.exports = function() {
 				providerData: providerData
 			};
 
-			// Save the user OAuth profile
-			users.saveOAuthUserProfile(req, providerUserProfile, done);
+      usuario = new User();
+      usuario.providers.push({
+        provider: 'google',
+        providerId: profile.id,
+        providerData: providerData
+      });
+
+      usuario.findByUserProviderId(function (err, userResult) {
+        if (err) {
+          done(err);
+        } else if (userResult) {
+          done(err);
+        } else if (!userResult) {
+          usuario.save(function (err, usuarioGuardado) {
+            if (err) {
+              done(err);
+            }
+            done(null, usuarioGuardado);
+          })
+        }
+      });
 		}
 	));
 };

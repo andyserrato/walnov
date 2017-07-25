@@ -56,7 +56,7 @@ module.exports = function () {
   //app.use(expressJwt({ secret: config.jwtSecret }).unless({ path: ['/users/authenticate', '/users/register', '/api', '/passportAuth/signup','/passportAuth/signin','/passportAuth/userByUserName' ] }));
 
   // routes
-  app.use('/users', require('../controllers/users.controller'));
+  app.use('/users', require('../controllers/users2.server.controller'));
   app.use('/walls', require('../controllers/wall.controller'));
   app.use('/tests', require('../controllers/test.controller'));
   app.use('/relatos', require('../controllers/relatos.controller'));
