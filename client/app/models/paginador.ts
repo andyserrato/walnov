@@ -2,60 +2,50 @@ export class Paginator {
   paginador: Array<Object> = new Array();
   indice: number;
 
-  constructor(private items: Array<Object>, private container, private limite:number) {
-    console.log(items);
+  constructor(private items: Array<Object>, private container, private limite:number, private cargar:number) {
     this.indice = limite;
-
-    for(let i=0; i<limite; i++) {
+    for(let i=0; (i<limite) && (i<this.items.length); i++) {
       this.paginador.push(items[i]);
     }
-    container.nativeElement.addEventListener("scroll", () => {
-      let height = this.container.nativeElement.scrollHeight - 500;
-
-    let porcentaje = (this.container.nativeElement.scrollTop * 100) / height;
-
-    if(porcentaje === 100) {
-      this.paginarDelante();
-      console.log("hola");
-      console.log(this.paginador);
-    }
-    else if (porcentaje === 0) { this.paginarDetras();}
-
-    console.log(porcentaje);
-    });
-    //console.log(this.container);
-
-
-  };
+    container.nativeElement.addEventListener("scroll", this.scroll.bind(this));
+  }
 
   paginarDelante () {
-    if(this.indice < this.items.length) {
-      this.paginador.shift();
-      this.paginador.push(this.items[this.indice]);
-      this.indice++;
-    }
-
-
+      for(let i = 0; i<this.cargar; i++) {
+        if(this.indice < this.items.length) {
+          this.paginador.shift();
+          this.paginador.push(this.items[this.indice]);
+          this.indice++;
+        }
+      }
   }
 
  paginarDetras () {
-   if((this.indice - this.limite) > 0) {
-     this.indice--;
-     this.paginador.unshift(this.items[this.indice-this.limite]);
-     this.paginador = this.paginador.splice(0, this.limite);
-
-     this.container.nativeElement.scrollTop = 80;
+   let posicion = this.cargar;
+   let avanza = this.indice - this.limite - this.cargar;
+   for(let i=0; i<this.cargar; i++) {
+     if((this.indice - this.limite) > 0) {
+       this.paginador[posicion] = this.paginador[i];
+       this.paginador[i] = this.items[avanza];
+      //  console.log(this.indice-this.limite);
+       posicion++;
+       avanza++;
+       this.indice--;
+       this.container.nativeElement.scrollTop = 1;
+     }
    }
-
  }
 
  scroll (){
-   let height = this.container.nativeElement.scrollHeight - 200;
+   let height = this.container.nativeElement.scrollHeight - (this.container.nativeElement.clientHeight + 20);
 
    let porcentaje = (this.container.nativeElement.scrollTop * 100) / height;
 
-   if(porcentaje === 100) { this.paginarDelante(); }
-   else if (porcentaje === 0) { this.paginarDetras(); }
+   if(porcentaje >= 100) {
+     this.paginarDelante();
+
+   }
+   else if (porcentaje === 0) { this.paginarDetras();}
  }
 
 }

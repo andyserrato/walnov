@@ -12,6 +12,8 @@ import {LandingComponent} from './landing/landing.component';
 import {CrearChatstoryStep1Component} from "./chatstory/crear-chatstory-step-1/crear-chatstory-step-1.component";
 import { Walls } from './walls/walls.component';
 import { ListadoWalls } from './walls/listado-walls.component';
+import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
+
 
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },

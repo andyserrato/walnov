@@ -1,0 +1,83 @@
+@import 'main';
+.outside-container{
+  padding: 2.5em;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.fixed-title{
+  font-family: Raleway;
+  font-size:1.5em;
+}
+
+
+.img-preview{
+  width: auto;
+  max-height: 200%;
+  position: absolute;
+  right: 2em;
+}
+
+.fixed-title-2{
+  font-family: Raleway;
+  font-size:1.05em;
+}
+
+.row-margin-top{
+  margin-top: 2em !important;
+}
+
+.no-padding{
+  margin:0;
+  padding:0;
+}
+
+.no-relative{
+  position: initial;
+}
+
+.relative{
+  position: relative;
+}
+
+.width-50{
+  width: 50%;
+}
+
+.height-img-picker{
+  height: 5em;
+}
+
+.btn-hecho{
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+  background-color: $main-1;
+  font-family: Raleway;
+  font-size: 1.05em;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
+
+.btn-hecho:hover{
+  cursor: pointer;
+}
+
+.relative{
+  position: relative;
+}
+
+
+.vertical-center{
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+
+  font-family: Raleway;
+  font-size: 1em;
+  font-style: italic;
+  text-align: right;
+  color: $grey-6;
+}

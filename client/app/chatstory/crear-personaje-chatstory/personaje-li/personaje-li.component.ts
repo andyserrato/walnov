@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Personaje } from '../personaje';
+import { Personaje } from '../personaje.model';
 @Component({
   selector: 'app-personaje-li',
   templateUrl: './personaje-li.component.html',
@@ -7,14 +7,14 @@ import { Personaje } from '../personaje';
 })
 export class PersonajeLiComponent implements OnInit {
 
-  @Input() personaje: Personaje;
-  @Output() deleted: EventEmitter<Personaje> = new EventEmitter();
+  @Input() personaje: string;
+  @Output() deleted: EventEmitter<string> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
 
-  deletePersonaje(personaje: Personaje){
+  deletePersonaje(personaje: string){
     this.deleted.emit(personaje);
   }
 

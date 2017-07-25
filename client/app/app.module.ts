@@ -47,10 +47,13 @@ import { VerifyUserComponent } from './shared/image-picker/verify-user/verify-us
 import { CardPublicidadComponent } from './shared/card-publicidad/card-publicidad.component';
 import { CardUsuarioTendenciaComponent } from './shared/card-usuario-tendencia/card-usuario-tendencia.component';
 import { CardWallRelevanteComponent } from './shared/card-wall-relevante/card-wall-relevante.component';
-import { CrearChatstoryMiddleComponentComponent } from './chatstory/crear-chatstory-step-1/crear-chatstory-middle-component/crear-chatstory-middle-component.component';
 import { PersonajeLiComponent } from './chatstory/crear-personaje-chatstory/personaje-li/personaje-li.component';
+import { CrearChatstoryStep2Component } from './chatstory/crear-chatstory-step-2/crear-chatstory-step-2.component';
+import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
+import { ChatstoryMessageComponent } from './chatstory/crear-chatstory-step-2/chatstory-message/chatstory-message.component';
 import { TagBgComponent } from './shared/components/tag-bg/tag-bg.component';
 import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-biblioteca.component';
+import { CardMiBibliotecaBuscadorComponent } from './shared/card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
 
 @NgModule({
   declarations: [
@@ -85,8 +88,12 @@ import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-b
     MiniaturaWall,
     TagBgComponent,
     CardMiBibliotecaComponent,
-    CrearChatstoryMiddleComponentComponent,
-    PersonajeLiComponent
+    PersonajeLiComponent,
+    PersonajeLiComponent,
+    CrearChatstoryStep2Component,
+    CrearChatstoryComponent,
+    ChatstoryMessageComponent,
+    CardMiBibliotecaBuscadorComponent
   ],
   imports: [
     BrowserModule,

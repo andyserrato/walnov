@@ -5,7 +5,7 @@
       <div class="Rectangle-3" *ngIf = "wall.visible">
         <div class="row">
           <div class="col-10">
-            <div class="Wall-title">
+            <div class="Wall-title" title="{{wall.titulo}}">
               {{wall.titulo}}
             </div>
           </div>
@@ -13,9 +13,9 @@
             <img src="assets/images/close-copy@2x.png" class="close-Copy  img-responsive" alt="No seguir">
           </button>
         </div>
-        <div class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(wall)' [style.color] = 'getColor(wall)'>
+        <span class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(wall)' [style.color] = 'getColor(wall)'>
           {{wall.categoria.nombre}}
-        </div>
+        </span>
         <ul class="list-unstyled Estadisticas-Usuario">
           <li>{{wall.participantes}} Participantes</li>
           <li>{{wall.historias}} Historias</li>

@@ -13,99 +13,120 @@
   font-size: 1.125em;
   font-weight: 500;
   text-align: center;
+  margin-bottom: 24px;
   //color: #808080;
   color: $grey-7;
 
 }
 
-.Input-Background-Copy-3-fuera {
-  margin-top: 14px;
-  width: 100%;
-  height: 36px;
-  border-radius: 3px;
+.Rectangle-2 {
+  width: 20.9px;
+  height: 7.5px;
+  //margin-left: 84px;
+  margin-bottom: -10px;
+  //margin-top: 21.7px;
+  border-radius: 4px;
+  //background-color: #d8d8d8;
+  background-color: $grey-4;
+}
+
+.Rectangle-2-Copy {
+  width: 82.4px;
+  height: 40px;
+  border-radius: 4px;
+  margin-top: 12px;
+  margin-left: 4px;
+  //background-color: #d8d8d8;
+  background-color: $grey-4;
+}
+
+.Rectangle-2-Copy-4 {
+  width: 30px;
+  height: 7.5px;
+  margin-left: 6px;
+  margin-top: 5.3px;
+  border-radius: 4px;
   //background-color: #ffffff;
   background-color: $grey-1;
-  //border: solid 1px #c0c0c0;
-  border: solid 1px $grey-5;
-
 }
 
-.Input-Background-Copy-3-dentro {
-  width: 100%;
-  height: 36px;
-  border: 0;
-  background: 0;
-  outline: none;
-  cursor: pointer;
+.Rectangle-2-Copy-5 {
+  width: 48px;
+  height: 17px;
+  margin-left: 6px;
+  margin-top: 4.5px;
+  border-radius: 4px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
 }
 
-.Input-Background-Copy-3-dentro:focus {
-  cursor: pointer;
-
-}
-
-.Drop-title {
-  padding-left: 10px;
+.Info {
+  //width: 232px;
+  //height: 60px;
   font-family: Raleway;
   font-size: 1.125em;
   font-weight: 500;
+  font-style: italic;
   line-height: 1.43;
-  text-align: left;
-  //color: #4a4a4a;
-  color: $grey-8;
-
-}
-
-select:focus {
-  outline: none;
-  cursor: pointer;
-}
-
-select:hover {
-  cursor: pointer;
-
-}
-
-select {
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  outline: none;
-
-}
-
-.fa-sort {
-
-  font-size: 1.4em;
-  color: $grey-7;
-  float: right;
-  position: relative;
-  top:-26px;
-  right: 10px;
-  //margin-left: -30px;
-  //text-align: left;
-
-}
-
-.fa-sort:hover {
-  cursor: pointer;
-
+  text-align: center;
+  margin: 18px auto;
+  //color: #984cce;
+  color: $main-3;
 }
 
 .Rectangle-3-Copy-3 {
-  margin-left: -12px;
-  margin-right: -12px;
-  //height: 400px;
-  max-height: 400px;
-  margin-top: 15px;
-  padding: 10px 7px 20px;
-  // padding-right: 20px;
+  width: 100%;
+  height: 366.3px;
   border-radius: 8px;
+  padding: 10px 7px 20px;
   //background-color: #f0f0f0;
   background-color: $grey-3;
-  //background-color: red;
-  //overflow-y: scroll;
+  overflow-y: scroll;
+}
+
+.Rectangle-7-Copy-2 {
+  //width: 100%;
+  height: 26px;
+  border-radius: 4px;
+  margin-top: 11px;
+  padding: 0 14px;
+  //background-color: #c0c0c0;
+  background-color: $grey-5;
+  margin-bottom: -8px;
+}
+
+.Radio-Label {
+  //width: 96px;
+  // height: 14px;
+  font-family: Raleway;
+  font-size: 0.95em;
+  font-weight: bold;
+  text-align: center;
+  // color: #ffffff;
+  border: 0;
+  outline: none;
+  color: $grey-1;
+}
+
+.Base-Notification-Banner {
+  //width: 256px;
+  height: 128px;
+  background-color: #faf1ff;
+  //line-height: 25px;
+  padding: 15px 20px;
+  margin-top: -8px;
+  margin-bottom: 15px;
+}
+
+.Banner-Text {
+  font-family: Raleway;
+  font-size: 1.125em;
+  line-height: 1.14;
+  text-align: center;
+  margin-bottom: 15px;
+  //color: #984cce;
+  color: $main-3;
+
 }
 
 .Rectangle-3-Copy-4 {
@@ -154,7 +175,7 @@ select {
 //   max-height: 3em;
 //   text-align: left;
 //   //margin-right: -1em;
-//   margin-right: 1.2em;
+//   //margin-right: 1.5em;
 //   padding-right: 1em;
 // }
 //
@@ -175,34 +196,6 @@ select {
 //   // bottom: 0;
 //   background: white;
 // }
-//
-// .block-with-text-2 {
-//   overflow: hidden;
-//   position: relative;
-//   //line-height: 1.2em;
-//   max-height: 3em;
-//   text-align: left;
-//   //margin-right: -1em;
-//   margin-right: 1.2em;
-//   padding-right: 1em;
-// }
-// .block-with-text-2:before {
-//   content: '...';
-//   position: absolute;
-//   right: 0.2em;
-//   bottom: 0;
-// }
-// .block-with-text-2:after {
-//   content: '';
-//   position: absolute;
-//   font-weight: bold;
-//   right: 0.2em;
-//   width: 1em;
-//   height: 1em;
-//   margin-top: 0.2em;
-//   // bottom: 0;
-//   background: #4d1274;
-// }
 
 .Rectangle-7-Copy-4 {
   //width: 100%;
@@ -217,7 +210,7 @@ select {
   //opacity: 0.5;
 }
 
-.Categoria{
+.Categoria {
   font-family: Raleway;
   font-size: 0.6em;
   font-weight: bold;
@@ -226,11 +219,6 @@ select {
   //color: #e65e20;
   //color: $cat-1;
 }
-
-// .Categoria > Rectangle-7-Copy-4 {
-//   opacity: 1 !important;
-//
-// }
 
 .Chat-Estadisticas {
   //width: 90px;
@@ -273,18 +261,4 @@ select {
 .fa-heart-o {
   margin-top: 3px;
   margin-right: 3.5px;
-}
-
-.Chat-Message {
-  font-family: 'Maven Pro';
-  font-size: 1.125em;
-  font-style: italic;
-  //font-weight: bold;
-  text-align: center;
-  //color: #000000;
-  color: $grey-10;
-  //margin-bottom: -2px;
-  //margin-top: 10px;
-  //width: 100%;
-
 }

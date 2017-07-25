@@ -19,6 +19,19 @@
   display: block;
 }
 
+#secciones{
+    font-family: Raleway;
+    color: $grey-1;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 9px;
+}
+
+.seccion{
+    margin-right: 40px;
+    cursor: pointer;
+}
+
 .nav-padding {
   padding-top: 50px;
 }
@@ -36,6 +49,59 @@
   border: solid 1px var(--main-3);
   margin-top: 13px;
   margin-bottom: 15px;
+}
+
+.boton-crear{
+    height: 26px;
+    border-radius: 4px;
+    background-color: $main-1;
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    color: $grey-1;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.boton-como-funciona{
+    height: 26px;
+    border-radius: 4px;
+    border: solid 1px $main-3;
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    color: $grey-1;
+    background-color: transparent;
+    margin-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    margin-left: 40px;
+    margin-right: 10px; 
+}
+
+.boton-notificaciones{
+    color: $main-3;
+    margin-top: 12px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.boton-mensajes{
+    color: $main-3;
+    margin-top: 12px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+#imagen-perfil{
+    margin-top: 5px;
+    cursor: pointer;
+    margin-left: 20px;
 }
 
 .Comunidad {

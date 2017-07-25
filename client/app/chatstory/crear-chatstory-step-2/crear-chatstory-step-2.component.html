@@ -1,0 +1,96 @@
+
+<div class="row no-padding">
+  <div class="col-12 no-padding">
+    <span class="fixed-title">Creación de Chatstories - <b>Paso 2/2</b></span>
+    <span class="click-span pull-right" (click)="getBack()">< Volver al paso 1 </span>
+  </div>
+
+</div>
+<div class="row no-padding">
+
+</div>
+
+<div class="row no-padding row-margin-top">
+  <div class="col-12 no-padding">
+    <span class="wall-title title-error" *ngIf="!chatStory.titulo" >Sin titulo</span>
+    <span class="wall-title">{{chatStory.titulo}}</span>
+  </div>
+</div>
+<div class="row no-padding">
+    <div class="category no-padding" [ngStyle]="{'background-color': this.chatStory.categoria.color}">
+      {{this.chatStory.categoria.nombre.toUpperCase()}}
+    </div>
+</div>
+
+<div class="row no-padding row-margin-top ">
+  <div class="col-6 no-padding padding-right">
+    <div class="chatstory-message-creator" >
+      <div class="row">
+        <span class="form-title">Personaje</span>
+        <select [(ngModel)]="message.character" class="form-control" #characterSelect>
+            <option *ngIf="chatStory.personajes.length === 0" value="none" >Ninguno</option>
+            <option *ngFor="let char of chatStory.personajes" value="{{char}}">{{char}}</option>
+        </select>
+      </div>
+      <div class="row row-margin-top">
+        <span class="form-title">Texto</span>
+        <textarea [(ngModel)]="message.text" class="form-control" rows="8" cols="80" maxlength="485" #messageText></textarea>
+      </div>
+      <div class="row row-margin-top">
+        <div class="col-12 no-padding">
+          <label>
+            <input #imageInput type="file" class="form-control img-input" name="" value="" (change)="uploadImage($event, imagePlaceholder)">
+            <div class="row">
+              <div class="col">
+                <span #imagePlaceholder class="img-placeholder vertical-center">Añadir imagen</span>
+              </div>
+              <div class="col">
+                <div class="btn-img pull-right">
+                  <span class="fa fa-file-image-o"></span>
+                </div>
+              </div>
+            </div>
+          </label>
+          <img class="img" *ngIf="this.message.image_url" src="{{message.image_url}}" alt="" (click)="deleteImage(imageInput, imagePlaceholder)">
+          <span class="fa fa-times img-cross" *ngIf="this.message.image_url" (click)="deleteImage(imageInput, imagePlaceholder)"></span>
+        </div>
+
+      </div>
+      <div class="row row-margin-top">
+        <div class="col-3 relative">
+          <span class="time vertical-center">3" <span class="fa fa-clock-o"></span></span>
+        </div>
+        <div class="col no-padding">
+          <div *ngIf="!this.editing" class="btn-hecho pull-right" (click)="newMessage(characterSelect, messageText, chatstoryPreview, imageInput)">Añadir mensaje</div>
+          <div *ngIf="this.editing" class="btn-hecho pull-right" (click)="forceNewMessage()">Nuevo Mensaje</div>
+          <div *ngIf="this.editing" class="btn-hecho pull-right margin-top" (click)="deleteMessage()">Borrar Mensaje</div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-6 no-padding padding-right relative col-chatstory-preview">
+    <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.img+'\')'}">
+    </div>
+    <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria.color+')'}" #preview>
+      <app-chatstory-message *ngFor="let m of this.chatStory.messages" [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
+    </div>
+
+
+  </div>
+</div>
+
+
+<div class="row no-padding row-margin-top">
+  <div class="col-9 relative">
+    <span class="pull-right vertical-center phrase">
+      Frase motivadora que tendrá que pensar David
+    </span>
+  </div>
+  <div class="col-3 no-padding">
+    <div class="btn-hecho pull-right">
+      Publicar Chatstory
+    </div>
+  </div>
+</div>

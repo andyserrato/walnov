@@ -2,9 +2,6 @@
 
 .change-img:hover{
   cursor: pointer;
-  // position: absolute;
-  // height: 100%;
-  // border: solid 0.01em white;
 }
 
 .change-img:focus{
@@ -17,7 +14,6 @@
   padding-top: 1em;
   // position: absolute;
   width: 15em;
-  // height: 8em;
   border-top-left-radius: 0.8em;
   border-top-right-radius: 0.8em;
   padding-left: 1.2em;
@@ -57,10 +53,7 @@
   // transition: opacity 0.3s linear;
 }
 
-.app-select-image{
-  // overflow: auto;
-  // max-height: 50vh;
-}
+
 
 .fixed-title{
   font-family: Raleway;
