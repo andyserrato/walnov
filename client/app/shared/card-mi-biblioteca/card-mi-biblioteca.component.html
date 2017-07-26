@@ -3,12 +3,13 @@
     <h4 class="Card-title">Mi biblioteca</h4>
       <form role="form" class="Input-Background-Copy-3-fuera">
         <select name="Categoria" class="Input-Background-Copy-3-dentro Drop-title" (change)="sameCategoryArray($event.target.value)">
-          <option *ngFor="let categoria of repositorio.categorias">
+          <option *ngFor="let categoria of this.repositorio.categoriasAL">
             {{categoria.nombre}}
           </option>
         </select>
         <i class="fa fa-sort" aria-hidden="true"></i>
     </form>
+
     <div class="Rectangle-3-Copy-3" #contenedorBiblioteca>
       <div class="Rectangle-3-Copy-4 Chat-Message" *ngIf = "filtradosVacio" style="padding: 10px 8px">
         <span>

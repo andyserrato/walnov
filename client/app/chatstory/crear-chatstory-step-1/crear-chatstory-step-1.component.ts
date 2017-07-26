@@ -14,10 +14,11 @@ export class CrearChatstoryStep1Component implements OnInit {
   @Input() chatStory: ChatStory;
   categorias: Array<Categoria>;
   cat: Categoria;
+  
   constructor(private repositorio: RepositorioService) {
     this.chars = new Array<string>();
     this.done = new EventEmitter<any>();
-    this.categorias = repositorio.categorias;
+    this.categorias = repositorio.categoriasAL;
   }
 
   ngOnInit() {
