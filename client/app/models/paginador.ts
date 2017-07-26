@@ -37,14 +37,16 @@ export class Paginator {
  }
 
  scroll (){
-   let height = this.container.nativeElement.scrollHeight - (this.container.nativeElement.clientHeight + 20);
+   let height = this.container.nativeElement.scrollHeight - (this.container.nativeElement.clientHeight);
 
+   //console.log(this.container.nativeElement.clientHeight);
+   //console.log(this.container.nativeElement.scrollHeight);
    let porcentaje = (this.container.nativeElement.scrollTop * 100) / height;
 
    if(porcentaje >= 100) {
      this.paginarDelante();
-
    }
+
    else if (porcentaje === 0) { this.paginarDetras();}
  }
 

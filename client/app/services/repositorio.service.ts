@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Categoria } from '../models/cats';
+import { Chatstory } from '../models/chatstory.model';
 
 @Injectable()
 export class RepositorioService{
@@ -9,9 +10,11 @@ export class RepositorioService{
     notificaciones:Array<Object> = new Array();
     categoriasHM = new Map<string, Categoria>();
     categoriasAL = new Array();
+    chatstories: Array<Chatstory> = new Array<Chatstory>();
+
     constructor(){
         console.log("Contruyendo repositorio");
-        
+
         this.categoriasHM.set('Acción', new Categoria('Acción','#e65e20'));
         this.categoriasHM.set('Aventura', new Categoria('Aventura','#29ba6f'));
         this.categoriasHM.set('SCI-FI', new Categoria('SCI-FI','#16d7d3'));
@@ -41,5 +44,7 @@ export class RepositorioService{
         this.notificaciones.push("Esto es la tercera notificacion");
         this.notificaciones.push("Esto es la cuarta notificacion");
     }
+
+
 
 }
