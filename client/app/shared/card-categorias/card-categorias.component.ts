@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Categoria } from '../../models/cats';
 import { RepositorioService } from '../../services/repositorio.service';
 

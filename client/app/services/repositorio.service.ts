@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Categoria } from '../models/cats';
+import { Chatstory } from '../models/chatstory.model';
 
 @Injectable()
 export class RepositorioService{
@@ -8,6 +9,7 @@ export class RepositorioService{
     //Este array se utilizará para guardar las notificaciones que llegarán por los websockets, o través del inicio de sesión.
     notificaciones:Array<Object> = new Array();
     categorias: Array<Categoria> = new Array<Categoria>();
+    chatstories: Array<Chatstory> = new Array<Chatstory>();
 
     constructor(){
         console.log("Contruyendo repositorio");
@@ -28,5 +30,7 @@ export class RepositorioService{
         this.notificaciones.push("Esto es la tercera notificacion");
         this.notificaciones.push("Esto es la cuarta notificacion");
     }
+
+
 
 }
