@@ -37,6 +37,8 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
   constructor(private repositorio: RepositorioService) { }
 
   ngOnInit() {
+
+
     this.chatst1 = new Chatstory();
     this.chatst1.categoria = this.repositorio.categorias[0];
     this.chatst1.titulo = "El paseo millonario";
@@ -72,19 +74,20 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
       this.addChat(this.chatst1);
     }
 
-    //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
+    this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
 
 
   }
 
   addChat(newChat: Chatstory) {
     if (newChat) {
+        //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
         this.repositorio.chatstories.push(newChat);
+        //this.paginador.addItem(newChat);
         this.state = 'added';
         this.added = true;
         this.firstAdded = false;
         if (this.repositorio.chatstories.length === 1) this.showMessage();
-        this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
     }
 
   }

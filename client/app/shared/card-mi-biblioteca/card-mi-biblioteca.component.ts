@@ -38,7 +38,7 @@ import { Paginator } from '../../models/paginador';
   ]
 })
 export class CardMiBibliotecaComponent implements OnInit {
-  chatstories: Array<Chatstory> = new Array<Chatstory>();
+  //chatstories: Array<Chatstory> = new Array<Chatstory>();
   chatStoriesFiltrados: Array<Chatstory> = new Array<Chatstory>();
   filtradosVacio: boolean = true;
   state: string = 'in';
@@ -100,13 +100,13 @@ export class CardMiBibliotecaComponent implements OnInit {
 
   addChat(newChat: Chatstory) {
     if (newChat) {
-        this.chatstories.push(newChat);
+        this.repositorio.chatstories.push(newChat);
     }
 
   }
 
   deleteChat(oldChat: Chatstory){
-    this.chatstories.splice(this.chatstories.indexOf(oldChat), 1);
+    this.repositorio.chatstories.splice(this.repositorio.chatstories.indexOf(oldChat), 1);
 
   }
 
@@ -129,11 +129,11 @@ export class CardMiBibliotecaComponent implements OnInit {
 
   sameCategoryArray(categoria) {
     this.paginador = null;
-    if (this.chatstories != null && categoria != null){
-      this.chatStoriesFiltrados = this.chatstories.filter(Chatstory => Chatstory.categoria.nombre === categoria);
+    if (this.repositorio.chatstories != null && categoria != null){
+      this.chatStoriesFiltrados = this.repositorio.chatstories.filter(Chatstory => Chatstory.categoria.nombre === categoria);
       this.filtradosVacio = this.emptyFiltrados(this.chatStoriesFiltrados);
       if(!this.filtradosVacio) {
-        let limite = this.chatStoriesFiltrados.length;
+        //let limite = this.chatStoriesFiltrados.length;
         this.paginador = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 10,5);
       }
       if(this.state === 'out') this.state = 'in';

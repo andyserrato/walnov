@@ -10,6 +10,14 @@ export class Paginator {
     container.nativeElement.addEventListener("scroll", this.scroll.bind(this));
   }
 
+  // addItem(newItem) {
+  //   if (newItem) {
+  //       this.items.push(newItem);
+  //       this.paginador.push(this.items[this.items.length - 1]);
+  //       //console.log(this.paginador);
+  //   }
+  // }
+
   paginarDelante () {
       for(let i = 0; i<this.cargar; i++) {
         if(this.indice < this.items.length) {
@@ -40,7 +48,7 @@ export class Paginator {
    let height = this.container.nativeElement.scrollHeight - (this.container.nativeElement.clientHeight + 20);
 
    let porcentaje = (this.container.nativeElement.scrollTop * 100) / height;
-
+   console.log(porcentaje);
    if(porcentaje >= 100) {
      this.paginarDelante();
 
