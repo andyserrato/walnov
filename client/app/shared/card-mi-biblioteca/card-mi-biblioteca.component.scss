@@ -95,7 +95,8 @@ select {
 
 .Rectangle-3-Copy-3 {
   margin-left: -12px;
-  margin-right: -12px;
+  margin-right: -13px;
+  min-width: 100%;
   //height: 400px;
   max-height: 400px;
   margin-top: 15px;
@@ -105,8 +106,10 @@ select {
   //background-color: #f0f0f0;
   background-color: $grey-3;
   //background-color: red;
-  //overflow-y: scroll;
+  overflow-y: auto;
 }
+
+
 
 .Rectangle-3-Copy-4 {
   //position: relative;
@@ -128,8 +131,8 @@ select {
   border-radius: 5px;
   //margin-right: 15px;
   //margin-bottom: -35px;
-  height: 100%;
-  width: 45px;
+  height: 73px;
+  width: 46px;
 
 }
 

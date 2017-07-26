@@ -59,7 +59,7 @@ export class CardMiBibliotecaComponent implements OnInit {
   ngOnInit() {
 
     this.chatst1 = new Chatstory();
-    this.chatst1.categoria = this.repositorio.categorias[0];
+    this.chatst1.categoria = this.repositorio.categoriasAL[0];
     this.chatst1.titulo = "El paseo millonario por la Gran Vía de Madrid entre dos enamorados";
     this.chatst1.imagen_url = "https://lorempixel.com/45/56";
     this.chatst1.likes = 784;
