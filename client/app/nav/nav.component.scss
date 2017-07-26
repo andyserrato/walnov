@@ -1,0 +1,171 @@
+@import 'main';
+
+.margen {
+    margin: 0em 0em 2em 2em;
+}
+
+.product-menu {
+  height: 50px;
+  margin-top: 22px;
+}
+
+.product-slide-item {
+  margin-bottom: 25px;
+}
+
+.product-item {
+  height: 171px;
+  width: 100%;
+  display: block;
+}
+
+#secciones{
+    font-family: Raleway;
+    color: $grey-1;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 9px;
+}
+
+.seccion{
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+.nav-padding {
+  padding-top: 50px;
+}
+
+.img-avatar {
+  width: 22px;
+  height: 22px;
+}
+
+.Rectangle-2 {
+  width: 107px;
+  height: 26px;
+  border-radius: 4px;
+  border: solid 1px rgb(152, 77, 206);
+  border: solid 1px var(--main-3);
+  margin-top: 13px;
+  margin-bottom: 15px;
+}
+
+.boton-crear{
+    height: 26px;
+    border-radius: 4px;
+    background-color: $main-1;
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    color: $grey-1;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.boton-como-funciona{
+    height: 26px;
+    border-radius: 4px;
+    border: solid 1px $main-3;
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    color: $grey-1;
+    background-color: transparent;
+    margin-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    margin-left: 40px;
+    margin-right: 10px; 
+}
+
+.boton-notificaciones{
+    color: $main-3;
+    margin-top: 12px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.boton-mensajes{
+    color: $main-3;
+    margin-top: 12px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+#imagen-perfil{
+    margin-top: 5px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.Comunidad {
+  padding: 2px 6px 21px 6px;
+  width: 84px;
+  height: 14px;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff !important;
+  color: var(--grey-1);
+}
+
+.Shape1 {
+  width: 16.4px;
+  height: 14.6px;
+  background-color: #ffffff;
+  background-color: var(--grey-1);
+}
+
+.Shape2 {
+  width: 13.5px;
+  height: 14.6px;
+  background-color: #ffffff;
+  background-color: var(--grey-1);
+}
+
+.Oval {
+  width: 3.5px;
+  height: 3.6px;
+  background-color: #ffffff;
+  background-color: var(--grey-1);
+}
+
+.ellipsis{
+  white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.nav-user-img{
+  width: 2em;
+  height: auto;
+}
+
+#buscador{
+    margin-top: 4px;
+    border-radius: 12px;
+    border: solid 1px $main-1;
+    background: transparent;
+    color: $grey-1;
+    height: 30px;
+    line-height: 30px;
+}
+
+#buscador .inputtext{
+    background-color: transparent;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: $grey-1;
+    width: 100%;
+    height: 30px;
+    outline: none;
+    text-align: center;
+}

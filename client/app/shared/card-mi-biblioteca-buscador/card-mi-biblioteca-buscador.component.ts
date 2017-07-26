@@ -38,21 +38,21 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
 
   ngOnInit() {
     this.chatst1 = new Chatstory();
-    this.chatst1.categoria = this.repositorio.categorias[0];
+    this.chatst1.categoria = this.repositorio.categoriasAL[0];
     this.chatst1.titulo = "El paseo millonario";
     this.chatst1.imagen_url = "https://lorempixel.com/45/56";
     this.chatst1.likes = 784;
     this.chatst1.views = 2000;
 
     this.chatst2 = new Chatstory();
-    this.chatst2.categoria = this.repositorio.categorias[6];
+    this.chatst2.categoria = this.repositorio.categoriasAL[6];
     this.chatst2.titulo = "El hombre palo";
     this.chatst2.imagen_url = "https://lorempixel.com/45/67";
     this.chatst2.likes = 46434;
     this.chatst2.views = 2304;
 
     this.chatst3 = new Chatstory();
-    this.chatst3.categoria = this.repositorio.categorias[7];
+    this.chatst3.categoria = this.repositorio.categoriasAL[7];
     this.chatst3.titulo = "La mujer barbuda";
     this.chatst3.imagen_url = "https://lorempixel.com/45/52";
     this.chatst3.likes = 444;
@@ -62,17 +62,20 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
     // this.addChat(this.chatst2);
     // this.addChat(this.chatst3);
 
+    //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5)
+
     for(let i=0; i<20; i++) {
-      this.chatst1 = new Chatstory();
-      this.chatst1.categoria = this.repositorio.categorias[0];
-      this.chatst1.titulo = "Hola" + i;
-      this.chatst1.imagen_url = "https://lorempixel.com/45/56";
-      this.chatst1.likes = 784;
-      this.chatst1.views = 2000;
-      this.addChat(this.chatst1);
+     let nuevoCS = new Chatstory();
+
+      nuevoCS.categoria = this.repositorio.categoriasAL[0];
+      nuevoCS.titulo = "Hola" + i;
+      nuevoCS.imagen_url = "https://lorempixel.com/45/56";
+      nuevoCS.likes = 784;
+      nuevoCS.views = 2000;
+      this.addChat(nuevoCS);
     }
 
-    //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
+    this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
 
 
   }
@@ -84,7 +87,9 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
         this.added = true;
         this.firstAdded = false;
         if (this.repositorio.chatstories.length === 1) this.showMessage();
-        this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
+        console.log("Añado");
+
+        //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
     }
 
   }

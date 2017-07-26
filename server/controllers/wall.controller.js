@@ -1,15 +1,14 @@
 
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
 
 //Modelos
 var Wall = require('mongoose').model('wall');
-var Historia = require('mongoose').model('historia');
-var InicioHistoria = require('mongoose').model('item');
-var ContinuacionHistoria = require('mongoose').model('item');
 var Usuario = require('mongoose').model('usuarios');
 var NotificacionFeed = require('mongoose').model('notificacionFeed');
 var NotificacionNuevoWall = require('mongoose').model('notificacionNuevoWall');
+
 //Constantes y Factorias
 var GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
 var Constantes = require("../constantes/constantes");
@@ -21,6 +20,7 @@ router.post("/historia/crearNuevaHistoria", crearNuevaHistoria);
 router.post("/historia/continuarHistoria", continuarHistoria);
 router.get("/:id", getWallById);
 router.post("/lista", getWalls);
+router.post("/votarContinuacion", votarContinuacion);
 router.get("/historia/:idWall/:indiceHistoria", getHistory);
 router.delete("/borrarHistoria", deleteHistory);
 router.delete("/borrarWall", deleteWall);
@@ -33,8 +33,6 @@ function crearWall(req, resp){
     let peticion = req.body;
     let nuevoWall = new Wall(peticion.wall);
 
-    console.log(peticion);
-
     nuevoWall.save(function (err, nuevoWall){
          let notificacionNuevoWall = GestorNotificaciones.crearNotificacionNuevoWall(nuevoWall.contenidoTexto, null, nuevoWall.autor, nuevoWall.nombreAutor, nuevoWall._id, nuevoWall.titulo);
          GestorNotificaciones.addNotificacionFeed(notificacionNuevoWall, peticion.seguidores);
@@ -42,10 +40,31 @@ function crearWall(req, resp){
     });
 }
 
+//Esta función devolverá el wall, los inicios de historia, y la historia más valorada
 function getWallById(req, resp){
+/*    let respuesta = {};
+
     Wall.findById(req.params.id, function(err, wall){
-        _devolverResultados(err, wall, resp);
+        respuesta.wall = wall;
+
+        //Inicios de historia
+        _obtenerIniciosDeHistoria(req.params.id).then(iniciosHistorias => {
+            respuesta.iniciosHistorias = iniciosHistorias;
+
+            //Obtenemos la historia más valorada
+            if (respuesta.iniciosHistorias.length == 0){
+                _devolverResultados(err, respuesta, resp);
+            }else{
+                Historia.findById(respuesta.iniciosHistorias[0]._id, function(err, historiaMasValorada){
+                    respuesta.historiaMasValorada = historiaMasValorada;
+                    _devolverResultados(err, respuesta, resp);
+                });
+            }
+
+        });
+
     });
+    */
 }
 
 function getWalls(req, resp){
@@ -58,33 +77,30 @@ function getWalls(req, resp){
 }
 
 function crearNuevaHistoria(req, resp){
-    let nuevaHistoria = _crearNuevaHistoria();
     let peticion = req.body;
+    let nuevaHistoria = _crearNuevaHistoria(peticion);
     let nuevoInicioHistoria = new InicioHistoria(peticion.inicioHistoria);
 
-    nuevaHistoria.save(function(err, nuevaHistoria) {
-          //Añadimos la historia al wall
-          nuevoInicioHistoria._id = nuevaHistoria._id;
+    /*nuevaHistoria.comentarios.push(nuevoInicioHistoria);
 
-          Wall.findOneAndUpdate({_id: peticion.idWall},{$push: {iniciosHistorias: nuevoInicioHistoria}}, function(err, wall){
-              let notificacionNuevaHistoria = GestorNotificaciones.crearNotificacionNuevaHistoria(nuevoInicioHistoria.contenido, null, nuevoInicioHistoria.autor, nuevoInicioHistoria.autorName, peticion.idWall, wall.titulo, wall.iniciosHistorias.length);
+    nuevaHistoria.save(function(err, nuevaHistoria) {
+          Wall.update({_id: peticion.idWall},{$push: {iniciosHistorias: nuevaHistoria._id}}, function(err, resultado){
+              let notificacionNuevaHistoria = GestorNotificaciones.crearNotificacionNuevaHistoria(nuevoInicioHistoria.contenido, null, nuevoInicioHistoria.autor, nuevoInicioHistoria.autorName, peticion.idWall, peticion.titulo, nuevaHistoria._id);
               GestorNotificaciones.addNotificacionFeed(notificacionNuevaHistoria, peticion.seguidores);
               _devolverResultados(err, {resultado:"OK"}, resp);
           });
     });
+    */
 }
 
 function getHistory(req, resp){
-    Wall.findById(req.params.idWall,{iniciosHistorias:1}, function(err, wall){
-        console.log(wall);
-        Historia.findById(wall.iniciosHistorias[req.params.indiceHistoria]._id,{comentarios:1}, function(err, historia){
+        /*Historia.findById(peticion.idHistoria,{comentarios:1}, function(err, historia){
             //Preparamos el objeto a devolver
             let historiaCompleta = new Array();
             historiaCompleta.push(wall.iniciosHistorias[req.params.indiceHistoria]);
             historiaCompleta.concat(historia.comentarios);
             _devolverResultados(err, historiaCompleta, resp);
-        });
-    });
+        });*/
 }
 
 function deleteHistory(req, resp){
@@ -94,8 +110,6 @@ function deleteHistory(req, resp){
 
 function deleteWall(req, resp){
     let peticion = req.body;
-
-    console.log(peticion.idWall);
 
     Historia.remove({idWall: peticion.idWall}, function(err){
         //Borramos ahora el wall
@@ -113,23 +127,76 @@ function continuarHistoria(req, resp){
     let peticion = req.body;
     let nuevaContinuacion = new ContinuacionHistoria(peticion.continuacionHistoria);
 
-    Historia.findOneAndUpdate({_id: peticion.idHistoria}, {$push:{comentarios: nuevaContinuacion}}, function(err, historia){
-        Wall.findById(peticion.idWall, {titulo:1}, function(err, wall){
-            let notificacionNuevaContinuacionHistoria = GestorNotificaciones.crearNotificacionNuevaContinuacionHistoria(nuevaContinuacion.contenido, null, nuevaContinuacion.autor, nuevaContinuacion.autorName, peticion.idWall, wall.titulo, historia._id);
-            let suscriptores = Utils.fusionarIDS(peticion.seguidores, historia.suscriptores);
-            GestorNotificaciones.addNotificacionFeed(notificacionNuevaContinuacionHistoria, suscriptores);
-            _devolverResultados(err, {resultado:"OK"}, resp);
-        });
+    /*Historia.findOneAndUpdate({_id: peticion.idHistoria},{$push:{comentarios: nuevaContinuacion}}, {fields:{suscriptores:1}},function(err, historia){
+        //Añadimos la notificacion
+        let notificacionNuevaContinuacionHistoria = GestorNotificaciones.crearNotificacionNuevaContinuacionHistoria(nuevaContinuacion.contenido, null, nuevaContinuacion.autor, nuevaContinuacion.autorName, peticion.idWall, peticion.titulo, historia._id);
+        let suscriptores = Utils.fusionarIDS(peticion.seguidores, historia.suscriptores);
+        GestorNotificaciones.addNotificacionFeed(notificacionNuevaContinuacionHistoria, suscriptores);
+        _devolverResultados(err, {resultado:"OK"}, resp);
     });
+    */
 }
 
+function votarContinuacion(req, resp){
+    let peticion = req.body;
+    let update = {};
+    let update2 = {};
 
-function _crearNuevaHistoria(){
+    //Suma 1
+    update["comentarios." + peticion.indiceItem + ".likes"] = 1;
+    update["likes"] = 1;
+    //Incluye al usuario que vota en likers
+    update2["comentarios." + peticion.indiceItem + ".likers"] = peticion.idUsuario;
+    update2["likers"] = peticion.idUsuario;
+
+    /*Historia.update({_id: peticion.idHistoria},{$inc: update, $push: update2}, function(err, result){
+        console.log(result);
+        _devolverResultados(err, {resultado:"OK"}, resp);
+    });
+    */
+}
+
+function _obtenerIniciosDeHistoria(idWall){
+    /*let iniciosHistorias = {};
+
+    let promise = new Promise((resolve) => {
+        Historia.aggregate([
+        {
+            $match: {
+                'idWall': mongoose.Types.ObjectId(idWall)
+            }
+        },
+        {
+            $project: {
+                comentarios: {
+                    $slice: [ "$comentarios", 1 ]
+                },
+                likes:1
+            }
+        },
+        {
+            $sort:{
+                likes: -1
+            }
+        }],
+        function(err, resultados){
+            iniciosHistorias = resultados;
+            resolve(iniciosHistorias);
+        });
+
+    });
+
+    return promise;
+    */
+}
+
+function _crearNuevaHistoria(peticion){
     let nuevaHistoria = new Historia({
         comentarios: new Array(),
         suscriptores: new Array(),
         likes:0,
-        fecha:"27/10/2017"
+        fecha:"27/10/2017",
+        idWall: peticion.idWall
     });
 
     return nuevaHistoria;

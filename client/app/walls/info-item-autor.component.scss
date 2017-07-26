@@ -1,0 +1,98 @@
+@import 'main';
+
+#card-info-autor{
+    border-radius: 8px;
+    background-color: $grey-1;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+    margin-right: 0px;
+    padding-bottom: 1px;
+}
+
+#info-item{
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: $grey-7;
+    text-align: center;
+    padding-top: 24px;
+}
+
+.separador{
+    width: 80%;
+    border-top: solid 1px rgba(0, 0, 0, 0.11);
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+#categoria{
+    margin-top: 19px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: $cat-9;
+    border: 1px solid $cat-9;
+}
+
+.center{
+    align-items: center;
+}
+
+.flex{
+    display: flex;
+}
+
+.texto{
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: 300;
+    text-align: center;
+    color: #6c626f;
+    margin-top: 6px;
+}
+
+#info-autor{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-top: 1px;
+    margin-top: 19px;
+}
+
+#foto_autor{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: auto;
+    position: absolute;
+    left: calc(50% - 17px);
+}
+
+#caja_autor{
+    border-radius: 8px;
+    background-color: $grey-1;
+    border: solid 1px #e0e0e0;
+    margin-top: 17px;
+    margin-bottom: 18px;
+}
+
+#nombre_autor{
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 600;
+    color: $main-1;
+    margin-top: 25px;
+    width: 100%;
+    text-align: center;
+}
+
+#boton_seguir{
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 600;
+    color: $main-1;
+    margin-top: 16px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 14px;
+}

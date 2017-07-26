@@ -10,13 +10,16 @@ var GestorNotificaciones = require("../services/notificaciones.service");
 var Wall = require('mongoose').model('wall');
 var Perfil = require('mongoose').model('perfil');
 var Usuario = require('mongoose').model('usuarios');
-
+var Continuacion = require('mongoose').model('continuacion');
 
 router.post("/S3", testS3);
 router.post("/testPaypal", testPaypal);
 router.get("/testSockets", testSockets)
 router.get("/faker", fakerBD);
 router.get("/importarUsuarios", importarUsuarios);
+router.get("/llenarWall", pruebaWalls);
+router.get("/reconstruirArbol", reconstruirArbol);
+
 module.exports = router;
 
 function testPaypal(req, resp){
@@ -28,9 +31,9 @@ var create_payment_json = {
         "funding_instruments": [{
             "credit_card": {
                 "type": "visa",
-                "number": "4111111111111111",
-                "expire_month": "11",
-                "expire_year": "2018",
+                "number": "4020026741465267",
+                "expire_month": "08",
+                "expire_year": "2022",
                 "cvv2": "874",
                 "first_name": "Joe",
                 "last_name": "Shopper",
@@ -38,8 +41,8 @@ var create_payment_json = {
                     "line1": "52 N Main ST",
                     "city": "Johnstown",
                     "state": "OH",
-                    "postal_code": "43210",
-                    "country_code": "US"
+                    "postal_code": "46360",
+                    "country_code": "ES"
                 }
             }
         }]
@@ -47,7 +50,7 @@ var create_payment_json = {
     "transactions": [{
         "amount": {
             "total": "7",
-            "currency": "USD",
+            "currency": "EUR",
             "details": {
                 "subtotal": "5",
                 "tax": "1",
@@ -60,9 +63,12 @@ var create_payment_json = {
 
 paypal.payment.create(create_payment_json, function (error, payment) {
     if (error) {
+        console.log(error);
         throw error;
     } else {
+        console.log();
         console.log("Create Payment Response");
+
         console.log(payment);
     }
 });
@@ -150,7 +156,8 @@ function importarUsuarios(req, resp){
     (select meta_value from wp_usermeta where meta_key = 'country' and user_id = user.id) as pais,
     (select meta_value from wp_usermeta where meta_key = 'gender' and user_id = user.id) as genero,
     (select meta_value from wp_usermeta where meta_key = 'role' and user_id = user.id LIMIT 1) as rol,
-    (select meta_value from wp_usermeta where meta_key = '_um_verified' and user_id = user.id) as estado,
+    (select meta_value from wp_usermeta where meta
+        _key = '_um_verified' and user_id = user.id) as estado,
     (select meta_value from wp_usermeta where meta_key = 'description' and user_id = user.id) as descripcion,
     (select meta_value from wp_usermeta where meta_key = 'first_name' and user_id = user.id LIMIT 1) as nombre,
     (select meta_value from wp_usermeta where meta_key = 'last_name' and user_id = user.id LIMIT 1) as apellidos,
@@ -207,5 +214,170 @@ function importarUsuarios(req, resp){
     });
 
     resp.send("JUAS");
+
+}
+
+function pruebaWalls(req, resp){
+    let nuevoWall = new Wall({
+        titulo: "Esto es un wall para probar el rendimiento",
+        categoria: "Accion",
+        urlImagen: "Ninguna",
+        cuerpoWall: "Esto es el cuerpo del wall"
+    });
+
+    //resp.send(nuevoWall);
+
+    nuevoWall.save(function(err, wall){
+        console.log(wall);
+
+        //Metemos el primer nodo, que es la historia
+        let nuevaContinuacion = new Continuacion({
+            idWall: wall._id,
+            padre: null,
+            contenido: "Esto es la hiistoria!!!"
+        });
+
+        nuevaContinuacion.save(function(err, historia){
+            let idHistoria = historia._id;
+            let padre = idHistoria;
+
+            _insertarContinuacion(wall._id, idHistoria, padre, 0, resp);
+        })
+
+    });
+}
+
+function _insertarContinuacion(idWall, idHistoria, idPadre, numNodo, resp){
+    let promise = new Promise(resolve => {
+        let nuevaContinuacion = new Continuacion({
+            idWall: idWall,
+            padre: idPadre,
+            idHistoria: idHistoria,
+            contenido: "Continuacion: " + numNodo
+        });
+
+        nuevaContinuacion.save(function(err, continuacion){
+            resolve(continuacion);
+        })
+    }).then(continuacion => {
+        //console.log(numNodo);
+        if (numNodo < 10000){
+            _insertarContinuacion(continuacion.idWall, continuacion.idHistoria, continuacion._id, numNodo + 1, resp);
+        }else
+            resp.send("OK");
+
+    });
+
+    return promise;
+}
+
+let cache = new Array();
+let arbol = {};
+
+function reconstruirArbol(req, resp){
+
+    //Buscamos el wall
+    Wall.findById("59613e5ae9bba830086efca7", function(err, wall){
+        let nodo = {
+            obj: wall,
+            hijos : new Array()
+        }
+
+        arbol = nodo;
+
+        Continuacion.find({idWall: "59613e5ae9bba830086efca7"},{}, {sort:{_id: 1}}, function(err, continuaciones){
+            //Buscamos los inicios de historia
+            for (let i = 0; i < continuaciones.length; i++ ){
+                if (continuaciones[i].padre == null){
+                    let nuevoNodo = {
+                        obj: continuaciones[i],
+                        hijos: new Array()
+                    };
+
+                    arbol.hijos.push(nuevoNodo);
+                }
+            }
+
+            let inicio = new Date();
+            console.log("Iniciando!!!");
+            for (let i = 0; i < 1950; i++){
+                if (continuaciones[i].padre != null){
+                    let nuevoNodo = {
+                        obj: continuaciones[i],
+                        hijos: new Array()
+                    };
+
+                    situarNodo(nuevoNodo);
+                }
+            }
+            let fin = new Date();
+            console.log("Tiempo:" + (fin - inicio));
+
+
+            resp.send(arbol);
+        });
+
+
+    });
+
+
+}
+
+function situarNodo(nodoASituar){
+    let cola = new Array();
+    let nodoActual = null;
+    let encontrado = false;
+    //console.log();
+    //console.log("Buscando: " + nodoASituar.obj.padre);
+    //Miramos en la cache
+    for (let i = cache.length - 1; i >= 0 && !encontrado; i--){
+        if (cache[i].obj._id.toString() == nodoASituar.obj.padre.toString()){
+            encontrado = true;
+            //console.log("encontrado cache");
+            cache[i].hijos.push(nodoASituar);
+
+            if (cache.length == 20){
+                 cache.pop();
+            }
+
+            cache.push(nodoASituar);
+        }
+    }
+
+    if (!encontrado){
+        //Lo correcto sería recorrer todos los hijos
+        cola.unshift(arbol.hijos[0]);
+
+        //console.log(cola.length);
+
+        while (cola.length > 0 && encontrado == false){
+            //Procesamos el nodo
+            nodo = cola.shift();
+            //console.log(nodo);
+
+            //Metemos todos sus hijos
+            for (let i = 0; i < nodo.hijos.length; i++){
+                cola.unshift(nodo.hijos[i]);
+            }
+
+            if (nodo.obj._id.toString() == nodoASituar.obj.padre.toString()){
+                encontrado = true;
+
+                //console.log("Situado: " + nodoASituar.obj._id.toString());
+                nodo.hijos.push(nodoASituar);
+                //Situamos el nodo en la cache de nodos
+                if (cache.length == 20){
+                     cache.pop();
+                }
+
+                cache.push(nodoASituar);
+                //console.log(cache);
+
+            }
+        }
+    }else{
+        //console.log("no entro!!!");
+    }
+
 
 }

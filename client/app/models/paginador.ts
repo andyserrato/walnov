@@ -37,18 +37,17 @@ export class Paginator {
  }
 
  scroll (){
-   let scrollTop = this.container.nativeElement.scrollTop;
-   let height = this.container.nativeElement.scrollHeight - this.container.nativeElement.clientHeight ;
+   let height = this.container.nativeElement.scrollHeight - (this.container.nativeElement.clientHeight);
 
-   let porcentaje = (scrollTop * 100) / height;
+   //console.log(this.container.nativeElement.clientHeight);
+   //console.log(this.container.nativeElement.scrollHeight);
+   let porcentaje = (this.container.nativeElement.scrollTop * 100) / height;
    console.log(porcentaje);
    if(porcentaje >= 100) {
      this.paginarDelante();
+   }
 
-   }
-   else if (porcentaje <= 0){
-     this.paginarDetras();
-   }
-}
+   else if (porcentaje === 0) { this.paginarDetras();}
+ }
 
 }

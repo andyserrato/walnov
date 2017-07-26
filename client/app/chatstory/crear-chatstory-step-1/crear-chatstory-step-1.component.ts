@@ -21,7 +21,7 @@ export class CrearChatstoryStep1Component implements OnInit {
   constructor(private repositorio: RepositorioService, private alert: AlertService) {
     this.chars = new Array<string>();
     this.done = new EventEmitter<any>();
-    this.categorias = repositorio.categorias;
+    this.categorias = repositorio.categoriasAL;
   }
 
   ngOnInit() {
