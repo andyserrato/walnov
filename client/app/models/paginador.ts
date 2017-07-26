@@ -3,18 +3,18 @@ export class Paginator {
   indice: number;
 
   constructor(private items: Array<Object>, private container, private limite:number, private cargar:number) {
-    this.indice = limite;
+    this.indice = this.limite;
     for(let i=0; (i<limite) && (i<this.items.length); i++) {
       this.paginador.push(items[i]);
     }
-    container.nativeElement.addEventListener("scroll", this.scroll.bind(this));
+    container.nativeElement.addEventListener("scroll", () => {this.scroll()});
   }
 
   paginarDelante () {
       for(let i = 0; i<this.cargar; i++) {
         if(this.indice < this.items.length) {
-          this.paginador.shift();
           this.paginador.push(this.items[this.indice]);
+          this.paginador.shift();
           this.indice++;
         }
       }
@@ -37,15 +37,18 @@ export class Paginator {
  }
 
  scroll (){
-   let height = this.container.nativeElement.scrollHeight - (this.container.nativeElement.clientHeight + 20);
+   let scrollTop = this.container.nativeElement.scrollTop;
+   let height = this.container.nativeElement.scrollHeight - this.container.nativeElement.clientHeight ;
 
-   let porcentaje = (this.container.nativeElement.scrollTop * 100) / height;
-
+   let porcentaje = (scrollTop * 100) / height;
+   console.log(porcentaje);
    if(porcentaje >= 100) {
      this.paginarDelante();
 
    }
-   else if (porcentaje === 0) { this.paginarDetras();}
- }
+   else if (porcentaje <= 0){
+     this.paginarDetras();
+   }
+}
 
 }

@@ -6,12 +6,14 @@ export class ChatStory{
   personajes: Array<string>;
   categoria: Categoria;
   messages: Array<ChatstoryMessage>;
-  constructor(t?: string, p?: Array<string>, c?: Categoria, m?: Array<ChatstoryMessage>, i?: string){
+  description: string;
+  constructor(t?: string, p?: Array<string>, c?: Categoria, m?: Array<ChatstoryMessage>, i?: string, d?: string){
     this.titulo=t;
     this.personajes=p;
     this.categoria=c;
     this.messages=m;
     this.img=i;
+    this.description=d;
   }
 
 }
