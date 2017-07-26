@@ -22,7 +22,7 @@ import { Paginator } from '../../models/paginador';
   ]
 })
 export class CardMiBibliotecaBuscadorComponent implements OnInit {
-  chatstories: Array<Chatstory> = new Array<Chatstory>();
+  //chatstories: Array<Chatstory> = new Array<Chatstory>();
   added: boolean = false;
   firstAdded: boolean = false;
   state: string = 'notAdded';
@@ -58,42 +58,45 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
     this.chatst3.likes = 444;
     this.chatst3.views = 3420;
 
-    this.addChat(this.chatst1);
+    // this.addChat(this.chatst1);
     // this.addChat(this.chatst2);
     // this.addChat(this.chatst3);
 
-    // for(let i=0; i<20; i++) {
-    //   this.chatst1 = new Chatstory();
-    //   this.chatst1.categoria = this.repositorio.categorias[0];
-    //   this.chatst1.titulo = "Hola" + i;
-    //   this.chatst1.imagen_url = "https://lorempixel.com/45/56";
-    //   this.chatst1.likes = 784;
-    //   this.chatst1.views = 2000;
-    //   this.addChat(this.chatst1);
-    // }
+    for(let i=0; i<20; i++) {
+      this.chatst1 = new Chatstory();
+      this.chatst1.categoria = this.repositorio.categorias[0];
+      this.chatst1.titulo = "Hola" + i;
+      this.chatst1.imagen_url = "https://lorempixel.com/45/56";
+      this.chatst1.likes = 784;
+      this.chatst1.views = 2000;
+      this.addChat(this.chatst1);
+    }
 
-    this.paginador = new Paginator(this.chatstories, this.contenedorBiblioteca, 10,5);
+    //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
 
 
   }
 
   addChat(newChat: Chatstory) {
     if (newChat) {
-        this.chatstories.push(newChat);
+        this.repositorio.chatstories.push(newChat);
         this.state = 'added';
         this.added = true;
-        if (this.chatstories.length === 1) this.showMessage();
+        this.firstAdded = false;
+        if (this.repositorio.chatstories.length === 1) this.showMessage();
+        this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
     }
 
   }
 
   deleteChat(oldChat: Chatstory){
-    this.chatstories.splice(this.chatstories.indexOf(oldChat), 1);
-    if(this.chatstories.length === 0) {
+    this.repositorio.chatstories.splice(this.repositorio.chatstories.indexOf(oldChat), 1);
+    if(this.repositorio.chatstories.length === 0) {
       this.state = 'notAdded';
       this.added = false;
 
     }
+    this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
 
   }
 
@@ -115,7 +118,7 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
 
   showMessage() {
     this.firstAdded = true;
-    setTimeout(this.turnFalse.bind(this), 10000);
+    setTimeout(this.turnFalse.bind(this), 120000);
   }
 
   turnFalse() {
