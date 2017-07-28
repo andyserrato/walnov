@@ -21,8 +21,8 @@ import { Paginator } from '../../models/paginador';
         backgroundColor : '#4d1274',
         cursor: 'pointer'
       })),
-      transition('in => out', animate(0)),
-      transition('out => in', animate(0))
+      transition('in => out', animate(100)),
+      transition('out => in', animate(100))
     ]),
     trigger("changeColor", [
       state('in', style({
@@ -41,12 +41,12 @@ export class CardMiBibliotecaComponent implements OnInit {
   //chatstories: Array<Chatstory> = new Array<Chatstory>();
   chatStoriesFiltrados: Array<Chatstory> = new Array<Chatstory>();
   filtradosVacio: boolean = true;
-  state: string = 'in';
-  isIn:boolean = true;
+  // state: string = 'in';
+  // isIn:boolean = true;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
   paginador = null;
 
-  categorias = new Array();
+  // categorias = new Array();
 
   chatst1: Chatstory;
   chatst2: Chatstory;
@@ -66,7 +66,7 @@ export class CardMiBibliotecaComponent implements OnInit {
     this.chatst1.views = 2000;
 
     this.chatst2 = new Chatstory();
-    this.chatst2.categoria = this.repositorio.categoriasHM.get("Romance");
+    this.chatst2.categoria = this.repositorio.categoriasAL[2];
     this.chatst2.titulo = "El hombre palo";
     this.chatst2.imagen_url = "https://lorempixel.com/45/67";
     this.chatst2.likes = 46434;
@@ -74,24 +74,24 @@ export class CardMiBibliotecaComponent implements OnInit {
 
     this.chatst3 = new Chatstory();
 
-    this.chatst3.categoria = this.repositorio.categoriasHM.get("Romance");
+    this.chatst3.categoria = this.repositorio.categoriasAL[4];
     this.chatst3.titulo = "La mujer barbuda";
     this.chatst3.imagen_url = "https://lorempixel.com/45/52";
     this.chatst3.likes = 444;
     this.chatst3.views = 3420;
 
-    for(let i=0; i<20; i++) {
-      this.chatst1 = new Chatstory();
-      this.chatst1.categoria = this.repositorio.categoriasAL[4];
-      this.chatst1.titulo = "El paseo millonario";
-      this.chatst1.imagen_url = "https://lorempixel.com/45/56";
-      this.chatst1.likes = 784;
-      this.chatst1.views = 2000;
-      this.addChat(this.chatst1);
-    }
-    // this.addChat(this.chatst1);
-    // this.addChat(this.chatst2);
-    // this.addChat(this.chatst3);
+    // for(let i=0; i<20; i++) {
+    //   this.chatst1 = new Chatstory();
+    //   this.chatst1.categoria = this.repositorio.categoriasAL[4];
+    //   this.chatst1.titulo = "El paseo millonario";
+    //   this.chatst1.imagen_url = "https://lorempixel.com/45/56";
+    //   this.chatst1.likes = 784;
+    //   this.chatst1.views = 2000;
+    //   this.addChat(this.chatst1);
+    // }
+    this.addChat(this.chatst1);
+    this.addChat(this.chatst2);
+    this.addChat(this.chatst3);
 
     this.sameCategoryArray("Acción");
   }
@@ -138,8 +138,8 @@ export class CardMiBibliotecaComponent implements OnInit {
         //let limite = this.chatStoriesFiltrados.length;
         this.paginador = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 10,5);
       }
-      if(this.state === 'out') this.state = 'in';
-      if(!this.isIn) this.isIn = true;
+      // if(this.state === 'out') this.state = 'in';
+      // if(!this.isIn) this.isIn = true;
     }
   }
 
@@ -147,9 +147,33 @@ export class CardMiBibliotecaComponent implements OnInit {
     return chats.length === 0;
   }
 
-  toggleState() {
-    this.state = (this.state === 'in' ? 'out' : 'in');
-    this.isIn = !this.isIn;
+  toggleState(chatstory) {
+    // this.state = (this.state === 'in' ? 'out' : 'in');
+    chatstory.selected = !chatstory.selected;
+  }
+
+  getBackgroundColor (chatstory) {
+    if(chatstory.selected) return '#ffffff';
+    else {
+      return '#4d1274';
+    }
+
+  }
+
+  getFontColor(chatstory) {
+    if(chatstory.selected) return '#000000';
+    else {
+      return '#ffffff';
+    }
+
+  }
+
+  getFontWeight(chatstory) {
+    if(chatstory.selected) return 'bold';
+    else {
+      return '500';
+    }
+
   }
 
 }

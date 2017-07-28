@@ -13,6 +13,8 @@ import {CrearChatstoryStep1Component} from "./chatstory/crear-chatstory-step-1/c
 import { Walls } from './walls/walls.component';
 import { ListadoWalls } from './walls/listado-walls.component';
 import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
+import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
+
 
 
 const appRoutes: Routes = [
@@ -21,6 +23,7 @@ const appRoutes: Routes = [
     { path: 'inicio', component: InicioComponent}, //canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'chatstories', component: ListadoChatstoriesComponent },
     { path: 'walls/listado-walls', component: ListadoWalls },
     { path: 'walls', component: Walls,
         children: [

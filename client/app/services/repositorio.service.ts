@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Categoria } from '../models/cats';
 import { Chatstory } from '../models/chatstory.model';
+import { Paginator } from '../models/paginador';
 
 @Injectable()
 export class RepositorioService{
@@ -11,6 +12,8 @@ export class RepositorioService{
     categoriasHM = new Map<string, Categoria>();
     categoriasAL = new Array();
     chatstories: Array<Chatstory> = new Array<Chatstory>();
+
+    paginadorChatstoriesBiblioteca = null;
 
     constructor(){
         console.log("Contruyendo repositorio");

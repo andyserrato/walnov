@@ -1,14 +1,19 @@
 @import 'main';
 
+.card-block {
+  padding: 0;
+
+}
+
 .Rectangle-3-Copy-2 {
   border-radius: 8px;
+  padding: 24px 4px 8px 4px;
   //background-color: #ffffff;
   background-color: $grey-1;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
 }
 
 .Card-title {
-  padding-top: 10px;
   font-family: Raleway;
   font-size: 1.125em;
   font-weight: 500;
@@ -20,7 +25,8 @@
 
 .Input-Background-Copy-3-fuera {
   margin-top: 14px;
-  width: 100%;
+  margin-left: 15px;
+  margin-right: 18px;
   height: 36px;
   border-radius: 3px;
   //background-color: #ffffff;
@@ -83,8 +89,6 @@ select {
   position: relative;
   top:-26px;
   right: 10px;
-  //margin-left: -30px;
-  //text-align: left;
 
 }
 
@@ -94,14 +98,10 @@ select {
 }
 
 .Rectangle-3-Copy-3 {
-  margin-left: -12px;
-  margin-right: -13px;
   min-width: 100%;
-  //height: 400px;
   max-height: 400px;
   margin-top: 15px;
   padding: 10px 7px 20px;
-  // padding-right: 20px;
   border-radius: 8px;
   //background-color: #f0f0f0;
   background-color: $grey-3;
@@ -112,11 +112,6 @@ select {
 
 
 .Rectangle-3-Copy-4 {
-  //position: relative;
-  //width: 253px;
-  //height: 81px;
-  //margin: 0px 7px;
-  //width: 100%;
   border-radius: 8px;
   padding-left: 4px;
   padding-top: 4px;
@@ -129,8 +124,6 @@ select {
 
 .Chat-Image {
   border-radius: 5px;
-  //margin-right: 15px;
-  //margin-bottom: -35px;
   height: 73px;
   width: 46px;
 
@@ -208,16 +201,10 @@ select {
 // }
 
 .Rectangle-7-Copy-4 {
-  //width: 100%;
-  //padding: 2px 4px 0px 5px;
   padding: 0.005em 4px;
   height: 14px;
-  //border: solid 1px #e65e20;
-  //border: solid 1px $cat-1;
-  //margin-left: 12px;
   margin-top: 10px;
   margin-right: 15px;
-  //opacity: 0.5;
 }
 
 .Categoria{
@@ -230,18 +217,8 @@ select {
   //color: $cat-1;
 }
 
-// .Categoria > Rectangle-7-Copy-4 {
-//   opacity: 1 !important;
-//
-// }
-
 .Chat-Estadisticas {
-  //width: 90px;
-  // position: absolute;
-  // top:-17px;
-  // left: 70px;
   margin-top: 2px;
-  //margin-right: 5px;
 
 }
 .Chat-Views {
@@ -257,7 +234,6 @@ select {
 }
 
 .Chat-Likes {
-  //margin-left: 15px;
   font-family: Arial;
   //Fuente real(Falta añadir): .SFNSText
   font-size: 0.92em;
@@ -282,12 +258,8 @@ select {
   font-family: 'Maven Pro';
   font-size: 1.125em;
   font-style: italic;
-  //font-weight: bold;
   text-align: center;
   //color: #000000;
   color: $grey-10;
-  //margin-bottom: -2px;
-  //margin-top: 10px;
-  //width: 100%;
 
 }
