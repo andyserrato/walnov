@@ -13,8 +13,8 @@ export class Paginator {
   paginarDelante () {
       for(let i = 0; i<this.cargar; i++) {
         if(this.indice < this.items.length) {
-          this.paginador.push(this.items[this.indice]);
           this.paginador.shift();
+          this.paginador.push(this.items[this.indice]);           
           this.indice++;
         }
       }
@@ -36,6 +36,9 @@ export class Paginator {
    }
  }
 
+ addItem(item){
+   this.items.push(item);
+ }
  scroll (){
    let height = this.container.nativeElement.scrollHeight - (this.container.nativeElement.clientHeight);
 

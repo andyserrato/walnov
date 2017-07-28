@@ -1,5 +1,12 @@
 @import "main";
 
+
+.delay{
+  color:$grey-5;
+  position: absolute;
+  right:8px;
+}
+
 .text{
   user-select: none;
   font-size: inherit;
@@ -46,9 +53,7 @@
   -moz-border-radius: 0px;
   border-radius: 8px;
   margin-bottom: 10px;
-    &:hover::after{
-      border-color: transparent #f9f9f9;
-    }
+
 }
 
 .bubble::after{
@@ -64,8 +69,33 @@
   top: 11px;
 }
 
-.bubble:hover{
+.hovereable:hover{
   background-color: #f9f9f9;
   border-color: #f9f9f9;
   cursor: pointer;
+  &:hover::after{
+    border-color: transparent #f9f9f9;
+  }
+}
+
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4,end) 1.5s infinite;
+  animation: ellipsis steps(4,end) 1.5s infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 15px;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 15px;
+  }
 }

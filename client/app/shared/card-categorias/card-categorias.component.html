@@ -1,7 +1,7 @@
 <div class="card Rectangle-3-Copy-2 hidden-md-down">
   <div class="card-block">
     <h4 class="Card-title">Categorias</h4>
-    <div class="" *ngFor="let categoria of repositorio.categorias">
+    <div class="" *ngFor="let categoria of repositorio.categoriasAL">
       <div class="d-flex flex-row" (click)='filtrarCategoria($event, categoria)'>
         <div class="d-flex flex-column" style="padding-top:7px; cursor:pointer;">
           <div class="Oval" style="cursor:pointer;" [style.backgroundColor] = 'getColor(categoria)'>

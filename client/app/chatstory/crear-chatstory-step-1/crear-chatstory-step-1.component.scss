@@ -121,6 +121,7 @@ textarea::placeholder{
 
 .btn-hecho:hover{
   cursor: pointer;
+  background-color: $main-2;
 }
 
 .relative{
@@ -168,6 +169,7 @@ textarea::placeholder{
 
 .input-character .fa:hover{
   cursor: pointer;
+  color: $main-2;
 }
 .input-character input::placeholder{
   font-style: italic;

@@ -57,6 +57,7 @@ import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.c
 import { CardMiBibliotecaBuscadorComponent } from './shared/card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
 import { CardCategoriasComponent } from './shared/card-categorias/card-categorias.component';
 import { CardChatstoryComponent } from './shared/card-chatstory/card-chatstory.component';
+import { HomeMisChatstoriesComponent } from './home/home-mis-chatstories/home-mis-chatstories.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { CardChatstoryComponent } from './shared/card-chatstory/card-chatstory.c
     CardMiBibliotecaBuscadorComponent,
     CardCategoriasComponent,
     VerChatstoryComponent,
-    CardChatstoryComponent
+    CardChatstoryComponent,
+    HomeMisChatstoriesComponent
   ],
   imports: [
     BrowserModule,

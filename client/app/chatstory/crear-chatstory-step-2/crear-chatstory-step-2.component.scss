@@ -68,6 +68,7 @@ label{
   padding: .5em 1em;
   &:hover{
     cursor: pointer;
+    background-color: $grey-7;
   }
 
 }
@@ -105,15 +106,44 @@ label{
 
 .btn-hecho:hover{
   cursor: pointer;
+  background-color: $main-2;
 }
 
 .relative{
   position: relative;
 }
+select:invalid{
+  color:gray;
+}
+
+select:required:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}
 
 .no-padding{
   margin:0;
   padding:0;
+}
+
+.time{
+  font-size: 1.1em !important;
+  padding: .1em .3em;
+  border-radius: 5px;
+  &:hover{
+    background-color: white;
+    cursor: pointer;
+  }
+}
+
+.delay-selected{
+  background-color: $grey-7;
+  color: white;
 }
 
 .vertical-center{

@@ -31,7 +31,7 @@ const appRoutes: Routes = [
     },
 
 
-    { path: 'crear-chatstory', component: CrearChatstoryStep1Component },
+    { path: 'crear-chatstory', component: CrearChatstoryComponent },
     { path: 'ver-chatstory', component: VerChatstoryComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: '**', component: PageNotFoundComponent }
