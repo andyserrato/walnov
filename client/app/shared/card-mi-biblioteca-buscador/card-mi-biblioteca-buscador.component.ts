@@ -23,8 +23,10 @@ import { Paginator } from '../../models/paginador';
 })
 export class CardMiBibliotecaBuscadorComponent implements OnInit {
   //chatstories: Array<Chatstory> = new Array<Chatstory>();
-  added: boolean = false;
-  firstAdded: boolean = false;
+
+
+  static added: boolean = false;
+  static firstAdded: boolean = false;
   state: string = 'notAdded';
   //isIn:boolean = true;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
@@ -37,6 +39,8 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
   constructor(private repositorio: RepositorioService) { }
 
   ngOnInit() {
+
+
     this.chatst1 = new Chatstory();
     this.chatst1.categoria = this.repositorio.categoriasAL[0];
     this.chatst1.titulo = "El paseo millonario";
@@ -64,30 +68,32 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
 
     //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5)
 
-    for(let i=0; i<20; i++) {
-     let nuevoCS = new Chatstory();
+    // for(let i=0; i<20; i++) {
+    //  let nuevoCS = new Chatstory();
+    //
+    //   nuevoCS.categoria = this.repositorio.categoriasAL[0];
+    //   nuevoCS.titulo = "Hola" + i;
+    //   nuevoCS.imagen_url = "https://lorempixel.com/45/56";
+    //   nuevoCS.likes = 784;
+    //   nuevoCS.views = 2000;
+    //   this.addChat(nuevoCS);
+    // }
 
-      nuevoCS.categoria = this.repositorio.categoriasAL[0];
-      nuevoCS.titulo = "Hola" + i;
-      nuevoCS.imagen_url = "https://lorempixel.com/45/56";
-      nuevoCS.likes = 784;
-      nuevoCS.views = 2000;
-      this.addChat(nuevoCS);
-    }
-
-    this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
+    this.repositorio.paginadorChatstoriesBiblioteca = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
 
 
   }
 
   addChat(newChat: Chatstory) {
     if (newChat) {
-        this.repositorio.chatstories.push(newChat);
-        this.state = 'added';
-        this.added = true;
-        this.firstAdded = false;
-        if (this.repositorio.chatstories.length === 1) this.showMessage();
-        console.log("Añado");
+        //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
+        //this.repositorio.chatstories.push(newChat);
+        //this.paginador.addItem(newChat);
+        // this.state = 'added';
+        // this.added = true;
+        // this.firstAdded = false;
+        // if (this.repositorio.chatstories.length === 1) this.showMessage();
+        // console.log("Añado");
 
         //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
     }
@@ -97,11 +103,11 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
   deleteChat(oldChat: Chatstory){
     this.repositorio.chatstories.splice(this.repositorio.chatstories.indexOf(oldChat), 1);
     if(this.repositorio.chatstories.length === 0) {
-      this.state = 'notAdded';
-      this.added = false;
+      //this.state = 'notAdded';
+      //this.added = false;
 
     }
-    this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
+    //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
 
   }
 
@@ -121,13 +127,36 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
 
   }
 
-  showMessage() {
-    this.firstAdded = true;
-    setTimeout(this.turnFalse.bind(this), 120000);
+  static showMessage() {
+    CardMiBibliotecaBuscadorComponent.firstAdded = true;
+    CardMiBibliotecaBuscadorComponent.added =true;
+    //CardMiBibliotecaBuscadorComponent.state = 'added';
+    console.log('hola');
+    setTimeout(CardMiBibliotecaBuscadorComponent.turnFalse.bind(this), 10000);
   }
 
-  turnFalse() {
-    this.firstAdded = false;
+  getFirstAdded() {
+    return CardMiBibliotecaBuscadorComponent.firstAdded;
+  }
+
+  getAdded() {
+    return CardMiBibliotecaBuscadorComponent.added;
+  }
+
+  addedBiblioteca(chatstory) {
+    return chatstory.added;
+  }
+
+  static turnFalse() {
+    CardMiBibliotecaBuscadorComponent.firstAdded = false;
+  }
+
+  getBackgorundColor(chatstory) {
+    if(chatstory.added) {return '#8427bf';}
+    else {
+      return '#c0c0c0';      
+    }
+
   }
 
 

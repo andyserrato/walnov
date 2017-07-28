@@ -10,6 +10,14 @@ export class Paginator {
     container.nativeElement.addEventListener("scroll", () => {this.scroll()});
   }
 
+  addItem(newItem) {
+    if (newItem) {
+        this.paginador.push(newItem);
+        //this.paginador.push(this.items[this.items.length - 1]);
+        //console.log(this.paginador);
+    }
+  }
+
   paginarDelante () {
       for(let i = 0; i<this.cargar; i++) {
         if(this.indice < this.items.length) {
