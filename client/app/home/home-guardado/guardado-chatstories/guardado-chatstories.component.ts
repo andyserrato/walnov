@@ -28,7 +28,7 @@ export class GuardadoChatstoriesComponent implements OnInit {
       this.chats[i].added=false;
       this.chats[i].selected=false;
     }
-    this.paginador=new Paginator(this.chats, this.div, 12, 6);
+    this.paginador=new Paginator(this.chats, this.div, 18, 9);
   }
 
   }
