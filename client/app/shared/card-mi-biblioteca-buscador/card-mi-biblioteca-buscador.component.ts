@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef,ViewChild } from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Categoria } from '../../models/cats';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Chatstory } from '../../models/chatstory.model';
@@ -10,16 +10,16 @@ import { Paginator } from '../../models/paginador';
   selector: 'app-card-mi-biblioteca-buscador',
   templateUrl: './card-mi-biblioteca-buscador.component.html',
   styleUrls: ['./card-mi-biblioteca-buscador.component.scss'],
-  animations: [
-    trigger("changeBackgroundColor", [
-      state('notAdded', style({
-      })),
-      state('added', style({
-        backgroundColor : '#8427bf',
-        cursor: 'pointer'
-      }))
-    ])
-  ]
+  // animations: [
+  //   trigger("changeBackgroundColor", [
+  //     state('notAdded', style({
+  //     })),
+  //     state('added', style({
+  //       backgroundColor : '#8427bf',
+  //       cursor: 'pointer'
+  //     }))
+  //   ])
+  // ]
 })
 export class CardMiBibliotecaBuscadorComponent implements OnInit {
   //chatstories: Array<Chatstory> = new Array<Chatstory>();
@@ -27,7 +27,7 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
 
   static added: boolean = false;
   static firstAdded: boolean = false;
-  state: string = 'notAdded';
+  //state: string = 'notAdded';
   //isIn:boolean = true;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
   paginador = null;
@@ -80,6 +80,7 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
     // }
 
     this.repositorio.paginadorChatstoriesBiblioteca = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
+    //console.log(this.repositorio.paginadorChatstoriesBiblioteca);
 
 
   }
@@ -103,11 +104,8 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
   deleteChat(oldChat: Chatstory){
     this.repositorio.chatstories.splice(this.repositorio.chatstories.indexOf(oldChat), 1);
     if(this.repositorio.chatstories.length === 0) {
-      //this.state = 'notAdded';
-      //this.added = false;
 
     }
-    //this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
 
   }
 
@@ -130,9 +128,7 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
   static showMessage() {
     CardMiBibliotecaBuscadorComponent.firstAdded = true;
     CardMiBibliotecaBuscadorComponent.added =true;
-    //CardMiBibliotecaBuscadorComponent.state = 'added';
-    console.log('hola');
-    setTimeout(CardMiBibliotecaBuscadorComponent.turnFalse.bind(this), 10000);
+    //setTimeout(CardMiBibliotecaBuscadorComponent.turnFalse.bind(this), 30000);
   }
 
   getFirstAdded() {
@@ -151,36 +147,16 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
     CardMiBibliotecaBuscadorComponent.firstAdded = false;
   }
 
-  getBackgorundColor(chatstory) {
-    if(chatstory.added) {return '#8427bf';}
+  getBc() {
+    if(CardMiBibliotecaBuscadorComponent.added) {return '#8427bf';}
     else {
-      return '#c0c0c0';      
+      return '#c0c0c0';
     }
 
   }
 
-
-  // sameCategoryArray(categoria) {
-  //
-  //   if (this.chatstories != null && categoria != null){
-  //     this.chatStoriesFiltrados = this.chatstories.filter(Chatstory => Chatstory.categoria.nombre === categoria);
-  //     this.filtradosVacio = this.emptyFiltrados(this.chatStoriesFiltrados);
-  //     if(!this.filtradosVacio) {
-  //       let limite = this.chatStoriesFiltrados.length;
-  //       this.paginador = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 10,5);
-  //     }
-  //     if(this.state === 'out') this.state = 'in';
-  //     if(!this.isIn) this.isIn = true;
-  //   }
-  // }
-
-  // emptyFiltrados(chats: any) {
-  //   return chats.length === 0;
-  // }
-
-  // toggleState() {
-  //   this.state = (this.state === 'in' ? 'out' : 'in');
-  //   this.isIn = !this.isIn;
-  // }
+  getCursor() {
+    if(CardMiBibliotecaBuscadorComponent.added) {return 'pointer';}
+  }
 
 }

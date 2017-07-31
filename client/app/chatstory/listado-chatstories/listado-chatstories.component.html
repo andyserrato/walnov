@@ -1,12 +1,12 @@
 <div class="container-fluid Rectangle-3">
   <div class="row">
     <div class="col-2 cols-no-padding">
-      <app-card-categorias></app-card-categorias>
+      <app-card-categorias (category)='changeCategory($event)'></app-card-categorias>
       <app-card-publicidad class="Publi"></app-card-publicidad>
     </div>
     <!-- /.col -->
     <div class="col-7 cols-no-padding">
-      <app-card-chatstory></app-card-chatstory>
+      <app-card-chatstory [chatStoriesFiltrados] = 'this.chatStoriesFiltrados'></app-card-chatstory>
     </div>
     <div class="col-3 cols-no-padding">
       <app-card-mi-biblioteca-buscador></app-card-mi-biblioteca-buscador>

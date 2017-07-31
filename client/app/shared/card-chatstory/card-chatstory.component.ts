@@ -12,6 +12,9 @@ import { CardMiBibliotecaBuscadorComponent } from '../card-mi-biblioteca-buscado
 })
 export class CardChatstoryComponent implements OnInit {
   chatSt: Chatstory;
+  firstAdded: number = 0;
+  @Input() chatStoriesFiltrados: Array<Chatstory>;
+  filtradosVacio: boolean = true;
   //chatstories: Array<Chatstory>;
   paginador = null;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
@@ -24,7 +27,7 @@ export class CardChatstoryComponent implements OnInit {
 
   ngOnInit() {
     this.chatSt = new Chatstory();
-    //this.chatstories = new Array<Chatstory>();
+    //this.chatStoriesFiltrados = new Array<Chatstory>();
 
     this.chatSt.imagen_url = "https://lorempixel.com/63/100";
     this.chatSt.categoria = this.repositorio.categoriasAL[1];
@@ -70,7 +73,9 @@ export class CardChatstoryComponent implements OnInit {
     this.addChat(this.chatst2);
     this.addChat(this.chatst3);
 
-    this.paginador = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 20,10);
+    let limite = this.chatStoriesFiltrados.length;
+
+    this.repositorio.paginadorCardsChatstories = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 20, 10);
   }
 
 
@@ -100,15 +105,28 @@ export class CardChatstoryComponent implements OnInit {
   addBiblioteca(chatstory: Chatstory) {
     if(!chatstory.added) {
       //this.repositorio.chatstories.push(chatstory);
+      if(this.firstAdded === 0) {
+        CardMiBibliotecaBuscadorComponent.showMessage();
+      }
+
+      this.firstAdded++;
+
+      if(this.firstAdded === 5) {
+        CardMiBibliotecaBuscadorComponent.turnFalse();
+      }
+
+      chatstory.added = true;
       this.repositorio.paginadorChatstoriesBiblioteca.addItem(chatstory);
       //console.log(this.repositorio.paginadorChatstoriesBiblioteca);
-      chatstory.added = true;
-      CardMiBibliotecaBuscadorComponent.showMessage();
-      //console.log(this.repositorio.chatstories);
     }
 
 
   }
+
+  // checkCategory(chatstory) {
+  //   this.paginador = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 20,10);
+  //   return true;
+  // }
 
   checkDescription(chatstory: Chatstory){
     if(chatstory.descripcion === undefined  || chatstory.descripcion.length ===0) {
@@ -117,6 +135,10 @@ export class CardChatstoryComponent implements OnInit {
     }
     return chatstory.descripcion;
 
+  }
+
+  emptyFiltrados(chats: any) {
+    return chats.length === 0;
   }
 
 }

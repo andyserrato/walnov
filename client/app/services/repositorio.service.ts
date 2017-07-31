@@ -13,6 +13,7 @@ export class RepositorioService{
     categoriasAL = new Array();
     chatstories: Array<Chatstory> = new Array<Chatstory>();
 
+    paginadorCardsChatstories = null;
     paginadorChatstoriesBiblioteca = null;
 
     constructor(){

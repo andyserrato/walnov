@@ -1,6 +1,17 @@
 <div class="card Rectangle-3-Copy-2 hidden-md-down">
   <div class="card-block">
     <h4 class="Card-title">Categorias</h4>
+    <div class="d-flex flex-row" (click)='noFiltrar($event)'>
+      <div class="d-flex flex-column" style="padding-top:7px; cursor:pointer;">
+        <div class="Oval-2" style="cursor:pointer;">
+        </div>
+      </div>
+      <div class="d-flex flex-column ellipsis">
+        <div class="Categoria" title="Todas las categorías" style="cursor:pointer;">
+          Todas las categorías
+        </div>
+      </div>
+    </div>
     <div class="" *ngFor="let categoria of repositorio.categoriasAL">
       <div class="d-flex flex-row" (click)='filtrarCategoria($event, categoria)'>
         <div class="d-flex flex-column" style="padding-top:7px; cursor:pointer;">
