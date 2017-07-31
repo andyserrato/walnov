@@ -13,13 +13,9 @@ import {CrearChatstoryStep1Component} from "./chatstory/crear-chatstory-step-1/c
 import { Walls } from './walls/walls.component';
 import { ListadoWalls } from './walls/listado-walls.component';
 import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
-<<<<<<< HEAD
-
-=======
 import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 
->>>>>>> 1a8de13d4069588442fbf3e557592e1938a94778
 
 
 const appRoutes: Routes = [

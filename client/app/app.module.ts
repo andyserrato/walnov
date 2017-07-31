@@ -59,6 +59,15 @@ import { CardCategoriasComponent } from './shared/card-categorias/card-categoria
 import { CardChatstoryComponent } from './shared/card-chatstory/card-chatstory.component';
 import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
 import { HomeMisChatstoriesComponent } from './home/home-mis-chatstories/home-mis-chatstories.component';
+import { CardHomeNavigateComponent } from './home/card-home-navigate/card-home-navigate.component';
+import { HomeGuardadoComponent } from './home/home-guardado/home-guardado.component';
+import { GuardadoWallsComponent } from './home/home-guardado/guardado-walls/guardado-walls.component';
+import { GuardadoRelatosComponent } from './home/home-guardado/guardado-relatos/guardado-relatos.component';
+import { GuardadoChatstoriesComponent } from './home/home-guardado/guardado-chatstories/guardado-chatstories.component';
+import { CardInfoPremiumComponent } from './shared/card-info-premium/card-info-premium.component';
+import { HomeRecienteComponent } from './home/home-reciente/home-reciente.component';
+import { RecienteNotificacionComponent } from './home/home-reciente/reciente-notificacion/reciente-notificacion.component';
+import { CardChatstoriesPaginadorComponent } from './shared/card-chatstories-paginador/card-chatstories-paginador.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +112,16 @@ import { HomeMisChatstoriesComponent } from './home/home-mis-chatstories/home-mi
     VerChatstoryComponent,
     HomeMisChatstoriesComponent,
     CardChatstoryComponent,
-    ListadoChatstoriesComponent
+    ListadoChatstoriesComponent,
+    CardHomeNavigateComponent,
+    HomeGuardadoComponent,
+    GuardadoWallsComponent,
+    GuardadoRelatosComponent,
+    GuardadoChatstoriesComponent,
+    CardInfoPremiumComponent,
+    HomeRecienteComponent,
+    RecienteNotificacionComponent,
+    CardChatstoriesPaginadorComponent
   ],
   imports: [
     BrowserModule,

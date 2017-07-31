@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="link" (click)="changeView('reciente')" [ngClass]="{'selected': this.view==='reciente'}">
+      Actividad Reciente
+    </div>
+  </div>
+  <div class="row">
+    <div class="link" (click)="changeView('walls')" [ngClass]="{'selected': this.view==='walls'}">
+      Mis Walls
+    </div>
+  </div>
+  <div class="row">
+    <div class="link" (click)="changeView('relatos')" [ngClass]="{'selected': this.view==='relatos'}">
+      Mis Relatos
+    </div>
+  </div>
+  <div class="row">
+    <div class="link" (click)="changeView('chatstories')" [ngClass]="{'selected': this.view==='chatstories'}">
+      Mis Chatstories
+    </div>
+  </div>
+  <div class="row">
+    <div class="link" (click)="changeView('guardado')" [ngClass]="{'selected': this.view==='guardado'}">
+      Guardado
+    </div>
+  </div>
+</div>

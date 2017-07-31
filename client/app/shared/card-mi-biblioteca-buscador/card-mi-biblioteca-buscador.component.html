@@ -40,13 +40,8 @@
       </div>
     </div>
     <div class="Rectangle-3-Copy-3" #contenedorBiblioteca>
-<<<<<<< HEAD
-      <div *ngFor="let chatstory of paginador?.paginador">
-        <div class="Rectangle-3-Copy-4" [@changeBackgroundColor]='state' (click)='toggleState()'>
-=======
       <div *ngFor="let chatstory of repositorio.paginadorChatstoriesBiblioteca?.paginador">
         <div class="Rectangle-3-Copy-4" *ngIf='addedBiblioteca(chatstory)'>
->>>>>>> 1a8de13d4069588442fbf3e557592e1938a94778
           <div class="d-flex flex-row">
             <div class="d-flex flex-column" style="margin-right:15px;">
               <img src="{{chatstory.imagen_url}}" class="Chat-Image" alt="Chatstory">

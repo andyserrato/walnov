@@ -1,13 +1,14 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2 cols-no-padding">
-
+    <div class="col-2 cols-no-padding custom-padding-1">
+      <app-card-home-navigate (viewChange)="this.view=$event"></app-card-home-navigate>
+      <app-card-info-premium></app-card-info-premium>
     </div>
-    /.col
-    <div class="col-7 cols-no-padding">
-      <app-home-mis-chatstories></app-home-mis-chatstories>
+    <div class="col cols-no-padding" [ngSwitch]="this.view">
+      <app-home-mis-chatstories *ngSwitchCase="'chatstories'"></app-home-mis-chatstories>
+      <app-home-guardado *ngSwitchCase="'guardado'"></app-home-guardado>
     </div>
-    <div class="col-3 cols-no-padding">
+    <div class="col-3 cols-no-padding" *ngIf="this.view==='reciente'">
       <app-card-usuario-tendencia></app-card-usuario-tendencia>
       <app-card-wall-relevante></app-card-wall-relevante>
       <app-card-publicidad></app-card-publicidad>

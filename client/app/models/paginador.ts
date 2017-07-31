@@ -10,19 +10,19 @@ export class Paginator {
     container.nativeElement.addEventListener("scroll", () => {this.scroll()});
   }
 
-  addItem(newItem) {
-    if (newItem) {
-        this.paginador.push(newItem);
-        //this.paginador.push(this.items[this.items.length - 1]);
-        //console.log(this.paginador);
-    }
-  }
+  // addItem(newItem) {
+  //   if (newItem) {
+  //       this.paginador.push(newItem);
+  //       //this.paginador.push(this.items[this.items.length - 1]);
+  //       //console.log(this.paginador);
+  //   }
+  // }
 
   paginarDelante () {
       for(let i = 0; i<this.cargar; i++) {
         if(this.indice < this.items.length) {
           this.paginador.shift();
-          this.paginador.push(this.items[this.indice]);           
+          this.paginador.push(this.items[this.indice]);
           this.indice++;
         }
       }
@@ -31,17 +31,30 @@ export class Paginator {
  paginarDetras () {
    let posicion = this.cargar;
    let avanza = this.indice - this.limite - this.cargar;
+
    for(let i=0; i<this.cargar; i++) {
      if((this.indice - this.limite) > 0) {
        this.paginador[posicion] = this.paginador[i];
        this.paginador[i] = this.items[avanza];
       //  console.log(this.indice-this.limite);
+      console.log(posicion+", "+avanza+", "+this.indice+", "+i);
        posicion++;
        avanza++;
        this.indice--;
-       this.container.nativeElement.scrollTop = 1;
+
+
      }
    }
+   this.container.nativeElement.scrollTop = 1;
+  // this.paginador.splice(0,this.paginador.length-this.cargar);
+  // console.log(this.paginador);
+  // for(let i = 0; i<this.cargar; i++){
+  //   this.paginador.unshift(this.items[avanza]);
+  //   avanza++;
+  //   this.indice--;
+  //   this.container.nativeElement.scrollTop = 1;
+  // }
+
  }
 
  addItem(item){

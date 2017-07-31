@@ -1,0 +1,56 @@
+<div #contenedorBiblioteca class="d-flex justify-content-center flex-row flex-wrap Limite">
+  <div class="" *ngFor= "let chatstory of paginador?.paginador">
+    <div class="d-flex Rectangle-7">
+      <div class="d-flex flex-row">
+        <div class="d-flex flex-column">
+          <div class="d-flex flex-row">
+            <img src={{chatstory.imagen_url}} class="Chat-Image" alt="Imagen">
+          </div>
+          <div class="d-flex flex-row justify-content-center">
+            <div class="Rectangle-7-Copy-3" [style.backgroundColor] = 'getColor(chatstory)'>
+              <div class="Categoria">
+                {{chatstory.categoria.nombre}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-column" style="margin-left:11px;">
+          <div class="d-flex flex-row">
+            <div class="Chat-Title">
+              {{chatstory.titulo}}
+            </div>
+          </div>
+          <div class="d-flex flex-row" style="margin-top:10px;">
+            <div class="Chat-Descripcion">
+              {{checkDescription(chatstory)}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-row" style="position:absolute; bottom:20px;">
+        <div class="d-flex flex-column">
+          <button *ngIf= '!chatstory.added' type="button" class="Rectangle-7-Copy-4" (click)='addBiblioteca(chatstory)' name="button" style="cursor:pointer;">
+            <div class="btn-details">
+              Añadir a la biblioteca
+            </div>
+          </button>
+          <button *ngIf= 'chatstory.added' type="button" class="Rectangle-7-Copy-4-2" (click)='addBiblioteca(chatstory)' name="button" style="cursor:pointer;">
+            <div class="btn-details-2">
+              Añadido
+            </div>
+          </button>
+        </div>
+        <div class="d-flex flex-colum">
+          <div class="Chat-Views">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            {{getNumber(chatstory.views)}}
+          </div>
+          <div class="Chat-Likes">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            {{getNumber(chatstory.likes)}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

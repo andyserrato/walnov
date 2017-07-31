@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Chatstory } from '../../models/chatstory.model';
-import { Paginator } from '../../models/paginador';
-import { RepositorioService } from '../../services/repositorio.service';
+import { Chatstory } from '../../../models/chatstory.model';
+import { Paginator } from '../../../models/paginador';
+import { RepositorioService } from '../../../services/repositorio.service';
 @Component({
-  selector: 'app-home-mis-chatstories',
-  templateUrl: './home-mis-chatstories.component.html',
-  styleUrls: ['./home-mis-chatstories.component.scss']
+  selector: 'app-guardado-chatstories',
+  templateUrl: './guardado-chatstories.component.html',
+  styleUrls: ['./guardado-chatstories.component.scss']
 })
-export class HomeMisChatstoriesComponent implements OnInit {
+export class GuardadoChatstoriesComponent implements OnInit {
   @ViewChild('div') div: ElementRef;
   chats: Array<Chatstory>;
   paginador: Paginator;
@@ -31,4 +31,4 @@ export class HomeMisChatstoriesComponent implements OnInit {
     this.paginador=new Paginator(this.chats, this.div, 12, 6);
   }
 
-}
+  }
