@@ -6,7 +6,7 @@
         ¡Bien hecho!
       </div>
       <div class="d-flex justify-content-center Banner-Text">
-        Has añadido tu primer chatstory a tu biblioteca
+        Has añadido un chatstory a tu biblioteca
       </div>
       <div class="d-flex justify-content-center Banner-Text">
         ¡Puedes añadir más!
@@ -84,7 +84,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-end">
-      <button class="Radio-Label Rectangle-7-Copy-2"  [@changeBackgroundColor]='state' type="button" name="button">
+      <button class="Radio-Label Rectangle-7-Copy-2"  [style.backgroundColor] = 'getBc()' [style.cursor] = 'getCursor()' type="button" name="button">
         Ir a la biblioteca
       </button>
     </div>

@@ -9,10 +9,12 @@ import { RepositorioService } from '../../services/repositorio.service';
 })
 export class CardCategoriasComponent implements OnInit {
   @Output() category: EventEmitter<Categoria>
-  constructor(private repositorio: RepositorioService) { }
+  constructor(private repositorio: RepositorioService) {
+    this.category= new EventEmitter();
+   }
 
   ngOnInit() {
-    this.category= new EventEmitter();
+
   }
 
   getColor(categoria: Categoria) {
@@ -23,6 +25,11 @@ export class CardCategoriasComponent implements OnInit {
   filtrarCategoria(event, categoria) {
     this.category.emit(categoria);
     console.log(this.category);
+  }
+
+  noFiltrar(event) {
+    this.category.emit(null);
+
   }
 
 }

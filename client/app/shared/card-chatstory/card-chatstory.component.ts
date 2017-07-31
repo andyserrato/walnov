@@ -29,6 +29,11 @@ export class CardChatstoryComponent implements OnInit {
 
   }
 
+  // checkCategory(chatstory) {
+  //   this.paginador = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 20,10);
+  //   return true;
+  // }
+
   checkDescription(chatstory: Chatstory){
     if(chatstory.descripcion === undefined  || chatstory.descripcion.length ===0) {
       chatstory.descripcion = "Este chatstory no tiene ninguna descripción."
