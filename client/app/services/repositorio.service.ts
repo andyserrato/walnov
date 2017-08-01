@@ -30,16 +30,16 @@ export class RepositorioService{
         this.categoriasHM.set('Terror', new Categoria('Terror','#4b082e'));
         this.categoriasHM.set('Reflexión', new Categoria('Reflexión','#2074e6'));
 
-        this.categoriasAL.push(new Categoria('Acción','#e65e20'));
-        this.categoriasAL.push(new Categoria('Aventura','#29ba6f'));
-        this.categoriasAL.push(new Categoria('SCI-FI','#16d7d3'));
-        this.categoriasAL.push(new Categoria('Drama','#e15abe'));
-        this.categoriasAL.push(new Categoria('Romance','#de196d'));
-        this.categoriasAL.push(new Categoria('FanFiction','#df9c00'));
-        this.categoriasAL.push(new Categoria('Poesía','#21b3dd'));
-        this.categoriasAL.push(new Categoria('Humor','#b8764e'));
-        this.categoriasAL.push(new Categoria('Terror','#4b082e'));
-        this.categoriasAL.push(new Categoria('Reflexión','#2074e6'));
+        this.categoriasAL.push(new Categoria('Acción','rgb(230, 94, 32)','rgba(230, 94, 32, 0.25)'));
+        this.categoriasAL.push(new Categoria('Aventura','rgb(41, 186, 111)', 'rgba(41, 186, 111, 0.25)'));
+        this.categoriasAL.push(new Categoria('SCI-FI','rgb(22, 215, 211)', 'rgba(22, 215, 211, 0.25)'));
+        this.categoriasAL.push(new Categoria('Drama','rgb(225, 90, 190)', 'rgba(225, 90, 190, 0.25)'));
+        this.categoriasAL.push(new Categoria('Romance','rgb(222, 25, 109)', 'rgba(222, 25, 109, 0.25)'));
+        this.categoriasAL.push(new Categoria('FanFiction','rgb(223, 156, 0)', 'rgba(223, 156, 0, 0.25)'));
+        this.categoriasAL.push(new Categoria('Poesía','rgb(33, 179, 221)', 'rgba(33, 179, 221, 0.25)'));
+        this.categoriasAL.push(new Categoria('Humor','rgb(184, 118, 78)', 'rgba(184, 118, 78, 0.25)'));
+        this.categoriasAL.push(new Categoria('Terror','rgb(75, 8, 46)', 'rgba(75, 8, 46, 0.25)'));
+        this.categoriasAL.push(new Categoria('Reflexión','rgb(32, 116, 230)', 'rgba(32, 116, 230, 0.25)'));
 
 
 

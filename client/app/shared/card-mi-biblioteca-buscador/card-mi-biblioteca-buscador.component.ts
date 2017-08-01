@@ -79,7 +79,7 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
     //   this.addChat(nuevoCS);
     // }
 
-    this.repositorio.paginadorChatstoriesBiblioteca = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 10,5);
+    this.repositorio.paginadorChatstoriesBiblioteca = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 2,1);
     //console.log(this.repositorio.paginadorChatstoriesBiblioteca);
 
 

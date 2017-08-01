@@ -14,6 +14,7 @@ export class CardChatstoryComponent implements OnInit {
   chatSt: Chatstory;
   firstAdded: number = 0;
   @Input() chatStoriesFiltrados: Array<Chatstory>;
+  @Input() categoria: Categoria;
   filtradosVacio: boolean = true;
   //chatstories: Array<Chatstory>;
   paginador = null;
@@ -107,6 +108,7 @@ export class CardChatstoryComponent implements OnInit {
       //this.repositorio.chatstories.push(chatstory);
       if(this.firstAdded === 0) {
         CardMiBibliotecaBuscadorComponent.showMessage();
+        this.repositorio.paginadorChatstoriesBiblioteca.paginador = [];
       }
 
       this.firstAdded++;
@@ -141,4 +143,7 @@ export class CardChatstoryComponent implements OnInit {
     return chats.length === 0;
   }
 
+  getBackgroundImage() {
+    return 'linear-gradient(to bottom,'+this.categoria.opacidad+','+this.categoria.color+')';
+  }
 }

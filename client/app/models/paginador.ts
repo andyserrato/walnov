@@ -6,7 +6,7 @@ export class Paginator {
     this.indice = limite;
     this.rellenar(items);
     container.nativeElement.addEventListener("scroll", this.scroll.bind(this));
-    console.log("inicializando");
+    // console.log("inicializando");
 
 
   }
@@ -34,7 +34,7 @@ export class Paginator {
         }
       }
 
-      console.log(this.indice);
+      // console.log(this.indice);
   }
 
  paginarDetras () {
@@ -53,7 +53,7 @@ export class Paginator {
        this.container.nativeElement.scrollTop = 1;
      }
    }
-   console.log(this.paginador);
+  //  console.log(this.paginador);
 
 
  }

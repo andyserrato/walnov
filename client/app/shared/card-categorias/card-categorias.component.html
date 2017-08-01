@@ -1,38 +1,40 @@
 <div class="card Rectangle-3-Copy-2 hidden-md-down">
   <div class="card-block">
-    <h4 class="Card-title">Categorias</h4>
-    <div class="d-flex flex-row" (click)='noFiltrar($event)'>
+    <h4 class="Card-title">Categorías</h4>
+    <div class="d-flex flex-row" (click)='noFiltrar($event)' style="padding-left:1.25rem; padding-right:1.25rem" [ngStyle] = "{'background-color': getBackColor(null)}">
       <div class="d-flex flex-column" style="padding-top:7px; cursor:pointer;">
         <div class="Oval-2" style="cursor:pointer;">
         </div>
       </div>
       <div class="d-flex flex-column ellipsis">
-        <div class="Categoria" title="Todas las categorías" style="cursor:pointer;">
+        <div class="Categoria" title="Todas las categorías" style="cursor:pointer;" [style.color] = 'getFontColor(null)'>
           Todas las categorías
         </div>
       </div>
     </div>
     <div class="" *ngFor="let categoria of repositorio.categoriasAL">
-      <div class="d-flex flex-row" (click)='filtrarCategoria($event, categoria)'>
+      <div class="d-flex flex-row" (click)='filtrarCategoria($event, categoria)' style="padding-left:1.25rem; padding-right:1.25rem" [style.backgroundColor] = 'getBackColor(categoria)'>
         <div class="d-flex flex-column" style="padding-top:7px; cursor:pointer;">
           <div class="Oval" style="cursor:pointer;" [style.backgroundColor] = 'getColor(categoria)'>
           </div>
         </div>
         <div class="d-flex flex-column">
-          <div class="Categoria" style="cursor:pointer;">
+          <div class="Categoria" style="cursor:pointer;" [style.color] = 'getFontColor(categoria)'>
             {{categoria.nombre}}
           </div>
         </div>
       </div>
     </div>
-    <div class="Filtrado">
+    <div class="Filtrado" style="padding-left:1.25rem; padding-right:1.25rem">
       Ordenar por:
     </div>
-    <form role="form" class="Input-Background-Copy-3-fuera">
-      <select name="Categoria" class="Input-Background-Copy-3-dentro Drop-title ellipsis" (change)="sameCategoryArray($event.target.value)">
-        <option title="Más relevantes">Más relevantes</option>
-      </select>
-      <i class="fa fa-sort" aria-hidden="true"></i>
-    </form>
+    <div class="d-flex flex-row" style="padding-left:1.25rem; padding-right:1rem">
+      <form role="form" class="Input-Background-Copy-3-fuera">
+        <select name="Categoria" class="Input-Background-Copy-3-dentro Drop-title ellipsis">
+          <option title="Más relevantes">Más relevantes</option>
+        </select>
+        <i class="fa fa-sort" aria-hidden="true"></i>
+      </form>
+    </div>
   </div>
 </div>

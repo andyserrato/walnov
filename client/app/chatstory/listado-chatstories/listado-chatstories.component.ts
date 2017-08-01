@@ -25,7 +25,7 @@ export class ListadoChatstoriesComponent implements OnInit {
     this.categoria = event;
     if(this.categoria === null) {
       this.chatStoriesFiltrados = this.repositorio.chatstories;
-      console.log(this.repositorio.paginadorCardsChatstories);
+      //console.log(this.repositorio.paginadorCardsChatstories);
     }
     else {
       this.chatStoriesFiltrados = this.repositorio.chatstories.filter(Chatstory => Chatstory.categoria.nombre === this.categoria.nombre);

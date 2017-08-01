@@ -8,7 +8,8 @@ import { RepositorioService } from '../../services/repositorio.service';
   styleUrls: ['./card-categorias.component.scss']
 })
 export class CardCategoriasComponent implements OnInit {
-  @Output() category: EventEmitter<Categoria>
+  @Output() category: EventEmitter<Categoria>;
+  allSelected: boolean = false;
   constructor(private repositorio: RepositorioService) {
     this.category= new EventEmitter();
    }
@@ -23,13 +24,50 @@ export class CardCategoriasComponent implements OnInit {
   }
 
   filtrarCategoria(event, categoria) {
+    if(this.allSelected) {this.allSelected = false;}
     this.category.emit(categoria);
-    console.log(this.category);
+    this.toggleSelected(categoria);
+
+    //console.log(this.category);
   }
 
   noFiltrar(event) {
     this.category.emit(null);
+    this.repositorio.categoriasAL.forEach(this.selectedToFalse);
+    this.allSelected = true;
+  }
+
+  toggleSelected(categoria: Categoria) {
+    this.repositorio.categoriasAL.forEach(this.selectedToFalse);
+    //console.log(this.repositorio.categoriasAL);
+    categoria.selected = true;
+    //console.log(categoria);
+  }
+
+  selectedToFalse(categoria: Categoria){
+    categoria.selected = false;
 
   }
 
+  getBackColor(categoria) {
+    if(categoria === null) {
+       if(this.allSelected) {return 'rgba(0,0,0,0.25)';}
+    }
+    else if(categoria.selected) {
+      //console.log(categoria.color);
+      return categoria.opacidad;
+    }
+
+  }
+
+  getFontColor(categoria) {
+    if(categoria === null) {
+       if(this.allSelected) {return '#000000';}
+    }
+    else if(categoria.selected) {
+      // console.log(categoria.color);
+      return categoria.color;
+    }
+
+  }
 }
