@@ -7,7 +7,7 @@
   <span class="fixed-title-right pull-right" (click)="changeView('verify')">Sube tu imagen</span>
   <div class="app-select-image" [ngSwitch]="view">
     <div *ngSwitchCase="'select'">
-      <app-select-image></app-select-image>
+      <app-select-image (selected)="uploadImage($event,ciBox,selectBox)"></app-select-image>
     </div>
     <div *ngSwitchCase="'verify'">
       <app-verify-user (verified)="changeView('upload')" (canceled)="changeView('select')"></app-verify-user>

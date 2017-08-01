@@ -1,4 +1,24 @@
+@import "main";
+
+.vertical-center{
+  position: absolute;
+  left: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vertical-center-right{
+    left:initial;
+    right:1em;
+    top: 40%;
+}
+
+.fa:hover{
+  cursor: pointer;
+}
+
 .character{
+  position: relative;
   background-color: #d8d8d8;
   border-radius: 0.3em;
   margin-left: 0.25em;
@@ -6,6 +26,17 @@
   padding-left: 1em;
   padding-right: 1em;
   height: 1.5em
+}
+.character .fa{
+    color: $grey-8;
+}
+.char-name{
+  font-family: Raleway;
+  font-size: .9em;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-align: left;
+  color: $grey-8;
 }
 .row-margin{
   margin-top:0.5em;

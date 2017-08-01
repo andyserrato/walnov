@@ -1,5 +1,13 @@
 @import 'main';
 
+
+.container-fluid{
+  padding: 0;
+}
+.custom-padding-1{
+  padding: 0em 1em !important;
+}
+
 .fondo {
   background-color: #fafafa;
 }

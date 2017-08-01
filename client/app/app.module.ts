@@ -53,10 +53,21 @@ import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chats
 import { ChatstoryMessageComponent } from './chatstory/crear-chatstory-step-2/chatstory-message/chatstory-message.component';
 import { TagBgComponent } from './shared/components/tag-bg/tag-bg.component';
 import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-biblioteca.component';
+import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 import { CardMiBibliotecaBuscadorComponent } from './shared/card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
 import { CardCategoriasComponent } from './shared/card-categorias/card-categorias.component';
 import { CardChatstoryComponent } from './shared/card-chatstory/card-chatstory.component';
 import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
+import { HomeMisChatstoriesComponent } from './home/home-mis-chatstories/home-mis-chatstories.component';
+import { CardHomeNavigateComponent } from './home/card-home-navigate/card-home-navigate.component';
+import { HomeGuardadoComponent } from './home/home-guardado/home-guardado.component';
+import { GuardadoWallsComponent } from './home/home-guardado/guardado-walls/guardado-walls.component';
+import { GuardadoRelatosComponent } from './home/home-guardado/guardado-relatos/guardado-relatos.component';
+import { GuardadoChatstoriesComponent } from './home/home-guardado/guardado-chatstories/guardado-chatstories.component';
+import { CardInfoPremiumComponent } from './shared/card-info-premium/card-info-premium.component';
+import { HomeRecienteComponent } from './home/home-reciente/home-reciente.component';
+import { RecienteNotificacionComponent } from './home/home-reciente/reciente-notificacion/reciente-notificacion.component';
+import { CardChatstoriesPaginadorComponent } from './shared/card-chatstories-paginador/card-chatstories-paginador.component';
 
 @NgModule({
   declarations: [
@@ -98,8 +109,19 @@ import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/lis
     ChatstoryMessageComponent,
     CardMiBibliotecaBuscadorComponent,
     CardCategoriasComponent,
+    VerChatstoryComponent,
+    HomeMisChatstoriesComponent,
     CardChatstoryComponent,
-    ListadoChatstoriesComponent
+    ListadoChatstoriesComponent,
+    CardHomeNavigateComponent,
+    HomeGuardadoComponent,
+    GuardadoWallsComponent,
+    GuardadoRelatosComponent,
+    GuardadoChatstoriesComponent,
+    CardInfoPremiumComponent,
+    HomeRecienteComponent,
+    RecienteNotificacionComponent,
+    CardChatstoriesPaginadorComponent
   ],
   imports: [
     BrowserModule,

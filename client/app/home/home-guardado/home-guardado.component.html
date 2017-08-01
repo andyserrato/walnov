@@ -1,0 +1,16 @@
+<div class="container-outside">
+  <div class="row row-flanges">
+    <div class="flange" (click)="changeView('walls')" [ngClass]="{'flange-selected': this.view==='walls'}">
+      Walls
+    </div>
+    <div class="flange" (click)="changeView('relatos')" [ngClass]="{'flange-selected': this.view==='relatos'}">
+      Relatos
+    </div>
+    <div class="flange" (click)="changeView('chatstories')" [ngClass]="{'flange-selected': this.view==='chatstories'}">
+      Chatstories
+    </div>
+  </div>
+  <div class="container" [ngSwitch]="this.view">
+    <app-guardado-chatstories *ngSwitchCase="'chatstories'"></app-guardado-chatstories>
+  </div>
+</div>

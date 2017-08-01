@@ -1,0 +1,35 @@
+@import 'main';
+
+.container{
+  width: 100%;
+  border-radius: 8px;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  padding:2em;
+}
+
+.title{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.43;
+  text-align: center;
+  color: $main-3;
+}
+
+.button{
+  margin-top:1em;
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+  border-radius: 44px;
+  background-color: $main-3;
+  padding:.5em;
+    &:hover{
+      cursor: pointer;
+      background-color: $main-4;
+    }
+}

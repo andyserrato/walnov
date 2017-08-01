@@ -1,4 +1,5 @@
 
 <div class="character row-margin" [ngClass]="{'true': personaje != undefined}">
-  <span *ngIf="personaje != undefined">{{personaje}}<span class="fa fa-times pull-right" (click)="deletePersonaje(personaje)"></span></span>
+  <span *ngIf="personaje != undefined" class="char-name vertical-center">{{personaje}}</span>
+  <span *ngIf="personaje != undefined" class="fa fa-times pull-right vertical-center vertical-center-right" (click)="deletePersonaje(personaje)"></span>
 </div>

@@ -14,6 +14,7 @@ import { Walls } from './walls/walls.component';
 import { ListadoWalls } from './walls/listado-walls.component';
 import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
 import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
+import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 
 
 
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     },
 
 
-    { path: 'crear-chatstory', component: CrearChatstoryStep1Component },
+    { path: 'crear-chatstory', component: CrearChatstoryComponent },
+    { path: 'ver-chatstory', component: VerChatstoryComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: '**', component: PageNotFoundComponent }
 

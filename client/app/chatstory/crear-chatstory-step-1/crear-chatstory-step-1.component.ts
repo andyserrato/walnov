@@ -3,44 +3,58 @@ import { Personaje } from '../crear-personaje-chatstory/personaje.model';
 import { ChatStory } from '../chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Categoria } from '../../models/cats';
+import { AlertService } from "../../services/alert.service";
 @Component({
   selector: 'app-crear-chatstory-step-1',
   templateUrl: './crear-chatstory-step-1.component.html',
   styleUrls: ['./crear-chatstory-step-1.component.scss']
 })
 export class CrearChatstoryStep1Component implements OnInit {
+
   @Output() done: EventEmitter<any>;
-  chars: Array<string>;
   @Input() chatStory: ChatStory;
   categorias: Array<Categoria>;
-  cat: Categoria;
-  
-  constructor(private repositorio: RepositorioService) {
-    this.chars = new Array<string>();
+  maxChars: Array<string> = new Array<string>(18);
+
+  constructor(private repositorio: RepositorioService, private alert: AlertService) {
     this.done = new EventEmitter<any>();
     this.categorias = repositorio.categoriasAL;
   }
 
   ngOnInit() {
-    if(this.chatStory.personajes){
-      this.chars = this.chatStory.personajes;
+    this.refreshArray();
+  }
+
+  refreshArray(){
+    for(let i = 0; i<this.chatStory.personajes.length; i++){
+      this.maxChars[i]=this.chatStory.personajes[(this.chatStory.personajes.length-1)-i];
     }
-    if(this.chatStory.categoria){
-      this.cat=this.chatStory.categoria;
-    }else{
-      this.cat=this.categorias[0];
-    }
+    console.log(this.maxChars);
   }
 
   nextStep(titulo){
-      this.chatStory.categoria=this.cat;
-      this.chatStory.titulo=titulo.value;
-      this.chatStory.personajes=this.chars;
+    if(this.chatStory.titulo && this.chatStory.personajes.length>0 && this.chatStory.description){
       this.done.emit(this.chatStory);
+    }else{
+      this.alert.error('Faltan campos por rellenar');
+    }
   }
 
   changeImage(event){
     this.chatStory.img=event;
+  }
+
+  newPerosnaje(event: HTMLInputElement){
+    // console.log(event);
+    if(event.value && this.chatStory.personajes.length<18 && !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value)]){
+      this.chatStory.personajes.push(event.value);
+      event.value="";
+      this.refreshArray();
+    }
+  }
+
+  deleteChar(event){
+
   }
 
 }

@@ -6,9 +6,9 @@
     <!-- /.col -->
     <div class="col-8">
       <div class="outside-container" [ngSwitch]="view">
-        <app-crear-chatstory-step-1 *ngSwitchCase="'step1'" (done)="changeView('step2',$event)" [chatStory]="chatStory"></app-crear-chatstory-step-1>
-        <app-crear-chatstory-step-2 *ngSwitchCase="'step2'" (back)="changeView('step1',$event)" [chatStory]="chatStory"></app-crear-chatstory-step-2>
-
+        <app-crear-chatstory-step-1 *ngSwitchCase="'step1'" (done)="changeView('step2',$event)" [chatStory]="this.chatStory"></app-crear-chatstory-step-1>
+        <app-crear-chatstory-step-2 *ngSwitchCase="'step2'" (back)="changeView('step1',$event)" (done)="changeView('view',$event)" [chatStory]="chatStory"></app-crear-chatstory-step-2>
+        <app-ver-chatstory *ngSwitchCase="'view'" [chatStory]="this.chatStory"></app-ver-chatstory>
       </div>
     </div>
     <!-- /.col -->

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, AfterViewChecked, ViewChild } from '@angular/core';
 import { ChatStory } from '../chatstory.model';
-import { ChatstoryMessage } from './chatstory-message/chatstory-message.component';
+import { ChatstoryMessage } from '../../models/chatstory-message';
 @Component({
   selector: 'app-crear-chatstory-step-2',
   templateUrl: './crear-chatstory-step-2.component.html',
@@ -10,16 +10,21 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
 
   @Input() chatStory: ChatStory;
   @Output() back: EventEmitter<any>;
+  @Output() done: EventEmitter<any>;
   // messages: Array<ChatstoryMessage> = new Array<ChatstoryMessage>();
   @ViewChild('preview') private preview: ElementRef;
-  message: ChatstoryMessage = new ChatstoryMessage('none','');
+  @ViewChild('imgPlaceholder') private imgPlaceholder: ElementRef;
+  message: ChatstoryMessage = new ChatstoryMessage('','');
   editing: boolean = false;
   constructor() {
     this.back = new EventEmitter<any>();
+    this.done = new EventEmitter<any>();
 
   }
 
   ngOnInit() {
+
+    // console.log(this.chatStory.personajes);
     if(!this.chatStory.messages){
       this.chatStory.messages= new Array<ChatstoryMessage>();
     }
@@ -38,11 +43,12 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
 
   newMessage(character: any, text: any, preview: HTMLElement, input){
     if(character.value && character.value != "none" && text.value){
-      let message = new ChatstoryMessage(character.value, text.value, this.message.image_url);
+      let message = new ChatstoryMessage(character.value, text.value, this.message.image_url,this.message.delay);
       this.chatStory.messages.push(message);
-      this.message = new ChatstoryMessage();
+      this.message = new ChatstoryMessage('','');
       this.editing = false;
       input.value="";
+      this.imgPlaceholder.nativeElement.innerHTML="Añadir Imagen";
     }
 
   }
@@ -50,47 +56,52 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   forceNewMessage(){
     this.message = new ChatstoryMessage();
     this.editing = false;
+    this.imgPlaceholder.nativeElement.innerHTML="Añadir Imagen";
   }
 
   deleteMessage(){
     this.chatStory.messages.splice(this.chatStory.messages.indexOf(this.message),1);
     this.editing = false;
-    this.message= new ChatstoryMessage();
+    this.message = new ChatstoryMessage();
   }
 
-
+  delayMessage(){
+    this.message.delay=!this.message.delay;
+  }
 
   loadMessage(m: ChatstoryMessage){
     this.message=m;
     this.editing = true;
+    this.imgPlaceholder.nativeElement.innerHTML="Cambiar Imagen";
   }
 
   getBack(){
-    console.log(this.chatStory.messages);
     this.back.emit(this.chatStory);
+  }
+
+  viewChatStory(){
+    this.done.emit(this.chatStory);
   }
 
   _handleReaderLoaded(e) {
         var reader = e.target;
         this.message.image_url=reader.result;
   }
-  uploadImage(event: any, placeholder){
+
+  uploadImage(event: any){
     if(event.target.files[0].size < 5000000){
       var reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsDataURL(event.target.files[0]);
-      placeholder.innerHTML=event.target.files[0].name;
+      this.imgPlaceholder.nativeElement.innerHTML=event.target.files[0].name;
     }else{
-
       console.log("Error al subir");
     }
   }
 
-  deleteImage(event, placeholder){
-    placeholder.innerHTML="Añadir imagen";
+  deleteImage(event){
+    this.imgPlaceholder.nativeElement.innerHTML="Añadir Imagen";
     event.value="";
     this.message.image_url="";
   }
-
-
 }

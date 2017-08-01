@@ -27,8 +27,8 @@
     <div class="chatstory-message-creator" >
       <div class="row">
         <span class="form-title">Personaje</span>
-        <select [(ngModel)]="message.character" class="form-control" #characterSelect>
-            <option *ngIf="chatStory.personajes.length === 0" value="none" >Ninguno</option>
+        <select [(ngModel)]="message.character" class="form-control" #characterSelect required>
+            <option value="" disabled selected hidden>Nombre del personaje</option>
             <option *ngFor="let char of chatStory.personajes" value="{{char}}">{{char}}</option>
         </select>
       </div>
@@ -42,7 +42,7 @@
             <input #imageInput type="file" class="form-control img-input" name="" value="" (change)="uploadImage($event, imagePlaceholder)">
             <div class="row">
               <div class="col">
-                <span #imagePlaceholder class="img-placeholder vertical-center">Añadir imagen</span>
+                <span #imgPlaceholder class="img-placeholder vertical-center">Añadir imagen</span>
               </div>
               <div class="col">
                 <div class="btn-img pull-right">
@@ -51,18 +51,18 @@
               </div>
             </div>
           </label>
-          <img class="img" *ngIf="this.message.image_url" src="{{message.image_url}}" alt="" (click)="deleteImage(imageInput, imagePlaceholder)">
-          <span class="fa fa-times img-cross" *ngIf="this.message.image_url" (click)="deleteImage(imageInput, imagePlaceholder)"></span>
+          <img class="img" *ngIf="this.message.image_url" src="{{message.image_url}}" alt="" (click)="deleteImage(imageInput)">
+          <span class="fa fa-times img-cross" *ngIf="this.message.image_url" (click)="deleteImage(imageInput)"></span>
         </div>
 
       </div>
       <div class="row row-margin-top">
         <div class="col-3 relative">
-          <span class="time vertical-center">3" <span class="fa fa-clock-o"></span></span>
+          <span class="time vertical-center" (click)="delayMessage()" [ngClass]="{'delay-selected': this.message.delay}">3’’ <span class="fa fa-clock-o"></span></span>
         </div>
         <div class="col no-padding">
           <div *ngIf="!this.editing" class="btn-hecho pull-right" (click)="newMessage(characterSelect, messageText, chatstoryPreview, imageInput)">Añadir mensaje</div>
-          <div *ngIf="this.editing" class="btn-hecho pull-right" (click)="forceNewMessage()">Nuevo Mensaje</div>
+          <div *ngIf="this.editing" class="btn-hecho pull-right" (click)="forceNewMessage()">Guardar Cambios</div>
           <div *ngIf="this.editing" class="btn-hecho pull-right margin-top" (click)="deleteMessage()">Borrar Mensaje</div>
 
         </div>
@@ -71,25 +71,30 @@
     </div>
   </div>
   <div class="col-6 no-padding padding-right relative col-chatstory-preview">
-    <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.img+'\')'}">
-    </div>
+    <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.img+'\')'}"></div>
     <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria.color+')'}" #preview>
-      <app-chatstory-message *ngFor="let m of this.chatStory.messages" [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
+      <div class="row no-padding" *ngFor="let m of this.chatStory.messages">
+          <app-chatstory-message [editable]='true' [big]='false' [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
+      </div>
+
     </div>
-
-
   </div>
 </div>
 
 
 <div class="row no-padding row-margin-top">
-  <div class="col-9 relative">
+  <div class="col-6 relative">
     <span class="pull-right vertical-center phrase">
       Frase motivadora que tendrá que pensar David
     </span>
   </div>
   <div class="col-3 no-padding">
     <div class="btn-hecho pull-right">
+      Guardar Borrador
+    </div>
+  </div>
+  <div class="col-3 no-padding">
+    <div class="btn-hecho pull-right" (click)="viewChatStory()">
       Publicar Chatstory
     </div>
   </div>

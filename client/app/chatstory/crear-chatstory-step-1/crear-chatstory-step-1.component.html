@@ -1,4 +1,3 @@
-
   <span class="fixed-title">Creación de Chatstories - <b>Paso 1/2</b></span>
   <div class="row row-margin-top">
     <div class="col-8">
@@ -12,22 +11,23 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <input #titulo maxlength="48" class="form-control" type="text" name="" value="{{ chatStory.titulo ? chatStory.titulo : null }}">
+      <input #titulo maxlength="48" class="form-control" type="text" name="" [(ngModel)]="this.chatStory.titulo" placeholder="Da un nombre a tu Chatstorie">
     </div>
     <div class="col-4">
-      <select class="form-control" [(ngModel)]="cat">
-        <option *ngFor="let categoria of this.categorias" [selected]="this.chatStory.categoria && categoria.nombre === this.chatStory.categoria.nombre" [ngValue]="categoria">{{ categoria.nombre }}</option>
+      <select class="form-control" [(ngModel)]="this.chatStory.categoria">
+        <option *ngFor="let categoria of this.categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
       </select>
     </div>
   </div>
-  <div class="row row-margin-top">
+  <div class="row row-margin-top-4">
     <div class="col-12 no-padding height-img-picker">
       <div class="row no-padding no-relative">
-        <div class="col no-padding no-relative">
-          <app-image-picker (imageUploaded)="changeImage($event)"></app-image-picker>
+        <div class="col-3 no-padding no-relative img-preview" [ngStyle]="{'background-image': 'url(\''+this.chatStory.img+'\')'}">
+          <app-image-picker [white]="true" (imageUploaded)="changeImage($event)"></app-image-picker>
         </div>
-        <div class="col no-padding">
-          <img class="img-preview" *ngIf="this.chatStory.img" src="{{this.chatStory.img}}" >
+        <div class="description-box">
+          <span class="fixed-title-2"><b>Descripción</b></span>
+          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="Cuéntanos de que va tu ChatStory"[(ngModel)]="this.chatStory.description"></textarea>
         </div>
       </div>
 
@@ -36,7 +36,25 @@
   </div>
   <div class="row no-padding row-margin-top">
     <div class="col-12 no-padding">
-      <app-crear-personaje-chatstory [chars]="chars"></app-crear-personaje-chatstory>
+
+        <div class="row no-padding">
+          <span class="fixed-title-2"><b>Creador de personajes</b></span>
+        </div>
+        <div class="no-padding row">
+          <div class="col-6 input-character">
+            <input maxlength="28" #personaje class="form-control col-10" type="text" placeholder="Nombre del personaje" (keydown.enter)="newPerosnaje(personaje)">
+            <span class="fa fa-plus-circle pull-right offset-1 col-1 plus-character" (click)="newPerosnaje(personaje)"></span>
+          </div>
+          <div class="col-6 form-inline">
+            <label class="form-check-label pull-right form-right" (click)="toggleExclusive()">
+              <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" [checked]="this.chatStory.exclusivo" (change)="this.chatStory.exclusivo = !this.chatStory.exclusivo">
+              <div class="radio"></div>
+              <span class="radio-text">Chatstory Exclusivo</span>
+            </label>
+          </div>
+        </div>
+
+      <app-crear-personaje-chatstory [chars]="this.maxChars" (deleteChar)="deleteChar($event)"></app-crear-personaje-chatstory>
     </div>
   </div>
   <div class="row no-padding row-margin-top">

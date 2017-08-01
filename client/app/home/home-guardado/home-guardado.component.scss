@@ -1,0 +1,42 @@
+@import "main";
+
+.container{
+  width: 100%;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18);
+  padding: 2em 0em;
+}
+
+.row-flanges{
+  padding:0em 3em;
+}
+
+.flange{
+  padding:.5em 4em;
+  background-color: $grey-6;
+  color:white;
+  margin: 0px 1em;
+  border-top-right-radius: .7em;
+  border-top-left-radius: .7em;
+  // z-index: 1;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.17;
+  text-align: center;
+  color: $grey-1;
+  &:hover{
+    cursor: pointer;
+    background-color: $grey-7;
+  }
+}
+
+.flange-selected{
+  background-color: #fdfdfd;
+  color:$grey-8;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  &:hover{
+    background-color: #fdfdfd !important;
+  }
+}

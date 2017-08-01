@@ -1,15 +1,15 @@
-<div class="row no-padding">
+<!-- <div class="row no-padding">
   <span class="fixed-title-2"><b>Creador de personajes</b></span>
-</div>
-<div class="row no-padding">
+</div> -->
+<!-- <div class="row no-padding">
   <div class="no-padding input-character row">
     <input maxlength="28" #personaje class="form-control col-10" type="text" placeholder="Nombre del personaje" (keydown.enter)="newPerosnaje(personaje)">
     <span class="fa fa-plus-circle pull-right offset-1 col-1" (click)="newPerosnaje(personaje)"></span>
   </div>
-</div>
+</div> -->
 <div class="outside-container row-margin-top">
   <div class="row">
-    <div class="col-lg-4 no-padding" *ngFor="let col of cols">
+    <div class="col-lg-4 no-padding" *ngFor="let col of chars">
       <app-personaje-li [personaje]="col" (deleted)="deletePersonaje($event)"></app-personaje-li>
     </div>
 </div>
