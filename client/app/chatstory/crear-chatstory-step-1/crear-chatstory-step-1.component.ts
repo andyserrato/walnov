@@ -12,38 +12,28 @@ import { AlertService } from "../../services/alert.service";
 export class CrearChatstoryStep1Component implements OnInit {
 
   @Output() done: EventEmitter<any>;
-  chars: Array<string>;
   @Input() chatStory: ChatStory;
   categorias: Array<Categoria>;
-  cat: Categoria;
   maxChars: Array<string> = new Array<string>(18);
 
   constructor(private repositorio: RepositorioService, private alert: AlertService) {
-    this.chars = new Array<string>();
     this.done = new EventEmitter<any>();
     this.categorias = repositorio.categoriasAL;
   }
 
   ngOnInit() {
-    if(!this.chatStory.img){
-      this.chatStory.img="https://www.lorempixel.com/1600/1200";
-    }
-    if(this.chatStory.personajes){
-      this.chars = this.chatStory.personajes;
-    }
-    if(this.chatStory.categoria){
-      this.cat=this.chatStory.categoria;
-    }else{
-      this.cat=this.categorias[0];
-    }
     this.refreshArray();
   }
 
+  refreshArray(){
+    for(let i = 0; i<this.chatStory.personajes.length; i++){
+      this.maxChars[i]=this.chatStory.personajes[(this.chatStory.personajes.length-1)-i];
+    }
+    console.log(this.maxChars);
+  }
+
   nextStep(titulo){
-    if(titulo.value && this.cat && this.chars){
-      this.chatStory.categoria=this.cat;
-      this.chatStory.titulo=titulo.value;
-      this.chatStory.personajes=this.chars;
+    if(this.chatStory.titulo && this.chatStory.personajes.length>0 && this.chatStory.description){
       this.done.emit(this.chatStory);
     }else{
       this.alert.error('Faltan campos por rellenar');
@@ -56,18 +46,15 @@ export class CrearChatstoryStep1Component implements OnInit {
 
   newPerosnaje(event: HTMLInputElement){
     // console.log(event);
-    if(event.value && this.chars.length<18 && !this.chars[this.chars.indexOf(event.value)]){
-      this.chars.push(event.value);
-      this.refreshArray();
+    if(event.value && this.chatStory.personajes.length<18 && !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value)]){
+      this.chatStory.personajes.push(event.value);
       event.value="";
+      this.refreshArray();
     }
   }
 
-  refreshArray(){
-    this.maxChars = new Array<string>(18);
-    for(let i = 0; i < this.chars.length; i++){
-      this.maxChars[(this.chars.length-i)-1]=this.chars[i];
-    }
+  deleteChar(event){
+
   }
 
 }

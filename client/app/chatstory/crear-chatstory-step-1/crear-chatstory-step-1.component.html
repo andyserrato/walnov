@@ -14,8 +14,8 @@
       <input #titulo maxlength="48" class="form-control" type="text" name="" [(ngModel)]="this.chatStory.titulo" placeholder="Da un nombre a tu Chatstorie">
     </div>
     <div class="col-4">
-      <select class="form-control" [(ngModel)]="cat">
-        <option *ngFor="let categoria of this.categorias" [selected]="this.chatStory.categoria && categoria.nombre === this.chatStory.categoria.nombre" [ngValue]="categoria">{{ categoria.nombre }}</option>
+      <select class="form-control" [(ngModel)]="this.chatStory.categoria">
+        <option *ngFor="let categoria of this.categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
       </select>
     </div>
   </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="description-box">
           <span class="fixed-title-2"><b>Descripción</b></span>
-          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="Cuéntanos de que va tu ChatStory"></textarea>
+          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="Cuéntanos de que va tu ChatStory"[(ngModel)]="this.chatStory.description"></textarea>
         </div>
       </div>
 
@@ -46,15 +46,15 @@
             <span class="fa fa-plus-circle pull-right offset-1 col-1 plus-character" (click)="newPerosnaje(personaje)"></span>
           </div>
           <div class="col-6 form-inline">
-            <label class="form-check-label pull-right form-right">
-              <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
+            <label class="form-check-label pull-right form-right" (click)="toggleExclusive()">
+              <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" [checked]="this.chatStory.exclusivo" (change)="this.chatStory.exclusivo = !this.chatStory.exclusivo">
               <div class="radio"></div>
               <span class="radio-text">Chatstory Exclusivo</span>
             </label>
           </div>
         </div>
 
-      <app-crear-personaje-chatstory [chars]="chars" [maxChars]="maxChars"></app-crear-personaje-chatstory>
+      <app-crear-personaje-chatstory [chars]="this.maxChars" (deleteChar)="deleteChar($event)"></app-crear-personaje-chatstory>
     </div>
   </div>
   <div class="row no-padding row-margin-top">

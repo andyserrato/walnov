@@ -7,13 +7,15 @@ export class ChatStory{
   categoria: Categoria;
   messages: Array<ChatstoryMessage>;
   description: string;
-  constructor(t?: string, p?: Array<string>, c?: Categoria, m?: Array<ChatstoryMessage>, i?: string, d?: string){
+  exclusivo: boolean;
+  constructor(t?: string, p?: Array<string>, c?: Categoria, m?: Array<ChatstoryMessage>, i?: string, d?: string, e?: boolean){
     this.titulo=t;
     this.personajes=p;
     this.categoria=c;
     this.messages=m;
     this.img=i;
     this.description=d;
+    this.exclusivo=e;
   }
 
 }

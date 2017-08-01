@@ -9,7 +9,7 @@
 </div> -->
 <div class="outside-container row-margin-top">
   <div class="row">
-    <div class="col-lg-4 no-padding" *ngFor="let col of maxChars">
+    <div class="col-lg-4 no-padding" *ngFor="let col of chars">
       <app-personaje-li [personaje]="col" (deleted)="deletePersonaje($event)"></app-personaje-li>
     </div>
 </div>

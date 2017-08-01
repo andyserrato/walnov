@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Personaje } from './personaje.model';
 
 @Component({
@@ -7,28 +7,22 @@ import { Personaje } from './personaje.model';
   styleUrls: ['./crear-personaje-chatstory.component.scss']
 })
 export class CrearPersonajeChatstoryComponent implements OnInit {
-
-  @Input() maxChars: Array<string>;
+  @Output() deleteChar: EventEmitter<any>;
   @Input() chars: Array<string>;
   constructor() {
     // this.cols.find(this.cols.keys()[0]).push('Hola');
+    this.deleteChar = new EventEmitter<any>();
 
-  }
-
-  ngOnInit() {
     // this.refreshArray();
   }
 
-  refreshArray(){
-    this.maxChars = new Array<string>(18);
-    for(let i = 0; i < this.chars.length; i++){
-      this.maxChars[(this.chars.length-i)-1]=this.chars[i];
-    }
+  ngOnInit() {
+    console.log(this.chars);
+    // this.refreshArray();
   }
 
   deletePersonaje(event){
-    this.chars.splice(this.chars.indexOf(event),1);
-    this.refreshArray();
+    this.deleteChar.emit(event);
   }
 
 }
