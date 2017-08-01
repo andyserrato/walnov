@@ -14,6 +14,7 @@ export class CardChatstoriesPaginadorComponent implements OnInit {
   chatSt: Chatstory;
   firstAdded: number = 0;
   @Input() chatStoriesFiltrados: Array<Chatstory>;
+  @Input() categoria: Categoria;
   filtradosVacio: boolean = true;
   //chatstories: Array<Chatstory>;
   paginador = null;
@@ -65,31 +66,19 @@ export class CardChatstoriesPaginadorComponent implements OnInit {
       nuevoCS.imagen_url = "https://lorempixel.com/63/100";
       nuevoCS.likes = 784;
       nuevoCS.views = 2000;
-      this.addChat(nuevoCS);
+      this.repositorio.chatstories.push(nuevoCS);
+      //this.repositorio.chatstories.push(nuevoCS);
     }
 
-    this.addChat(this.chatSt);
-    this.addChat(this.chatst1);
-    this.addChat(this.chatst2);
-    this.addChat(this.chatst3);
+    this.repositorio.chatstories.push(this.chatSt);
+    this.repositorio.chatstories.push(this.chatst1);
+    this.repositorio.chatstories.push(this.chatst2);
+    this.repositorio.chatstories.push(this.chatst3);
 
-    let limite = this.chatStoriesFiltrados.length;
+    //let limite = this.chatStoriesFiltrados.length;
 
-    this.repositorio.paginadorCardsChatstories = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 20, 10);
-  }
-
-
-  addChat(newChat: Chatstory) {
-    if (newChat) {
-        this.repositorio.chatstories.push(newChat);
-    }
-
-  }
-
-  deleteChat(oldChat: Chatstory){
-    this.repositorio.chatstories.splice(this.repositorio.chatstories.indexOf(oldChat), 1);
-
-  }
+    this.repositorio.paginadorCardsChatstories = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 12, 6);
+}
 
   getColor(chatstory: Chatstory) {
     return chatstory.categoria.color;
@@ -107,6 +96,7 @@ export class CardChatstoriesPaginadorComponent implements OnInit {
       //this.repositorio.chatstories.push(chatstory);
       if(this.firstAdded === 0) {
         CardMiBibliotecaBuscadorComponent.showMessage();
+        this.repositorio.paginadorChatstoriesBiblioteca.paginador = [];
       }
 
       this.firstAdded++;
@@ -141,4 +131,7 @@ export class CardChatstoriesPaginadorComponent implements OnInit {
     return chats.length === 0;
   }
 
+  getBackgroundImage() {
+    return 'linear-gradient(to bottom,'+this.categoria.opacidad+','+this.categoria.color+')';
+  }
 }

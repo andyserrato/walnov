@@ -113,7 +113,7 @@ export class CardMiBibliotecaComponent implements OnInit {
   }
 
   getBorder(chatstory: Chatstory) {
-    return 'solid 1.5px ' + chatstory.categoria.color;
+    return 'solid 1.5px '+ this.repositorio.categoriasHM.get(chatstory.categoria.nombre).color;
 
   }
 
@@ -148,8 +148,12 @@ export class CardMiBibliotecaComponent implements OnInit {
   }
 
   toggleState(chatstory) {
-    // this.state = (this.state === 'in' ? 'out' : 'in');
+    this.repositorio.chatstories.forEach(this.stateToFalse);
     chatstory.selected = !chatstory.selected;
+  }
+
+  stateToFalse(chatstory){
+    chatstory.selected = true;
   }
 
   getBackgroundColor (chatstory) {

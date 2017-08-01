@@ -11,15 +11,7 @@ import { CardMiBibliotecaBuscadorComponent } from '../card-mi-biblioteca-buscado
   styleUrls: ['./card-chatstory.component.scss']
 })
 export class CardChatstoryComponent implements OnInit {
-  chatSt: Chatstory;
-  firstAdded: number = 0;
-  @Input() chatStoriesFiltrados: Array<Chatstory>;
-  @Input() categoria: Categoria;
-  filtradosVacio: boolean = true;
-  //chatstories: Array<Chatstory>;
-  paginador = null;
-  @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
-
+  @Input() chatstory: Chatstory;
   constructor(private repositorio: RepositorioService) { }
 
   ngOnInit(){
@@ -33,29 +25,7 @@ export class CardChatstoryComponent implements OnInit {
 
   getNumber(numero: number) {
     if(numero>=1000) return '+' + Math.round(numero/1000) + 'K';
-    return numero;
-
-  }
-
-  addBiblioteca(chatstory: Chatstory) {
-    if(!chatstory.added) {
-      //this.repositorio.chatstories.push(chatstory);
-      if(this.firstAdded === 0) {
-        CardMiBibliotecaBuscadorComponent.showMessage();
-        this.repositorio.paginadorChatstoriesBiblioteca.paginador = [];
-      }
-
-      this.firstAdded++;
-
-      if(this.firstAdded === 5) {
-        CardMiBibliotecaBuscadorComponent.turnFalse();
-      }
-
-      chatstory.added = true;
-      this.repositorio.paginadorChatstoriesBiblioteca.addItem(chatstory);
-      //console.log(this.repositorio.paginadorChatstoriesBiblioteca);
-    }
-
+      return numero;
 
   }
 
@@ -71,13 +41,5 @@ export class CardChatstoryComponent implements OnInit {
     }
     return chatstory.descripcion;
 
-  }
-
-  emptyFiltrados(chats: any) {
-    return chats.length === 0;
-  }
-
-  getBackgroundImage() {
-    return 'linear-gradient(to bottom,'+this.categoria.opacidad+','+this.categoria.color+')';
   }
 }
