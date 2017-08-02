@@ -1,3 +1,46 @@
-<p>
-  card-relato works!
-</p>
+<div class="Rectangle-7-Copy-5">
+  <div class="d-flex flex-row">
+    <div class="d-flex flex-column Rectangle-5">
+      <img  class="Imagen-Relato" src={{this.relatoPrueba.imagen_url}} alt="">
+      <div class="Fondo-Imagen">
+      </div>
+      <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
+      </div>
+      <div class="Titulo-Categoria Rectangle-7-Copy-10" [style.backgroundColor] = 'getColor()'>
+        {{this.relatoPrueba.categoria.nombre}}
+      <div class="d-flex flex-row Usuario-Relato">
+        <div class="d-flex flex-column">
+          <img class="Imagen-Usuario" src={{this.relatoPrueba.userImage}} alt={{this.relatoPrueba.userName}}>
+        </div>
+        <div class="d-flex flex-column">
+          <div class="Nombre-Usuario ellipsis" title="{{this.relatoPrueba.userName}}">
+            {{this.relatoPrueba.userName}}
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-start" style="padding-left:19px; max-width:280px;">
+      <div class="d-flex flex-row Titulo-Relato">
+        {{this.relatoPrueba.titulo}}
+      </div>
+      <div class="d-flex flex-row Resumen-Relato">
+        {{this.relatoPrueba.resumen}}
+      </div>
+      <div class="d-flex flex-row mt-auto Relato-Estadisticas">
+        <div class="d-flex flex column" style="margin-right:35px;">
+          <i class="fa fa-eye" aria-hidden="true" style="margin-top:3px; margin-right:2px;"></i>
+          {{getNumber(this.relatoPrueba.views)}}
+        </div>
+        <div class="d-flex flex column" style="margin-right:35px;">
+          <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:2px; margin-right:2px;"></i>
+          {{getNumber(this.relatoPrueba.likes)}}
+        </div>
+        <div class="d-flex flex column">
+          <i class="fa fa-comment-o" aria-hidden="true" style="margin-top:1px; margin-right:2px;"></i>
+          {{getNumber(this.relatoPrueba.coments)}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
