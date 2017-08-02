@@ -13,6 +13,7 @@ import {CrearChatstoryStep1Component} from "./chatstory/crear-chatstory-step-1/c
 import { Walls } from './walls/walls.component';
 import { ListadoWalls } from './walls/listado-walls.component';
 import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
+import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-relatos.component';
 import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'chatstories', component: ListadoChatstoriesComponent },
+    { path: 'relatos', component: BuscadorRelatosComponent },
     { path: 'walls/listado-walls', component: ListadoWalls },
     { path: 'walls', component: Walls,
         children: [

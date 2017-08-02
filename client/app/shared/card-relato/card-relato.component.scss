@@ -1,12 +1,14 @@
 @import "main";
 
 .Rectangle-7-Copy-5 {
-  width: 468px;
+  width: 440px;
   height: 172px;
   padding-top: 22px;
   padding-bottom: 22px;
   padding-left: 16px;
   padding-right: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   border-radius: 8px;
   //background-color: #ffffff;
   background-color: $grey-1;
@@ -23,10 +25,10 @@
   position: absolute;
   z-index: 1;
   top:0;
-  max-width: 158px;
-  max-height: 129px;
-  height: 100%;
-  width: 100%;
+  width: 158px;
+  height: 129px;
+  //height: 100%;
+  //width: 100%;
   border-radius: 8px;
 
 }
@@ -53,10 +55,8 @@
   position: absolute;
   z-index: 2;
   top:0;
-  max-width: 158px;
-  max-height: 129px;
-  height: 100%;
-  width: 100%;
+  width: 158px;
+  height: 129px;
   background-color: #000000;
   opacity: 0.5;
   border-radius: 8px;
@@ -67,10 +67,8 @@
   position: absolute;
   z-index: 3;
   top:0;
-  max-width: 158px;
-  max-height: 129px;
-  height: 100%;
-  width: 100%;
+  width: 158px;
+  height: 129px;
   border-radius: 8px;
 
 }
@@ -123,7 +121,7 @@
 }
 
 .Relato-Estadisticas {
-  margin-left: 70px;
+  margin-left: 60px;
   font-family: Raleway;
   font-size: 12px;
   text-align: left;

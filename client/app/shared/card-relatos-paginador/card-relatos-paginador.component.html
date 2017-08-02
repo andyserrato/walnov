@@ -1,0 +1,17 @@
+<div class="Rectangle-5" *ngIf='categoria'>
+  <img class="Img-Categorias" src="https://lorempixel.com/957/72" alt="">
+  <div class="Fondo-Imagen">
+  </div>
+  <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
+  </div>
+  <div class="d-flex flex-row justify-content-start align-items-center Detalles-Categoria">
+    <div class="Titulo-Categoria">
+      {{categoria.nombre}}
+    </div>
+  </div>
+</div>
+<div #contenedorBiblioteca class="d-flex justify-content-center flex-row flex-wrap Limite">
+  <div class="" *ngFor= "let relato of repositorio.paginadorCardsRelatos.paginador">
+    <app-card-relato [relato] = 'relato'></app-card-relato>
+  </div>
+</div>
