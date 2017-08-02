@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AlertService } from '../services/alert.service';
 
 @Component({
@@ -8,12 +8,18 @@ import { AlertService } from '../services/alert.service';
 })
 export class AlertComponent implements OnInit {
   message: any;
-
+  @ViewChild('alertBox') alertBox: ElementRef;
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
-    
-    this.alertService.getMessage().subscribe(message => { this.message = message;});
+
+    this.alertService.getMessage().subscribe(message => {
+       this.message = message;
+       console.log(message);
+     });
+  }
+  clear(){
+    this.alertService.clear();
   }
 
 }

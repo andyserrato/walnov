@@ -1,21 +1,43 @@
-.lmao{
+.visible{
   position: fixed;
-  top: 11% !important;
+  top: 55px !important;
   z-index: 99;
   margin: 0 auto;
   transform: translateX(-50%);
   left: 50%;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.18);
   background-color: #ffffff;
-  padding: .5em 2em;
+  padding: .5em 2em .5em 1em;
   border-bottom: solid red .15em;
   font-family: Raleway;
   font-size: 14px;
   text-align: left;
+  diplay: initial;
 }
-
+.p-2{
+  padding-right:2em !important;
+}
 .alert{
   position:fixed;
   top:0;
-  transition: top 1s;
+  transition: top .5s linear;
+}
+
+.alert:hover{
+  cursor: pointer;
+}
+
+.message{
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #4a4a4a;
+}
+.text{
+  font-family: Raleway;
+  font-size: 14px;
+  text-align: left;
+  color: #4a4a4a;
 }

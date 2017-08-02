@@ -6,6 +6,17 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
 }
 
+.text-invalid{
+  position: absolute;
+    color: red;
+    font-family: RaleWay;
+    top:100%;
+}
+
+.input-invalid{
+  border-color:red;
+}
+
 .form-right{
   position: absolute;
   right: 1em;
@@ -21,12 +32,20 @@ input{
   font-size: 1.1em;
 }
 
+input:focus{
+    border-color: $main-1;
+}
+
 option{
   font-family: Raleway;
   font-size: 1.1em;
 }
 select{
   font-family: Raleway;
+  height: 100%;
+}
+select:focus{
+  border-color: $main-1;
 }
 
 

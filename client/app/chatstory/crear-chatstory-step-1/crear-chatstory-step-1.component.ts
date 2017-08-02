@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { Personaje } from '../crear-personaje-chatstory/personaje.model';
 import { ChatStory } from '../chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
@@ -15,13 +16,18 @@ export class CrearChatstoryStep1Component implements OnInit {
   @Input() chatStory: ChatStory;
   categorias: Array<Categoria>;
   maxChars: Array<string> = new Array<string>(18);
-
-  constructor(private repositorio: RepositorioService, private alert: AlertService) {
+  validate: any;
+  constructor(private repositorio: RepositorioService, private alert: AlertService, private fb: FormBuilder) {
     this.done = new EventEmitter<any>();
     this.categorias = repositorio.categoriasAL;
+
   }
 
   ngOnInit() {
+    this.validate = {
+        'title' : false,
+        'description' : false
+    };
     this.refreshArray();
   }
 
@@ -32,11 +38,30 @@ export class CrearChatstoryStep1Component implements OnInit {
     console.log(this.maxChars);
   }
 
+  validateField(event, selector){
+    console.log(event);
+    if(event.target.value){
+      this.validate[selector]=false;
+    }else{
+      this.validate[selector]=true;
+    }
+  }
+
   nextStep(titulo){
     if(this.chatStory.titulo && this.chatStory.personajes.length>0 && this.chatStory.description){
+      this.alert.clear();
       this.done.emit(this.chatStory);
     }else{
-      this.alert.error('Faltan campos por rellenar');
+      if(!this.chatStory.titulo){
+        this.validate['title']=true;
+      }
+      if(!this.chatStory.description){
+        this.validate['description']=true;
+      }
+      if(this.chatStory.personajes.length<=0){
+        this.alert.error('Introduce al menos un personaje');
+      }
+
     }
   }
 
