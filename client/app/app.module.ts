@@ -69,6 +69,9 @@ import { HomeRecienteComponent } from './home/home-reciente/home-reciente.compon
 import { RecienteNotificacionComponent } from './home/home-reciente/reciente-notificacion/reciente-notificacion.component';
 import { CardChatstoriesPaginadorComponent } from './shared/card-chatstories-paginador/card-chatstories-paginador.component';
 import { CardRelatoComponent } from './shared/card-relato/card-relato.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserCardComponent } from './user-profile/user-card/user-card.component';
+import { UserContentComponent } from './user-profile/user-content/user-content.component';
 
 @NgModule({
   declarations: [
@@ -123,7 +126,10 @@ import { CardRelatoComponent } from './shared/card-relato/card-relato.component'
     HomeRecienteComponent,
     RecienteNotificacionComponent,
     CardChatstoriesPaginadorComponent,
-    CardRelatoComponent
+    CardRelatoComponent,
+    UserProfileComponent,
+    UserCardComponent,
+    UserContentComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 cols-no-padding">
+      <app-user-card></app-user-card>
+    </div>
+    <!-- /.col -->
+    <div class="col cols-no-padding">
+      <div class="outside-container" [ngSwitch]="view">
+        <app-user-content></app-user-content>
+      </div>
+    </div>
+    <!-- /.col -->
+    <div class="col-3 hidden-md-down cols-no-padding">
+      <app-card-usuario-tendencia></app-card-usuario-tendencia>
+      <app-card-wall-relevante></app-card-wall-relevante>
+      <app-card-publicidad></app-card-publicidad>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->

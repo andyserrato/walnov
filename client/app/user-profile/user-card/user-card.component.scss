@@ -1,0 +1,228 @@
+@import "main";
+
+.container{
+  border-radius: 8px;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  padding: 5em 1em 1em;
+}
+
+.info-container{
+  border-radius: 8px;
+  background-color: $grey-1;
+  border: solid 1px #e0e0e0;
+  padding: 2em 1em 1em 1em;
+  text-align: center;
+  margin-bottom: 2.5em;
+}
+
+.user-name{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $main-1;
+}
+
+.status-text{
+  margin-bottom:.5em;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  color: #6c626f;
+}
+
+.status{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.img-profile{
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background-image: url(https://www.lorempixel.com/600/600);
+  background-size: cover;
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.message-img{
+  background-color: purple;
+  border-radius: 50%;
+  height: 22px;
+  position: absolute;
+  width: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -13px;
+  color:white;
+}
+
+.message-img .fa{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.followers-container{
+  padding:0em 1em;
+}
+
+.number-followers{
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  color: $grey-8;
+}
+
+.number-followers-container{
+  margin-bottom: 1em;
+}
+
+.all-followers-button{
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center !important;
+  color: $main-3;
+  &:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.followers{
+  text-align: center;
+  margin-bottom: .5em
+}
+
+.img-follower{
+  display: inline-block;
+  border-radius: 50%;
+  background-size: cover;
+  height: 30px;
+  width: 30px;
+  background-image: url('http://www.lorempixel.com/1200/1600');
+}
+
+
+.button{
+  margin: 1em auto;
+  border-radius: 4px;
+  background-color: $main-1;
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+  display: block;
+  padding: .5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  max-width: 60px;
+  &:hover{
+    cursor: pointer;
+    background-color: $main-2;
+  }
+}
+
+//shapes
+.shapes{
+  position: absolute;
+  width: 100%;
+  height: 5em;
+  top: 0;
+  left: 0;
+}
+
+.shape-1{
+  position: absolute;
+  top: 40px;
+  left: 15px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 10px 16px 10px;
+  border-color: transparent transparent #f0f0f0 transparent;
+  transform: rotate(-50deg);
+}
+
+.shape-2{
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 4px 7px 4px;
+  border-color: transparent transparent #f0f0f0 transparent;
+  -webkit-transform: rotate(15deg);
+  transform: rotate(15deg);
+}
+
+.shape-3{
+  position: absolute;
+  top: 18px;
+  left: 33px;
+  width: 0;
+  border: 2px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.shape-4{
+  position: absolute;
+  top: 54px;
+  left: 2px;
+  width: 0;
+  border: 2px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.shape-5{
+  position: absolute;
+  top: 11px;
+  left: 136px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 10px 16px 10px;
+  border-color: transparent transparent #f0f0f0 transparent;
+  -webkit-transform: rotate(-50deg);
+  transform: rotate(-86deg);
+}
+
+.shape-6{
+  position: absolute;
+  top: 50px;
+  left: 162px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 4px 7px 4px;
+  border-color: transparent transparent #f0f0f0 transparent;
+  -webkit-transform: rotate(15deg);
+  transform: rotate(78deg);
+}
+
+
+.shape-7{
+  position: absolute;
+  top: 47px;
+  left: 138px;
+  width: 0;
+  border: 2px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.shape-8{
+  position: absolute;
+  top: 18px;
+  left: 174px;
+  width: 0;
+  border: 2px solid #f0f0f0;
+  border-radius: 2px;
+}
