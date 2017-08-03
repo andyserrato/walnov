@@ -44,7 +44,7 @@ export class RegisterPopoverComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.popoverDisplay = false;
+    this.popoverDisplay = true;
   }
 
   togglePopover() {

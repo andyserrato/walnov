@@ -1,12 +1,12 @@
 export class ChatstoryMessage{
-  character: string;
-  text: string;
-  image_url: string;
+  personaje: string;
+  chat: string;
+  urlImagen: string;
   delay: boolean;
   constructor(c?: string, t?: string, i?:string, d?:boolean){
-    this.character=c;
-    this.text=t;
-    this.image_url=i;
+    this.personaje=c;
+    this.chat=t;
+    this.urlImagen=i;
     this.delay=d;
   }
 

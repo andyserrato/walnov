@@ -42,7 +42,7 @@ var wall = Schema({
     compartidoTwitter: {type:Number, default: 0},
     compartidoGoogle: {type:Number, default: 0},
     tipo: {type:Number, default: Constantes.Tipo.PUBLICO},
-    iniciosHistorias: [item],
+    //iniciosHistorias: [item],
     //Publicado o borrador, suspendido, baneado por reports, etc...
     estado: {type:Number, default: 1},
     contenidoTexto: String,
