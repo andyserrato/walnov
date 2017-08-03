@@ -14,7 +14,6 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { RepositorioService } from './services/repositorio.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PopoverModule } from 'ngx-popover/index';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -146,8 +145,7 @@ import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-re
     routing,
     BrowserAnimationsModule,
     AuthenticationModule,
-    NgbModule.forRoot(),
-    PopoverModule
+    NgbModule.forRoot()
   ],
   providers: [
     AppConfig,

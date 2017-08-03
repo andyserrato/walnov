@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-content.component.scss']
 })
 export class UserContentComponent implements OnInit {
-
-  constructor() { }
+  view: string
+  constructor() {
+    this.view = "walls";
+  }
 
   ngOnInit() {
   }
