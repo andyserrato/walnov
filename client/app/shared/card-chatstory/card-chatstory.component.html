@@ -1,13 +1,13 @@
-<div class="d-flex Rectangle-7" >
+<div class="d-flex Rectangle-7">
   <div class="d-flex flex-row">
     <div class="d-flex flex-column">
       <div class="d-flex flex-row">
-        <img src={{chatstory.imagen_url}} class="Chat-Image" alt="Imagen">
+        <img src={{this.chatstory.imagen_url}} class="Chat-Image" alt="Imagen">
       </div>
       <div class="d-flex flex-row justify-content-center">
-        <div class="Rectangle-7-Copy-3" [style.backgroundColor] = 'getColor(chatstory)'>
+        <div class="Rectangle-7-Copy-3" [style.backgroundColor] = 'getColor()'>
           <div class="Categoria">
-            {{chatstory.categoria.nombre}}
+            {{this.chatstory.categoria.nombre}}
           </div>
         </div>
       </div>
@@ -15,24 +15,24 @@
     <div class="d-flex flex-column" style="margin-left:11px;">
       <div class="d-flex flex-row">
         <div class="Chat-Title">
-          {{chatstory.titulo}}
+          {{this.chatstory.titulo}}
         </div>
       </div>
       <div class="d-flex flex-row" style="margin-top:10px;">
         <div class="Chat-Descripcion">
-          {{checkDescription(chatstory)}}
+          {{this.checkDescription(chatstory)}}
         </div>
       </div>
     </div>
   </div>
   <div class="d-flex flex-row" style="position:absolute; bottom:20px;">
     <div class="d-flex flex-column">
-      <button *ngIf= '!chatstory.added' type="button" class="Rectangle-7-Copy-4" (click)='addBiblioteca(chatstory)' name="button" style="cursor:pointer;">
+      <button *ngIf= '!this.chatstory.added' type="button" class="Rectangle-7-Copy-4" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
         <div class="btn-details">
           Añadir a la biblioteca
         </div>
       </button>
-      <button *ngIf= 'chatstory.added' type="button" class="Rectangle-7-Copy-4-2" (click)='addBiblioteca(chatstory)' name="button" style="cursor:pointer;">
+      <button *ngIf= 'this.chatstory.added' type="button" class="Rectangle-7-Copy-4-2" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
         <div class="btn-details-2">
           Añadido
         </div>
@@ -41,11 +41,11 @@
     <div class="d-flex flex-colum">
       <div class="Chat-Views">
         <i class="fa fa-eye" aria-hidden="true"></i>
-        {{getNumber(chatstory.views)}}
+        {{getNumber(this.chatstory.views)}}
       </div>
       <div class="Chat-Likes">
         <i class="fa fa-heart-o" aria-hidden="true"></i>
-        {{getNumber(chatstory.likes)}}
+        {{getNumber(this.chatstory.likes)}}
       </div>
     </div>
   </div>
