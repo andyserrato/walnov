@@ -71,6 +71,7 @@ import { CardChatstoriesPaginadorComponent } from './shared/card-chatstories-pag
 import { CardRelatoComponent } from './shared/card-relato/card-relato.component';
 import { CardRelatosPaginadorComponent } from './shared/card-relatos-paginador/card-relatos-paginador.component';
 import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-relatos.component';
+import { CardInfoRelatoComponent } from './shared/card-info-relato/card-info-relato.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +128,8 @@ import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-re
     CardChatstoriesPaginadorComponent,
     CardRelatoComponent,
     CardRelatosPaginadorComponent,
-    BuscadorRelatosComponent
+    BuscadorRelatosComponent,
+    CardInfoRelatoComponent
   ],
   imports: [
     BrowserModule,

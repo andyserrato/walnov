@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Wall } from '../../models/wall'
 
-import { wallRelevante } from '../../models/wallRelevante.model'
 import { Categoria } from '../../models/cats';
 
 @Component({
@@ -9,32 +9,37 @@ import { Categoria } from '../../models/cats';
   styleUrls: ['./card-wall-relevante.component.scss']
 })
 export class CardWallRelevanteComponent implements OnInit {
-  walls: Array<wallRelevante> = new Array<wallRelevante>();
-  wall1: wallRelevante;
-  wall2: wallRelevante;
-  wall3: wallRelevante;
+  walls: Array<Wall> = new Array<Wall>();
+  wall1: Wall;
+  wall2: Wall;
+  wall3: Wall;
 
   constructor() { }
 
   ngOnInit() {
-    this.wall1 = new wallRelevante();
+    this.wall1 = new Wall();
     this.wall1.titulo = "Mercenario del tiempo";
-    this.wall1.categoria = Categoria.Accion;
+    this.wall1.cat = Categoria.Accion;
     this.wall1.participantes = 22;
     this.wall1.historias = 8;
     this.wall1.visible = true;
+    this.wall1.isRelevante = true;
 
-    this.wall2 = new wallRelevante();
+    this.wall2 = new Wall();
     this.wall2.titulo = "El amante secreto";
-    this.wall2.categoria = Categoria.Fan;
+    this.wall2.cat = Categoria.Fan;
     this.wall2.participantes = 24;
     this.wall2.historias = 6;
+    this.wall2.isRelevante = true;
 
-    this.wall3 = new wallRelevante();
+
+    this.wall3 = new Wall();
     this.wall3.titulo = "Los molinos de viento";
-    this.wall3.categoria = Categoria.Romance;
+    this.wall3.cat = Categoria.Romance;
     this.wall3.participantes = 27;
     this.wall3.historias = 12;
+    this.wall3.isRelevante = true;
+
 
     this.addWall(this.wall1);
     this.addWall(this.wall2);
@@ -46,33 +51,33 @@ export class CardWallRelevanteComponent implements OnInit {
 
   }
 
-  addWall(newWall: wallRelevante) {
+  addWall(newWall: Wall) {
     if (newWall) {
         this.walls.push(newWall);
     }
 
   }
 
-  deleteWall(oldWall: wallRelevante){
+  deleteWall(oldWall: Wall){
     this.walls.splice(this.walls.indexOf(oldWall), 1);
 
   }
 
-  showAnother(previousWall: wallRelevante) {
+  showAnother(previousWall: Wall) {
     previousWall.visible = false;
-    var position = this.walls.indexOf(previousWall);
+    let position = this.walls.indexOf(previousWall);
     if(position === (this.walls.length - 1)) position = -1;
     this.walls[position + 1].visible = true;
 
   }
 
-  getBorder(wall: wallRelevante) {
-    return 'solid 1.5px ' + wall.categoria.color;
+  getBorder(wall: Wall) {
+    return 'solid 1.5px ' + wall.cat.color;
 
   }
 
-  getColor(wall: wallRelevante) {
-    return wall.categoria.color;
+  getColor(wall: Wall) {
+    return wall.cat.color;
 
   }
 

@@ -1,4 +1,4 @@
-export class UsuarioTendecia {
+export class Usuario {
 
   imagen:string;
   nombre:string;
@@ -6,5 +6,7 @@ export class UsuarioTendecia {
   chatstories:number;
   relatos:number;
   visible: boolean = false;
+
+  isTendencia:boolean = false;
 
 }
