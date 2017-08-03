@@ -4,6 +4,7 @@
   height: 600px;
   overflow-y: auto;
 
+
 }
 
 .Limite::-webkit-scrollbar {
@@ -15,8 +16,9 @@
   position: relative;
   //width: 100%;
   height: 72px;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 20px;
+  //margin-right: 20px;
+  //margin-right: 25px;
   border-radius: 8px;
   margin-bottom: 25px;
   //background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), #29ba6f);
@@ -41,7 +43,7 @@
   top: 0;
   z-index: 4;
   height: 100%;
-  max-width: 627.5px;
+  max-width: 100%;
   width: 100%;
   max-height: 72px;
 
@@ -56,22 +58,12 @@
 
 }
 
-.Numero-Chats {
-  font-family: Raleway;
-  font-size: 15px;
-  font-weight: 600;
-  text-align: right;
-  //color: #ffffff;
-  color: $grey-1;
-
-}
-
 .Fondo-Imagen {
   position: absolute;
   z-index: 2;
   top:0;
   height: 100%;
-  max-width: 627.5px;
+  max-width: 100%;
   width: 100%;
   max-height: 72px;
   background-color: #000000;
@@ -85,10 +77,9 @@
   z-index: 3;
   top:0;
   height: 100%;
-  max-width: 627.5px;
+  max-width: 100%;
   width: 100%;
   max-height: 72px;
   border-radius: 8px;
-  //background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), #29ba6f);
 
 }

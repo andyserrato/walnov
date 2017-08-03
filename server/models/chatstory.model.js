@@ -8,7 +8,8 @@ const Constantes = require("../constantes/constantes");
 const ChatSchema = Schema({
   personaje: String,
   chat: String,
-  imagen: String
+  urlImagen: String,
+  delay: Boolean
 });
 
 const ChatStorySchema = Schema({

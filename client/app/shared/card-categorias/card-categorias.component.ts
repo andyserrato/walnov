@@ -15,7 +15,7 @@ export class CardCategoriasComponent implements OnInit {
    }
 
   ngOnInit() {
-
+    this.repositorio.categoriasAL.forEach(this.selectedToFalse);
   }
 
   getColor(categoria: Categoria) {

@@ -2,18 +2,24 @@ import { Categoria } from '../models/cats';
 import { ChatstoryMessage } from '../models/chatstory-message';
 export class ChatStory{
   titulo: string;
-  img: string;
-  personajes: Array<string>;
+  autor: string;
+  autorNombre: string;
   categoria: Categoria;
-  messages: Array<ChatstoryMessage>;
+  urlImagen: string;
+  personajes: Array<string>;
+  chats: Array<ChatstoryMessage>;
   description: string;
+  tipo: string;
+  lang: string;
   exclusivo: boolean;
+  //TODO agregar estadísticas
+
   constructor(t?: string, p?: Array<string>, c?: Categoria, m?: Array<ChatstoryMessage>, i?: string, d?: string, e?: boolean){
     this.titulo=t;
     this.personajes=p;
     this.categoria=c;
-    this.messages=m;
-    this.img=i;
+    this.chats=m;
+    this.urlImagen=i;
     this.description=d;
     this.exclusivo=e;
   }

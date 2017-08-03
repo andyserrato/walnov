@@ -278,3 +278,45 @@ label .radio-text{
 .height-img-picker{
   height: 5em;
 }
+
+:host >>> .popover {
+  max-width: 600px;
+}
+
+:host >>> .popover {
+  background-color: #009688;
+  color: #fff;
+}
+:host >>> .popover>.arrow:after {
+  border-top-color: #009688;
+}
+
+.popover {
+  width: 800px;
+  max-width: 800px;
+  height: 337px;
+}
+
+:host >>> .popover {
+  width: 413px;
+  height: 337px;
+}
+
+:host > .popover {
+  width: 413px;
+  height: 337px;
+}
+
+:host >>> .popover {
+  width: 413px;
+  height: 337px;
+}
+
+:host ::shadow .popover {
+  height: 337px;
+}
+
+:host /deep/ .popover {
+  width: 413px;
+  height: 337px;
+}

@@ -27,14 +27,14 @@
     <div class="chatstory-message-creator" >
       <div class="row">
         <span class="form-title">Personaje</span>
-        <select [(ngModel)]="message.character" class="form-control" #characterSelect required>
+        <select [(ngModel)]="message.personaje" class="form-control" #characterSelect required>
             <option value="" disabled selected hidden>Nombre del personaje</option>
             <option *ngFor="let char of chatStory.personajes" value="{{char}}">{{char}}</option>
         </select>
       </div>
       <div class="row row-margin-top">
         <span class="form-title">Texto</span>
-        <textarea [(ngModel)]="message.text" class="form-control" rows="8" cols="80" maxlength="485" #messageText></textarea>
+        <textarea [(ngModel)]="message.chat" class="form-control" rows="8" cols="80" maxlength="485" #messageText></textarea>
       </div>
       <div class="row row-margin-top">
         <div class="col-12 no-padding">
@@ -51,8 +51,8 @@
               </div>
             </div>
           </label>
-          <img class="img" *ngIf="this.message.image_url" src="{{message.image_url}}" alt="" (click)="deleteImage(imageInput)">
-          <span class="fa fa-times img-cross" *ngIf="this.message.image_url" (click)="deleteImage(imageInput)"></span>
+          <img class="img" *ngIf="this.message.urlImagen" src="{{message.urlImagen}}" alt="" (click)="deleteImage(imageInput)">
+          <span class="fa fa-times img-cross" *ngIf="this.message.urlImagen" (click)="deleteImage(imageInput)"></span>
         </div>
 
       </div>
@@ -71,9 +71,9 @@
     </div>
   </div>
   <div class="col-6 no-padding padding-right relative col-chatstory-preview">
-    <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.img+'\')'}"></div>
+    <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.urlImagen+'\')'}"></div>
     <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria.color+')'}" #preview>
-      <div class="row no-padding" *ngFor="let m of this.chatStory.messages">
+      <div class="row no-padding" *ngFor="let m of this.chatStory.chats">
           <app-chatstory-message [editable]='true' [big]='false' [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
       </div>
 

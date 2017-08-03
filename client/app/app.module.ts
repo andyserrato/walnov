@@ -14,6 +14,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { RepositorioService } from './services/repositorio.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PopoverModule } from 'ngx-popover/index';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -72,6 +73,9 @@ import { CardRelatoComponent } from './shared/card-relato/card-relato.component'
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserCardComponent } from './user-profile/user-card/user-card.component';
 import { UserContentComponent } from './user-profile/user-content/user-content.component';
+import { CardRelatosPaginadorComponent } from './shared/card-relatos-paginador/card-relatos-paginador.component';
+import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-relatos.component';
+
 
 @NgModule({
   declarations: [
@@ -129,7 +133,9 @@ import { UserContentComponent } from './user-profile/user-content/user-content.c
     CardRelatoComponent,
     UserProfileComponent,
     UserCardComponent,
-    UserContentComponent
+    UserContentComponent,
+    CardRelatosPaginadorComponent,
+    BuscadorRelatosComponent
   ],
   imports: [
     BrowserModule,
@@ -140,7 +146,8 @@ import { UserContentComponent } from './user-profile/user-content/user-content.c
     routing,
     BrowserAnimationsModule,
     AuthenticationModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    PopoverModule
   ],
   providers: [
     AppConfig,
