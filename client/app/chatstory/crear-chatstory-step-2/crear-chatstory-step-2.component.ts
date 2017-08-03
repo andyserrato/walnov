@@ -11,7 +11,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   @Input() chatStory: ChatStory;
   @Output() back: EventEmitter<any>;
   @Output() done: EventEmitter<any>;
-  // messages: Array<ChatstoryMessage> = new Array<ChatstoryMessage>();
+  // chats: Array<ChatstoryMessage> = new Array<ChatstoryMessage>();
   @ViewChild('preview') private preview: ElementRef;
   @ViewChild('imgPlaceholder') private imgPlaceholder: ElementRef;
   message: ChatstoryMessage = new ChatstoryMessage('','');
@@ -25,8 +25,8 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   ngOnInit() {
 
     // console.log(this.chatStory.personajes);
-    if(!this.chatStory.messages){
-      this.chatStory.messages= new Array<ChatstoryMessage>();
+    if(!this.chatStory.chats){
+      this.chatStory.chats= new Array<ChatstoryMessage>();
     }
     this.scrollToBottom();
   }
@@ -43,8 +43,8 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
 
   newMessage(character: any, text: any, preview: HTMLElement, input){
     if(character.value && character.value != "none" && text.value){
-      let message = new ChatstoryMessage(character.value, text.value, this.message.image_url,this.message.delay);
-      this.chatStory.messages.push(message);
+      let message = new ChatstoryMessage(character.value, text.value, this.message.urlImagen,this.message.delay);
+      this.chatStory.chats.push(message);
       this.message = new ChatstoryMessage('','');
       this.editing = false;
       input.value="";
@@ -60,7 +60,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   deleteMessage(){
-    this.chatStory.messages.splice(this.chatStory.messages.indexOf(this.message),1);
+    this.chatStory.chats.splice(this.chatStory.chats.indexOf(this.message),1);
     this.editing = false;
     this.message = new ChatstoryMessage();
   }
@@ -85,7 +85,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
 
   _handleReaderLoaded(e) {
         var reader = e.target;
-        this.message.image_url=reader.result;
+        this.message.urlImagen=reader.result;
   }
 
   uploadImage(event: any){
@@ -102,6 +102,6 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   deleteImage(event){
     this.imgPlaceholder.nativeElement.innerHTML="Añadir Imagen";
     event.value="";
-    this.message.image_url="";
+    this.message.urlImagen="";
   }
 }

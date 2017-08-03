@@ -22,7 +22,7 @@
   <div class="row row-margin-top-4">
     <div class="col-12 no-padding height-img-picker">
       <div class="row no-padding no-relative">
-        <div class="col-3 no-padding no-relative img-preview" [ngStyle]="{'background-image': 'url(\''+this.chatStory.img+'\')'}">
+        <div class="col-3 no-padding no-relative img-preview" [ngStyle]="{'background-image': 'url(\''+this.chatStory.urlImagen+'\')'}">
           <app-image-picker [white]="true" (imageUploaded)="changeImage($event)"></app-image-picker>
         </div>
         <div class="description-box">

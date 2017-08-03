@@ -31,6 +31,16 @@ class Constantes {
     return Mensajes;
   }
 
+  static get ApiVersion() {
+    return ApiVersion;
+  }
+
+}
+
+class ApiVersion {
+  static get API_VERSION() {
+    return 'apiv1';
+  }
 }
 
 class Wall {
@@ -57,23 +67,23 @@ class Wall {
 
 class Tipo {
   static get PUBLICADO() {
-    return 1;
-  }
-
-  static get BORRADOR() {
-    return 2;
-  }
-
-  static get PUBLICO() {
     return 0;
   }
 
-  static get PRIVADO() {
+  static get BORRADOR() {
     return 1;
   }
 
-  static get EXCLUSIVO() {
+  static get PUBLICO() {
     return 2;
+  }
+
+  static get PRIVADO() {
+    return 3;
+  }
+
+  static get EXCLUSIVO() {
+    return 3;
   }
 }
 

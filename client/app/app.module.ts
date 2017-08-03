@@ -14,6 +14,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { RepositorioService } from './services/repositorio.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PopoverModule } from 'ngx-popover/index';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -140,7 +141,8 @@ import { CardInfoRelatoComponent } from './shared/card-info-relato/card-info-rel
     routing,
     BrowserAnimationsModule,
     AuthenticationModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    PopoverModule
   ],
   providers: [
     AppConfig,

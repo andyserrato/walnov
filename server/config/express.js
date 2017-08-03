@@ -13,6 +13,7 @@ const config = require('./config');
 const session = require('express-session');
 const compress = require('compression');
 const methodOverride = require('method-override');
+const Constantes = require("../constantes/constantes");
 
 //const flash = require('connect-flash');
 
@@ -56,19 +57,19 @@ module.exports = function () {
   //app.use(expressJwt({ secret: config.jwtSecret }).unless({ path: ['/users/authenticate', '/users/register', '/api', '/passportAuth/signup','/passportAuth/signin','/passportAuth/userByUserName' ] }));
 
   // routes
-  app.use('/users', require('../controllers/users2.server.controller'));
-  app.use('/walls', require('../controllers/wall.controller'));
-  app.use('/tests', require('../controllers/test.controller'));
-  app.use('/relatos', require('../controllers/relatos.controller'));
-  app.use('/chatstories', require('../controllers/chatstories.controller'));
-  app.use('/biblioteca', require('../controllers/biblioteca.controller'));
+  // TODO Existe una forma más sencilla y correcta de hacer esto, pero no la recuerdo, esto es un apaño
+  app.use('/' + Constantes.ApiVersion.API_VERSION + '/users', require('../controllers/users2.server.controller'));
+  app.use('/' + Constantes.ApiVersion.API_VERSION + '/walls', require('../controllers/wall.controller'));
+  app.use('/' + Constantes.ApiVersion.API_VERSION + '/tests', require('../controllers/test.controller'));
+  app.use('/' + Constantes.ApiVersion.API_VERSION + '/relatos', require('../controllers/relatos.controller'));
+  app.use('/' + Constantes.ApiVersion.API_VERSION + '/chatstories', require('../controllers/chatstories.controller'));
+  app.use('/' + Constantes.ApiVersion.API_VERSION + '/biblioteca', require('../controllers/biblioteca.controller'));
 
   // Set our api routes
-  app.use('/api1', api1);
+  app.use('/apiv1', api1);
 
   //Pruebas andy
   // require('../routes/users.server.routes.js')(app)
-
 
   // Catch all other routes and return the index file
   app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '../../dist/index.html'));

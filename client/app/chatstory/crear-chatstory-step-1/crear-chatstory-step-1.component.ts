@@ -3,7 +3,7 @@ import { Personaje } from '../crear-personaje-chatstory/personaje.model';
 import { ChatStory } from '../chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Categoria } from '../../models/cats';
-import { AlertService } from "../../services/alert.service";
+import { AlertService } from '../../services/alert.service';
 @Component({
   selector: 'app-crear-chatstory-step-1',
   templateUrl: './crear-chatstory-step-1.component.html',
@@ -25,30 +25,30 @@ export class CrearChatstoryStep1Component implements OnInit {
     this.refreshArray();
   }
 
-  refreshArray(){
-    for(let i = 0; i<this.chatStory.personajes.length; i++){
-      this.maxChars[i]=this.chatStory.personajes[(this.chatStory.personajes.length-1)-i];
+  refreshArray() {
+    for (let i = 0; i < this.chatStory.personajes.length; i++){
+      this.maxChars[i] = this.chatStory.personajes[(this.chatStory.personajes.length - 1) - i];
     }
     console.log(this.maxChars);
   }
 
   nextStep(titulo){
-    if(this.chatStory.titulo && this.chatStory.personajes.length>0 && this.chatStory.description){
+    if (this.chatStory.titulo && this.chatStory.personajes.length > 0 && this.chatStory.description){
       this.done.emit(this.chatStory);
     }else{
       this.alert.error('Faltan campos por rellenar');
     }
   }
 
-  changeImage(event){
-    this.chatStory.img=event;
+  changeImage(event) {
+    this.chatStory.urlImagen = event;
   }
 
-  newPerosnaje(event: HTMLInputElement){
+  newPerosnaje(event: HTMLInputElement) {
     // console.log(event);
-    if(event.value && this.chatStory.personajes.length<18 && !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value)]){
+    if (event.value && this.chatStory.personajes.length < 18 && !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value)]){
       this.chatStory.personajes.push(event.value);
-      event.value="";
+      event.value = '';
       this.refreshArray();
     }
   }

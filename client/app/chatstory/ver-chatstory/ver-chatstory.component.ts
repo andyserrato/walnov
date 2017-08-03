@@ -34,9 +34,9 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
     this.chatStory= new ChatStory('hola',['hola'],this.repositorio.categoriasAL[0], [],'https://www.lorempixel.com/1600/1200',"Hola que tal estamos por aquí?");
     for(var i = 0; i < 60; i++){
       if(i==10){
-          this.chatStory.messages.push(new ChatstoryMessage('juan','hola'+i,'',true));
+          this.chatStory.chats.push(new ChatstoryMessage('juan','hola'+i,'',true));
       }
-      this.chatStory.messages.push(new ChatstoryMessage('juan','hola'+i));
+      this.chatStory.chats.push(new ChatstoryMessage('juan','hola'+i));
     }
     this.nextMessage();
     this.scrollToBottom();
@@ -56,15 +56,15 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
 
   nextMessage(){
 
-      if(this.chatStory.messages[this.counter] && !this.stoped){
+      if(this.chatStory.chats[this.counter] && !this.stoped){
 
-        if(this.chatStory.messages[this.counter].delay){
+        if(this.chatStory.chats[this.counter].delay){
 
           this.stoped=true;
-          this.messagesArray.push(new ChatstoryMessage(this.chatStory.messages[this.counter].character,'','',true))
+          this.messagesArray.push(new ChatstoryMessage(this.chatStory.chats[this.counter].personaje,'','',true))
 
           setTimeout(()=>{
-            this.messagesArray[this.messagesArray.length-1]=this.chatStory.messages[this.counter];
+            this.messagesArray[this.messagesArray.length-1]=this.chatStory.chats[this.counter];
             this.counter++;
             this.limite=1000;
             this.lastclick=Date.now();
@@ -73,7 +73,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
             });
           },3000);
         }else{
-          this.messagesArray.push(this.chatStory.messages[this.counter]);
+          this.messagesArray.push(this.chatStory.chats[this.counter]);
         }
 
         if(this.counter>=20){
