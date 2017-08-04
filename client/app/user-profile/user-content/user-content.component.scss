@@ -1,0 +1,41 @@
+@import "main";
+
+.container{
+
+}
+
+.header{
+  // height: 54px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+.page{
+  display: inline-block;
+  padding:1em;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $main-1;
+  &:hover{
+    cursor: pointer;
+    color: $main-2;
+    border-bottom: 2px solid $main-1;
+  }
+}
+
+.current-page{
+  color: $main-2;
+  border-bottom: 2px solid $main-2;
+}
+
+.content{
+  height: 662px;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}

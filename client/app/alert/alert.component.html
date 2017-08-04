@@ -1,1 +1,15 @@
-<div class="initial" [ngClass]="{ 'lmao': message, 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}</div>
+<div #alertBox (click)="clear()" class="alert d-flex" [ngClass]="{
+  'visible': message,
+  'alert-success': message?.type === 'success',
+  'alert-danger': message?.type === 'error' }">
+  <div class="p-2" [ngSwitch]="message?.type">
+    <span *ngSwitchCase="'success'"></span>
+    <span *ngSwitchCase="'error'" class="fa fa-question fa-2x" style="color:#f12840"></span>
+    <span *ngSwitchCase="'waring'"></span>
+  </div>
+  <div class="d-flex flex-column">
+    <span *ngIf="message" class="message">Error!</span>
+    <span class="text">{{message?.text}}</span>
+
+  </div>
+</div>

@@ -9,9 +9,11 @@
 
     </div>
   </div>
-  <div class="row">
+
+  <div class="row" >
     <div class="col-8">
-      <input #titulo maxlength="48" class="form-control" type="text" name="" [(ngModel)]="this.chatStory.titulo" placeholder="Da un nombre a tu Chatstorie">
+      <input  (change)="validateField($event,'title')" [(ngModel)]="this.chatStory.titulo" [ngClass]="{'input-invalid': this.validate['title']}" maxlength="48" class="form-control" type="text" name=""  placeholder="Da un nombre a tu Chatstorie">
+      <span class="text-invalid" *ngIf="this.validate['title']">Escribe un titulo</span>
     </div>
     <div class="col-4">
       <select class="form-control" [(ngModel)]="this.chatStory.categoria">
@@ -27,7 +29,8 @@
         </div>
         <div class="description-box">
           <span class="fixed-title-2"><b>Descripción</b></span>
-          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="Cuéntanos de que va tu ChatStory"[(ngModel)]="this.chatStory.description"></textarea>
+          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="Cuéntanos de que va tu ChatStory" [(ngModel)]="this.chatStory.description" [ngClass]="{'input-invalid': this.validate['description']}" (change)="validateField($event,'description')"></textarea>
+          <span class="text-invalid" *ngIf="this.validate['description']">Escribe una descripcion</span>
         </div>
       </div>
 
@@ -62,7 +65,6 @@
       <span class="pull-right vertical-center">
         Ya tenemos la base de tu Chatstory ¡Hora de escribir!
       </span>
-
     </div>
     <div class="col-3 no-padding">
       <div class="btn-hecho pull-right" (click)="nextStep(titulo)">

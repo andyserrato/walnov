@@ -14,7 +14,6 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { RepositorioService } from './services/repositorio.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-//import { PopoverModule } from 'ngx-popover/index';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -70,10 +69,14 @@ import { HomeRecienteComponent } from './home/home-reciente/home-reciente.compon
 import { RecienteNotificacionComponent } from './home/home-reciente/reciente-notificacion/reciente-notificacion.component';
 import { CardChatstoriesPaginadorComponent } from './shared/card-chatstories-paginador/card-chatstories-paginador.component';
 import { CardRelatoComponent } from './shared/card-relato/card-relato.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserCardComponent } from './user-profile/user-card/user-card.component';
+import { UserContentComponent } from './user-profile/user-content/user-content.component';
 import { CardRelatosPaginadorComponent } from './shared/card-relatos-paginador/card-relatos-paginador.component';
 import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-relatos.component';
 import { CardInfoRelatoComponent } from './shared/card-info-relato/card-info-relato.component';
 import { VerRelatoComponent } from './shared/ver-relato/ver-relato.component';
+
 
 @NgModule({
   declarations: [
@@ -129,6 +132,9 @@ import { VerRelatoComponent } from './shared/ver-relato/ver-relato.component';
     RecienteNotificacionComponent,
     CardChatstoriesPaginadorComponent,
     CardRelatoComponent,
+    UserProfileComponent,
+    UserCardComponent,
+    UserContentComponent,
     CardRelatosPaginadorComponent,
     BuscadorRelatosComponent,
     CardInfoRelatoComponent,
@@ -143,8 +149,7 @@ import { VerRelatoComponent } from './shared/ver-relato/ver-relato.component';
     routing,
     BrowserAnimationsModule,
     AuthenticationModule,
-    NgbModule.forRoot(),
-    //PopoverModule
+    NgbModule.forRoot()
   ],
   providers: [
     AppConfig,

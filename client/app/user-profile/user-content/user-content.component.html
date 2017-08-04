@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="content">
+    <div class="header">
+      <div class="page" (click)="this.view='walls'" [ngClass]="{'current-page': this.view==='walls'}">
+        Walls
+      </div>
+      <div class="page"(click)="this.view='historias'" [ngClass]="{'current-page': this.view==='historias'}">
+        Historias
+      </div>
+      <div class="page"(click)="this.view='continuaciones'" [ngClass]="{'current-page': this.view==='continuaciones'}">
+        Continuaciones
+      </div>
+      <div class="page"(click)="this.view='chatstories'" [ngClass]="{'current-page': this.view==='chatstories'}">
+        Chatstories
+      </div>
+      <div class="page"(click)="this.view='relatos'" [ngClass]="{'current-page': this.view==='relatos'}">
+        Relatos cortos
+      </div>
+    </div>
+  </div>
+</div>
