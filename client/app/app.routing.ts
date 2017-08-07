@@ -17,6 +17,7 @@ import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-re
 import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
 
 
 const appRoutes: Routes = [
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
         ]
     },
     { path: 'user-profile', component: UserProfileComponent},
-
+    { path: 'crear-relato', component: CrearRelatoComponent},
     { path: 'crear-chatstory', component: CrearChatstoryComponent },
     { path: 'ver-chatstory', component: VerChatstoryComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full'},

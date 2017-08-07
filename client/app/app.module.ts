@@ -74,6 +74,9 @@ import { UserCardComponent } from './user-profile/user-card/user-card.component'
 import { UserContentComponent } from './user-profile/user-content/user-content.component';
 import { CardRelatosPaginadorComponent } from './shared/card-relatos-paginador/card-relatos-paginador.component';
 import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-relatos.component';
+import { UserContentChatstoriesComponent } from './user-profile/user-content/user-content-chatstories/user-content-chatstories.component';
+import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
+import { CrearRelatoContentComponent } from './relatos/crear-relato/crear-relato-content/crear-relato-content.component';
 
 
 @NgModule({
@@ -134,7 +137,10 @@ import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-re
     UserCardComponent,
     UserContentComponent,
     CardRelatosPaginadorComponent,
-    BuscadorRelatosComponent
+    BuscadorRelatosComponent,
+    UserContentChatstoriesComponent,
+    CrearRelatoComponent,
+    CrearRelatoContentComponent
   ],
   imports: [
     BrowserModule,
