@@ -76,6 +76,8 @@ import { CardRelatosPaginadorComponent } from './shared/card-relatos-paginador/c
 import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-relatos.component';
 import { CardInfoRelatoComponent } from './shared/card-info-relato/card-info-relato.component';
 import { VerRelatoComponent } from './shared/ver-relato/ver-relato.component';
+import { DejarComentarioComponent } from './shared/dejar-comentario/dejar-comentario.component';
+import { OpinionUsuarioComponent } from './shared/opinion-usuario/opinion-usuario.component';
 
 
 @NgModule({
@@ -138,7 +140,9 @@ import { VerRelatoComponent } from './shared/ver-relato/ver-relato.component';
     CardRelatosPaginadorComponent,
     BuscadorRelatosComponent,
     CardInfoRelatoComponent,
-    VerRelatoComponent
+    VerRelatoComponent,
+    DejarComentarioComponent,
+    OpinionUsuarioComponent
   ],
   imports: [
     BrowserModule,

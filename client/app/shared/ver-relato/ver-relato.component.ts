@@ -10,6 +10,8 @@ import { RepositorioService } from '../../services/repositorio.service';
 })
 export class VerRelatoComponent implements OnInit {
   relato: Relato;
+  opinionWriter: Usuario;
+  comentarios = Array<String>();
   added: boolean = false; //se pone a true cuando el relato es añadido a la lista
   liked: boolean = false; //se pone a true cuando el usuario le da al botón me gusta
   constructor(private repositorio: RepositorioService) { }
@@ -44,6 +46,8 @@ export class VerRelatoComponent implements OnInit {
     this.relato.contenido.push("Tensó el rollo plegador una vez más, la cala se abrió, puso la espada y el bastón de arrastre. Hizo la primera pasada y con el peine ajustó contra el rollo de la urdimbre, cambió la posición de las lisas, realizó la segunda pasada, prensó con el bastón de arrastre y peinó ajustando la trama. Tejió por largo tiempo. Debía ser exacto en la cantidad de pasadas, solo este saldría de sus manos.");
     this.relato.contenido.push("Una luz a lo lejos se vio brillar, la creación daba comienzo.");
 
+    this.comentarios = new Array();
+    this.opinionWriter = new Usuario();
 
   }
 
@@ -76,6 +80,18 @@ export class VerRelatoComponent implements OnInit {
       this.relato.likes--;
     }
   }
+
+  addComent(event: string) {
+    this.comentarios.push(event);
+    // console.log(event);
+  }
+
+  setOpinionWriter(event: Usuario) {
+    this.opinionWriter = event;
+    console.log(this.opinionWriter);
+
+  }
+
 
 
 

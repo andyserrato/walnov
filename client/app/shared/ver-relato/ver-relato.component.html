@@ -59,4 +59,6 @@
       Compartir
     </div>
   </div>
+  <app-dejar-comentario (userOut) = 'setOpinionWriter($event)' (comentario)='addComent($event)'></app-dejar-comentario>
+  <app-opinion-usuario [usuario] = 'this.opinionWriter' [opiniones] = 'this.comentarios'></app-opinion-usuario>
 </div>
