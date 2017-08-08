@@ -25,14 +25,18 @@
         </div>
       </div>
     </div>
-    <div class="section section-dedicatoria">
-      <span class="section-title">¿Quieres dedicar tu Wall?</span>
-      <input (keydown.enter)="newDedicatoria($event)" class="form-control dedicatoria" type="text" name="" value="" placeholder="nombre@mail.com; @usuario…">
-      <div class="dedicatorias">
+    <div class="section section-dedicatoria d-flex align-items-center flex-column">
+      <div class="d-flex flex-column">
+        <span class="section-title">¿Quieres dedicar tu Wall?</span>
+        <input [formControl]="this.dedicatoriaForm" (keydown.enter)="newDedicatoria($event)" class="form-control dedicatoria" type="text" name="" value="" placeholder="nombre@mail.com; @usuario…">
+
+      </div>
+      <div class="dedicatorias align-self-start">
         <div class="ded" *ngFor="let ded of dedicatorias" (click)="deleteDedicatoria(ded)">
           {{ded}}
         </div>
       </div>
+
     </div>
     <div class="section section-amigos">
       <span class="section-title">Invita a tus amigos</span>
@@ -42,9 +46,11 @@
               <input #friendInput type="text" class="form-control" name="" value="" placeholder="@Nombreamigo" (keydown.enter)="newFriend(friendInput)">
               <span class="fa fa-plus-circle" (click)="newFriend(friendInput)"></span>
           </div>
-          <div class="friend-field d-flex align-items-center justify-content-" *ngFor="let friend of friends">
-            <span class="">{{friend}}</span>
-            <span class="fa fa-times ml-auto" (click)="deleteFriend(friend)"></span>
+          <div class="friends">
+            <div class="friend-field d-flex align-items-center justify-content-" *ngFor="let friend of friends">
+              <span class="">{{friend}}</span>
+              <span class="fa fa-times ml-auto" (click)="deleteFriend(friend)"></span>
+            </div>
           </div>
         </div>
       </div>

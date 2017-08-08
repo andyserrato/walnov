@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RepositorioService } from '../../../services/repositorio.service';
 import { Relato } from '../../../models/relato';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AlertService } from '../../../services/alert.service';
 
 @Component({
@@ -13,7 +13,9 @@ export class CrearRelatoContentComponent implements OnInit {
   relato: Relato;
   friends: Array<string>;
   dedicatorias: Array<string>;
+  dedicatoriaForm: FormControl;
   complexForm: any;
+  publicado: boolean = false;
   @ViewChild('textarea') textarea: ElementRef;
 
   constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService) {
@@ -27,7 +29,9 @@ export class CrearRelatoContentComponent implements OnInit {
     this.complexForm = fb.group({
       'title' : [null, Validators.compose([Validators.required ,Validators.maxLength(30)])],
       'content' : [null, Validators.compose([Validators.required, Validators.maxLength(3000)])]
-    })
+    });
+    this.dedicatoriaForm = new FormControl();
+    this.dedicatoriaForm.setValidators(Validators.compose([Validators.required, Validators.email]));
   }
 
   ngOnInit() {
@@ -46,8 +50,13 @@ export class CrearRelatoContentComponent implements OnInit {
   }
 
   newDedicatoria(event){
-    this.dedicatorias.push(event.target.value);
-    event.target.value="";
+    if(this.dedicatoriaForm.valid){
+      this.dedicatorias.push(event.target.value);
+      event.target.value="";
+    }else{
+      this.alert.error("Escribe una dirección de email correcta");
+    }
+
   }
 
   deleteDedicatoria(event){
