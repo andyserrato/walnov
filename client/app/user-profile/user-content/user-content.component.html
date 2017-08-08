@@ -17,5 +17,8 @@
         Relatos cortos
       </div>
     </div>
+    <div class="content-container" [ngSwitch]="this.view">
+      <app-user-content-chatstories *ngSwitchCase="'chatstories'"></app-user-content-chatstories>
+    </div>
   </div>
 </div>

@@ -1,0 +1,10 @@
+.paginador{
+  overflow: auto;
+  max-height: 80vh;
+  height: 800px;
+  // padding: 1em calc(50% - 147px);
+}
+
+.paginador::-webkit-scrollbar{
+  display: none;
+}

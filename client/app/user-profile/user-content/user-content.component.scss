@@ -1,7 +1,7 @@
 @import "main";
 
 .container{
-
+  padding:0em .5em;
 }
 
 .header{
@@ -34,8 +34,13 @@
 }
 
 .content{
-  height: 662px;
+  min-height: 50vh;
   border-radius: 8px;
   background-color: #fdfdfd;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.content-container{
+  padding:1em 0em;
+
 }

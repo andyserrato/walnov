@@ -7,6 +7,7 @@ export class Relato {
     categoria: Categoria;
     imagen_url: string;
     resumen: string;
+    texto: string;
     contenido: Array<String>;
 
     usuario: Usuario;

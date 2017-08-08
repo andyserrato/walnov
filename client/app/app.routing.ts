@@ -17,6 +17,7 @@ import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-re
 import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
 import {SuccessComponent} from './shared/social-login/success/success.component';
 import {FailureComponent} from './shared/social-login/failure/failure.component';
 
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
         ]
     },
     { path: 'user-profile', component: UserProfileComponent},
+    { path: 'crear-relato', component: CrearRelatoComponent},
     { path: 'social-login/success', component: SuccessComponent},
     { path: 'social-login/failure', component: FailureComponent},
 

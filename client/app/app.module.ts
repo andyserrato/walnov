@@ -74,6 +74,9 @@ import { UserCardComponent } from './user-profile/user-card/user-card.component'
 import { UserContentComponent } from './user-profile/user-content/user-content.component';
 import { CardRelatosPaginadorComponent } from './shared/card-relatos-paginador/card-relatos-paginador.component';
 import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-relatos.component';
+import { UserContentChatstoriesComponent } from './user-profile/user-content/user-content-chatstories/user-content-chatstories.component';
+import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
+import { CrearRelatoContentComponent } from './relatos/crear-relato/crear-relato-content/crear-relato-content.component';
 import { CardInfoRelatoComponent } from './shared/card-info-relato/card-info-relato.component';
 import { VerRelatoComponent } from './shared/ver-relato/ver-relato.component';
 import { DejarComentarioComponent } from './shared/dejar-comentario/dejar-comentario.component';
@@ -144,6 +147,9 @@ import { FailureComponent } from './shared/social-login/failure/failure.componen
     UserContentComponent,
     CardRelatosPaginadorComponent,
     BuscadorRelatosComponent,
+    UserContentChatstoriesComponent,
+    CrearRelatoComponent,
+    CrearRelatoContentComponent,
     CardInfoRelatoComponent,
     VerRelatoComponent,
     DejarComentarioComponent,
