@@ -3,9 +3,9 @@
   <div class="row">
     <div class="col">
       <div class="card-text">Regístrate con:</div>
-      <a class="btn btn-primary btn-block" (click)="registerFacebook()">FACEBOOK</a>
-      <a href="/users/oauth/twitter?url=/crear-wall" class="btn btn-primary btn-block">TWITTER</a>
-      <a href="/users/oauth/google?url=/crear-wall" class="btn btn-primary btn-block">GOOGLE</a>
+      <a class="btn btn-primary btn-block" (click)="doSocialLogin('/apiv1/users/oauth/facebook?url=')" type="button">FACEBOOK</a>
+      <a (click)="doSocialLogin('/apiv1/users/oauth/twitter?url=')" target="_blank" class="btn btn-primary btn-block">TWITTER</a>
+      <a (click)="doSocialLogin('/apiv1/users/oauth/google?url=')" class="btn btn-primary btn-block">GOOGLE</a>
     </div>
     <div class="col">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
@@ -39,7 +39,7 @@
   </div>
 </div>
 
-  <div class="btn-hecho" (click)="togglePopover()">
+  <div class="btn-hecho" [ngClass]="estilosBoton" (click)="togglePopover()">
     {{textoBoton}}
   </div>
 

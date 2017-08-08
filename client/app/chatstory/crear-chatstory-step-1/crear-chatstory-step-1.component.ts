@@ -40,25 +40,25 @@ export class CrearChatstoryStep1Component implements OnInit {
 
   validateField(event, selector){
     console.log(event);
-    if(event.target.value){
-      this.validate[selector]=false;
+    if (event.target.value){
+      this.validate[selector] = false;
     }else{
-      this.validate[selector]=true;
+      this.validate[selector] = true;
     }
   }
 
   nextStep(titulo){
-    if(this.chatStory.titulo && this.chatStory.personajes.length>0 && this.chatStory.description){
+    if (this.chatStory.titulo && this.chatStory.personajes.length > 0 && this.chatStory.description){
       this.alert.clear();
       this.done.emit(this.chatStory);
     }else{
-      if(!this.chatStory.titulo){
-        this.validate['title']=true;
+      if (!this.chatStory.titulo){
+        this.validate['title'] = true;
       }
-      if(!this.chatStory.description){
-        this.validate['description']=true;
+      if (!this.chatStory.description){
+        this.validate['description'] = true;
       }
-      if(this.chatStory.personajes.length<=0){
+      if (this.chatStory.personajes.length <= 0){
         this.alert.error('Introduce al menos un personaje');
       }
 

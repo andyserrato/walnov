@@ -19,19 +19,25 @@ router.post('/auth/signout', signout);
 router.get('/oauth/userdataPassportLoggedIn', isLoggedIn, findUserByProviderIdPassportLoggedIn);
 
 router.post('/oauth/userdata', isUserRegisteredByProviderId);
-// router.post('/oauth/userdata3', users.isUserRegisteredByProviderId);
+
+function getLoggedInUserBySocialLogin(req, res) {
+  console.log('Estoy logueado en el server');
+  console.log(req.user);
+}
+
+router.get('/oauth/userdata', isLoggedIn, getLoggedInUserBySocialLogin);
 
 // Set up the Facebook OAuth routes
-router.get('/oauth/facebook', passport.authenticate('facebook', {
-  failureRedirect: '/signin',
+router.get('/oauth/facebook', getUrl, setUrl, passport.authenticate('facebook', {
+  failureRedirect: '/socialLogin/failure',
   scope: ['public_profile', 'email', 'user_friends']
 }));
 
-router.get('/oauth/facebook/callback', passport.authenticate('facebook'));
+router.get('/oauth/facebook/callback',setUrl, passport.authenticate('facebook'));
 
 // Set up the Twitter OAuth routes
 router.get('/oauth/twitter', getUrl, passport.authenticate('twitter', {
-  failureRedirect: '/signin'
+  failureRedirect: '/socialLogin/failure'
 }));
 
 function getUrl (req, res, next){
@@ -49,16 +55,19 @@ function setUrl(req, res, next) {
 
 router.get('/oauth/twitter/callback', setUrl, passport.authenticate('twitter', { failureRedirect: '/' }),
   function(req, res) {
-      res.redirect(req.session.returnTo);
+      req.login(req.session.user, function(err) {
+        res.redirect(req.session.returnTo);
+      })
+
   });
 
 // Set up the Google OAuth routes
-router.get('/oauth/google', passport.authenticate('google', {
+router.get('/oauth/google', getUrl, passport.authenticate('google', {
   scope: [
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.email'
   ],
-  failureRedirect: '/signin'
+  failureRedirect: '/socialLogin/failure'
 }));
 router.get('/oauth/google/callback', passport.authenticate('google'));
 
@@ -191,6 +200,7 @@ function signout(req, res) {
 
 // Middleware
 function isLoggedIn(req, res, next) {
+  console.log(req.session.user);
   if (req.isAuthenticated()) {
     next();
   } else {

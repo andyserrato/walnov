@@ -9,11 +9,11 @@
         <div class="row no-padding full-height">
           <div class="col-12 no-padding full-height col-chatstory-preview">
             <div class="description">
-              {{this.chatStory.description}}
+              {{chatStory?.description}}
             </div>
-            <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.urlImagen+'\')'}">
+            <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+chatStory?.urlImagen+'\')'}">
             </div>
-            <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria.color+')'}" #preview>
+            <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+chatStory?.categoria.color+')'}" #preview>
               <div class="messages-content" #previewScroll>
                 <div class="row no-padding" *ngFor="let m of this.messagesArray">
                   <app-chatstory-message [big]="true" [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
