@@ -1,0 +1,139 @@
+@import "main";
+
+.Rectangle-3-Copy-2 {
+  // width: 177px;
+  //height: 455px;
+  padding: 24px 19px 18px;
+  border-radius: 8px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Card-Title {
+  font-family: Raleway;
+  font-size: 1em;
+  font-weight: 600;
+  opacity: 0.8 !important;
+  text-align: center;
+  //color: #808080;
+  color: $grey-7;
+  //opacity: 1.2;
+
+}
+
+.Line {
+  //width: 131.7px;
+  margin-top: 22px;
+  //opacity: 0.75;
+  height: 1px;
+  border: solid 1px rgba(0, 0, 0, 0.11);
+}
+
+.Rectangle-7-Copy-15 {
+  // width: 60px;
+  margin-top: 20px;
+  height: 14px;
+  padding: 1px 8px;
+  // border: solid 1px #de196d;
+  // border: solid 1px var(--cat-7);
+}
+
+.Categoria {
+  font-family: Raleway;
+  font-size: 0.6em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.Relato-Estadisticas {
+  width: 100%;
+  margin-top: 25px;
+  //line-height: 1.8;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  color: #6c626f;
+  opacity: 0.75;
+}
+
+.Line-2 {
+  //width: 131.7px;
+  margin-top: 15px;
+  //opacity: 0.75;
+  margin-bottom: 19px;
+  height: 1px;
+  border: solid 1px rgba(0, 0, 0, 0.11);
+}
+
+.Rectangle-3 {
+  //width: 139px;
+  position: relative;
+  margin-top: 36px;
+  padding: 30px 10px 14px 16px;
+  //height: 156px;
+  border-radius: 8px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  border: solid 1px #e0e0e0;
+}
+
+.Oval-2 {
+  position: absolute;
+  align-self: center;
+  top:-17px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  //border: solid 1px #c0c0c0;
+  border: solid 1px $grey-5;
+}
+
+.Usuario-Nombre {
+  font-family: Raleway;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  //color: #8427bf;
+  color: $main-1;
+}
+
+.Usuario-Estadisticas {
+  width: 100%;
+  margin-top: 12px;
+  //line-height: 1.8;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  color: #6c626f;
+  opacity: 0.75;
+}
+
+.btn-usuario {
+  // position: absolute;
+  // bottom: 14px;
+  border: 0;
+  background: 0;
+  outline: none;
+  cursor: pointer;
+  font-family: Raleway;
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+  color: $main-1;
+
+}
+
+.btn-usuario:focus{
+  outline: none;
+
+}
+
+// .Suelo {
+//   position: absolute;
+//   bottom: 0;
+//
+// }

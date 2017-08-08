@@ -1,0 +1,64 @@
+<div class="Rectangle-3-Copy-7">
+  <div class="Relato-Title">
+    {{this.relato.titulo}}
+  </div>
+  <div class="Rectangle-5">
+    <img  class="Imagen-Relato" src={{this.relato.imagen_url}} alt="">
+    <div class="Fondo-Imagen">
+    </div>
+    <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
+    </div>
+    <div class="d-flex flex-row justify-content-center Relato-Estadisticas">
+      <div class="d-flex flex column" style="margin-right:7px;">
+        <div class="Oval-Copy">
+          <i class="fa fa-eye" aria-hidden="true" style="margin-top:5px;"></i>
+        </div>
+      </div>
+      <div class="d-flex flex column" style="margin-right:15px; margin-top:2px;">
+        {{getNumber(this.relato.views)}}
+      </div>
+      <div class="d-flex flex column" style="margin-right:7px;">
+        <div class="Oval">
+          <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:6px;"></i>
+        </div>
+      </div>
+      <div class="d-flex flex column" style="margin-top:2px;">
+        {{getNumber(this.relato.likes)}}
+      </div>
+    </div>
+  </div>
+  <div class="Relato-Content" *ngFor = "let parrafo of this.relato.contenido">
+    {{parrafo}}
+  </div>
+  <div class="d-flex flex-row justify-content-end Botones">
+    <div *ngIf='!this.added' (click) = 'addLista()'class="d-flex flex-column" style="margin-right:7px;margin-top:3px; cursor:pointer;">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </div>
+    <div *ngIf='!this.added' (click) = 'addLista()' class="d-flex flex-column" style="margin-right:50px; cursor:pointer;">
+      Añadir a mis listas
+    </div>
+    <div *ngIf='this.added' (click) = 'deleteLista()'class="d-flex flex-column" style="margin-right:7px;margin-top:3px; cursor:pointer;">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+    <div *ngIf='this.added' (click) = 'deleteLista()' class="d-flex flex-column" style="margin-right:50px; cursor:pointer;">
+      Eliminar de mis listas
+    </div>
+    <div  *ngIf='!liked' (click) = 'plusLike()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
+      <i class="fa fa-heart-o" aria-hidden="true"></i>
+    </div>
+    <div  *ngIf='liked' (click) = 'plusLike()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
+      <i class="fa fa-heart" aria-hidden="true"></i>
+    </div>
+    <div (click) = 'plusLike()' class="d-flex flex-column" style="margin-right:50px;cursor:pointer;">
+      Me gusta
+    </div>
+    <div class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
+      <i class="fa fa-share" aria-hidden="true"></i>
+    </div>
+    <div class="d-flex flex-column" style="cursor:pointer;">
+      Compartir
+    </div>
+  </div>
+  <app-dejar-comentario (userOut) = 'setOpinionWriter($event)' (comentario)='addComent($event)'></app-dejar-comentario>
+  <app-opinion-usuario [usuario] = 'this.opinionWriter' [opiniones] = 'this.comentarios'></app-opinion-usuario>
+</div>

@@ -1,4 +1,5 @@
 import { Categoria } from './cats';
+import { Usuario } from './usuario.model'
 
 export class Relato {
     _id: string;
@@ -7,9 +8,10 @@ export class Relato {
     imagen_url: string;
     resumen: string;
     texto: string;
-    userName: string;
-    userImage: string;
-    amigos: Array<string>;
+    contenido: Array<String>;
+
+    usuario: Usuario;
+
     likes: number;
     views: number;
     coments: number;

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Categoria } from '../../models/cats';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Chatstory } from '../../models/chatstory.model';
@@ -11,31 +11,7 @@ import { Paginator } from '../../models/paginador';
 @Component({
   selector: 'app-card-mi-biblioteca',
   templateUrl: './card-mi-biblioteca.component.html',
-  styleUrls: ['./card-mi-biblioteca.component.scss'],
-  animations: [
-    trigger("changeBackgroundColor", [
-      state('in', style({
-        cursor: 'pointer'
-      })),
-      state('out', style({
-        backgroundColor : '#4d1274',
-        cursor: 'pointer'
-      })),
-      transition('in => out', animate(100)),
-      transition('out => in', animate(100))
-    ]),
-    trigger("changeColor", [
-      state('in', style({
-        //transform: 'scale(1)'
-      })),
-      state('out', style({
-        color: '#ffffff',
-        fontWeight:500
-      })),
-      transition('in => out', animate(100)),
-      transition('out => in', animate(100))
-    ])
-  ]
+  styleUrls: ['./card-mi-biblioteca.component.scss']
 })
 export class CardMiBibliotecaComponent implements OnInit {
   //chatstories: Array<Chatstory> = new Array<Chatstory>();

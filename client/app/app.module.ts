@@ -77,6 +77,15 @@ import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-re
 import { UserContentChatstoriesComponent } from './user-profile/user-content/user-content-chatstories/user-content-chatstories.component';
 import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
 import { CrearRelatoContentComponent } from './relatos/crear-relato/crear-relato-content/crear-relato-content.component';
+import { CardInfoRelatoComponent } from './shared/card-info-relato/card-info-relato.component';
+import { VerRelatoComponent } from './shared/ver-relato/ver-relato.component';
+import { DejarComentarioComponent } from './shared/dejar-comentario/dejar-comentario.component';
+import { OpinionUsuarioComponent } from './shared/opinion-usuario/opinion-usuario.component';
+import {ChatstoryService} from './services/chatstory.service';
+import {RelatoService} from './services/relato.service';
+import {WindowService} from './services/window.service';
+import { SuccessComponent } from './shared/social-login/success/success.component';
+import { FailureComponent } from './shared/social-login/failure/failure.component';
 
 
 @NgModule({
@@ -140,7 +149,13 @@ import { CrearRelatoContentComponent } from './relatos/crear-relato/crear-relato
     BuscadorRelatosComponent,
     UserContentChatstoriesComponent,
     CrearRelatoComponent,
-    CrearRelatoContentComponent
+    CrearRelatoContentComponent,
+    CardInfoRelatoComponent,
+    VerRelatoComponent,
+    DejarComentarioComponent,
+    OpinionUsuarioComponent,
+    SuccessComponent,
+    FailureComponent
   ],
   imports: [
     BrowserModule,
@@ -159,7 +174,10 @@ import { CrearRelatoContentComponent } from './relatos/crear-relato/crear-relato
     RepositorioService,
     AlertService,
     AuthenticationService,
-    UserService
+    UserService,
+    ChatstoryService,
+    RelatoService,
+    WindowService
   ],
   bootstrap: [AppComponent]
 })

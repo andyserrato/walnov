@@ -9,7 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CrearWallComponent } from './crear-wall/crear-wall.component';
 import { VisorWall } from './visor-wall/visor-wall.component';
 import {LandingComponent} from './landing/landing.component';
-import {CrearChatstoryStep1Component} from "./chatstory/crear-chatstory-step-1/crear-chatstory-step-1.component";
+import {CrearChatstoryStep1Component} from './chatstory/crear-chatstory-step-1/crear-chatstory-step-1.component';
 import { Walls } from './walls/walls.component';
 import { ListadoWalls } from './walls/listado-walls.component';
 import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
@@ -18,6 +18,8 @@ import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/lis
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
+import {SuccessComponent} from './shared/social-login/success/success.component';
+import {FailureComponent} from './shared/social-login/failure/failure.component';
 
 
 const appRoutes: Routes = [
@@ -37,8 +39,11 @@ const appRoutes: Routes = [
     },
     { path: 'user-profile', component: UserProfileComponent},
     { path: 'crear-relato', component: CrearRelatoComponent},
+    { path: 'social-login/success', component: SuccessComponent},
+    { path: 'social-login/failure', component: FailureComponent},
+
     { path: 'crear-chatstory', component: CrearChatstoryComponent },
-    { path: 'ver-chatstory', component: VerChatstoryComponent },
+    { path: 'chatstory/:id', component: VerChatstoryComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: '**', component: PageNotFoundComponent }
 

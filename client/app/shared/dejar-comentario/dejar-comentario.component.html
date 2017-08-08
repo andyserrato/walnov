@@ -1,0 +1,27 @@
+<div class="Rectangle-4">
+  <div class="d-flex flex-row justify-content-start">
+    <div class="d-flex flex-column">
+      <img class="Oval-2" src={{this.user.imagen}} alt={{this.user.nombre}}>
+    </div>
+    <div class="d-flex flex-column">
+      <div class="Box-Title">
+        Dejar un comentario
+      </div>
+    </div>
+    <div class="d-flex ml-auto flex-column">
+      <div class="align-self-end Contador">
+        {{textarea.value.length}}/750
+      </div>
+    </div>
+  </div>
+  <div class="Rectangle-9">
+    <form>
+      <textarea #textarea [(ngModel)]="localComent" rows=7 class="Comment-Box" type="text" name="comment" maxlength="750"  placeholder="750 caracteres máximo"></textarea>
+    </form>
+  </div>
+  <div class="Rectangle-7" style="cursor:pointer;">
+    <div (click) = "publicaComentario($event);" class="btn-content">
+      Publicar
+    </div>
+  </div>
+</div>

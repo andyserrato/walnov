@@ -2,25 +2,27 @@
   <div class="card-block">
     <h4 class="Card-title">Walls más relevantes</h4>
     <div *ngFor="let wall of walls">
-      <div class="Rectangle-3" *ngIf = "wall.visible">
-        <div class="row">
-          <div class="col-10">
-            <div class="Wall-title" title="{{wall.titulo}}">
-              {{wall.titulo}}
+      <div *ngIf = "wall.isRelevante">
+        <div class="Rectangle-3" *ngIf = "wall.visible">
+          <div class="row">
+            <div class="col-10">
+              <div class="Wall-title" title="{{wall.titulo}}">
+                {{wall.titulo}}
+              </div>
             </div>
+            <button type="button" (click)="showAnother(wall)" class="btn-close" name="button">
+              <img src="assets/images/close-copy@2x.png" class="close-Copy  img-responsive" alt="No seguir">
+            </button>
           </div>
-          <button type="button" (click)="showAnother(wall)" class="btn-close" name="button">
-            <img src="assets/images/close-copy@2x.png" class="close-Copy  img-responsive" alt="No seguir">
-          </button>
+          <div class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(wall)' [style.color] = 'getColor(wall)'>
+            {{wall.cat.nombre}}
+          </div>
+          <ul class="list-unstyled Estadisticas-Usuario">
+            <li>{{wall.participantes}} Participantes</li>
+            <li>{{wall.historias}} Historias</li>
+          </ul>
+          <button type="button" class="btn-wall pull-right" name="button">Participar</button>
         </div>
-        <div class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(wall)' [style.color] = 'getColor(wall)'>
-          {{wall.categoria.nombre}}
-        </div>
-        <ul class="list-unstyled Estadisticas-Usuario">
-          <li>{{wall.participantes}} Participantes</li>
-          <li>{{wall.historias}} Historias</li>
-        </ul>
-        <button type="button" class="btn-wall pull-right" name="button">Participar</button>
       </div>
     </div>
   </div>

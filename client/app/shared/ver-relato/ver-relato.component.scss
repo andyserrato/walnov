@@ -1,0 +1,138 @@
+@import "main";
+
+.Rectangle-3-Copy-7 {
+  //width: 663px;
+  //height: 1160.9px;
+  margin: 0 19px;
+  padding: 28px 15px 55px 22px;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Relato-Title {
+  width: 100%;
+  margin-bottom: 18px;
+  //height: 30px;
+  font-family: 'Maven Pro';
+  font-size: 26px;
+  font-weight: bold;
+  text-align: left;
+  //color: #4a4a4a;
+  color: $grey-8;
+}
+
+.Rectangle-5 {
+  position: relative;
+  margin: 0 20px 15px 0;
+  width: 253px;
+  height: 318px;
+  float: left;
+}
+
+.Imagen-Relato {
+  position: absolute;
+  z-index: 1;
+  top:0;
+  width: 253px;
+  height: 318px;
+  //height: 100%;
+  //width: 100%;
+  border-radius: 8px;
+
+}
+
+.Fondo-Imagen {
+  position: absolute;
+  z-index: 2;
+  top:0;
+  width: 253px;
+  height: 318px;
+  background-color: #000000;
+  opacity: 0.5;
+  border-radius: 8px;
+
+}
+
+.Degradado-Imagen {
+  position: absolute;
+  z-index: 3;
+  top:0;
+  width: 253px;
+  height: 318px;
+  border-radius: 8px;
+
+}
+
+.Relato-Estadisticas {
+  position: absolute;
+  z-index: 5;
+  bottom: 30px;
+  width: 100%;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  //color: #ffffff;
+  color: $grey-1;
+}
+
+.Ovals {
+  position: absolute;
+  z-index: 4;
+  bottom: 40px;
+  width: 100%;
+
+
+}
+
+.Oval-Copy {
+  // position: absolute;
+  // left: 65px;
+  // bottom: 0;
+  width: 28px;
+  height: 26px;
+  //margin-bottom: 3px;
+  //opacity: 0.3;
+  //background-color: #000000;
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 50%
+}
+
+.Oval {
+  // position: absolute;
+  // left: 127.5px;
+  // bottom: 0;
+  //margin-bottom: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.3);
+  //background-color: #000000;
+}
+
+
+.Relato-Content {
+  margin-top: 10px;
+  font-family: 'Maven Pro';
+  font-size: 14px;
+  text-align: left;
+  //color: #000000;
+  color: $grey-10;
+}
+
+.Botones {
+  //width: 65%;
+  margin-top: 72px;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: bold;
+  //text-align: left;
+  //color: #808080;
+  color: $grey-7;
+}
+
+.fa-heart {
+  color: #ff0000;
+
+}

@@ -89,9 +89,7 @@
     </span>
   </div>
   <div class="col-3 no-padding">
-    <div class="btn-hecho pull-right">
-      Guardar Borrador
-    </div>
+    <app-register-popover [textoBoton]="'Guardar Borrador'" [estilosBoton]="'pull-right'" [disabledBoton]="true" [callbackURL]="'/social-login/success'"></app-register-popover>
   </div>
   <div class="col-3 no-padding">
     <div class="btn-hecho pull-right" (click)="viewChatStory()">

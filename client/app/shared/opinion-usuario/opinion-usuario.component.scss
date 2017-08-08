@@ -1,0 +1,65 @@
+@import "main";
+
+.Rectangle-9 {
+  // width: 628.3px;
+  // height: 137.8px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  padding: 18px 22px 23px 23px;
+  // background-color: #ffffff;
+  background-color: $grey-1;
+  // border: solid 1px #c0c0c0;
+  border: solid 1px $grey-5;
+}
+
+.Oval-2 {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.Box-Title {
+  // width: 209.4px;
+  // height: 16px;
+  margin-left: 10px;
+  padding-top: 5px;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  // color: #4a4a4a;
+  color: $grey-8;
+}
+
+.Opciones {
+  padding-top: 7px;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  // color: #808080;
+  color: $grey-7;
+}
+
+.fa-flag-o {
+  padding-top: 3px;
+  margin-right: 5px;
+
+}
+
+.fa-share {
+  padding-top: 3px;
+  margin-right: 5px;
+
+}
+
+.Content {
+  padding-top: 7px;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  text-align: left;
+  // color: #4a4a4a;
+  color: $grey-8;
+}

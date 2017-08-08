@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild }
 import { Categoria } from '../../models/cats';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Relato } from '../../models/relato';
+import { Usuario } from '../../models/usuario.model';
 import { Paginator } from '../../models/paginador';
 
 @Component({
@@ -23,6 +24,7 @@ export class CardRelatosPaginadorComponent implements OnInit {
       for(let j=0; j<10; j++) {
         let nuevoRL = new Relato();
 
+
          nuevoRL.categoria = this.repositorio.categoriasAL[j];
          nuevoRL.titulo = "Hola" + i;
          nuevoRL.imagen_url = "https://lorempixel.com/158/129";
@@ -30,8 +32,9 @@ export class CardRelatosPaginadorComponent implements OnInit {
          nuevoRL.resumen = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. ";
          nuevoRL.likes = 784;
          nuevoRL.views = 2000;
-         nuevoRL.userName = "Amorentrelineas";
-         nuevoRL.userImage = "https://lorempixel.com/22/22";
+         nuevoRL.usuario = new Usuario();
+         nuevoRL.usuario.nombre = "Amorentrelineas";
+         nuevoRL.usuario.imagen = "https://lorempixel.com/22/22";
          this.repositorio.relatos.push(nuevoRL);
       }
     }
