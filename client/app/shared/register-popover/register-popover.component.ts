@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
+import {WindowService} from '../../services/window.service';
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-register-popover',
@@ -10,11 +12,15 @@ import {UserService} from '../../services/user.service';
 })
 export class RegisterPopoverComponent implements OnInit {
   registerForm: FormGroup;
-  textoBoton: string;
+  @Input() textoBoton: string;
+  @Input() estilosBoton: string;
+  @Input() disabledBoton: boolean;
+  @Input() callbackURL: string;
   popoverDisplay: boolean;
   loading = false;
   submitted = false;
   user = new User();
+  private windowHandle: any = null;
   validationMessages = {
     'email': {
       'required': 'Email is required.',
@@ -37,7 +43,7 @@ export class RegisterPopoverComponent implements OnInit {
   };
 
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private authenticacion: AuthenticationService) {
     // this.user = new User();
     this.textoBoton = 'Publicar';
   }
@@ -102,6 +108,10 @@ export class RegisterPopoverComponent implements OnInit {
         Validators.maxLength(50)
       ]]
     });
+  }
+
+  doSocialLogin(url: string) {
+    this.authenticacion.doSocialLogin(url + this.callbackURL);
   }
 
 }

@@ -78,6 +78,11 @@ import { CardInfoRelatoComponent } from './shared/card-info-relato/card-info-rel
 import { VerRelatoComponent } from './shared/ver-relato/ver-relato.component';
 import { DejarComentarioComponent } from './shared/dejar-comentario/dejar-comentario.component';
 import { OpinionUsuarioComponent } from './shared/opinion-usuario/opinion-usuario.component';
+import {ChatstoryService} from './services/chatstory.service';
+import {RelatoService} from './services/relato.service';
+import {WindowService} from './services/window.service';
+import { SuccessComponent } from './shared/social-login/success/success.component';
+import { FailureComponent } from './shared/social-login/failure/failure.component';
 
 
 @NgModule({
@@ -142,7 +147,9 @@ import { OpinionUsuarioComponent } from './shared/opinion-usuario/opinion-usuari
     CardInfoRelatoComponent,
     VerRelatoComponent,
     DejarComentarioComponent,
-    OpinionUsuarioComponent
+    OpinionUsuarioComponent,
+    SuccessComponent,
+    FailureComponent
   ],
   imports: [
     BrowserModule,
@@ -161,7 +168,10 @@ import { OpinionUsuarioComponent } from './shared/opinion-usuario/opinion-usuari
     RepositorioService,
     AlertService,
     AuthenticationService,
-    UserService
+    UserService,
+    ChatstoryService,
+    RelatoService,
+    WindowService
   ],
   bootstrap: [AppComponent]
 })

@@ -14,8 +14,10 @@ export class NavComponent implements OnInit {
 
 
   constructor(location: Location, router: Router) {
-      router.events.subscribe((val) => {
-      this.isNavBarHidden = location.isCurrentPathEqualTo('');
+    router.events.subscribe((val) => {
+      this.isNavBarHidden = (location.isCurrentPathEqualTo('') ||
+        location.isCurrentPathEqualTo('/social-login/success') ||
+        location.isCurrentPathEqualTo('/social-login/failure'));
     });
   }
 
