@@ -11,7 +11,7 @@ import { Relato } from '../../models/relato';
 export class CardRelatoComponent implements OnInit {
   @Input() relato: Relato;
   @Input() vista: string;
-  guardado: boolean;
+
 
   constructor(private repositorio: RepositorioService) { }
 
@@ -27,15 +27,9 @@ export class CardRelatoComponent implements OnInit {
     //
     // this.relatoPrueba.userName = "Amorentrelineas";
     // this.relatoPrueba.userImage = "https://lorempixel.com/22/22";
-    this.setGuardado();
-    console.log(this.vista);
-  }
 
-  setGuardado() {
-   this.guardado = (this.vista === 'guardado');
-   console.log(this.vista);
   }
-
+  
   getBackgroundImage() {
     return 'linear-gradient(to bottom,'+this.relato.categoria.opacidad+','+this.relato.categoria.color+')';
   }
