@@ -4,7 +4,6 @@
   position: initial;
 }
 
-
 // .route{
 //   font-family: Raleway;
 //   font-size: 11px;
@@ -41,6 +40,45 @@
   background-color: #fdfdfd;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
   padding: 2em;
+    & .master{
+      display:grid;
+      grid-gap: 0 20px;
+      grid-template-columns:35% 65%;
+      grid-template-rows:50px 50px 50px 50px 50px 50px 50px 100px auto 50px;
+      grid-template-areas:
+        "foto titulo"
+        "foto cat"
+        "foto cont"
+        "foto cont"
+        "foto cont"
+        "foto cont"
+        "dedic cont"
+        "amigos cont"
+        "amigos cont"
+        "botones botones";
+  }
+}
+
+.section-foto{
+  grid-area: foto;
+}
+.section-titulo{
+  grid-area: titulo;
+}
+.section-categoria{
+  grid-area: cat
+}
+.section-dedicatoria{
+  grid-area: dedic;
+}
+.section-amigos{
+  grid-area: amigos;
+}
+.section-contenido{
+  grid-area: cont;
+}
+.section-botones{
+  grid-area: botones;
 }
 
 .title{
@@ -61,7 +99,8 @@
 .img-picker{
   position: relative;
   height: 300px;
-  background-image: url(http://www.lorempixel.com/1200/1600);
+  background-position: center;
+  background-size: cover;
   border-radius: 8px;
 }
 
@@ -103,6 +142,16 @@ input{
   }
 }
 
+.form-error{
+  border:1px solid red !important;
+}
+
+span.error-span {
+    font-family: Raleway;
+    font-size: 1em;
+    color: red;
+}
+
 .section .section-title{
   font-family: Raleway;
   font-size: 14px;
@@ -118,11 +167,14 @@ input{
 }
 
 .friends-input{
-  padding: .5em;
+  padding: .2em 1em .2em 0em;
   padding-right: 1em;
   border-radius: 3px;
   background-color: $grey-1;
   border: solid 1px $grey-5;
+  &:focus{
+    border-color: $main-2;
+  }
 }
 
 .friends-input .fa{
@@ -141,11 +193,24 @@ input{
 }
 
 .friend-field{
+  padding: .5em;
   margin: 1em 0;
   height: 22px;
   border-radius: 3px;
   background-color: $grey-1;
   border: solid 1px #dddddd;
+  font-family: Raleway;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: $grey-8;
+  & .fa{
+    color:$grey-7;
+    &:hover{
+      cursor: pointer;
+      color:$grey-8;
+    }
+  }
 }
 
 .rel-title{
@@ -165,17 +230,15 @@ input{
     visibility: hidden;
   }
   & .span-title{
+    padding: 0em .5em;
     border: 0;
     background: 0;
-    outline-color: $main-2;
+    outline: 0;
     font-family: 'Maven Pro';
     font-size: 26px;
     font-weight: bold;
     text-align: left;
     color: $grey-8;
-    &::placeholder{
-
-    }
   }
 }
 
@@ -199,6 +262,9 @@ select{
   line-height: 1.43;
   text-align: left;
   color: $grey-8;
+  &:focus{
+    border-color: $main-2;
+  }
 }
 
 textarea{
@@ -214,6 +280,17 @@ textarea{
     text-align: left;
     color: $grey-6;
   }
+  &:focus{
+    border-color: $main-2;
+  }
+}
+
+.letter-counter {
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  color: #6c626f;
 }
 
 .link{
@@ -229,6 +306,10 @@ textarea{
   }
 }
 
+.dedicatoria:focus{
+    border-color:$main-2 !important;
+}
+
 .button{
   padding: 0.3em 1.5em;
   border-radius: 4px;
@@ -241,5 +322,13 @@ textarea{
   &:hover{
     background: $main-2;
     cursor: pointer;
+  }
+}
+
+.button-disabled{
+  background-color: $main-4;
+  &:hover{
+    cursor: not-allowed;
+    background: $main-4;
   }
 }

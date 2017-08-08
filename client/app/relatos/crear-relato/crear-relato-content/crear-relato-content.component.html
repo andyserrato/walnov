@@ -15,62 +15,91 @@
   <div class="title-info">
     Creación de Relato Corto
   </div>
-
-  <div class="row no-padding section">
-    <div class="col-4 no-padding">
-      <div class="section">
-
-        <div class="img-picker">
-          <div class="img-filter" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(222, 25, 109, 0), '+this.relato.categoria.color+')'}">
-
-          </div>
-          <div class="img-picker-div">
-            <app-image-picker [white]="true"></app-image-picker>
-          </div>
+  <div class="master">
+    <div class="section section-foto">
+      <div class="img-picker" [ngStyle]="{'background-image': 'url('+this.relato.imagen_url+')'}">
+        <div class="img-filter" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(222, 25, 109, 0), '+this.relato.categoria.color+')'}">
+        </div>
+        <div class="img-picker-div">
+          <app-image-picker [white]="true" (imageUploaded)="changeImage($event)"></app-image-picker>
         </div>
       </div>
-      <div class="section">
-        <span class="section-title">¿Quieres dedicar tu Wall?</span>
-        <input class="form-control" type="text" name="" value="" placeholder="nombre@mail.com; @usuario…">
+    </div>
+    <div class="section section-dedicatoria">
+      <span class="section-title">¿Quieres dedicar tu Wall?</span>
+      <input (keydown.enter)="newDedicatoria($event)" class="form-control dedicatoria" type="text" name="" value="" placeholder="nombre@mail.com; @usuario…">
+      <div class="dedicatorias">
+        <div class="ded" *ngFor="let ded of dedicatorias" (click)="deleteDedicatoria(ded)">
+          {{ded}}
+        </div>
       </div>
-      <div class="section">
-        <span class="section-title">Invita a tus amigos</span>
-        <div class="friends-container">
-          <div class="friends-fields">
-            <div class="friends-input d-flex align-items-center justify-content-end">
-                <input type="text" class="form-control" name="" value="" placeholder="@Nombreamigo">
-                <span class="fa fa-plus-circle"></span>
-            </div>
-            <!-- <div class="friend-field">
-            </div> -->
+    </div>
+    <div class="section section-amigos">
+      <span class="section-title">Invita a tus amigos</span>
+      <div class="friends-container">
+        <div class="friends-fields">
+          <div class="friends-input d-flex align-items-center justify-content-end">
+              <input #friendInput type="text" class="form-control" name="" value="" placeholder="@Nombreamigo" (keydown.enter)="newFriend(friendInput)">
+              <span class="fa fa-plus-circle" (click)="newFriend(friendInput)"></span>
+          </div>
+          <div class="friend-field d-flex align-items-center justify-content-" *ngFor="let friend of friends">
+            <span class="">{{friend}}</span>
+            <span class="fa fa-times ml-auto" (click)="deleteFriend(friend)"></span>
           </div>
         </div>
       </div>
     </div>
-    <div class="col no-relative">
+
+    <div class="section section-titulo">
       <div class="rel-title">
-        <input placeholder="Título del Relato" maxlength="30" class="span-title" contenteditable="true" #spanTitle> <span class="fa fa-pencil" (click)="spanTitle.focus()"></span>
+        <input
+          [(ngModel)]="this.relato.titulo"
+          [formControl]="this.complexForm.controls['title']"
+          [ngClass]="{'form-error': !this.complexForm.controls['title'].valid && this.complexForm.controls['title'].touched}"
+          placeholder="Título del Relato"
+          maxlength="30"
+          class="span-title"
+          contenteditable="true"
+          #spanTitle
+        >
+          <span class="fa fa-pencil" (click)="spanTitle.focus()"></span>
       </div>
-      <div class="section">
-        <div class="d-flex align-items-center justify-content-end">
-            <span class="pull-right">Categoria</span>
-            <select class="form-control cats" name="" [(ngModel)]="this.relato.categoria">
-              <option *ngFor="let cat of this.repositorio.categoriasAL" [ngValue]="cat">{{cat.nombre}}</option>
-            </select>
-        </div>
-      </div>
-      <div class="section">
-        <textarea class="form-control" name="name" placeholder="Texto máximo 3000 caracteres"></textarea>
-      </div>
-      <div class="section d-flex align-items-center justify-content-end">
-        <div class="link">
-          Vista Previa
-        </div>
-        <div class="button">
-          Publicar
-        </div>
+      <span class="error-span" *ngIf="!this.complexForm.controls['title'].valid && this.complexForm.controls['title'].touched">Introduce un título de un máximo de 30 caracteres</span>
+
+    </div>
+    <div class="section section-categoria">
+      <div class="d-flex align-items-center justify-content-end">
+          <span class="pull-right">Categoria</span>
+          <select class="form-control cats" name="" [(ngModel)]="this.relato.categoria">
+            <option *ngFor="let cat of this.repositorio.categoriasAL" [ngValue]="cat">{{cat.nombre}}</option>
+          </select>
       </div>
     </div>
-
+    <div class="section section-contenido">
+      <textarea
+        #textarea
+        [(ngModel)]="this.relato.texto"
+        class="form-control"
+        name="name"
+        placeholder="Texto máximo 3000 caracteres"
+        [formControl]="this.complexForm.controls['content']"
+        maxlength="3000"
+        [ngClass]="{'form-error': !this.complexForm.controls['content'].valid && this.complexForm.controls['content'].touched}"
+      ></textarea>
+      <div class="letter-counter">{{textarea.value.length}}/3000</div>
+      <span class="error-span" *ngIf="!this.complexForm.controls['content'].valid && this.complexForm.controls['content'].touched">Escribe un relato de un máximo de 3000 caracteres</span>
+    </div>
+    <div class="section d-flex align-items-center justify-content-end section-botones">
+      <div class="link">
+        Vista Previa
+      </div>
+      <div class="button" (click)="publish()" [ngClass]="{'button-disabled': !this.complexForm.valid}">
+        Publicar
+      </div>
+    </div>
   </div>
+
+
+
+
 </div>
