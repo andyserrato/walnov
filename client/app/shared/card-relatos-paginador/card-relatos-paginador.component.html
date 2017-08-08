@@ -12,6 +12,6 @@
 </div>
 <div #contenedorBiblioteca class="d-flex justify-content-center flex-row flex-wrap Limite">
   <div class="" *ngFor= "let relato of repositorio.paginadorCardsRelatos.paginador">
-    <app-card-relato [relato] = 'relato'></app-card-relato>
+    <app-card-relato [vista] = "vista" [relato] = 'relato'></app-card-relato>
   </div>
 </div>

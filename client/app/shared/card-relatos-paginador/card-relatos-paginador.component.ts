@@ -14,6 +14,7 @@ export class CardRelatosPaginadorComponent implements OnInit {
   @Input() relatosFiltrados: Array<Relato>;
   @Input() categoria: Categoria;
   filtradosVacio: boolean = true;
+  vista: string = "buscador";
   paginador = null;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
   constructor(private repositorio: RepositorioService) { }

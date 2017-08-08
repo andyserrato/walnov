@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-2 cols-no-padding">
+    <div class="col-md-2 col-lg-2 cols-no-padding">
       <app-card-categorias (category)='changeCategory($event)'></app-card-categorias>
       <app-card-publicidad class="Publi"></app-card-publicidad>
     </div>
     <!-- /.col -->
-    <div class="col-lg-10 cols-no-padding">
+    <div class="col-md-6 col-lg-10 cols-no-padding">
       <app-card-relatos-paginador [categoria] = 'this.categoria' [relatosFiltrados] = 'this.relatosFiltrados'></app-card-relatos-paginador>
     </div>
     <!-- /.col -->
