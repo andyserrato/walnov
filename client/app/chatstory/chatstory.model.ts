@@ -1,6 +1,7 @@
 import { Categoria } from '../models/cats';
 import { ChatstoryMessage } from '../models/chatstory-message';
-export class ChatStory{
+export class ChatStory {
+  id: string;
   titulo: string;
   autor: string;
   autorNombre: string;
@@ -12,7 +13,7 @@ export class ChatStory{
   tipo: string;
   lang: string;
   exclusivo: boolean;
-  //TODO agregar estadísticas
+  // TODO agregar estadísticas
 
   constructor(t?: string, p?: Array<string>, c?: Categoria, m?: Array<ChatstoryMessage>, i?: string, d?: string, e?: boolean){
     this.titulo=t;
