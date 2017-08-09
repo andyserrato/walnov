@@ -2,6 +2,8 @@
   <div class="row">
     <div class="col-lg-2 col-md-3 cols-no-padding">
       <app-user-card></app-user-card>
+      <app-card-info-premium *ngIf = "this.partner" [vista] = "'userProfile'"></app-card-info-premium>
+      <app-card-publicidad class="hidden-lg-up" *ngIf = "!this.partner"></app-card-publicidad>
     </div>
     <!-- /.col -->
     <div class="col-lg-7 col-md-9 cols-no-padding">
