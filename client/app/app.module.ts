@@ -87,6 +87,8 @@ import {WindowService} from './services/window.service';
 import { SuccessComponent } from './shared/social-login/success/success.component';
 import { FailureComponent } from './shared/social-login/failure/failure.component';
 import { UserContentRelatosComponent } from './user-profile/user-content/user-content-relatos/user-content-relatos.component';
+import { HomeMisRelatosComponent } from './home/home-mis-relatos/home-mis-relatos.component';
+import { RelatoComponent } from './relatos/relato/relato.component';
 
 
 @NgModule({
@@ -157,7 +159,9 @@ import { UserContentRelatosComponent } from './user-profile/user-content/user-co
     OpinionUsuarioComponent,
     SuccessComponent,
     FailureComponent,
-    UserContentRelatosComponent
+    UserContentRelatosComponent,
+    HomeMisRelatosComponent,
+    RelatoComponent
   ],
   imports: [
     BrowserModule,
