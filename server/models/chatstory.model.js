@@ -18,10 +18,13 @@ const ChatStorySchema = Schema({
   autorNombre: String,
   categoria: {type: String , enum: Constantes.Categorias.CATEGORIAS},
   urlImagen: String,
+  personajes: [String],
   chats: [ChatSchema],
-  estadistica: {type: Schema.Types.ObjectId, ref:'Estadistica'},
+  descripcion: String,
   tipo: {type:Number, default: Constantes.Tipo.PUBLICO},
   lang: {type: String , enum: Constantes.Idiomas.IDIOMAS},
+  esclusivo: Boolean,
+  estadistica: {type: Schema.Types.ObjectId, ref:'Estadistica'},
   links: [{
     rel: String,
     href: String
