@@ -1,16 +1,16 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Categoria } from '../../../models/cats';
-import { RepositorioService } from '../../../services/repositorio.service';
-import { Relato } from '../../../models/relato';
-import { Usuario } from '../../../models/usuario.model';
-import { Paginator } from '../../../models/paginador';
+import { Categoria } from '../../models/cats';
+import { RepositorioService } from '../../services/repositorio.service';
+import { Relato } from '../../models/relato';
+import { Usuario } from '../../models/usuario.model';
+import { Paginator } from '../../models/paginador';
 
 @Component({
-  selector: 'app-guardado-relatos',
-  templateUrl: './guardado-relatos.component.html',
-  styleUrls: ['./guardado-relatos.component.scss']
+  selector: 'app-home-mis-relatos',
+  templateUrl: './home-mis-relatos.component.html',
+  styleUrls: ['./home-mis-relatos.component.scss']
 })
-export class GuardadoRelatosComponent implements OnInit {
+export class HomeMisRelatosComponent implements OnInit {
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
   constructor(private repositorio: RepositorioService) { }
 

@@ -13,8 +13,6 @@ import { Paginator } from '../../models/paginador';
 export class CardRelatosPaginadorComponent implements OnInit {
   @Input() relatosFiltrados: Array<Relato>;
   @Input() categoria: Categoria;
-  filtradosVacio: boolean = true;
-  paginador = null;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
   constructor(private repositorio: RepositorioService) { }
 

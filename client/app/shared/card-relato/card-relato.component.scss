@@ -1,5 +1,11 @@
 @import "main";
 
+// @media screen and (min-width: 768px) and (max-width: 991px) {
+//   .Rectangle-7-Copy-5 {
+//     width: 150% !important;
+//   }
+// }
+
 .Rectangle-7-Copy-5 {
   width: 440px;
   height: 172px;
@@ -126,4 +132,77 @@
   font-size: 12px;
   text-align: left;
   color: $grey-6;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .Rectangle-7-Copy-6 {
+    margin-right: 24px !important;
+  }
+
+  .Rectangle-7-Copy-8 {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .Rectangle-7-Copy-5 {
+    width: 95% !important;
+  }
+
+}
+
+.Rectangle-7-Copy-6 {
+  //width: 100%;
+  //height: 172px;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  padding-left: 16px;
+  padding-right: 10px;
+  margin-left: 20px;
+  margin-right: 71px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Rectangle-8 {
+  width: 100%;
+  // margin-left: 40px;
+
+}
+
+.Rectangle-7-Copy-7 {
+  width: 95%;
+  //height: 172px;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  padding-left: 16px;
+  padding-right: 10px;
+  margin-top: 18px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Rectangle-7-Copy-8 {
+  width: 100%;
+  //height: 172px;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  padding-left: 16px;
+  padding-right: 10px;
+  //margin-top: 18px;
+  //margin-left: 19px;
+  // margin-right: 58px;
+  margin-bottom: 21px;
+  border-radius: 8px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
 }

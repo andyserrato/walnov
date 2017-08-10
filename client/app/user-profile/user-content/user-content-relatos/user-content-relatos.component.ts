@@ -6,11 +6,12 @@ import { Usuario } from '../../../models/usuario.model';
 import { Paginator } from '../../../models/paginador';
 
 @Component({
-  selector: 'app-guardado-relatos',
-  templateUrl: './guardado-relatos.component.html',
-  styleUrls: ['./guardado-relatos.component.scss']
+  selector: 'app-user-content-relatos',
+  templateUrl: './user-content-relatos.component.html',
+  styleUrls: ['./user-content-relatos.component.scss']
 })
-export class GuardadoRelatosComponent implements OnInit {
+export class UserContentRelatosComponent implements OnInit {
+  vista:string = "guardado";
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
   constructor(private repositorio: RepositorioService) { }
 
