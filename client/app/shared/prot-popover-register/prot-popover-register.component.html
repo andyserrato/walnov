@@ -1,0 +1,38 @@
+
+  <div #div class="launcher" (click)="this.visible=true">
+    <div class="c-popover" [ngClass]="{'visible': this.visible}">
+      <div class="simple-container">
+        <div class="title">
+          Únete para poder publicar
+        </div>
+        <div class="alternatives d-flex flex-column">
+          <span class="simple-title">Regístrate con:</span>
+          <div class="icon facebook">
+            <span class="fa fa-facebook mr-auto"></span>
+            <span>FACEBOOK</span>
+          </div>
+          <div class="icon twitter">
+            <span class="fa fa-twitter mr-auto"></span>
+            <span>TWITTER</span>
+          </div>
+          <div class="icon google">
+            <span class="fa fa-google-plus mr-auto"></span>
+            <span>GOOGLE</span>
+          </div>
+        </div>
+        <div class="register-form d-flex flex-column">
+          <span class="simple-title">Email</span>
+          <input type="text" name="" value="" class="form-control">
+          <span class="simple-title">Contraseña</span>
+          <input type="text" name="" value="" class="form-control">
+          <span class="simple-title">Nombre de Usuario</span>
+          <input type="text" name="" value="" class="form-control">
+        </div>
+        <div class="button-grid d-flex justify-content-end">
+          <div class="button d-flex align-items-center">
+            Unirme
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

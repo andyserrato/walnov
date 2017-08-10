@@ -6,7 +6,7 @@ export class Wall {
     cat: Categoria;
     imagen_url: string;
     resumen: string;
-
+    tags: Array<string>;
     participantes: number;
     historias: number;
     visible: boolean = false;

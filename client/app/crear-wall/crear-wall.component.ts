@@ -18,6 +18,7 @@ export class CrearWallComponent implements OnInit {
   categorias: Array<Categoria> = new Array<Categoria>();
 
   constructor(private alertSerive: AlertService) {
+    this.wall.tags=new Array<string>();
   }
 
 

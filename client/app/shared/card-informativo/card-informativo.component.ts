@@ -23,16 +23,24 @@ export class CardInformativoComponent implements OnInit {
     this.buttonText = 'Entendido';
     this.parrafos = new Array<string>();
 
+    this.parrafos.push('Comienza añadiendo el título y seleccionando una categoría.');
+
     if(this.view.includes("wall")){
       this.titulo = '¡Estás creando un Wall!';
-    }
-
-    if(this.view.includes("chat")){
+      this.parrafos.push('Selecciona la imagen que más te guste y escribe el inicio de historia.');
+    }else if(this.view.includes("chat")){
       this.titulo= '¡Estás creando una Chatstorie!';
+      this.parrafos.push('Selecciona la imagen que más te guste y crea a tus personajes.');
+      this.parrafos.push('Cuando ya tengas a tus personajes creados es hora de crear sus diálogos, ¡Dales vida!');
+    }else if(this.view.includes("relato")){
+      this.titulo = '¡Estás creando un Relato!';
+      this.parrafos.push('Selecciona la imagen que más te guste y empieza a escribir tu relato');
     }
 
-    this.parrafos.push('Comienza añadiendo el título y seleccionando una categoría.');
-    this.parrafos.push('Selecciona la imagen que más te guste y escribe el inicio de historia.');
+
+
+
+
     this.parrafos.push('¡No olvides invitar a tus amigos y compartirlo en tus redes sociales!');
 
   }

@@ -86,6 +86,7 @@ import {RelatoService} from './services/relato.service';
 import {WindowService} from './services/window.service';
 import { SuccessComponent } from './shared/social-login/success/success.component';
 import { FailureComponent } from './shared/social-login/failure/failure.component';
+import { ProtPopoverRegisterComponent } from './shared/prot-popover-register/prot-popover-register.component';
 
 
 @NgModule({
@@ -155,7 +156,8 @@ import { FailureComponent } from './shared/social-login/failure/failure.componen
     DejarComentarioComponent,
     OpinionUsuarioComponent,
     SuccessComponent,
-    FailureComponent
+    FailureComponent,
+    ProtPopoverRegisterComponent
   ],
   imports: [
     BrowserModule,

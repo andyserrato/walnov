@@ -99,8 +99,10 @@
       <div class="link">
         Vista Previa
       </div>
-      <div class="button" (click)="publish()" [ngClass]="{'button-disabled': !this.complexForm.valid}">
-        Publicar
+      <div class="button" (click)="publish()" [ngClass]="{'button-disabled': !this.complexForm.valid, 'animationStripes': this.publicado}">
+        <app-prot-popover-register></app-prot-popover-register>
+        <span *ngIf="!this.publicado">Publicar</span>
+        <span *ngIf="this.publicado">Publicando</span>
       </div>
     </div>
   </div>

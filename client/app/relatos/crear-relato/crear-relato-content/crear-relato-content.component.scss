@@ -144,7 +144,7 @@
 .img-picker-div{
   position: absolute;
   bottom: 6%;
-  width: 200%;
+  width: 290%;
   height: 18%;
   left: 0;
   -webkit-transform: translateX(-19%);
@@ -308,7 +308,7 @@ textarea{
   background-color: $grey-1;
   border: solid 1px $grey-5;
   resize: none;
-  height: 400px;
+  height: 500px;
   &::placeholder{
     font-family: Raleway;
     font-size: 14px;
@@ -360,6 +360,7 @@ textarea{
 }
 
 .button{
+  position: relative;
   padding: 0.3em 1.5em;
   border-radius: 4px;
   background-color: $main-1;
@@ -373,6 +374,56 @@ textarea{
     cursor: pointer;
   }
 }
+
+
+.animationStripes{
+  display:flex;
+  align-items: center !important;
+  justify-content: center;
+  color:white;
+  background-image: repeating-linear-gradient(45deg, #bc5dff, #bc5dff 5px, #984cce 5px, #984cce 20px);
+  animation:progress 0.5s linear infinite;
+  background-size: 150% 100%;
+  &:hover{
+    background-image: repeating-linear-gradient(45deg, #bc5dff, #bc5dff 5px, #984cce 5px, #984cce 20px);
+    animation:progress 0.5s linear infinite;
+    background-size: 150% 100%;
+  }
+}
+
+@-webkit-keyframes progress{
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -29px 0px;
+  }
+}
+@-moz-keyframes progress{
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -29px 0px;
+  }
+}
+@-ms-keyframes progress{
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -29px 0px;
+  }
+}
+@keyframes progress{
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -29px 0px;
+  }
+}
+
 
 .button-disabled{
   background-color: $main-4;
