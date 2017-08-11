@@ -90,6 +90,8 @@ import { ProtPopoverRegisterComponent } from './shared/prot-popover-register/pro
 import { UserContentRelatosComponent } from './user-profile/user-content/user-content-relatos/user-content-relatos.component';
 import { HomeMisRelatosComponent } from './home/home-mis-relatos/home-mis-relatos.component';
 import { RelatoComponent } from './relatos/relato/relato.component';
+import { ProfilePopoverComponent } from './shared/profile-popover/profile-popover.component';
+import { NuevoUserComponent } from './home/home-reciente/nuevo-user/nuevo-user.component';
 
 
 @NgModule({
@@ -163,7 +165,9 @@ import { RelatoComponent } from './relatos/relato/relato.component';
     ProtPopoverRegisterComponent,
     UserContentRelatosComponent,
     HomeMisRelatosComponent,
-    RelatoComponent
+    RelatoComponent,
+    ProfilePopoverComponent,
+    NuevoUserComponent
   ],
   imports: [
     BrowserModule,

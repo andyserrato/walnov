@@ -25,6 +25,14 @@
   left: 0;
 }
 
+
+.walgo{
+  background-image: url(http://i.imgur.com/kOiyaaS.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 input:focus{
   border-color:$main-1;
 }
@@ -145,19 +153,9 @@ input.error-input{
 .c-popover{
   display: none;
 }
-.visible{
-  display: block !important;
-  width: 35vw;
-  /* height: 1100%; */
-  position: absolute;
-  /* top: -1200%; */
+.up{
   bottom: calc(100% + 20px);
-  right: 0;
-  /* -webkit-transform: translateX(50%); */
-  /* transform: translateX(50%); */
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 36px 0 rgba(0, 0, 0, 0.24);
+  right: -15px;
   &::after{
     content: "";
     width: 0;
@@ -170,6 +168,36 @@ input.error-input{
     right: 15px;
     cursor:initial;
   }
+}
+.down{
+  top: calc(100% + 20px);
+  right: -15px;
+  &::after{
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 15px 15px 15px;
+    border-color: transparent transparent white transparent;
+    position: absolute;
+    bottom:99%;
+    right: 15px;
+    cursor:initial;
+  }
+}
+.visible{
+  display: block !important;
+  width: 35vw;
+  /* height: 1100%; */
+  position: absolute;
+  /* top: -1200%; */
+
+  /* -webkit-transform: translateX(50%); */
+  /* transform: translateX(50%); */
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 36px 0 rgba(0, 0, 0, 0.24);
+
 }
 .launcher{
   position: absolute;

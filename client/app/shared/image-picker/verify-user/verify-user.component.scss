@@ -51,6 +51,10 @@
   font-weight: bold;
   text-align: center;
   color: $grey-1;
+  &:hover{
+    cursor: pointer;
+    background-color: $grey-8;
+  }
 }
 
 .btn-hecho{
@@ -63,6 +67,10 @@
   font-weight: bold;
   text-align: center;
   color: $grey-1;
+  &:hover{
+    cursor: pointer;
+    background-color: $main-2;
+  }
 }
 
 .btn-hecho:hover, .btn-cancelar:hover{

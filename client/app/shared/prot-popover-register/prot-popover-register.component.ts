@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-prot-popover-register',
@@ -14,6 +14,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
   @ViewChild('mail') mail: ElementRef;
   @ViewChild('pass') pass: ElementRef;
   @ViewChild('user') user: ElementRef;
+  @Input() direction: string;
   validateForm:FormGroup;
   view:string = 'register';
   constructor(private fb: FormBuilder) {

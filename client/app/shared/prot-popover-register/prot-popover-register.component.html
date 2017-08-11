@@ -1,11 +1,11 @@
 
   <div #div class="launcher" (click)="this.visible=true">
-    <div class="c-popover" [ngClass]="{'visible': this.visible}">
+    <div class="c-popover" [ngClass]="{'visible': this.visible, 'down': this.direction==='down', 'up': this.direction==='up'}">
       <div class="simple-container">
         <div class="title">
           Únete para poder publicar
         </div>
-        <div class="alternatives d-flex flex-column">
+        <div class="alternatives d-flex flex-column" [ngClass]="{'walgo': this.view==='login'}">
           <div class="d-flex flex-column" *ngIf="this.view==='register'">
             <span class="simple-title">Regístrate con:</span>
             <div class="icon facebook">
