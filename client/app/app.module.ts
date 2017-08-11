@@ -89,6 +89,8 @@ import { FailureComponent } from './shared/social-login/failure/failure.componen
 import { UserContentRelatosComponent } from './user-profile/user-content/user-content-relatos/user-content-relatos.component';
 import { HomeMisRelatosComponent } from './home/home-mis-relatos/home-mis-relatos.component';
 import { RelatoComponent } from './relatos/relato/relato.component';
+import { CardContinuacionComponent } from './shared/card-continuacion/card-continuacion.component';
+import { UserContentContinuacionesComponent } from './user-profile/user-content/user-content-continuaciones/user-content-continuaciones.component';
 
 
 @NgModule({
@@ -161,7 +163,9 @@ import { RelatoComponent } from './relatos/relato/relato.component';
     FailureComponent,
     UserContentRelatosComponent,
     HomeMisRelatosComponent,
-    RelatoComponent
+    RelatoComponent,
+    CardContinuacionComponent,
+    UserContentContinuacionesComponent
   ],
   imports: [
     BrowserModule,

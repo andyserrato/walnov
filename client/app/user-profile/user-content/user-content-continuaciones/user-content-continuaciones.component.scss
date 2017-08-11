@@ -1,0 +1,13 @@
+@import "main";
+
+.Limite {
+  height: 600px;
+  overflow-y: auto;
+
+
+}
+
+.Limite::-webkit-scrollbar {
+  display: none;
+
+}
