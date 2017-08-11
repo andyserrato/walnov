@@ -8,7 +8,7 @@ export class Wall {
     resumen: string;
 
     likes:number;
-
+    tags: Array<string>;
     participantes: number;
     historias: number;
     visible: boolean = false;

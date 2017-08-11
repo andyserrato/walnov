@@ -69,8 +69,8 @@
   font-weight: 600;
   text-align: right;
   color: $main-1;
-}
-
-.fixed-title-right{
-  cursor: pointer;
+  &:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
