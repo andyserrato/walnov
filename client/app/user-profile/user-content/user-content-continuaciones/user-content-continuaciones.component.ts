@@ -23,7 +23,7 @@ export class UserContentContinuacionesComponent implements OnInit {
          nuevaCont.wall = new Wall();
          nuevaCont.wall.cat = this.repositorio.categoriasAL[j];
          nuevaCont.wall.titulo = "Hola" + i;
-         nuevaCont.likes = 234;
+         nuevaCont.likes = 23434;
          nuevaCont.texto = "Lorem ipsum dolor sit amet, consectetur adipiscing elit inum mer et eleifend porttitor, odio nulla condiment. Cras accumsan, nisl et eleifend pLorem ipsum jkdfhkjs jdshgfhkhjdgf dfjkghjkdfhjghkdf"
 
 

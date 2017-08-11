@@ -91,6 +91,8 @@ import { HomeMisRelatosComponent } from './home/home-mis-relatos/home-mis-relato
 import { RelatoComponent } from './relatos/relato/relato.component';
 import { CardContinuacionComponent } from './shared/card-continuacion/card-continuacion.component';
 import { UserContentContinuacionesComponent } from './user-profile/user-content/user-content-continuaciones/user-content-continuaciones.component';
+import { UserContentHistoriasComponent } from './user-profile/user-content/user-content-historias/user-content-historias.component';
+import { CardHistoriaComponent } from './shared/card-historia/card-historia.component';
 
 
 @NgModule({
@@ -165,7 +167,9 @@ import { UserContentContinuacionesComponent } from './user-profile/user-content/
     HomeMisRelatosComponent,
     RelatoComponent,
     CardContinuacionComponent,
-    UserContentContinuacionesComponent
+    UserContentContinuacionesComponent,
+    UserContentHistoriasComponent,
+    CardHistoriaComponent
   ],
   imports: [
     BrowserModule,

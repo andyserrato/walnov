@@ -1,0 +1,49 @@
+<div class="Rectangle-9">
+  <div class="Titulo" [ngSwitch]="historia.ranking">
+    <i class="fa fa-star" aria-hidden="true" *ngSwitchCase="1">
+      <span class="Numero">{{historia.ranking}}</span>
+    </i>
+    <i class="fa fa-star-o" aria-hidden="true" *ngSwitchCase="2">
+      <span class="Numero-2">{{historia.ranking}}</span>
+    </i>
+    <i class="fa fa-star-o" aria-hidden="true" *ngSwitchCase="3">
+      <span class="Numero-2">{{historia.ranking}}</span>
+    </i>
+    <i class="fa fa-star-o" aria-hidden="true" *ngSwitchCase="4">
+      <span class="Numero-2">{{historia.ranking}}</span>
+    </i>
+    <i class="fa fa-star-o" aria-hidden="true" *ngSwitchCase="5">
+      <span class="Numero-2">{{historia.ranking}}</span>
+    </i>
+    <span class="Numero-3" *ngSwitchDefault>{{historia.ranking}}</span>
+    <span class="text-style-2">del wall de</span>
+    <span class="text-style-3" [style.color] = 'getColor()'>{{this.historia.wall.cat.nombre}}
+      <span class="text-style-2" style="margin-left:-2px;">:</span>
+    </span>
+    <span>{{this.historia.wall.titulo}}</span>
+  </div>
+  <div class="Content">
+    {{this.getSubstring()}}...
+  </div>
+  <div class="Posicion d-flex">
+    <div class="ml-auto">
+      <div class="Likes d-flex">
+        <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:4px; margin-right:5px;"></i>
+        {{getNumber(this.historia.likes)}}
+      </div>
+      <div class="d-flex">
+        <div>
+          <div class="shape-1" style="margin-top:2px; margin-right:7px;">
+            <div class="circle">
+            </div>
+            <div class="ground">
+            </div>
+          </div>
+        </div>
+        <div class="stats">
+          {{getNumber(this.historia.continuaciones)}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

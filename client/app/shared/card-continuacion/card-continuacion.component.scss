@@ -2,15 +2,23 @@
 
 .Rectangle-9 {
   //width: 542.9px;
-  height: 145px;
+  // height: 160px;
   border-radius: 8px;
   padding: 22px 25px 18px 18px;
-  margin-left: 12px;
-  margin-right: 12px;
+  margin-left: 50px;
+  margin-right: 50px;
   margin-bottom: 9px;
   // background-color: #ffffff;
   background-color: $grey-1;
   border: solid 1px #dadada;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .Rectangle-9 {
+    margin-left: 12px;
+    margin-right: 12px;
+    // height: 145px;
+  }
 }
 
 .Titulo {
@@ -45,7 +53,7 @@
 
 .Content {
   margin-top: 14px;
-  margin-right: 94px;
+  margin-right: 55px;
   font-family: 'Maven Pro';
   font-size: 14px;
   line-height: normal;
@@ -54,10 +62,7 @@
 }
 
 .Likes {
-  position: relative;
-  right: 0;
   font-family: Raleway;
   font-size: 13px;
-  text-align: left !important;
   color: $grey-7;
 }
