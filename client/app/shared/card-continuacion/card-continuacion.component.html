@@ -1,0 +1,17 @@
+<div class="Rectangle-9">
+  <div class="Titulo">
+    <span class="text-style-1">Continuación</span>
+    <span class="text-style-2">del wall de</span>
+    <span class="text-style-3" [style.color] = 'getColor()'>{{this.continuacion.wall.cat.nombre}}
+      <span class="text-style-2" style="margin-left:-2px;">:</span>
+    </span>
+    <span>{{this.continuacion.wall.titulo}}</span>
+  </div>
+  <div class="Content">
+    {{this.getSubstring()}}...
+  </div>
+  <div class="Likes d-flex">
+    <i class="ml-auto fa fa-heart-o" aria-hidden="true" style="margin-top:4px; margin-right:5px;"></i>
+    {{getNumber(this.continuacion.likes)}}
+  </div>
+</div>

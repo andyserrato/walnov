@@ -9,7 +9,7 @@ export class Relato {
     resumen: string;
     texto: string;
     contenido: Array<String>;
-
+    tags: Array<string>;
     usuario: Usuario;
 
     likes: number;

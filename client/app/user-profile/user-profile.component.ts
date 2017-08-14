@@ -6,12 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-
+  normal:boolean;
+  partner: boolean;
+  premium:boolean;
   constructor() {
 
   }
 
   ngOnInit() {
+    this.normal = true;
+    this.partner = false;
+    this.premium = false;
   }
 
 }

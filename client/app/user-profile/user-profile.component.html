@@ -1,16 +1,20 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2 cols-no-padding">
-      <app-user-card></app-user-card>
+    <div class="col-lg-2 col-md-3 cols-no-padding">
+      <app-user-card *ngIf = "this.normal" [userType] = "'normal'"></app-user-card>
+      <app-user-card *ngIf = "this.partner" [userType] = "'partner'"></app-user-card>
+      <app-user-card *ngIf = "this.premium" [userType] = "'premium'"></app-user-card>
+      <app-card-info-premium *ngIf = "this.partner" [vista] = "'userProfile'"></app-card-info-premium>
+      <app-card-publicidad class="hidden-lg-up" *ngIf = "this.normal"></app-card-publicidad>
     </div>
     <!-- /.col -->
-    <div class="col-7 cols-no-padding">
+    <div class="col-lg-7 col-md-9 cols-no-padding">
       <div class="outside-container">
         <app-user-content></app-user-content>
       </div>
     </div>
     <!-- /.col -->
-    <div class="col-3 hidden-md-down cols-no-padding">
+    <div class="col-lg-3 hidden-md-down cols-no-padding">
       <app-card-usuario-tendencia></app-card-usuario-tendencia>
       <app-card-wall-relevante></app-card-wall-relevante>
       <app-card-publicidad></app-card-publicidad>

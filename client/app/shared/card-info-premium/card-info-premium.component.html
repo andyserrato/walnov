@@ -1,9 +1,28 @@
-<div class="container">
-  <div class="title">
-    Mejora tu
-experiencia Walnov
+<div [ngSwitch]="this.vista">
+  <div *ngSwitchCase="'guardado'"class="container">
+    <div class="title">
+      Mejora tu
+  experiencia Walnov
+    </div>
+    <div class="button">
+  Descube cómo
+    </div>
   </div>
-  <div class="button">
-Descube cómo
+  <div *ngSwitchCase="'userProfile'"class="container-2">
+    <div class="title-2">
+        Apoya a
+     MalenaKrueger
+  a escibir más y mejor
+    </div>
+    <div class="d-flex justify-content-center">
+      <div *ngIf = '!suscrito' (click) = "suscribir();" class="button-2">
+    Suscríbete
+      </div>
+      <div *ngIf = 'suscrito' (click) = "unsuscribe();" class="button-3">
+        <div class="btn-content">
+          Suscrito
+        </div>
+      </div>
+    </div>
   </div>
 </div>

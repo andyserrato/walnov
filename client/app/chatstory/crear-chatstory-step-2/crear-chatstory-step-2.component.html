@@ -88,19 +88,12 @@
       Frase motivadora que tendrá que pensar David
     </span>
   </div>
-  <div class="col-3 no-padding" *ngIf="!isLoggedIn()">
+  <div class="col-3 no-padding">
     <app-register-popover [textoBoton]="'Guardar Borrador'" [estilosBoton]="'pull-right'" [disabledBoton]="true" [callbackURL]="'/social-login/success'"></app-register-popover>
   </div>
-  <div class="col-3 no-padding" *ngIf="isLoggedIn()">
-    <div class="btn-hecho pull-right" (click)="guardarComoBorradorChatStory()">
-      Guardar Borrador
-    </div>
-  </div>
-  <div class="col-3 no-padding" *ngIf="!isLoggedIn()">
-    <app-register-popover [textoBoton]="'Publicar Borrador'" [estilosBoton]="'pull-right'" [disabledBoton]="true" [callbackURL]="'/social-login/success'"></app-register-popover>
-  </div>
-  <div class="col-3 no-padding" *ngIf="isLoggedIn()">
-    <div class="btn-hecho pull-right" (click)="publicarChatStory()">
+  <div class="col-3 no-padding">
+    <div class="btn-hecho pull-right" (click)="viewChatStory()">
+      <app-prot-popover-register></app-prot-popover-register>
       Publicar Chatstory
     </div>
   </div>

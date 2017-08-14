@@ -105,7 +105,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   viewChatStory() {
-    this.done.emit(this.chatStory);
+    
   }
 
   _handleReaderLoaded(e) {

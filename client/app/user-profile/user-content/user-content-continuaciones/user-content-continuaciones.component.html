@@ -1,0 +1,5 @@
+<div #contenedorBiblioteca class="Limite">
+  <div *ngFor= "let continuacion of repositorio.paginadorCardsContinuaciones.paginador">
+    <app-card-continuacion [continuacion] = 'continuacion'></app-card-continuacion>
+  </div>
+</div>

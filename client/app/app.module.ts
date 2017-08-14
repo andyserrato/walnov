@@ -86,7 +86,16 @@ import {RelatoService} from './services/relato.service';
 import {WindowService} from './services/window.service';
 import { SuccessComponent } from './shared/social-login/success/success.component';
 import { FailureComponent } from './shared/social-login/failure/failure.component';
+import { ProtPopoverRegisterComponent } from './shared/prot-popover-register/prot-popover-register.component';
 import { UserContentRelatosComponent } from './user-profile/user-content/user-content-relatos/user-content-relatos.component';
+import { HomeMisRelatosComponent } from './home/home-mis-relatos/home-mis-relatos.component';
+import { RelatoComponent } from './relatos/relato/relato.component';
+import { CardContinuacionComponent } from './shared/card-continuacion/card-continuacion.component';
+import { UserContentContinuacionesComponent } from './user-profile/user-content/user-content-continuaciones/user-content-continuaciones.component';
+import { UserContentHistoriasComponent } from './user-profile/user-content/user-content-historias/user-content-historias.component';
+import { CardHistoriaComponent } from './shared/card-historia/card-historia.component';
+import { ProfilePopoverComponent } from './shared/profile-popover/profile-popover.component';
+import { NuevoUserComponent } from './home/home-reciente/nuevo-user/nuevo-user.component';
 
 
 @NgModule({
@@ -157,7 +166,16 @@ import { UserContentRelatosComponent } from './user-profile/user-content/user-co
     OpinionUsuarioComponent,
     SuccessComponent,
     FailureComponent,
-    UserContentRelatosComponent
+    ProtPopoverRegisterComponent,
+    UserContentRelatosComponent,
+    HomeMisRelatosComponent,
+    RelatoComponent,
+    CardContinuacionComponent,
+    UserContentContinuacionesComponent,
+    UserContentHistoriasComponent,
+    CardHistoriaComponent,
+    ProfilePopoverComponent,
+    NuevoUserComponent
   ],
   imports: [
     BrowserModule,

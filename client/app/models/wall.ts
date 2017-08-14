@@ -7,6 +7,8 @@ export class Wall {
     imagen_url: string;
     resumen: string;
 
+    likes:number;
+    tags: Array<string>;
     participantes: number;
     historias: number;
     visible: boolean = false;
