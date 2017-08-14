@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"ng build -w\" \"nodemon \\server\\server.js\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -28,6 +28,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "buffer-crc32": "^0.2.13",
     "compression": "^1.7.0",
+    "concurrently": "^3.5.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "core-js": "^2.4.1",

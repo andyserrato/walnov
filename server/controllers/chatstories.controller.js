@@ -35,7 +35,7 @@ module.exports = router;
 // Implementaciones de las rutas
 function crearChatStory(req, res) {
   let peticion = req.body.chatStory;
-
+  console.log(req.body);
   if (!peticion) {
     res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
   } else {
