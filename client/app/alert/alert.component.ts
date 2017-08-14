@@ -8,6 +8,7 @@ import { AlertService } from '../services/alert.service';
 })
 export class AlertComponent implements OnInit {
   message: any;
+  typeText: any;
   @ViewChild('alertBox') alertBox: ElementRef;
   constructor(private alertService: AlertService) { }
 
@@ -18,7 +19,7 @@ export class AlertComponent implements OnInit {
        console.log(message);
      });
   }
-  clear(){
+  clear() {
     this.alertService.clear();
   }
 
