@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, AfterViewChecked, ViewChild } from '@angular/core';
-import { ChatStory } from '../chatstory.model';
+import { ChatStory } from '../../models/chatstory.model';
 import { ChatstoryMessage } from '../../models/chatstory-message';
 import {ChatstoryService} from '../../services/chatstory.service';
 import {AuthenticationService} from '../../services/authentication.service';
@@ -105,7 +105,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   viewChatStory() {
-    
+
   }
 
   _handleReaderLoaded(e) {

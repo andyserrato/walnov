@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Story } from './chat-story.model';
+import {AuthenticationService} from '../../services/authentication.service';
+import {ChatstoryService} from '../../services/chatstory.service';
+import {ChatStory} from '../../models/chatstory.model';
 
 @Component({
   selector: 'app-mis-chatstories',
@@ -8,33 +9,30 @@ import { Story } from './chat-story.model';
   styleUrls: ['./mis-chatstories.component.scss']
 })
 export class MisChatstoriesComponent implements OnInit {
-  showMessage:boolean = true;
-  stories: Array<Story> = new Array<Story>();
-  story1: Story;
+  showMessage: boolean;
+  chatStories: ChatStory[];
 
-  constructor() {
-
- }
+  constructor(private authenticationService: AuthenticationService, private chatStoryService: ChatstoryService) {}
 
   ngOnInit() {
-    this.story1 = new Story();
-    this.story1.titulo = 'El misterio de la biblioteca';
-    this.story1.fecha = new Date();
-    this.addStory(this.story1);
-
-  }
-
-  addStory(newStory: Story) {
-    if (newStory) {
-        this.stories.push(newStory);
-        this.showMessage = false;
-
+    if (this.authenticationService.isLoggedIn()) {
+      this.getChatStoriesPublicadosPorAutor();
+    } else {
+      this.showMessage = true;
     }
   }
 
-  deleteStory(oldStory: Story){
-    this.stories.splice(this.stories.indexOf(oldStory), 1);
-
+  getChatStoriesPublicadosPorAutor() {
+    const myParams = new URLSearchParams();
+    myParams.append('autor', this.authenticationService.getUser().id);
+    myParams.append('sort', '-fechaCreacion');
+    myParams.append('top', '5');
+    myParams.append('activo', 'true');
+    myParams.append('tipo', '1'); // tipo publicado
+    this.chatStoryService.getChatStoryByQueryParams(myParams).subscribe(
+      chatStories => {
+        this.chatStories = chatStories;
+      }
+    );
   }
-
 }

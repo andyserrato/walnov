@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Categoria } from '../models/cats';
-import { Chatstory } from '../models/chatstory.model';
+import { ChatStory } from '../models/chatstory.model';
 import { Relato } from '../models/relato';
 import { Wall } from '../models/wall';
 import { Continuacion } from '../models/continuacion';
@@ -16,7 +16,7 @@ export class RepositorioService{
     notificaciones:Array<Object> = new Array();
     categoriasHM = new Map<string, Categoria>();
     categoriasAL = new Array();
-    chatstories: Array<Chatstory> = new Array<Chatstory>();
+    chatstories: Array<ChatStory> = new Array<ChatStory>();
     relatos: Array<Relato> = new Array<Relato>();
     walls: Array<Wall> = new Array<Wall>();
     conts: Array<Continuacion> = new Array<Continuacion>();

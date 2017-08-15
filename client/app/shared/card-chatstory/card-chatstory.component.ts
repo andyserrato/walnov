@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { Categoria } from '../../models/cats';
 import { RepositorioService } from '../../services/repositorio.service';
-import { Chatstory } from '../../models/chatstory.model';
+import { ChatStory } from '../../models/chatstory.model';
 import { Paginator } from '../../models/paginador';
 import { CardMiBibliotecaBuscadorComponent } from '../card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
 import { CardChatstoriesPaginadorComponent } from '../card-chatstories-paginador/card-chatstories-paginador.component';
@@ -12,11 +12,11 @@ import { CardChatstoriesPaginadorComponent } from '../card-chatstories-paginador
   styleUrls: ['./card-chatstory.component.scss']
 })
 export class CardChatstoryComponent implements OnInit {
-  @Input() chatstory: Chatstory;
+  @Input() chatstory: ChatStory;
 
   constructor(private repositorio: RepositorioService) { }
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 
@@ -26,43 +26,44 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   getNumber(numero: number) {
-    if(numero>=1000) return '+' + Math.round(numero/1000) + 'K';
+    if (numero >= 1000) {
+      return '+' + Math.round(numero / 1000) + 'K';
+    }
     return numero;
 
   }
 
   addBiblioteca() {
-    if(!this.chatstory.added) {
-      //this.repositorio.chatstories.push(chatstory);
-      if(CardChatstoriesPaginadorComponent.firstAdded === 0) {
+    if (!this.chatstory.added) {
+      // this.repositorio.chatstories.push(chatstory);
+      if (CardChatstoriesPaginadorComponent.firstAdded === 0) {
         CardMiBibliotecaBuscadorComponent.showMessage();
         this.repositorio.paginadorChatstoriesBiblioteca.paginador = [];
       }
 
       CardChatstoriesPaginadorComponent.firstAdded++;
 
-      if(CardChatstoriesPaginadorComponent.firstAdded === 5) {
+      if (CardChatstoriesPaginadorComponent.firstAdded === 5) {
         CardMiBibliotecaBuscadorComponent.turnFalse();
       }
 
       this.chatstory.added = true;
       this.repositorio.paginadorChatstoriesBiblioteca.addItem(this.chatstory);
-      //console.log(this.repositorio.paginadorChatstoriesBiblioteca);
+      // console.log(this.repositorio.paginadorChatstoriesBiblioteca);
     }
 
 
   }
 
-  checkDescription(){
-    if(this.chatstory.descripcion === undefined  || this.chatstory.descripcion.length ===0) {
-      this.chatstory.descripcion = "Este chatstory no tiene ninguna descripción."
-
+  checkDescription() {
+    if (this.chatstory.descripcion === undefined  || this.chatstory.descripcion.length === 0) {
+      this.chatstory.descripcion = 'Este chatstory no tiene ninguna descripción.';
     }
     return this.chatstory.descripcion;
 
   }
 
   getBackgroundImage() {
-    return 'linear-gradient(to bottom,'+this.chatstory.categoria.opacidad+','+this.chatstory.categoria.color+')';
+    return 'linear-gradient(to bottom,' + this.chatstory.categoria.opacidad + ',' + this.chatstory.categoria.color + ')';
   }
 }

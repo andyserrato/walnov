@@ -4,9 +4,9 @@
     <div *ngIf="showMessage">
       <a class="Message">Aún no has escrito ningún Chatstory, ¿A qué estás esperando?</a>
     </div>
-    <div class="Rectangle-3" *ngFor="let story of stories">
+    <div class="Rectangle-3" *ngFor="let story of chatStories" [routerLink]="['/chatstory', story.id]">
       <h4 class="Story-title">{{story.titulo}}</h4>
-      <footer class="layer">Última act. {{story.fecha | date: 'dd/MM/yy'}}</footer>
+      <footer class="layer">Última act. {{story.fechaCreacion | date: 'dd/MM/yy'}}</footer>
     </div>
   </div>
 </div>

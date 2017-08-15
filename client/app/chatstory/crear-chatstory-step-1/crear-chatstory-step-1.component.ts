@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { Personaje } from '../crear-personaje-chatstory/personaje.model';
-import { ChatStory } from '../chatstory.model';
+import { ChatStory } from '../../models/chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Categoria } from '../../models/cats';
 import { AlertService } from '../../services/alert.service';
@@ -49,14 +49,14 @@ export class CrearChatstoryStep1Component implements OnInit {
   }
 
   nextStep(titulo) {
-    if (this.chatStory.titulo && this.chatStory.personajes.length > 0 && this.chatStory.description) {
+    if (this.chatStory.titulo && this.chatStory.personajes.length > 0 && this.chatStory.descripcion) {
       this.alert.clear();
       this.done.emit(this.chatStory);
     }else {
       if (!this.chatStory.titulo) {
         this.validate['title'] = true;
       }
-      if (!this.chatStory.description) {
+      if (!this.chatStory.descripcion) {
         this.validate['description'] = true;
       }
       if (this.chatStory.personajes.length <= 0) {

@@ -29,7 +29,7 @@
         </div>
         <div class="description-box">
           <span class="fixed-title-2"><b>Descripción</b></span>
-          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="Cuéntanos de qué va tu ChatStory" [(ngModel)]="this.chatStory.description" [ngClass]="{'input-invalid': this.validate['description']}" (change)="validateField($event,'description')"></textarea>
+          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="Cuéntanos de qué va tu ChatStory" [(ngModel)]="this.chatStory.descripcion" [ngClass]="{'input-invalid': this.validate['description']}" (change)="validateField($event,'description')"></textarea>
           <span class="text-invalid" *ngIf="this.validate['description']">Escribe una descripcion</span>
         </div>
       </div>
