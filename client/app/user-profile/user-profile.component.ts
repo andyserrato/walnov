@@ -14,9 +14,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.normal = true;
+    this.normal = false;
     this.partner = false;
-    this.premium = false;
+    this.premium = true;
   }
 
 }

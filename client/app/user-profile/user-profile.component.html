@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row" style="padding-top:16px;">
     <div class="col-lg-2 col-md-3 cols-no-padding">
       <app-user-card *ngIf = "this.normal" [userType] = "'normal'"></app-user-card>
       <app-user-card *ngIf = "this.partner" [userType] = "'partner'"></app-user-card>
@@ -8,7 +8,7 @@
       <app-card-publicidad class="hidden-lg-up" *ngIf = "this.normal"></app-card-publicidad>
     </div>
     <!-- /.col -->
-    <div class="col-lg-7 col-md-9 cols-no-padding">
+    <div class="col-lg-7 col-md-9 cols-no-padding" style="z-index:-1;">
       <div class="outside-container">
         <app-user-content></app-user-content>
       </div>

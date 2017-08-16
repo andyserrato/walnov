@@ -140,6 +140,28 @@
   }
 }
 
+.button-2{
+  margin: 1em auto;
+  border-radius: 4px;
+  background-color: $main-1;
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+  display: block;
+  padding: .5em;
+  // white-space: nowrap;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  width: 100%;
+  max-width: 100px;
+  &:hover{
+    cursor: pointer;
+    background-color: $main-2;
+  }
+}
+
 //shapes
 .shapes{
   position: absolute;
@@ -308,4 +330,121 @@
   background-color: $main-3;
   border-radius: 50%;
   z-index: 1;
+}
+
+.img-profile .tooltiptext {
+    visibility: hidden;
+    width: 379px;
+    height: 98px;
+    background-color: $main-2;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.5);
+    color: $grey-1;
+    font-family: Raleway;
+    font-size: 13px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.08;
+    text-align: left;
+    border-radius: 4px;
+    padding: 15px 17px 27px 15px;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 105%;
+}
+
+.img-profile .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 98%;
+    margin-top: -20px;
+    border-width: 20px;
+    border-style: solid;
+    border-color: transparent $main-2 transparent transparent;
+}
+.img-profile:hover .tooltiptext {
+    visibility: visible;
+}
+
+.img-profile:focus .tooltiptext {
+    visibility: visible;
+}
+
+.Oval-3 .tooltiptext {
+    visibility: hidden;
+    width: 379px;
+    height: 98px;
+    background-color: $main-2;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.5);
+    color: $grey-1;
+    font-family: Raleway;
+    font-size: 13px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.08;
+    text-align: left;
+    border-radius: 4px;
+    padding: 15px 17px 27px 15px;
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    left: 105%;
+}
+
+.Oval-3 .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 98%;
+    margin-top: -20px;
+    border-width: 20px;
+    border-style: solid;
+    border-color: transparent $main-2 transparent transparent;
+}
+.Oval-3:hover .tooltiptext {
+    visibility: visible;
+}
+
+.Oval-3:focus .tooltiptext {
+    visibility: visible;
+}
+
+.Oval-4 .tooltiptext {
+    visibility: hidden;
+    width: 379px;
+    height: 98px;
+    background-color: $main-2;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.5);
+    color: $grey-1;
+    font-family: Raleway;
+    font-size: 13px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.08;
+    text-align: left;
+    border-radius: 4px;
+    padding: 15px 17px 27px 15px;
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    left: 105%;
+}
+
+.Oval-4 .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 98%;
+    margin-top: -20px;
+    border-width: 20px;
+    border-style: solid;
+    border-color: transparent $main-2 transparent transparent;
+}
+.Oval-4:hover .tooltiptext {
+    visibility: visible;
+}
+
+.Oval-4:focus .tooltiptext {
+    visibility: visible;
 }
