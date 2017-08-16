@@ -1,0 +1,17 @@
+<div class="outside-container d-flex flex-column align-items-center">
+  <div class="user-img" [ngStyle]="{'background-image': 'url('+this.user.imagen+')'}">
+
+  </div>
+  <div class="title">
+    {{this.user.nombre}}
+  </div>
+  <div class="inside-info d-flex flex-column align-items-center">
+    <span class="info">{{this.user.walls}} Walls</span>
+    <span class="info">{{this.user.chatstories}} Chatstories</span>
+    <span class="info">{{this.user.relatos}} Relatos cortos</span>
+  </div>
+  <div class="follow d-flex align-items-center justify-content-center" [ngClass]="{'selected': this.seguido}" (click)="this.seguido = !this.seguido">
+    <span *ngIf="this.seguido" class="fa fa-check"></span>
+    <span *ngIf="!this.seguido">Seguir</span>
+  </div>
+</div>
