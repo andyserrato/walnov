@@ -24,8 +24,8 @@
           </div>
 
           <div style="padding-right: 30px;" class="col-lg-3" >
-              <div id="buscador" class="d-flex">
-                  <input type="text" class="inputtext">
+              <div #buscador id="buscador"  [ngClass]="{'focused': this.searching}" class="d-flex">
+                  <input type="text" class="inputtext" (focus)="this.searching=true" (focusout)="this.searching=false">
                   <i class="fa fa-search fa-flip-horizontal" style="margin-right: 16px; line-height: 29px;" aria-hidden="true"></i>
               </div>
             <span class="fa-stack fal-lg hidden-lg-up">

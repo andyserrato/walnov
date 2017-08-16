@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 
 export class NavComponent implements OnInit {
   isNavBarHidden: boolean;
-
+  searching: boolean = false;
 
 
   constructor(location: Location, router: Router) {
@@ -24,7 +24,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
 }

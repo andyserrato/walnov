@@ -173,6 +173,14 @@
     color: $grey-1;
     height: 30px;
     line-height: 30px;
+    & .fa:hover{
+      cursor: pointer;
+    }
+}
+
+.focused{
+  background-color:white !important;
+  color:black !important;
 }
 
 #buscador .inputtext{
@@ -180,9 +188,9 @@
     border: none;
     padding-left: 10px;
     padding-right: 10px;
-    color: $grey-1;
+    color: inherit;
     width: 100%;
     height: 30px;
     outline: none;
-    text-align: center;
+    font-family: Raleway;
 }
