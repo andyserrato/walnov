@@ -1,0 +1,81 @@
+@import "main";
+
+.outside-container{
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  padding: 1em;
+  & .section{
+    margin-top:1em;
+  }
+}
+
+.title{
+  font-family: Raleway;
+  font-size: 18px;
+  text-align: left;
+  color: $grey-8;
+}
+
+.container-title{
+  background-color: #faf1ff;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: $main-3;
+  padding: 1em;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.almost-full-width{
+  width: 90%;
+}
+
+.half-width{
+  width: 50%;
+}
+
+.custom-input{
+  border-radius: 3px;
+  background-color: $grey-1;
+  border: solid 1px $grey-5;
+  color: $grey-6;
+  padding-right: 1em;
+  & input{
+    font-family: Raleway;
+    font-size: 14px;
+    border:0;
+    outline: 0;
+    background: 0;
+    &::placeholder{
+      font-family: Raleway;
+      font-size: 14px;
+      font-style: italic;
+      text-align: left;
+      color: $grey-6;
+    }
+  }
+}
+
+select{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.57;
+  text-align: left;
+  color: $grey-8;
+}
+
+.title-label{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+}
