@@ -11,7 +11,7 @@ import { Paginator } from '../../../models/paginador';
   styleUrls: ['./user-content-relatos.component.scss']
 })
 export class UserContentRelatosComponent implements OnInit {
-  vista:string = "guardado";
+  // vista:string = "guardado";
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
   constructor(private repositorio: RepositorioService) { }
 

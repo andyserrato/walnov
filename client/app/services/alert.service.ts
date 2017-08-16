@@ -22,7 +22,7 @@ export class AlertService {
         });
     }
 
-      success(message: string, keepAfterNavigationChange = false) {
+    success(message: string, keepAfterNavigationChange = false) {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
         this.subject.next({ type: 'success', text: message });
     }
@@ -44,5 +44,11 @@ export class AlertService {
     clear() {
         // clear alerts
         this.subject.next();
+    }
+
+    clearTimeOutAlert() {
+      window.setTimeout(() => {
+        this.subject.next();
+      }, 3000);
     }
 }

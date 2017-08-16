@@ -35,7 +35,7 @@ module.exports = router;
 // Implementaciones de las rutas
 function crearChatStory(req, res) {
   let peticion = req.body.chatStory;
-
+  console.log(req.body);
   if (!peticion) {
     res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
   } else {
@@ -87,8 +87,8 @@ function getChatStories(req, res) {
   let offset;
 
   let query = ChatStory.find();
-  query.select('titulo categoria autorNombre autor estadistica');
-  query.populate('estadistica autor');
+  query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
+  // query.populate('estadistica autor');
   if (req.query && req.query.categoria) {
     query.where('categoria').equals(req.query.categoria);
   }
@@ -97,12 +97,16 @@ function getChatStories(req, res) {
     query.where('autorNombre').equals(req.query.autorNombre);
   }
 
-  if (req.query && req.query.autorID) {
-    query.where('autor').equals(req.query.autorID);
+  if (req.query && req.query.autor) {
+    query.where('autor').equals(req.query.autor);
   }
 
   if (req.query && req.query.lang) {
     query.where('lang').equals(req.query.lang);
+  }
+
+  if (req.query && req.query.tipo) {
+    query.where('tipo').equals(req.query.tipo);
   }
 
   if (req.query && req.query.titulo) {
@@ -110,12 +114,14 @@ function getChatStories(req, res) {
   }
 
   if (req.query && req.query.sort) {
+    console.log(req.query.sort);
     let sortQueries = req.query.sort.split(',');
 
     for (i = 0; i < sortQueries.length; i++) {
       if (sortQueries[i].indexOf('fechaModificacion') !== -1) {
         query.sort(sortQueries[i]);
-      } else if (sortQueries[i].indexOf('fechaCreación') !== -1) {
+      } else if (sortQueries[i].indexOf('fechaCreacion') !== -1) {
+        console.log('encontrado')
         query.sort(sortQueries[i]);
       } else if (sortQueries[i].indexOf('vecesVisto') !== -1) {
         if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
@@ -139,6 +145,11 @@ function getChatStories(req, res) {
     }
   }
 
+  // paginacion
+  query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
+  query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
+
+  query.where('activo').equals(true);
   // relevantes
 
   query.exec(function (err, chatStories) {

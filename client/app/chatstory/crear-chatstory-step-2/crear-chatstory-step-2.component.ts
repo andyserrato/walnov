@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, AfterViewChecked, ViewChild } from '@angular/core';
-import { ChatStory } from '../chatstory.model';
+import { ChatStory } from '../../models/chatstory.model';
 import { ChatstoryMessage } from '../../models/chatstory-message';
 import {ChatstoryService} from '../../services/chatstory.service';
 import {AuthenticationService} from '../../services/authentication.service';
@@ -15,6 +15,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   @Input() chatStory: ChatStory;
   @Output() back: EventEmitter<any>;
   @Output() done: EventEmitter<any>;
+  chatStoryUrl: string;
   // chats: Array<ChatstoryMessage> = new Array<ChatstoryMessage>();
   @ViewChild('preview') private preview: ElementRef;
   @ViewChild('imgPlaceholder') private imgPlaceholder: ElementRef;
@@ -104,7 +105,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   viewChatStory() {
-    
+
   }
 
   _handleReaderLoaded(e) {
@@ -112,20 +113,66 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
         this.message.urlImagen = reader.result;
   }
 
-  uploadImage(event: any){
-    if (event.target.files[0].size < 5000000){
+  uploadImage(event: any) {
+    if (event.target.files[0].size < 5000000) {
       const reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsDataURL(event.target.files[0]);
       this.imgPlaceholder.nativeElement.innerHTML = event.target.files[0].name;
-    }else{
+    }else {
       console.log('Error al subir');
     }
   }
 
-  deleteImage(event){
+  deleteImage(event) {
     this.imgPlaceholder.nativeElement.innerHTML = 'Añadir Imagen';
     event.value = '';
     this.message.urlImagen = '';
+  }
+
+  isLoggedIn(): boolean {
+    // return this.authenticationService.isLoggedIn();
+    return true;
+  }
+
+  publicarChatStory() {
+    // set flag de publicado
+    this.chatStory.tipo = '0';
+    // set autorNombre
+    // this.chatStory.autor = this.authenticationService.getUser().id;
+    this.chatStory.autor = '595bd097994a9e1df48c6fc3';
+    // set autor ID
+    // this.chatStory.autorNombre = this.authenticationService.getUser().perfil.display_name;
+    this.chatStory.autorNombre = 'davidpar';
+
+    const chatStoryFullero = { lang : 'es' , chatStory: this.chatStory };
+
+    // guardar
+    this.chatStoryService.addChatStory(this.chatStory).subscribe( chatStorySaved => {
+      console.log(chatStorySaved);
+      // TODO buscar url canónica
+      this.chatStoryUrl = 'http://localhost:3000/chatstory/' + chatStorySaved.id;
+      // Esto es una alerta momentánea
+      this.alert.error(this.chatStoryUrl);
+    }, error => this.alert.error('Ha ocurrido un error al intentar insertar unChatStory') );
+
+  }
+
+  guardarComoBorradorChatStory() {
+    // set flag de publicado
+    this.chatStory.tipo = '1';
+    // set autorNombre
+    // this.chatStory.autor = this.authenticationService.getUser().id;
+    this.chatStory.autor = '595bd097994a9e1df48c6fc3';
+    // set autor ID
+    // this.chatStory.autorNombre = this.authenticationService.getUser().perfil.display_name;
+    this.chatStory.autorNombre = 'davidpar';
+    // guardar
+    this.chatStoryService.addChatStory(this.chatStory).subscribe( chatStorySaved => {
+      console.log(chatStorySaved);
+      // TODO mostar mensaje alert que toca
+      // Esto es una alerta momentánea
+      this.alert.error('se ha guardado como borrador');
+    }, error => this.alert.error('Ha ocurrido un error al intentar insertar unChatStory') );
   }
 }

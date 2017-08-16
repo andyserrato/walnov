@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { Personaje } from '../crear-personaje-chatstory/personaje.model';
-import { ChatStory } from '../chatstory.model';
+import { ChatStory } from '../../models/chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Categoria } from '../../models/cats';
 import { AlertService } from '../../services/alert.service';
+import {AuthenticationService} from '../../services/authentication.service';
 @Component({
   selector: 'app-crear-chatstory-step-1',
   templateUrl: './crear-chatstory-step-1.component.html',
@@ -17,7 +18,7 @@ export class CrearChatstoryStep1Component implements OnInit {
   categorias: Array<Categoria>;
   maxChars: Array<string> = new Array<string>(18);
   validate: any;
-  constructor(private repositorio: RepositorioService, private alert: AlertService, private fb: FormBuilder) {
+  constructor(private repositorio: RepositorioService, private alert: AlertService, private fb: FormBuilder, private authenticationService: AuthenticationService) {
     this.done = new EventEmitter<any>();
     this.categorias = repositorio.categoriasAL;
 
@@ -32,33 +33,33 @@ export class CrearChatstoryStep1Component implements OnInit {
   }
 
   refreshArray() {
-    for (let i = 0; i < this.chatStory.personajes.length; i++){
+    for (let i = 0; i < this.chatStory.personajes.length; i++) {
       this.maxChars[i] = this.chatStory.personajes[(this.chatStory.personajes.length - 1) - i];
     }
     console.log(this.maxChars);
   }
 
-  validateField(event, selector){
+  validateField(event, selector) {
     console.log(event);
-    if (event.target.value){
+    if (event.target.value) {
       this.validate[selector] = false;
-    }else{
+    } else {
       this.validate[selector] = true;
     }
   }
 
-  nextStep(titulo){
-    if (this.chatStory.titulo && this.chatStory.personajes.length > 0 && this.chatStory.description){
+  nextStep(titulo) {
+    if (this.chatStory.titulo && this.chatStory.personajes.length > 0 && this.chatStory.descripcion) {
       this.alert.clear();
       this.done.emit(this.chatStory);
-    }else{
-      if (!this.chatStory.titulo){
+    }else {
+      if (!this.chatStory.titulo) {
         this.validate['title'] = true;
       }
-      if (!this.chatStory.description){
+      if (!this.chatStory.descripcion) {
         this.validate['description'] = true;
       }
-      if (this.chatStory.personajes.length <= 0){
+      if (this.chatStory.personajes.length <= 0) {
         this.alert.error('Introduce al menos un personaje');
       }
 
@@ -69,16 +70,35 @@ export class CrearChatstoryStep1Component implements OnInit {
     this.chatStory.urlImagen = event;
   }
 
-  newPerosnaje(event: HTMLInputElement) {
-    // console.log(event);
-    if (event.value && this.chatStory.personajes.length < 18 && !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value)]){
+  newPersonaje(event: HTMLInputElement) {
+    // console.log(event)
+    if (event.value && event.value.length >= 15 ) {
+      this.alert.warning('Máximo 15 caracteres');
+      this.alert.clearTimeOutAlert();
+    } else if (event.value && this.chatStory.personajes.length === 18) {
+      this.alert.warning('Máximo 18 personajes');
+      this.alert.clearTimeOutAlert();
+    } else if (event.value && this.chatStory.personajes.length < 18 &&
+      !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value)]) {
       this.chatStory.personajes.push(event.value);
       event.value = '';
       this.refreshArray();
     }
   }
 
-  deleteChar(event){
+  isUsuarioTipoPartner(): boolean {
+    if (this.authenticationService.isLoggedIn()) {
+      return this.authenticationService.getUser().tipo === 1;
+    } else {
+      return false;
+    }
+  }
+
+  deleteChar(event) {
+
+  }
+
+  selectChar(event) {
 
   }
 

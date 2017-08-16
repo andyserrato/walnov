@@ -1,47 +1,157 @@
-<div class="container">
-  <div class="shapes">
-    <div class="shape-1"></div>
-    <div class="shape-2"></div>
-    <div class="shape-3"></div>
-    <div class="shape-4"></div>
-    <div class="shape-5"></div>
-    <div class="shape-6"></div>
-    <div class="shape-7"></div>
-    <div class="shape-8"></div>
-  </div>
-  <div class="img-profile">
-    <div class="message-img">
-      <span class="fa fa-comment"></span>
+<div [ngSwitch]="userType">
+  <div *ngSwitchCase="'normal'" class="container">
+    <div class="shapes">
+      <div class="shape-1"></div>
+      <div class="shape-2"></div>
+      <div class="shape-3"></div>
+      <div class="shape-4"></div>
+      <div class="shape-5"></div>
+      <div class="shape-6"></div>
+      <div class="shape-7"></div>
+      <div class="shape-8"></div>
     </div>
-  </div>
-  <div class="info-container">
-        <span class="user-name">MalenaKrueger</span>
-      <div class="status">
-        <div class="status-text">23 Walls</div>
-        <div class="status-text">4 Chatstories</div>
-        <div class="status-text">8 Relatos cortos</div>
-      </div>
-      <div class="button">
-        Conectar
-      </div>
-      <!-- <div class="button" title="Enviar mensaje">
-        Enviar mensaje
-      </div> -->
-  </div>
-  <div class="followers-container">
-    <div class="number-followers-container">
-      <span class="number-followers">34.954 Seguidores</span>
-    </div>
-    <div class="followers">
-      <div class="img-follower" >
-      </div>
-      <div class="img-follower" >
-      </div>
-      <div class="img-follower" >
-      </div>
-      <div class="img-follower" >
+    <div class="img-profile">
+      <div class="message-img">
+        <span class="fa fa-comment"></span>
       </div>
     </div>
-    <div class="all-followers-button">Ver todos</div>
+    <div class="info-container">
+          <span class="user-name">MalenaKrueger</span>
+        <div class="status">
+          <div class="status-text">23 Walls</div>
+          <div class="status-text">4 Chatstories</div>
+          <div class="status-text">8 Relatos cortos</div>
+        </div>
+        <div class="button">
+          Conectar
+        </div>
+        <!-- <div class="button" title="Enviar mensaje">
+          Enviar mensaje
+        </div> -->
+    </div>
+    <div class="followers-container">
+      <div class="number-followers-container">
+        <span class="number-followers">34.954 Seguidores</span>
+      </div>
+      <div class="followers">
+        <div class="img-follower" >
+        </div>
+        <div class="img-follower" >
+        </div>
+        <div class="img-follower" >
+        </div>
+        <div class="img-follower" >
+        </div>
+      </div>
+      <div class="all-followers-button">Ver todos</div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'partner'" class="container">
+    <div class="shapes">
+      <div class="shape-1"></div>
+      <div class="shape-2"></div>
+      <div class="shape-3"></div>
+      <div class="shape-4"></div>
+      <div class="shape-5"></div>
+      <div class="shape-6"></div>
+      <div class="shape-7"></div>
+      <div class="shape-8"></div>
+    </div>
+    <div class="Oval-3">
+      <div class="message-img">
+        <span class="fa fa-comment"></span>
+      </div>
+      <div class="img-profile-2">
+        <div class="semicircle d-flex justify-content-center">
+          <div class="Tipo-Usuario">
+            Partner
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-container">
+          <span class="user-name">MalenaKrueger</span>
+        <div class="status">
+          <div class="status-text">23 Walls</div>
+          <div class="status-text">4 Chatstories</div>
+          <div class="status-text">8 Relatos cortos</div>
+        </div>
+        <div class="button">
+          Conectar
+        </div>
+        <!-- <div class="button" title="Enviar mensaje">
+          Enviar mensaje
+        </div> -->
+    </div>
+    <div class="followers-container">
+      <div class="number-followers-container">
+        <span class="number-followers">34.954 Seguidores</span>
+      </div>
+      <div class="followers">
+        <div class="img-follower" >
+        </div>
+        <div class="img-follower" >
+        </div>
+        <div class="img-follower" >
+        </div>
+        <div class="img-follower" >
+        </div>
+      </div>
+      <div class="all-followers-button">Ver todos</div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'premium'" class="container">
+    <div class="shapes">
+      <div class="shape-1"></div>
+      <div class="shape-2"></div>
+      <div class="shape-3"></div>
+      <div class="shape-4"></div>
+      <div class="shape-5"></div>
+      <div class="shape-6"></div>
+      <div class="shape-7"></div>
+      <div class="shape-8"></div>
+    </div>
+    <div class="Oval-4">
+      <div class="message-img">
+        <span class="fa fa-comment"></span>
+      </div>
+      <div class="img-profile-3">
+        <div class="semicircle d-flex justify-content-center">
+          <div class="Tipo-Usuario">
+            Premium
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-container">
+          <span class="user-name">MalenaKrueger</span>
+        <div class="status">
+          <div class="status-text">23 Walls</div>
+          <div class="status-text">4 Chatstories</div>
+          <div class="status-text">8 Relatos cortos</div>
+        </div>
+        <div class="button">
+          Conectar
+        </div>
+        <!-- <div class="button" title="Enviar mensaje">
+          Enviar mensaje
+        </div> -->
+    </div>
+    <div class="followers-container">
+      <div class="number-followers-container">
+        <span class="number-followers">34.954 Seguidores</span>
+      </div>
+      <div class="followers">
+        <div class="img-follower" >
+        </div>
+        <div class="img-follower" >
+        </div>
+        <div class="img-follower" >
+        </div>
+        <div class="img-follower" >
+        </div>
+      </div>
+      <div class="all-followers-button">Ver todos</div>
+    </div>
   </div>
 </div>

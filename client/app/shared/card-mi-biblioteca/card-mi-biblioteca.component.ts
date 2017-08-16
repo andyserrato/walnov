@@ -3,7 +3,7 @@ import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Categoria } from '../../models/cats';
 import { RepositorioService } from '../../services/repositorio.service';
-import { Chatstory } from '../../models/chatstory.model';
+import { ChatStory } from '../../models/chatstory.model';
 import { Paginator } from '../../models/paginador';
 
 
@@ -14,8 +14,8 @@ import { Paginator } from '../../models/paginador';
   styleUrls: ['./card-mi-biblioteca.component.scss']
 })
 export class CardMiBibliotecaComponent implements OnInit {
-  //chatstories: Array<Chatstory> = new Array<Chatstory>();
-  chatStoriesFiltrados: Array<Chatstory> = new Array<Chatstory>();
+  //chatstories: Array<ChatStory> = new Array<ChatStory>();
+  chatStoriesFiltrados: Array<ChatStory> = new Array<ChatStory>();
   filtradosVacio: boolean = true;
   // state: string = 'in';
   // isIn:boolean = true;
@@ -24,9 +24,9 @@ export class CardMiBibliotecaComponent implements OnInit {
 
   // categorias = new Array();
 
-  chatst1: Chatstory;
-  chatst2: Chatstory;
-  chatst3: Chatstory;
+  chatst1: ChatStory;
+  chatst2: ChatStory;
+  chatst3: ChatStory;
 
   constructor(private repositorio: RepositorioService) {
 
@@ -34,30 +34,30 @@ export class CardMiBibliotecaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.chatst1 = new Chatstory();
+    this.chatst1 = new ChatStory();
     this.chatst1.categoria = this.repositorio.categoriasAL[0];
     this.chatst1.titulo = "El paseo millonario por la Gran Vía de Madrid entre dos enamorados";
-    this.chatst1.imagen_url = "https://lorempixel.com/45/56";
+    this.chatst1.urlImagen = "https://lorempixel.com/45/56";
     this.chatst1.likes = 784;
     this.chatst1.views = 2000;
 
-    this.chatst2 = new Chatstory();
+    this.chatst2 = new ChatStory();
     this.chatst2.categoria = this.repositorio.categoriasAL[2];
     this.chatst2.titulo = "El hombre palo";
-    this.chatst2.imagen_url = "https://lorempixel.com/45/67";
+    this.chatst2.urlImagen = "https://lorempixel.com/45/67";
     this.chatst2.likes = 46434;
     this.chatst2.views = 2304;
 
-    this.chatst3 = new Chatstory();
+    this.chatst3 = new ChatStory();
 
     this.chatst3.categoria = this.repositorio.categoriasAL[4];
     this.chatst3.titulo = "La mujer barbuda";
-    this.chatst3.imagen_url = "https://lorempixel.com/45/52";
+    this.chatst3.urlImagen = "https://lorempixel.com/45/52";
     this.chatst3.likes = 444;
     this.chatst3.views = 3420;
 
     // for(let i=0; i<20; i++) {
-    //   this.chatst1 = new Chatstory();
+    //   this.chatst1 = new ChatStory();
     //   this.chatst1.categoria = this.repositorio.categoriasAL[4];
     //   this.chatst1.titulo = "El paseo millonario";
     //   this.chatst1.imagen_url = "https://lorempixel.com/45/56";
@@ -76,24 +76,24 @@ export class CardMiBibliotecaComponent implements OnInit {
 
   }
 
-  addChat(newChat: Chatstory) {
+  addChat(newChat: ChatStory) {
     if (newChat) {
         this.repositorio.chatstories.push(newChat);
     }
 
   }
 
-  deleteChat(oldChat: Chatstory){
+  deleteChat(oldChat: ChatStory){
     this.repositorio.chatstories.splice(this.repositorio.chatstories.indexOf(oldChat), 1);
 
   }
 
-  getBorder(chatstory: Chatstory) {
+  getBorder(chatstory: ChatStory) {
     return 'solid 1.5px '+ this.repositorio.categoriasHM.get(chatstory.categoria.nombre).color;
 
   }
 
-  getColor(chatstory: Chatstory) {
+  getColor(chatstory: ChatStory) {
     return chatstory.categoria.color;
 
   }
@@ -108,7 +108,7 @@ export class CardMiBibliotecaComponent implements OnInit {
   sameCategoryArray(categoria) {
     this.paginador = null;
     if (this.repositorio.chatstories != null && categoria != null){
-      this.chatStoriesFiltrados = this.repositorio.chatstories.filter(Chatstory => Chatstory.categoria.nombre === categoria);
+      this.chatStoriesFiltrados = this.repositorio.chatstories.filter(ChatStory => ChatStory.categoria.nombre === categoria);
       this.filtradosVacio = this.emptyFiltrados(this.chatStoriesFiltrados);
       if(!this.filtradosVacio) {
         //let limite = this.chatStoriesFiltrados.length;

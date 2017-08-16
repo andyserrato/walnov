@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { ChatStory } from '../chatstory.model';
+import { ChatStory } from '../../models/chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { ChatstoryMessage } from '../../models/chatstory-message';
 import { Paginator } from '../../models/paginador';

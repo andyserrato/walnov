@@ -1,0 +1,68 @@
+@import "main";
+
+.Rectangle-9 {
+  //width: 542.9px;
+  // height: 160px;
+  border-radius: 8px;
+  padding: 22px 25px 18px 18px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 9px;
+  // background-color: #ffffff;
+  background-color: $grey-1;
+  border: solid 1px #dadada;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .Rectangle-9 {
+    margin-left: 12px;
+    margin-right: 12px;
+    // height: 145px;
+  }
+}
+
+.Titulo {
+  font-family: 'Maven Pro';
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  color: $grey-8;
+}
+
+.Titulo .text-style-1 {
+  font-family: Raleway;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.Titulo .text-style-2 {
+  font-family: Raleway;
+  font-size: 13px;
+  font-weight: normal;
+  color: $grey-8 !important;
+}
+
+.Titulo .text-style-3 {
+  font-family: Raleway;
+  font-size: 13px;
+  font-weight: normal;
+  // color: #e65e20;
+  color: $cat-1;
+}
+
+.Content {
+  margin-top: 14px;
+  margin-right: 55px;
+  font-family: 'Maven Pro';
+  font-size: 14px;
+  line-height: normal;
+  text-align: left;
+  color: $grey-10;
+}
+
+.Likes {
+  font-family: Raleway;
+  font-size: 13px;
+  color: $grey-7;
+}
