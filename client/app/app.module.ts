@@ -96,6 +96,7 @@ import { UserContentHistoriasComponent } from './user-profile/user-content/user-
 import { CardHistoriaComponent } from './shared/card-historia/card-historia.component';
 import { ProfilePopoverComponent } from './shared/profile-popover/profile-popover.component';
 import { NuevoUserComponent } from './home/home-reciente/nuevo-user/nuevo-user.component';
+import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-user.component';
 
 
 @NgModule({
@@ -175,7 +176,8 @@ import { NuevoUserComponent } from './home/home-reciente/nuevo-user/nuevo-user.c
     UserContentHistoriasComponent,
     CardHistoriaComponent,
     ProfilePopoverComponent,
-    NuevoUserComponent
+    NuevoUserComponent,
+    CardFollowUserComponent
   ],
   imports: [
     BrowserModule,

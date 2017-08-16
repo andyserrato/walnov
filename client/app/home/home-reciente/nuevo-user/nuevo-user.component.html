@@ -29,7 +29,7 @@
   <div class="title-label section">
     Usuarios recomendados
   </div>
-  <div class="d-flex flex-nowrap">
-    <!-- <app-user-card></app-user-card> -->
+  <div class="users d-flex flex-wrap align-items-center">
+    <app-card-follow-user *ngFor="let user of users" [user]="user"></app-card-follow-user>
   </div>
 </div>
