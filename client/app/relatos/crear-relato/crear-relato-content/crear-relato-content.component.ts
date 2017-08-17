@@ -3,12 +3,14 @@ import { RepositorioService } from '../../../services/repositorio.service';
 import { Relato } from '../../../models/relato';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AlertService } from '../../../services/alert.service';
+import { ModalService } from '../../../services/modal.service';
 
 @Component({
   selector: 'app-crear-relato-content',
   templateUrl: './crear-relato-content.component.html',
   styleUrls: ['./crear-relato-content.component.scss']
 })
+
 export class CrearRelatoContentComponent implements OnInit {
   @Input() relato: Relato;
   friends: Array<string>;
@@ -17,7 +19,7 @@ export class CrearRelatoContentComponent implements OnInit {
   complexForm: any;
   publicado: boolean = false;
   @ViewChild('textarea') textarea: ElementRef;
-  constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService) {
+  constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService, private modal: ModalService) {
     this.dedicatorias=new Array<string>();
     this.friends=new Array<string>();
     this.complexForm = fb.group({
@@ -48,7 +50,8 @@ export class CrearRelatoContentComponent implements OnInit {
       this.dedicatorias.push(event.target.value);
       event.target.value="";
     }else{
-      this.alert.error("Escribe una dirección de email correcta");
+      this.alert.warning("Escribe una dirección de email correcta");
+      this.modal.info("flipas con el error pavo");
     }
 
   }
