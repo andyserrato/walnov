@@ -17,6 +17,7 @@ export class NuevoUserComponent implements OnInit {
         user.chatstories = 88;
         user.relatos = 88;
         user.imagen = "http://www.lorempixel.com/1200/1600";
+        user.seguido = true;
         this.users.push(user);
     }
   }

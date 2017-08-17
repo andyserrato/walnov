@@ -83,3 +83,14 @@ select{
 .users{
   margin-top:5em;
 }
+
+.button{
+  background-color: $main-1;
+  color:white;
+  padding:.2em 1em;
+  border-radius: .3em;
+  &:hover{
+    background-color: $main-2;
+    cursor: pointer;
+  }
+}

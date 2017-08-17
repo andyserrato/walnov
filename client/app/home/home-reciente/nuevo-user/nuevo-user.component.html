@@ -26,10 +26,13 @@
       </div>
     </div>
   </div>
-  <div class="title-label section">
-    Usuarios recomendados
+  <div class="title-label section d-flex">
+    <span>Usuarios recomendados</span>
+    <div class="button d-flex align-items-center justify-content-center ml-auto">
+      Continuar
+    </div>
   </div>
   <div class="users d-flex flex-wrap align-items-center">
-    <app-card-follow-user *ngFor="let user of users" [user]="user"></app-card-follow-user>
+    <app-card-follow-user *ngFor="let user of users" [user]="user" [seguido]="user.seguido" (click)="user.seguido=!user.seguido"></app-card-follow-user>
   </div>
 </div>
