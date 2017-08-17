@@ -11,7 +11,7 @@
     <span class="info">{{this.user.relatos}} Relatos cortos</span>
   </div>
   <div class="follow d-flex align-items-center justify-content-center" [ngClass]="{'selected': this.seguido}" (click)="this.seguido = !this.seguido">
-    <span *ngIf="this.seguido" class="fa fa-check"></span>
+    <span *ngIf="this.seguido"><span class="fa fa-check"></span> Seguido</span>
     <span *ngIf="!this.seguido">Seguir</span>
   </div>
 </div>
