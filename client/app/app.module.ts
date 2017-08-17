@@ -97,7 +97,9 @@ import { CardHistoriaComponent } from './shared/card-historia/card-historia.comp
 import { ProfilePopoverComponent } from './shared/profile-popover/profile-popover.component';
 import { NuevoUserComponent } from './home/home-reciente/nuevo-user/nuevo-user.component';
 import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-user.component';
-
+import { ModalComponent } from './modal/modal.component';
+import { ModalService } from './services/modal.service';
+import { CapitalizePipe } from './pipe/capitalize/capitalize.pipe';
 
 @NgModule({
   declarations: [
@@ -177,7 +179,9 @@ import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-u
     CardHistoriaComponent,
     ProfilePopoverComponent,
     NuevoUserComponent,
-    CardFollowUserComponent
+    CardFollowUserComponent,
+    ModalComponent,
+    CapitalizePipe
   ],
   imports: [
     BrowserModule,
@@ -199,7 +203,9 @@ import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-u
     UserService,
     ChatstoryService,
     RelatoService,
-    WindowService
+    WindowService,
+    ModalService,
+    CapitalizePipe
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AlertService } from '../services/alert.service';
-
+import { CapitalizePipe } from "../pipe/capitalize/capitalize.pipe";
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
@@ -13,7 +13,6 @@ export class AlertComponent implements OnInit {
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
-
     this.alertService.getMessage().subscribe(message => {
        this.message = message;
        console.log(message);
@@ -22,5 +21,4 @@ export class AlertComponent implements OnInit {
   clear() {
     this.alertService.clear();
   }
-
 }

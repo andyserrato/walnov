@@ -41,15 +41,14 @@
   color: #4a4a4a;
 }
 
-alert-success-border-botton {
+.alert-success {
   border-bottom: solid #A855E3 .15em;
 }
 
-alert-warning-border-botton {
+.alert-warning {
   border-bottom: solid #F0AF28 .15em;
 }
 
-alert-error-border-botton {
-  border-bottom: solid red .15em;
+.alert-error {
+  border-bottom: solid #f12840 .15em;
 }
-
