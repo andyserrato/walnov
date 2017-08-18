@@ -100,6 +100,7 @@ import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-u
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './services/modal.service';
 import { CapitalizePipe } from './pipe/capitalize/capitalize.pipe';
+import { ModalDecorationComponent } from './modal/modal-decoration/modal-decoration.component';
 
 @NgModule({
   declarations: [
@@ -181,7 +182,8 @@ import { CapitalizePipe } from './pipe/capitalize/capitalize.pipe';
     NuevoUserComponent,
     CardFollowUserComponent,
     ModalComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    ModalDecorationComponent
   ],
   imports: [
     BrowserModule,

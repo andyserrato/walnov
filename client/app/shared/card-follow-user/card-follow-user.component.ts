@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 @Component({
   selector: 'app-card-follow-user',
@@ -8,9 +8,17 @@ import { Usuario } from '../../models/usuario.model';
 export class CardFollowUserComponent implements OnInit {
   @Input() user: Usuario;
   @Input() seguido: boolean;
-  constructor() { }
+  @Output() followClick : EventEmitter<any>;
+  constructor() {
+    this.followClick = new EventEmitter<any>();
+  }
 
   ngOnInit() {
+
+  }
+
+  follow() {
+    this.followClick.emit();
   }
 
 }

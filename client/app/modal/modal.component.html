@@ -1,1 +1,16 @@
-
+<div class="outside-container" (click)="clear($event)" *ngIf="this.message">
+  <div #content class="content-container d-flex flex-column zoomIn animated">
+    <app-modal-decoration></app-modal-decoration>
+    <div class="title-box d-flex align-items-center justify-content-center">
+      {{this.message.text}}
+    </div>
+    <div class="button-box d-flex justify-content-end">
+      <div class="button d-flex align-items-center justify-content-center">
+        Seguir buscando usuarios
+      </div>
+      <div class="button d-flex align-items-center justify-content-center">
+        Ver actividad
+      </div>
+    </div>
+  </div>
+</div>

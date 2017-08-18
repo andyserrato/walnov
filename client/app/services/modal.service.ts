@@ -18,5 +18,8 @@ export class ModalService {
     return this.subject.asObservable();
   }
 
+  clear() {
+    this.subject.next();
+  }
 
 }

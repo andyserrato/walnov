@@ -94,3 +94,11 @@ select{
     cursor: pointer;
   }
 }
+
+.button-disabled{
+  background-color: $main-4;
+  &:hover{
+    background-color: $main-4;
+    cursor: not-allowed;
+  }
+}
