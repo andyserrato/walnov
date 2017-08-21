@@ -97,6 +97,9 @@ import { CardHistoriaComponent } from './shared/card-historia/card-historia.comp
 import { ProfilePopoverComponent } from './shared/profile-popover/profile-popover.component';
 import { NuevoUserComponent } from './home/home-reciente/nuevo-user/nuevo-user.component';
 import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-user.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premium.component';
+import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
 
 
 @NgModule({
@@ -177,7 +180,10 @@ import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-u
     CardHistoriaComponent,
     ProfilePopoverComponent,
     NuevoUserComponent,
-    CardFollowUserComponent
+    CardFollowUserComponent,
+    PricingComponent,
+    PricingPremiumComponent,
+    PricingPartnerComponent
   ],
   imports: [
     BrowserModule,

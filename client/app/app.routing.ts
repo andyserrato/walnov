@@ -18,6 +18,7 @@ import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/lis
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
+import { PricingComponent} from './pricing/pricing.component';
 import {SuccessComponent} from './shared/social-login/success/success.component';
 import {FailureComponent} from './shared/social-login/failure/failure.component';
 
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     { path: 'crear-chatstory', component: CrearChatstoryComponent },
     { path: 'chatstory/:id', component: VerChatstoryComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full'},
-    { path: '**', component: PageNotFoundComponent }
+    { path: '**', component: PageNotFoundComponent },
+    { path: 'pricing', component: PricingComponent },
 
     // otherwise redirect to home
     /*{ path: '**', redirectTo: '' }*/
