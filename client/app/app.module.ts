@@ -97,10 +97,12 @@ import { CardHistoriaComponent } from './shared/card-historia/card-historia.comp
 import { ProfilePopoverComponent } from './shared/profile-popover/profile-popover.component';
 import { NuevoUserComponent } from './home/home-reciente/nuevo-user/nuevo-user.component';
 import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-user.component';
+import { ModalComponent } from './modal/modal.component';
+import { ModalService } from './services/modal.service';
+import { CapitalizePipe } from './pipe/capitalize/capitalize.pipe';
 import { PricingComponent } from './pricing/pricing.component';
 import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premium.component';
 import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
-
 
 @NgModule({
   declarations: [
@@ -181,6 +183,8 @@ import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partn
     ProfilePopoverComponent,
     NuevoUserComponent,
     CardFollowUserComponent,
+    ModalComponent,
+    CapitalizePipe,
     PricingComponent,
     PricingPremiumComponent,
     PricingPartnerComponent
@@ -205,7 +209,9 @@ import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partn
     UserService,
     ChatstoryService,
     RelatoService,
-    WindowService
+    WindowService,
+    ModalService,
+    CapitalizePipe
   ],
   bootstrap: [AppComponent]
 })

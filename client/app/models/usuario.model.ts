@@ -6,7 +6,7 @@ export class Usuario {
   chatstories:number;
   relatos:number;
   visible: boolean = false;
-
+  seguido: boolean;
   isTendencia:boolean = false;
 
 }

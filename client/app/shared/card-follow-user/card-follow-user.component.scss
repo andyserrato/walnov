@@ -66,7 +66,11 @@
     color: white;
   }
   &.selected{
-    background-color: $main-1;
-    color:white;
+    background-color: transparent;
+    color:$main-1;
+    border: 0;
+    &:hover{
+      color: $main-2;
+    }
   }
 }

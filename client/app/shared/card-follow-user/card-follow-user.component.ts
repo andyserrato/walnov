@@ -7,7 +7,7 @@ import { Usuario } from '../../models/usuario.model';
 })
 export class CardFollowUserComponent implements OnInit {
   @Input() user: Usuario;
-  seguido: boolean;
+  @Input() seguido: boolean;
   constructor() { }
 
   ngOnInit() {
