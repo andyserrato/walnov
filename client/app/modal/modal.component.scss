@@ -16,6 +16,8 @@
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.18);
+  border: solid 1px #dadada;
   border-radius: 8px;
   padding: 2em;
   max-width: 80%;
@@ -53,6 +55,82 @@
   }
 }
 
+.button-white{
+  display: inline-block;
+  padding: 0 1em;
+  border-radius: 4px;
+  border: solid 1px $main-5;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: $main-5;
+  transition: color .3s, background-color .3s;
+  &:hover{
+    cursor: pointer;
+    background-color: $main-5;
+    color: $grey-1;
+  }
+}
+
+.button-row{
+  margin-top: 2em;
+}
+
+.simple-title{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+}
+
+.margin-right{
+  margin-right: 5em;
+}
+
+.margin-top-1{
+  margin-top: 1em;
+}
+
+.share{
+  margin-top: 3em;
+}
+
+.link{
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: $grey-6;
+}
+
+.sqr-button{
+  min-height: 50px;
+  border-radius: .3em;
+  color: white;
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:0 .5em;
+  &:hover{
+    cursor: pointer;
+    opacity: .5;
+  }
+  &.facebook{
+    background-color: #3a5695;
+  }
+  &.google{
+    background-color: #e05139;
+  }
+  &.twitter{
+    background-color: #55acee;
+  }
+  &.linkedin{
+    background-color: #327bb3;
+  }
+}
 
 //animations
 

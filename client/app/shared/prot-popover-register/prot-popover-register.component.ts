@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-prot-popover-register',
@@ -9,15 +9,17 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
   }
 })
 export class ProtPopoverRegisterComponent implements OnInit {
-  visible: boolean = false;
+  @Input() visible: boolean;
   @ViewChild('div') div: ElementRef;
   @ViewChild('mail') mail: ElementRef;
   @ViewChild('pass') pass: ElementRef;
   @ViewChild('user') user: ElementRef;
   @Input() direction: string;
+  @Output() loged: EventEmitter<any>;
   validateForm:FormGroup;
   view:string = 'register';
   constructor(private fb: FormBuilder) {
+    this.loged = new EventEmitter<any>();
     this.validateForm = fb.group({
       'mail': [null, Validators.compose([Validators.required, Validators.email])],
       'user': [null, Validators.required],
@@ -41,10 +43,15 @@ export class ProtPopoverRegisterComponent implements OnInit {
 
   register() {
     console.log(this.mail.nativeElement.value+', '+this.pass.nativeElement.value+', '+this.user.nativeElement.value);
+    this.visible = false;
+    console.log(this.user.nativeElement.value+', '+this.pass.nativeElement.value);
+    this.loged.emit();
   }
 
   login() {
+    this.visible = false;
     console.log(this.user.nativeElement.value+', '+this.pass.nativeElement.value);
+    this.loged.emit();
   }
 
 }

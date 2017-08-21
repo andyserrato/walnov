@@ -18,6 +18,7 @@ export class CrearRelatoContentComponent implements OnInit {
   dedicatoriaForm: FormControl;
   complexForm: any;
   publicado: boolean = false;
+  publicando: boolean = false;
   @ViewChild('textarea') textarea: ElementRef;
   constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService, private modal: ModalService) {
     this.dedicatorias=new Array<string>();
@@ -51,7 +52,6 @@ export class CrearRelatoContentComponent implements OnInit {
       event.target.value="";
     }else{
       this.alert.warning("Escribe una dirección de email correcta");
-      this.modal.info("flipas con el error pavo");
     }
 
   }
@@ -68,9 +68,17 @@ export class CrearRelatoContentComponent implements OnInit {
     if(this.complexForm.valid) {
       console.log(this.relato);
       this.publicado=true;
+      setTimeout(()=>{
+        this.publicando = false;
+      },1000);
     }else{
       this.complexForm.controls['title'].markAsTouched();
       this.complexForm.controls['content'].markAsTouched();
     }
+  }
+
+  share(){
+    this.modal.share('¡Relato publicado con éxito!');
+    this.publicando = true;
   }
 }
