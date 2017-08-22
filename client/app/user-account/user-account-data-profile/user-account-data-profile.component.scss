@@ -1,0 +1,40 @@
+@import "main";
+
+.full-outside-container{
+  padding: 0 1em;
+}
+
+.outside-container{
+  margin-top: 1em;
+  width: 100%;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  padding: 2em;
+}
+
+.profile-header{
+  width: 100%;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  padding: 2em;
+  & .img{
+      height:70px;
+      width: 70px;
+      background-image: url('http://www.lorempixel.com/1600/1200');
+      border-radius: 50%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+
+  & .profile-name{
+    font-family: Raleway;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    color: $main-1;
+    margin-left: 1em;
+  }
+}
