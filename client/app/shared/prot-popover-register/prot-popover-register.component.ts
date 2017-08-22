@@ -16,12 +16,12 @@ export class ProtPopoverRegisterComponent implements OnInit {
   @ViewChild('user') user: ElementRef;
   @Input() direction: string;
   @Output() loged: EventEmitter<any>;
-  @Output() focusout: EventEmitter<any>;
+  @Output() focusOut: EventEmitter<any>;
   validateForm:FormGroup;
   view:string = 'register';
   constructor(private fb: FormBuilder) {
     this.loged = new EventEmitter<any>();
-    this.focusout = new EventEmitter<any>();
+    this.focusOut = new EventEmitter<any>();
     this.validateForm = fb.group({
       'mail': [null, Validators.compose([Validators.required, Validators.email])],
       'user': [null, Validators.required],
@@ -34,7 +34,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
 
   onClick(event) {
     if (!this.div.nativeElement.contains(event.target) && this.visible) {
-      this.focusout.emit();
+      this.focusOut.emit();
       this.view='register';
     }
   }
