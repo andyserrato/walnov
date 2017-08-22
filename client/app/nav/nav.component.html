@@ -69,7 +69,7 @@
 
             <div id="imagen-perfil" class="img-rel">
                 <app-profile-popover *ngIf="this.user"></app-profile-popover>
-                <app-prot-popover-register [direction]="'down'" *ngIf="!this.user" [visible]="popover" (click)="this.popover = true" (focusout)="this.popover = false"></app-prot-popover-register>
+                <app-prot-popover-register [direction]="'down'" *ngIf="!this.user" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
                 <img src="https://lorempixel.com/22/22/cats" class="rounded-circle nav-user-img img-responsive">
             </div>
 
