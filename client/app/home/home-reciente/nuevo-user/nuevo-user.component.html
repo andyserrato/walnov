@@ -32,7 +32,7 @@
       Continuar
     </div>
   </div>
-  <div class="users d-flex flex-wrap align-items-center">
+  <div class="users d-flex flex-wrap align-items-center justify-content-center">
     <app-card-follow-user *ngFor="let user of users" [user]="user" [seguido]="user.seguido" (followClick)="user.seguido ? unfollow(user) : follow(user)"></app-card-follow-user>
   </div>
 </div>

@@ -20,7 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
 import {SuccessComponent} from './shared/social-login/success/success.component';
 import {FailureComponent} from './shared/social-login/failure/failure.component';
-
+import { UserAccountComponent } from './user-account/user-account.component';
 
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
@@ -38,6 +38,7 @@ const appRoutes: Routes = [
         ]
     },
     { path: 'user-profile', component: UserProfileComponent},
+    { path: 'user-account', component: UserAccountComponent},
     { path: 'crear-relato', component: CrearRelatoComponent},
     { path: 'social-login/success', component: SuccessComponent},
     { path: 'social-login/failure', component: FailureComponent},

@@ -4,6 +4,7 @@ import { Relato } from '../../../models/relato';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AlertService } from '../../../services/alert.service';
 import { ModalService } from '../../../services/modal.service';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
   selector: 'app-crear-relato-content',
@@ -17,10 +18,10 @@ export class CrearRelatoContentComponent implements OnInit {
   dedicatorias: Array<string>;
   dedicatoriaForm: FormControl;
   complexForm: any;
-  publicado: boolean = false;
+  popover: boolean = false;
   publicando: boolean = false;
   @ViewChild('textarea') textarea: ElementRef;
-  constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService, private modal: ModalService) {
+  constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService, private modal: ModalService, private auth: AuthenticationService) {
     this.dedicatorias=new Array<string>();
     this.friends=new Array<string>();
     this.complexForm = fb.group({
@@ -66,11 +67,11 @@ export class CrearRelatoContentComponent implements OnInit {
 
   publish() {
     if(this.complexForm.valid) {
-      console.log(this.relato);
-      this.publicado=true;
-      setTimeout(()=>{
-        this.publicando = false;
-      },1000);
+      if(this.auth.isLoggedIn()){
+        this.share();
+      }else{
+        this.popover=true;
+      }
     }else{
       this.complexForm.controls['title'].markAsTouched();
       this.complexForm.controls['content'].markAsTouched();
@@ -80,5 +81,8 @@ export class CrearRelatoContentComponent implements OnInit {
   share(){
     this.modal.share('¡Relato publicado con éxito!');
     this.publicando = true;
+    setTimeout(()=>{
+      this.publicando = false;
+    },1000);
   }
 }

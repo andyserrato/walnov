@@ -101,6 +101,12 @@ import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './services/modal.service';
 import { CapitalizePipe } from './pipe/capitalize/capitalize.pipe';
 import { ModalDecorationComponent } from './modal/modal-decoration/modal-decoration.component';
+import { UserAccountComponent } from './user-account/user-account.component';
+import { CardUserAccountNavigateComponent } from './user-account/card-user-account-navigate/card-user-account-navigate.component';
+import { UserAccountDataProfileComponent } from './user-account/user-account-data-profile/user-account-data-profile.component';
+import { UserAccountInteresesComponent } from './user-account/user-account-intereses/user-account-intereses.component';
+import { UserAccountPreferencesComponent } from './user-account/user-account-preferences/user-account-preferences.component';
+import { UserAccountPremiumComponent } from './user-account/user-account-premium/user-account-premium.component';
 
 @NgModule({
   declarations: [
@@ -183,7 +189,13 @@ import { ModalDecorationComponent } from './modal/modal-decoration/modal-decorat
     CardFollowUserComponent,
     ModalComponent,
     CapitalizePipe,
-    ModalDecorationComponent
+    ModalDecorationComponent,
+    UserAccountComponent,
+    CardUserAccountNavigateComponent,
+    UserAccountDataProfileComponent,
+    UserAccountInteresesComponent,
+    UserAccountPreferencesComponent,
+    UserAccountPremiumComponent
   ],
   imports: [
     BrowserModule,
