@@ -17,11 +17,15 @@ export class NavComponent implements OnInit {
   constructor(location: Location, router: Router, private auth: AuthenticationService) {
     this.user= this.auth.isLoggedIn() ? this.auth.getUser() : false;
     router.events.subscribe((val) => {
-      console.log('hola desde nav bar');
-      console.log(location.path());
-      this.isNavBarHidden = (location.isCurrentPathEqualTo('') ||
-        location.isCurrentPathEqualTo('social-login/success') ||
-        location.isCurrentPathEqualTo('/social-login/failure'));
+      if (location.path().indexOf('social-login/success') !== -1) {
+        this.isNavBarHidden = true;
+      } else if (location.path().indexOf('social-login/failure') !== -1) {
+        this.isNavBarHidden = true;
+      } else if (location.isCurrentPathEqualTo('')) {
+        this.isNavBarHidden = true;
+      } else {
+        this.isNavBarHidden = false;
+      }
     });
   }
 

@@ -13,7 +13,16 @@ router.post('/auth/signup', signup);
 // Set up the 'signin' routes
 router.post('/auth/signin', signin);
 // Set up the 'signout' route
-router.post('/auth/signout', signout);
+router.get('/auth/signout', signout);
+
+router.get('/auth/isLoggedIn', function isLoggedIn(req, res) {
+  console.log(req.session.user);
+  if (req.isAuthenticated()) {
+    res.json('yes');
+  } else {
+    res.json('no');
+  }
+});
 
 // Obtiene los datos del usuario
 router.get('/oauth/userdataPassportLoggedIn', isLoggedIn, findUserByProviderIdPassportLoggedIn);
@@ -28,38 +37,27 @@ function getLoggedInUserBySocialLogin(req, res) {
 router.get('/oauth/userdata', isLoggedIn, getLoggedInUserBySocialLogin);
 
 // Set up the Facebook OAuth routes
-router.get('/oauth/facebook', getUrl, setUrl, passport.authenticate('facebook', {
+router.get('/oauth/facebook', passport.authenticate('facebook', {
   failureRedirect: '/socialLogin/failure',
+  successRedirect: '/socialLogin/success',
   scope: ['public_profile', 'email', 'user_friends']
 }));
 
-router.get('/oauth/facebook/callback',setUrl, passport.authenticate('facebook'));
+router.get('/oauth/facebook/callback', passport.authenticate('facebook'));
 
 // Set up the Twitter OAuth routes
 router.get('/oauth/twitter', getUrl, passport.authenticate('twitter', {
-  failureRedirect: '/socialLogin/failure'
+  failureRedirect: '/socialLogin/failure',
+  successRedirect: '/socialLogin/success'
 }));
 
-function getUrl (req, res, next){
-  req.session.returnTo = req.query.url;
-  redirection = req.query.url;
-  console.log(req.query.url);
-  next();
-};
-
-function setUrl(req, res, next) {
-  console.log(redirection);
-  req.session.returnTo = redirection;
-  next();
-}
-
-router.get('/oauth/twitter/callback', setUrl, passport.authenticate('twitter', { failureRedirect: '/' }),
+router.get('/oauth/twitter/callback', setUrl, passport.authenticate('twitter', { failureRedirect: '/socialLogin/failure' }),
   function(req, res) {
       req.login(req.session.user, function(err) {
         res.redirect(req.session.returnTo);
-      })
-
-  });
+      });
+  }
+);
 
 // Set up the Google OAuth routes
 router.get('/oauth/google', getUrl, passport.authenticate('google', {
@@ -125,8 +123,21 @@ function signin(req, res, next) {
 
 // Create a new controller method that creates new 'regular' users
 function signup(req, res) {
+  if (!req.body) {
+    res.status(400).send('error usuario requerido ');
+  } else if (!req.body.login) {
+    res.status(400).send('error username requerido');
+  } else if (!req.body.email) {
+    res.status(400).send('error email requerido');
+  } else if (!req.body.password) {
+    res.status(400).send('error password requerido');
+  }
+
   const user = new User({
-    login: req.body.login
+    login: req.body.login,
+    perfil: {
+      email: req.body.email
+    }
   });
   user.password = user.generateHash(req.body.password);
   user.provider = 'local';
@@ -134,7 +145,7 @@ function signup(req, res) {
   User.findLoginDuplicate(user, function (user) {
     // Ocurrió un error o el usuario ya se encuentra registrado
     if (!user) {
-      res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra : Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra);
+      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra);
     } else {
       User.findEmailDuplicate(user, function (user) {
         // Try saving the User
@@ -191,16 +202,18 @@ exports.saveOAuthUserProfile = function (profile) {
 
 // Create a new controller method for signing out
 function signout(req, res) {
+  console.log('signout');
   // Use the Passport 'logout' method to logout
   req.logout();
 
   // Redirect the user back to the main application page
-  res.redirect('/');
+  res.json('sesión terminada');
 };
 
 // Middleware
 function isLoggedIn(req, res, next) {
-  console.log(req.session.user);
+  console.log('isLooggedIn');
+  console.log('req.isAuthenticated(): ' + req.isAuthenticated());
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -209,12 +222,17 @@ function isLoggedIn(req, res, next) {
 };
 
 function findUserByProviderIdPassportLoggedIn(req, res) {
-  User.findOne({
-    provider: req.user.provider,
-    providerId: req.user.providerId
-  }, function (err, fulluser) {
-    if (err) throw err;
-    res.json(fulluser);
+  // User.findOne({
+  //   provider: req.user.provider,
+  //   providerId: req.user.providerId
+  // }, function (err, fulluser) {
+  //   if (err) throw err;
+  //   res.json(fulluser);
+  // })
+
+  User.findById(req.session.user.id, function (err, fulluser) {
+    if (err) res.status(400).send(err);
+    res.status(200).json(fulluser);
   })
 };
 
@@ -305,7 +323,6 @@ const factoryUserFacebook = function (profile) {
   return user;
 }
 
-
 const retorno = function (err, user) {
   // If an error occurs continue to the next middleware
   if (err) {
@@ -335,4 +352,17 @@ const retorno = function (err, user) {
       return done(err, user);
     }
   }
+}
+
+function getUrl (req, res, next){
+  req.session.returnTo = req.query.url;
+  redirection = req.query.url;
+  console.log(req.query.url);
+  next();
+};
+
+function setUrl(req, res, next) {
+  console.log(redirection);
+  req.session.returnTo = redirection;
+  next();
 }

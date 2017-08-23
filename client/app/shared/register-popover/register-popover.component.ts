@@ -67,7 +67,6 @@ export class RegisterPopoverComponent implements OnInit {
           this.loading = false;
         },
         error => {
-          console.log(error);
           this.loading = false;
         });
   }
@@ -78,12 +77,9 @@ export class RegisterPopoverComponent implements OnInit {
       .subscribe(
         data => {
           this.loading = false;
-          console.log('SUCCESS');
-          console.log(data);
         } ,
         error => {
           this.loading = false;
-          console.log('Ha ocurrido un error');
 
         }
       );

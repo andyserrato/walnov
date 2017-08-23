@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../../../services/authentication.service';
+import {AlertService} from '../../../services/alert.service';
+import {WindowService} from '../../../services/window.service';
 
 @Component({
   selector: 'app-success',
@@ -7,14 +9,22 @@ import {AuthenticationService} from '../../../services/authentication.service';
   styleUrls: ['./success.component.scss']
 })
 export class SuccessComponent implements OnInit {
-  message: string;
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, private alertService: AlertService,
+              private windowService: WindowService) { }
 
   ngOnInit() {
     this.authenticationService.getSocialProfile().subscribe( user => {
-      console.log(user);
-      this.message = 'usuario logueado';
-    });
+      this.alertService.success('Bienvenido ' + this.authenticationService.getUser().id, true );
+    },
+      error => (this.alertService.error('Ha ocurrido un error')));
+
+    this.closeWindowTimer();
+  }
+
+  closeWindowTimer() {
+    window.setTimeout(() => {
+      this.windowService.nativeWindow.close();
+    }, 3000);
   }
 
 }

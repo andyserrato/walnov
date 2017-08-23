@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {AuthenticationService} from '../../services/authentication.service';
+import {AlertService} from '../../services/alert.service';
 @Component({
   selector: 'app-prot-popover-register',
   templateUrl: './prot-popover-register.component.html',
@@ -17,9 +19,11 @@ export class ProtPopoverRegisterComponent implements OnInit {
   @Input() direction: string;
   @Output() loged: EventEmitter<any>;
   @Output() focusOut: EventEmitter<any>;
-  validateForm:FormGroup;
-  view:string = 'register';
-  constructor(private fb: FormBuilder) {
+  validateForm: FormGroup;
+  view = 'register';
+  loading = false;
+  callbackURL = '/social-login/success';
+  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private alertService: AlertService) {
     this.loged = new EventEmitter<any>();
     this.focusOut = new EventEmitter<any>();
     this.validateForm = fb.group({
@@ -35,25 +39,62 @@ export class ProtPopoverRegisterComponent implements OnInit {
   onClick(event) {
     if (!this.div.nativeElement.contains(event.target) && this.visible) {
       this.focusOut.emit();
-      this.view='register';
+      this.view = 'register';
     }
   }
 
-  changeView(str:string) {
-    this.view=str;
+  changeView(str: string) {
+    this.view = str;
   }
 
   register() {
-    console.log(this.mail.nativeElement.value+', '+this.pass.nativeElement.value+', '+this.user.nativeElement.value);
-    this.visible = false;
-    console.log(this.user.nativeElement.value+', '+this.pass.nativeElement.value);
-    this.loged.emit();
+    if (this.validateForm.valid) {
+      this.loading = true;
+      const user = {
+        login: this.validateForm.controls['user'].value,
+        password : this.validateForm.controls['pass'].value,
+        email: this.validateForm.controls['mail'].value
+      };
+      this.authenticationService.signup(user).subscribe(result  => {
+          console.log('Ruta buena' + user);
+          localStorage.setItem('currentUser', JSON.stringify(result));
+          this.visible = false;
+          this.loged.emit();
+          this.loading = false;
+          this.alertService.success('Bienvenido ' + this.authenticationService.getUser().login);
+        },
+        error =>  {
+          this.loading = false;
+          this.alertService.error(error);
+        });
+      this.alertService.clearTimeOutAlert();
+      // console.log(this.mail.nativeElement.value + ', ' + this.pass.nativeElement.value + ', ' + this.user.nativeElement.value);
+      // console.log(this.user.nativeElement.value + ', ' + this.pass.nativeElement.value);
+    }
   }
 
   login() {
-    this.visible = false;
-    console.log(this.user.nativeElement.value+', '+this.pass.nativeElement.value);
-    this.loged.emit();
+    if (this.validateForm.controls['user'].valid && this.validateForm.controls['pass'].valid) {
+      this.loading = true;
+      this.authenticationService.login(this.validateForm.controls['user'].value, this.validateForm.controls['pass'].value).subscribe(
+        result => {
+          this.visible = false;
+          this.loged.emit();
+          this.loading = false;
+          this.alertService.success('Bienvenido ' + this.authenticationService.getUser().login);
+        },
+        error =>  {
+          this.loading = false;
+          this.alertService.error(error);
+        });
+      this.alertService.clearTimeOutAlert();
+      // console.log(this.user.nativeElement.value + ', ' + this.pass.nativeElement.value);
+    }
   }
 
+  doSocialLogin(url: string) {
+    this.authenticationService.doSocialLogin(url + this.callbackURL);
+    this.visible = false;
+    this.loged.emit();
+  }
 }
