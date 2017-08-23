@@ -23,12 +23,33 @@ export class LanguageSelectComponent implements OnInit {
   placeholder: string;
   visible: boolean;
   constructor() {
-    this.placeholder="Idioma";
+    this.placeholder="Idiomas";
     this.languages.push(new Language('Español'));
     this.languages.push(new Language('Inglés'));
+    this.languages.push(new Language('Francés'));
+    this.languages.push(new Language('Portugués'));
+    this.languages.push(new Language('Chino'));
+    this.languages.push(new Language('Japonés'));
+    this.languages.push(new Language('Italiano'));
+    this.languages.push(new Language('Ruso'));
   }
 
   ngOnInit() {
+  }
+
+  editPlaceholder() {
+    this.placeholder="";
+    if(this.languagesSel.length>0){
+      for(let i=0; i< this.languagesSel.length; i++){
+        this.placeholder+=this.languagesSel[i].language;
+        if(i<this.languagesSel.length-1) {
+          this.placeholder+=", ";
+        }
+      }
+    }else{
+      this.placeholder="Idiomas";
+    }
+
   }
 
   select(l: Language){
@@ -38,6 +59,7 @@ export class LanguageSelectComponent implements OnInit {
       this.languagesSel.push(l);
     }
     l.selected = !l.selected;
+    this.editPlaceholder();
   }
 
   onClick(event) {
