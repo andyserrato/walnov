@@ -14,6 +14,7 @@ export class CardUserAccountNavigateComponent implements OnInit {
   }
 
   clickView(str: string){
+    this.view=str;
     this.changeView.emit(str);
   }
 

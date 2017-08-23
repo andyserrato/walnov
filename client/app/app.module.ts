@@ -108,6 +108,7 @@ import { UserAccountInteresesComponent } from './user-account/user-account-inter
 import { UserAccountPreferencesComponent } from './user-account/user-account-preferences/user-account-preferences.component';
 import { UserAccountPremiumComponent } from './user-account/user-account-premium/user-account-premium.component';
 import { LanguageSelectComponent } from './shared/language-select/language-select.component';
+import { ProfileHeaderComponent } from './user-account/user-account-data-profile/profile-header/profile-header.component';
 
 @NgModule({
   declarations: [
@@ -197,7 +198,8 @@ import { LanguageSelectComponent } from './shared/language-select/language-selec
     UserAccountInteresesComponent,
     UserAccountPreferencesComponent,
     UserAccountPremiumComponent,
-    LanguageSelectComponent
+    LanguageSelectComponent,
+    ProfileHeaderComponent
   ],
   imports: [
     BrowserModule,

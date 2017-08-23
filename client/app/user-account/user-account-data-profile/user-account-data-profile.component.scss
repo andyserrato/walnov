@@ -27,6 +27,7 @@
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
+      position: relative;
   }
 
   & .profile-name{
@@ -36,6 +37,7 @@
     text-align: left;
     color: $main-1;
     margin-left: 1em;
+    position: relative;
   }
 }
 
