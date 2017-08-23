@@ -107,6 +107,7 @@ import { UserAccountDataProfileComponent } from './user-account/user-account-dat
 import { UserAccountInteresesComponent } from './user-account/user-account-intereses/user-account-intereses.component';
 import { UserAccountPreferencesComponent } from './user-account/user-account-preferences/user-account-preferences.component';
 import { UserAccountPremiumComponent } from './user-account/user-account-premium/user-account-premium.component';
+import { LanguageSelectComponent } from './shared/language-select/language-select.component';
 
 @NgModule({
   declarations: [
@@ -195,7 +196,8 @@ import { UserAccountPremiumComponent } from './user-account/user-account-premium
     UserAccountDataProfileComponent,
     UserAccountInteresesComponent,
     UserAccountPreferencesComponent,
-    UserAccountPremiumComponent
+    UserAccountPremiumComponent,
+    LanguageSelectComponent
   ],
   imports: [
     BrowserModule,

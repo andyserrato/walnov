@@ -1,0 +1,16 @@
+<div class="rel-container">
+  <div class="button d-flex" (click)="this.visible = !this.visible" [ngClass]="{'placeholder': this.languagesSel.length < 1, 'visible': this.visible}">
+    <span>{{placeholder}}</span>
+    <span class="fa fa-sort-desc ml-auto"></span>
+  </div>
+  <div class="full-container" [ngClass]="{'hidden': !this.visible}">
+    <div class="item d-flex align-items-center" *ngFor="let l of languages" (click)="select(l)" [ngClass]="{'selected': l.selected}">
+      <div class="selector d-flex align-items-center justify-content-center" [ngClass]="{'selected': l.selected}">
+        <span class="fa fa-check" *ngIf="l.selected"></span>
+      </div>
+      <div class="text">
+        {{l.language}}
+      </div>
+    </div>
+  </div>
+</div>
