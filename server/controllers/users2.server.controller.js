@@ -37,38 +37,27 @@ function getLoggedInUserBySocialLogin(req, res) {
 router.get('/oauth/userdata', isLoggedIn, getLoggedInUserBySocialLogin);
 
 // Set up the Facebook OAuth routes
-router.get('/oauth/facebook', getUrl, setUrl, passport.authenticate('facebook', {
+router.get('/oauth/facebook', passport.authenticate('facebook', {
   failureRedirect: '/socialLogin/failure',
+  successRedirect: '/socialLogin/success',
   scope: ['public_profile', 'email', 'user_friends']
 }));
 
-router.get('/oauth/facebook/callback',setUrl, passport.authenticate('facebook'));
+router.get('/oauth/facebook/callback', passport.authenticate('facebook'));
 
 // Set up the Twitter OAuth routes
 router.get('/oauth/twitter', getUrl, passport.authenticate('twitter', {
-  failureRedirect: '/socialLogin/failure'
+  failureRedirect: '/socialLogin/failure',
+  successRedirect: '/socialLogin/success'
 }));
 
-function getUrl (req, res, next){
-  req.session.returnTo = req.query.url;
-  redirection = req.query.url;
-  console.log(req.query.url);
-  next();
-};
-
-function setUrl(req, res, next) {
-  console.log(redirection);
-  req.session.returnTo = redirection;
-  next();
-}
-
-router.get('/oauth/twitter/callback', setUrl, passport.authenticate('twitter', { failureRedirect: '/' }),
+router.get('/oauth/twitter/callback', setUrl, passport.authenticate('twitter', { failureRedirect: '/socialLogin/failure' }),
   function(req, res) {
       req.login(req.session.user, function(err) {
         res.redirect(req.session.returnTo);
-      })
-
-  });
+      });
+  }
+);
 
 // Set up the Google OAuth routes
 router.get('/oauth/google', getUrl, passport.authenticate('google', {
@@ -223,7 +212,8 @@ function signout(req, res) {
 
 // Middleware
 function isLoggedIn(req, res, next) {
-  console.log(req.session.user);
+  console.log('isLooggedIn');
+  console.log('req.isAuthenticated(): ' + req.isAuthenticated());
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -232,12 +222,17 @@ function isLoggedIn(req, res, next) {
 };
 
 function findUserByProviderIdPassportLoggedIn(req, res) {
-  User.findOne({
-    provider: req.user.provider,
-    providerId: req.user.providerId
-  }, function (err, fulluser) {
-    if (err) throw err;
-    res.json(fulluser);
+  // User.findOne({
+  //   provider: req.user.provider,
+  //   providerId: req.user.providerId
+  // }, function (err, fulluser) {
+  //   if (err) throw err;
+  //   res.json(fulluser);
+  // })
+
+  User.findById(req.session.user.id, function (err, fulluser) {
+    if (err) res.status(400).send(err);
+    res.status(200).json(fulluser);
   })
 };
 
@@ -328,7 +323,6 @@ const factoryUserFacebook = function (profile) {
   return user;
 }
 
-
 const retorno = function (err, user) {
   // If an error occurs continue to the next middleware
   if (err) {
@@ -358,4 +352,17 @@ const retorno = function (err, user) {
       return done(err, user);
     }
   }
+}
+
+function getUrl (req, res, next){
+  req.session.returnTo = req.query.url;
+  redirection = req.query.url;
+  console.log(req.query.url);
+  next();
+};
+
+function setUrl(req, res, next) {
+  console.log(redirection);
+  req.session.returnTo = redirection;
+  next();
 }

@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import {AppConfig} from '../app.config';
 import {WindowService} from './window.service';
 import {Observable} from 'rxjs/Observable';
-import {AlertService} from "./alert.service";
+import {AlertService} from './alert.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -67,13 +67,12 @@ export class AuthenticationService {
   }
 
   getSocialProfile(): Observable<any> {
-    console.log('Inicio primer Logueo Social');
     return this.http.get('/apiv1/users/oauth/userdataPassportLoggedIn')
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         console.log(response.json());
         const user = response.json();
-        if (user && user.token) {
+        if (user) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
         }

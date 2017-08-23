@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import {AuthenticationService} from "../../services/authentication.service";
-import {AlertService} from "../../services/alert.service";
+import {AuthenticationService} from '../../services/authentication.service';
+import {AlertService} from '../../services/alert.service';
 @Component({
   selector: 'app-prot-popover-register',
   templateUrl: './prot-popover-register.component.html',
@@ -22,6 +22,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
   validateForm: FormGroup;
   view = 'register';
   loading = false;
+  callbackURL = '/social-login/success';
   constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private alertService: AlertService) {
     this.loged = new EventEmitter<any>();
     this.focusOut = new EventEmitter<any>();
@@ -60,16 +61,15 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.visible = false;
           this.loged.emit();
           this.loading = false;
+          this.alertService.success('Bienvenido ' + this.authenticationService.getUser().login);
         },
         error =>  {
           this.loading = false;
           this.alertService.error(error);
         });
-
-      console.log(this.mail.nativeElement.value + ', ' + this.pass.nativeElement.value + ', ' + this.user.nativeElement.value);
-      // this.visible = false;
-      console.log(this.user.nativeElement.value + ', ' + this.pass.nativeElement.value);
-      // this.loged.emit();
+      this.alertService.clearTimeOutAlert();
+      // console.log(this.mail.nativeElement.value + ', ' + this.pass.nativeElement.value + ', ' + this.user.nativeElement.value);
+      // console.log(this.user.nativeElement.value + ', ' + this.pass.nativeElement.value);
     }
   }
 
@@ -87,11 +87,14 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.loading = false;
           this.alertService.error(error);
         });
-      // this.visible = false;
       this.alertService.clearTimeOutAlert();
-      console.log(this.user.nativeElement.value + ', ' + this.pass.nativeElement.value);
-      // this.loged.emit();
+      // console.log(this.user.nativeElement.value + ', ' + this.pass.nativeElement.value);
     }
   }
 
+  doSocialLogin(url: string) {
+    this.authenticationService.doSocialLogin(url + this.callbackURL);
+    this.visible = false;
+    this.loged.emit();
+  }
 }
