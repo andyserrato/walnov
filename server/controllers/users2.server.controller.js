@@ -16,7 +16,6 @@ router.post('/auth/signin', signin);
 router.get('/auth/signout', signout);
 
 router.get('/auth/isLoggedIn', function isLoggedIn(req, res) {
-  console.log(req.session.user);
   if (req.isAuthenticated()) {
     res.json('yes');
   } else {
@@ -29,43 +28,46 @@ router.get('/oauth/userdataPassportLoggedIn', isLoggedIn, findUserByProviderIdPa
 
 router.post('/oauth/userdata', isUserRegisteredByProviderId);
 
-function getLoggedInUserBySocialLogin(req, res) {
-  console.log('Estoy logueado en el server');
-  console.log(req.user);
-}
-
-router.get('/oauth/userdata', isLoggedIn, getLoggedInUserBySocialLogin);
-
 // Set up the Facebook OAuth routes
 router.get('/oauth/facebook', passport.authenticate('facebook', {
   failureRedirect: '/social-login/failure',
   successRedirect: '/social-login/success',
-  scope: ['public_profile', 'email', 'user_friends']
+  scope: ['public_profile', 'email']
 }));
 
-router.get('/oauth/facebook/callback', passport.authenticate('facebook'));
+router.get('/oauth/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/social-login/failure'}),
+  function (req, res) {
+    req.login(req.session.user, function (err) {
+      res.redirect('/social-login/success');
+    });
+  });
 
 // Set up the Twitter OAuth routes
 router.get('/oauth/twitter', passport.authenticate('twitter'));
 
-router.get('/oauth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/social-login/failure' }),
-  function(req, res) {
-      req.login(req.session.user, function(err) {
-        // res.redirect(req.session.returnTo);
-        res.redirect('/social-login/success');
-      });
+router.get('/oauth/twitter/callback', passport.authenticate('twitter', {failureRedirect: '/social-login/failure'}),
+  function (req, res) {
+    req.login(req.session.user, function (err) {
+      res.redirect('/social-login/success');
+    });
   }
 );
 
 // Set up the Google OAuth routes
-router.get('/oauth/google', getUrl, passport.authenticate('google', {
+router.get('/oauth/google', passport.authenticate('google', {
   scope: [
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.email'
   ],
   failureRedirect: '/social-login/failure'
 }));
-router.get('/oauth/google/callback', passport.authenticate('google'));
+router.get('/oauth/google/callback', passport.authenticate('google', {failureRedirect: '/social-login/failure'}),
+  function (req, res) {
+    req.login(req.session.user, function (err) {
+      res.redirect('/social-login/success');
+    });
+  }
+);
 
 module.exports = router;
 
@@ -171,47 +173,16 @@ function signup(req, res) {
   });
 }
 
-// Create a new controller method that creates new 'OAuth' users
-exports.saveOAuthUserProfile = function (profile) {
-  // Try finding a user document that was registered using the current OAuth provider
-  user = new User();
-  console.log('saveOAuthUserProfile');
-
-  user.perfil = {
-    email: profile.providerData.email
-  };
-
-  provider = new Provider({
-    provider: profile.provider,
-    providerId: profile.providerId,
-    providerData: profile.providerData
-  })
-
-  user.providers().push(provider);
-
-  console.log('provider');
-  cosole.log(profile.provider);
-  console.log('providerId');
-  console.log(profile.providerId);
-
-  user.save();
-  return user;
-};
-
 // Create a new controller method for signing out
 function signout(req, res) {
-  console.log('signout');
   // Use the Passport 'logout' method to logout
   req.logout();
-
   // Redirect the user back to the main application page
   res.json('sesión terminada');
 };
 
 // Middleware
 function isLoggedIn(req, res, next) {
-  console.log('isLooggedIn');
-  console.log('req.isAuthenticated(): ' + req.isAuthenticated());
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -220,36 +191,9 @@ function isLoggedIn(req, res, next) {
 };
 
 function findUserByProviderIdPassportLoggedIn(req, res) {
-  // User.findOne({
-  //   provider: req.user.provider,
-  //   providerId: req.user.providerId
-  // }, function (err, fulluser) {
-  //   if (err) throw err;
-  //   res.json(fulluser);
-  // })
-
   User.findById(req.session.user.id, function (err, fulluser) {
     if (err) res.status(400).send(err);
     res.status(200).json(fulluser);
-  })
-};
-
-exports.findUserByProviderId = function (providerUserProfile) {
-  console.log('holis1');
-  console.log(providerUserProfile.provider);
-  console.log(providerUserProfile.providerId);
-  User.findOne({
-    providers: {
-      $elemMatch: {
-        provider: providerUserProfile.provider,
-        providerId: providerUserProfile.providerData.id
-      }
-    }
-  }, function (err, user) {
-    if (err) throw err;
-    console.log('holis2');
-    console.log(user);
-    return user;
   })
 };
 
@@ -263,104 +207,6 @@ function isUserRegisteredByProviderId(req, res) {
     }
   }, function (err, fulluser) {
     if (err) throw err;
-    console.log('holis');
-    console.log(fulluser);
     res.json(fulluser);
   })
 };
-
-exports.getUserByUserName = function (userName) {
-  console.log('El nombre de usuario es: ' + userName);
-  User
-    .findOne({login: userName},
-      function (err, usuario) {
-        return usuario;
-      })
-}
-
-
-const salvarUserOAuth = function (user, profile, done) {
-  console.log('Inicio salvarUserOAuth');
-
-  // If a user could not be found, create a new user, otherwise, continue to the next middleware
-  if (!user) {
-    // Set a possible base username
-    if (profile.provider === 'facebook') {
-      user = new (factoryUserFacebook(profile));
-    } else if (profile.provider === 'twitter') {
-    } else if (profile.provider === 'google') {
-    }
-
-    // Try saving the new user document
-    user.save(function (err) {
-      // Continue to the next middleware
-      return done(err, user);
-    });
-  }
-
-  console.log('Fin salvarUserOAuth');
-};
-
-const factoryUserFacebook = function (profile) {
-  var user = {};
-
-  // const possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
-  // User.findUniqueUsername(possibleUsername, null, (availableUsername) => {
-  //   user.username = availableUsername;
-  // });
-
-  user.perfil = {
-    email: profile.providerData.email
-  };
-  user.providers[{
-    provider: profile.provider,
-    providerId: profile.providerId,
-    providerData: profile.providerData
-  }];
-
-  return user;
-}
-
-const retorno = function (err, user) {
-  // If an error occurs continue to the next middleware
-  if (err) {
-    return done(err);
-  } else {
-    // If a user could not be found, create a new user, otherwise, continue to the next middleware
-    if (!user) {
-      // Set a possible base username
-      const possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
-
-      // Find a unique available username
-      User.findUniqueUsername(possibleUsername, null, (availableUsername) => {
-        // Set the available user name
-        profile.username = availableUsername;
-
-        // Create the user
-        user = new User(profile);
-
-        // Try saving the new user document
-        user.save(function (err) {
-          // Continue to the next middleware
-          return done(err, user);
-        });
-      });
-    } else {
-      // Continue to the next middleware
-      return done(err, user);
-    }
-  }
-}
-
-function getUrl (req, res, next){
-  req.session.returnTo = req.query.url;
-  redirection = req.query.url;
-  console.log(req.query.url);
-  next();
-};
-
-function setUrl(req, res, next) {
-  console.log(redirection);
-  req.session.returnTo = redirection;
-  next();
-}

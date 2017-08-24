@@ -52,10 +52,8 @@ module.exports = function () {
 
       usuario.findByUserProviderId(function (err, userResult) {
         if (err) {
-          console.log('Error');
           return cb(err,null);
         } else if (userResult) {
-          console.log('He Encontrado uno');
           req.session.user = userResult;
           return cb(err, userResult)
         } else if (!userResult) {
