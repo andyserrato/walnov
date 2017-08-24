@@ -22,6 +22,8 @@ export class RepositorioService{
     conts: Array<Continuacion> = new Array<Continuacion>();
     hists: Array<Historia> = new Array<Historia>();
 
+    PricingDiv = null; //Div que se utiliza para el pricing
+
     paginadorCardsChatstories = null;
     paginadorChatstoriesBiblioteca = null;
     paginadorCardsRelatos = null;

@@ -1,0 +1,5 @@
+<div class="content-container" [ngSwitch]="this.view">
+  <app-pricing-premium-normal (vista)="cambiaVista($event)" *ngSwitchCase="'normal'"></app-pricing-premium-normal>
+  <app-pricing-premium-prueba *ngSwitchCase="'prueba'"></app-pricing-premium-prueba>
+  <app-pricing-premium-checkout *ngSwitchCase="'checkout'"></app-pricing-premium-checkout>
+</div>

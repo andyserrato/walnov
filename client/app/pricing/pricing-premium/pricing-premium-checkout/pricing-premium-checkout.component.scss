@@ -1,0 +1,621 @@
+@import "main";
+
+.Rectangle-2 {
+  width: 100%;
+  height: 100%;
+  background-color: $main-1;
+  margin-top: -1.2em;
+  border-radius: 0;
+  padding-top: 34px;
+  padding-bottom: 34px;
+  margin-bottom: 0;
+}
+
+.Rectangle-6 {
+  margin-right: 30px;
+  margin-left: 30px;
+  //margin-top: 34px;
+  height: 132px;
+  border-radius: 8px;
+  background-image: linear-gradient(to right, $main-1, #ba4fe1 52%, $main-1);
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .header-1 {
+      max-width: 150px !important;
+      margin-left: 40px !important;
+    }
+
+    .header-2 {
+      max-width: 190px !important;
+      margin-right: -20px !important;
+    }
+
+    // .Oval-3 {
+    //   margin-left:55px !important;
+    // }
+
+  }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .header-2 {
+      max-width: 285px !important;
+    }
+
+    .header-1 {
+    margin-left: 80px !important;
+    }
+
+    // .Oval-3 {
+    //   margin-left:0px !important;
+    // }
+}
+
+.header-1 {
+  max-width: 298px;
+  font-family: Raleway;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  color: $grey-1;
+}
+
+.header-2 {
+  max-width: 336px;
+  // height: 40px;
+  font-family: Raleway;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-1;
+  z-index: 5;
+}
+
+.shape-1{
+  position: absolute;
+  top: -4px;
+  left: 45px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 4px 6px 4px;
+  border-color: transparent transparent #d191ff transparent;
+  transform: rotate(-16deg);
+  opacity: 0.37;
+}
+
+.shape-2{
+  position: absolute;
+  top: -15px;
+  left: 90px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 10px 16px 10px;
+  border-color: transparent transparent $main-2 transparent;
+  // -webkit-transform: rotate(15deg);
+  transform: rotate(15deg);
+}
+
+.shape-3{
+  position: absolute;
+  top: 60px;
+  left: -40px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 15px 24px 15px;
+  border-color: transparent transparent $main-2 transparent;
+  // -webkit-transform: rotate(15deg);
+  transform: rotate(154deg);
+  opacity: 0.37;
+}
+
+.shape-4{
+  position: absolute;
+  top: 155px;
+  left: 52px;
+  width: 0;
+  border: 2.5px solid $main-2;
+  border-radius: 50%;
+  opacity: 0.45;
+}
+
+.shape-5{
+  position: absolute;
+  top: -20px;
+  left: 130px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 20px 30px 20px;
+  border-color: transparent transparent #d191ff transparent;
+  // -webkit-transform: rotate(-50deg);
+  opacity: 0.37;
+  transform: rotate(-192deg);
+}
+
+.shape-6{
+  position: absolute;
+  top: 96px;
+  left: 175px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 18px 33px 18px;
+  border-color: transparent transparent $main-2 transparent;
+  // -webkit-transform: rotate(15deg);
+  transform: rotate(96deg);
+  opacity: 0.37;
+}
+
+
+.shape-7{
+  position: absolute;
+  top: 55px;
+  left: 155px;
+  width: 0;
+  border: 5px solid $main-2;
+  border-radius: 50%;
+  opacity: 0.45;
+}
+
+.shape-8{
+  position: absolute;
+  top: 45px;
+  left: 166px;
+  width: 0;
+  border: 3.5px solid $main-2;
+  border-radius: 50%;
+  opacity: 0.45;
+}
+
+.shape-9{
+  position: absolute;
+  top: -28px;
+  left: 90px;
+  width: 0;
+  border: 5px solid $main-2;
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+.shape-10{
+  position: absolute;
+  top: 145px;
+  left: -60px;
+  width: 0;
+  border: 5px solid $main-2;
+  border-radius: 50%;
+  opacity: 0.45;
+}
+
+.shape-11{
+  position: absolute;
+  top: 120px;
+  left: -52px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 20px 30px 20px;
+  border-color: transparent transparent #d191ff transparent;
+  // -webkit-transform: rotate(-50deg);
+  opacity: 0.37;
+  transform: rotate(-43deg);
+}
+
+.shape-12{
+  position: absolute;
+  top: 130px;
+  left: 12px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 12px 20px 12px;
+  border-color: transparent transparent #d191ff transparent;
+  // -webkit-transform: rotate(-50deg);
+  opacity: 0.37;
+  transform: rotate(338deg);
+}
+
+.shape-13{
+  position: absolute;
+  top: 10px;
+  left: -70px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 12px 20px 12px;
+  border-color: transparent transparent #d191ff transparent;
+  // -webkit-transform: rotate(-50deg);
+  opacity: 0.37;
+  transform: rotate(383deg);
+}
+
+.Line-Copy {
+  width: 100%;
+  border-bottom: dashed 1px $grey-1;
+}
+
+.Oval-5-Copy {
+  width: 107px;
+  height: 107px;
+  background-color: $grey-1;
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.18);
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-sol {
+  // width: 167px;
+  // height: 15px;
+  font-family: Raleway;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  color: $grey-1;
+}
+
+.Rectangle-7-Copy-5 {
+  width: 487px;
+  // height: 411px;
+  margin-top: 45px;
+  margin-left: 25px;
+  // margin-right: 220px;
+  padding: 25px 30px 33px 30px;
+  border-radius: 16px;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.title-prueba {
+  margin-bottom: 33px;
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.28;
+  text-align: center;
+  color: $main-3;
+}
+
+.Datos {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+
+}
+
+.Invisible {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-1;
+
+}
+
+input {
+  font-family: Raleway;
+  font-size: 14px;
+  border-radius: 3px;
+  background-color: $grey-1;
+  border: solid 1px $grey-5;
+  height: 36px;
+  &::placeholder{
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: italic;
+    text-align: left;
+    color: $grey-6;
+  }
+}
+
+.Visa-dark {
+  width: 33px;
+  height: 19px;
+  object-fit: contain;
+}
+
+.MasterCard-dark {
+  width: 33px;
+  height: 19px;
+  object-fit: contain;
+}
+
+.Discover-dark {
+  width: 33px;
+  height: 19px;
+  object-fit: contain;
+}
+
+.payText {
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: $main-1;
+}
+
+.Rectangle-1 {
+  width: 45px;
+  height: fit-content;
+  margin-top: 5px;
+  padding-bottom: 3px;
+  border-radius: 2.3px;
+  background-color: $grey-1;
+  border: solid 0.9px #eef2f4;
+}
+
+.Pay {
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+  color: #003087;
+
+}
+
+.Pal {
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+  color: #009cde;
+  margin-left: -3.5px;
+
+}
+
+.Name {
+  // width: 300px;
+}
+
+.Card {
+  width: 220px;
+}
+
+.seleccion {
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: italic;
+  text-align: left;
+  color: $grey-6;
+  border-radius: 3px;
+  background-color: $grey-1;
+  border: solid 1px $grey-5;
+  height: 36px !important;
+}
+
+option {
+  color: $grey-8 !important;
+  font-style: normal !important;
+
+}
+
+.Code {
+  width: 65px;
+}
+
+.Year {
+  // margin-top:7.8px;
+  // margin-left:-10px;
+  width: 134px;
+
+}
+
+.Month {
+  width: 134px;
+
+}
+
+.Lastname {
+  // width: 138px;
+
+}
+
+.SecurityCode {
+  width: 39px;
+  height: 23px;
+  object-fit: contain;
+  position: relative;
+  bottom: 20px;
+  left: 80px;
+}
+
+.Propietario {
+  width: 390px;
+
+}
+
+.Info-final {
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-6;
+}
+
+
+.custom-control-indicator {
+  position: initial;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background-color: $grey-1;
+  border: solid 1px #979797;
+  margin-right: 5px;
+
+}
+
+label input[type="checkbox"] {
+  display: none;
+
+}
+
+label input[type="checkbox"]:checked+.custom-control-indicator {
+  border: solid 1px #979797;
+  background-color: $main-3;
+}
+
+.fa-check-2 {
+  color: #ffffff;
+  margin-top: 2px;
+  margin-left: 1px;
+  display: block;
+
+}
+
+.custom-control-description {
+  max-width: 240px;
+  font-family: Raleway;
+  font-size: 14px;
+  text-align: left;
+  color: $grey-8;
+
+}
+
+.Rectangle-7-Copy-6 {
+  height: fit-content;
+  padding: 5px 20px 5px 20px;
+  border-radius: 4px;
+  background-color: $main-1;
+}
+
+.Imagen {
+  position: absolute;
+  top:-12px;
+  right: -12px;
+}
+
+.image-content {
+  position: absolute;
+  top: 28px;
+  right: 17px;
+  transform: rotate(-314deg);
+  font-family: Raleway;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+  text-align: center;
+  color: $grey-1;
+  z-index: 3;
+}
+
+.shape-14-Copy {
+  position: absolute;
+  top: 35px;
+  left:11px;
+  width: 0;
+  border-style: solid;
+  border-width: 0 25px 45px 25px;
+  border-color: transparent transparent $main-2 transparent;
+  // -webkit-transform: rotate(15deg);
+  transform: rotate(180deg);
+  // opacity: 0.37;
+}
+
+.shape-15-Copy {
+  position: absolute;
+  top: 35px;
+  left: 45px;
+  width: 0;
+  z-index: -1;
+  border-style: solid;
+  border-width: 0 25px 45px 25px;
+  border-color: transparent transparent $cat-4 transparent;
+  // -webkit-transform: rotate(15deg);
+  transform: rotate(180deg);
+  // opacity: 0.37;
+}
+
+.shape-16-Copy {
+  position: absolute;
+  top: 41px;
+  left: 48px;
+  width: 21px;
+  // height: 1px;
+  border: solid 2px $grey-1;
+  transform: rotate(117.5deg);
+
+}
+
+.shape-17-Copy {
+  width: 10px;
+  height: 10px;
+  background-color: $grey-1;
+  border-radius: 50%;
+  position: absolute;
+  top:20px;
+  left: -5.4px;
+
+}
+
+.shape-18-Copy {
+  width: 10px;
+  height: 10px;
+  background-color: $grey-1;
+  border-radius: 50%;
+  position: absolute;
+  top:20px;
+  left: -5.6px;
+
+}
+
+.shape-19-Copy {
+  width: 10px;
+  height: 10px;
+  background-color: $main-2;
+  border-radius: 50%;
+  position: absolute;
+  bottom:27px;
+  left: 45.4%;
+
+}
+
+.shape-20{
+  position: absolute;
+  top: 90px;
+  left: -2px;
+  width: 0;
+  border: 2.5px solid $main-2;
+  border-radius: 50%;
+  opacity: 0.45;
+}
+
+.shape-21{
+  position: absolute;
+  top: 107px;
+  left: 98px;
+  width: 0;
+  border: 5px solid $main-2;
+  border-radius: 50%;
+  opacity: 0.45;
+}
+
+.shape-22{
+  position: absolute;
+  top: 110px;
+  left: 100.75px;
+  width: 0;
+  border: 2.5px solid $main-2;
+  border-radius: 50%;
+  // opacity: 0.45;
+}
+
+.PanelSeleccionado {
+  margin-top: 30px;
+  margin-right: 25px;
+}
+
+.Info-final-2 {
+  margin-top: 24px;
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  color: $grey-1;
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .Rectangle-7-Copy-5 {
+    margin-left: 15px !important;
+  }
+
+  .PanelMargen {
+    margin-left: 50px !important;
+  }
+
+}

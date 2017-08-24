@@ -109,6 +109,12 @@ import { UserAccountPreferencesComponent } from './user-account/user-account-pre
 import { UserAccountPremiumComponent } from './user-account/user-account-premium/user-account-premium.component';
 import { LanguageSelectComponent } from './shared/language-select/language-select.component';
 import { ProfileHeaderComponent } from './user-account/user-account-data-profile/profile-header/profile-header.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premium.component';
+import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
+import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
+import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
+import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
 
 @NgModule({
   declarations: [
@@ -191,6 +197,12 @@ import { ProfileHeaderComponent } from './user-account/user-account-data-profile
     CardFollowUserComponent,
     ModalComponent,
     CapitalizePipe,
+    PricingComponent,
+    PricingPremiumComponent,
+    PricingPartnerComponent,
+    PricingPremiumPruebaComponent,
+    PricingPremiumCheckoutComponent,
+    PricingPremiumNormalComponent,
     ModalDecorationComponent,
     UserAccountComponent,
     CardUserAccountNavigateComponent,
