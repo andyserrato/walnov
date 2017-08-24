@@ -18,7 +18,9 @@ export class ProfilePopoverComponent implements OnInit {
               private alertService: AlertService) { }
 
   ngOnInit() {
-    if (this.authenticationService.getUser().login) {
+    if (this.authenticationService.getUser().perfil.display_name) {
+      this.nombre = this.authenticationService.getUser().perfil.display_name;
+    } else if (this.authenticationService.getUser().login) {
       this.nombre = this.authenticationService.getUser().login;
     }
   }

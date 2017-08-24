@@ -10,12 +10,12 @@ import { AuthenticationService } from '../services/authentication.service';
 
 export class NavComponent implements OnInit {
   isNavBarHidden: boolean;
-  searching: boolean = false;
+  searching = false;
   user: any;
   popover: boolean;
-
+  profilePicture: string;
   constructor(location: Location, router: Router, private auth: AuthenticationService) {
-    this.user= this.auth.isLoggedIn() ? this.auth.getUser() : false;
+    this.user = this.auth.isLoggedIn() ? this.auth.getUser() : false;
     router.events.subscribe((val) => {
       if (location.path().indexOf('social-login/success') !== -1) {
         this.isNavBarHidden = true;
@@ -30,7 +30,14 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
 
+  getProfilePicture(): string {
+    this.profilePicture = 'https://lorempixel.com/22/22/cats';
+    if (this.auth.isLoggedIn() && this.auth.getUser() && this.auth.getUser().perfil && this.auth.getUser().perfil.foto_perfil) {
+      this.profilePicture = this.auth.getUser().perfil.foto_perfil;
+    }
+    return this.profilePicture;
   }
 
 }

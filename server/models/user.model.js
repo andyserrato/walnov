@@ -107,7 +107,7 @@ const perfil = Schema({
   foto_perfil: String,
   email: String,
   pais: String,
-  lenguajes: String,
+  lenguajes: [String],
   descripcion: String,
   display_name: String,
   perfilCompleto: Boolean,
@@ -122,7 +122,6 @@ const providerSchema = Schema({
 
 const usuario = Schema({
   login: String,
-  name: String,
   password: String,
   siguiendo: [mongoose.Schema.Types.ObjectId],
   seguidores: [mongoose.Schema.Types.ObjectId],

@@ -1,7 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('mongoose').model('usuarios');
-const bcrypt = require('bcrypt');
 
 module.exports = function() {
   passport.use(new LocalStrategy((login, password, done) => {

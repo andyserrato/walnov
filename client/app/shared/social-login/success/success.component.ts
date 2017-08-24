@@ -14,7 +14,7 @@ export class SuccessComponent implements OnInit {
 
   ngOnInit() {
     this.authenticationService.getSocialProfile().subscribe( user => {
-      this.alertService.success('Bienvenido ' + this.authenticationService.getUser().id, true );
+      this.alertService.success('Bienvenido ' + this.authenticationService.getUser().login, true );
     },
       error => (this.alertService.error('Ha ocurrido un error')));
 

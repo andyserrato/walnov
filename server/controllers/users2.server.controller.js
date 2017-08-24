@@ -38,23 +38,21 @@ router.get('/oauth/userdata', isLoggedIn, getLoggedInUserBySocialLogin);
 
 // Set up the Facebook OAuth routes
 router.get('/oauth/facebook', passport.authenticate('facebook', {
-  failureRedirect: '/socialLogin/failure',
-  successRedirect: '/socialLogin/success',
+  failureRedirect: '/social-login/failure',
+  successRedirect: '/social-login/success',
   scope: ['public_profile', 'email', 'user_friends']
 }));
 
 router.get('/oauth/facebook/callback', passport.authenticate('facebook'));
 
 // Set up the Twitter OAuth routes
-router.get('/oauth/twitter', getUrl, passport.authenticate('twitter', {
-  failureRedirect: '/socialLogin/failure',
-  successRedirect: '/socialLogin/success'
-}));
+router.get('/oauth/twitter', passport.authenticate('twitter'));
 
-router.get('/oauth/twitter/callback', setUrl, passport.authenticate('twitter', { failureRedirect: '/socialLogin/failure' }),
+router.get('/oauth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/social-login/failure' }),
   function(req, res) {
       req.login(req.session.user, function(err) {
-        res.redirect(req.session.returnTo);
+        // res.redirect(req.session.returnTo);
+        res.redirect('/social-login/success');
       });
   }
 );
@@ -65,7 +63,7 @@ router.get('/oauth/google', getUrl, passport.authenticate('google', {
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.email'
   ],
-  failureRedirect: '/socialLogin/failure'
+  failureRedirect: '/social-login/failure'
 }));
 router.get('/oauth/google/callback', passport.authenticate('google'));
 
