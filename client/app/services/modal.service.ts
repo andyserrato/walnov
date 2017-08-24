@@ -18,6 +18,10 @@ export class ModalService {
     this.subject.next({ type: 'share', text: message });
   }
 
+  load(){
+    this.subject.next({type:'loader'});
+  }
+
   getMessage() {
     return this.subject.asObservable();
   }

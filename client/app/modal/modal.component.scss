@@ -132,15 +132,38 @@
   }
 }
 
+
+
 //animations
 
 .zoomIn {
   animation-name: zoomIn;
 }
 
+.loader{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 30vh;
+  height: 30vh;
+  border: 1em solid transparent;
+  border-top: 1em solid white;
+  border-radius: 50%;
+  animation: loader .8s infinite;
+}
+
 .animated {
   animation-duration: .3s;
   animation-fill-mode: both;
+}
+
+@keyframes loader {
+    0% {
+      transform:translateX(-50%) rotate(0deg);
+    }
+    100%{
+      transform:translateX(-50%) rotate(360deg);
+    }
 }
 
 @keyframes zoomIn {

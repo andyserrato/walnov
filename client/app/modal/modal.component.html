@@ -1,6 +1,8 @@
 <div class="outside-container" (click)="clear($event)" *ngIf="this.message">
+  <div class="loader" *ngIf="this.message?.type==='loader'">
 
-  <div #content class="content-container d-flex flex-column zoomIn animated" [ngSwitch]="this.message?.type">
+  </div>
+  <div #content class="content-container d-flex flex-column zoomIn animated" [ngSwitch]="this.message?.type" *ngIf="this.message?.type!='loader'">
     <app-modal-decoration></app-modal-decoration>
     <div class="title-box d-flex align-items-center justify-content-center">
       {{this.message.text}}
