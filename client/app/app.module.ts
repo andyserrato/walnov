@@ -100,14 +100,6 @@ import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-u
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './services/modal.service';
 import { CapitalizePipe } from './pipe/capitalize/capitalize.pipe';
-<<<<<<< HEAD
-import { PricingComponent } from './pricing/pricing.component';
-import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premium.component';
-import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
-import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
-import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
-import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
-=======
 import { ModalDecorationComponent } from './modal/modal-decoration/modal-decoration.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { CardUserAccountNavigateComponent } from './user-account/card-user-account-navigate/card-user-account-navigate.component';
@@ -117,7 +109,12 @@ import { UserAccountPreferencesComponent } from './user-account/user-account-pre
 import { UserAccountPremiumComponent } from './user-account/user-account-premium/user-account-premium.component';
 import { LanguageSelectComponent } from './shared/language-select/language-select.component';
 import { ProfileHeaderComponent } from './user-account/user-account-data-profile/profile-header/profile-header.component';
->>>>>>> 67fbf753bc5214337d75029e58c63bcd9649f770
+import { PricingComponent } from './pricing/pricing.component';
+import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premium.component';
+import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
+import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
+import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
+import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
 
 @NgModule({
   declarations: [
@@ -200,14 +197,12 @@ import { ProfileHeaderComponent } from './user-account/user-account-data-profile
     CardFollowUserComponent,
     ModalComponent,
     CapitalizePipe,
-<<<<<<< HEAD
     PricingComponent,
     PricingPremiumComponent,
     PricingPartnerComponent,
     PricingPremiumPruebaComponent,
     PricingPremiumCheckoutComponent,
-    PricingPremiumNormalComponent
-=======
+    PricingPremiumNormalComponent,
     ModalDecorationComponent,
     UserAccountComponent,
     CardUserAccountNavigateComponent,
@@ -217,7 +212,6 @@ import { ProfileHeaderComponent } from './user-account/user-account-data-profile
     UserAccountPremiumComponent,
     LanguageSelectComponent,
     ProfileHeaderComponent
->>>>>>> 67fbf753bc5214337d75029e58c63bcd9649f770
   ],
   imports: [
     BrowserModule,
