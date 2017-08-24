@@ -51,25 +51,6 @@
     // }
 }
 
-@media (min-width: 768px) and (max-width: 1199px) {
-  .panel-1 {
-    margin-right: 10px !important;
-
-  }
-
-  .panel-2 {
-    margin-left: 10px !important;
-    margin-right: 10px !important;
-
-  }
-
-  .panel-3 {
-    margin-left: 10px !important;
-
-  }
-
-}
-
 .header-1 {
   max-width: 298px;
   font-family: Raleway;
@@ -292,10 +273,6 @@
   transform: rotate(383deg);
 }
 
-.Line-Copy {
-  width: 100%;
-  border-bottom: dashed 1px $grey-5;
-}
 
 .Oval-5 {
   width: 52px;
@@ -307,16 +284,6 @@
   z-index: 3;
   top:15%;
   right: 85%;
-}
-
-.Oval-5-Copy {
-  width: 107px;
-  height: 107px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.18);
-  border-radius: 50%;
-  position: relative;
-  z-index: 1;
 }
 
 .shape-14{
@@ -390,148 +357,6 @@
 
 }
 
-.Rectangle-7 {
-  //width: 338px;
-  //height: 530px;
-  margin-bottom: 17px;
-  margin-top: 42px;
-  padding: 24px 25px 20px 25px;
-  border-radius: 16px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
-}
-
-.title {
-  font-family: Raleway;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.28;
-  text-align: center;
-  color: $main-3;
-  margin-bottom: 13px;
-}
-
-.info {
-  font-family: Raleway;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  text-align: center;
-  color: $grey-8;
-  margin-top: 6px;
-
-}
-
-.info-2 {
-  max-width: 220px;
-  font-family: Raleway;
-  font-size: 10px;
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: 0.7px;
-  text-align: center;
-  color: $grey-8;
-  margin-top: 17px;
-  margin-bottom: 15px;
-}
-
-.fa-check {
-  color: $main-1;
-  margin-right: 5px;
-
-}
-
-.Detalles {
-  font-family: Raleway;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 2.75;
-  text-align: left;
-  color: $grey-8;
-
-}
-
-.Rectangle-7-Copy-3 {
-  height: fit-content;
-  padding: 3px 20px 3px 20px;
-  border-radius: 4px;
-  background-color: $main-1;
-  margin-top: 15px;
-}
-
-.btn {
-  font-family: Raleway;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-  color: $grey-1;
-}
-
-.Rectangle-7-Copy {
-  //width: 338px;
-  //height: 530px;
-  position: relative;
-  margin-top: 24px;
-  z-index: 1;
-  padding: 24px 25px 20px 25px;
-  border-radius: 16px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
-}
-
-.info-Copy {
-  font-family: Raleway;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  text-align: center;
-  color: $grey-8;
-  margin-top: 12px;
-
-}
-
-.info-2-Copy {
-  max-width: 220px;
-  font-family: Raleway;
-  font-size: 10px;
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: 0.7px;
-  text-align: center;
-  color: $grey-8;
-  margin-top: 20px;
-  margin-bottom: 14px;
-}
-
-.Rectangle-7-Copy-2 {
-  // width: 613px;
-  // height: 77px;
-  padding: 25px 48px 26px 28px;
-  margin-top: 47px;
-  border-radius: 16px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
-}
-
-.Solicitud {
-  font-family: Raleway;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.28;
-  text-align: center;
-  color: $main-3;
-}
-
-.Rectangle-7-Copy-4 {
-  // width: 187px;
-  // height: 26px;
-  height: fit-content;
-  padding: 3px 20px 3px 20px;
-  border-radius: 4px;
-  background-color: $main-1;
-  margin-left: 50px;
-}
-
 .btn-sol {
   // width: 167px;
   // height: 15px;
@@ -570,6 +395,15 @@
   font-weight: 600;
   text-align: left;
   color: $grey-8;
+
+}
+
+.Invisible {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-1;
 
 }
 
@@ -616,7 +450,7 @@ input {
 }
 
 .Rectangle-1 {
-  width: 31px;
+  width: 45px;
   height: fit-content;
   margin-top: 5px;
   padding-bottom: 3px;
@@ -626,7 +460,7 @@ input {
 }
 
 .Pay {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: bold;
   font-style: italic;
   color: #003087;
@@ -634,7 +468,7 @@ input {
 }
 
 .Pal {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: bold;
   font-style: italic;
   color: #009cde;
@@ -733,7 +567,7 @@ label input[type="checkbox"]:checked+.custom-control-indicator {
   background-color: $main-3;
 }
 
-.fa-check-2 {
+.fa-check {
   color: #ffffff;
   margin-top: 2px;
   margin-left: 1px;
@@ -787,7 +621,7 @@ label input[type="checkbox"]:checked+.custom-control-indicator {
   }
 
   .fila2-col4 {
-    margin-top: 10px !important;
+    margin-top: 26.5px !important;
     margin-left: -60px !important;
 
   }
@@ -815,125 +649,8 @@ label input[type="checkbox"]:checked+.custom-control-indicator {
 
   }
 
-}
+  .Invisible {
+    display: none;
+  }
 
-.Imagen {
-  position: absolute;
-  top:-12px;
-  right: -12px;
-}
-
-.image-content {
-  position: absolute;
-  top: 28px;
-  right: 17px;
-  transform: rotate(-314deg);
-  font-family: Raleway;
-  font-size: 19px;
-  font-weight: 800;
-  letter-spacing: 1.3px;
-  text-align: center;
-  color: $grey-1;
-  z-index: 3;
-}
-
-.shape-14-Copy {
-  position: absolute;
-  top: 35px;
-  left:11px;
-  width: 0;
-  border-style: solid;
-  border-width: 0 25px 45px 25px;
-  border-color: transparent transparent $main-2 transparent;
-  // -webkit-transform: rotate(15deg);
-  transform: rotate(180deg);
-  // opacity: 0.37;
-}
-
-.shape-15-Copy {
-  position: absolute;
-  top: 35px;
-  left: 45px;
-  width: 0;
-  z-index: -1;
-  border-style: solid;
-  border-width: 0 25px 45px 25px;
-  border-color: transparent transparent $cat-4 transparent;
-  // -webkit-transform: rotate(15deg);
-  transform: rotate(180deg);
-  // opacity: 0.37;
-}
-
-.shape-16-Copy {
-  position: absolute;
-  top: 41px;
-  left: 48px;
-  width: 21px;
-  // height: 1px;
-  border: solid 2px $grey-1;
-  transform: rotate(117.5deg);
-
-}
-
-.shape-17-Copy {
-  width: 10px;
-  height: 10px;
-  background-color: $grey-1;
-  border-radius: 50%;
-  position: absolute;
-  top:20px;
-  left: -5.4px;
-
-}
-
-.shape-18-Copy {
-  width: 10px;
-  height: 10px;
-  background-color: $grey-1;
-  border-radius: 50%;
-  position: absolute;
-  top:20px;
-  left: -5.6px;
-
-}
-
-.shape-19-Copy {
-  width: 10px;
-  height: 10px;
-  background-color: $main-2;
-  border-radius: 50%;
-  position: absolute;
-  bottom:27px;
-  left: 45.4%;
-
-}
-
-.shape-20{
-  position: absolute;
-  top: 90px;
-  left: -2px;
-  width: 0;
-  border: 2.5px solid $main-2;
-  border-radius: 50%;
-  opacity: 0.45;
-}
-
-.shape-21{
-  position: absolute;
-  top: 107px;
-  left: 98px;
-  width: 0;
-  border: 5px solid $main-2;
-  border-radius: 50%;
-  opacity: 0.45;
-}
-
-.shape-22{
-  position: absolute;
-  top: 110px;
-  left: 100.75px;
-  width: 0;
-  border: 2.5px solid $main-2;
-  border-radius: 50%;
-  // opacity: 0.45;
 }

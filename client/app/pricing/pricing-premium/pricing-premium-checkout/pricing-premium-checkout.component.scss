@@ -51,25 +51,6 @@
     // }
 }
 
-@media (min-width: 768px) and (max-width: 1199px) {
-  .panel-1 {
-    margin-right: 10px !important;
-
-  }
-
-  .panel-2 {
-    margin-left: 10px !important;
-    margin-right: 10px !important;
-
-  }
-
-  .panel-3 {
-    margin-left: 10px !important;
-
-  }
-
-}
-
 .header-1 {
   max-width: 298px;
   font-family: Raleway;
@@ -88,55 +69,6 @@
   text-align: left;
   color: $grey-1;
   z-index: 5;
-}
-
-.semicircle{
-  width:100%;
-  height:50%;
-  position:absolute;
-  background-color: $main-2;
-  bottom:0;
-  left:50%;
-  transform:translate(-50%,50%);
-}
-
-.img-profile-2{
-  width:122px;
-  height: 122px;
-  border-radius: 50%;
-  background-image: url(https://www.lorempixel.com/1200/1600);
-  background-size: cover;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  // transform: translateX(-50%);
-  z-index: 2;
-  overflow:hidden;
-}
-
-.Oval-3 {
-  width: 132px;
-  height: 132px;
-  background-size: cover;
-  position: relative;
-  // transform: translateX(-50%);
-  box-shadow: 0 0 27px 0 $grey-1;
-  background-image: linear-gradient(to bottom, #e1ba4f, $main-1);
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.Tipo-Usuario {
-  position: absolute;
-  top: 3px;
-  // left:25px;
-  font-family: Raleway;
-  font-size: 12px;
-  font-weight: 600;
-  text-align: center;
-  // color: #ffffff;
-  color: $grey-1;
-
 }
 
 .shape-1{
@@ -294,19 +226,7 @@
 
 .Line-Copy {
   width: 100%;
-  border-bottom: dashed 1px $grey-5;
-}
-
-.Oval-5 {
-  width: 52px;
-  height: 52px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.18);
-  border-radius: 50%;
-  position: absolute;
-  z-index: 3;
-  top:15%;
-  right: 85%;
+  border-bottom: dashed 1px $grey-1;
 }
 
 .Oval-5-Copy {
@@ -317,219 +237,6 @@
   border-radius: 50%;
   position: relative;
   z-index: 1;
-}
-
-.shape-14{
-  position: absolute;
-  top: 19px;
-  left:6px;
-  width: 0;
-  border-style: solid;
-  border-width: 0 11px 21px 11px;
-  border-color: transparent transparent $main-2 transparent;
-  // -webkit-transform: rotate(15deg);
-  transform: rotate(180deg);
-  // opacity: 0.37;
-}
-
-.shape-15{
-  position: absolute;
-  top: 19px;
-  left: 22px;
-  width: 0;
-  z-index: -1;
-  border-style: solid;
-  border-width: 0 11px 21px 11px;
-  border-color: transparent transparent $cat-4 transparent;
-  // -webkit-transform: rotate(15deg);
-  transform: rotate(180deg);
-  // opacity: 0.37;
-}
-
-.shape-16 {
-  position: absolute;
-  top: 17px;
-  left: 19px;
-  width: 21px;
-  // height: 1px;
-  border: solid 1px $grey-1;
-  transform: rotate(117deg);
-
-}
-
-.shape-17 {
-  width: 5px;
-  height: 5px;
-  background-color: $grey-1;
-  border-radius: 50%;
-  position: absolute;
-  top:10px;
-  left: -2.5px;
-
-}
-
-.shape-18 {
-  width: 5px;
-  height: 5px;
-  background-color: $grey-1;
-  border-radius: 50%;
-  position: absolute;
-  top:10px;
-  left: -2.6px;
-
-}
-
-.shape-19 {
-  width: 5px;
-  height: 5px;
-  background-color: $main-2;
-  border-radius: 50%;
-  position: absolute;
-  bottom:12px;
-  left: 43.4%;
-
-}
-
-.Rectangle-7 {
-  //width: 338px;
-  //height: 530px;
-  margin-bottom: 17px;
-  margin-top: 42px;
-  padding: 24px 25px 20px 25px;
-  border-radius: 16px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
-}
-
-.title {
-  font-family: Raleway;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.28;
-  text-align: center;
-  color: $main-3;
-  margin-bottom: 13px;
-}
-
-.info {
-  font-family: Raleway;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  text-align: center;
-  color: $grey-8;
-  margin-top: 6px;
-
-}
-
-.info-2 {
-  max-width: 220px;
-  font-family: Raleway;
-  font-size: 10px;
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: 0.7px;
-  text-align: center;
-  color: $grey-8;
-  margin-top: 17px;
-  margin-bottom: 15px;
-}
-
-.fa-check {
-  color: $main-1;
-  margin-right: 5px;
-
-}
-
-.Detalles {
-  font-family: Raleway;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 2.75;
-  text-align: left;
-  color: $grey-8;
-
-}
-
-.Rectangle-7-Copy-3 {
-  height: fit-content;
-  padding: 3px 20px 3px 20px;
-  border-radius: 4px;
-  background-color: $main-1;
-  margin-top: 15px;
-}
-
-.btn {
-  font-family: Raleway;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-  color: $grey-1;
-}
-
-.Rectangle-7-Copy {
-  //width: 338px;
-  //height: 530px;
-  position: relative;
-  margin-top: 24px;
-  z-index: 1;
-  padding: 24px 25px 20px 25px;
-  border-radius: 16px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
-}
-
-.info-Copy {
-  font-family: Raleway;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  text-align: center;
-  color: $grey-8;
-  margin-top: 12px;
-
-}
-
-.info-2-Copy {
-  max-width: 220px;
-  font-family: Raleway;
-  font-size: 10px;
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: 0.7px;
-  text-align: center;
-  color: $grey-8;
-  margin-top: 20px;
-  margin-bottom: 14px;
-}
-
-.Rectangle-7-Copy-2 {
-  // width: 613px;
-  // height: 77px;
-  padding: 25px 48px 26px 28px;
-  margin-top: 47px;
-  border-radius: 16px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
-}
-
-.Solicitud {
-  font-family: Raleway;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.28;
-  text-align: center;
-  color: $main-3;
-}
-
-.Rectangle-7-Copy-4 {
-  // width: 187px;
-  // height: 26px;
-  height: fit-content;
-  padding: 3px 20px 3px 20px;
-  border-radius: 4px;
-  background-color: $main-1;
-  margin-left: 50px;
 }
 
 .btn-sol {
@@ -543,10 +250,10 @@
 }
 
 .Rectangle-7-Copy-5 {
-  width: 829px;
+  width: 487px;
   // height: 411px;
   margin-top: 45px;
-  // margin-left: 230px;
+  margin-left: 25px;
   // margin-right: 220px;
   padding: 25px 30px 33px 30px;
   border-radius: 16px;
@@ -570,6 +277,15 @@
   font-weight: 600;
   text-align: left;
   color: $grey-8;
+
+}
+
+.Invisible {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-1;
 
 }
 
@@ -616,7 +332,7 @@ input {
 }
 
 .Rectangle-1 {
-  width: 31px;
+  width: 45px;
   height: fit-content;
   margin-top: 5px;
   padding-bottom: 3px;
@@ -626,7 +342,7 @@ input {
 }
 
 .Pay {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: bold;
   font-style: italic;
   color: #003087;
@@ -634,7 +350,7 @@ input {
 }
 
 .Pal {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: bold;
   font-style: italic;
   color: #009cde;
@@ -643,7 +359,7 @@ input {
 }
 
 .Name {
-  width: 300px;
+  // width: 300px;
 }
 
 .Card {
@@ -685,7 +401,7 @@ option {
 }
 
 .Lastname {
-  width: 138px;
+  // width: 138px;
 
 }
 
@@ -755,66 +471,6 @@ label input[type="checkbox"]:checked+.custom-control-indicator {
   padding: 5px 20px 5px 20px;
   border-radius: 4px;
   background-color: $main-1;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  .Rectangle-7-Copy-5 {
-    width: 100% !important;
-  }
-
-  .fila1-col1 {
-    margin-right: 0 !important;
-  }
-
-  .fila1-col2 {
-    margin-right: 0 !important;
-
-  }
-
-  .fila1-col3 {
-    margin-right: 0 !important;
-
-  }
-
-  .fila2-col2 {
-    margin-left: 0 !important;
-
-  }
-
-  .fila2-col3 {
-    margin-left: 0 !important;
-
-  }
-
-  .fila2-col4 {
-    margin-top: 10px !important;
-    margin-left: -60px !important;
-
-  }
-
-  .Lastname {
-    width: 110px !important;
-  }
-
-  .Lastname2 {
-    width: 120px !important;
-
-  }
-
-  .Name {
-    width: initial;
-
-  }
-
-  .Month {
-    width: 80px !important;
-  }
-
-  .Year {
-    width: 80px !important;
-
-  }
-
 }
 
 .Imagen {
@@ -936,4 +592,30 @@ label input[type="checkbox"]:checked+.custom-control-indicator {
   border: 2.5px solid $main-2;
   border-radius: 50%;
   // opacity: 0.45;
+}
+
+.PanelSeleccionado {
+  margin-top: 30px;
+  margin-right: 25px;
+}
+
+.Info-final-2 {
+  margin-top: 24px;
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  color: $grey-1;
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .Rectangle-7-Copy-5 {
+    margin-left: 15px !important;
+  }
+
+  .PanelMargen {
+    margin-left: 50px !important;
+  }
+
 }

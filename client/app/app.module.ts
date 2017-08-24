@@ -103,6 +103,9 @@ import { CapitalizePipe } from './pipe/capitalize/capitalize.pipe';
 import { PricingComponent } from './pricing/pricing.component';
 import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premium.component';
 import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
+import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
+import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
+import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
 
 @NgModule({
   declarations: [
@@ -187,7 +190,10 @@ import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partn
     CapitalizePipe,
     PricingComponent,
     PricingPremiumComponent,
-    PricingPartnerComponent
+    PricingPartnerComponent,
+    PricingPremiumPruebaComponent,
+    PricingPremiumCheckoutComponent,
+    PricingPremiumNormalComponent
   ],
   imports: [
     BrowserModule,

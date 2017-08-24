@@ -309,16 +309,6 @@
   right: 85%;
 }
 
-.Oval-5-Copy {
-  width: 107px;
-  height: 107px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.18);
-  border-radius: 50%;
-  position: relative;
-  z-index: 1;
-}
-
 .shape-14{
   position: absolute;
   top: 19px;
@@ -399,6 +389,41 @@
   border-radius: 16px;
   background-color: $grey-1;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.PanelSeleccionado {
+  .title-nuevo {
+    color: $grey-1 !important;
+  }
+
+  .info {
+    color: $grey-1 !important;
+
+  }
+
+  .info-2 {
+    color: $grey-1 !important;
+
+  }
+
+  .fa-check {
+    color: $grey-1 !important;
+
+  }
+
+  .Detalles {
+    color: $grey-1 !important;
+
+  }
+
+}
+
+.color-nuevo {
+  color: $grey-1 !important;
+}
+
+.line-nuevo {
+  border-bottom: dashed 1px $grey-1;
 }
 
 .title {
@@ -542,281 +567,6 @@
   color: $grey-1;
 }
 
-.Rectangle-7-Copy-5 {
-  width: 829px;
-  // height: 411px;
-  margin-top: 45px;
-  // margin-left: 230px;
-  // margin-right: 220px;
-  padding: 25px 30px 33px 30px;
-  border-radius: 16px;
-  background-color: $grey-1;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
-}
-
-.title-prueba {
-  margin-bottom: 33px;
-  font-family: Raleway;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.28;
-  text-align: center;
-  color: $main-3;
-}
-
-.Datos {
-  font-family: Raleway;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: left;
-  color: $grey-8;
-
-}
-
-input {
-  font-family: Raleway;
-  font-size: 14px;
-  border-radius: 3px;
-  background-color: $grey-1;
-  border: solid 1px $grey-5;
-  height: 36px;
-  &::placeholder{
-    font-family: Raleway;
-    font-size: 14px;
-    font-style: italic;
-    text-align: left;
-    color: $grey-6;
-  }
-}
-
-.Visa-dark {
-  width: 33px;
-  height: 19px;
-  object-fit: contain;
-}
-
-.MasterCard-dark {
-  width: 33px;
-  height: 19px;
-  object-fit: contain;
-}
-
-.Discover-dark {
-  width: 33px;
-  height: 19px;
-  object-fit: contain;
-}
-
-.payText {
-  font-family: Raleway;
-  font-size: 10px;
-  font-weight: bold;
-  text-align: center;
-  color: $main-1;
-}
-
-.Rectangle-1 {
-  width: 31px;
-  height: fit-content;
-  margin-top: 5px;
-  padding-bottom: 3px;
-  border-radius: 2.3px;
-  background-color: $grey-1;
-  border: solid 0.9px #eef2f4;
-}
-
-.Pay {
-  font-size: 8px;
-  font-weight: bold;
-  font-style: italic;
-  color: #003087;
-
-}
-
-.Pal {
-  font-size: 8px;
-  font-weight: bold;
-  font-style: italic;
-  color: #009cde;
-  margin-left: -3.5px;
-
-}
-
-.Name {
-  width: 300px;
-}
-
-.Card {
-  width: 220px;
-}
-
-.seleccion {
-  font-family: Raleway;
-  font-size: 14px;
-  font-style: italic;
-  text-align: left;
-  color: $grey-6;
-  border-radius: 3px;
-  background-color: $grey-1;
-  border: solid 1px $grey-5;
-  height: 36px !important;
-}
-
-option {
-  color: $grey-8 !important;
-  font-style: normal !important;
-
-}
-
-.Code {
-  width: 65px;
-}
-
-.Year {
-  // margin-top:7.8px;
-  // margin-left:-10px;
-  width: 134px;
-
-}
-
-.Month {
-  width: 134px;
-
-}
-
-.Lastname {
-  width: 138px;
-
-}
-
-.SecurityCode {
-  width: 39px;
-  height: 23px;
-  object-fit: contain;
-  position: relative;
-  bottom: 20px;
-  left: 80px;
-}
-
-.Propietario {
-  width: 390px;
-
-}
-
-.Info-final {
-  font-family: Raleway;
-  font-size: 10px;
-  font-weight: 600;
-  text-align: left;
-  color: $grey-6;
-}
-
-
-.custom-control-indicator {
-  position: initial;
-  width: 16px;
-  height: 16px;
-  border-radius: 2px;
-  background-color: $grey-1;
-  border: solid 1px #979797;
-  margin-right: 5px;
-
-}
-
-label input[type="checkbox"] {
-  display: none;
-
-}
-
-label input[type="checkbox"]:checked+.custom-control-indicator {
-  border: solid 1px #979797;
-  background-color: $main-3;
-}
-
-.fa-check-2 {
-  color: #ffffff;
-  margin-top: 2px;
-  margin-left: 1px;
-  display: block;
-
-}
-
-.custom-control-description {
-  max-width: 240px;
-  font-family: Raleway;
-  font-size: 14px;
-  text-align: left;
-  color: $grey-8;
-
-}
-
-.Rectangle-7-Copy-6 {
-  height: fit-content;
-  padding: 5px 20px 5px 20px;
-  border-radius: 4px;
-  background-color: $main-1;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  .Rectangle-7-Copy-5 {
-    width: 100% !important;
-  }
-
-  .fila1-col1 {
-    margin-right: 0 !important;
-  }
-
-  .fila1-col2 {
-    margin-right: 0 !important;
-
-  }
-
-  .fila1-col3 {
-    margin-right: 0 !important;
-
-  }
-
-  .fila2-col2 {
-    margin-left: 0 !important;
-
-  }
-
-  .fila2-col3 {
-    margin-left: 0 !important;
-
-  }
-
-  .fila2-col4 {
-    margin-top: 10px !important;
-    margin-left: -60px !important;
-
-  }
-
-  .Lastname {
-    width: 110px !important;
-  }
-
-  .Lastname2 {
-    width: 120px !important;
-
-  }
-
-  .Name {
-    width: initial;
-
-  }
-
-  .Month {
-    width: 80px !important;
-  }
-
-  .Year {
-    width: 80px !important;
-
-  }
-
-}
-
 .Imagen {
   position: absolute;
   top:-12px;
@@ -835,105 +585,4 @@ label input[type="checkbox"]:checked+.custom-control-indicator {
   text-align: center;
   color: $grey-1;
   z-index: 3;
-}
-
-.shape-14-Copy {
-  position: absolute;
-  top: 35px;
-  left:11px;
-  width: 0;
-  border-style: solid;
-  border-width: 0 25px 45px 25px;
-  border-color: transparent transparent $main-2 transparent;
-  // -webkit-transform: rotate(15deg);
-  transform: rotate(180deg);
-  // opacity: 0.37;
-}
-
-.shape-15-Copy {
-  position: absolute;
-  top: 35px;
-  left: 45px;
-  width: 0;
-  z-index: -1;
-  border-style: solid;
-  border-width: 0 25px 45px 25px;
-  border-color: transparent transparent $cat-4 transparent;
-  // -webkit-transform: rotate(15deg);
-  transform: rotate(180deg);
-  // opacity: 0.37;
-}
-
-.shape-16-Copy {
-  position: absolute;
-  top: 41px;
-  left: 48px;
-  width: 21px;
-  // height: 1px;
-  border: solid 2px $grey-1;
-  transform: rotate(117.5deg);
-
-}
-
-.shape-17-Copy {
-  width: 10px;
-  height: 10px;
-  background-color: $grey-1;
-  border-radius: 50%;
-  position: absolute;
-  top:20px;
-  left: -5.4px;
-
-}
-
-.shape-18-Copy {
-  width: 10px;
-  height: 10px;
-  background-color: $grey-1;
-  border-radius: 50%;
-  position: absolute;
-  top:20px;
-  left: -5.6px;
-
-}
-
-.shape-19-Copy {
-  width: 10px;
-  height: 10px;
-  background-color: $main-2;
-  border-radius: 50%;
-  position: absolute;
-  bottom:27px;
-  left: 45.4%;
-
-}
-
-.shape-20{
-  position: absolute;
-  top: 90px;
-  left: -2px;
-  width: 0;
-  border: 2.5px solid $main-2;
-  border-radius: 50%;
-  opacity: 0.45;
-}
-
-.shape-21{
-  position: absolute;
-  top: 107px;
-  left: 98px;
-  width: 0;
-  border: 5px solid $main-2;
-  border-radius: 50%;
-  opacity: 0.45;
-}
-
-.shape-22{
-  position: absolute;
-  top: 110px;
-  left: 100.75px;
-  width: 0;
-  border: 2.5px solid $main-2;
-  border-radius: 50%;
-  // opacity: 0.45;
 }

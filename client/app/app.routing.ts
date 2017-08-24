@@ -18,7 +18,10 @@ import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/lis
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
-import { PricingComponent} from './pricing/pricing.component';
+import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premium.component';
+import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
+import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
+import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
 import {SuccessComponent} from './shared/social-login/success/success.component';
 import {FailureComponent} from './shared/social-login/failure/failure.component';
 
@@ -29,6 +32,10 @@ const appRoutes: Routes = [
     { path: 'inicio', component: InicioComponent}, //canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'pricing-premium', component: PricingPremiumComponent },
+    { path: 'pricing-premium/prueba', component: PricingPremiumPruebaComponent },
+    { path: 'pricing-premium/confirma-tu-plan', component: PricingPremiumCheckoutComponent },
+    { path: 'pricing-partner', component: PricingPartnerComponent },
     { path: 'chatstories', component: ListadoChatstoriesComponent },
     { path: 'relatos', component: BuscadorRelatosComponent },
     { path: 'walls/listado-walls', component: ListadoWalls },
@@ -47,7 +54,7 @@ const appRoutes: Routes = [
     { path: 'chatstory/:id', component: VerChatstoryComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: '**', component: PageNotFoundComponent },
-    { path: 'pricing', component: PricingComponent },
+
 
     // otherwise redirect to home
     /*{ path: '**', redirectTo: '' }*/
