@@ -21,6 +21,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   @ViewChild('imgPlaceholder') private imgPlaceholder: ElementRef;
   message: ChatstoryMessage = new ChatstoryMessage('', '');
   editing = false;
+  popover: boolean = false;
   constructor(private chatStoryService: ChatstoryService,
               private authenticationService: AuthenticationService,
               private router: Router,

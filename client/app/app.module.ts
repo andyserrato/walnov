@@ -100,12 +100,24 @@ import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-u
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './services/modal.service';
 import { CapitalizePipe } from './pipe/capitalize/capitalize.pipe';
+<<<<<<< HEAD
 import { PricingComponent } from './pricing/pricing.component';
 import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premium.component';
 import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
 import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
 import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
 import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
+=======
+import { ModalDecorationComponent } from './modal/modal-decoration/modal-decoration.component';
+import { UserAccountComponent } from './user-account/user-account.component';
+import { CardUserAccountNavigateComponent } from './user-account/card-user-account-navigate/card-user-account-navigate.component';
+import { UserAccountDataProfileComponent } from './user-account/user-account-data-profile/user-account-data-profile.component';
+import { UserAccountInteresesComponent } from './user-account/user-account-intereses/user-account-intereses.component';
+import { UserAccountPreferencesComponent } from './user-account/user-account-preferences/user-account-preferences.component';
+import { UserAccountPremiumComponent } from './user-account/user-account-premium/user-account-premium.component';
+import { LanguageSelectComponent } from './shared/language-select/language-select.component';
+import { ProfileHeaderComponent } from './user-account/user-account-data-profile/profile-header/profile-header.component';
+>>>>>>> 67fbf753bc5214337d75029e58c63bcd9649f770
 
 @NgModule({
   declarations: [
@@ -188,12 +200,24 @@ import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing
     CardFollowUserComponent,
     ModalComponent,
     CapitalizePipe,
+<<<<<<< HEAD
     PricingComponent,
     PricingPremiumComponent,
     PricingPartnerComponent,
     PricingPremiumPruebaComponent,
     PricingPremiumCheckoutComponent,
     PricingPremiumNormalComponent
+=======
+    ModalDecorationComponent,
+    UserAccountComponent,
+    CardUserAccountNavigateComponent,
+    UserAccountDataProfileComponent,
+    UserAccountInteresesComponent,
+    UserAccountPreferencesComponent,
+    UserAccountPremiumComponent,
+    LanguageSelectComponent,
+    ProfileHeaderComponent
+>>>>>>> 67fbf753bc5214337d75029e58c63bcd9649f770
   ],
   imports: [
     BrowserModule,

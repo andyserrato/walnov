@@ -93,7 +93,7 @@
   </div>
   <div class="col-3 no-padding">
     <div class="btn-hecho pull-right" (click)="viewChatStory()">
-      <app-prot-popover-register></app-prot-popover-register>
+      <app-prot-popover-register [direction]="'up'" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
       Publicar Chatstory
     </div>
   </div>

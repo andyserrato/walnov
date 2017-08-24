@@ -48,7 +48,7 @@
             <input maxlength="15" #personaje class="form-control col-10" type="text" placeholder="Nombre del personaje" (keydown.enter)="newPersonaje(personaje)">
             <span class="fa fa-plus-circle pull-right offset-1 col-1 plus-character" (click)="newPersonaje(personaje)"></span>
           </div>
-          <div class="col-6 form-inline" *ngIf="isUsuarioTipoPartner()">
+          <div class="col-6 form-inline"  *ngIf="isUsuarioTipoPartner()">
             <label class="form-check-label pull-right form-right" (click)="toggleExclusive()">
               <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" [checked]="this.chatStory.exclusivo" (change)="this.chatStory.exclusivo = !this.chatStory.exclusivo">
               <div class="radio"></div>

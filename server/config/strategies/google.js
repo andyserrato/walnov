@@ -5,6 +5,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const config = require('../config');
 const mongoose = require('mongoose');
 const User = mongoose.model('usuarios');
+const Constantes = require("../../constantes/constantes");
 
 // Create the Google strategy configuration method
 module.exports = function() {
@@ -15,44 +16,53 @@ module.exports = function() {
 			callbackURL: config.google.callbackURL,
 			passReqToCallback: true
 		},
-		(req, accessToken, refreshToken, profile, done) => {
+		(req, accessToken, refreshToken, profile, cb) => {
+      if (!profile || !profile._json) {
+        return cb('Ha ocurrido un error inesperado', null);
+      }
+
 			// Set the user's provider data and include tokens
 			const providerData = profile._json;
 			providerData.accessToken = accessToken;
 			providerData.refreshToken = refreshToken;
 
-			console.log(providerData);
-
 			// Create the user OAuth profile
-			const providerUserProfile = {
-				firstName: profile.name.givenName,
-				lastName: profile.name.familyName,
-				fullName: profile.displayName,
-        email: (profile.hasOwnProperty('emails')) ? profile.emails[0].value : '',
-				username: profile.username,
-				provider: 'google',
-				providerId: profile.id,
-				providerData: providerData
-			};
-
       usuario = new User();
+      usuario.login = providerData.nickname ? providerData.nickname : '';
+      usuario.estado = Constantes.Usuario.ESTADO_VERIFICADO;
+      usuario.perfil = {
+        nombre: providerData.name ? providerData.name.givenName  ? providerData.name.givenName : '' : '',
+        apellidos: providerData.name ? providerData.name.familyName ? providerData.name.familyName : '' : '',
+        sexo: providerData.gender ? providerData.gender : '',
+        foto_portada: '',
+        foto_perfil: providerData.image ? providerData.image.url ? providerData.image.url : '' : '',
+        email: (profile.hasOwnProperty('emails')) ? profile.emails[0].value : '',
+        pais: '',
+        lenguajes: [providerData.language ? providerData.language : ''],
+        descripcion: providerData.name ? providerData.name.tagline ? providerData.name.tagline: '' : '',
+        display_name: providerData.nickname ? providerData.nickname : providerData.displayName? providerData.displayName : '',
+        perfilCompleto: false,
+      };
+
       usuario.providers.push({
-        provider: 'google',
+        provider: profile.provider,
         providerId: profile.id,
         providerData: providerData
       });
 
       usuario.findByUserProviderId(function (err, userResult) {
         if (err) {
-          done(err);
+          return cb(err,null);
         } else if (userResult) {
-          done(err);
+          req.session.user = userResult;
+          return cb(err, userResult)
         } else if (!userResult) {
           usuario.save(function (err, usuarioGuardado) {
             if (err) {
-              done(err);
+              return cb(err,usuarioGuardado);
             }
-            done(null, usuarioGuardado);
+            req.session.user = usuarioGuardado;
+            return cb(null, usuarioGuardado);
           })
         }
       });

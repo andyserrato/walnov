@@ -1,12 +1,11 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('mongoose').model('usuarios');
-const bcrypt = require('bcryptjs');
 
 module.exports = function() {
-  passport.use(new LocalStrategy((username, password, done) => {
+  passport.use(new LocalStrategy((login, password, done) => {
 
-    User.findOne({'username': username },
+    User.findOne({'login': login },
       (err, user) => {
         if (err) {
           return done(err);
@@ -15,13 +14,11 @@ module.exports = function() {
         if (!user) {
           return done(null, false, { message: 'Unknown user' });
         }
-
-        if (!user.password === password) {
+        if (!user.authenticate(password)) {
           return done(null, false, {
             message: 'Invalid password'
           });
         }
-
         return done(null, user);
     });
   }));

@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 
+function _window(): any {
+  // return the global native browser window object
+  return window;
+}
+
 @Injectable()
 export class WindowService {
 
@@ -15,6 +20,10 @@ export class WindowService {
     const options = `width=${width},height=${height},left=${left},top=${top}`;
 
     return window.open(url, name, options);
+  }
+
+  get nativeWindow(): any {
+    return _window();
   }
 
 }

@@ -1,0 +1,17 @@
+<div class="outside-container">
+  <div class="title d-flex justify-content-center">
+    Cuenta
+  </div>
+  <div class="link" [ngClass]="{'active': this.view==='datos'}" (click)="clickView('datos')">
+    Datos de perfil
+  </div>
+  <div class="link" [ngClass]="{'active': this.view==='intereses'}" (click)="clickView('intereses')">
+    Intereses
+  </div>
+  <div class="link" [ngClass]="{'active': this.view==='preferencias'}" (click)="clickView('preferencias')">
+    Preferencias
+  </div>
+  <div class="link" [ngClass]="{'active': this.view==='premium'}" (click)="clickView('premium')">
+    Mi cuenta Premium
+  </div>
+</div>
