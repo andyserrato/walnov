@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -115,6 +116,7 @@ import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partn
 import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
 import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
 import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 @NgModule({
   declarations: [
@@ -211,10 +213,14 @@ import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing
     UserAccountPreferencesComponent,
     UserAccountPremiumComponent,
     LanguageSelectComponent,
-    ProfileHeaderComponent
+    ProfileHeaderComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAmzOCGyNtTpdkh-8X9TIVyAwMyVoQ2zjo'
+    }),
     FormsModule,
     ReactiveFormsModule,
     HttpModule,

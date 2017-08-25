@@ -22,6 +22,7 @@ import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premi
 import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
 import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
 import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
+import { ContactoComponent } from './contacto/contacto.component';
 import {SuccessComponent} from './shared/social-login/success/success.component';
 import {FailureComponent} from './shared/social-login/failure/failure.component';
 import { UserAccountComponent } from './user-account/user-account.component';
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     { path: 'inicio', component: InicioComponent}, //canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'contacto', component: ContactoComponent },
     { path: 'pricing-premium', component: PricingPremiumComponent },
     { path: 'pricing-premium/prueba', component: PricingPremiumPruebaComponent },
     { path: 'pricing-premium/confirma-tu-plan', component: PricingPremiumCheckoutComponent },
