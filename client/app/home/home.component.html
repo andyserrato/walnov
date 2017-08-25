@@ -12,7 +12,7 @@
     <div class="col cols-no-padding custom-padding-1" *ngIf="this.view==='reciente'">
       <app-home-reciente></app-home-reciente>
     </div>
-    <div class="col-lg-3 col-md-3 cols-no-padding" *ngIf="this.view==='reciente'">
+    <div class="col-lg-3 hidden-md-down cols-no-padding" *ngIf="this.view==='reciente'">
       <app-card-usuario-tendencia></app-card-usuario-tendencia>
       <app-card-wall-relevante></app-card-wall-relevante>
       <app-card-publicidad></app-card-publicidad>

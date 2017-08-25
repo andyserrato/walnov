@@ -117,6 +117,7 @@ import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing
 import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
 import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { CardActividadRecienteComponent } from './shared/card-actividad-reciente/card-actividad-reciente.component';
 
 @NgModule({
   declarations: [
@@ -214,7 +215,8 @@ import { ContactoComponent } from './contacto/contacto.component';
     UserAccountPremiumComponent,
     LanguageSelectComponent,
     ProfileHeaderComponent,
-    ContactoComponent
+    ContactoComponent,
+    CardActividadRecienteComponent
   ],
   imports: [
     BrowserModule,
