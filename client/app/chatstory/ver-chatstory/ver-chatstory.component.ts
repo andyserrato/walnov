@@ -127,24 +127,19 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
           this.timer.unsubscribe();
           this.timer = false;
         }
-        // if(this.subscribe){
-        //   this.subscribe.unsubscribe();
-        // }
+
         this.nextMessage();
         this.lastclick = time;
       }else{
         this.limite = 1000;
         this.autoplay = true;
         if (!this.timer){
-          this.timer = Observable.timer(1000, 1000).subscribe(() => {
+          this.timer = Observable.timer(1500, 1500).subscribe(() => {
             if (this.autoplay){
               this.nextMessage();
             }
           }); ;
         }
-        // this.subscribe = this.timer.subscribe(()=>{
-        //   this.nextMessage();
-        // });
       }
     }
 
