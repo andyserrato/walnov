@@ -1,12 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-export class Language {
-  language: string;
-  selected: boolean = false;
-  constructor(l?: string) {
-    this.language = l;
-  }
-}
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { SelectItem } from '../../models/select-item';
 
 @Component({
   selector: 'app-language-select',
@@ -18,41 +11,35 @@ export class Language {
 })
 export class LanguageSelectComponent implements OnInit {
   @ViewChild('relcontainer') relcontainer: ElementRef;
-  languages: Array<Language> = new Array<Language>();
-  languagesSel: Array<Language> = new Array<Language>();
-  placeholder: string;
+  @Input() languages: Array<SelectItem>;
+  languagesSel: Array<SelectItem> = new Array<SelectItem>();
+  ph: string;
   visible: boolean;
+  @Input() placeholder: string;
   constructor() {
-    this.placeholder="Idiomas";
-    this.languages.push(new Language('Español'));
-    this.languages.push(new Language('Inglés'));
-    this.languages.push(new Language('Francés'));
-    this.languages.push(new Language('Portugués'));
-    this.languages.push(new Language('Chino'));
-    this.languages.push(new Language('Japonés'));
-    this.languages.push(new Language('Italiano'));
-    this.languages.push(new Language('Ruso'));
+
   }
 
   ngOnInit() {
+    this.ph=this.placeholder;
   }
 
   editPlaceholder() {
-    this.placeholder="";
+    this.ph="";
     if(this.languagesSel.length>0){
       for(let i=0; i< this.languagesSel.length; i++){
-        this.placeholder+=this.languagesSel[i].language;
+        this.ph+=this.languagesSel[i].text;
         if(i<this.languagesSel.length-1) {
-          this.placeholder+=", ";
+          this.ph+=", ";
         }
       }
     }else{
-      this.placeholder="Idiomas";
+      this.ph=this.placeholder;
     }
 
   }
 
-  select(l: Language){
+  select(l: SelectItem){
     if(l.selected){
       this.languagesSel.splice(this.languagesSel.indexOf(l), 1);
     }else{

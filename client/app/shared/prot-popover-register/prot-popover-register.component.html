@@ -61,6 +61,9 @@
             <div class="link" (click)="changeView('login')" [hidden]="this.view==='login'">
               Ya tengo cuenta, entrar
             </div>
+            <div class="link" (click)="changeView('register')" [hidden]="this.view==='register'">
+              No tengo cuenta, registrarme
+            </div>
             <div class="button d-flex align-items-center" (click)="register()" *ngIf="this.view==='register'">
               <span *ngIf="!loading">Unirme</span>
               <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>

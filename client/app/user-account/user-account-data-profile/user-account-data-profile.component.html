@@ -46,17 +46,56 @@
         <div class="title">
             Sexo
         </div>
-        <select class="form-control" name="">
-          <option value="mujer">Mujer</option>
-          <option value="hombre">Hombre</option>
+        <select class="form-control" name="" [(ngModel)]="this.auth.getUser().perfil.sexo">
+          <option value="female">Mujer</option>
+          <option value="male">Hombre</option>
         </select>
       </div>
       <div class="input">
         <div class="title">
             Idioma
         </div>
-        <app-language-select></app-language-select>
+        <app-language-select [languages]="languages" [placeholder]="'Idiomas'"></app-language-select>
+      </div>
+      <div class="input">
+        <div class="title">
+            Teléfono
+        </div>
+        <input type="tel" class="form-control" name="" value="" placeholder="665654564">
+      </div>
+      <div class="input">
+        <div class="title">
+            Blog
+        </div>
+        <input type="text" class="form-control" name="" value="" placeholder="Blog">
+      </div>
+      <div class="input">
+        <div class="title">
+            Intereses
+        </div>
+        <app-language-select [languages]="interests" [placeholder]="'Intereses'"></app-language-select>
       </div>
     </div>
+  </div>
+  <div class="outside-container d-flex flex-row justify-content-around">
+    <div class="links d-flex flex-column align-items-center justify-content-center">
+      <div class="share facebook d-flex flex-column align-items-center justify-content-center">
+        <span class="fa fa-facebook"></span>
+      </div>
+      <input type="text" class="form-control" placeholder="Facebook" name="" value="">
+    </div>
+    <div class="links d-flex flex-column align-items-center justify-content-center">
+      <div class="share google d-flex flex-column align-items-center justify-content-center">
+        <span class="fa fa-google-plus"></span>
+      </div>
+      <input type="text" class="form-control" placeholder="Google+" name="" value="">
+    </div>
+    <div class="links d-flex flex-column align-items-center justify-content-center">
+      <div class="share twitter d-flex flex-column align-items-center justify-content-center">
+        <span class="fa fa-twitter"></span>
+      </div>
+      <input type="text" class="form-control" placeholder="Twitter" name="" value="">
+    </div>
+
   </div>
 </div>
