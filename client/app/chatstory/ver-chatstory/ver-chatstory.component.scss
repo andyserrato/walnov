@@ -11,17 +11,16 @@
 }
 .messages-content{
   position: absolute;
-  height: 80%;
-  width: 100%;
+  top:1em;
+  height:80%;
   overflow-y: auto;
-  padding-left: 1em;
+  padding: 0 2em;
 }
 .chatstory-preview{
   margin-top: 16px;
   position: absolute;
   height: 100%;
   width: 100%;
-  padding: 1em 2em;
   border-radius: 8px;
   background-image: linear-gradient(to bottom, rgba(41, 186, 111, 0), $cat-2);
 }

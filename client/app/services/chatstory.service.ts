@@ -21,7 +21,8 @@ export class ChatstoryService {
 
   getChatStory(id: any): Observable<ChatStory> {
     console.log('Inicio getChatStory');
-    return this.http.get(this.chatStoriesUrl + id)
+    console.log(this.chatStoriesUrl + id);
+    return this.http.get(this.chatStoriesUrl +'/'+ id)
       .map((res: Response) => {
         return res.json();
       })
