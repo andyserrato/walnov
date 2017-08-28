@@ -1,0 +1,144 @@
+@import "main";
+
+.Rectangle-3-Copy-8 {
+  width: 371px;
+  height: auto !important;
+  margin-bottom: 50px;
+  margin-right: 9px;
+  padding: 30px 35px 30px 35px;
+  border-radius: 8px;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.title {
+  font-family: Raleway;
+  font-size: 18px;
+  margin-bottom: 50px;
+  text-align: left;
+  color: $grey-8;
+}
+
+.Datos {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $grey-8;
+
+}
+
+input {
+  font-family: Raleway;
+  font-size: 14px;
+  border-radius: 3px;
+  background-color: $grey-1;
+  border: solid 1px $grey-5;
+  height: 36px;
+  &::placeholder{
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: italic;
+    text-align: left;
+    color: $grey-6;
+  }
+}
+
+.Rectangle-3-Copy-8 {
+  width: 371px;
+  height: 663px;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.Comment-Box {
+  // position: absolute;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: 0;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  text-align: left;
+  resize: none;
+  //color: #4a4a4a;
+  color: $grey-8;
+  &::placeholder{
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: italic;
+    text-align: left;
+    // color: #9b9b9b;
+    color: $grey-6;
+  }
+
+}
+
+.Input-Background {
+  // width: 300px;
+  height: 211px;
+  padding: 9px 10px 9px 10px;
+  border-radius: 3px;
+  background-color: $grey-1;
+  border: solid 1px $grey-5;
+}
+
+.Rectangle-7 {
+  // width: 103px;
+  height: fit-content;
+  padding: 5px 25px 5px 25px;
+  border-radius: 4px;
+  background-color: $main-1;
+}
+
+.btn-content {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: $grey-1;
+}
+
+.Rectangle-3-Copy-9 {
+  width: 371px;
+  // height: 497px;
+  padding: 30px 35px 30px 35px;
+  margin-left: 9px;
+  border-radius: 8px;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .Rectangle-3-Copy-8 {
+    margin-right: 0 !important;
+    margin-bottom: 15px !important;
+  }
+
+  .Rectangle-3-Copy-9 {
+    margin-left: 0 !important;
+  }
+}
+
+.Adress {
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.28;
+  text-align: center;
+  color: $main-3;
+}
+
+.Bitmap {
+  // width: 345px;
+  height: 300px;
+  // margin-top: 32px;
+
+}

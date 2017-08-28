@@ -11,7 +11,7 @@ export class NuevoUserComponent implements OnInit {
   users: Array<Usuario>;
   seguidos: number;
   constructor(private alert: AlertService, private modal: ModalService) {
-    this.seguidos=10;
+    this.seguidos=0;
     this.users = new Array<Usuario>();
     for(let i = 0; i< 10; i++) {
         let user = new Usuario();
@@ -20,7 +20,7 @@ export class NuevoUserComponent implements OnInit {
         user.chatstories = 88;
         user.relatos = 88;
         user.imagen = "http://www.lorempixel.com/1200/1600";
-        user.seguido = true;
+        user.seguido = false;
         this.users.push(user);
     }
   }

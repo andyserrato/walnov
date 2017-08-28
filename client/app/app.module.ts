@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -117,6 +118,9 @@ import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/prici
 import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
 import { UserAccountModule } from './user-account/user-account.module';
 import { SharedModule } from './shared/shared.module';
+import { ContactoComponent } from './contacto/contacto.component';
+import { CardActividadRecienteComponent } from './shared/card-actividad-reciente/card-actividad-reciente.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -203,10 +207,24 @@ import { SharedModule } from './shared/shared.module';
     PricingPremiumPruebaComponent,
     PricingPremiumCheckoutComponent,
     PricingPremiumNormalComponent,
+    ModalDecorationComponent,
+    UserAccountComponent,
+    CardUserAccountNavigateComponent,
+    UserAccountDataProfileComponent,
+    UserAccountInteresesComponent,
+    UserAccountPreferencesComponent,
+    UserAccountPremiumComponent,
+    LanguageSelectComponent,
+    ProfileHeaderComponent,
+    ContactoComponent,
+    CardActividadRecienteComponent,
     ModalDecorationComponent
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAmzOCGyNtTpdkh-8X9TIVyAwMyVoQ2zjo'
+    }),
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
