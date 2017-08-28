@@ -87,8 +87,8 @@ function getChatStories(req, res) {
   let offset;
 
   let query = ChatStory.find();
-  query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
-  // query.populate('estadistica autor');
+  // query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
+  query.populate('estadistica autor');
   if (req.query && req.query.categoria) {
     query.where('categoria').equals(req.query.categoria);
   }
