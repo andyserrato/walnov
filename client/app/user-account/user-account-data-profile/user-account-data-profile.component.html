@@ -1,5 +1,12 @@
+
 <div class="full-outside-container">
   <app-profile-header></app-profile-header>
+  <div class="outside-container d-flex flex-column">
+    <div class="thin-title">
+      Descripción
+    </div>
+    <textarea class="form-control" [(ngModel)]="this.auth.getUser().perfil.descripcion"></textarea>
+  </div>
   <div class="outside-container d-flex flex-column">
     <div class="thin-title">
       Mis datos
@@ -9,7 +16,7 @@
         <div class="title">
             Nombre de usuario
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Nombre de usuario">
+        <input type="text" class="form-control" name="" value="" placeholder="Nombre de usuario" [(ngModel)]="this.auth.getUser().perfil.display_name">
       </div>
       <div class="input">
         <div class="title">
@@ -21,13 +28,13 @@
         <div class="title">
             Nombre
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Nombre">
+        <input type="text" class="form-control" name="" value="" placeholder="Nombre" [(ngModel)]="this.auth.getUser().perfil.nombre">
       </div>
       <div class="input">
         <div class="title">
             Apellidos
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Apellidos">
+        <input type="text" class="form-control" name="" value="" placeholder="Apellidos" [(ngModel)]="this.auth.getUser().perfil.apellidos">
       </div>
       <div class="input">
         <div class="title">

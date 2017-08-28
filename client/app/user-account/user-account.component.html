@@ -4,8 +4,8 @@
       <app-card-user-account-navigate [view]="this.view" (changeView)="this.view=$event"></app-card-user-account-navigate>
     </div>
     <!-- /.col -->
-    <div class="col-lg-7 col-md-9 cols-no-padding" [ngSwitch]="this.view">
-      <app-user-account-data-profile *ngSwitchCase="'datos'"></app-user-account-data-profile>
+    <div class="col-lg-7 col-md-9 cols-no-padding">
+      <router-outlet></router-outlet>
     </div>
     <!-- /.col -->
     <div class="col-lg-3 hidden-md-down cols-no-padding">

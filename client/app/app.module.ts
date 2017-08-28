@@ -115,7 +115,8 @@ import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partn
 import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
 import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
 import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
-
+import { UserAccountModule } from './user-account/user-account.module';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,7 +130,6 @@ import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing
     CrearWallComponent,
     LandingComponent,
     FeedComponent,
-    CardInformativoComponent,
     RegisterPopoverComponent,
     CrearChatstoryStep1Component,
     ImagePickerComponent,
@@ -203,15 +203,7 @@ import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing
     PricingPremiumPruebaComponent,
     PricingPremiumCheckoutComponent,
     PricingPremiumNormalComponent,
-    ModalDecorationComponent,
-    UserAccountComponent,
-    CardUserAccountNavigateComponent,
-    UserAccountDataProfileComponent,
-    UserAccountInteresesComponent,
-    UserAccountPreferencesComponent,
-    UserAccountPremiumComponent,
-    LanguageSelectComponent,
-    ProfileHeaderComponent
+    ModalDecorationComponent
   ],
   imports: [
     BrowserModule,
@@ -222,7 +214,9 @@ import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing
     routing,
     BrowserAnimationsModule,
     AuthenticationModule,
-    NgbModule.forRoot()
+    UserAccountModule,
+    NgbModule.forRoot(),
+    SharedModule
   ],
   providers: [
     AppConfig,
