@@ -118,6 +118,8 @@ import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/prici
 import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { CardActividadRecienteComponent } from './shared/card-actividad-reciente/card-actividad-reciente.component';
+import { MessageTimePipe } from './pipe/message-time/message-time.pipe';
+import { OrderByPipe } from './pipe/order-by/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -216,7 +218,9 @@ import { CardActividadRecienteComponent } from './shared/card-actividad-reciente
     LanguageSelectComponent,
     ProfileHeaderComponent,
     ContactoComponent,
-    CardActividadRecienteComponent
+    CardActividadRecienteComponent,
+    MessageTimePipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

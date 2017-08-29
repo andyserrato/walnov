@@ -15,4 +15,7 @@ export class Relato {
     likes: number;
     views: number;
     coments: number;
+
+    fechaCreacion: Date;
+
 }

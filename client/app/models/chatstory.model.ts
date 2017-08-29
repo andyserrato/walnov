@@ -1,11 +1,14 @@
 import { Categoria } from './cats';
 import { ChatstoryMessage } from './chatstory-message';
+import { Usuario } from './usuario.model';
+
 
 export class ChatStory {
   id: string;
   titulo: string;
   autor: string;
   autorNombre: string;
+  usuario: Usuario; // Esto debería reemplazar al autor
   categoria: Categoria;
   urlImagen: string;
   personajes: Array<string>;
@@ -16,7 +19,7 @@ export class ChatStory {
   exclusivo: boolean;
   views: number;
   likes: number;
-  fechaCreacion: string;
+  fechaCreacion: Date;
   added = false; // Se pone a true si se añade el chatstory a mi biblioteca
   selected = true; // Se usa para dar estilos a un chatstory cuando se selecciona
 
