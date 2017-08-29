@@ -1,15 +1,17 @@
-<div class="outside-container" (click)="clear($event)" *ngIf="this.message">
+<div class="outside-container" *ngIf="this.message">
+  <div class="loader" *ngIf="this.message?.type==='loader'">
 
-  <div #content class="content-container d-flex flex-column zoomIn animated" [ngSwitch]="this.message?.type">
+  </div>
+  <div #content class="content-container d-flex flex-column zoomIn animated" [ngSwitch]="this.message?.type" *ngIf="this.message?.type!='loader'">
     <app-modal-decoration></app-modal-decoration>
     <div class="title-box d-flex align-items-center justify-content-center">
       {{this.message.text}}
     </div>
     <div class="button-box d-flex justify-content-end" *ngSwitchCase="'info'">
-      <div class="button d-flex align-items-center justify-content-center">
+      <div class="button d-flex align-items-center justify-content-center" (click)="clear()">
         Seguir buscando usuarios
       </div>
-      <div class="button d-flex align-items-center justify-content-center">
+      <div class="button d-flex align-items-center justify-content-center" (click)="clear()">
         Ver actividad
       </div>
     </div>
@@ -49,7 +51,7 @@
         </div>
       </div>
       <div class="button-row d-flex align-itmes-end justify-content-end">
-        <div class="button">
+        <div class="button" (click)="clear()">
           Continuar
         </div>
       </div>

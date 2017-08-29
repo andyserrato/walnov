@@ -18,10 +18,8 @@ export class ModalComponent implements OnInit {
 
   }
 
-  clear(event) {
-    if(!this.content.nativeElement.contains(event.target)){
+  clear() {
       this.modal.clear();
-    }
   }
 
 }

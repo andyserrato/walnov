@@ -31,7 +31,11 @@ export class MisChatstoriesComponent implements OnInit {
     myParams.append('tipo', '1'); // tipo publicado
     this.chatStoryService.getChatStoryByQueryParams(myParams).subscribe(
       chatStories => {
-        this.chatStories = chatStories;
+        if (chatStories && chatStories.length > 0) {
+          this.chatStories = chatStories;
+        } else {
+          this.showMessage = true;
+        }
       }
     );
   }

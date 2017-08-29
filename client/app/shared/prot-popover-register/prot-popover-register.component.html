@@ -5,8 +5,8 @@
         <div class="title">
           Únete para poder publicar
         </div>
-        <div class="alternatives d-flex flex-column" [ngClass]="{'walgo': this.view==='login'}">
-          <div class="d-flex flex-column" *ngIf="this.view==='register'">
+        <div class="alternatives d-flex flex-column">
+          <div class="d-flex flex-column">
             <span class="simple-title">Regístrate con:</span>
             <div class="icon facebook" (click)="doSocialLogin('/apiv1/users/oauth/facebook?url=')">
               <span class="fa fa-facebook mr-auto"></span>
@@ -60,6 +60,9 @@
           <div class="d-flex align-items-center justify-content-end">
             <div class="link" (click)="changeView('login')" [hidden]="this.view==='login'">
               Ya tengo cuenta, entrar
+            </div>
+            <div class="link" (click)="changeView('register')" [hidden]="this.view==='register'">
+              No tengo cuenta, registrarme
             </div>
             <div class="button d-flex align-items-center" (click)="register()" *ngIf="this.view==='register'">
               <span *ngIf="!loading">Unirme</span>

@@ -116,6 +116,8 @@ import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partn
 import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing-premium-prueba/pricing-premium-prueba.component';
 import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
 import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
+import { UserAccountModule } from './user-account/user-account.module';
+import { SharedModule } from './shared/shared.module';
 import { ContactoComponent } from './contacto/contacto.component';
 import { CardActividadRecienteComponent } from './shared/card-actividad-reciente/card-actividad-reciente.component';
 import { MessageTimePipe } from './pipe/message-time/message-time.pipe';
@@ -134,7 +136,6 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     CrearWallComponent,
     LandingComponent,
     FeedComponent,
-    CardInformativoComponent,
     RegisterPopoverComponent,
     CrearChatstoryStep1Component,
     ImagePickerComponent,
@@ -209,18 +210,11 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     PricingPremiumCheckoutComponent,
     PricingPremiumNormalComponent,
     ModalDecorationComponent,
-    UserAccountComponent,
-    CardUserAccountNavigateComponent,
-    UserAccountDataProfileComponent,
-    UserAccountInteresesComponent,
-    UserAccountPreferencesComponent,
-    UserAccountPremiumComponent,
-    LanguageSelectComponent,
-    ProfileHeaderComponent,
     ContactoComponent,
     CardActividadRecienteComponent,
     MessageTimePipe,
-    OrderByPipe
+    OrderByPipe,
+    ModalDecorationComponent
   ],
   imports: [
     BrowserModule,
@@ -234,7 +228,9 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     routing,
     BrowserAnimationsModule,
     AuthenticationModule,
-    NgbModule.forRoot()
+    UserAccountModule,
+    NgbModule.forRoot(),
+    SharedModule
   ],
   providers: [
     AppConfig,

@@ -26,7 +26,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import {SuccessComponent} from './shared/social-login/success/success.component';
 import {FailureComponent} from './shared/social-login/failure/failure.component';
 import { UserAccountComponent } from './user-account/user-account.component';
-
+import { UserAccountModule } from './user-account/user-account.module';
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
     { path: 'home', component: HomeComponent },
@@ -48,7 +48,7 @@ const appRoutes: Routes = [
         ]
     },
     { path: 'user-profile', component: UserProfileComponent},
-    { path: 'user-account', component: UserAccountComponent},
+    { path: 'user-account', loadChildren: './user-account/user-account.module#UserAccountModule'},
     { path: 'crear-relato', component: CrearRelatoComponent},
     { path: 'social-login/success', component: SuccessComponent},
     { path: 'social-login/failure', component: FailureComponent},
