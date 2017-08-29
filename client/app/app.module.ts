@@ -120,6 +120,8 @@ import { UserAccountModule } from './user-account/user-account.module';
 import { SharedModule } from './shared/shared.module';
 import { ContactoComponent } from './contacto/contacto.component';
 import { CardActividadRecienteComponent } from './shared/card-actividad-reciente/card-actividad-reciente.component';
+import { MessageTimePipe } from './pipe/message-time/message-time.pipe';
+import { OrderByPipe } from './pipe/order-by/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -210,6 +212,8 @@ import { CardActividadRecienteComponent } from './shared/card-actividad-reciente
     ModalDecorationComponent,
     ContactoComponent,
     CardActividadRecienteComponent,
+    MessageTimePipe,
+    OrderByPipe,
     ModalDecorationComponent
   ],
   imports: [

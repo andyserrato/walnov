@@ -21,9 +21,11 @@ export class RepositorioService{
     walls: Array<Wall> = new Array<Wall>();
     conts: Array<Continuacion> = new Array<Continuacion>();
     hists: Array<Historia> = new Array<Historia>();
+    actRec: Array<any> = new Array();
 
     PricingDiv = null; //Div que se utiliza para el pricing
 
+    paginadorActividadReciente = null;
     paginadorCardsChatstories = null;
     paginadorChatstoriesBiblioteca = null;
     paginadorCardsRelatos = null;
