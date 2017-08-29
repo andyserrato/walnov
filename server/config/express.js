@@ -33,10 +33,11 @@ module.exports = function () {
 
   // Use the 'body-parser' and 'method-override' middleware functions
   app.use(bodyParser.urlencoded({
+    limit: '50mb',
     extended: true
   }));
   app.use(cors());
-  app.use(bodyParser.json());
+  app.use(bodyParser.json({limit: '50mb'}));
   app.use(methodOverride());
 
   // Configure the 'session' middleware
