@@ -1,3 +1,36 @@
-<p>
-  user-account-preferences works!
-</p>
+<div class="full-outside-container">
+  <div class="outside-container">
+    <div class="d-flex flex-column">
+      <div class="main-title">
+        Preferencias
+      </div>
+      <div class="item d-flex align-items-center" *ngFor="let pref of preferencias">
+        <div class="title">
+          {{pref.nombre}}
+        </div>
+        <div class="checker ml-auto d-flex flex-row" [ngClass]="{'checked': pref.active, 'unchecked':!pref.active}" (click)="pref.active=!pref.active">
+          <div class="true d-flex align-items-center justify-content-center">
+            <i class="fa fa-check"></i>
+          </div>
+          <div class="false d-flex align-items-center justify-content-center">
+            <i class="fa fa-times"></i>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="item d-flex align-items-center">
+        <div class="title">
+          Notificaciones
+        </div>
+        <div class="checker ml-auto checked d-flex flex-row">
+          <div class="true d-flex align-items-center justify-content-center">
+            <i class="fa fa-check"></i>
+          </div>
+          <div class="false d-flex align-items-center justify-content-center">
+            <i class="fa fa-times"></i>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+</div>

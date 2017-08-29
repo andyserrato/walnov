@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { UserAccountComponent } from './user-account.component';
 import { CardUserAccountNavigateComponent } from './card-user-account-navigate/card-user-account-navigate.component';
 import { UserAccountDataProfileComponent } from './user-account-data-profile/user-account-data-profile.component';
-import { UserAccountInteresesComponent } from './user-account-intereses/user-account-intereses.component';
 import { UserAccountPreferencesComponent } from './user-account-preferences/user-account-preferences.component';
 import { UserAccountPremiumComponent } from './user-account-premium/user-account-premium.component';
 import { ProfileHeaderComponent } from './user-account-data-profile/profile-header/profile-header.component';
@@ -25,7 +24,6 @@ import { SharedModule } from '../shared/shared.module';
     UserAccountComponent,
     CardUserAccountNavigateComponent,
     UserAccountDataProfileComponent,
-    UserAccountInteresesComponent,
     ProfileHeaderComponent,
     UserAccountPreferencesComponent,
     UserAccountPremiumComponent

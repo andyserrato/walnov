@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="counter" *ngIf="this.languagesSel.length > 0">
-    {{this.languagesSel.length}} {{this.languagesSel.length > 1 ? 'idiomas seleccionados' : 'idioma seleccionado'}}
+    {{this.languagesSel.length}} {{this.languagesSel.length > 1 ? 'seleccionados' : 'seleccionado'}}
   </div>
   <div class="full-container" [ngClass]="{'hidden': !this.visible}">
     <div class="item d-flex align-items-center" *ngFor="let l of languages" (click)="select(l)" [ngClass]="{'selected': l.selected}">

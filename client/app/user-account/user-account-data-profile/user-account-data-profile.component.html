@@ -77,25 +77,29 @@
       </div>
     </div>
   </div>
-  <div class="outside-container d-flex flex-row justify-content-around">
-    <div class="links d-flex flex-column align-items-center justify-content-center">
-      <div class="share facebook d-flex flex-column align-items-center justify-content-center">
-        <span class="fa fa-facebook"></span>
+  <div class="outside-container d-flex flex-column justify-content-between">
+    <div class="d-flex flex-row justify-content-around">
+      <div class="links d-flex flex-column align-items-center justify-content-center">
+        <div class="share facebook d-flex flex-column align-items-center justify-content-center">
+          <span class="fa fa-facebook"></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Facebook" name="" value="">
       </div>
-      <input type="text" class="form-control" placeholder="Facebook" name="" value="">
-    </div>
-    <div class="links d-flex flex-column align-items-center justify-content-center">
-      <div class="share google d-flex flex-column align-items-center justify-content-center">
-        <span class="fa fa-google-plus"></span>
+      <div class="links d-flex flex-column align-items-center justify-content-center">
+        <div class="share google d-flex flex-column align-items-center justify-content-center">
+          <span class="fa fa-google-plus"></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Google+" name="" value="">
       </div>
-      <input type="text" class="form-control" placeholder="Google+" name="" value="">
-    </div>
-    <div class="links d-flex flex-column align-items-center justify-content-center">
-      <div class="share twitter d-flex flex-column align-items-center justify-content-center">
-        <span class="fa fa-twitter"></span>
+      <div class="links d-flex flex-column align-items-center justify-content-center">
+        <div class="share twitter d-flex flex-column align-items-center justify-content-center">
+          <span class="fa fa-twitter"></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Twitter" name="" value="">
       </div>
-      <input type="text" class="form-control" placeholder="Twitter" name="" value="">
     </div>
-
+    <div class="button ml-auto d-flex align-items-center justify-content-center" (click)="save()">
+      Guardar cambios
+    </div>
   </div>
 </div>

@@ -6,8 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-account-preferences.component.scss']
 })
 export class UserAccountPreferencesComponent implements OnInit {
-
-  constructor() { }
+  preferencias: any;
+  constructor() {
+    this.preferencias = [
+      {
+        'nombre': 'Mensajes',
+        'active': true
+      },
+      {
+        'nombre': 'Notificaciones',
+        'active': false
+      }
+    ];
+  }
 
   ngOnInit() {
   }
