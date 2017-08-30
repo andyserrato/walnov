@@ -20,7 +20,6 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './alert/alert.component';
@@ -45,9 +44,6 @@ import { MisChatstoriesComponent } from './chatstory/mis-chatstories/mis-chatsto
 import { SelectImageComponent } from './shared/image-picker/select-image/select-image.component';
 import { UploadImageComponent } from './shared/image-picker/upload-image/upload-image.component';
 import { VerifyUserComponent } from './shared/image-picker/verify-user/verify-user.component';
-import { CardPublicidadComponent } from './shared/card-publicidad/card-publicidad.component';
-import { CardUsuarioTendenciaComponent } from './shared/card-usuario-tendencia/card-usuario-tendencia.component';
-import { CardWallRelevanteComponent } from './shared/card-wall-relevante/card-wall-relevante.component';
 import { PersonajeLiComponent } from './chatstory/crear-personaje-chatstory/personaje-li/personaje-li.component';
 import { CrearChatstoryStep2Component } from './chatstory/crear-chatstory-step-2/crear-chatstory-step-2.component';
 import { CrearChatstoryComponent } from './chatstory/crear-chatstory/crear-chatstory.component';
@@ -57,19 +53,8 @@ import { CardMiBibliotecaComponent } from './shared/card-mi-biblioteca/card-mi-b
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 import { CardMiBibliotecaBuscadorComponent } from './shared/card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
 import { CardCategoriasComponent } from './shared/card-categorias/card-categorias.component';
-import { CardChatstoryComponent } from './shared/card-chatstory/card-chatstory.component';
 import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
-import { HomeMisChatstoriesComponent } from './home/home-mis-chatstories/home-mis-chatstories.component';
-import { CardHomeNavigateComponent } from './home/card-home-navigate/card-home-navigate.component';
-import { HomeGuardadoComponent } from './home/home-guardado/home-guardado.component';
-import { GuardadoWallsComponent } from './home/home-guardado/guardado-walls/guardado-walls.component';
-import { GuardadoRelatosComponent } from './home/home-guardado/guardado-relatos/guardado-relatos.component';
-import { GuardadoChatstoriesComponent } from './home/home-guardado/guardado-chatstories/guardado-chatstories.component';
-import { CardInfoPremiumComponent } from './shared/card-info-premium/card-info-premium.component';
-import { HomeRecienteComponent } from './home/home-reciente/home-reciente.component';
-import { RecienteNotificacionComponent } from './home/home-reciente/reciente-notificacion/reciente-notificacion.component';
 import { CardChatstoriesPaginadorComponent } from './shared/card-chatstories-paginador/card-chatstories-paginador.component';
-import { CardRelatoComponent } from './shared/card-relato/card-relato.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserCardComponent } from './user-profile/user-card/user-card.component';
 import { UserContentComponent } from './user-profile/user-content/user-content.component';
@@ -89,15 +74,12 @@ import { SuccessComponent } from './shared/social-login/success/success.componen
 import { FailureComponent } from './shared/social-login/failure/failure.component';
 import { ProtPopoverRegisterComponent } from './shared/prot-popover-register/prot-popover-register.component';
 import { UserContentRelatosComponent } from './user-profile/user-content/user-content-relatos/user-content-relatos.component';
-import { HomeMisRelatosComponent } from './home/home-mis-relatos/home-mis-relatos.component';
 import { RelatoComponent } from './relatos/relato/relato.component';
 import { CardContinuacionComponent } from './shared/card-continuacion/card-continuacion.component';
 import { UserContentContinuacionesComponent } from './user-profile/user-content/user-content-continuaciones/user-content-continuaciones.component';
 import { UserContentHistoriasComponent } from './user-profile/user-content/user-content-historias/user-content-historias.component';
 import { CardHistoriaComponent } from './shared/card-historia/card-historia.component';
 import { ProfilePopoverComponent } from './shared/profile-popover/profile-popover.component';
-import { NuevoUserComponent } from './home/home-reciente/nuevo-user/nuevo-user.component';
-import { CardFollowUserComponent } from './shared/card-follow-user/card-follow-user.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './services/modal.service';
 import { CapitalizePipe } from './pipe/capitalize/capitalize.pipe';
@@ -109,10 +91,9 @@ import { PricingPremiumPruebaComponent } from './pricing/pricing-premium/pricing
 import { PricingPremiumCheckoutComponent } from './pricing/pricing-premium/pricing-premium-checkout/pricing-premium-checkout.component';
 import { PricingPremiumNormalComponent } from './pricing/pricing-premium/pricing-premium-normal/pricing-premium-normal.component';
 import { UserAccountModule } from './user-account/user-account.module';
+import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { ContactoComponent } from './contacto/contacto.component';
-import { CardActividadRecienteComponent } from './shared/card-actividad-reciente/card-actividad-reciente.component';
-import { MessageTimePipe } from './pipe/message-time/message-time.pipe';
 import { OrderByPipe } from './pipe/order-by/order-by.pipe';
 
 @NgModule({
@@ -121,7 +102,6 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     NavComponent,
     PageNotFoundComponent,
     InicioComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
     AlertComponent,
@@ -137,9 +117,6 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     UploadImageComponent,
     VerifyUserComponent,
     CardTagsComponent,
-    CardPublicidadComponent,
-    CardUsuarioTendenciaComponent,
-    CardWallRelevanteComponent,
     VisorWall,
     Walls,
     InfoItemAutor,
@@ -155,19 +132,8 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     CardMiBibliotecaBuscadorComponent,
     CardCategoriasComponent,
     VerChatstoryComponent,
-    HomeMisChatstoriesComponent,
-    CardChatstoryComponent,
     ListadoChatstoriesComponent,
-    CardHomeNavigateComponent,
-    HomeGuardadoComponent,
-    GuardadoWallsComponent,
-    GuardadoRelatosComponent,
-    GuardadoChatstoriesComponent,
-    CardInfoPremiumComponent,
-    HomeRecienteComponent,
-    RecienteNotificacionComponent,
     CardChatstoriesPaginadorComponent,
-    CardRelatoComponent,
     UserProfileComponent,
     UserCardComponent,
     UserContentComponent,
@@ -184,15 +150,12 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     FailureComponent,
     ProtPopoverRegisterComponent,
     UserContentRelatosComponent,
-    HomeMisRelatosComponent,
     RelatoComponent,
     CardContinuacionComponent,
     UserContentContinuacionesComponent,
     UserContentHistoriasComponent,
     CardHistoriaComponent,
     ProfilePopoverComponent,
-    NuevoUserComponent,
-    CardFollowUserComponent,
     ModalComponent,
     CapitalizePipe,
     PricingComponent,
@@ -203,8 +166,6 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     PricingPremiumNormalComponent,
     ModalDecorationComponent,
     ContactoComponent,
-    CardActividadRecienteComponent,
-    MessageTimePipe,
     OrderByPipe,
     ModalDecorationComponent
   ],
@@ -222,7 +183,8 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     AuthenticationModule,
     UserAccountModule,
     NgbModule.forRoot(),
-    SharedModule
+    SharedModule,
+    HomeModule
   ],
   providers: [
     AppConfig,

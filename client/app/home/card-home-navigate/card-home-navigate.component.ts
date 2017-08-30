@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-card-home-navigate',
@@ -7,18 +8,19 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CardHomeNavigateComponent implements OnInit {
   @Input() view: string;
-  @Output() viewChange: EventEmitter<any>;
-  constructor() {
-    this.viewChange=new EventEmitter<any>();
+
+  constructor(private route: ActivatedRoute, private router: Router) {
+
   }
 
   ngOnInit() {
-    this.view='reciente';
+
   }
 
-  changeView(str){
+  changeView(str: string){
     this.view=str;
-    this.viewChange.emit(this.view);
+    this.router.navigate(['/home/'+str]);
+
   }
 
 }

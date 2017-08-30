@@ -1,26 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="link" (click)="changeView('reciente')" [ngClass]="{'selected': this.view==='reciente'}">
+    <div class="link" (click)="changeView('actividad-reciente')" [ngClass]="{'selected': this.router.url==='/home/actividad-reciente'}">
       Actividad Reciente
     </div>
   </div>
   <div class="row">
-    <div class="link" (click)="changeView('walls')" [ngClass]="{'selected': this.view==='walls'}">
+    <div class="link" (click)="changeView('mis-walls')" [ngClass]="{'selected': this.router.url==='/home/mis-walls'}">
       Mis Walls
     </div>
   </div>
   <div class="row">
-    <div class="link" (click)="changeView('relatos')" [ngClass]="{'selected': this.view==='relatos'}">
+    <div class="link" (click)="changeView('mis-relatos')" [ngClass]="{'selected': this.router.url==='/home/mis-relatos'}">
       Mis Relatos
     </div>
   </div>
   <div class="row">
-    <div class="link" (click)="changeView('chatstories')" [ngClass]="{'selected': this.view==='chatstories'}">
+    <div class="link" (click)="changeView('mis-chatstories')" [ngClass]="{'selected': this.router.url==='/home/mis-chatstories'}">
       Mis Chatstories
     </div>
   </div>
   <div class="row">
-    <div class="link" (click)="changeView('guardado')" [ngClass]="{'selected': this.view==='guardado'}">
+    <div class="link" (click)="changeView('guardado')" [ngClass]="{'selected': this.router.url==='/home/guardado'}">
       Guardado
     </div>
   </div>

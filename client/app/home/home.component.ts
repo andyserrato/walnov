@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 
@@ -13,13 +14,11 @@ export class HomeComponent implements OnInit {
   name: string = 'hola';
   view: string;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
-  //   this.loadAllUsers();
-    this.view='reciente';
   }
 
   deleteUser(_id: string) {

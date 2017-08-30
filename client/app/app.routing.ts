@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
+import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guards/auth-guard.guard';
@@ -29,7 +30,7 @@ import { UserAccountComponent } from './user-account/user-account.component';
 import { UserAccountModule } from './user-account/user-account.module';
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
-    { path: 'home', component: HomeComponent },
+    { path: 'home', loadChildren: './home/home.module#HomeModule'},
     { path: 'inicio', component: InicioComponent}, //canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
