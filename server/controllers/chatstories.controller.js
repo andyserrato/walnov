@@ -84,8 +84,6 @@ function crearChatStory(req, res) {
 function getChatStories(req, res) {
   let limit;
   let sort; // Relevantes (los que tengan mejores estadísticas en un intervalo de tiempo), seguidos, no seguidos,
-  let offset;
-
   let query = ChatStory.find();
   // query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
   query.populate('estadistica autor');
@@ -146,7 +144,7 @@ function getChatStories(req, res) {
   }
 
   // paginacion
-  query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
+  // query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
   query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
 
   query.where('activo').equals(true);

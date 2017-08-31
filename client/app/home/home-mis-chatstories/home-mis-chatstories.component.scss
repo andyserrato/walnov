@@ -17,3 +17,17 @@
 .paginador::-webkit-scrollbar{
   display: none;
 }
+
+.empty-title{
+  font-family:Raleway;
+  font-size: 1.5em;
+  margin-top: 2em;
+  & .empty-title-link{
+    color:$main-2;
+    &:hover{
+      cursor:pointer;
+      color:$main-1;
+      text-decoration: underline;
+    }
+  }
+}

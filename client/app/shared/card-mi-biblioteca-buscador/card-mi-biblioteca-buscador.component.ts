@@ -111,11 +111,11 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
 
   getBorder(chatstory: ChatStory) {
     // console.log('solid 1.5px '+chatstory.categoria.color);
-    return 'solid 1.5px ' + this.repositorio.categoriasHM.get(chatstory.categoria.nombre).color;
+    return 'solid 1.5px ' + this.repositorio.categoriasHM.get(chatstory.categoria).color;
   }
 
   getColor(chatstory: ChatStory) {
-    return chatstory.categoria.color;
+    return this.repositorio.categoriasHM.get(chatstory.categoria).color;
 
   }
 

@@ -81,5 +81,16 @@
       padding:.2em;
     }
   }
-
+}
+.button{
+  color:white;
+  background-color:$main-1;
+  padding:.3em 1em;
+  border-radius: .3em;
+  font-family: Raleway;
+  margin-top: 1em;
+  &:hover{
+    cursor: pointer;
+    background-color: $main-2;
+  }
 }

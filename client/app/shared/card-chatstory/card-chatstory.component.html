@@ -2,12 +2,13 @@
   <div class="d-flex flex-row">
     <div class="d-flex flex-column">
       <div class="d-flex flex-row">
-        <img src="{{this.chatstory.urlImagen}}" class="Chat-Image" alt="Imagen">
+        <div [ngStyle]="{'background-image': 'url('+this.chatstory.urlImagen+')'}" class="Chat-Image">
+        </div>
       </div>
       <div class="d-flex flex-row justify-content-center">
         <div class="Rectangle-7-Copy-3" [style.backgroundColor] = 'getColor()'>
           <div class="Categoria">
-            {{this.chatstory.categoria.nombre}}
+            {{this.chatstory.categoria}}
           </div>
         </div>
       </div>
@@ -41,11 +42,11 @@
     <div class="d-flex flex-colum">
       <div class="Chat-Views">
         <i class="fa fa-eye" aria-hidden="true"></i>
-        {{getNumber(this.chatstory.views)}}
+        {{this.chatstory.estadistica?.vecesVisto}}
       </div>
       <div class="Chat-Likes">
         <i class="fa fa-heart-o" aria-hidden="true"></i>
-        {{getNumber(this.chatstory.likes)}}
+        {{this.chatstory.estadistica?.likes}}
       </div>
     </div>
   </div>
