@@ -20,6 +20,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   @ViewChild('preview') private preview: ElementRef;
   @ViewChild('imgPlaceholder') private imgPlaceholder: ElementRef;
   message: ChatstoryMessage = new ChatstoryMessage('', '');
+  @ViewChild('textArea') private textArea: ElementRef;
   editing = false;
   popover: boolean = false;
   constructor(private chatStoryService: ChatstoryService,
@@ -54,10 +55,11 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
     if (character.value && character.value !== 'none' && text.value) {
       const message = new ChatstoryMessage(character.value, text.value, this.message.urlImagen, this.message.delay);
       this.chatStory.chats.push(message);
-      this.message = new ChatstoryMessage('', '');
+      this.message = new ChatstoryMessage(character.value, '');
       this.editing = false;
       input.value = '';
       this.imgPlaceholder.nativeElement.innerHTML = 'Añadir Imagen';
+      this.textArea.nativeElement.focus();
     }
 
   }
