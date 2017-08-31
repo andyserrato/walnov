@@ -162,12 +162,14 @@ class Mensajes {
       es : {
         error : "Ha ocurrido un error",
         creado: "Ha creado un ChatStory",
-        usuarioYaSeEncuentra: "Nombre de usuario ya registrado"
+        usuarioYaSeEncuentra: "Nombre de usuario ya registrado",
+        emailYaSeEncuentra: "El email ya se encuentra registrado"
       },
       en : {
         error: "Bad Request",
         created: "Created a ChaStory",
-        usuarioYaSeEncuentra: "User name already taken"
+        usuarioYaSeEncuentra: "User name already taken",
+        emailYaSeEncuentra: "Email already taken"
       }
     };
   }

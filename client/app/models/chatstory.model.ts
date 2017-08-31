@@ -9,12 +9,12 @@ export class ChatStory {
   autor: string;
   autorNombre: string;
   usuario: Usuario; // Esto debería reemplazar al autor
-  categoria: Categoria;
+  categoria: any;
   urlImagen: string;
   personajes: Array<string>;
   chats: Array<ChatstoryMessage>;
   descripcion: string;
-  tipo: string;
+  tipo: number;
   lang: string;
   exclusivo: boolean;
   views: number;
