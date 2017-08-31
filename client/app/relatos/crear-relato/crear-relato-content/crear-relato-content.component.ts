@@ -18,14 +18,14 @@ export class CrearRelatoContentComponent implements OnInit {
   dedicatorias: Array<string>;
   dedicatoriaForm: FormControl;
   complexForm: any;
-  popover: boolean = false;
-  publicando: boolean = false;
+  popover = false;
+  publicando = false;
   @ViewChild('textarea') textarea: ElementRef;
   constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService, private modal: ModalService, private auth: AuthenticationService) {
-    this.dedicatorias=new Array<string>();
-    this.friends=new Array<string>();
+    this.dedicatorias = new Array<string>();
+    this.friends = new Array<string>();
     this.complexForm = fb.group({
-      'title' : [null, Validators.compose([Validators.required ,Validators.maxLength(30)])],
+      'title' : [null, Validators.compose([Validators.required , Validators.maxLength(30)])],
       'content' : [null, Validators.compose([Validators.required, Validators.maxLength(3000)])]
     });
     this.dedicatoriaForm = new FormControl();
@@ -37,40 +37,40 @@ export class CrearRelatoContentComponent implements OnInit {
   }
 
   newFriend(event) {
-    if(event.value && this.friends.indexOf(event.value)==-1){
+    if (event.value && this.friends.indexOf(event.value) == -1){
       this.friends.push(event.value);
     }
-    event.value="";
+    event.value = '';
   }
 
   deleteFriend(event) {
-    this.friends.splice(this.friends.indexOf(event),1)
+    this.friends.splice(this.friends.indexOf(event), 1);
   }
 
   newDedicatoria(event) {
-    if(this.dedicatoriaForm.valid) {
+    if (this.dedicatoriaForm.valid) {
       this.dedicatorias.push(event.target.value);
-      event.target.value="";
+      event.target.value = '';
     }else{
-      this.alert.warning("Escribe una dirección de email correcta");
+      this.alert.warning('Escribe una dirección de email correcta');
     }
 
   }
 
   deleteDedicatoria(event) {
-    this.dedicatorias.splice(this.dedicatorias.indexOf(event),1);
+    this.dedicatorias.splice(this.dedicatorias.indexOf(event), 1);
   }
 
   changeImage(event) {
-    this.relato.imagen_url=event;
+    this.relato.imagen_url = event;
   }
 
   publish() {
-    if(this.complexForm.valid) {
-      if(this.auth.isLoggedIn()){
+    if (this.complexForm.valid) {
+      if (this.auth.isLoggedIn()){
         this.share();
       }else{
-        this.popover=true;
+        this.popover = true;
       }
     }else{
       this.complexForm.controls['title'].markAsTouched();
@@ -79,10 +79,10 @@ export class CrearRelatoContentComponent implements OnInit {
   }
 
   share(){
-    this.modal.share('¡Relato publicado con éxito!');
+    this.modal.share('¡Relato publicado con éxito!', '');
     this.publicando = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       this.publicando = false;
-    },1000);
+    }, 1000);
   }
 }

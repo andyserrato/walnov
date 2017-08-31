@@ -18,12 +18,13 @@
           <div class="simple-title">
             Compartir enlace
           </div>
-          <div class="link margin-top-1">
-            walnov.com/relato/22398453245
+          <div id="copyToClipboard" class="link margin-top-1" >
+            {{ message.enlaceCopiar }}
           </div>
           <div class="">
-            <div class="button-white margin-top-1">
-              Copiar
+            <div class="button-white margin-top-1" (click)="copy()">
+              <span *ngIf="!isCopied">Copiar</span>
+              <span *ngIf="isCopied">Copiado</span>
             </div>
           </div>
         </div>
@@ -48,7 +49,7 @@
         </div>
       </div>
       <div class="button-row d-flex align-itmes-end justify-content-end">
-        <div class="button" (click)="clear()">
+        <div class="button" (click)="clearAndNavigate()">
           Continuar
         </div>
       </div>

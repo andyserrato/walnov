@@ -26,7 +26,10 @@ router.get('/auth/isLoggedIn', function isLoggedIn(req, res) {
 // Obtiene los datos del usuario
 router.get('/oauth/userdataPassportLoggedIn', isLoggedIn, findUserByProviderIdPassportLoggedIn);
 
-router.post('/oauth/userdata', isUserRegisteredByProviderId);
+router.get('/oauth/passport/:provider/:providerId', getUserByProviderAndProviderId);
+router.get('/auth/:id', getUserById);
+router.put('/auth/:id', updateUserProfileById);
+router.post('', createUser);
 
 // Set up the Facebook OAuth routes
 router.get('/oauth/facebook', passport.authenticate('facebook', {
@@ -148,6 +151,9 @@ function signup(req, res) {
       res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra);
     } else {
       User.findEmailDuplicate(user, function (user) {
+        if (!user) {
+          res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra);
+        }  else {
         // Try saving the User
         user.save((err) => {
           if (err) {
@@ -168,6 +174,7 @@ function signup(req, res) {
             });
           }
         });
+      }
       });
     }
   });
@@ -197,12 +204,14 @@ function findUserByProviderIdPassportLoggedIn(req, res) {
   })
 };
 
-function isUserRegisteredByProviderId(req, res) {
+function getUserByProviderAndProviderId(req, res) {
+  let provider = req.params.provider.toLowerCase();
+  let providerId = req.params.providerId;
   User.find({
     providers: {
       $elemMatch: {
-        provider: req.body.providers.provider,
-        providerId: req.body.providers.providerId
+        provider: provider,
+        providerId: providerId
       }
     }
   }, function (err, fulluser) {
@@ -210,3 +219,73 @@ function isUserRegisteredByProviderId(req, res) {
     res.json(fulluser);
   })
 };
+
+function createUser(req, res) {
+  let peticion = req.body;
+
+  if (!peticion) {
+    res.status(400).send('usuario requerido');
+  }
+
+  let user = new User(peticion);
+  user.password = user.generateHash(req.body.password);
+
+  User.findLoginDuplicate(user, function (user) {
+    // Ocurrió un error o el usuario ya se encuentra registrado
+    if (!user) {
+      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra);
+    } else {
+      User.findEmailDuplicate(user, function (user) {
+        if (!user) {
+          res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra);
+        } else {
+        // Try saving the User
+        user.save((err) => {
+          if (err) {
+            return res.status(400).send({
+              message: getErrorMessage(err)
+            });
+          } else {
+            // Remove sensitive data before login
+            user.password = undefined;
+
+            // Login the user
+            req.login(user, function (err) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.status(200).send(user);
+              }
+            });
+          }
+        });
+      }
+      });
+    }
+  });
+}
+
+function getUserById(req, res) {
+
+  if (!req.params.id)
+    res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+
+  User.findById(req.params.id).exec(function (err, user) {
+    if (err)
+      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+
+    res.status(200).send(user);
+  });
+}
+
+function updateUserProfileById(req, res) {
+  if (!req.params.id)
+    res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+
+  User.findOneAndUpdate({id :req.params.id}, {$set: req.body.perfil} ,function (err, user) {
+    if (err)
+      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+
+    res.status(200).send(user);
+  });
+}

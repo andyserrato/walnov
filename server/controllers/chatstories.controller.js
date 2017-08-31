@@ -34,8 +34,9 @@ module.exports = router;
 
 // Implementaciones de las rutas
 function crearChatStory(req, res) {
+  console.log('holis');
   let peticion = req.body.chatStory;
-  console.log(req.body);
+  console.log(peticion);
   if (!peticion) {
     res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
   } else {
@@ -43,13 +44,17 @@ function crearChatStory(req, res) {
     let chatStory = new ChatStory(peticion);
     let estadistica = new Estadistica();
     estadistica.save(function (err) {
-      if (err)
+      if (err) {
+        console.log(err);
         res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
+      }
     });
     chatStory.estadistica = estadistica;
 
     chatStory.save(function (err, newChatStory) {
+      console.log('salvando');
       if (err) {
+        console.log(err);
         res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
       } else {
         var notificacionNuevoChatStory = GestorNotificaciones.crearNotificacionNuevoChatstory(
