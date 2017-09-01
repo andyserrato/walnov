@@ -149,7 +149,7 @@ function getChatStories(req, res) {
   }
 
   // paginacion
-  // query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
+  query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
   query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
 
   query.where('activo').equals(true);
@@ -190,15 +190,25 @@ function getChatStoryById(req, res) {
 }
 
 function updateChatStory(req, res) {
+  console.log('updateChatStory');
   let id = req.params.id;
+  let chatStory = req.body.chatStory;
+  console.log('id: ' + id);
+  console.log('chatstpry ' + chatStory);
+  console.log('req.body.chatStory ' + req.body.chatStory);
+  if (!req.params.id ||  req.params.id === undefined) {
+    res.status(400).send('Debes proporcionar el id del Chatstory');
+  } else if (!req.body.chatStory ||  req.body.chatStory === undefined) {
+    res.status(400).send('El ChatStory se encuentra vacío');
+  } else {
+    ChatStory.findByIdAndUpdate(id, chatStory, {new: true},
+      function (err, updatedChatStory) {
+        if (err)
+          res.status(400).send("Ha ocurrido un error al actualizar el ChatStory " + err);
 
-  ChatStory.where({_id: id})
-    .update(req.body.chatStory, function (err, writeOpResult) {
-      if (err)
-        res.status(400).send("Algo malo ha ocurrido");
-
-      res.status(200).send(writeOpResult);
-    });
+        res.status(200).send(updatedChatStory);
+      });
+  }
 }
 
 function updateVisitas(req, res) {
