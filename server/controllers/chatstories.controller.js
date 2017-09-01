@@ -149,7 +149,7 @@ function getChatStories(req, res) {
   }
 
   // paginacion
-  // query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
+  query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
   query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
 
   query.where('activo').equals(true);

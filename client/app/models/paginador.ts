@@ -67,9 +67,9 @@ scroll (){
   //console.log(porcentaje);
   if(porcentaje >= 100) {
     this.paginarDelante();
+  } else if (porcentaje === 0) { 
+    this.paginarDetras();
   }
-
-  else if (porcentaje === 0) { this.paginarDetras();}
 }
 
 rellenar(items) {
