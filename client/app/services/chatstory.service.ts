@@ -19,10 +19,10 @@ export class ChatstoryService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getChatStory(id: any): Observable<ChatStory> {
+  getChatStory(id: any): Observable<any> {
     console.log('Inicio getChatStory');
     console.log(this.chatStoriesUrl + id);
-    return this.http.get(this.chatStoriesUrl +'/'+ id)
+    return this.http.get(this.chatStoriesUrl + '/' + id)
       .map((res: Response) => {
         return res.json();
       })
@@ -38,11 +38,11 @@ export class ChatstoryService {
       .map((res: Response) => {
         return res.json();
       })
-      .do(data => console.log('getChatStoryByQueryParams' + JSON.stringify(data)))
+      // .do(data => console.log('getChatStoryByQueryParams' + JSON.stringify(data)))
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  addChatStory (body: Object): Observable<ChatStory> {
+  addChatStory (body: Object): Observable<any> {
     const bodyString = JSON.stringify(body); // Stringify payload
     const headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     const options       = new RequestOptions({ headers: headers }); // Create a request option
@@ -52,12 +52,14 @@ export class ChatstoryService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }
 
-  updateChatStory(body: Object): Observable<ChatStory[]> {
+  updateChatStory(body: Object, id?: any): Observable<any> {
     const bodyString = JSON.stringify(body); // Stringify payload
     const headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     const options       = new RequestOptions({ headers: headers }); // Create a request option
-
-    return this.http.put(`${this.chatStoriesUrl}/${body['id']}`, bodyString, options) // ...using put request
+    console.log('body ' + body);
+    console.log('bodu ' + body['chatStory']);
+    console.log('bodu ' + body['chatStory']['id']);
+    return this.http.put(`${this.chatStoriesUrl}/${body['chatStory']['id']}`, bodyString, options) // ...using put request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }

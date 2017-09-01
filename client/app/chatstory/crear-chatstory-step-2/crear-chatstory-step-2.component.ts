@@ -6,6 +6,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 import {Router} from '@angular/router';
 import {AlertService} from '../../services/alert.service';
 import {ModalService} from '../../services/modal.service';
+import {RepositorioService} from "../../services/repositorio.service";
 @Component({
   selector: 'app-crear-chatstory-step-2',
   templateUrl: './crear-chatstory-step-2.component.html',
@@ -26,14 +27,13 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
               private auth: AuthenticationService,
               private router: Router,
               private alert: AlertService,
-              private modalService: ModalService) {
+              private modalService: ModalService,
+              private repo: RepositorioService) {
     this.back = new EventEmitter<any>();
     this.done = new EventEmitter<any>();
   }
 
   ngOnInit() {
-
-    // console.log(this.chatStory.personajes);
     if (!this.chatStory.chats) {
       this.chatStory.chats = new Array<ChatstoryMessage>();
     }
@@ -135,23 +135,51 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
         this.alert.clearTimeOutAlert();
       } );
     } else if (this.chatStory.tipo === 1) {
-
+      this.chatStory.tipo = 0; // publicado
+      const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
+      chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
+      this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe( chatStorySaved => {
+        const chatStoryUrl = '/chatstory/' + this.chatStory.id;
+        this.modalService.share('¡ChatStory publicado con éxito!', chatStoryUrl);
+      }, error => {
+        this.alert.error('Ha ocurrido un error al intentar insertar unChatStory');
+        this.alert.clearTimeOutAlert();
+      } );
     }
   }
 
   guardarComoBorradorChatStory() {
-    // set flag de borrador
-    this.chatStory.tipo = 1;
-    // set autorNombre
-    this.chatStory.autor = this.auth.getUser().id;
-    // set autor ID
-    this.chatStory.autorNombre = this.auth.getUser().perfil.display_name;
-    const chatStoryFulero = { lang : 'es' , chatStory: this.chatStory };
-    // guardar
-    this.chatStoryService.addChatStory(chatStoryFulero).subscribe( chatStorySaved => {
-      console.log(chatStorySaved);
-      // Esto es una alerta momentánea
-      this.alert.success('se ha guardado como borrador');
-    }, error => this.alert.error('Ha ocurrido un error al intentar insertar unChatStory') );
+    if (!this.chatStory.tipo) {
+      // set flag de borrador
+      this.chatStory.tipo = 1;
+      // set autorNombre
+      this.chatStory.autor = this.auth.getUser().id;
+      // set autor ID
+      this.chatStory.autorNombre = this.auth.getUser().perfil.display_name;
+      const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
+      chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
+      // guardar
+      this.chatStoryService.addChatStory(chatStoryFulero).subscribe(chatStorySaved => {
+        this.chatStory = chatStorySaved;
+        console.log(this.repo.getCategoriaALByName(this.chatStory.categoria));
+        this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
+        this.chatStory.categoria.selected = true;
+        this.alert.success('se ha guardado como borrador');
+        this.alert.clearTimeOutAlert();
+      }, error => this.alert.error('Ha ocurrido un error al intentar insertar unChatStory'));
+    } else if (this.chatStory.tipo && this.chatStory.tipo === 1) {
+      const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
+      chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
+      this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe(chatStorySaved => {
+        this.chatStory = chatStorySaved;
+        console.log('update borrador');
+        console.log(this.chatStory);
+        console.log(this.repo.getCategoriaALByName(this.chatStory.categoria));
+        this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
+        this.alert.success('se ha actualizado tu borrador');
+        this.alert.clearTimeOutAlert();
+      }, error => this.alert.error('Ha ocurrido un error al intentar insertar unChatStory'));
+    }
+
   }
 }

@@ -57,14 +57,15 @@ export class RepositorioService{
         this.categoriasAL.push(new Categoria('Terror','rgb(75, 8, 46)', 'rgba(75, 8, 46, 0.25)'));
         this.categoriasAL.push(new Categoria('Reflexión','rgb(32, 116, 230)', 'rgba(32, 116, 230, 0.25)'));
 
-
-
         this.notificaciones.push("Esto es la primera notificacion");
         this.notificaciones.push("Esto es la segunda notificacion");
         this.notificaciones.push("Esto es la tercera notificacion");
         this.notificaciones.push("Esto es la cuarta notificacion");
     }
 
+    getCategoriaALByName(nombre: string): any {
+      return this.categoriasAL.find(categoria => categoria.nombre === nombre);
+    }
 
 
 }

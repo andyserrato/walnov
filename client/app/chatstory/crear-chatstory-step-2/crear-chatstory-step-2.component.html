@@ -17,8 +17,8 @@
   </div>
 </div>
 <div class="row no-padding">
-    <div class="category no-padding" [ngStyle]="{'background-color': this.chatStory.categoria.color}">
-      {{this.chatStory.categoria.nombre | uppercase}}
+    <div class="category no-padding" [ngStyle]="{'background-color': this.chatStory.categoria?.color}">
+      {{this.chatStory.categoria?.nombre | uppercase}}
     </div>
 </div>
 
@@ -72,7 +72,7 @@
   </div>
   <div class="col-6 no-padding padding-right relative col-chatstory-preview">
     <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.urlImagen+'\')'}"></div>
-    <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria.color+')'}" #preview>
+    <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria?.color+')'}" #preview>
       <div class="row no-padding" *ngFor="let m of this.chatStory.chats">
           <app-chatstory-message [editable]='true' [big]='false' [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
       </div>
