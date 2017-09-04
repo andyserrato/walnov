@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { Categoria } from '../../models/cats';
+import {Router} from '@angular/router';
 import { RepositorioService } from '../../services/repositorio.service';
 import { ChatStory } from '../../models/chatstory.model';
 import { Paginator } from '../../models/paginador';
@@ -12,9 +13,12 @@ import { CardChatstoriesPaginadorComponent } from '../card-chatstories-paginador
   styleUrls: ['./card-chatstory.component.scss']
 })
 export class CardChatstoryComponent implements OnInit {
+  @ViewChild('addButton') addButton: ElementRef;
+  @ViewChild('likeButton') likeButton: ElementRef;
   @Input() chatstory: ChatStory;
 
-  constructor(private repositorio: RepositorioService) { }
+  constructor(private repositorio: RepositorioService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -24,6 +28,14 @@ export class CardChatstoryComponent implements OnInit {
     return this.repositorio.categoriasHM.get(this.chatstory.categoria).color;
 
   }
+
+  loadChatstory(event) {
+    if(!this.addButton.nativeElement.contains(event.target) && !this.likeButton.nativeElement.contains(event.target)) {
+      this.router.navigate(['/chatstory/'+this.chatstory.id]);
+    }
+
+  }
+
 
   getNumber(numero: number) {
     if (numero >= 1000) {

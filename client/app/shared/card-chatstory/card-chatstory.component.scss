@@ -74,6 +74,9 @@
   border: solid 1px $main-1;
   // position: absolute;
   // bottom: 20px;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 button {
@@ -103,6 +106,9 @@ button {
   background-color: $main-1;
   // position: absolute;
   // bottom: 20px;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .btn-details-2 {
@@ -133,7 +139,9 @@ button {
   font-weight: 300;
   text-align: center;
   color: $grey-6;
-
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .fa-eye {

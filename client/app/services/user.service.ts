@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-
+import { Observable } from 'rxjs/Rx';
 import { AppConfig } from '../app.config';
 import { User } from '../models/user';
 
@@ -14,7 +14,9 @@ export class UserService {
     }
 
     getById(_id: string) {
-        return this.http.get('/users/' + _id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get('/apiv1/users/auth/' + _id)
+        .map((response: Response) => response.json())
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     create(user: User) {

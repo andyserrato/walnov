@@ -6,6 +6,7 @@ import { ChatstoryService } from '../../services/chatstory.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import 'rxjs/add/operator/switchMap';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-home-mis-chatstories',
@@ -16,11 +17,13 @@ export class HomeMisChatstoriesComponent implements OnInit {
   @ViewChild('div') div: ElementRef;
   chats: Array<ChatStory>;
   paginador: Paginator;
+  visible: boolean = false;
+
   constructor(private repositorio: RepositorioService,
               private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
-              private route: ActivatedRoute,) {
-
+              private route: ActivatedRoute,
+              private modalservice: ModalService) {
   }
 
   ngOnInit() {
@@ -28,10 +31,12 @@ export class HomeMisChatstoriesComponent implements OnInit {
     this.chats = new Array<ChatStory>();
     const myParams = new URLSearchParams();
     myParams.append('autor', this.authenticationService.getUser().id);
-
+    this.modalservice.load();
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
       this.paginador = new Paginator(this.chats, this.div, 18, 9);
+      this.modalservice.clear();
+      this.visible = true;
     });
     //   this.chats.push(new ChatStory());
     //   this.chats[i].titulo = 'Flipas' + i;

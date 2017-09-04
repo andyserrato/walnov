@@ -21,7 +21,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   @ViewChild('clickBox') clickBox: ElementRef;
   @ViewChild('previewScroll') previewScroll: ElementRef;
   @Input() chatStory: any;
-  messagesArray: Array<ChatstoryMessage> = new Array<ChatstoryMessage>();
+  messagesArray: Array<any> = new Array<any>();
   lastclick: number= Date.now();
   limite= 50;
   counter= 0;
@@ -71,7 +71,8 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
 
 
   nextMessage() {
-      console.log(this.chatStory);
+      // console.log(this.chatStory);
+      // console.log(this.counter);
       if (this.chatStory.chats[this.counter] && !this.stoped) {
 
         if (this.chatStory.chats[this.counter].delay) {
@@ -80,13 +81,13 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
           this.messagesArray.push(new ChatstoryMessage(this.chatStory.chats[this.counter].personaje, '', '', true));
 
           setTimeout(() => {
-            this.messagesArray[this.messagesArray.length - 1] = this.chatStory.chats[this.counter];
-            this.counter++;
+            this.chatStory.chats[this.counter-1].delay = false;
+            this.messagesArray[this.messagesArray.length - 1] = this.chatStory.chats[this.counter-1];
             this.limite = 1000;
             this.lastclick = Date.now();
-            setTimeout(() => {
+            setTimeout(()=>{
               this.stoped = false;
-            });
+            })
           }, 3000);
         }else{
           this.messagesArray.push(this.chatStory.chats[this.counter]);

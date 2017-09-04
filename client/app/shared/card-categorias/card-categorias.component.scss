@@ -111,9 +111,17 @@ select {
   color: $grey-8;
   margin-top: 5px;
   margin-bottom: 5px;
+  text-decoration: inherit;
   //text-transform: uppercase;
   //color: #e65e20;
   //color: $cat-1;
+}
+
+.category-hover{
+  &:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
 // .Categoria:focus {

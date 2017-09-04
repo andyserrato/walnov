@@ -12,7 +12,7 @@ export class ChatstoryMessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.message.delay);
+    console.log(this.message);
   }
 
 }
