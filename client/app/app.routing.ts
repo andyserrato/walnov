@@ -54,7 +54,7 @@ const appRoutes: Routes = [
     { path: 'social-login/success', component: SuccessComponent},
     { path: 'social-login/failure', component: FailureComponent},
 
-    { path: 'crear-chatstory', component: CrearChatstoryComponent },
+    { path: 'crear-chatstory/:id', component: CrearChatstoryComponent },
     { path: 'chatstory/:id', component: VerChatstoryComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: '**', component: PageNotFoundComponent },

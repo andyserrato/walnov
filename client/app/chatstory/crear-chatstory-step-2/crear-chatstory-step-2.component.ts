@@ -1,12 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, AfterViewChecked, ViewChild } from '@angular/core';
-import { ChatStory } from '../../models/chatstory.model';
 import { ChatstoryMessage } from '../../models/chatstory-message';
 import {ChatstoryService} from '../../services/chatstory.service';
 import {AuthenticationService} from '../../services/authentication.service';
-import {Router} from '@angular/router';
 import {AlertService} from '../../services/alert.service';
 import {ModalService} from '../../services/modal.service';
-import {RepositorioService} from "../../services/repositorio.service";
+import {RepositorioService} from '../../services/repositorio.service';
 @Component({
   selector: 'app-crear-chatstory-step-2',
   templateUrl: './crear-chatstory-step-2.component.html',
@@ -14,7 +12,7 @@ import {RepositorioService} from "../../services/repositorio.service";
 })
 export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
 
-  @Input() chatStory: ChatStory;
+  @Input() chatStory: any;
   @Output() back: EventEmitter<any>;
   @Output() done: EventEmitter<any>;
   @ViewChild('preview') private preview: ElementRef;
@@ -22,10 +20,9 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   message: ChatstoryMessage = new ChatstoryMessage('', '');
   @ViewChild('textArea') private textArea: ElementRef;
   editing = false;
-  popover = false;
+  popover: boolean;
   constructor(private chatStoryService: ChatstoryService,
               private auth: AuthenticationService,
-              private router: Router,
               private alert: AlertService,
               private modalService: ModalService,
               private repo: RepositorioService) {
@@ -113,7 +110,10 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
 
   publicarChatStory() {
     // comprobamos que el chatstory al menos posee 5 chats
-    if (this.chatStory.chats.length < 5) {
+    if (this.chatStory.tipo === 0) {
+      this.alert.warning('El ChatStory ya se encuentra publicado');
+      this.alert.clearTimeOutAlert();
+    } else if (this.chatStory.chats.length < 5) {
       this.alert.warning('El ChatStory debe contener al menos 5 chats para poder ser publicado');
       this.alert.clearTimeOutAlert();
     } else if (!this.chatStory.tipo) { //  borrador
@@ -149,7 +149,15 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   guardarComoBorradorChatStory() {
-    if (!this.chatStory.tipo) {
+    if (this.chatStory.tipo === 0) {
+      this.alert.warning('El ChatStory ya se encuentra publicado');
+      this.alert.clearTimeOutAlert();
+    } else if (this.chatStory.chats.length < 5) {
+      this.alert.warning('El ChatStory debe contener al menos 5 chats para poder ser publicado');
+      this.alert.clearTimeOutAlert();
+    } else if (!this.chatStory.tipo && this.chatStory.tipo !== 0) {
+      console.log('Uno nuevo');
+      console.log(this.chatStory.tipo);
       // set flag de borrador
       this.chatStory.tipo = 1;
       // set autorNombre
@@ -161,7 +169,6 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
       // guardar
       this.chatStoryService.addChatStory(chatStoryFulero).subscribe(chatStorySaved => {
         this.chatStory = chatStorySaved;
-        console.log(this.repo.getCategoriaALByName(this.chatStory.categoria));
         this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
         this.chatStory.categoria.selected = true;
         this.alert.success('se ha guardado como borrador');
@@ -172,9 +179,6 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
       chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
       this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe(chatStorySaved => {
         this.chatStory = chatStorySaved;
-        console.log('update borrador');
-        console.log(this.chatStory);
-        console.log(this.repo.getCategoriaALByName(this.chatStory.categoria));
         this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
         this.alert.success('se ha actualizado tu borrador');
         this.alert.clearTimeOutAlert();

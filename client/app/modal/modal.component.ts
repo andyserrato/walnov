@@ -17,7 +17,7 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
     this.modal.getMessage().subscribe(message => {
       this.message = message;
-      this.message.enlaceCopiar = location.origin + this.message.enlace;
+      this.message.enlaceCopiar = location.origin + message.enlace;
     });
   }
 
