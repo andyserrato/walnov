@@ -19,7 +19,7 @@ router.get('/', getChatStories);
 router.get('/:id', getChatStoryById);
 router.put('/:id', updateChatStory);
 
-router.put('/:id/like', updateLike);
+router.put('/like', updateLike);
 router.put('/:id/compartido', updateCompartido);
 router.put('/:id/visitas', updateVisitas);
 
@@ -167,7 +167,7 @@ function getChatStories(req, res) {
 
 function getChatStoryById(req, res) {
   let id = req.params.id;
-
+  let idUsuario = req.query.usuarioId;
   ChatStory.findById(id)
     .populate('estadistica autor')
     .exec(function (err, chatStory) {
@@ -176,8 +176,8 @@ function getChatStoryById(req, res) {
 
       chatStory.estadistica.vecesVisto++;
 
-      if (req.user) {
-        chatStory.estadistica.visitas.push(req.user.id);
+      if (idUsuario && chatStory.estadistica.visitas.indexOf(idUsuario) === -1) {
+        chatStory.estadistica.visitas.push(idUsuario);
       }
 
       chatStory.estadistica.save(function (err) {
@@ -298,8 +298,8 @@ function updateCompartido(req, res) {
 }
 
 function updateLike(req, res) {
-  let id = req.params.id;
-  let idUsuario = req.body.usuario.id;
+  let id = req.body.chatStoryId;
+  let idUsuario = req.body.usuarioId;
 
   ChatStory.findById(id)
     .populate('estadistica autor')
