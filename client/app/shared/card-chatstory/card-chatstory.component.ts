@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild }
 import { Categoria } from '../../models/cats';
 import {Router} from '@angular/router';
 import { RepositorioService } from '../../services/repositorio.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { ChatstoryService } from '../../services/chatstory.service';
 import { ChatStory } from '../../models/chatstory.model';
 import { Paginator } from '../../models/paginador';
 import { CardMiBibliotecaBuscadorComponent } from '../card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
@@ -15,13 +17,15 @@ import { CardChatstoriesPaginadorComponent } from '../card-chatstories-paginador
 export class CardChatstoryComponent implements OnInit {
   @ViewChild('addButton') addButton: ElementRef;
   @ViewChild('likeButton') likeButton: ElementRef;
-  @Input() chatstory: ChatStory;
+  @Input() chatstory: any;
 
   constructor(private repositorio: RepositorioService,
-              private router: Router) { }
+              private router: Router,
+              private auth: AuthenticationService,
+              private chatstoryService: ChatstoryService) { }
 
   ngOnInit() {
-
+    console.log(this.chatstory);
   }
 
   getColor() {
@@ -33,9 +37,14 @@ export class CardChatstoryComponent implements OnInit {
     if(!this.addButton.nativeElement.contains(event.target) && !this.likeButton.nativeElement.contains(event.target)) {
       this.router.navigate(['/chatstory/'+this.chatstory.id]);
     }
-
   }
 
+  like() {
+    this.chatstoryService.likeChatstory(this.chatstory.id, this.auth.getUser().id).subscribe(() => {
+      this.chatstory.estadistica.likes++;
+      this.chatstory.estadistica.likers.push(this.auth.getUser().id);
+    });
+  }
 
   getNumber(numero: number) {
     if (numero >= 1000) {
@@ -63,8 +72,15 @@ export class CardChatstoryComponent implements OnInit {
       this.repositorio.paginadorChatstoriesBiblioteca.addItem(this.chatstory);
       // console.log(this.repositorio.paginadorChatstoriesBiblioteca);
     }
+  }
 
-
+  liked(){
+    console.log(this.auth.getUser());
+    if(this.chatstory.estadistica.likers.indexOf(this.auth.getUser().id) > -1) {
+      return true;
+    }else{
+      return false;
+    }
   }
 
   checkDescription() {
@@ -72,7 +88,6 @@ export class CardChatstoryComponent implements OnInit {
       this.chatstory.descripcion = 'Este chatstory no tiene ninguna descripción.';
     }
     return this.chatstory.descripcion;
-
   }
 
   getBackgroundImage() {

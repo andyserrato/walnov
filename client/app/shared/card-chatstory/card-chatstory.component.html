@@ -27,13 +27,13 @@
     </div>
   </div>
   <div class="d-flex flex-row" style="position:absolute; bottom:20px;">
-    <div class="d-flex flex-column">
-      <button #addButton *ngIf= '!this.chatstory.added' type="button" class="Rectangle-7-Copy-4" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
+    <div  #addButton class="d-flex flex-column">
+      <button *ngIf= '!this.chatstory.added' type="button" class="Rectangle-7-Copy-4" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
         <div class="btn-details">
           Añadir a la biblioteca
         </div>
       </button>
-      <button #addButton *ngIf= 'this.chatstory.added' type="button" class="Rectangle-7-Copy-4-2" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
+      <button *ngIf= 'this.chatstory.added' type="button" class="Rectangle-7-Copy-4-2" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
         <div class="btn-details-2">
           Añadido
         </div>
@@ -44,8 +44,8 @@
         <i class="fa fa-eye" aria-hidden="true"></i>
         {{this.chatstory.estadistica?.vecesVisto}}
       </div>
-      <div #likeButton class="Chat-Likes">
-        <i class="fa fa-heart-o" aria-hidden="true"></i>
+      <div #likeButton class="Chat-Likes" (click)="this.like()">
+        <i class="fa" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}"></i>
         {{this.chatstory.estadistica?.likes}}
       </div>
     </div>
