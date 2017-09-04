@@ -18,6 +18,7 @@ import { NuevoUserComponent } from './home-reciente/nuevo-user/nuevo-user.compon
 import { RecienteNotificacionComponent } from './home-reciente/reciente-notificacion/reciente-notificacion.component';
 import { HomeRoutingModule } from './home.routing';
 import { SharedModule } from '../shared/shared.module';
+import { HomeBuscadorComponent } from './home-buscador/home-buscador.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -36,7 +37,8 @@ import { SharedModule } from '../shared/shared.module';
     GuardadoRelatosComponent,
     GuardadoWallsComponent,
     NuevoUserComponent,
-    RecienteNotificacionComponent
+    RecienteNotificacionComponent,
+    HomeBuscadorComponent
 
   ]
 })

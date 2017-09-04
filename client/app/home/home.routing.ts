@@ -5,8 +5,7 @@ import { HomeGuardadoComponent } from './home-guardado/home-guardado.component';
 import { HomeMisChatstoriesComponent } from './home-mis-chatstories/home-mis-chatstories.component';
 import { HomeMisRelatosComponent } from './home-mis-relatos/home-mis-relatos.component';
 import { HomeRecienteComponent } from './home-reciente/home-reciente.component';
-
-
+import { HomeBuscadorComponent } from './home-buscador/home-buscador.component';
 
 const routes: Routes = [{
   path: 'home',

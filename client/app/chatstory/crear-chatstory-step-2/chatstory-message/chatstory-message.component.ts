@@ -7,12 +7,15 @@ import { ChatstoryMessage } from '../../../models/chatstory-message';
 })
 export class ChatstoryMessageComponent implements OnInit {
   @Input() message: ChatstoryMessage;
-  @Input() big: boolean = false;
-  @Input() editable: boolean = false;
+  @Input() big = false;
+  @Input() editable = false;
   constructor() { }
 
   ngOnInit() {
+<<<<<<< HEAD
     console.log(this.message);
+=======
+>>>>>>> 74a207f426f6b4a079e6653faf43c761392949f6
   }
 
 }

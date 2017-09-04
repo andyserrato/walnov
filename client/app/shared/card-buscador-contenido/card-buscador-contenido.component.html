@@ -1,0 +1,169 @@
+<div *ngIf="this.repositorio.results" class="Rectangle-3-Copy-7" [ngClass]="{'altura': !this.vacio}">
+  <div [ngClass]="{'limite': !this.vacio}">
+    <div class="d-flex flex-row" style="margin-bottom:26px;">
+      <div class="d-flex flex-column" style="margin-right:8px;margin-left:9px;">
+        <div class="Oval-3">
+          <img src="assets/images/Logo Walnov-04.svg" width="22" height="25" class="content-logo d-inline-block align-top" alt="">
+        </div>
+      </div>
+      <div class="d-flex flex-column align-self-center">
+        <div class="Contenido">
+          Walls/Relatos/Chatstories
+        </div>
+      </div>
+    </div>
+    <div *ngFor = "let entrada of this.repositorio.results | slice:0:9">
+      <div [ngSwitch] = "this.getType(entrada)" style="width:100%;">
+        <div *ngSwitchCase="0">
+          <div class="lista d-flex flex-row">
+            <div class="d-flex flex-column" style="margin-right:18px;">
+              <div class="Rectangle-7-Copy-3">
+                <img  class="Imagen-Relato" src={{this.entrada.imagen_url}} alt="">
+                <div class="Fondo-Imagen">
+                </div>
+                <div class="Degradado-Imagen" [ngStyle] = "{'border': getBorder(entrada), 'background-image': getBackgroundImage(entrada)}">
+                </div>
+                <div class="letra">
+                  W
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column align-self-center" style="margin-top:-2px;">
+              <div class="d-flex flex-row">
+                <div class="User-Name" style="padding-left:2px;">
+                  {{entrada.usuario.nombre}}
+                </div>
+              </div>
+              <div class="d-flex flex-row" style="padding-left:2px; margin-top:-5px;">
+                <div class="User-Content">
+                  {{entrada.titulo}}
+                </div>
+              </div>
+              <div class="d-flex flex-row">
+                <div class="Rectangle-7-Copy-6" [ngStyle] = "{'background-color': getColor(entrada)}">
+                  <div class="Categoria">
+                    {{entrada.cat.nombre}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="follow d-flex flex-column mt-auto ml-auto" *ngIf = "isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "eliminar(entrada)" style="cursor:pointer;">
+              <div class="d-flex flex-row">
+                <span class="fa fa-check" aria-hidden="true"></span>
+                <span class="User-Followed">Guardado</span>
+              </div>
+            </div>
+            <div class="d-flex flex-column mt-auto ml-auto" *ngIf = "!isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "guardar(entrada)">
+              <div class="Rectangle-7" style="cursor:pointer;">
+                Guardar
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngSwitchCase="1">
+          <div class="lista d-flex flex-row">
+            <div class="d-flex flex-column" style="margin-right:18px;">
+              <div class="Rectangle-7-Copy-3">
+                <img  class="Imagen-Relato" src={{this.entrada.imagen_url}} alt="">
+                <div class="Fondo-Imagen">
+                </div>
+                <div class="Degradado-Imagen" [ngStyle] = "{'border': getBorder(entrada), 'background-image': getBackgroundImage(entrada)}">
+                </div>
+                <div class="letra-copy">
+                  R
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column align-self-center" style="margin-top:-2px;">
+              <div class="d-flex flex-row">
+                <div class="User-Name" style="padding-left:2px;">
+                  {{entrada.usuario.nombre}}
+                </div>
+              </div>
+              <div class="d-flex flex-row" style="padding-left:2px; margin-top:-5px;">
+                <div class="User-Content">
+                  {{entrada.titulo}}
+                </div>
+              </div>
+              <div class="d-flex flex-row">
+                <div class="Rectangle-7-Copy-6" [ngStyle] = "{'background-color': getColor(entrada)}">
+                  <div class="Categoria">
+                    {{entrada.categoria.nombre}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="follow d-flex flex-column mt-auto ml-auto" *ngIf = "isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "eliminar(entrada)" style="cursor:pointer;">
+              <div class="d-flex flex-row">
+                <span class="fa fa-check" aria-hidden="true"></span>
+                <span class="User-Followed">Guardado</span>
+              </div>
+            </div>
+            <div class="d-flex flex-column mt-auto ml-auto" *ngIf = "!isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "guardar(entrada)">
+              <div class="Rectangle-7" style="cursor:pointer;">
+                Guardar
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngSwitchCase="2">
+          <div class="lista d-flex flex-row">
+            <div class="d-flex flex-column" style="margin-right:18px;">
+              <div class="Rectangle-7-Copy-3">
+                <img  class="Imagen-Relato" src={{this.entrada.urlImagen}} alt="">
+                <div class="Fondo-Imagen">
+                </div>
+                <div class="Degradado-Imagen" [ngStyle] = "{'border': getBorder(entrada), 'background-image': getBackgroundImage(entrada)}">
+                </div>
+                <div class="letra-copy">
+                  C
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column align-self-center" style="margin-top:-2px;">
+              <div class="d-flex flex-row">
+                <div class="User-Name" style="padding-left:2px;">
+                  {{entrada.usuario.nombre}}
+                </div>
+              </div>
+              <div class="d-flex flex-row" style="padding-left:2px; margin-top:-5px;">
+                <div class="User-Content">
+                  {{entrada.titulo}}
+                </div>
+              </div>
+              <div class="d-flex flex-row">
+                <div class="Rectangle-7-Copy-6" [ngStyle] = "{'background-color': getColor(entrada)}">
+                  <div class="Categoria">
+                    {{entrada.categoria.nombre}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="follow d-flex flex-column mt-auto ml-auto" *ngIf = "isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "eliminar(entrada)" style="cursor:pointer;">
+              <div class="d-flex flex-row">
+                <span class="fa fa-check" aria-hidden="true"></span>
+                <span class="User-Followed">Guardado</span>
+              </div>
+            </div>
+            <div class="d-flex flex-column mt-auto ml-auto" *ngIf = "!isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "guardar(entrada)">
+              <div class="Rectangle-7" style="cursor:pointer;">
+                Guardar
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf = "!this.vacio" class="d-flex flex-row justify-content-center">
+    <div class="pie-pagina" style="cursor:pointer;">
+      <i class="fa fa-angle-double-down" style="margin-top:3px;" aria-hidden="true"></i>
+      Ver más
+    </div>
+  </div>
+  <div *ngIf = "this.vacio" class="d-flex flex-row justify-content-center">
+    <div class="no-results" style="cursor:pointer;">
+      No se han encontrado resultados
+    </div>
+  </div>
+</div>

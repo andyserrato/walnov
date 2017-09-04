@@ -23,6 +23,8 @@ export class RepositorioService{
     hists: Array<Historia> = new Array<Historia>();
     actRec: Array<any> = new Array();
 
+    results: Object// Aquí se guadaran los resultados de busqueda
+
     PricingDiv = null; //Div que se utiliza para el pricing
 
     paginadorActividadReciente = null;
