@@ -3,6 +3,7 @@ const passport = require('passport');
 const url = require('url');
 const mongoose = require('mongoose');
 const User = mongoose.model('usuarios');
+const Biblioteca = mongoose.model('Biblioteca');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const config = require('../config');
 const Constantes = require("../../constantes/constantes");
@@ -61,14 +62,21 @@ module.exports = function() {
           return cb(err,null);
         } else if (userResult) {
           req.session.user = userResult;
-          return cb(err, userResult)
+          return cb(err, userResult);
         } else if (!userResult) {
           usuario.save(function (err, usuarioGuardado) {
             if (err) {
               return cb(err,usuarioGuardado);
             }
-            req.session.user = usuarioGuardado;
-            return cb(null, usuarioGuardado);
+            let biblioteca = new Biblioteca();
+            biblioteca.usuario = usuarioGuardado.id;
+            biblioteca.save( (err) => {
+              if (err) { return cb(err,usuarioGuardado); }
+              else {
+                req.session.user = usuarioGuardado;
+                return cb(null, usuarioGuardado);
+              }
+            });
           })
         }
       });

@@ -12,19 +12,19 @@ mongoose.set('debug', true);
 
 // Rutas
 router.get("/", getBibliotecas);
-router.get("/:userName", getBibliotecaByUserName);
+router.get("/:usuarioId", getBibliotecaByUserId);
 // ChatStories
-router.get("/:userName/chatstories", getChatStoriesOnBibliotecaByUserName);
-router.post("/:userName/chatstories", addChatStoryOnBibliotecaByUserName);
-router.delete("/:userName/chatstories", deleteChatStoryOnBibliotecaByUserName);
+router.get("/:usuarioId/chatstories", getChatStoriesOnBibliotecaByUserId);
+router.post("/:usuarioId/chatstories", addChatStoryOnBibliotecaByUserId);
+router.delete("/:usuarioId/chatstories", deleteChatStoryOnBibliotecaByUserId);
 // Walls
-router.get("/:userName/walls", getWallsOnBibliotecaByUserName);
-router.post("/:userName/walls", addWallOnBibliotecaByUserName);
-router.delete("/:userName/walls", deleteWallOnBibliotecaByUserName);
+router.get("/:usuarioId/walls", getWallsOnBibliotecaByUserId);
+router.post("/:usuarioId/walls", addWallOnBibliotecaByUserId);
+router.delete("/:usuarioId/walls", deleteWallOnBibliotecaByUserId);
 // Relatos
-router.get("/:userName/relatos", getRelatosOnBibliotecaByUserName);
-router.post("/:userName/relatos", addRelatoOnBibliotecaByUserName);
-router.delete("/:userName/relatos", deleteRelatoOnBibliotecaByUserName);
+router.get("/:usuarioId/relatos", getRelatosOnBibliotecaByUserId);
+router.post("/:usuarioId/relatos", addRelatoOnBibliotecaByUserId);
+router.delete("/:usuarioId/relatos", deleteRelatoOnBibliotecaByUserId);
 
 module.exports = router;
 
@@ -37,21 +37,21 @@ function getBibliotecas(req, res) {
   });
 }
 
-function getBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function getBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
     if (userId) {
-      findBibliotecaByUserName(userId);
+      findBibliotecaByUserId(userId);
     } else {
       res.status(400).send('El usuario no se ha encontrado');
     }
   });
 
-  var findBibliotecaByUserName = function (userId) {
+  var findBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
     Biblioteca.find(query, function (err, biblioteca) {
@@ -65,21 +65,21 @@ function getBibliotecaByUserName(req, res) {
   }
 }
 
-function getChatStoriesOnBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function getChatStoriesOnBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
     if (userId) {
-      findChatStoriesBibliotecaByUserName(userId);
+      findChatStoriesBibliotecaByUserId(userId);
     } else {
       res.status(400).send('El usuario no se ha encontrado');
     }
   });
 
-  var findChatStoriesBibliotecaByUserName = function (userId) {
+  var findChatStoriesBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
     Biblioteca.find(query, '_id usuario chatStories', function (err, biblioteca) {
@@ -93,11 +93,11 @@ function getChatStoriesOnBibliotecaByUserName(req, res) {
   }
 }
 
-function addChatStoryOnBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function addChatStoryOnBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
   let chatStoryId = req.body.id;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -147,11 +147,11 @@ function addChatStoryOnBibliotecaByUserName(req, res) {
   }
 }
 
-function deleteChatStoryOnBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function deleteChatStoryOnBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
   let chatStoryId = req.body.id;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -187,21 +187,21 @@ function deleteChatStoryOnBibliotecaByUserName(req, res) {
 }
 
 // TODO probar endpoint y paginarlo
-function getWallsOnBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function getWallsOnBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
     if (userId) {
-      findWallsBibliotecaByUserName(userId);
+      findWallsBibliotecaByUserId(userId);
     } else {
       res.status(400).send('El usuario no se ha encontrado');
     }
   });
 
-  var findWallsBibliotecaByUserName = function (userId) {
+  var findWallsBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
     Biblioteca.find(query, '_id usuario walls', function (err, biblioteca) {
@@ -216,11 +216,11 @@ function getWallsOnBibliotecaByUserName(req, res) {
 }
 
 // TODO probar endpoint
-function addWallOnBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function addWallOnBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
   let wallId = req.body.id;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -269,11 +269,11 @@ function addWallOnBibliotecaByUserName(req, res) {
 }
 
 // TODO probar endpoint
-function deleteWallOnBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function deleteWallOnBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
   let wallId = req.body.id;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -308,21 +308,21 @@ function deleteWallOnBibliotecaByUserName(req, res) {
   }
 }
 
-function getRelatosOnBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function getRelatosOnBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
     if (userId) {
-      findRelatosBibliotecaByUserName(userId);
+      findRelatosBibliotecaByUserId(userId);
     } else {
       res.status(400).send('El usuario no se ha encontrado');
     }
   });
 
-  var findRelatosBibliotecaByUserName = function (userId) {
+  var findRelatosBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
     Biblioteca.find(query, '_id usuario relatos', function (err, biblioteca) {
@@ -336,11 +336,11 @@ function getRelatosOnBibliotecaByUserName(req, res) {
   }
 }
 
-function addRelatoOnBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function addRelatoOnBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
   let relatoId = req.body.id;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -388,11 +388,11 @@ function addRelatoOnBibliotecaByUserName(req, res) {
   }
 }
 
-function deleteRelatoOnBibliotecaByUserName(req, res) {
-  let userName = req.params.userName;
+function deleteRelatoOnBibliotecaByUserId(req, res) {
+  let usuarioId = req.params.usuarioId;
   let relatoId = req.body.id;
 
-  User.findOne({login: userName}, '_id', function (err, userId) {
+  User.findOne({id: usuarioId}, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -425,12 +425,6 @@ function deleteRelatoOnBibliotecaByUserName(req, res) {
       }
     });
   }
-}
-
-function getUserByLogin(userName, cb) {
-  User.findOne({login: userName}, '_id', function (err, usu, wrc) {
-    cb(usu, wrc);
-  });
 }
 
 function sendSave(err, entity, res) {
