@@ -1,0 +1,59 @@
+<div *ngIf="this.repositorio.results" class="Rectangle-3-Copy-7" [ngClass]="{'altura': !this.vacio}">
+  <div [ngClass]="{'limite': !this.vacio}">
+    <div class="d-flex flex-row" style="margin-bottom:26px;">
+      <div class="d-flex flex-column" style="margin-right:8px;margin-left:9px;">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+      </div>
+      <div class="d-flex flex-column align-self-center">
+        <div class="Personas">
+          Personas
+        </div>
+      </div>
+    </div>
+    <div *ngFor = "let usuario of this.repositorio.results | slice:0:9">
+      <div [ngSwitch] = "this.isUsuario(usuario)" style="width:100%;">
+        <div *ngSwitchCase="0" class="lista d-flex flex-row">
+          <div class="d-flex flex-column" style="margin-right:10px;">
+            <div class="Oval-2">
+              <img class="User-Image" src={{usuario.imagen}} alt="">
+            </div>
+          </div>
+          <div class="d-flex flex-column align-self-center">
+            <div class="d-flex flex-row">
+              <div class="User-Name">
+                {{usuario.nombre}}
+              </div>
+            </div>
+            <div class="d-flex flex-row">
+              <div class="User-Content">
+                {{usuario.walls}} Walls - {{usuario.chatstories}} Chatstories - {{usuario.relatos}} Relatos cortos
+              </div>
+            </div>
+          </div>
+          <div *ngIf = "usuario.seguido" [ngClass]="{'selected': this.seguido}" (click) = "follow(usuario)" style="cursor:pointer;" class="follow d-flex flex-column mt-auto ml-auto">
+            <div class="d-flex flex-row">
+              <span class="fa fa-check" aria-hidden="true"></span>
+              <span class="User-Followed">Siguiendo</span>
+            </div>
+          </div>
+          <div *ngIf = "!usuario.seguido" [ngClass]="{'selected': this.seguido}" (click) = "follow(usuario)" class="d-flex flex-column mt-auto ml-auto">
+            <div class="Rectangle-7" style="cursor:pointer;">
+              Seguir
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-row justify-content-center">
+    <div *ngIf = "!this.vacio" class="pie-pagina" style="cursor:pointer;">
+      <i class="fa fa-angle-double-down" style="margin-top:3px;" aria-hidden="true"></i>
+      Ver más
+    </div>
+    <div *ngIf = "this.vacio" class="d-flex flex-row justify-content-center">
+      <div class="no-results" style="cursor:pointer;">
+        No se han encontrado resultados
+      </div>
+    </div>
+  </div>
+</div>
