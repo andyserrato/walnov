@@ -14,12 +14,12 @@ export class ModalService {
     this.subject.next({ type: 'info', text: message });
   }
 
-  share(message: string) {
-    this.subject.next({ type: 'share', text: message });
+  share(message: string, enlace?: string ) {
+    this.subject.next({ type: 'share', text: message, enlace: enlace });
   }
 
   load(){
-    this.subject.next({type:'loader'});
+    this.subject.next({type: 'loader'});
   }
 
   getMessage() {

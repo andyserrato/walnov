@@ -59,7 +59,7 @@ export class CardActividadRecienteComponent implements OnInit {
     let color = "";
     if(this.entrada instanceof Wall) color = this.entrada.cat.color;
     else if (this.entrada instanceof Relato) color = this.entrada.categoria.color;
-    else if (this.entrada instanceof ChatStory) color = this.entrada.categoria.color;
+    else if (this.entrada instanceof ChatStory) color = this.entrada.categoria;
     return color;
 
   }

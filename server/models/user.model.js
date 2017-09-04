@@ -192,9 +192,9 @@ usuario.statics.findLoginDuplicate= function (user, callback) {
 };
 
 usuario.statics.findEmailDuplicate = function (user, callback) {
-
+  console.log(user);
   this.findOne({
-    'email': {'$regex' : '^' + user.email + '$', $options: 'i'}
+    'perfil.email': user.perfil.email
   }, (err, userResult) => {
     if (!err) {
       if (!userResult) {

@@ -21,7 +21,7 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   getColor() {
-    return this.chatstory.categoria.color;
+    return this.repositorio.categoriasHM.get(this.chatstory.categoria).color;
 
   }
 
@@ -64,6 +64,6 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   getBackgroundImage() {
-    return 'linear-gradient(to bottom,' + this.chatstory.categoria.opacidad + ',' + this.chatstory.categoria.color + ')';
+    return 'linear-gradient(to bottom,' + this.repositorio.categoriasHM.get(this.chatstory.categoria).opacidad + ',' + this.repositorio.categoriasHM.get(this.chatstory.categoria).color + ')';
   }
 }

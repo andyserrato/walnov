@@ -89,12 +89,12 @@ export class CardMiBibliotecaComponent implements OnInit {
   }
 
   getBorder(chatstory: ChatStory) {
-    return 'solid 1.5px '+ this.repositorio.categoriasHM.get(chatstory.categoria.nombre).color;
+    return 'solid 1.5px '+ this.repositorio.categoriasHM.get(chatstory.categoria).color;
 
   }
 
   getColor(chatstory: ChatStory) {
-    return chatstory.categoria.color;
+    return this.repositorio.categoriasHM.get(chatstory.categoria).color;
 
   }
 
@@ -108,7 +108,7 @@ export class CardMiBibliotecaComponent implements OnInit {
   sameCategoryArray(categoria) {
     this.paginador = null;
     if (this.repositorio.chatstories != null && categoria != null){
-      this.chatStoriesFiltrados = this.repositorio.chatstories.filter(ChatStory => ChatStory.categoria.nombre === categoria);
+      this.chatStoriesFiltrados = this.repositorio.chatstories.filter(ChatStory => ChatStory.categoria === categoria);
       this.filtradosVacio = this.emptyFiltrados(this.chatStoriesFiltrados);
       if(!this.filtradosVacio) {
         //let limite = this.chatStoriesFiltrados.length;

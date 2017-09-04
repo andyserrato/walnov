@@ -15,7 +15,7 @@ const routes: Routes = [{
     { path: 'mis-relatos', component: HomeMisRelatosComponent },
     { path: 'mis-chatstories', component: HomeMisChatstoriesComponent },
     { path: 'guardado', component: HomeGuardadoComponent },
-    // { path: 'buscador', component: HomeBuscadorComponent },
+    { path: 'mis-walls', redirectTo: '/home/actividad-reciente', pathMatch: 'full'},
     { path: '', redirectTo: '/home/actividad-reciente', pathMatch: 'full'}
 
   ],

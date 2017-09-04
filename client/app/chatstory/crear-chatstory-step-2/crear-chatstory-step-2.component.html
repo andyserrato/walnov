@@ -17,8 +17,8 @@
   </div>
 </div>
 <div class="row no-padding">
-    <div class="category no-padding" [ngStyle]="{'background-color': this.chatStory.categoria.color}">
-      {{this.chatStory.categoria.nombre.toUpperCase()}}
+    <div class="category no-padding" [ngStyle]="{'background-color': this.chatStory.categoria?.color}">
+      {{this.chatStory.categoria?.nombre | uppercase}}
     </div>
 </div>
 
@@ -34,7 +34,7 @@
       </div>
       <div class="row row-margin-top">
         <span class="form-title">Texto</span>
-        <textarea [(ngModel)]="message.chat" class="form-control" rows="8" cols="80" maxlength="485" #messageText></textarea>
+        <textarea #textArea [(ngModel)]="message.chat" class="form-control" rows="8" cols="80" maxlength="485" #messageText></textarea>
       </div>
       <div class="row row-margin-top">
         <div class="col-12 no-padding">
@@ -72,7 +72,7 @@
   </div>
   <div class="col-6 no-padding padding-right relative col-chatstory-preview">
     <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+this.chatStory.urlImagen+'\')'}"></div>
-    <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria.color+')'}" #preview>
+    <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+this.chatStory.categoria?.color+')'}" #preview>
       <div class="row no-padding" *ngFor="let m of this.chatStory.chats">
           <app-chatstory-message [editable]='true' [big]='false' [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
       </div>
@@ -89,12 +89,21 @@
     </span>
   </div>
   <div class="col-3 no-padding">
-    <app-register-popover [textoBoton]="'Guardar Borrador'" [estilosBoton]="'pull-right'" [disabledBoton]="true" [callbackURL]="'/social-login/success'"></app-register-popover>
+    <div class="btn-hecho pull-right" *ngIf="!auth.isLoggedIn()">
+      <app-prot-popover-register [direction]="'up'" *ngIf="!auth.isLoggedIn()" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
+      Guardar Borrador
+    </div>
+    <div class="btn-hecho pull-right" *ngIf="auth.isLoggedIn()" (click)="guardarComoBorradorChatStory()">
+      Guardar Borrador
+    </div>
   </div>
   <div class="col-3 no-padding">
-    <div class="btn-hecho pull-right" (click)="viewChatStory()">
-      <app-prot-popover-register [direction]="'up'" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
-      Publicar Chatstory
+    <div class="btn-hecho pull-right" *ngIf="!auth.isLoggedIn()">
+      <app-prot-popover-register [direction]="'up'" *ngIf="!auth.isLoggedIn()" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
+      Publicar ChatStory
+    </div>
+    <div class="btn-hecho pull-right" *ngIf="auth.isLoggedIn()" (click)="publicarChatStory()">
+      Publicar ChatStory
     </div>
   </div>
 </div>

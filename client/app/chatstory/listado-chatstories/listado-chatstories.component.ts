@@ -3,7 +3,7 @@ import { Categoria } from '../../models/cats';
 import { ChatStory } from '../../models/chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Paginator } from '../../models/paginador';
-
+import { ChatstoryService } from '../../services/chatstory.service';
 
 @Component({
   selector: 'app-listado-chatstories',
@@ -14,11 +14,20 @@ export class ListadoChatstoriesComponent implements OnInit {
   categoria: Categoria;
   chatStoriesFiltrados: Array<ChatStory>;
   filtradosVacio = true;
-  constructor(private repositorio: RepositorioService) { }
+  constructor(private repositorio: RepositorioService,
+              private chatservice: ChatstoryService) {
+
+  }
 
   ngOnInit() {
+    this.chatStoriesFiltrados = new Array<ChatStory>();
     this.categoria = null;
-    this.chatStoriesFiltrados = this.repositorio.chatstories;
+    this.chatservice.getChatStories().subscribe(chatstories => {
+      this.repositorio.chatstories = chatstories;
+      this.chatStoriesFiltrados = chatstories;
+      console.log(this.chatStoriesFiltrados);
+      this.changeCategory(null);
+    });
   }
 
   changeCategory(event: Categoria) {
@@ -27,7 +36,7 @@ export class ListadoChatstoriesComponent implements OnInit {
       this.chatStoriesFiltrados = this.repositorio.chatstories;
       // console.log(this.repositorio.paginadorCardsChatstories);
     } else {
-      this.chatStoriesFiltrados = this.repositorio.chatstories.filter(ChatStory => ChatStory.categoria.nombre === this.categoria.nombre);
+      this.chatStoriesFiltrados = this.repositorio.chatstories.filter(ChatStory => ChatStory.categoria === this.categoria.nombre);
     }
     this.repositorio.paginadorCardsChatstories.rellenar(this.chatStoriesFiltrados);
     // console.log(this.repositorio.paginadorCardsChatstories)

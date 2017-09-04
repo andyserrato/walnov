@@ -34,8 +34,9 @@ module.exports = router;
 
 // Implementaciones de las rutas
 function crearChatStory(req, res) {
+  console.log('holis');
   let peticion = req.body.chatStory;
-  console.log(req.body);
+  console.log(peticion);
   if (!peticion) {
     res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
   } else {
@@ -43,13 +44,17 @@ function crearChatStory(req, res) {
     let chatStory = new ChatStory(peticion);
     let estadistica = new Estadistica();
     estadistica.save(function (err) {
-      if (err)
+      if (err) {
+        console.log(err);
         res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
+      }
     });
     chatStory.estadistica = estadistica;
 
     chatStory.save(function (err, newChatStory) {
+      console.log('salvando');
       if (err) {
+        console.log(err);
         res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
       } else {
         var notificacionNuevoChatStory = GestorNotificaciones.crearNotificacionNuevoChatstory(
@@ -84,8 +89,6 @@ function crearChatStory(req, res) {
 function getChatStories(req, res) {
   let limit;
   let sort; // Relevantes (los que tengan mejores estadísticas en un intervalo de tiempo), seguidos, no seguidos,
-  let offset;
-
   let query = ChatStory.find();
   // query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
   query.populate('estadistica autor');
@@ -187,15 +190,25 @@ function getChatStoryById(req, res) {
 }
 
 function updateChatStory(req, res) {
+  console.log('updateChatStory');
   let id = req.params.id;
+  let chatStory = req.body.chatStory;
+  console.log('id: ' + id);
+  console.log('chatstpry ' + chatStory);
+  console.log('req.body.chatStory ' + req.body.chatStory);
+  if (!req.params.id ||  req.params.id === undefined) {
+    res.status(400).send('Debes proporcionar el id del Chatstory');
+  } else if (!req.body.chatStory ||  req.body.chatStory === undefined) {
+    res.status(400).send('El ChatStory se encuentra vacío');
+  } else {
+    ChatStory.findByIdAndUpdate(id, chatStory, {new: true},
+      function (err, updatedChatStory) {
+        if (err)
+          res.status(400).send("Ha ocurrido un error al actualizar el ChatStory " + err);
 
-  ChatStory.where({_id: id})
-    .update(req.body.chatStory, function (err, writeOpResult) {
-      if (err)
-        res.status(400).send("Algo malo ha ocurrido");
-
-      res.status(200).send(writeOpResult);
-    });
+        res.status(200).send(updatedChatStory);
+      });
+  }
 }
 
 function updateVisitas(req, res) {
