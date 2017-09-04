@@ -12,10 +12,6 @@ export class ChatstoryMessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-<<<<<<< HEAD
-    console.log(this.message);
-=======
->>>>>>> 74a207f426f6b4a079e6653faf43c761392949f6
   }
 
 }
