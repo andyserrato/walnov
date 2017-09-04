@@ -9,6 +9,7 @@ import { RepositorioService } from './services/repositorio.service';
 })
 export class AppComponent {
 
+
   constructor(private repositorio: RepositorioService){
       //Esto debe de ir en el login del usuario, es decir, una vez haga login
       // var socket = io();
@@ -21,5 +22,4 @@ export class AppComponent {
       // repositorio.socket = socket;
       // repositorio.socket.emit('identificacion', {id:"594925553fa21737b09babbd"});
   }
-
 }

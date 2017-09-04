@@ -12,6 +12,8 @@ import { CardInfoPremiumComponent } from './card-info-premium/card-info-premium.
 import { CardUsuarioTendenciaComponent } from './card-usuario-tendencia/card-usuario-tendencia.component';
 import { CardWallRelevanteComponent } from './card-wall-relevante/card-wall-relevante.component';
 import { CardPublicidadComponent } from './card-publicidad/card-publicidad.component';
+import { CardBuscadorPersonasComponent } from './card-buscador-personas/card-buscador-personas.component';
+import { CardBuscadorContenidoComponent } from './card-buscador-contenido/card-buscador-contenido.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -28,7 +30,9 @@ import { CardPublicidadComponent } from './card-publicidad/card-publicidad.compo
     CardFollowUserComponent,
     CardActividadRecienteComponent,
     MessageTimePipe,
-    CardInfoPremiumComponent
+    CardInfoPremiumComponent,
+    CardBuscadorPersonasComponent,
+    CardBuscadorContenidoComponent
   ],
   declarations: [
     CardPublicidadComponent,
@@ -41,7 +45,10 @@ import { CardPublicidadComponent } from './card-publicidad/card-publicidad.compo
     MessageTimePipe,
     CardInfoPremiumComponent,
     CardWallRelevanteComponent,
-    CardUsuarioTendenciaComponent
+    CardUsuarioTendenciaComponent,
+    CardBuscadorPersonasComponent,
+    CardBuscadorContenidoComponent,
+    CardBuscadorContenidoComponent
   ]
 })
 

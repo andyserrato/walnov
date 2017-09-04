@@ -2,19 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthenticationService } from '../services/authentication.service';
+import { SearchService } from '../services/search.service';
+import { RepositorioService } from '../services/repositorio.service';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
+  providers: [SearchService]
 })
 
 export class NavComponent implements OnInit {
+  searchTerm$ = new Subject<string>(); //Servicio buscador
+
   isNavBarHidden: boolean;
   searching = false;
   user: any;
   popover: boolean;
   profilePicture: string;
-  constructor(location: Location, router: Router, private auth: AuthenticationService) {
+  constructor(location: Location, router: Router, private auth: AuthenticationService, private searchService: SearchService, private repositorio: RepositorioService) {
     this.user = this.auth.isLoggedIn() ? this.auth.getUser() : false;
     router.events.subscribe((val) => {
       if (location.path().indexOf('social-login/success') !== -1) {
@@ -26,6 +33,10 @@ export class NavComponent implements OnInit {
       } else {
         this.isNavBarHidden = false;
       }
+    });
+    this.searchService.search(this.searchTerm$)
+      .subscribe(results => {
+        this.repositorio.results = results.results;
     });
   }
 
