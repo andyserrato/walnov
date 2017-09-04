@@ -5,6 +5,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const config = require('../config');
 const mongoose = require('mongoose');
 const User = mongoose.model('usuarios');
+const Biblioteca = mongoose.model('Biblioteca');
 const Constantes = require("../../constantes/constantes");
 
 // Create the Google strategy configuration method
@@ -61,8 +62,15 @@ module.exports = function() {
             if (err) {
               return cb(err,usuarioGuardado);
             }
-            req.session.user = usuarioGuardado;
-            return cb(null, usuarioGuardado);
+            let biblioteca = new Biblioteca();
+            biblioteca.usuario = usuarioGuardado.id;
+            biblioteca.save( (err) => {
+              if (err) { return cb(err,usuarioGuardado); }
+              else {
+                req.session.user = usuarioGuardado;
+                return cb(null, usuarioGuardado);
+              }
+            });
           })
         }
       });
