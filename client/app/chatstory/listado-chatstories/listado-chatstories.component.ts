@@ -59,6 +59,24 @@ export class ListadoChatstoriesComponent implements OnInit {
     // console.log(this.repositorio.paginadorCardsChatstories)
   }
 
+  loadMore(){
+    this.modalservice.load();
+    this.skip+=60;
+    const myParams = new URLSearchParams();
+    myParams.append('top', '60');
+    myParams.append('skip', ''+this.skip);
+
+    this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatstories => {
+      for(let c of chatstories) {
+        this.chatStoriesFiltrados.push(c);
+      }
+      this.repositorio.chatstories=this.chatStoriesFiltrados;
+      this.modalservice.clear();
+      this.repositorio.paginadorCardsChatstories.paginarDelante();
+      this.repositorio.paginadorCardsChatstories.final = false;
+    });
+  }
+
   // filtrarCategoria() {
   //   if(!(this.categoria == null)) {
   //     this.chatStoriesFiltrados = this.repositorio.chatstories.filter(Chatstory => Chatstory.categoria.nombre === this.categoria.nombre);

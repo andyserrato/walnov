@@ -1,13 +1,14 @@
 export class Paginator {
  paginador: Array<Object> = new Array();
  indice: number;
+ final: boolean;
 
   constructor(private items: Array<Object>, private container, private limite:number, private cargar:number) {
     this.indice = limite;
     this.rellenar(items);
     container.nativeElement.addEventListener("scroll", this.scroll.bind(this));
     // console.log("inicializando");
-
+    this.final = false;
 
  }
 
@@ -17,9 +18,6 @@ export class Paginator {
      if(elementos.indexOf(newItem)<0) {
        this.paginador.push(newItem);
      }
-
-       //this.paginador.push(this.items[this.items.length - 1]);
-       //console.log(this.paginador);
    }
  }
 
@@ -31,10 +29,11 @@ export class Paginator {
          this.paginador.shift();
          this.paginador.push(this.items[this.indice]);
          this.indice++;
+       }else if(!this.final){
+         this.final=true;
+         console.log('final del paginador, puedes cargar mas contenido');
        }
      }
-
-      // console.log(this.indice);
   }
 
  paginarDetras () {
@@ -54,8 +53,6 @@ export class Paginator {
      }
    }
   //  console.log(this.paginador);
-
-
 }
 
 scroll (){
@@ -67,7 +64,7 @@ scroll (){
   //console.log(porcentaje);
   if(porcentaje >= 100) {
     this.paginarDelante();
-  } else if (porcentaje === 0) { 
+  } else if (porcentaje === 0) {
     this.paginarDetras();
   }
 }

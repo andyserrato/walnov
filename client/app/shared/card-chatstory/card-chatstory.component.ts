@@ -75,12 +75,17 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   liked(){
-    console.log(this.auth.getUser());
-    if(this.chatstory.estadistica.likers.indexOf(this.auth.getUser().id) > -1) {
-      return true;
+    if(this.chatstory.estadistica && this.chatstory.estadistica.likers){
+      if(this.chatstory.estadistica.likers.indexOf(this.auth.getUser().id) > -1) {
+        return true;
+      }else{
+        return false;
+      }
     }else{
       return false;
     }
+
+
   }
 
   checkDescription() {
