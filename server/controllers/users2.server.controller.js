@@ -6,6 +6,7 @@ const passport = require('passport');
 const express = require('express');
 const router = express.Router();
 const Constantes = require("../constantes/constantes");
+const Biblioteca = mongoose.model('Biblioteca');
 var redirection = '';
 // Rutas
 // Set up the 'signup' routes
@@ -169,7 +170,12 @@ function signup(req, res) {
               if (err) {
                 res.status(400).send(err);
               } else {
-                res.status(200).send(user);
+                let biblioteca = new Biblioteca();
+                biblioteca.usuario = user.id;
+                biblioteca.save( (err) => {
+                  if (err) res.status(400).send(err);
+                  res.status(200).send(user);
+                });
               }
             });
           }
@@ -254,7 +260,12 @@ function createUser(req, res) {
               if (err) {
                 res.status(400).send(err);
               } else {
-                res.status(200).send(user);
+                let biblioteca = new Biblioteca();
+                biblioteca.usuario = user.id;
+                biblioteca.save( (err) => {
+                  if (err) res.status(400).send(err);
+                  res.status(200).send(user);
+                });
               }
             });
           }

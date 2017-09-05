@@ -17,11 +17,10 @@ export class CrearPersonajeChatstoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.chars);
     // this.refreshArray();
   }
 
-  deletePersonaje(event){
+  deletePersonaje(event) {
     this.deleteChar.emit(event);
   }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
-import { Personaje } from '../crear-personaje-chatstory/personaje.model';
 import { ChatStory } from '../../models/chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Categoria } from '../../models/cats';
@@ -14,7 +13,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 export class CrearChatstoryStep1Component implements OnInit {
 
   @Output() done: EventEmitter<any>;
-  @Input() chatStory: ChatStory;
+  private _chatStory: any;
   categorias: Array<Categoria>;
   maxChars: Array<string> = new Array<string>(18);
   validate: any;
@@ -29,18 +28,23 @@ export class CrearChatstoryStep1Component implements OnInit {
         'title' : false,
         'description' : false
     };
+  }
+
+  @Input()
+  set chatStory(chatStory: any) {
+    this._chatStory = chatStory;
     this.refreshArray();
   }
+
+  get chatStory(): any { return this._chatStory; }
 
   refreshArray() {
     for (let i = 0; i < this.chatStory.personajes.length; i++) {
       this.maxChars[i] = this.chatStory.personajes[(this.chatStory.personajes.length - 1) - i];
     }
-    console.log(this.maxChars);
   }
 
   validateField(event, selector) {
-    console.log(event);
     if (event.target.value) {
       this.validate[selector] = false;
     } else {
@@ -71,7 +75,6 @@ export class CrearChatstoryStep1Component implements OnInit {
   }
 
   newPersonaje(event: HTMLInputElement) {
-    // console.log(event)
     if (event.value && event.value.length >= 15 ) {
       this.alert.warning('Máximo 15 caracteres');
       this.alert.clearTimeOutAlert();

@@ -95,6 +95,7 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { ContactoComponent } from './contacto/contacto.component';
 import { OrderByPipe } from './pipe/order-by/order-by.pipe';
+import { BibliotecaService } from './services/biblioteca.service';
 
 // import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from './translate'
 
@@ -200,9 +201,8 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     RelatoService,
     WindowService,
     ModalService,
-    CapitalizePipe
-    // TRANSLATION_PROVIDERS,
-    // TranslateService
+    CapitalizePipe,
+    BibliotecaService
   ],
   bootstrap: [AppComponent]
 })

@@ -12,7 +12,7 @@
 
   <div class="row" >
     <div class="col-8">
-      <input  (change)="validateField($event,'title')" [(ngModel)]="this.chatStory.titulo" [ngClass]="{'input-invalid': this.validate['title']}" maxlength="48" class="form-control" type="text" name=""  placeholder="Da un nombre a tu Chatstory">
+      <input  (change)="validateField($event,'title')" [(ngModel)]="chatStory.titulo" [ngClass]="{'input-invalid': this.validate['title']}" maxlength="48" class="form-control" type="text" name=""  placeholder="Da un nombre a tu Chatstory">
       <span class="text-invalid" *ngIf="this.validate['title']">Escribe un titulo</span>
     </div>
     <div class="col-4">

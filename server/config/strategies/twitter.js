@@ -3,6 +3,7 @@ const passport = require('passport');
 const url = require('url');
 const mongoose = require('mongoose');
 const User = mongoose.model('usuarios');
+const Biblioteca = mongoose.model('Biblioteca');
 const TwitterStrategy = require('passport-twitter').Strategy;
 const config = require('../config');
 const users = require('../../controllers/users2.server.controller');
@@ -61,8 +62,15 @@ module.exports = function () {
             if (err) {
               return cb(err,usuarioGuardado);
             }
-            req.session.user = usuarioGuardado;
-            return cb(null, usuarioGuardado);
+            let biblioteca = new Biblioteca();
+            biblioteca.usuario = usuarioGuardado.id;
+            biblioteca.save( (err) => {
+              if (err) { return cb(err,usuarioGuardado); }
+              else {
+                req.session.user = usuarioGuardado;
+                return cb(null, usuarioGuardado);
+              }
+            });
           })
         }
       });
