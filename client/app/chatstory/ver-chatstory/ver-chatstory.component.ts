@@ -43,7 +43,11 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
         console.log('estamos dentro del subscribe');
 
         this.chatStory = chatStory;
-        this.chatStory.categoria = this.repositorio.categoriasHM.get(this.chatStory.categoria);
+        if(this.repositorio.categoriasHM.get(this.chatStory.categoria)){
+          this.chatStory.categoria = this.repositorio.categoriasHM.get(this.chatStory.categoria);
+        }else{
+          this.chatStory.categoria = this.repositorio.categoriasAL[1];
+        };
         console.log(this.chatStory);
         this.nextMessage();
         this.scrollToBottom();
