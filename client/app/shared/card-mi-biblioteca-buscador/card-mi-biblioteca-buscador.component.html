@@ -1,15 +1,15 @@
 <div class="card Rectangle-3-Copy-2 hidden-md-down">
   <div class="card-block">
-    <h4 class="Card-title">Mi biblioteca de Chatstories</h4>
+    <h4 class="Card-title">{{'chatstories_biblioteca_buscador' | translate}}</h4>
     <div class="Base-Notification-Banner" *ngIf="getFirstAdded()">
       <div class="d-flex justify-content-center Banner-Text" style="font-weight:600">
-        ¡Bien hecho!
+        {{'chatstories_biblioteca_buscador_2' | translate}}
       </div>
       <div class="d-flex justify-content-center Banner-Text">
-        Has añadido un chatstory a tu biblioteca
+        {{'chatstories_biblioteca_buscador_3' | translate}}
       </div>
       <div class="d-flex justify-content-center Banner-Text">
-        ¡Puedes añadir más!
+        {{'chatstories_biblioteca_buscador_4' | translate}}
       </div>
     </div>
     <div *ngIf="!getAdded()">
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="Info">
-        Añade a tu biblioteca los Chatstories que más te gusten para leerlos a tu ritmo
+        {{'chatstories_biblioteca_buscador_5' | translate}}
       </div>
     </div>
     <div class="Rectangle-3-Copy-3" #contenedorBiblioteca>
@@ -80,7 +80,7 @@
     </div>
     <div class="d-flex justify-content-end">
       <button class="Radio-Label Rectangle-7-Copy-2"  [style.backgroundColor] = 'getBc()' [style.cursor] = 'getCursor()' type="button" name="button">
-        Ir a la biblioteca
+        {{'chatstories_biblioteca_buscador_6' | translate}}
       </button>
     </div>
   </div>

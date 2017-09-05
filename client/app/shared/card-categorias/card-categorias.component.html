@@ -1,6 +1,6 @@
 <div class="card Rectangle-3-Copy-2">
   <div class="card-block">
-    <h4 class="Card-title">Categorías</h4>
+    <h4 class="Card-title">{{'all_categorias' | translate}}</h4>
     <div class="d-flex flex-row category-hover" (click)='noFiltrar($event)' style="padding-left:1.25rem; padding-right:1.25rem" [ngStyle] = "{'background-color': getBackColor(null)}">
       <div class="d-flex flex-column" style="padding-top:7px; cursor:pointer;">
         <div class="Oval-2" style="cursor:pointer;">
@@ -8,7 +8,7 @@
       </div>
       <div class="d-flex flex-column ellipsis">
         <div class="Categoria" title="Todas las categorías" style="cursor:pointer;" [style.color] = 'getFontColor(null)'>
-          Todas
+          {{'all_todas' | translate}}
         </div>
       </div>
     </div>
@@ -26,12 +26,12 @@
       </div>
     </div>
     <div class="Filtrado" style="padding-left:1.25rem; padding-right:1.25rem">
-      Ordenar por:
+      {{'home_reciente_select_header' | translate}}:
     </div>
     <div class="d-flex flex-row" style="padding-left:1.25rem; padding-right:1rem">
       <form role="form" class="Input-Background-Copy-3-fuera">
         <select name="Categoria" class="Input-Background-Copy-3-dentro Drop-title ellipsis">
-          <option title="Más relevantes">Más relevantes</option>
+          <option title="Más relevantes">{{'home_reciente_select_option_1' | translate}}</option>
         </select>
         <i class="fa fa-sort" aria-hidden="true"></i>
       </form>

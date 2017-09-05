@@ -42,6 +42,9 @@ export const LANG_EN_TRANS = {
   'all_participar': 'Take part',
   'all_guardar': 'Save',
   'all_guardado': 'Saved',
+  'all_categorias': 'Categories',
+  'all_todas': 'All',
+
 
   //categorias
   'categoria_accion': 'Action',
@@ -69,34 +72,13 @@ export const LANG_EN_TRANS = {
   'alert_home_chatstories2': 'Start right now!',
 
   //chatstories
-  'chatstorie_add_biblioteca': 'Add to my chatstories',
+  'chatstorie_add_biblioteca': 'Add to my Library',
   'chatstorie_added_biblioteca': 'Added',
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  'chatstories_biblioteca_buscador': 'My Chatstories’ Library',
+  'chatstories_biblioteca_buscador_2': 'Well done!',
+  'chatstories_biblioteca_buscador_3': 'Chatstory added to your library',
+  'chatstories_biblioteca_buscador_4': 'Try to add more!',
+  'chatstories_biblioteca_buscador_5': 'Add to your library your favourite Chatstories and enjoy them anytime',
+  'chatstories_biblioteca_buscador_6': 'Go to my Library'
+  
 };

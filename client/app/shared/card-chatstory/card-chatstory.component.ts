@@ -25,7 +25,7 @@ export class CardChatstoryComponent implements OnInit {
               private chatstoryService: ChatstoryService) { }
 
   ngOnInit() {
-    console.log(this.chatstory);
+    // console.log(this.chatstory);
   }
 
   getColor() {
