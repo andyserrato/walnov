@@ -6,7 +6,7 @@
       </div>
       <div class="d-flex flex-column align-self-center">
         <div class="Personas">
-          Personas
+          {{'home_buscador_personas' | translate}}
         </div>
       </div>
     </div>
@@ -26,19 +26,19 @@
             </div>
             <div class="d-flex flex-row">
               <div class="User-Content">
-                {{usuario.walls}} Walls - {{usuario.chatstories}} Chatstories - {{usuario.relatos}} Relatos cortos
+                {{usuario.walls}} Walls - {{usuario.chatstories}} Chatstories - {{usuario.relatos}} {{'all_relatos_cortos' | translate}}
               </div>
             </div>
           </div>
           <div *ngIf = "usuario.seguido" [ngClass]="{'selected': this.seguido}" (click) = "follow(usuario)" style="cursor:pointer;" class="follow d-flex flex-column mt-auto ml-auto">
             <div class="d-flex flex-row">
               <span class="fa fa-check" aria-hidden="true"></span>
-              <span class="User-Followed">Siguiendo</span>
+              <span class="User-Followed">{{'all_siguiendo' | translate}}</span>
             </div>
           </div>
           <div *ngIf = "!usuario.seguido" [ngClass]="{'selected': this.seguido}" (click) = "follow(usuario)" class="d-flex flex-column mt-auto ml-auto">
             <div class="Rectangle-7" style="cursor:pointer;">
-              Seguir
+              {{'all_seguir' | translate}}
             </div>
           </div>
         </div>
@@ -48,11 +48,11 @@
   <div class="d-flex flex-row justify-content-center">
     <div *ngIf = "!this.vacio" class="pie-pagina" style="cursor:pointer;">
       <i class="fa fa-angle-double-down" style="margin-top:3px;" aria-hidden="true"></i>
-      Ver más
+      {{'home_buscador_mas' | translate}}
     </div>
     <div *ngIf = "this.vacio" class="d-flex flex-row justify-content-center">
       <div class="no-results" style="cursor:pointer;">
-        No se han encontrado resultados
+        {{'home_buscador_nada' | translate}}
       </div>
     </div>
   </div>

@@ -1,27 +1,27 @@
 <div class="container">
   <div class="row">
     <div class="link" (click)="changeView('actividad-reciente')" [ngClass]="{'selected': this.router.url==='/home/actividad-reciente'}">
-      Actividad Reciente
+      {{'home_card_navegacion' | translate}}
     </div>
   </div>
   <div class="row">
     <div class="link" (click)="changeView('mis-walls')" [ngClass]="{'selected': this.router.url==='/home/mis-walls'}">
-      Mis Walls
+      {{'home_card_navegacion_2' | translate}}
     </div>
   </div>
   <div class="row">
     <div class="link" (click)="changeView('mis-relatos')" [ngClass]="{'selected': this.router.url==='/home/mis-relatos'}">
-      Mis Relatos
+      {{'home_card_navegacion_3' | translate}}
     </div>
   </div>
   <div class="row">
     <div class="link" (click)="changeView('mis-chatstories')" [ngClass]="{'selected': this.router.url==='/home/mis-chatstories'}">
-      Mis Chatstories
+      {{'home_card_navegacion_4' | translate}}
     </div>
   </div>
   <div class="row">
     <div class="link" (click)="changeView('guardado')" [ngClass]="{'selected': this.router.url==='/home/guardado'}">
-      Guardado
+      {{'home_card_navegacion_5' | translate}}
     </div>
   </div>
 </div>

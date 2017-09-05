@@ -96,6 +96,8 @@ import { SharedModule } from './shared/shared.module';
 import { ContactoComponent } from './contacto/contacto.component';
 import { OrderByPipe } from './pipe/order-by/order-by.pipe';
 
+// import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from './translate'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -167,7 +169,8 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     ModalDecorationComponent,
     ContactoComponent,
     OrderByPipe,
-    ModalDecorationComponent
+    ModalDecorationComponent,
+    // TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -198,6 +201,8 @@ import { OrderByPipe } from './pipe/order-by/order-by.pipe';
     WindowService,
     ModalService,
     CapitalizePipe
+    // TRANSLATION_PROVIDERS,
+    // TranslateService
   ],
   bootstrap: [AppComponent]
 })

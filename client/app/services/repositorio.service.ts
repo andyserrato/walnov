@@ -6,6 +6,8 @@ import { Wall } from '../models/wall';
 import { Continuacion } from '../models/continuacion';
 import { Historia } from '../models/historia';
 import { Paginator } from '../models/paginador';
+import { TranslateService } from '../translate';
+
 
 
 @Injectable()
@@ -34,30 +36,35 @@ export class RepositorioService{
     paginadorCardsContinuaciones = null;
     paginadorCardsHistorias = null;
 
-    constructor(){
+    // english: boolean = false;
+
+    constructor(private translate: TranslateService){
         console.log("Contruyendo repositorio");
+        this.translate.use('en');
 
-        this.categoriasHM.set('Acción', new Categoria('Acción','#e65e20'));
-        this.categoriasHM.set('Aventura', new Categoria('Aventura','#29ba6f'));
-        this.categoriasHM.set('SCI-FI', new Categoria('SCI-FI','#16d7d3'));
-        this.categoriasHM.set('Drama', new Categoria('Drama','#e15abe'));
-        this.categoriasHM.set('Romance', new Categoria('Romance','#de196d'));
-        this.categoriasHM.set('FanFiction', new Categoria('FanFiction','#df9c00'));
-        this.categoriasHM.set('Poesía',new Categoria('Poesía','#21b3dd'));
-        this.categoriasHM.set('Humor', new Categoria('Humor','#b8764e'));
-        this.categoriasHM.set('Terror', new Categoria('Terror','#4b082e'));
-        this.categoriasHM.set('Reflexión', new Categoria('Reflexión','#2074e6'));
 
-        this.categoriasAL.push(new Categoria('Acción','rgb(230, 94, 32)','rgba(230, 94, 32, 0.25)'));
-        this.categoriasAL.push(new Categoria('Aventura','rgb(41, 186, 111)', 'rgba(41, 186, 111, 0.25)'));
-        this.categoriasAL.push(new Categoria('SCI-FI','rgb(22, 215, 211)', 'rgba(22, 215, 211, 0.25)'));
-        this.categoriasAL.push(new Categoria('Drama','rgb(225, 90, 190)', 'rgba(225, 90, 190, 0.25)'));
-        this.categoriasAL.push(new Categoria('Romance','rgb(222, 25, 109)', 'rgba(222, 25, 109, 0.25)'));
-        this.categoriasAL.push(new Categoria('FanFiction','rgb(223, 156, 0)', 'rgba(223, 156, 0, 0.25)'));
-        this.categoriasAL.push(new Categoria('Poesía','rgb(33, 179, 221)', 'rgba(33, 179, 221, 0.25)'));
-        this.categoriasAL.push(new Categoria('Humor','rgb(184, 118, 78)', 'rgba(184, 118, 78, 0.25)'));
-        this.categoriasAL.push(new Categoria('Terror','rgb(75, 8, 46)', 'rgba(75, 8, 46, 0.25)'));
-        this.categoriasAL.push(new Categoria('Reflexión','rgb(32, 116, 230)', 'rgba(32, 116, 230, 0.25)'));
+
+        this.categoriasHM.set(this.translate.instant('categoria_accion'), new Categoria(this.translate.instant('categoria_accion'),'#e65e20'));
+        this.categoriasHM.set(this.translate.instant('categoria_aventura'), new Categoria(this.translate.instant('categoria_aventura'),'#29ba6f'));
+        this.categoriasHM.set(this.translate.instant('categoria_scifi'), new Categoria(this.translate.instant('categoria_scifi'),'#16d7d3'));
+        this.categoriasHM.set(this.translate.instant('categoria_drama'), new Categoria(this.translate.instant('categoria_drama'),'#e15abe'));
+        this.categoriasHM.set(this.translate.instant('categoria_romance'), new Categoria(this.translate.instant('categoria_romance'),'#de196d'));
+        this.categoriasHM.set(this.translate.instant('categoria_fanfic'), new Categoria(this.translate.instant('categoria_fanfic'),'#df9c00'));
+        this.categoriasHM.set(this.translate.instant('categoria_poesia'),new Categoria(this.translate.instant('categoria_poesia'),'#21b3dd'));
+        this.categoriasHM.set(this.translate.instant('categoria_humor'), new Categoria(this.translate.instant('categoria_humor'),'#b8764e'));
+        this.categoriasHM.set(this.translate.instant('categoria_terror'), new Categoria(this.translate.instant('categoria_terror'),'#4b082e'));
+        this.categoriasHM.set(this.translate.instant('categoria_reflexion'), new Categoria(this.translate.instant('categoria_reflexion'),'#2074e6'));
+
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_accion'),'#e65e20','rgba(230, 94, 32, 0.25)'));
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_aventura'),'#29ba6f', 'rgba(41, 186, 111, 0.25)'));
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_scifi'),'#16d7d3', 'rgba(22, 215, 211, 0.25)'));
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_drama'),'#e15abe', 'rgba(225, 90, 190, 0.25)'));
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_romance'),'#de196d', 'rgba(222, 25, 109, 0.25)'));
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_fanfic'),'#df9c00', 'rgba(223, 156, 0, 0.25)'));
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_poesia'),'#21b3dd', 'rgba(33, 179, 221, 0.25)'));
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_humor'),'#b8764e', 'rgba(184, 118, 78, 0.25)'));
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_terror'),'#4b082e', 'rgba(75, 8, 46, 0.25)'));
+        this.categoriasAL.push(new Categoria(this.translate.instant('categoria_reflexion'),'#2074e6', 'rgba(32, 116, 230, 0.25)'));
 
         this.notificaciones.push("Esto es la primera notificacion");
         this.notificaciones.push("Esto es la segunda notificacion");

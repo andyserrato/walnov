@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../../models/usuario.model';
 import { AlertService } from '../../../services/alert.service';
 import { ModalService } from '../../../services/modal.service';
+import { TranslateService } from '../../../translate';
+// import { TranslatePipe } from '../../../translate';
 @Component({
   selector: 'app-nuevo-user',
   templateUrl: './nuevo-user.component.html',
@@ -10,7 +12,7 @@ import { ModalService } from '../../../services/modal.service';
 export class NuevoUserComponent implements OnInit {
   users: Array<Usuario>;
   seguidos: number;
-  constructor(private alert: AlertService, private modal: ModalService) {
+  constructor(private alert: AlertService, private modal: ModalService, private translate: TranslateService) {
     this.seguidos=10;
     this.users = new Array<Usuario>();
     for(let i = 0; i< 10; i++) {
@@ -31,9 +33,9 @@ export class NuevoUserComponent implements OnInit {
 
   continue(){
     if(this.seguidos<5) {
-      this.alert.error('Debes seguir al menos a 5 usuarios');
+      this.alert.error(this.translate.instant('alert_home'));
     }else {
-      this.modal.info('¡Enhorabuena! Ya has empezado a crear tu comunidad');
+      this.modal.info(this.translate.instant('modal_home'));
     }
   }
 
@@ -41,7 +43,7 @@ export class NuevoUserComponent implements OnInit {
     this.seguidos--;
     user.seguido = false;
     if(this.seguidos<5) {
-      this.alert.warning('Debes seguir al menos a 5 usuarios');
+      this.alert.warning(this.translate.instant('alert_home'));
     }
   }
 

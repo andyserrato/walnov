@@ -1,35 +1,35 @@
 <div class="outside-container">
   <div class="d-flex flex-column">
     <div class="title">
-      ¡Esta será la zona de actividad reciente de los usuarios a los que sigas!
+      {{'home_reciente_bienvenida' | translate}}
     </div>
     <div class="container-title d-flex align-items-center justify-content-center section">
-      Empieza siguiendo al menos 5 usuarios de nuestra comunidad
+      {{'home_reciente_instrucciones' | translate}}
     </div>
     <div class="d-flex section">
       <div class="d-flex flex-column align-items-start full-width">
         <div class="title-label">
-          ¡Busca a tus amigos!
+          {{'home_reciente_instrucciones_2' | translate}}
         </div>
         <div class="custom-input d-flex justify-content-end align-items-center almost-full-width">
-          <input type="text" name="" value="" class="form-control" placeholder="Escribe su nombre de usuario">
+          <input type="text" name="" value="" class="form-control" placeholder="{{'home_reciente_placeholder' | translate}}">
           <span class="fa fa-search"></span>
         </div>
       </div>
       <div class="d-flex flex-column align-items-start half-width">
         <div class="title-label">
-          Ordenar
+          {{'home_reciente_select_header' | translate}}
         </div>
         <select class="form-control" name="">
-          <option value="relevantes">Más relevantes</option>
+          <option value="relevantes">{{'home_reciente_select_option_1' | translate}}</option>
         </select>
       </div>
     </div>
   </div>
   <div class="title-label section d-flex">
-    <span>Usuarios recomendados</span>
+    <span>{{'home_reciente_suggested_users' | translate}}</span>
     <div class="button d-flex align-items-center justify-content-center ml-auto" [ngClass]="{'button-disabled': this.seguidos < 5}" (click)="continue()">
-      Continuar
+      {{'home_reciente_button_1' | translate}}
     </div>
   </div>
   <div class="users d-flex flex-wrap align-items-center justify-content-center">

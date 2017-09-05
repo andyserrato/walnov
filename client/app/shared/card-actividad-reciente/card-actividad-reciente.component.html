@@ -6,8 +6,9 @@
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
               <span>{{this.entrada.usuario.nombre}}</span>
-              <span class="text-style-1">ha creado un nuevo</span>
-              <span [style.color] = 'getColor()'>Wall de {{this.entrada.cat.nombre}}</span>
+              <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Wall de {{this.entrada.cat.nombre}}</span>
+              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.cat.nombre}} Wall</span>
             </div>
           </div>
           <div class="d-flex flex-column ml-auto align-self-end" style="width:20%">
@@ -45,8 +46,9 @@
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
               <span>{{this.entrada.usuario.nombre}}</span>
-              <span class="text-style-1">ha creado un nuevo</span>
-              <span [style.color] = 'getColor()'>Relato de {{this.entrada.categoria}}</span>
+              <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Relato de {{this.entrada.categoria.nombre}}</span>
+              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre}} {{'all_relato_corto' | translate}}</span>
             </div>
           </div>
           <div class="d-flex flex-column ml-auto align-self-end" style="width:20%">
@@ -84,8 +86,9 @@
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
               <span>{{this.entrada.usuario.nombre}}</span>
-              <span class="text-style-1">ha creado un nuevo</span>
-              <span [style.color] = 'getColor()'>ChatStory de {{this.entrada.categoria.nombre}}</span>
+              <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>ChatStory de {{this.entrada.categoria.nombre}}</span>
+              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre}} ChatStory</span>
             </div>
           </div>
           <div class="d-flex flex-column ml-auto align-self-end" style="width:20%">
@@ -120,7 +123,7 @@
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
               <span>{{this.entrada.usuario.nombre}}</span>
-              <span class="text-style-1">ha creado una nueva Historia del Wall</span>
+              <span class="text-style-1">{{'home_reciente_creacion' | translate}} {{'home_reciente_creacion_historia' | translate}}</span>
               <span>'{{this.entrada.wall.titulo}}'</span>
             </div>
           </div>
@@ -159,7 +162,7 @@
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
               <span>{{this.entrada.usuario.nombre}}</span>
-              <span class="text-style-1">ha participado en el Wall</span>
+              <span class="text-style-1">{{'home_reciente_participacion' | translate}}</span>
               <span>'{{this.entrada.wall.titulo}}'</span>
             </div>
           </div>

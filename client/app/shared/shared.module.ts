@@ -14,6 +14,8 @@ import { CardWallRelevanteComponent } from './card-wall-relevante/card-wall-rele
 import { CardPublicidadComponent } from './card-publicidad/card-publicidad.component';
 import { CardBuscadorPersonasComponent } from './card-buscador-personas/card-buscador-personas.component';
 import { CardBuscadorContenidoComponent } from './card-buscador-contenido/card-buscador-contenido.component';
+import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from '../translate';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,7 +34,10 @@ import { CardBuscadorContenidoComponent } from './card-buscador-contenido/card-b
     MessageTimePipe,
     CardInfoPremiumComponent,
     CardBuscadorPersonasComponent,
-    CardBuscadorContenidoComponent
+    CardBuscadorContenidoComponent,
+    // TRANSLATION_PROVIDERS,
+    TranslatePipe,
+    // TranslateService
   ],
   declarations: [
     CardPublicidadComponent,
@@ -48,7 +53,13 @@ import { CardBuscadorContenidoComponent } from './card-buscador-contenido/card-b
     CardUsuarioTendenciaComponent,
     CardBuscadorPersonasComponent,
     CardBuscadorContenidoComponent,
-    CardBuscadorContenidoComponent
+    CardBuscadorContenidoComponent,
+    TranslatePipe
+  ],
+  providers: [
+    TRANSLATION_PROVIDERS,
+    TranslateService
+
   ]
 })
 

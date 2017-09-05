@@ -1,6 +1,6 @@
 <div class="card Rectangle-3-Copy-4 hidden-md-down">
   <div class="card-block">
-    <h4 class="Card-title">Walls más relevantes</h4>
+    <h4 class="Card-title">{{'shared_walls_relevantes' | translate}}</h4>
     <div *ngFor="let wall of walls">
       <div *ngIf = "wall.isRelevante">
         <div class="Rectangle-3" *ngIf = "wall.visible">
@@ -18,10 +18,10 @@
             {{wall.cat.nombre}}
           </div>
           <ul class="list-unstyled Estadisticas-Usuario">
-            <li>{{wall.participantes}} Participantes</li>
-            <li>{{wall.historias}} Historias</li>
+            <li>{{wall.participantes}} {{'all_participantes' | translate}}</li>
+            <li>{{wall.historias}} {{'all_historias' | translate}}</li>
           </ul>
-          <button type="button" class="btn-wall pull-right" name="button">Participar</button>
+          <button type="button" class="btn-wall pull-right" name="button">{{'all_participar' | translate}}</button>
         </div>
       </div>
     </div>
