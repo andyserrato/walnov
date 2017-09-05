@@ -4,7 +4,7 @@
       Walls
     </div>
     <div class="flange" (click)="changeView('relatos')" [ngClass]="{'flange-selected': this.view==='relatos'}">
-      Relatos
+      {{'all_relatos_cortos' | translate}}
     </div>
     <div class="flange" (click)="changeView('chatstories')" [ngClass]="{'flange-selected': this.view==='chatstories'}">
       Chatstories

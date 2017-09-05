@@ -1,6 +1,6 @@
 <div class="card Rectangle-3-Copy-4 hidden-md-down">
   <div class="card-block">
-    <h4 class="Card-title">Usuarios que son tendencia</h4>
+    <h4 class="Card-title">{{'shared_usuarios_tendencia' | translate}}</h4>
     <div  *ngFor="let usuario of usuarios">
       <div *ngIf="usuario.isTendencia">
         <div class="Rectangle-3" *ngIf="usuario.visible">
@@ -20,10 +20,10 @@
             <li>{{usuario.chatstories}} Chatstories</li>
             <div class="row">
               <div class="col-8">
-                <li>{{usuario.relatos}} Relatos cortos</li>
+                <li>{{usuario.relatos}} {{'all_relatos_cortos' | translate}}</li>
               </div>
               <div class="col-4">
-                <button type="button" class="btn-usuario" name="button">Seguir</button>
+                <button type="button" class="btn-usuario" name="button">{{'all_seguir' | translate}}</button>
               </div>
             </div>
           </ul>

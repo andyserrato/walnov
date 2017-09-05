@@ -30,12 +30,12 @@
     <div  #addButton class="d-flex flex-column">
       <button *ngIf= '!this.chatstory.added' type="button" class="Rectangle-7-Copy-4" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
         <div class="btn-details">
-          Añadir a la biblioteca
+          {{'chatstorie_add_biblioteca' | translate}}
         </div>
       </button>
       <button *ngIf= 'this.chatstory.added' type="button" class="Rectangle-7-Copy-4-2" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
         <div class="btn-details-2">
-          Añadido
+          {{'chatstorie_added_biblioteca' | translate}}
         </div>
       </button>
     </div>

@@ -1,6 +1,7 @@
 import { Pipe, ChangeDetectorRef, PipeTransform } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AsyncPipe} from '@angular/common';
+import {TranslateService} from '../../translate';
 
 @Pipe({
     name: 'messageTime',
@@ -11,7 +12,7 @@ export class MessageTimePipe extends AsyncPipe
     value:Date;
     timer:Observable<string>;
 
-    constructor(ref:ChangeDetectorRef)
+    constructor(ref:ChangeDetectorRef, private translate: TranslateService)
     {
         super(ref);
     }
@@ -47,23 +48,28 @@ export class MessageTimePipe extends AsyncPipe
             // format string
             if (delta < 10)
             {
-                result = 'Ahora mismo';
+                if(this.translate.currentLang === 'en') result = 'Right now';
+                else if (this.translate.currentLang === 'es') result = 'Ahora mismo'
             }
             else if (delta < 60)
             { // sent in last minute
-                result = 'hace ' + Math.floor(delta) + ' segundos';
+                if(this.translate.currentLang === 'en') result = Math.floor(delta) + ' seconds ago';
+                else if (this.translate.currentLang === 'es') result = 'hace ' + Math.floor(delta) + ' segundos';
             }
             else if (delta < 3600)
             { // sent in last hour
-                result = 'hace ' + Math.floor(delta / 60) + ' minutos';
+                if(this.translate.currentLang === 'en') result = Math.floor(delta / 60) + ' minutes ago';
+                else if (this.translate.currentLang === 'es') result = 'hace ' + Math.floor(delta / 60) + ' minutos';
             }
             else if (delta < 86400)
             { // sent on last day
-                result = 'hace ' + Math.floor(delta / 3600) + ' horas';
+                if(this.translate.currentLang === 'en') result = Math.floor(delta / 3600) + ' hours ago';
+                else if (this.translate.currentLang === 'es') result = 'hace ' + Math.floor(delta / 3600) + ' horas';
             }
             else
             { // sent more than one day ago
-                result = 'hace ' + Math.floor(delta / 86400) + ' días';
+                if(this.translate.currentLang === 'en') result = Math.floor(delta / 86400) + ' days ago';
+                else if (this.translate.currentLang === 'es') result = 'hace ' + Math.floor(delta / 86400) + ' días';
             }
             return result;
         });

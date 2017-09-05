@@ -8,10 +8,10 @@
   <div class="inside-info d-flex flex-column align-items-center">
     <span class="info">{{this.user.walls}} Walls</span>
     <span class="info">{{this.user.chatstories}} Chatstories</span>
-    <span class="info">{{this.user.relatos}} Relatos cortos</span>
+    <span class="info">{{this.user.relatos}} {{'all_relatos_cortos' | translate}}</span>
   </div>
   <div class="follow d-flex align-items-center justify-content-center" [ngClass]="{'selected': this.seguido}" (click)="this.seguido = !this.seguido" (click)="follow()">
-    <span *ngIf="this.seguido"><span class="fa fa-check"></span> Siguiendo</span>
-    <span *ngIf="!this.seguido">Seguir</span>
+    <span *ngIf="this.seguido"><span class="fa fa-check"></span> {{'all_siguiendo' | translate}}</span>
+    <span *ngIf="!this.seguido">{{'all_seguir' | translate}}</span>
   </div>
 </div>
