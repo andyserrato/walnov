@@ -34,7 +34,7 @@ export const LANG_EN_TRANS = {
 
   //todo
   'all_relatos_cortos': 'Short stories',
-  'all_relato_corto' : 'Short storie',
+  'all_relato_corto' : 'Short story',
   'all_siguiendo': 'Following',
   'all_seguir': 'Folllow',
   'all_participantes': 'Participants',

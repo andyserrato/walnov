@@ -15,7 +15,7 @@
             </button>
           </div>
           <div class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(wall)' [style.color] = 'getColor(wall)'>
-            {{wall.cat.nombre}}
+            {{wall.cat.nombre | translate}}
           </div>
           <ul class="list-unstyled Estadisticas-Usuario">
             <li>{{wall.participantes}} {{'all_participantes' | translate}}</li>
