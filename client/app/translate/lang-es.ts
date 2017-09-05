@@ -77,6 +77,12 @@ export const LANG_ES_TRANS = {
   //chatstories
   'chatstorie_add_biblioteca': 'Añadir a la biblioteca',
   'chatstorie_added_biblioteca': 'Añadido',
+  'chatstories_biblioteca_buscador': 'Mi biblioteca de Chatstories',
+  'chatstories_biblioteca_buscador_2': '¡Bien hecho!',
+  'chatstories_biblioteca_buscador_3': 'Has añadido un chatstory a tu biblioteca',
+  'chatstories_biblioteca_buscador_4': '¡Puedes añadir más!',
+  'chatstories_biblioteca_buscador_5': 'Añade a tu biblioteca los Chatstories que más te gusten para leerlos a tu ritmo',
+  'chatstories_biblioteca_buscador_6': 'Ir a la biblioteca',
 
 
 
