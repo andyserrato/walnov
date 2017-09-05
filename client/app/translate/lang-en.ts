@@ -42,6 +42,9 @@ export const LANG_EN_TRANS = {
   'all_participar': 'Take part',
   'all_guardar': 'Save',
   'all_guardado': 'Saved',
+  'all_categorias': 'Categories',
+  'all_todas': 'All',
+
 
   //categorias
   'categoria_accion': 'Action',
