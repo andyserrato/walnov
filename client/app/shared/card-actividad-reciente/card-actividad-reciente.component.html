@@ -7,8 +7,8 @@
             <div class="Contenido-Copy">
               <span>{{this.entrada.usuario.nombre}}</span>
               <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
-              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Wall de {{this.entrada.cat.nombre}}</span>
-              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.cat.nombre}} Wall</span>
+              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Wall de {{this.entrada.cat.nombre | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.cat.nombre | translate}} Wall</span>
             </div>
           </div>
           <div class="d-flex flex-column ml-auto align-self-end" style="width:20%">
@@ -47,8 +47,8 @@
             <div class="Contenido-Copy">
               <span>{{this.entrada.usuario.nombre}}</span>
               <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
-              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Relato de {{this.entrada.categoria.nombre}}</span>
-              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre}} {{'all_relato_corto' | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Relato de {{this.entrada.categoria.nombre | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre | translate}} {{'all_relato_corto' | translate}}</span>
             </div>
           </div>
           <div class="d-flex flex-column ml-auto align-self-end" style="width:20%">
@@ -87,8 +87,8 @@
             <div class="Contenido-Copy">
               <span>{{this.entrada.usuario.nombre}}</span>
               <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
-              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>ChatStory de {{this.entrada.categoria.nombre}}</span>
-              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre}} ChatStory</span>
+              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Chatstory de {{this.entrada.categoria.nombre | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre | translate}} Chatstory</span>
             </div>
           </div>
           <div class="d-flex flex-column ml-auto align-self-end" style="width:20%">
