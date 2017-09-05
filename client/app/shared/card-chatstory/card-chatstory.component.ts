@@ -29,7 +29,15 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   getColor() {
-    return this.repositorio.categoriasHM.get(this.chatstory.categoria).color;
+    console.log(this.chatstory);
+    if(this.repositorio.categoriasHM.get(this.chatstory.categoria)){
+      return this.repositorio.categoriasHM.get(this.chatstory.categoria).color;
+    }else{
+      return 'blue';
+    }
+
+    // console.log(this.repositorio.categoriasHM.get(this.chatstory.categoria).color);
+    // return this.repositorio.categoriasHM.get(this.chatstory.categoria).color;
 
   }
 
