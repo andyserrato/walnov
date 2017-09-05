@@ -18,7 +18,7 @@ export class TranslateService {
         this._currentLang = lang;
     }
 
-    private translate(key: string): string {
+    public translate(key: string): string {
         // private perform translation
         let translation = key;
 

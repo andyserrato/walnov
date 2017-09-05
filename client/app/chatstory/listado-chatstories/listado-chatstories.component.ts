@@ -6,6 +6,7 @@ import { Paginator } from '../../models/paginador';
 import { ChatstoryService } from '../../services/chatstory.service';
 import { ModalService } from '../../services/modal.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { TranslateService } from '../../translate/translate.service';
 
 @Component({
   selector: 'app-listado-chatstories',
@@ -20,7 +21,8 @@ export class ListadoChatstoriesComponent implements OnInit {
   constructor(private repositorio: RepositorioService,
               private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
-              private modalservice: ModalService) {
+              private modalservice: ModalService,
+              private translateService: TranslateService) {
 
   }
 
@@ -53,7 +55,7 @@ export class ListadoChatstoriesComponent implements OnInit {
       this.chatStoriesFiltrados = this.repositorio.chatstories;
       // console.log(this.repositorio.paginadorCardsChatstories);
     } else {
-      this.chatStoriesFiltrados = this.repositorio.chatstories.filter(ChatStory => ChatStory.categoria === this.categoria.nombre);
+      this.chatStoriesFiltrados = this.repositorio.chatstories.filter(ChatStory => this.translateService.translate(ChatStory.categoria) === this.translateService.translate(this.categoria.nombre));
     }
     this.repositorio.paginadorCardsChatstories.rellenar(this.chatStoriesFiltrados);
     // console.log(this.repositorio.paginadorCardsChatstories)
