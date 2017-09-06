@@ -10,7 +10,7 @@ import { LANG_BIN_NAME, LANG_BIN_TRANS } from './lang-binario';
 export const TRANSLATIONS = new OpaqueToken('translations');
 
 // all translations
-const dictionary = {
+export const dictionary = {
     [LANG_EN_NAME]: LANG_EN_TRANS,
     [LANG_ES_NAME]: LANG_ES_TRANS,
     [LANG_BIN_NAME]: LANG_BIN_TRANS,

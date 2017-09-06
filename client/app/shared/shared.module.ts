@@ -14,7 +14,10 @@ import { CardWallRelevanteComponent } from './card-wall-relevante/card-wall-rele
 import { CardPublicidadComponent } from './card-publicidad/card-publicidad.component';
 import { CardBuscadorPersonasComponent } from './card-buscador-personas/card-buscador-personas.component';
 import { CardBuscadorContenidoComponent } from './card-buscador-contenido/card-buscador-contenido.component';
-import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from '../translate';
+// import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from '../translate';
+import {TRANSLATION_PROVIDERS} from '../translate/translations';
+import {TranslatePipe} from '../translate/translate.pipe';
+import {TranslateService} from '../translate/translate.service';
 
 @NgModule({
   imports: [

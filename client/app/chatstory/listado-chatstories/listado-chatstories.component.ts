@@ -17,7 +17,7 @@ export class ListadoChatstoriesComponent implements OnInit {
   categoria: Categoria;
   chatStoriesFiltrados: Array<ChatStory>;
   filtradosVacio = true;
-  skip: number = 0;
+  skip: number = 0;ç
   constructor(private repositorio: RepositorioService,
               private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
