@@ -22,6 +22,7 @@ export class BuscadorRelatosComponent implements OnInit {
 
   changeCategory(event: Categoria) {
     this.categoria = event;
+
     if(this.categoria === null) {
       this.relatosFiltrados = this.repositorio.relatos;
       //console.log(this.repositorio.paginadorCardsChatstories);
@@ -29,6 +30,7 @@ export class BuscadorRelatosComponent implements OnInit {
     else {
       this.relatosFiltrados = this.repositorio.relatos.filter(Relato => Relato.categoria.nombre === this.categoria.nombre);
     }
+
     this.repositorio.paginadorCardsRelatos.rellenar(this.relatosFiltrados);
     //console.log(this.repositorio.paginadorCardsChatstories)
   }
