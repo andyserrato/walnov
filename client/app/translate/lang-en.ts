@@ -144,9 +144,6 @@ export const LANG_EN_TRANS = {
   'mis_chatstories_message_2': 'what are you waiting for?',
   'mis_chatstories_fecha': 'Last update',
 
-
-
-
   //card-informativo
   'card_info_entendido': 'Got it',
   'card_info_instr': 'Start by choosing a title and a category.',
@@ -166,6 +163,14 @@ export const LANG_EN_TRANS = {
   'forms_verificar': 'Verify me',
   'forms_cancelar': 'Cancel',
   'forms_hecho': 'Done',
+
+  //user-profile
+  'user_profile_conectar': 'Connect',
+  'user_profile_message': 'Send message',
+  'user_profile_seguidores': 'Followers',
+  'user_profile_todos': 'See all',
+  'user_profile_apoyar': 'Support',
+  'user_profile_apoyar_message': 'to write more and better',
 
 
 

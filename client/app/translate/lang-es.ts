@@ -164,6 +164,13 @@ export const LANG_ES_TRANS = {
   'forms_cancelar': 'Cancelar',
   'forms_hecho': 'Hecho',
 
+  //user-profile
+  'user_profile_conectar': 'Conectar',
+  'user_profile_message': 'Enviar mensaje',
+  'user_profile_seguidores': 'Seguidores',
+  'user_profile_todos': 'Ver todos',
+  'user_profile_apoyar': 'Apoya a',
+  'user_profile_apoyar_message': 'a escibir más y mejor',
 
 
 
