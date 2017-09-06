@@ -3,14 +3,14 @@
     <div class="col-12 no-padding">
       <div class="info-box">
         <span class="fa fa-check-circle"></span>
-        ¡Enhorabuena, eres un usuario verficado!
+        {{'shared_verify_user_upload' | translate}}
       </div>
     </div>
   </div>
   <div class="row row-margin-top-2">
     <div class="col-12 no-padding-margin">
       <span class="fixed-title">
-        Cargar imagen
+        {{'shared_image_picker_upload_2' | translate}}
       </span>
     </div>
   </div>
@@ -27,7 +27,7 @@
             <div class="pull-right">
               <label for="file-picker">
                 <div class="btn-cancelar btn-subir">
-                  Busca en tu ordenador
+                  {{'shared_verify_user_browse' | translate}}
                 </div>
 
                 <input id="file-picker" class="file-input" type="file" name="" value="" (change)="handleFileUpload($event, filePlaceholder)">
@@ -43,14 +43,14 @@
   <div class="row row-margin-top-1">
     <div class="col-4 no-padding-margin">
       <span class="info-text">
-        Formato JPG - Tamaño mínimo 1200x1600px
+        {{'shared_verify_user_restrictions' | translate}} 1200x1600px
       </span>
     </div>
   </div>
   <div class="row row-margin-top">
     <div class="col no-padding">
-      <div class="btn-hecho margin-left pull-right" (click)="upload()">Hecho</div>
-      <div class="btn-cancelar pull-right" (click)="cancel()">Cancelar</div>
+      <div class="btn-hecho margin-left pull-right" (click)="upload()">{{'forms_hecho' | translate}}</div>
+      <div class="btn-cancelar pull-right" (click)="cancel()">{{'forms_cancelar' | translate}}</div>
 
     </div>
   </div>

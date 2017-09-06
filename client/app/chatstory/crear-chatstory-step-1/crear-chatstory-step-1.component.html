@@ -1,19 +1,19 @@
-  <span class="fixed-title">Creación de Chatstories - <b>Paso 1/2</b></span>
+  <span class="fixed-title">{{'chatstories_creacion_header' | translate}} - <b>{{'chatstories_creacion_step' | translate}} 1/2</b></span>
   <div class="row row-margin-top">
     <div class="col-8">
-      <span class="fixed-title-2"><b>Nombre del ChatStroy</b></span>
+      <span class="fixed-title-2"><b>{{'chatstories_creacion_name' | translate}}</b></span>
 
     </div>
     <div class="col-4">
-      <span class="fixed-title-2"><b>Categoría</b></span>
+      <span class="fixed-title-2"><b>{{'all_categoria' | translate}}</b></span>
 
     </div>
   </div>
 
   <div class="row" >
     <div class="col-8">
-      <input  (change)="validateField($event,'title')" [(ngModel)]="chatStory.titulo" [ngClass]="{'input-invalid': this.validate['title']}" maxlength="48" class="form-control" type="text" name=""  placeholder="Da un nombre a tu Chatstory">
-      <span class="text-invalid" *ngIf="this.validate['title']">Escribe un titulo</span>
+      <input  (change)="validateField($event,'title')" [(ngModel)]="chatStory.titulo" [ngClass]="{'input-invalid': this.validate['title']}" maxlength="48" class="form-control" type="text" name=""  placeholder="{{'chatstories_creacion_name_placeholder' | translate}}">
+      <span class="text-invalid" *ngIf="this.validate['title']">{{'chatstories_creacion_validate' | translate}}</span>
     </div>
     <div class="col-4">
       <select class="form-control" [(ngModel)]="this.chatStory.categoria">
@@ -28,9 +28,9 @@
           <app-image-picker [white]="true" (imageUploaded)="changeImage($event)"></app-image-picker>
         </div>
         <div class="description-box">
-          <span class="fixed-title-2"><b>Descripción</b></span>
-          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="Cuéntanos de qué va tu ChatStory" [(ngModel)]="this.chatStory.descripcion" [ngClass]="{'input-invalid': this.validate['description']}" (change)="validateField($event,'description')"></textarea>
-          <span class="text-invalid" *ngIf="this.validate['description']">Escribe una descripcion</span>
+          <span class="fixed-title-2"><b>{{'chatstories_creacion_descripcion' | translate}}</b></span>
+          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="{{'chatstories_creacion_descripcion_placeholder' | translate}}" [(ngModel)]="this.chatStory.descripcion" [ngClass]="{'input-invalid': this.validate['description']}" (change)="validateField($event,'description')"></textarea>
+          <span class="text-invalid" *ngIf="this.validate['description']">{{'chatstories_creacion_validate_2' | translate}}</span>
         </div>
       </div>
 
@@ -41,18 +41,18 @@
     <div class="col-12 no-padding">
 
         <div class="row no-padding">
-          <span class="fixed-title-2"><b>Creador de personajes</b></span>
+          <span class="fixed-title-2"><b>{{'chatstories_creacion_personajes' | translate}}</b></span>
         </div>
         <div class="no-padding row">
           <div class="col-6 input-character">
-            <input maxlength="15" #personaje class="form-control col-10" type="text" placeholder="Nombre del personaje" (keydown.enter)="newPersonaje(personaje)">
+            <input maxlength="15" #personaje class="form-control col-10" type="text" placeholder="{{'chatstories_creacion_personajes_placeholder' | translate}}" (keydown.enter)="newPersonaje(personaje)">
             <span class="fa fa-plus-circle pull-right offset-1 col-1 plus-character" (click)="newPersonaje(personaje)"></span>
           </div>
           <div class="col-6 form-inline"  *ngIf="isUsuarioTipoPartner()">
             <label class="form-check-label pull-right form-right" (click)="toggleExclusive()">
               <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" [checked]="this.chatStory.exclusivo" (change)="this.chatStory.exclusivo = !this.chatStory.exclusivo">
               <div class="radio"></div>
-              <span class="radio-text">Chatstory Exclusivo</span>
+              <span class="radio-text">{{'chatstories_creacion_exclusivo' | translate}}</span>
             </label>
           </div>
         </div>
@@ -63,12 +63,12 @@
   <div class="row no-padding row-margin-top">
     <div class="col-9 relative">
       <span class="pull-right vertical-center">
-        Ya tenemos la base de tu Chatstory ¡Hora de escribir!
+        {{'chatstories_creacion_footer' | translate}}
       </span>
     </div>
     <div class="col-3 no-padding">
       <div class="btn-hecho pull-right" (click)="nextStep(titulo)">
-        Siguiente paso
+        {{'chatstories_creacion_next' | translate}}
       </div>
     </div>
   </div>

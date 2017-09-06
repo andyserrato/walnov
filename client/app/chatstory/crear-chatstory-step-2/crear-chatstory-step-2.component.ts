@@ -5,6 +5,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 import {AlertService} from '../../services/alert.service';
 import {ModalService} from '../../services/modal.service';
 import {RepositorioService} from '../../services/repositorio.service';
+import { TranslateService } from '../../translate';
 @Component({
   selector: 'app-crear-chatstory-step-2',
   templateUrl: './crear-chatstory-step-2.component.html',
@@ -24,6 +25,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   constructor(private chatStoryService: ChatstoryService,
               private auth: AuthenticationService,
               private alert: AlertService,
+              private translate: TranslateService,
               private modalService: ModalService,
               private repo: RepositorioService) {
     this.back = new EventEmitter<any>();
@@ -54,7 +56,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
       this.message = new ChatstoryMessage(character.value, '');
       this.editing = false;
       input.value = '';
-      this.imgPlaceholder.nativeElement.innerHTML = 'Añadir Imagen';
+      this.imgPlaceholder.nativeElement.innerHTML = this.translate.instant('chatstories_creacion_add_image');
       this.textArea.nativeElement.focus();
     }
 
@@ -63,7 +65,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   forceNewMessage() {
     this.message = new ChatstoryMessage();
     this.editing = false;
-    this.imgPlaceholder.nativeElement.innerHTML = 'Añadir Imagen';
+    this.imgPlaceholder.nativeElement.innerHTML = this.translate.instant('chatstories_creacion_add_image');
   }
 
   deleteMessage() {
@@ -79,7 +81,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   loadMessage(m: ChatstoryMessage) {
     this.message = m;
     this.editing = true;
-    this.imgPlaceholder.nativeElement.innerHTML = 'Cambiar Imagen';
+    this.imgPlaceholder.nativeElement.innerHTML = this.translate.instant('shared_image_picker_changeimage') + '' + this.translate.instant('shared_image_picker_changeimage_2');
   }
 
   getBack() {
@@ -103,7 +105,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   deleteImage(event) {
-    this.imgPlaceholder.nativeElement.innerHTML = 'Añadir Imagen';
+    this.imgPlaceholder.nativeElement.innerHTML = this.translate.instant('chatstories_creacion_add_image');
     event.value = '';
     this.message.urlImagen = '';
   }
@@ -111,10 +113,10 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   publicarChatStory() {
     // comprobamos que el chatstory al menos posee 5 chats
     if (this.chatStory.tipo === 0) {
-      this.alert.warning('El ChatStory ya se encuentra publicado');
+      this.alert.warning(this.translate.instant('alert_chatstory_existente'));
       this.alert.clearTimeOutAlert();
     } else if (this.chatStory.chats.length < 5) {
-      this.alert.warning('El ChatStory debe contener al menos 5 chats para poder ser publicado');
+      this.alert.warning(this.translate.instant('alert_chatstory_requisitos'));
       this.alert.clearTimeOutAlert();
     } else if (!this.chatStory.tipo) { //  borrador
       // set flag de publicado
@@ -129,9 +131,9 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
       // guardar
       this.chatStoryService.addChatStory(chatStoryFulero).subscribe( chatStorySaved => {
         const chatStoryUrl = '/chatstory/' + chatStorySaved.id;
-        this.modalService.share('¡ChatStory publicado con éxito!', chatStoryUrl);
+        this.modalService.share(this.translate.instant('modal_chatstory_posted'), chatStoryUrl);
       }, error => {
-        this.alert.error('Ha ocurrido un error al intentar insertar unChatStory');
+        this.alert.error(this.translate.instant('alert_chatstory_insercion'));
         this.alert.clearTimeOutAlert();
       } );
     } else if (this.chatStory.tipo === 1) {
@@ -140,9 +142,9 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
       chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
       this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe( chatStorySaved => {
         const chatStoryUrl = '/chatstory/' + this.chatStory.id;
-        this.modalService.share('¡ChatStory publicado con éxito!', chatStoryUrl);
+        this.modalService.share(this.translate.instant('modal_chatstory_posted'), chatStoryUrl);
       }, error => {
-        this.alert.error('Ha ocurrido un error al intentar insertar unChatStory');
+        this.alert.error(this.translate.instant('alert_chatstory_insercion'));
         this.alert.clearTimeOutAlert();
       } );
     }
@@ -150,10 +152,10 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
 
   guardarComoBorradorChatStory() {
     if (this.chatStory.tipo === 0) {
-      this.alert.warning('El ChatStory ya se encuentra publicado');
+      this.alert.warning(this.translate.instant('alert_chatstory_existente'));
       this.alert.clearTimeOutAlert();
     } else if (this.chatStory.chats.length < 5) {
-      this.alert.warning('El ChatStory debe contener al menos 5 chats para poder ser publicado');
+      this.alert.warning(this.translate.instant('alert_chatstory_requisitos'));
       this.alert.clearTimeOutAlert();
     } else if (!this.chatStory.tipo && this.chatStory.tipo !== 0) {
       console.log('Uno nuevo');
@@ -171,18 +173,18 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
         this.chatStory = chatStorySaved;
         this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
         this.chatStory.categoria.selected = true;
-        this.alert.success('se ha guardado como borrador');
+        this.alert.success(this.translate.instant('alert_chatstory_borrador'));
         this.alert.clearTimeOutAlert();
-      }, error => this.alert.error('Ha ocurrido un error al intentar insertar unChatStory'));
+      }, error => this.alert.error(this.translate.instant('alert_chatstory_insercion')));
     } else if (this.chatStory.tipo && this.chatStory.tipo === 1) {
       const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
       chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
       this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe(chatStorySaved => {
         this.chatStory = chatStorySaved;
         this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
-        this.alert.success('se ha actualizado tu borrador');
+        this.alert.success(this.translate.instant('alert_chatstory_borrador_updt'));
         this.alert.clearTimeOutAlert();
-      }, error => this.alert.error('Ha ocurrido un error al intentar insertar unChatStory'));
+      }, error => this.alert.error(this.translate.instant('alert_chatstory_insercion')));
     }
 
   }
