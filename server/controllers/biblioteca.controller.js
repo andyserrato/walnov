@@ -39,8 +39,7 @@ function getBibliotecas(req, res) {
 
 function getBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
-
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, 'id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -54,7 +53,9 @@ function getBibliotecaByUserId(req, res) {
   var findBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.find(query, function (err, biblioteca) {
+    Biblioteca.find(query)
+      .populate('walls chatstories relatos')
+      .exec(function (err, biblioteca) {
       if (err) {
         res.status(400).send("Ha ocurrido un error");
       }
@@ -68,7 +69,7 @@ function getBibliotecaByUserId(req, res) {
 function getChatStoriesOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
 
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -81,8 +82,10 @@ function getChatStoriesOnBibliotecaByUserId(req, res) {
 
   var findChatStoriesBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
-
-    Biblioteca.find(query, '_id usuario chatStories', function (err, biblioteca) {
+    Biblioteca.find(query)
+      .select('_id usuario chatStories')
+      .populate('chatStories')
+      .exec(function (err, biblioteca) {
       if (err) {
         res.status(400).send("Ha ocurrido un error");
       }
@@ -97,7 +100,7 @@ function addChatStoryOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
   let chatStoryId = req.body.id;
 
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -151,7 +154,7 @@ function deleteChatStoryOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
   let chatStoryId = req.body.id;
 
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -190,7 +193,7 @@ function deleteChatStoryOnBibliotecaByUserId(req, res) {
 function getWallsOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
 
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -220,7 +223,7 @@ function addWallOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
   let wallId = req.body.id;
 
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -273,7 +276,7 @@ function deleteWallOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
   let wallId = req.body.id;
 
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -311,7 +314,7 @@ function deleteWallOnBibliotecaByUserId(req, res) {
 function getRelatosOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
 
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -340,7 +343,7 @@ function addRelatoOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
   let relatoId = req.body.id;
 
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
@@ -392,7 +395,7 @@ function deleteRelatoOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
   let relatoId = req.body.id;
 
-  User.findOne({id: usuarioId}, '_id', function (err, userId) {
+  User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
     }
