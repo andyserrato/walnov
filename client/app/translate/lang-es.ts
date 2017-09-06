@@ -84,7 +84,15 @@ export const LANG_ES_TRANS = {
   'chatstories_biblioteca_buscador_5': 'Añade a tu biblioteca los Chatstories que más te gusten para leerlos a tu ritmo',
   'chatstories_biblioteca_buscador_6': 'Ir a la biblioteca',
 
-
+  //card-informativo
+  'card_info_entendido': 'Entendido',
+  'card_info_instr': 'Comienza añadiendo el título y seleccionando una categoría.',
+  'card_info_title': '¡Estás creando un',
+  'card_info_instr_wall': 'Selecciona la imagen que más te guste y escribe el inicio de historia.',
+  'card_info_instr_chat': 'Selecciona la imagen que más te guste y crea a tus personajes.',
+  'card_info_instr_chat_2': 'Cuando ya tengas a tus personajes creados es hora de crear sus diálogos, ¡Dales vida!',
+  'card_info_instr_relato': 'Selecciona la imagen que más te guste y empieza a escribir tu relato',
+  'card_info_instr_2': '¡No olvides invitar a tus amigos y compartirlo en tus redes sociales!',
 
 
 

@@ -79,6 +79,21 @@ export const LANG_EN_TRANS = {
   'chatstories_biblioteca_buscador_3': 'Chatstory added to your library',
   'chatstories_biblioteca_buscador_4': 'Try to add more!',
   'chatstories_biblioteca_buscador_5': 'Add to your library your favourite Chatstories and enjoy them anytime',
-  'chatstories_biblioteca_buscador_6': 'Go to my Library'
-  
+  'chatstories_biblioteca_buscador_6': 'Go to my Library',
+
+  //card-informativo
+  'card_info_entendido': 'Got it',
+  'card_info_instr': 'Start by choosing a title and a category.',
+  'card_info_title': 'You are writing a',
+  'card_info_instr_wall': 'Choose a picture and write the beginning of your story.',
+  'card_info_instr_chat': 'Choose a picture and bring your characters to life.',
+  'card_info_instr_chat_2': 'If they are ready let’s write the conversation. Make it interesting!',
+  'card_info_instr_relato': 'Choose a picture and write your Short story. Let’s go!',
+  'card_info_instr_2': 'Don’t forget to tell your friends and share your content on the social media!',
+
+
+
+
+
+
 };
