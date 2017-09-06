@@ -18,13 +18,13 @@ export class CardRelatosPaginadorComponent implements OnInit {
 
   ngOnInit() {
 
-    for(let i=0; i<25; i++) {
-      for(let j=0; j<10; j++) {
+    //for(let i=0; i<25; i++) {
+      for(let j=0; j<100; j++) {
         let nuevoRL = new Relato();
 
 
-         nuevoRL.categoria = this.repositorio.categoriasAL[j];
-         nuevoRL.titulo = "Hola" + i;
+         nuevoRL.categoria = this.repositorio.categoriasAL[0];
+         nuevoRL.titulo = "Hola" + j;
          nuevoRL.imagen_url = "https://lorempixel.com/158/129";
          nuevoRL.coments = 200324;
          nuevoRL.resumen = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. ";
@@ -35,7 +35,7 @@ export class CardRelatosPaginadorComponent implements OnInit {
          nuevoRL.usuario.imagen = "https://lorempixel.com/22/22";
          this.repositorio.relatos.push(nuevoRL);
       }
-    }
+    //}
 
     this.repositorio.paginadorCardsRelatos = new Paginator(this.relatosFiltrados, this.contenedorBiblioteca, 12, 6);
 
