@@ -89,12 +89,22 @@ export class CardMiBibliotecaComponent implements OnInit {
   }
 
   getBorder(chatstory: ChatStory) {
-    return 'solid 1.5px '+ this.repositorio.categoriasHM.get(chatstory.categoria).color;
+    if(this.repositorio.categoriasHM.get(chatstory.categoria)){
+      return 'solid 1.5px '+ this.repositorio.categoriasHM.get(chatstory.categoria).color;
+    }else{
+      return 'solid 1.5px '+ this.repositorio.categoriasAL[1].color;
+    }
+
 
   }
 
   getColor(chatstory: ChatStory) {
-    return this.repositorio.categoriasHM.get(chatstory.categoria).color;
+    if(this.repositorio.categoriasHM.get(chatstory.categoria)){
+      return this.repositorio.categoriasHM.get(chatstory.categoria).color;
+    }else{
+      return this.repositorio.categoriasAL[1].color;
+    }
+
 
   }
 

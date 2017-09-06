@@ -34,6 +34,16 @@ export class HomeMisChatstoriesComponent implements OnInit {
     this.modalservice.load();
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
+      this.chats.sort((a: any, b:any)=>{
+        let titA = a.titulo.toLowerCase().replace(' ',''), titB = b.titulo.toLowerCase().replace(' ','');
+        if(a.titulo < b.titulo){
+          return -1;
+        }else if(a.titulo > b.titulo){
+          return 1;
+        }else{
+          return 0;
+        }
+      });
       this.paginador = new Paginator(this.chats, this.div, 18, 9);
       this.modalservice.clear();
       this.visible = true;
