@@ -17,9 +17,9 @@ router.post('/', crearChatStory);
 router.get('/', getChatStories);
 
 router.get('/:id', getChatStoryById);
+router.put('/like', updateLike);
 router.put('/:id', updateChatStory);
 
-router.put('/like', updateLike);
 router.put('/:id/compartido', updateCompartido);
 router.put('/:id/visitas', updateVisitas);
 
@@ -298,9 +298,10 @@ function updateCompartido(req, res) {
 }
 
 function updateLike(req, res) {
+  console.log('updateLikeServer');
   let id = req.body.chatStoryId;
   let idUsuario = req.body.usuarioId;
-
+  console.log(req.body);
   ChatStory.findById(id)
     .populate('estadistica autor')
     .exec(function (err, chatStory) {

@@ -103,6 +103,7 @@ label{
   font-weight: bold;
   text-align: center;
   color: $grey-1;
+  user-select: none;
 }
 
 .btn-hecho:hover{
@@ -137,7 +138,7 @@ option {
   padding: .1em .3em;
   border-radius: 5px;
   &:hover{
-    background-color: white;
+    
     cursor: pointer;
   }
 }

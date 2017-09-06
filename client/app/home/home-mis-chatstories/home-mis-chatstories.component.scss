@@ -18,6 +18,10 @@
   display: none;
 }
 
+.hidden{
+  display:none;
+}
+
 .empty-title{
   font-family:Raleway;
   font-size: 1.5em;
@@ -30,4 +34,13 @@
       text-decoration: underline;
     }
   }
+}
+
+.load-more-button{
+  color: black;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
 }

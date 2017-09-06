@@ -17,7 +17,7 @@
     </div>
     <div class="col-4">
       <select class="form-control" [(ngModel)]="this.chatStory.categoria">
-        <option *ngFor="let categoria of this.categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
+        <option *ngFor="let categoria of this.categorias" [ngValue]="categoria">{{ categoria.nombre | translate}}</option>
       </select>
     </div>
   </div>

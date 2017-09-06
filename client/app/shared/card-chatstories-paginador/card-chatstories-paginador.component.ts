@@ -15,6 +15,7 @@ export class CardChatstoriesPaginadorComponent implements OnInit {
   @Input() chatStoriesFiltrados: Array<ChatStory>;
   @Input() categoria: Categoria;
   filtradosVacio = true;
+  @Output() more: EventEmitter<any> = new EventEmitter<any>();;
   // chatstories: Array<ChatStory>;
   paginador = null;
   chatst1: ChatStory;
@@ -82,5 +83,10 @@ export class CardChatstoriesPaginadorComponent implements OnInit {
 
   getBackgroundImage() {
     return 'linear-gradient(to bottom,' + this.categoria.opacidad + ',' + this.categoria.color + ')';
+  }
+
+  loadMore() {
+    this.more.emit();
+    
   }
 }

@@ -12,6 +12,9 @@
   //background-color: #ffffff;
   background-color: $grey-1;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  &:hover {
+    background-color: $grey-3;
+  }
 }
 
 .Chat-Image {
@@ -74,6 +77,9 @@
   border: solid 1px $main-1;
   // position: absolute;
   // bottom: 20px;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 button {
@@ -103,6 +109,9 @@ button {
   background-color: $main-1;
   // position: absolute;
   // bottom: 20px;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .btn-details-2 {
@@ -133,7 +142,9 @@ button {
   font-weight: 300;
   text-align: center;
   color: $grey-6;
-
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .fa-eye {
@@ -146,4 +157,8 @@ button {
   margin-top: 3px;
   margin-right: 5px;
   color: $grey-6;
+}
+
+.fa-heart{
+  color:red;
 }

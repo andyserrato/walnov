@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ChatStory } from '../models/chatstory.model';
 import { Observable } from 'rxjs/Rx';
-
+import { AuthenticationService } from './authentication.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -11,7 +11,8 @@ export class ChatstoryService {
 
   private chatStoriesUrl = '/apiv1/chatstories';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private auth: AuthenticationService) { }
 
   getChatStories(): Observable<ChatStory[]> {
     return this.http.get(this.chatStoriesUrl)
@@ -22,7 +23,12 @@ export class ChatstoryService {
   getChatStory(id: any): Observable<any> {
     console.log('Inicio getChatStory');
     console.log(this.chatStoriesUrl + id);
-    return this.http.get(this.chatStoriesUrl + '/' + id)
+    let query = this.chatStoriesUrl + '/' + id;
+    if(this.auth.isLoggedIn()) {
+      query+="?usuarioId="+this.auth.getUser().id;
+      console.log('query get chatstory user id: '+query);
+    }
+    return this.http.get(query)
       .map((res: Response) => {
         return res.json();
       })
@@ -62,6 +68,20 @@ export class ChatstoryService {
     return this.http.put(`${this.chatStoriesUrl}/${body['chatStory']['id']}`, bodyString, options) // ...using put request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
+  }
+
+  likeChatstory(chatstoryId: string, usuarioId: string): Observable<any> {
+    const body = {
+      chatStoryId : chatstoryId,
+      usuarioId : usuarioId
+    };
+    const bodyString = JSON.stringify(body);
+    console.log(bodyString);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this.http.put(`${this.chatStoriesUrl}/like`, bodyString, options)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }

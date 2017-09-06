@@ -48,7 +48,7 @@ const appRoutes: Routes = [
           { path: 'crear-wall', component: CrearWallComponent },
         ]
     },
-    { path: 'user-profile', component: UserProfileComponent},
+    { path: 'user-profile/:id', component: UserProfileComponent},
     { path: 'user-account', loadChildren: './user-account/user-account.module#UserAccountModule'},
     { path: 'crear-relato', component: CrearRelatoComponent},
     { path: 'social-login/success', component: SuccessComponent},

@@ -7,6 +7,7 @@ import { Wall } from '../../models/wall';
 import { Continuacion } from '../../models/continuacion';
 import { Historia } from '../../models/historia';
 import { RepositorioService } from '../../services/repositorio.service';
+import { TranslateService } from '../../translate';
 
 @Component({
   selector: 'app-card-actividad-reciente',
@@ -19,7 +20,7 @@ export class CardActividadRecienteComponent implements OnInit {
   tipoEntrada: number = -1;
   @Input() entrada: any;
 
-  constructor(private repositorio: RepositorioService) { }
+  constructor(private repositorio: RepositorioService, private translate: TranslateService) { }
 
   ngOnInit() {
     // this.tipo = 'otros';
@@ -59,7 +60,7 @@ export class CardActividadRecienteComponent implements OnInit {
     let color = "";
     if(this.entrada instanceof Wall) color = this.entrada.cat.color;
     else if (this.entrada instanceof Relato) color = this.entrada.categoria.color;
-    else if (this.entrada instanceof ChatStory) color = this.entrada.categoria;
+    else if (this.entrada instanceof ChatStory) color = this.entrada.categoria.color;
     return color;
 
   }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RepositorioService } from './services/repositorio.service';
+import { TranslateService } from './translate';
+// import { TranslatePipe } from './translate';
 // import * as io from 'socket.io-client';
 
 @Component({
@@ -10,11 +12,10 @@ import { RepositorioService } from './services/repositorio.service';
 export class AppComponent {
 
 
-  constructor(private repositorio: RepositorioService){
+  constructor(private repositorio: RepositorioService, private translate: TranslateService){
       //Esto debe de ir en el login del usuario, es decir, una vez haga login
       // var socket = io();
       // console.log("trolola");
-
       // socket.on('notificacionFeed', function(notificacion){
       //   repositorio.notificaciones.push(notificacion);
       // });

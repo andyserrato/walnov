@@ -32,6 +32,7 @@ export class ProfilePopoverComponent implements OnInit {
   }
 
   logout() {
+    this.goTo('home');
     this.authenticationService.logout().subscribe(
       res => (this.alertService.success('Ha terminado la sesión')),
       error => (this.alertService.error('Ha ocurrido un error '))

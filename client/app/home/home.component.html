@@ -8,7 +8,7 @@
       <router-outlet></router-outlet>
       <!-- <app-home-buscador></app-home-buscador> -->
     </div>
-    <div class="col-lg-3 hidden-md-down cols-no-padding custom-padding-2">
+    <div class="col-lg-3 hidden-md-down cols-no-padding custom-padding-2" *ngIf="this.router.url==='/home/actividad-reciente'">
       <app-card-usuario-tendencia></app-card-usuario-tendencia>
       <app-card-wall-relevante></app-card-wall-relevante>
       <app-card-publicidad></app-card-publicidad>

@@ -10,14 +10,14 @@
       <div class="shape-7"></div>
       <div class="shape-8"></div>
     </div>
-    <div class="img-profile">
-      <span class="tooltiptext">Descripción del Usuario 200 caracteres 3 wolf moon. Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui. Selvage jean shortsfd 90’s.</span>
+    <div class="img-profile" [ngStyle]="{'background-image': 'url('+this.user?.perfil.foto_perfil+')'}">
+      <span class="tooltiptext">{{this.user?.perfil.descripcion}}</span>
       <!-- <div class="message-img">
         <span class="fa fa-comment"></span>
       </div> -->
     </div>
     <div class="info-container">
-          <span class="user-name">MalenaKrueger</span>
+          <span class="user-name">{{this.user?.perfil.nombre}}</span>
         <div class="status">
           <div class="status-text">23 Walls</div>
           <div class="status-text">4 Chatstories</div>

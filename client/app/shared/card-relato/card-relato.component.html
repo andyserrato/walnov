@@ -8,7 +8,7 @@
         <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
         </div>
         <div class="Titulo-Categoria Rectangle-7-Copy-10" [style.backgroundColor] = 'getColor()'>
-          {{this.relato.categoria.nombre}}
+          {{this.relato.categoria.nombre | translate}}
           <div class="d-flex flex-row Usuario-Relato">
             <div class="d-flex flex-column">
               <img class="Imagen-Usuario" src={{this.relato.usuario.imagen}} alt={{this.relato.userName}}>
@@ -55,7 +55,7 @@
         <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
         </div>
         <div class="Titulo-Categoria Rectangle-7-Copy-10" [style.backgroundColor] = 'getColor()'>
-          {{this.relato.categoria.nombre}}
+          {{this.relato.categoria.nombre | translate}}
         </div>
       </div>
     </div>
@@ -92,7 +92,7 @@
         <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
         </div>
         <div class="Titulo-Categoria Rectangle-7-Copy-10" [style.backgroundColor] = 'getColor()'>
-          {{this.relato.categoria.nombre}}
+          {{this.relato.categoria.nombre | translate}}
         </div>
       </div>
     </div>
@@ -129,7 +129,7 @@
         <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
         </div>
         <div class="Titulo-Categoria Rectangle-7-Copy-10" [style.backgroundColor] = 'getColor()'>
-          {{this.relato.categoria.nombre}}
+          {{this.relato.categoria.nombre | translate}}
         </div>
       </div>
     </div>

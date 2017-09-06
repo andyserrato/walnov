@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Wall } from '../../models/wall'
+import { Wall } from '../../models/wall';
+import { RepositorioService } from '../../services/repositorio.service';
 
 import { Categoria } from '../../models/cats';
 
@@ -14,12 +15,12 @@ export class CardWallRelevanteComponent implements OnInit {
   wall2: Wall;
   wall3: Wall;
 
-  constructor() { }
+  constructor(private repositorio: RepositorioService) { }
 
   ngOnInit() {
     this.wall1 = new Wall();
     this.wall1.titulo = "Mercenario del tiempo";
-    this.wall1.cat = Categoria.Accion;
+    this.wall1.cat = this.repositorio.categoriasAL[0];
     this.wall1.participantes = 22;
     this.wall1.historias = 8;
     this.wall1.visible = true;
@@ -27,7 +28,7 @@ export class CardWallRelevanteComponent implements OnInit {
 
     this.wall2 = new Wall();
     this.wall2.titulo = "El amante secreto";
-    this.wall2.cat = Categoria.Fan;
+    this.wall2.cat = this.repositorio.categoriasAL[6];
     this.wall2.participantes = 24;
     this.wall2.historias = 6;
     this.wall2.isRelevante = true;
@@ -35,7 +36,7 @@ export class CardWallRelevanteComponent implements OnInit {
 
     this.wall3 = new Wall();
     this.wall3.titulo = "Los molinos de viento";
-    this.wall3.cat = Categoria.Romance;
+    this.wall3.cat = this.repositorio.categoriasAL[4];
     this.wall3.participantes = 27;
     this.wall3.historias = 12;
     this.wall3.isRelevante = true;

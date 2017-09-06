@@ -8,7 +8,7 @@
       </div>
       <div class="d-flex flex-column align-self-center">
         <div class="Contenido">
-          Walls/Relatos/Chatstories
+          Walls/{{'all_relatos_cortos' | translate}}/Chatstories
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
               <div class="d-flex flex-row">
                 <div class="Rectangle-7-Copy-6" [ngStyle] = "{'background-color': getColor(entrada)}">
                   <div class="Categoria">
-                    {{entrada.cat.nombre}}
+                    {{entrada.cat.nombre | translate}}
                   </div>
                 </div>
               </div>
@@ -50,12 +50,12 @@
             <div class="follow d-flex flex-column mt-auto ml-auto" *ngIf = "isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "eliminar(entrada)" style="cursor:pointer;">
               <div class="d-flex flex-row">
                 <span class="fa fa-check" aria-hidden="true"></span>
-                <span class="User-Followed">Guardado</span>
+                <span class="User-Followed">{{'all_guardado' | translate}}</span>
               </div>
             </div>
             <div class="d-flex flex-column mt-auto ml-auto" *ngIf = "!isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "guardar(entrada)">
               <div class="Rectangle-7" style="cursor:pointer;">
-                Guardar
+                {{'all_guardar' | translate}}
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@
               <div class="d-flex flex-row">
                 <div class="Rectangle-7-Copy-6" [ngStyle] = "{'background-color': getColor(entrada)}">
                   <div class="Categoria">
-                    {{entrada.categoria.nombre}}
+                    {{entrada.categoria.nombre | translate}}
                   </div>
                 </div>
               </div>
@@ -96,12 +96,12 @@
             <div class="follow d-flex flex-column mt-auto ml-auto" *ngIf = "isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "eliminar(entrada)" style="cursor:pointer;">
               <div class="d-flex flex-row">
                 <span class="fa fa-check" aria-hidden="true"></span>
-                <span class="User-Followed">Guardado</span>
+                <span class="User-Followed">{{'all_guardado' | translate}}</span>
               </div>
             </div>
             <div class="d-flex flex-column mt-auto ml-auto" *ngIf = "!isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "guardar(entrada)">
               <div class="Rectangle-7" style="cursor:pointer;">
-                Guardar
+                {{'all_guardar' | translate}}
               </div>
             </div>
           </div>
@@ -134,7 +134,7 @@
               <div class="d-flex flex-row">
                 <div class="Rectangle-7-Copy-6" [ngStyle] = "{'background-color': getColor(entrada)}">
                   <div class="Categoria">
-                    {{entrada.categoria.nombre}}
+                    {{entrada.categoria.nombre | translate}}
                   </div>
                 </div>
               </div>
@@ -142,12 +142,12 @@
             <div class="follow d-flex flex-column mt-auto ml-auto" *ngIf = "isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "eliminar(entrada)" style="cursor:pointer;">
               <div class="d-flex flex-row">
                 <span class="fa fa-check" aria-hidden="true"></span>
-                <span class="User-Followed">Guardado</span>
+                <span class="User-Followed">{{'all_guardado' | translate}}</span>
               </div>
             </div>
             <div class="d-flex flex-column mt-auto ml-auto" *ngIf = "!isGuardado(entrada)" [ngClass]="{'selected': this.isGuardado()}" (click) = "guardar(entrada)">
               <div class="Rectangle-7" style="cursor:pointer;">
-                Guardar
+                {{'all_guardar' | translate}}
               </div>
             </div>
           </div>
@@ -158,12 +158,12 @@
   <div *ngIf = "!this.vacio" class="d-flex flex-row justify-content-center">
     <div class="pie-pagina" style="cursor:pointer;">
       <i class="fa fa-angle-double-down" style="margin-top:3px;" aria-hidden="true"></i>
-      Ver más
+      {{'home_buscador_mas' | translate}}
     </div>
   </div>
   <div *ngIf = "this.vacio" class="d-flex flex-row justify-content-center">
     <div class="no-results" style="cursor:pointer;">
-      No se han encontrado resultados
+      {{'home_buscador_nada' | translate}}
     </div>
   </div>
 </div>

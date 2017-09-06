@@ -1,6 +1,6 @@
-<div #div class="paginador d-flex flex-wrap" *ngIf="this.paginador?.paginador.length > 0">
+<div #div class="paginador d-flex flex-wrap" >
   <app-card-chatstory *ngFor="let chatstory of this.paginador?.paginador" [chatstory]="chatstory"></app-card-chatstory>
 </div>
-<div class="empty-title d-flex align-items-center justify-content-center" *ngIf="this.paginador?.paginador.length < 1">
-  <span>No tienes chatstories creados, <span class="empty-title-link" routerLink="/crear-chatstory">¡Empieza a crear!</span></span>
-</div>
+<!-- <div class="empty-title d-flex align-items-center justify-content-center" *ngIf="this.paginador?.paginador.length < 1">
+  <span>{{'alert_home_chatstories' | translate}}<span class="empty-title-link" routerLink="/crear-chatstory">{{'alert_home_chatstories2' | translate}}</span></span>
+</div> -->

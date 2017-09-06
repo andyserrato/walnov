@@ -9,7 +9,7 @@ import { RepositorioService } from '../../services/repositorio.service';
 })
 export class CardCategoriasComponent implements OnInit {
   @Output() category: EventEmitter<Categoria>;
-  allSelected: boolean = false;
+  allSelected: boolean = true;
   constructor(private repositorio: RepositorioService) {
     this.category= new EventEmitter();
    }

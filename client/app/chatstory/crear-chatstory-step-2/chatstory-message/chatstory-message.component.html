@@ -1,5 +1,5 @@
 <div class="bubble" [ngClass]="{'font-big': this.big, 'font-small': !this.big, 'hovereable': this.editable}">
   <span class="character">{{message.personaje}}</span><span class="fa fa-clock-o delay" *ngIf="this.message.delay && this.editable"></span>
   <p class="text" [ngClass]="{'loading': !this.editable && this.message.delay}">{{message.chat}}</p>
-  <img *ngIf="this.message.urlImagen" class="img" src="{{message.urlImagen}}" alt="">
+  <img *ngIf="this.message.urlImagen" class="img" src="{{this.message.urlImagen}}" alt="">
 </div>

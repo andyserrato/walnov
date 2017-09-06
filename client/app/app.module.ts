@@ -97,6 +97,8 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { OrderByPipe } from './pipe/order-by/order-by.pipe';
 import { BibliotecaService } from './services/biblioteca.service';
 
+// import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from './translate'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -168,7 +170,8 @@ import { BibliotecaService } from './services/biblioteca.service';
     ModalDecorationComponent,
     ContactoComponent,
     OrderByPipe,
-    ModalDecorationComponent
+    ModalDecorationComponent,
+    // TranslatePipe
   ],
   imports: [
     BrowserModule,
