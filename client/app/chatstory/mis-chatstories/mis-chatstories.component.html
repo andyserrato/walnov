@@ -1,8 +1,9 @@
 <div class="card Rectangle-3-Copy-4">
   <div class="card-block">
-    <h4 class="Card-title">Mis Chatstories</h4>
+    <h4 class="Card-title">{{'home_card_navegacion_4' | translate}}</h4>
     <div *ngIf="showMessage">
-      <a class="Message">Aún no has escrito ningún Chatstory, ¿A qué estás esperando?</a>
+      <div class="Message">{{'mis_chatstories_message' | translate}}</div>
+      <div class="Message">{{'mis_chatstories_message_2' | translate}}</div>
     </div>
     <div class="Rectangle-3" *ngFor="let story of chatStories" [routerLink]="['/chatstory', story.id]">
       <h4 class="Story-title">{{story.titulo}}</h4>

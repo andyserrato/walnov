@@ -16,21 +16,21 @@
       <div class="d-flex">
         <div class="d-flex flex-column justify-content-start margin-right">
           <div class="simple-title">
-            Compartir enlace
+            {{'modal_compartir_enlace' | translate }}
           </div>
           <div id="copyToClipboard" class="link margin-top-1" >
             {{ message.enlaceCopiar }}
           </div>
           <div class="">
             <div class="button-white margin-top-1" (click)="copy()">
-              <span *ngIf="!isCopied">Copiar</span>
-              <span *ngIf="isCopied">Copiado</span>
+              <span *ngIf="!isCopied">{{'modal_copy' | translate }}</span>
+              <span *ngIf="isCopied">{{'modal_copied' | translate }}</span>
             </div>
           </div>
         </div>
         <div class="d-flex flex-column justify-content-start">
           <div class="simple-title">
-            Compartir en:
+            {{'modal_compartir_redes' | translate }}
           </div>
           <div class="share-buttons d-flex">
             <div class="sqr-button facebook">
@@ -50,7 +50,7 @@
       </div>
       <div class="button-row d-flex align-itmes-end justify-content-end">
         <div class="button" (click)="clearAndNavigate()">
-          Continuar
+          {{'home_reciente_button_1' | translate}}
         </div>
       </div>
     </div>

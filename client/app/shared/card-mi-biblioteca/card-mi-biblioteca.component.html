@@ -1,10 +1,10 @@
 <div class="card Rectangle-3-Copy-2 hidden-md-down">
   <div class="card-block">
-    <h4 class="Card-title">Mi biblioteca</h4>
+    <h4 class="Card-title">{{'chatstories_mi_biblioteca' | translate}}</h4>
       <form role="form" class="Input-Background-Copy-3-fuera">
         <select name="Categoria" class="Input-Background-Copy-3-dentro Drop-title" (change)="sameCategoryArray($event.target.value)">
           <option *ngFor="let categoria of this.repositorio.categoriasAL">
-            {{categoria.nombre}}
+            {{categoria.nombre | translate}}
           </option>
         </select>
         <i class="fa fa-sort" aria-hidden="true"></i>
@@ -13,8 +13,8 @@
     <div class="Rectangle-3-Copy-3" #contenedorBiblioteca>
       <div class="Rectangle-3-Copy-4 Chat-Message" *ngIf = "filtradosVacio" style="padding: 10px 8px">
         <span>
-          Aún no has añadido ningún Chatstory a esta categoría.
-          !A qué estás esperando¡
+          {{'chatstories_mi_biblioteca_message' | translate}}
+          {{'chatstories_mi_biblioteca_message_2' | translate}}
         </span>
       </div>
       <div *ngFor="let chatstory of paginador?.paginador">
