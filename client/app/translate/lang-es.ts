@@ -171,6 +171,11 @@ export const LANG_ES_TRANS = {
   'user_profile_todos': 'Ver todos',
   'user_profile_apoyar': 'Apoya a',
   'user_profile_apoyar_message': 'a escibir más y mejor',
+  'user_profile_suscribir': 'Suscríbete',
+  'user_profile_suscrito': 'Suscrito',
+  'user_profile_desuscribir': 'Desuscribirse',
+
+
 
 
 

@@ -16,11 +16,11 @@
     </div>
     <div class="d-flex justify-content-center">
       <div *ngIf = '!suscrito' (click) = "suscribir();" class="button-2">
-    Suscríbete
+    {{'user_profile_suscribir' | translate}}
       </div>
       <div *ngIf = 'suscrito' (click) = "unsuscribe();" class="button-3">
         <div class="btn-content">
-          Suscrito
+          {{'user_profile_suscrito' | translate}}
         </div>
       </div>
     </div>

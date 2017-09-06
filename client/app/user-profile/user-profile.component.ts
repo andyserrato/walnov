@@ -10,6 +10,7 @@ import 'rxjs/add/operator/switchMap';
 })
 export class UserProfileComponent implements OnInit {
   tipo: string='normal';
+  partner: boolean = true;
   user: any;
   constructor(private auth: AuthenticationService,
               private router: Router,

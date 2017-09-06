@@ -86,7 +86,7 @@
     &:hover{
       cursor: pointer;
       &::after {
-        content: "Desuscribirse";
+        content: {{'user_profile_desuscribir' | translate}};
       }
     }
 }

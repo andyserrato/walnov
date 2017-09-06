@@ -171,7 +171,9 @@ export const LANG_EN_TRANS = {
   'user_profile_todos': 'See all',
   'user_profile_apoyar': 'Support',
   'user_profile_apoyar_message': 'to write more and better',
-
+  'user_profile_suscribir': 'Suscribe',
+  'user_profile_suscrito': 'Suscribed',
+  'user_profile_desuscribir': 'Unsuscribe',
 
 
 
