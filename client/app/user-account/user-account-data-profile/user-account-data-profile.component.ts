@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
+import { UserService } from '../../services/user.service';
 import { SelectItem } from '../../models/select-item';
 @Component({
   selector: 'app-user-account-data-profile',
@@ -11,7 +12,8 @@ export class UserAccountDataProfileComponent implements OnInit {
   user:any;
   languages: Array<SelectItem> = new Array<SelectItem>();
   interests: Array<SelectItem> = new Array<SelectItem>();
-  constructor(private auth: AuthenticationService) {
+  constructor(private auth: AuthenticationService,
+              private userService: UserService) {
     this.languages.push(new SelectItem('Español'));
     this.languages.push(new SelectItem('Inglés'));
     this.languages.push(new SelectItem('Francés'));
@@ -30,10 +32,19 @@ export class UserAccountDataProfileComponent implements OnInit {
     this.interests.push(new SelectItem('Fantasía'));
     this.interests.push(new SelectItem('Misterio'));
     this.user = this.auth.getUser();
-    console.log(this.user);
+    // console.log(this.user);
   }
 
   ngOnInit() {
+
+  }
+
+  save() {
+    console.log(this.user);
+    // this.userService.update(this.user).subscribe(user => {
+    //   this.auth.revalidateUser(user);
+    //   this.user = this.auth.getUser();
+    // });
   }
 
 }
