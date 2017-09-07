@@ -8,6 +8,7 @@ import { ChatStory } from '../../models/chatstory.model';
 import { Paginator } from '../../models/paginador';
 import { CardMiBibliotecaBuscadorComponent } from '../card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
 import { CardChatstoriesPaginadorComponent } from '../card-chatstories-paginador/card-chatstories-paginador.component';
+import { RegisterPopoverService } from '../../services/register-popover.service';
 
 @Component({
   selector: 'app-card-chatstory',
@@ -18,11 +19,12 @@ export class CardChatstoryComponent implements OnInit {
   @ViewChild('addButton') addButton: ElementRef;
   @ViewChild('likeButton') likeButton: ElementRef;
   @Input() chatstory: any;
-
+  @Input() allowLibrary: boolean = true;
   constructor(private repositorio: RepositorioService,
               private router: Router,
               private auth: AuthenticationService,
-              private chatstoryService: ChatstoryService) { }
+              private chatstoryService: ChatstoryService,
+              private poopoverService: RegisterPopoverService) { }
 
   ngOnInit() {
     // console.log(this.chatstory);
@@ -42,17 +44,28 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   loadChatstory(event) {
-    if(!this.addButton.nativeElement.contains(event.target) && !this.likeButton.nativeElement.contains(event.target)) {
-      this.router.navigate(['/chatstory/'+this.chatstory.id]);
+    if(this.addButton){
+      if(!this.addButton.nativeElement.contains(event.target) && !this.likeButton.nativeElement.contains(event.target)) {
+        this.router.navigate(['/chatstory/'+this.chatstory.id]);
+      }
+    }else{
+      if(!this.likeButton.nativeElement.contains(event.target)) {
+        this.router.navigate(['/chatstory/'+this.chatstory.id]);
+      }
     }
+
   }
 
   like() {
-    this.chatstoryService.likeChatstory(this.chatstory.id, this.auth.getUser().id).subscribe(() => {
-      this.chatstory.estadistica.likes++;
-      this.chatstory.estadistica.likers.push(this.auth.getUser().id);
-    });
-  }
+    if(this.auth.isLoggedIn()) {
+      this.chatstoryService.likeChatstory(this.chatstory.id, this.auth.getUser().id).subscribe((estadistica) => {
+        this.chatstory.estadistica = estadistica;
+      });
+    } else {
+      this.poopoverService.setVisible(true);
+    }
+
+ }
 
   getNumber(numero: number) {
     if (numero >= 1000) {
@@ -63,35 +76,42 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   addBiblioteca() {
-    if (!this.chatstory.added) {
-      // this.repositorio.chatstories.push(chatstory);
-      if (CardChatstoriesPaginadorComponent.firstAdded === 0) {
-        CardMiBibliotecaBuscadorComponent.showMessage();
-        this.repositorio.paginadorChatstoriesBiblioteca.paginador = [];
+    if(this.auth.isLoggedIn()) {
+      if (!this.chatstory.added) {
+        // this.repositorio.chatstories.push(chatstory);
+        if (CardChatstoriesPaginadorComponent.firstAdded === 0) {
+          CardMiBibliotecaBuscadorComponent.showMessage();
+          this.repositorio.paginadorChatstoriesBiblioteca.paginador = [];
+        }
+
+        CardChatstoriesPaginadorComponent.firstAdded++;
+
+        if (CardChatstoriesPaginadorComponent.firstAdded === 5) {
+          CardMiBibliotecaBuscadorComponent.turnFalse();
+        }
+
+        this.chatstory.added = true;
+        this.repositorio.paginadorChatstoriesBiblioteca.addItem(this.chatstory);
+        // console.log(this.repositorio.paginadorChatstoriesBiblioteca);
       }
-
-      CardChatstoriesPaginadorComponent.firstAdded++;
-
-      if (CardChatstoriesPaginadorComponent.firstAdded === 5) {
-        CardMiBibliotecaBuscadorComponent.turnFalse();
-      }
-
-      this.chatstory.added = true;
-      this.repositorio.paginadorChatstoriesBiblioteca.addItem(this.chatstory);
-      // console.log(this.repositorio.paginadorChatstoriesBiblioteca);
+    } else {
+      this.poopoverService.setVisible(true);
     }
+
   }
 
   liked(){
-    if(this.chatstory.estadistica && this.chatstory.estadistica.likers){
-      if(this.chatstory.estadistica.likers.indexOf(this.auth.getUser().id) > -1) {
-        return true;
+      if(this.chatstory.estadistica && this.chatstory.estadistica.likers && this.auth.isLoggedIn()){
+        if(this.chatstory.estadistica.likers.indexOf(this.auth.getUser().id) > -1) {
+          return true;
+        }else{
+          return false;
+        }
       }else{
         return false;
       }
-    }else{
-      return false;
-    }
+
+
 
 
   }
