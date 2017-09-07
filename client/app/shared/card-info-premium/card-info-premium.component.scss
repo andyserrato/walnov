@@ -73,7 +73,7 @@
     content: 'Suscrito';
   }
 
-  width: 85%;
+  // width: 85%;
   margin-top:1em;
   font-family: Raleway;
   font-size: 10px;
@@ -82,17 +82,48 @@
   color: $main-1;
   border-radius: 4px;
   background-color: $grey-1;
-  padding:.3em 0.3em;
+  padding:.3em 3.2em;
     &:hover{
       cursor: pointer;
       &::after {
-        content: {{'user_profile_desuscribir' | translate}};
+        content: "Desuscribirse";
       }
     }
 }
 
 .button-3:hover {
   .btn-content {
+      display: none;
+    }
+}
+
+.button-3-2{
+
+  .btn-content-2 {
+    position: relative;
+    content: 'Suscribed';
+  }
+
+  // width: 85%;
+  margin-top:1em;
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: $main-1;
+  border-radius: 4px;
+  background-color: $grey-1;
+  padding:.3em 3.2em;
+    &:hover{
+      cursor: pointer;
+      &::after {
+        content: "Unsuscribe";
+      }
+    }
+}
+
+.button-3-2:hover {
+  .btn-content-2 {
       display: none;
     }
 }

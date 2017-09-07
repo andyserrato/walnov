@@ -18,9 +18,18 @@
       <div *ngIf = '!suscrito' (click) = "suscribir();" class="button-2">
     {{'user_profile_suscribir' | translate}}
       </div>
-      <div *ngIf = 'suscrito' (click) = "unsuscribe();" class="button-3">
-        <div class="btn-content">
-          {{'user_profile_suscrito' | translate}}
+      <div *ngIf = "this.translate.currentLang === 'es'">
+        <div *ngIf = 'suscrito' (click) = "unsuscribe();" class="button-3">
+          <div class="btn-content">
+            {{'user_profile_suscrito' | translate}}
+          </div>
+        </div>
+      </div>
+      <div *ngIf = "this.translate.currentLang === 'en'">
+        <div *ngIf = 'suscrito' (click) = "unsuscribe();" class="button-3-2">
+          <div  class="btn-content-2">
+            {{'user_profile_suscrito' | translate}}
+          </div>
         </div>
       </div>
     </div>

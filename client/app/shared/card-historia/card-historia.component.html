@@ -16,8 +16,12 @@
       <span class="Numero-2">{{historia.ranking}}</span>
     </i>
     <span class="Numero-3" *ngSwitchDefault>{{historia.ranking}}</span>
-    <span class="text-style-2">del wall de</span>
-    <span class="text-style-3" [style.color] = 'getColor()'>{{this.historia.wall.cat.nombre}}
+    <span *ngIf= "this.translate.currentLang === 'es'" class="text-style-2">del wall de</span>
+    <span *ngIf= "this.translate.currentLang === 'en'" class="text-style-2">from the</span>
+    <span  class="text-style-3" [style.color] = 'getColor()'>{{this.historia.wall.cat.nombre | translate}}
+      <span *ngIf= "this.translate.currentLang === 'es'" class="text-style-2" style="margin-left:-2px;">:</span>
+    </span>
+    <span *ngIf= "this.translate.currentLang === 'en'" class="text-style-2" style="margin-left:0;">wall
       <span class="text-style-2" style="margin-left:-2px;">:</span>
     </span>
     <span>{{this.historia.wall.titulo}}</span>

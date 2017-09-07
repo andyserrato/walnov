@@ -175,8 +175,8 @@ export const LANG_ES_TRANS = {
   'user_profile_suscrito': 'Suscrito',
   'user_profile_desuscribir': 'Desuscribirse',
 
-
-
+  //continuaciones
+  'card_continuacion': 'Continuación',
 
 
 

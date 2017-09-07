@@ -1,6 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Wall } from '../../models/wall';
 import { Historia } from '../../models/historia';
+import { TranslateService } from '../../translate';
 
 @Component({
   selector: 'app-card-historia',
@@ -10,7 +11,7 @@ import { Historia } from '../../models/historia';
 export class CardHistoriaComponent implements OnInit {
   @Input() historia: Historia;
   // ranking: number;
-  constructor() { }
+  constructor(private translate: TranslateService) { }
 
   ngOnInit() {
     // this.ranking = 2;
