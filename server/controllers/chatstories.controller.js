@@ -34,9 +34,7 @@ module.exports = router;
 
 // Implementaciones de las rutas
 function crearChatStory(req, res) {
-  console.log('holis');
   let peticion = req.body.chatStory;
-  console.log(peticion);
   if (!peticion) {
     res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
   } else {
@@ -45,16 +43,13 @@ function crearChatStory(req, res) {
     let estadistica = new Estadistica();
     estadistica.save(function (err) {
       if (err) {
-        console.log(err);
         res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
       }
     });
     chatStory.estadistica = estadistica;
 
     chatStory.save(function (err, newChatStory) {
-      console.log('salvando');
       if (err) {
-        console.log(err);
         res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
       } else {
         var notificacionNuevoChatStory = GestorNotificaciones.crearNotificacionNuevoChatstory(
@@ -117,14 +112,12 @@ function getChatStories(req, res) {
   }
 
   if (req.query && req.query.sort) {
-    console.log(req.query.sort);
     let sortQueries = req.query.sort.split(',');
 
     for (i = 0; i < sortQueries.length; i++) {
       if (sortQueries[i].indexOf('fechaModificacion') !== -1) {
         query.sort(sortQueries[i]);
       } else if (sortQueries[i].indexOf('fechaCreacion') !== -1) {
-        console.log('encontrado')
         query.sort(sortQueries[i]);
       } else if (sortQueries[i].indexOf('vecesVisto') !== -1) {
         if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
@@ -174,7 +167,9 @@ function getChatStoryById(req, res) {
       if (err)
         res.status(400).send("No se encuentra el ChatStory");
 
-      chatStory.estadistica.vecesVisto++;
+      // ChatStory no es borrador
+      if (chatStory.tipo != 1)
+        chatStory.estadistica.vecesVisto++;
 
       if (idUsuario && chatStory.estadistica.visitas.indexOf(idUsuario) === -1) {
         chatStory.estadistica.visitas.push(idUsuario);
@@ -190,12 +185,8 @@ function getChatStoryById(req, res) {
 }
 
 function updateChatStory(req, res) {
-  console.log('updateChatStory');
   let id = req.params.id;
   let chatStory = req.body.chatStory;
-  console.log('id: ' + id);
-  console.log('chatstpry ' + chatStory);
-  console.log('req.body.chatStory ' + req.body.chatStory);
   if (!req.params.id ||  req.params.id === undefined) {
     res.status(400).send('Debes proporcionar el id del Chatstory');
   } else if (!req.body.chatStory ||  req.body.chatStory === undefined) {
@@ -298,10 +289,8 @@ function updateCompartido(req, res) {
 }
 
 function updateLike(req, res) {
-  console.log('updateLikeServer');
   let id = req.body.chatStoryId;
   let idUsuario = req.body.usuarioId;
-  console.log(req.body);
   ChatStory.findById(id)
     .populate('estadistica autor')
     .exec(function (err, chatStory) {
