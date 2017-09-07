@@ -5,11 +5,8 @@
       <app-card-publicidad class="Publi"></app-card-publicidad>
     </div>
     <!-- /.col -->
-    <div class="col-7 cols-no-padding">
+    <div class="col cols-no-padding">
       <app-card-chatstories-paginador [categoria] = 'this.categoria' [chatStoriesFiltrados] = 'this.chatStoriesFiltrados' (more)="this.loadMore()"></app-card-chatstories-paginador>
-    </div>
-    <div class="col-3 cols-no-padding">
-      <app-card-mi-biblioteca-buscador></app-card-mi-biblioteca-buscador>
     </div>
     <!-- /.col -->
   </div>

@@ -64,7 +64,7 @@ scroll (){
   //console.log(this.container.nativeElement.scrollHeight);
   let porcentaje = (this.container.nativeElement.scrollTop * 100) / height;
 
-  console.log(porcentaje);
+  // console.log(porcentaje);
   //console.log(this.paginar);
 
   if (this.vecesScroll == 4){

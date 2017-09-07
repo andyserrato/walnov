@@ -6,6 +6,8 @@ import { User } from '../models/user';
 
 @Injectable()
 export class UserService {
+    private userUrl = '/apiv1/users/auth';
+
     constructor(private http: Http, private config: AppConfig) { }
 
     getAll() {
@@ -14,7 +16,7 @@ export class UserService {
     }
 
     getById(_id: string) {
-        return this.http.get('/apiv1/users/auth/' + _id)
+        return this.http.get(this.userUrl+'/' + _id)
         .map((response: Response) => response.json())
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
@@ -23,8 +25,13 @@ export class UserService {
         return this.http.post('/users/auth/signup', user, this.jwt());
     }
 
-    update(user: User) {
-        return this.http.put('/users/' + user._id, user, this.jwt());
+    update(body: any) {
+      const bodyString = JSON.stringify(body); // Stringify payload
+      const headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+      const options       = new RequestOptions({ headers: headers }); // Create a request option
+      return this.http.put(`${this.userUrl}/${body.id}`, bodyString, options) // ...using put request
+        .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
     }
 
     delete(_id: string) {
