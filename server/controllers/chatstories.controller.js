@@ -6,7 +6,6 @@ mongoose.set('debug', true);
 const ChatStory = mongoose.model('ChatStory');
 const Chat = mongoose.model('Chat');
 const Estadistica = mongoose.model('Estadistica');
-const usersController = require('../controllers/users2.server.controller');
 const User = mongoose.model('usuarios');
 const GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
 const NotificacionNuevoChatStory = mongoose.model('notificacionNuevoChatStory');
@@ -53,13 +52,13 @@ function crearChatStory(req, res) {
         res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
       } else {
         var notificacionNuevoChatStory = GestorNotificaciones.crearNotificacionNuevoChatstory(
-          req.body.lang === 'es' ?  Constantes.Mensajes.MENSAJES.es.creado :  Constantes.Mensajes.MENSAJES.en.created,
+          req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.creado : Constantes.Mensajes.MENSAJES.en.created,
           Date.now().toString(),
           newChatStory.autor,
           newChatStory.autorNombre,
           newChatStory.id,
           newChatStory.titulo
-          );
+        );
 
         if (!peticion.seguidores) {
           User.findOne({_id: peticion.autor}, function (err, usu) {
@@ -86,7 +85,9 @@ function getChatStories(req, res) {
   let sort; // Relevantes (los que tengan mejores estadísticas en un intervalo de tiempo), seguidos, no seguidos,
   let query = ChatStory.find();
   // query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
+  query.select('estadistica autor');
   query.populate('estadistica autor');
+  // query.populate('estadistica autor');
   if (req.query && req.query.categoria) {
     query.where('categoria').equals(req.query.categoria);
   }
@@ -95,7 +96,7 @@ function getChatStories(req, res) {
     query.where('autorNombre').equals(req.query.autorNombre);
   }
 
-  if (req.query && req.query.autor) {
+  if (req.query && req.query.autor && !req.query.timeLine) {
     query.where('autor').equals(req.query.autor);
   }
 
@@ -137,6 +138,10 @@ function getChatStories(req, res) {
         } else if (sortQueries[i].indexOf('+vecesCompartido') !== -1) {
           query.sort('+estadistica.vecesCompartido');
         }
+      } else if (sortQueries[i].indexOf('relevantes') !== -1) {
+        query.sort('-estadistica.likes');
+        query.sort('-estadistica.vecesCompartido');
+        query.sort('-estadistica.vecesVisto');
       }
     }
   }
@@ -144,19 +149,40 @@ function getChatStories(req, res) {
   // paginacion
   query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
   query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
-
   query.where('activo').equals(true);
-  // relevantes
 
-  query.exec(function (err, chatStories) {
-    if (err) {
-      res.status(400).send(err);
-    } else {
-      // TODO update views si se ve conveniente
-      res.status(200).send(chatStories);
-    }
-  });
+  if (req.query && req.query.autor && req.query.timeLine && (req.query.timeLine === 'followers' || req.query.timeLine === 'following')) {
+    User.findById(req.query.autor, (err, user) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      else {
+        if (req.query.timeLine === 'followers' && user.seguidores.length > 0) {
+          query.where('autor').in(user.seguidores);
+          ejecutarQuery();
+        } else if (req.query.timeLine === 'following' && user.siguiendo.length > 0) {
+          query.where('autor').in(user.seguidores);
+          ejecutarQuery();
+        } else {
+          res.status(400).send('No Follow');
+        }
+      }
+    });
+  } else {
+    ejecutarQuery();
+  }
+
+  function ejecutarQuery() {
+    query.exec(function (err, chatStories) {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(chatStories);
+      }
+    });
+  }
 }
+
 
 function getChatStoryById(req, res) {
   let id = req.params.id;
@@ -187,9 +213,9 @@ function getChatStoryById(req, res) {
 function updateChatStory(req, res) {
   let id = req.params.id;
   let chatStory = req.body.chatStory;
-  if (!req.params.id ||  req.params.id === undefined) {
+  if (!req.params.id || req.params.id === undefined) {
     res.status(400).send('Debes proporcionar el id del Chatstory');
-  } else if (!req.body.chatStory ||  req.body.chatStory === undefined) {
+  } else if (!req.body.chatStory || req.body.chatStory === undefined) {
     res.status(400).send('El ChatStory se encuentra vacío');
   } else {
     ChatStory.findByIdAndUpdate(id, chatStory, {new: true},

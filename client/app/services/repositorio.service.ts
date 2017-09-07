@@ -39,37 +39,30 @@ export class RepositorioService{
     // english: boolean = false;
 
     constructor(private translate: TranslateService){
-        console.log("Contruyendo repositorio");
         this.translate.use('en');
 
+        this.categoriasHM.set('accion', new Categoria('accion','#e65e20'));
+        this.categoriasHM.set('aventura', new Categoria('aventura','#29ba6f'));
+        this.categoriasHM.set('scifi', new Categoria('scifi','#16d7d3'));
+        this.categoriasHM.set('drama', new Categoria('drama','#e15abe'));
+        this.categoriasHM.set('romance', new Categoria('romance','#de196d'));
+        this.categoriasHM.set('fanfic', new Categoria('fanfic','#df9c00'));
+        this.categoriasHM.set('poesia',new Categoria('poesia','#21b3dd'));
+        this.categoriasHM.set('humor', new Categoria('humor','#b8764e'));
+        this.categoriasHM.set('terror', new Categoria('terror','#4b082e'));
+        this.categoriasHM.set('reflexion', new Categoria('reflexion','#2074e6'));
 
+        this.categoriasAL.push(new Categoria('accion','#e65e20','rgba(230, 94, 32, 0.25)'));
+        this.categoriasAL.push(new Categoria('aventura','#29ba6f', 'rgba(41, 186, 111, 0.25)'));
+        this.categoriasAL.push(new Categoria('scifi','#16d7d3', 'rgba(22, 215, 211, 0.25)'));
+        this.categoriasAL.push(new Categoria('drama','#e15abe', 'rgba(225, 90, 190, 0.25)'));
+        this.categoriasAL.push(new Categoria('romance','#de196d', 'rgba(222, 25, 109, 0.25)'));
+        this.categoriasAL.push(new Categoria('fanfic','#df9c00', 'rgba(223, 156, 0, 0.25)'));
+        this.categoriasAL.push(new Categoria('poesia','#21b3dd', 'rgba(33, 179, 221, 0.25)'));
+        this.categoriasAL.push(new Categoria('humor','#b8764e', 'rgba(184, 118, 78, 0.25)'));
+        this.categoriasAL.push(new Categoria('terror','#4b082e', 'rgba(75, 8, 46, 0.25)'));
+        this.categoriasAL.push(new Categoria('reflexion','#2074e6', 'rgba(32, 116, 230, 0.25)'));
 
-        this.categoriasHM.set('categoria_accion', new Categoria('categoria_accion','#e65e20'));
-        this.categoriasHM.set('categoria_aventura', new Categoria('categoria_aventura','#29ba6f'));
-        this.categoriasHM.set('categoria_scifi', new Categoria('categoria_scifi','#16d7d3'));
-        this.categoriasHM.set('categoria_drama', new Categoria('categoria_drama','#e15abe'));
-        this.categoriasHM.set('categoria_romance', new Categoria('categoria_romance','#de196d'));
-        this.categoriasHM.set('categoria_fanfic', new Categoria('categoria_fanfic','#df9c00'));
-        this.categoriasHM.set('categoria_poesia',new Categoria('categoria_poesia','#21b3dd'));
-        this.categoriasHM.set('categoria_humor', new Categoria('categoria_humor','#b8764e'));
-        this.categoriasHM.set('categoria_terror', new Categoria('categoria_terror','#4b082e'));
-        this.categoriasHM.set('categoria_reflexion', new Categoria('categoria_reflexion','#2074e6'));
-
-        this.categoriasAL.push(new Categoria('categoria_accion','#e65e20','rgba(230, 94, 32, 0.25)'));
-        this.categoriasAL.push(new Categoria('categoria_aventura','#29ba6f', 'rgba(41, 186, 111, 0.25)'));
-        this.categoriasAL.push(new Categoria('categoria_scifi','#16d7d3', 'rgba(22, 215, 211, 0.25)'));
-        this.categoriasAL.push(new Categoria('categoria_drama','#e15abe', 'rgba(225, 90, 190, 0.25)'));
-        this.categoriasAL.push(new Categoria('categoria_romance','#de196d', 'rgba(222, 25, 109, 0.25)'));
-        this.categoriasAL.push(new Categoria('categoria_fanfic','#df9c00', 'rgba(223, 156, 0, 0.25)'));
-        this.categoriasAL.push(new Categoria('categoria_poesia','#21b3dd', 'rgba(33, 179, 221, 0.25)'));
-        this.categoriasAL.push(new Categoria('categoria_humor','#b8764e', 'rgba(184, 118, 78, 0.25)'));
-        this.categoriasAL.push(new Categoria('categoria_terror','#4b082e', 'rgba(75, 8, 46, 0.25)'));
-        this.categoriasAL.push(new Categoria('categoria_reflexion','#2074e6', 'rgba(32, 116, 230, 0.25)'));
-
-        this.notificaciones.push("Esto es la primera notificacion");
-        this.notificaciones.push("Esto es la segunda notificacion");
-        this.notificaciones.push("Esto es la tercera notificacion");
-        this.notificaciones.push("Esto es la cuarta notificacion");
     }
 
     getCategoriaALByName(nombre: string): any {
