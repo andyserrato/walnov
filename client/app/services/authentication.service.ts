@@ -62,6 +62,11 @@ export class AuthenticationService {
     return this.getUser() !== null;
   }
 
+  revalidateUser(user: any) {
+    localStorage.removeItem('currentUser');
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
   doSocialLogin(url: string) {
     this.windowHandle = this.windowService.createWindow(url, 'OAuth2 Login');
   }

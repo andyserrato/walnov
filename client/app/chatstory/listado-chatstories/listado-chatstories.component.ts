@@ -17,7 +17,7 @@ export class ListadoChatstoriesComponent implements OnInit {
   categoria: Categoria;
   chatStoriesFiltrados: Array<ChatStory>;
   filtradosVacio = true;
-  skip: number = 0;ç
+  skip: number = 0;
   constructor(private repositorio: RepositorioService,
               private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
@@ -39,6 +39,7 @@ export class ListadoChatstoriesComponent implements OnInit {
       this.chatStoriesFiltrados = chatstories;
       this.changeCategory(null);
       this.modalservice.clear();
+      this.skip+=60;
     });
     // this.chatservice.getChatStories().subscribe(chatstories => {
     //   this.repositorio.chatstories = chatstories;
@@ -63,7 +64,7 @@ export class ListadoChatstoriesComponent implements OnInit {
 
   loadMore(){
     this.modalservice.load();
-    this.skip+=60;
+
     const myParams = new URLSearchParams();
     myParams.append('top', '60');
     myParams.append('skip', ''+this.skip);
@@ -76,6 +77,7 @@ export class ListadoChatstoriesComponent implements OnInit {
       this.modalservice.clear();
       this.repositorio.paginadorCardsChatstories.paginarDelante();
       this.repositorio.paginadorCardsChatstories.final = false;
+      this.skip+=60;
     });
   }
 

@@ -12,6 +12,7 @@ import { SelectItem } from '../../models/select-item';
 export class LanguageSelectComponent implements OnInit {
   @ViewChild('relcontainer') relcontainer: ElementRef;
   @Input() languages: Array<SelectItem>;
+  @Input() array: Array<any>;
   languagesSel: Array<SelectItem> = new Array<SelectItem>();
   ph: string;
   visible: boolean;

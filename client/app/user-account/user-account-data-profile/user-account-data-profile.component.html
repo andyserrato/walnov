@@ -5,7 +5,7 @@
     <div class="thin-title">
       Descripción
     </div>
-    <textarea class="form-control" [(ngModel)]="this.auth.getUser().perfil.descripcion"></textarea>
+    <textarea class="form-control" [(ngModel)]="this.user.perfil.descripcion"></textarea>
   </div>
   <div class="outside-container d-flex flex-column">
     <div class="thin-title">
@@ -16,7 +16,7 @@
         <div class="title">
             Nombre de usuario
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Nombre de usuario" [(ngModel)]="this.auth.getUser().perfil.display_name">
+        <input type="text" class="form-control" name="" value="" placeholder="Nombre de usuario" [(ngModel)]="this.user.perfil.display_name">
       </div>
       <div class="input">
         <div class="title">
@@ -28,25 +28,25 @@
         <div class="title">
             Nombre
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Nombre" [(ngModel)]="this.auth.getUser().perfil.nombre">
+        <input type="text" class="form-control" name="" value="" placeholder="Nombre" [(ngModel)]="this.user.perfil.nombre">
       </div>
       <div class="input">
         <div class="title">
             Apellidos
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Apellidos" [(ngModel)]="this.auth.getUser().perfil.apellidos">
+        <input type="text" class="form-control" name="" value="" placeholder="Apellidos" [(ngModel)]="this.user.perfil.apellidos">
       </div>
       <div class="input">
         <div class="title">
             País
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="País">
+        <input type="text" class="form-control" name="" value="" placeholder="País" [(ngModel)]="this.user.perfil.pais">
       </div>
       <div class="input">
         <div class="title">
             Sexo
         </div>
-        <select class="form-control" name="" [(ngModel)]="this.auth.getUser().perfil.sexo">
+        <select class="form-control" name="" [(ngModel)]="this.user.perfil.sexo">
           <option value="female">Mujer</option>
           <option value="male">Hombre</option>
         </select>
@@ -61,13 +61,13 @@
         <div class="title">
             Teléfono
         </div>
-        <input type="tel" class="form-control" name="" value="" placeholder="665654564">
+        <input type="tel" class="form-control" name="" value="" placeholder="665654564" [(ngModel)]="this.user.perfil.telefono">
       </div>
       <div class="input">
         <div class="title">
             Blog
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Blog">
+        <input type="text" class="form-control" name="" value="" placeholder="Blog" [(ngModel)]="this.user.perfil.blog">
       </div>
       <div class="input">
         <div class="title">

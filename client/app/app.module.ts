@@ -96,7 +96,7 @@ import { SharedModule } from './shared/shared.module';
 import { ContactoComponent } from './contacto/contacto.component';
 import { OrderByPipe } from './pipe/order-by/order-by.pipe';
 import { BibliotecaService } from './services/biblioteca.service';
-
+import { RegisterPopoverService } from './services/register-popover.service';
 // import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from './translate'
 
 @NgModule({
@@ -202,7 +202,8 @@ import { BibliotecaService } from './services/biblioteca.service';
     WindowService,
     ModalService,
     CapitalizePipe,
-    BibliotecaService
+    BibliotecaService,
+    RegisterPopoverService
   ],
   bootstrap: [AppComponent]
 })

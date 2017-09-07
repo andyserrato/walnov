@@ -16,7 +16,7 @@ export class HomeMisChatstoriesComponent implements OnInit {
   chats: Array<ChatStory>;
   paginador: Paginator;
   visible = false;
-
+  skip = 0;
   constructor(private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
               private modalservice: ModalService) {
@@ -25,23 +25,55 @@ export class HomeMisChatstoriesComponent implements OnInit {
   ngOnInit() {
     // Inicialización de variables
     this.chats = new Array<ChatStory>();
-    this.modalservice.load();
+    // if(this.authenticationService.isLoggedIn()) {
+    //   this.firstQuery();
+    // }
 
+  }
+
+  firstQuery() {
+    this.modalservice.load();
+    this.paginador = new Paginator(this.chats, this.div, 27, 9);
     const myParams = new URLSearchParams();
     myParams.append('autor', this.authenticationService.getUser().id);
     myParams.append('sort', '-fechaCreacion');
-    myParams.append('top', '20');
+    myParams.append('top', '27');
+    myParams.append('skip', this.skip+'');
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
-      this.paginador = new Paginator(this.chats, this.div, 18, 9);
+      this.paginador = new Paginator(this.chats, this.div, 27, 9);
       this.modalservice.clear();
       this.visible = true;
+      this.skip += 27;
     }, error => {
       this.modalservice.clear();
     });
+  }
 
+  loadMore() {
+    this.modalservice.load();
+    const myParams = new URLSearchParams();
+    myParams.append('autor', this.authenticationService.getUser().id);
+    myParams.append('sort', '-fechaCreacion');
+    myParams.append('top', '27');
+    myParams.append('skip', this.skip+'');
+    myParams.append('activo', 'true');
+
+    this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
+      this.chats = chatStories;
+      for(let c of chatStories) {
+        this.paginador.paginador.push(c);
+      }
+      this.paginador.paginarDelante();
+      this.paginador.final=false;
+      this.modalservice.clear();
+      this.visible = true;
+      this.skip += 27;
+    }, error => {
+      this.modalservice.clear();
+    });
   }
 
 }
