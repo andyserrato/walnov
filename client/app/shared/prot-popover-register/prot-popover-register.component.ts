@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter }
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {AuthenticationService} from '../../services/authentication.service';
 import {AlertService} from '../../services/alert.service';
+import { TranslateService } from '../../translate';
+
 @Component({
   selector: 'app-prot-popover-register',
   templateUrl: './prot-popover-register.component.html',
@@ -23,7 +25,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
   view = 'register';
   loading = false;
   callbackURL = '/social-login/success';
-  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private alertService: AlertService) {
+  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private alertService: AlertService, private translate: TranslateService) {
     this.loged = new EventEmitter<any>();
     this.focusOut = new EventEmitter<any>();
     this.validateForm = fb.group({
@@ -61,7 +63,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.visible = false;
           this.loged.emit();
           this.loading = false;
-          this.alertService.success('Bienvenido ' + this.authenticationService.getUser().login);
+          this.alertService.success(this.translate.instant('alert_bienvenido') + ' ' + this.authenticationService.getUser().login);
         },
         error =>  {
           this.loading = false;
@@ -81,7 +83,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.visible = false;
           this.loged.emit();
           this.loading = false;
-          this.alertService.success('Bienvenido ' + this.authenticationService.getUser().login);
+          this.alertService.success(this.translate.instant('alert_bienvenido') + ' ' + this.authenticationService.getUser().login);
         },
         error =>  {
           this.loading = false;

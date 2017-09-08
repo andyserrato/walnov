@@ -81,7 +81,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   loadMessage(m: ChatstoryMessage) {
     this.message = m;
     this.editing = true;
-    this.imgPlaceholder.nativeElement.innerHTML = this.translate.instant('shared_image_picker_changeimage') + '' + this.translate.instant('shared_image_picker_changeimage_2');
+    this.imgPlaceholder.nativeElement.innerHTML = this.translate.instant('shared_image_picker_changeimage') + ' ' + this.translate.instant('shared_image_picker_changeimage_2');
   }
 
   getBack() {

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../services/authentication.service';
 import {AlertService} from '../../services/alert.service';
+import { TranslateService } from '../../translate';
 @Component({
   selector: 'app-profile-popover',
   templateUrl: './profile-popover.component.html',
@@ -15,7 +16,7 @@ export class ProfilePopoverComponent implements OnInit {
   @ViewChild('div') div: ElementRef;
   nombre = 'Nombre Usuario';
   constructor(private router: Router, private authenticationService: AuthenticationService,
-              private alertService: AlertService) { }
+              private alertService: AlertService, private translate: TranslateService) { }
 
   ngOnInit() {
     if (this.authenticationService.getUser().perfil.display_name) {
@@ -34,8 +35,8 @@ export class ProfilePopoverComponent implements OnInit {
   logout() {
     this.goTo('home');
     this.authenticationService.logout().subscribe(
-      res => (this.alertService.success('Ha terminado la sesión')),
-      error => (this.alertService.error('Ha ocurrido un error '))
+      res => (this.alertService.success(this.translate.instant('alert_sesion_terminada'))),
+      error => (this.alertService.error(this.translate.instant('alert_popover_error') + ' '))
     );
     this.alertService.clearTimeOutAlert();
   }

@@ -19,7 +19,7 @@
 
           <div class="col-lg-3 d-flex" id="secciones">
               <div class="seccion">Walls</div>
-              <div class="seccion" routerLink="/relatos">Relatos</div>
+              <div class="seccion" routerLink="/relatos">{{'all_relatos' | translate}}</div>
               <div class="seccion" routerLink="/chatstories">Chatstories</div>
           </div>
 
@@ -40,19 +40,19 @@
                 <a  class="boton-crear dropdown-toggle" href="https://example.com" id="dropdownMenuCrear"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i style="margin-right: 7px" class="fa fa-pencil"></i>
-                  Crear...&nbsp;&nbsp;
+                  {{'nav_crear_un' | translate}}...&nbsp;&nbsp;
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuCrear">
-                  <a class="dropdown-item" routerLink="/walls/crear-wall">Crear Walls</a>
-                  <a class="dropdown-item" [routerLink]="['/crear-chatstory', '0']">Crear ChatStories</a>
-                  <a class="dropdown-item" routerLink="/crear-relato">Crear Relatos Cortos</a>
+                  <a class="dropdown-item" routerLink="/walls/crear-wall">{{'nav_crear' | translate}} Walls</a>
+                  <a class="dropdown-item" [routerLink]="['/crear-chatstory', '0']">{{'nav_crear' | translate}} Chatstories</a>
+                  <a class="dropdown-item" routerLink="/crear-relato">{{'nav_crear' | translate}} {{'all_relatos_cortos' | translate}}</a>
                 </div>
               </div>
             </div>
 
             <!-- COMO FUNCIONA -->
             <div>
-                <button class="boton-como-funciona hidden-md-down">Cómo Funciona</button>
+                <button class="boton-como-funciona hidden-md-down">{{'nav_como_funciona' | translate}}</button>
                 <span class="fa-stack fal-lg hidden-lg-up">
                   <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i>
                   <i class="fa fa-info fa-stack-1x fa-inverse"></i>

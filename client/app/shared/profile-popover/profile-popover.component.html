@@ -6,13 +6,13 @@
         {{ nombre }}
       </div>
       <div class="block title" (click)="goTo('user-account')">
-        Cuenta
+        {{'profile_popover_cuenta' | translate}}
       </div>
       <div class="block title" (click)="logout()">
-        Salir
+        {{'profile_popover_salir' | translate}}
       </div>
       <div class="lvl-button d-flex align-items-center justify-content-center">
-          <span>¡Sube de nivel!</span>
+          <span>{{'profile_popover_nivel' | translate}}</span>
       </div>
     </div>
   </div>

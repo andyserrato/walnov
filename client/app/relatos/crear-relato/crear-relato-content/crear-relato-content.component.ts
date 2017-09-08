@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { AlertService } from '../../../services/alert.service';
 import { ModalService } from '../../../services/modal.service';
 import { AuthenticationService } from '../../../services/authentication.service';
-
+import { TranslateService } from '../../../translate';
 @Component({
   selector: 'app-crear-relato-content',
   templateUrl: './crear-relato-content.component.html',
@@ -21,7 +21,7 @@ export class CrearRelatoContentComponent implements OnInit {
   popover = false;
   publicando = false;
   @ViewChild('textarea') textarea: ElementRef;
-  constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService, private modal: ModalService, private auth: AuthenticationService) {
+  constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService, private modal: ModalService, private auth: AuthenticationService, private translate: TranslateService) {
     this.dedicatorias = new Array<string>();
     this.friends = new Array<string>();
     this.complexForm = fb.group({
@@ -52,7 +52,7 @@ export class CrearRelatoContentComponent implements OnInit {
       this.dedicatorias.push(event.target.value);
       event.target.value = '';
     }else{
-      this.alert.warning('Escribe una dirección de email correcta');
+      this.alert.warning(this.translate.instant('alert_wrong_email'));
     }
 
   }
@@ -79,7 +79,7 @@ export class CrearRelatoContentComponent implements OnInit {
   }
 
   share(){
-    this.modal.share('¡Relato publicado con éxito!', '');
+    this.modal.share(this.translate.instant('modal_relato_posted'), '');
     this.publicando = true;
     setTimeout(() => {
       this.publicando = false;

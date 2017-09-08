@@ -30,11 +30,11 @@ export class CardInformativoComponent implements OnInit {
       this.titulo = this.translate.instant('card_info_title') + ' Wall!';
       this.parrafos.push(this.translate.instant('card_info_instr_wall'));
     }else if(this.view.includes("chat")){
-      this.titulo= this.translate.instant('card_info_title') + ' Chatstorie!';
+      this.titulo= this.translate.instant('card_info_title') + ' Chatstory!';
       this.parrafos.push(this.translate.instant('card_info_instr_chat'));
       this.parrafos.push(this.translate.instant('card_info_instr_chat_2'));
     }else if(this.view.includes("relato")){
-      this.titulo = this.translate.instant('card_info_title') + '' + this.translate.instant('all_relato_corto');
+      this.titulo = this.translate.instant('card_info_title') + ' ' + this.translate.instant('all_relato_corto');
       this.parrafos.push(this.translate.instant('card_info_instr_relato'));
     }
 

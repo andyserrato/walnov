@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { AlertService } from '../../services/alert.service';
-
+import { TranslateService } from '../../translate';
 @Component({
   selector: 'app-card-tags',
   templateUrl: './card-tags.component.html',
@@ -13,14 +13,14 @@ export class CardTagsComponent implements OnInit {
   @Input() tags: Array<string>;
   @Input() view: string;
 
-  constructor(private alert: AlertService) {
+  constructor(private alert: AlertService, private translate: TranslateService) {
 
   }
 
   addTag(newTag: string) {
     if (newTag) {
       if(newTag.substring(0,).match(/[^a-zA-Z0-9]/)){
-        this.alert.error('Introduce un tag válido');
+        this.alert.error(this.translate.instant('alert_card_tags'));
         return true;
       }
       else{

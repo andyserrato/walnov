@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ChatstoryService} from '../../services/chatstory.service';
+import { TranslateService } from '../../translate';
 
 @Component({
   selector: 'app-ver-chatstory',
@@ -32,7 +33,8 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   constructor(private repositorio: RepositorioService,
               private router: Router,
               private route: ActivatedRoute,
-              private chatstoryService: ChatstoryService) {
+              private chatstoryService: ChatstoryService,
+              private translate : TranslateService) {
   }
 
   ngOnInit() {
@@ -110,7 +112,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   released(event) {
     if (!this.autoplay) {
       this.clickBox.nativeElement.style.backgroundColor = 'rgba(0,0,0,0.50)';
-      this.clickBox.nativeElement.innerHTML = 'Haz clic en esta zona para ver más o pulsa  la barra espaciadora';
+      this.clickBox.nativeElement.innerHTML = this.translate.instant('chatstories_ver_footer');
       this.limite = 50;
     }
 

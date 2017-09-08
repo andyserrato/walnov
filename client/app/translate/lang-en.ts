@@ -33,6 +33,7 @@ export const LANG_EN_TRANS = {
 
   //todo
   'all_relatos_cortos': 'Short stories',
+  'all_relatos': 'Short stories',
   'all_relato_corto' : 'Short story',
   'all_siguiendo': 'Following',
   'all_seguir': 'Folllow',
@@ -46,19 +47,22 @@ export const LANG_EN_TRANS = {
   'all_todas': 'All',
   'all_texto': 'Text',
   'all_publicar': 'Post',
+  'all_publicando': 'Posting',
+  'all_nombre_usuario': 'Username',
+  'all_continuaciones': 'Sequels',
 
 
   //categorias
-  'categoria_accion': 'Action',
-  'categoria_aventura': 'Adventure',
-  'categoria_scifi': 'SCI-FI',
-  'categoria_drama': 'Drama',
-  'categoria_romance': 'Romance',
-  'categoria_fanfic': 'FanFiction',
-  'categoria_poesia': 'Poetry',
-  'categoria_humor': 'Humor',
-  'categoria_terror': 'Terror',
-  'categoria_reflexion': 'Reflexion',
+  'accion': 'Action',
+  'aventura': 'Adventure',
+  'scifi': 'SCI-FI',
+  'drama': 'Drama',
+  'romance': 'Romance',
+  'fanfic': 'FanFiction',
+  'poesia': 'Poetry',
+  'humor': 'Humor',
+  'terror': 'Terror',
+  'reflexion': 'Reflexion',
 
   //shared
   'shared_usuarios_tendencia': 'Top users',
@@ -84,6 +88,7 @@ export const LANG_EN_TRANS = {
   'modal_copy': 'Copy',
   'modal_copied': 'Copied',
   'modal_chatstory_posted': 'Chatstory posted successfully!',
+  'modal_relato_posted': 'Short story posted successfully!',
 
   //alerts,warnings
   'alert_home': 'You must follow five users at least',
@@ -99,6 +104,16 @@ export const LANG_EN_TRANS = {
   'alert_chatstory_insercion': 'An error has been detected while inserting a Chatstory',
   'alert_chatstory_borrador': 'saved as draft',
   'alert_chatstory_borrador_updt': 'your draft has been updated',
+
+  'alert_wrong_email': 'Write a valid email address',
+
+  'alert_popover_error': 'An error occurred',
+
+  'alert_bienvenido': 'Welcome',
+
+  'alert_sesion_terminada': 'Session finished',
+
+  'alert_card_tags': 'Invalid tag, try again',
 
   //chatstories
   'chatstorie_add_biblioteca': 'Add to my Library',
@@ -176,9 +191,44 @@ export const LANG_EN_TRANS = {
   'user_profile_desuscribir': 'Unsuscribe',
 
   //continuaciones
-  'card_continuacion': 'Sequel'
+  'card_continuacion': 'Sequel',
 
+  //card-tags
+  'add_tags': 'Add tags to your',
 
+  //Relatos
+  'relatos_creacion': 'Short story Creation',
+  'relatos_dedicatoria': 'Do you want to dedicate your Short story?',
+  'relatos_dedicatoria_placeholder': 'name@mail.com; @username…',
+  'relatos_mensaje': 'Invite your friends',
+  'relatos_mensaje_placeholder': '@Friends’name',
+  'relatos_titulo' : 'Short story’s title',
+  'relatos_restriccion': 'Write a 30-chatacters-maximum title',
+  'relatos_restriccion_2': '3000-chatacters-maximum Text',
+  'relatos_restriccion_3': 'Write a 3000-chatacters-maximum Short story',
+  'relatos_vista_previa': 'Preview',
 
+  //popover
+  'popover_unirse':'Join us to post your content',
+  'popover_registro': 'Sign in with:',
+  'popover_contraseña': 'Password',
+  'popover_error_mail': 'Write a valid mail',
+  'popover_error_contraseña': 'Write a password',
+  'popover_error_nombre': 'Write a valid username',
+  'popover_error_olvidada': 'I have forgot my password',
+  'popover_ya_registrado': 'I have an account, log in',
+  'popover_no_registrado': 'I don’t have an account, sign in',
+  'popover_unirse_2': 'Join',
+  'popover_entrar': 'Log in',
+
+  //profile-popover
+  'profile_popover_cuenta': 'Account',
+  'profile_popover_salir': 'Log out',
+  'profile_popover_nivel': 'Go up a level!',
+
+  //nav
+  'nav_crear': 'Write',
+  'nav_crear_un': 'Write a',
+  'nav_como_funciona': 'How it works',
 
 };
