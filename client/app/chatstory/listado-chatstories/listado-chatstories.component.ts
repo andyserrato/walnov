@@ -7,7 +7,7 @@ import { ChatstoryService } from '../../services/chatstory.service';
 import { ModalService } from '../../services/modal.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { TranslateService } from '../../translate/translate.service';
-
+import { BibliotecaService } from '../../services/biblioteca.service';
 @Component({
   selector: 'app-listado-chatstories',
   templateUrl: './listado-chatstories.component.html',
@@ -22,8 +22,8 @@ export class ListadoChatstoriesComponent implements OnInit {
               private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
               private modalservice: ModalService,
-              private translateService: TranslateService) {
-
+              private translateService: TranslateService,
+              private bibliotecaService: BibliotecaService) {
   }
 
   ngOnInit() {
@@ -37,9 +37,19 @@ export class ListadoChatstoriesComponent implements OnInit {
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatstories => {
       this.repositorio.chatstories = chatstories;
       this.chatStoriesFiltrados = chatstories;
-      this.changeCategory(null);
-      this.modalservice.clear();
-      this.skip+=60;
+      if(!this.bibliotecaService.getCurrentBiblioteca()) {
+        this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+          this.bibliotecaService.updateBiblioteca(biblioteca);
+          this.modalservice.clear();
+          // this.changeCategory(null);
+          this.skip+=60;
+        });
+      } else {
+        this.modalservice.clear();
+        // this.changeCategory(null);
+        this.skip+=60;
+      }
+
     });
     // this.chatservice.getChatStories().subscribe(chatstories => {
     //   this.repositorio.chatstories = chatstories;

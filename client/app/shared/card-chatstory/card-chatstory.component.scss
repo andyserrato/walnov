@@ -58,6 +58,15 @@
   color: $grey-8;
 }
 
+.autor-title {
+  color: $main-1;
+  font-size:.8em;
+  &:hover {
+    text-decoration: underline;
+    cursor:pointer;
+  }
+}
+
 .Chat-Descripcion {
   //width: 218.5px;
   //height: 119px;
@@ -75,6 +84,7 @@
   width: 127px;
   height: 20px;
   border-radius: 4px;
+  color:$main-1;
   //border: solid 1px #8427bf;
   border: solid 1px $main-1;
   // position: absolute;
@@ -100,7 +110,7 @@ button {
   font-weight: bold;
   text-align: center;
   //color: #8427bf;
-  color: $main-1;
+  color: inherit;
 }
 
 .Rectangle-7-Copy-4-2 {
@@ -110,6 +120,7 @@ button {
   //border: solid 1px #8427bf;
   border: solid 1px $main-1;
   background-color: $main-1;
+  color:white;
   // position: absolute;
   // bottom: 20px;
   &:hover{

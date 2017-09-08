@@ -5,6 +5,7 @@ import { ChatstoryService } from '../../services/chatstory.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import 'rxjs/add/operator/switchMap';
 import { ModalService } from '../../services/modal.service';
+import {AlertService} from '../../services/alert.service';
 
 @Component({
   selector: 'app-home-mis-chatstories',
@@ -19,7 +20,8 @@ export class HomeMisChatstoriesComponent implements OnInit {
   skip = 0;
   constructor(private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
-              private modalservice: ModalService) {
+              private modalservice: ModalService,
+              private alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -63,18 +65,29 @@ export class HomeMisChatstoriesComponent implements OnInit {
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
-      this.chats = chatStories;
-      for(let c of chatStories) {
-        this.paginador.paginador.push(c);
+      if(chatStories.length>0){
+        this.chats = chatStories;
+        for(let c of chatStories) {
+          this.paginador.paginador.push(c);
+        }
+        this.paginador.paginarDelante();
+        this.paginador.final=false;
+        this.modalservice.clear();
+        this.visible = true;
+        this.skip += 27;
+      } else {
+        this.modalservice.clear();
+        this.alertService.warning('No tienes más chatstories!');
+        this.paginador.final=false;
       }
-      this.paginador.paginarDelante();
-      this.paginador.final=false;
-      this.modalservice.clear();
-      this.visible = true;
-      this.skip += 27;
+
     }, error => {
       this.modalservice.clear();
     });
+  }
+
+  scrollTop() {
+    this.paginador.container.nativeElement.scrollTop = 0;
   }
 
 }

@@ -6,7 +6,7 @@
     </div>
     <!-- /.col -->
     <div class="col cols-no-padding">
-      <app-card-chatstories-paginador [categoria] = 'this.categoria' [chatStoriesFiltrados] = 'this.chatStoriesFiltrados' (more)="this.loadMore()"></app-card-chatstories-paginador>
+      <app-card-chatstories-paginador [categoria] = 'this.categoria' [chatStoriesFiltrados] = 'this.chatStoriesFiltrados' (more)="this.loadMore()" *ngIf="this.bibliotecaService.getCurrentBiblioteca()"></app-card-chatstories-paginador>
     </div>
     <!-- /.col -->
   </div>

@@ -19,6 +19,11 @@
           {{this.chatstory.titulo}}
         </div>
       </div>
+      <div class="d-flex flex-row" *ngIf="this.allowLibrary && this.chatstory.autor" (click)="goToUser()">
+        <div class="autor-title">
+          {{this.chatstory.autor.perfil.display_name}}
+        </div>
+      </div>
       <div class="d-flex flex-row" style="margin-top:10px;">
         <div class="Chat-Descripcion">
           {{this.checkDescription(chatstory)}}
@@ -28,16 +33,12 @@
   </div>
   <div class="d-flex flex-row align-items-center" style="margin-top:1em">
     <div  #addButton class="d-flex flex-column align-items-center" *ngIf="this.allowLibrary">
-      <button *ngIf= '!this.chatstory.added' type="button" class="Rectangle-7-Copy-4" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
+      <button type="button" [ngClass]="{'Rectangle-7-Copy-4': !this.inLibrary, 'Rectangle-7-Copy-4-2': this.inLibrary}" (click)='addToLibrary()' name="button" style="cursor:pointer;">
         <div class="btn-details">
-          {{'chatstorie_add_biblioteca' | translate}}
+          {{this.addLibraryText()}}
         </div>
       </button>
-      <button *ngIf= 'this.chatstory.added' type="button" class="Rectangle-7-Copy-4-2" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
-        <div class="btn-details-2">
-          {{'chatstorie_added_biblioteca' | translate}}
-        </div>
-      </button>
+
     </div>
     <div class="d-flex flex-column align-items-center" *ngIf="!this.allowLibrary">
       <div class="Rectangle-7-Copy-3" [style.backgroundColor] = 'getColor()'>
