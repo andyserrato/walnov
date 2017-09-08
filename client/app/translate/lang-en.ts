@@ -15,8 +15,14 @@ export const LANG_EN_TRANS = {
   'home_reciente_bienvenida': 'Right here you will find the latest content of the people that you follow!',
   'home_reciente_instrucciones': 'Start by following five of our community users at least',
   'home_reciente_instrucciones_2': 'Look for your friends!',
+
   'home_reciente_select_header': 'Sort by',
-  'home_reciente_select_option_1': 'More relevant',
+  'home_reciente_select_option_1': 'Relevant',
+  'home_reciente_select_option_2': '+Liked',
+  'home_reciente_select_option_3': '-Liked',
+  'home_reciente_select_option_4': 'Followers',
+  'home_reciente_select_option_5': 'Following',
+
   'home_reciente_suggested_users': 'Suggested users',
   'home_reciente_button_1': 'Continue',
   'home_reciente_placeholder': 'Write here your user name',

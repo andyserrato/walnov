@@ -290,13 +290,24 @@ function getUserById(req, res) {
 }
 
 function updateUserProfileById(req, res) {
+  // console.log(req.params);
   if (!req.params.id)
     res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
-
-  User.findOneAndUpdate({id :req.params.id}, {$set: req.body.perfil} ,function (err, user) {
-    if (err)
-      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
-
-    res.status(200).send(user);
-  });
+  User.findById(req.params.id)
+    .exec(function (err, user) {
+      user.perfil = req.body.perfil;
+      user.save(function (err,resultados) {
+        if(err) {
+          res.send(err);
+        }else{
+          res.send(resultados);
+        }
+      });
+    });
+  // User.findOneAndUpdate({id :req.params.id}, {$set: req.body.perfil} ,function (err, user) {
+  //   if (err)
+  //     res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+  //
+  //   res.status(200).send(user);
+  // });
 }

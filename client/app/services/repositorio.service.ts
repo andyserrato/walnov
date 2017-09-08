@@ -39,10 +39,7 @@ export class RepositorioService{
     // english: boolean = false;
 
     constructor(private translate: TranslateService){
-        console.log("Contruyendo repositorio");
         this.translate.use('en');
-
-
 
         this.categoriasHM.set('accion', new Categoria('accion','#e65e20'));
         this.categoriasHM.set('aventura', new Categoria('aventura','#29ba6f'));
@@ -66,10 +63,6 @@ export class RepositorioService{
         this.categoriasAL.push(new Categoria('terror','#4b082e', 'rgba(75, 8, 46, 0.25)'));
         this.categoriasAL.push(new Categoria('reflexion','#2074e6', 'rgba(32, 116, 230, 0.25)'));
 
-        this.notificaciones.push("Esto es la primera notificacion");
-        this.notificaciones.push("Esto es la segunda notificacion");
-        this.notificaciones.push("Esto es la tercera notificacion");
-        this.notificaciones.push("Esto es la cuarta notificacion");
     }
 
     getCategoriaALByName(nombre: string): any {

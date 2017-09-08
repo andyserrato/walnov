@@ -6,7 +6,7 @@
   margin-right: 10px;
   margin-bottom: 18px;
   width: 295px;
-  height: 248px;
+  // min-height:191px;
   border-radius: 8px;
   padding: 10px 15px 20px 11px;
   //background-color: #ffffff;
@@ -27,12 +27,12 @@
 }
 
 .Rectangle-7-Copy-3 {
-  margin-top: 14px;
-  padding-top: 0.2px;
   width: 56px;
-  height: 12px;
   //background-color: #29ba6f;
   //background-color: $cat-2;
+  &.margin-top{
+    margin-top:1em;
+  }
 }
 
 .Categoria {
@@ -67,6 +67,8 @@
   text-align: left;
   //color: #000000;
   color: $grey-10;
+  overflow: hidden;
+    max-height: 5.5em;
 }
 
 .Rectangle-7-Copy-4 {
@@ -88,6 +90,7 @@ button {
   background-color: inherit;
 
 }
+
 
 .btn-details {
   //width: 106.2px;

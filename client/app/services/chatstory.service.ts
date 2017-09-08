@@ -21,12 +21,9 @@ export class ChatstoryService {
   }
 
   getChatStory(id: any): Observable<any> {
-    console.log('Inicio getChatStory');
-    console.log(this.chatStoriesUrl + id);
     let query = this.chatStoriesUrl + '/' + id;
-    if(this.auth.isLoggedIn()) {
+    if (this.auth.isLoggedIn()) {
       query+="?usuarioId="+this.auth.getUser().id;
-      console.log('query get chatstory user id: '+query);
     }
     return this.http.get(query)
       .map((res: Response) => {
@@ -36,9 +33,7 @@ export class ChatstoryService {
   }
 
   getChatStoryByQueryParams(myParams?: URLSearchParams): Observable<ChatStory[]> {
-    console.log('Inicio getChatStory');
     const myHeaders = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    console.log('myParams: ' + myParams);
     const options = new RequestOptions({ headers: myHeaders, params: myParams  });
     return this.http.get('/apiv1/chatstories?' + myParams, options)
       .map((res: Response) => {
@@ -62,9 +57,6 @@ export class ChatstoryService {
     const bodyString = JSON.stringify(body); // Stringify payload
     const headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     const options       = new RequestOptions({ headers: headers }); // Create a request option
-    console.log('body ' + body);
-    console.log('bodu ' + body['chatStory']);
-    console.log('bodu ' + body['chatStory']['id']);
     return this.http.put(`${this.chatStoriesUrl}/${body['chatStory']['id']}`, bodyString, options) // ...using put request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
@@ -76,7 +68,6 @@ export class ChatstoryService {
       usuarioId : usuarioId
     };
     const bodyString = JSON.stringify(body);
-    console.log(bodyString);
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     return this.http.put(`${this.chatStoriesUrl}/like`, bodyString, options)

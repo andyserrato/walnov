@@ -67,10 +67,10 @@
                 <i class="boton-mensajes fa fa-inbox"></i>
             </div>
 
-            <div id="imagen-perfil" class="img-rel">
+            <div id="imagen-perfil" class="img-rel" >
                 <app-profile-popover *ngIf="auth.isLoggedIn()"></app-profile-popover>
-                <app-prot-popover-register [direction]="'down'" *ngIf="!auth.isLoggedIn()" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
-                <div [ngStyle]="{'background-image': 'url('+getProfilePicture()+')'}" class="rounded-circle nav-user-img img-responsive"></div>
+                <app-prot-popover-register *ngIf="!auth.isLoggedIn()"></app-prot-popover-register>
+                <div [ngStyle]="{'background-image': 'url('+getProfilePicture()+')'}" class="rounded-circle nav-user-img img-responsive" (click)="popover()"></div>
             </div>
 
         </div>

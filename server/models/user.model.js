@@ -108,9 +108,15 @@ const perfil = Schema({
   email: String,
   pais: String,
   lenguajes: [String],
+  intereses: [String],
+  blog: String,
+  telefono: Number,
   descripcion: String,
   display_name: String,
   perfilCompleto: Boolean,
+  twitter: String,
+  google: String,
+  facebook: String
 
 });
 

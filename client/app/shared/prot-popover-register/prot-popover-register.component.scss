@@ -64,6 +64,14 @@ input.error-input{
   display: flex;
   align-items: center;
   padding: .5em 1.5em;
+
+  & .fa-times{
+    color:$grey-5;
+    &:hover{
+      cursor: pointer;
+      color:$grey-10;
+    }
+  }
 }
 .alternatives{
   /* autoprefixer: off */

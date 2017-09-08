@@ -100,7 +100,6 @@
         {{'relatos_vista_previa' | translate}}
       </div>
       <div class="button" (click)="publish()" [ngClass]="{'button-disabled': !this.complexForm.valid, 'animationStripes': this.publicando}">
-        <app-prot-popover-register [direction]="'up'" [visible]="popover" (loged)="share()" (focusOut)="popover = false"></app-prot-popover-register>
         <span *ngIf="!this.publicado">{{'all_publicar' | translate}}</span>
         <span *ngIf="this.publicado">{{'all_publicando' | translate}}</span>
       </div>

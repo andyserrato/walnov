@@ -90,7 +90,6 @@
   </div>
   <div class="col-3 no-padding">
     <div class="btn-hecho pull-right" *ngIf="!auth.isLoggedIn()">
-      <app-prot-popover-register [direction]="'up'" *ngIf="!auth.isLoggedIn()" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
       {{'chatstories_creacion_guardar_borrador' | translate}}
     </div>
     <div class="btn-hecho pull-right" *ngIf="auth.isLoggedIn()" (click)="guardarComoBorradorChatStory()">
@@ -99,7 +98,6 @@
   </div>
   <div class="col-3 no-padding">
     <div class="btn-hecho pull-right" *ngIf="!auth.isLoggedIn()">
-      <app-prot-popover-register [direction]="'up'" *ngIf="!auth.isLoggedIn()" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
       {{'all_publicar' | translate}} Chatstory
     </div>
     <div class="btn-hecho pull-right" *ngIf="auth.isLoggedIn()" (click)="publicarChatStory()">

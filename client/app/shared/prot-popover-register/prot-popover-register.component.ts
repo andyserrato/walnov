@@ -2,30 +2,33 @@ import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter }
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {AuthenticationService} from '../../services/authentication.service';
 import {AlertService} from '../../services/alert.service';
+import {RegisterPopoverService} from '../../services/register-popover.service';
 import { TranslateService } from '../../translate';
 
 @Component({
   selector: 'app-prot-popover-register',
   templateUrl: './prot-popover-register.component.html',
-  styleUrls: ['./prot-popover-register.component.scss'],
-  host: {
-    '(document:click)': 'onClick($event)',
-  }
+  styleUrls: ['./prot-popover-register.component.scss']
 })
 export class ProtPopoverRegisterComponent implements OnInit {
-  @Input() visible: boolean;
+  visible: boolean;
   @ViewChild('div') div: ElementRef;
   @ViewChild('mail') mail: ElementRef;
   @ViewChild('pass') pass: ElementRef;
   @ViewChild('user') user: ElementRef;
-  @Input() direction: string;
+  @Input() direction: string = "down";
   @Output() loged: EventEmitter<any>;
   @Output() focusOut: EventEmitter<any>;
   validateForm: FormGroup;
   view = 'register';
   loading = false;
   callbackURL = '/social-login/success';
-  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private alertService: AlertService, private translate: TranslateService) {
+
+  constructor(private fb: FormBuilder,
+              private authenticationService: AuthenticationService,
+              private alertService: AlertService,
+              private translate: TranslateService,
+              private popoverService: RegisterPopoverService) {
     this.loged = new EventEmitter<any>();
     this.focusOut = new EventEmitter<any>();
     this.validateForm = fb.group({
@@ -33,16 +36,18 @@ export class ProtPopoverRegisterComponent implements OnInit {
       'user': [null, Validators.required],
       'pass': [null, Validators.required]
     });
+    this.popoverService.isVisible().subscribe(b => {
+        this.visible=b ? true : false;
+        // console.log(this.visible);
+    });
   }
 
   ngOnInit() {
   }
 
-  onClick(event) {
-    if (!this.div.nativeElement.contains(event.target) && this.visible) {
-      this.focusOut.emit();
-      this.view = 'register';
-    }
+  close() {
+    this.popoverService.setVisible(false);
+    this.view = 'register';
   }
 
   changeView(str: string) {

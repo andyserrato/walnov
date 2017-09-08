@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Categoria } from '../../models/cats';
 import { RepositorioService } from '../../services/repositorio.service';
 
@@ -9,9 +9,9 @@ import { RepositorioService } from '../../services/repositorio.service';
 })
 export class CardCategoriasComponent implements OnInit {
   @Output() category: EventEmitter<Categoria>;
-  allSelected: boolean = true;
+  allSelected = true;
   constructor(private repositorio: RepositorioService) {
-    this.category= new EventEmitter();
+    this.category = new EventEmitter();
    }
 
   ngOnInit() {
@@ -24,11 +24,9 @@ export class CardCategoriasComponent implements OnInit {
   }
 
   filtrarCategoria(event, categoria) {
-    if(this.allSelected) {this.allSelected = false;}
+    if (this.allSelected) {this.allSelected = false; }
     this.category.emit(categoria);
     this.toggleSelected(categoria);
-
-    //console.log(this.category);
   }
 
   noFiltrar(event) {
@@ -39,35 +37,30 @@ export class CardCategoriasComponent implements OnInit {
 
   toggleSelected(categoria: Categoria) {
     this.repositorio.categoriasAL.forEach(this.selectedToFalse);
-    //console.log(this.repositorio.categoriasAL);
     categoria.selected = true;
-    //console.log(categoria);
   }
 
-  selectedToFalse(categoria: Categoria){
+  selectedToFalse(categoria: Categoria) {
     categoria.selected = false;
-
   }
 
   getBackColor(categoria) {
-    if(categoria === null) {
-       if(this.allSelected) {return 'rgba(0,0,0,0.25)';}
-    }
-    else if(categoria.selected) {
-      //console.log(categoria.color);
+    if (categoria === null) {
+       if (this.allSelected) {return 'rgba(0,0,0,0.25)'; }
+    } else if (categoria.selected) {
       return categoria.opacidad;
     }
-
   }
 
   getFontColor(categoria) {
-    if(categoria === null) {
-       if(this.allSelected) {return '#000000';}
-    }
-    else if(categoria.selected) {
-      // console.log(categoria.color);
+    if (categoria === null) {
+       if (this.allSelected) {return '#000000'; }
+    } else if (categoria.selected) {
       return categoria.color;
     }
+  }
 
+  onChange(event) {
+    console.log(event.target.value);
   }
 }

@@ -15,8 +15,14 @@ export const LANG_ES_TRANS = {
   'home_reciente_bienvenida': '¡Esta será la zona de actividad reciente de los usuarios a los que sigas!',
   'home_reciente_instrucciones': 'Empieza siguiendo al menos 5 usuarios de nuestra comunidad',
   'home_reciente_instrucciones_2': '¡Busca a tus amigos!',
+
   'home_reciente_select_header': 'Ordenar',
   'home_reciente_select_option_1': 'Más relevantes',
+  'home_reciente_select_option_2': '+Votados',
+  'home_reciente_select_option_3': '-Votados',
+  'home_reciente_select_option_4': 'Seguidores',
+  'home_reciente_select_option_5': 'Siguiendo',
+
   'home_reciente_suggested_users': 'Usuarios recomendados',
   'home_reciente_button_1': 'Continuar',
   'home_reciente_placeholder': 'Escribe su nombre de usuario',

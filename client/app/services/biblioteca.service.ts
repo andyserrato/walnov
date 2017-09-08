@@ -21,6 +21,15 @@ export class BibliotecaService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  getChatStoryBibliotecaByCurrentUserId(): Observable<any> {
+    const usuarioId = this.auth.getUser().id;
+    return this.http.get(this.bibliotecaUrl + '/' + usuarioId + '/chatstories')
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   addChatStoryOnBibliotecaByUserId(idChatStory: any): Observable<any> {
     const usuarioId = this.auth.getUser().id;
     const bodyString = JSON.stringify({id: idChatStory}); // Stringify payload
@@ -41,6 +50,15 @@ export class BibliotecaService {
     return this.http.delete(bibliotecaChatStoriesUrl, bodyString) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
+  }
+
+  getRelatoBibliotecaByCurrentUserId(): Observable<any> {
+    const usuarioId = this.auth.getUser().id;
+    return this.http.get(this.bibliotecaUrl + '/' + usuarioId + '/relatos')
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   addRelatoOnBibliotecaByUserId(idRelato: any): Observable<any> {
@@ -65,12 +83,21 @@ export class BibliotecaService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }
 
+  getWallBibliotecaByCurrentUserId(): Observable<any> {
+    const usuarioId = this.auth.getUser().id;
+    return this.http.get(this.bibliotecaUrl + '/' + usuarioId + '/walls')
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   addWallOnBibliotecaByUserId(idWall: any): Observable<any> {
     const usuarioId = this.auth.getUser().id;
     const bodyString = JSON.stringify({id: idWall}); // Stringify payload
     const headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     const options       = new RequestOptions({ headers: headers }); // Create a request option
-    const bibliotecaWallsUrl = this.bibliotecaUrl + '/' + usuarioId + '/Walls';
+    const bibliotecaWallsUrl = this.bibliotecaUrl + '/' + usuarioId + '/walls';
     return this.http.post(bibliotecaWallsUrl, bodyString, options) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
@@ -81,7 +108,7 @@ export class BibliotecaService {
     const bodyString = JSON.stringify({id: idWall}); // Stringify payload
     const headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     const options       = new RequestOptions({ headers: headers }); // Create a request option
-    const bibliotecaWallsUrl = this.bibliotecaUrl + '/' + usuarioId + '/Walls';
+    const bibliotecaWallsUrl = this.bibliotecaUrl + '/' + usuarioId + '/walls';
     return this.http.delete(bibliotecaWallsUrl, bodyString) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any

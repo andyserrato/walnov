@@ -1,9 +1,10 @@
 
-  <div #div class="launcher">
+
     <div class="c-popover" [ngClass]="{'visible': this.visible, 'down': this.direction==='down', 'up': this.direction==='up'}">
       <div class="simple-container">
-        <div class="title">
-          {{'popover_unirse' | translate}}
+        <div class="title d-flex flex-row align-items-center">
+          <span>{{'popover_unirse' | translate}}</span>
+          <span class="fa fa-times ml-auto" (click)="close()"></span>
         </div>
         <div class="alternatives d-flex flex-column">
           <div class="d-flex flex-column">
@@ -78,4 +79,3 @@
         </div>
       </div>
     </div>
-  </div>
