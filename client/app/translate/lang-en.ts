@@ -56,6 +56,13 @@ export const LANG_EN_TRANS = {
   'all_publicando': 'Posting',
   'all_nombre_usuario': 'Username',
   'all_continuaciones': 'Sequels',
+  'all_opiniones': 'opinions',
+  'all_visualizaciones': 'views',
+  'all_like': 'Love',
+  'all_compartir': 'Share',
+  'all_reportar': 'Report',
+
+
 
 
   //categorias
@@ -213,6 +220,10 @@ export const LANG_EN_TRANS = {
   'relatos_restriccion_2': '3000-chatacters-maximum Text',
   'relatos_restriccion_3': 'Write a 3000-chatacters-maximum Short story',
   'relatos_vista_previa': 'Preview',
+  'relatos_card_info': 'Short story info',
+  'relatos_añadir': 'Add to my lists',
+  'relatos_eliminar': 'Remove from my lists',
+
 
   //popover
   'popover_unirse':'Join us to post your content',
@@ -236,5 +247,9 @@ export const LANG_EN_TRANS = {
   'nav_crear': 'Write',
   'nav_crear_un': 'Write a',
   'nav_como_funciona': 'How it works',
+
+  //comentarios
+  'dejar_comentario': 'Let your comment',
+  'dejar_comentario_placeholder': '750 characters maximum',
 
 };

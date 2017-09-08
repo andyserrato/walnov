@@ -56,6 +56,11 @@ export const LANG_ES_TRANS = {
   'all_publicando': 'Publicando',
   'all_nombre_usuario': 'Nombre de Usuario',
   'all_continuaciones': 'Continuaciones',
+  'all_opiniones': 'opiniones',
+  'all_visualizaciones': 'visualizaciones',
+  'all_like': 'Me gusta',
+  'all_compartir': 'Compartir',
+  'all_reportar': 'Reportar',
 
 
   //categorias
@@ -212,6 +217,9 @@ export const LANG_ES_TRANS = {
   'relatos_restriccion_2': 'Texto máximo 3000 caracteres',
   'relatos_restriccion_3': 'Escribe un relato de un máximo de 3000 caracteres',
   'relatos_vista_previa': 'Vista Previa',
+  'relatos_card_info': 'Info del Relato',
+  'relatos_añadir': 'Añadir a mis listas',
+  'relatos_eliminar': 'Eliminar de mis listas',
 
   //popover
   'popover_unirse':'Únete para poder publicar',
@@ -235,4 +243,8 @@ export const LANG_ES_TRANS = {
   'nav_crear': 'Crear',
   'nav_crear_un': 'Crear un',
   'nav_como_funciona': 'Cómo Funciona',
+
+  //comentarios
+  'dejar_comentario': 'Dejar un comentario',
+  'dejar_comentario_placeholder': '750 caracteres máximo',
 };

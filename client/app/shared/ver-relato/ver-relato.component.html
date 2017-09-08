@@ -35,13 +35,13 @@
       <i class="fa fa-plus" aria-hidden="true"></i>
     </div>
     <div *ngIf='!this.added' (click) = 'addLista()' class="d-flex flex-column" style="margin-right:50px; cursor:pointer;">
-      Añadir a mis listas
+      {{'relatos_añadir' | translate}}
     </div>
     <div *ngIf='this.added' (click) = 'deleteLista()'class="d-flex flex-column" style="margin-right:7px;margin-top:3px; cursor:pointer;">
       <i class="fa fa-times" aria-hidden="true"></i>
     </div>
     <div *ngIf='this.added' (click) = 'deleteLista()' class="d-flex flex-column" style="margin-right:50px; cursor:pointer;">
-      Eliminar de mis listas
+      {{'relatos_eliminar' | translate}}
     </div>
     <div  *ngIf='!liked' (click) = 'plusLike()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
       <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -50,13 +50,13 @@
       <i class="fa fa-heart" aria-hidden="true"></i>
     </div>
     <div (click) = 'plusLike()' class="d-flex flex-column" style="margin-right:50px;cursor:pointer;">
-      Me gusta
+      {{'all_like' | translate}}
     </div>
     <div class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
       <i class="fa fa-share" aria-hidden="true"></i>
     </div>
     <div class="d-flex flex-column" style="cursor:pointer;">
-      Compartir
+      {{'all_compartir' | translate}}
     </div>
   </div>
   <app-dejar-comentario (userOut) = 'setOpinionWriter($event)' (comentario)='addComent($event)'></app-dejar-comentario>
