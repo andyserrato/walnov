@@ -84,8 +84,8 @@ function getChatStories(req, res) {
   let limit;
   let sort; // Relevantes (los que tengan mejores estadísticas en un intervalo de tiempo), seguidos, no seguidos,
   let query = ChatStory.find();
-  // query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
-  query.select('estadistica autor');
+  query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
+  // query.select('estadistica autor');
   query.populate('estadistica autor');
   // query.populate('estadistica autor');
   if (req.query && req.query.categoria) {

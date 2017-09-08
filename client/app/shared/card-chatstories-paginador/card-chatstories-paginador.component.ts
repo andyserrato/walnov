@@ -78,7 +78,7 @@ export class CardChatstoriesPaginadorComponent implements OnInit {
 
     // let limite = this.chatStoriesFiltrados.length;
 
-    this.repositorio.paginadorCardsChatstories = new Paginator(this.repositorio.chatstories, this.contenedorBiblioteca, 12, 6);
+    this.repositorio.paginadorCardsChatstories = new Paginator(this.chatStoriesFiltrados, this.contenedorBiblioteca, 12, 6);
 }
 
   getBackgroundImage() {

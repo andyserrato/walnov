@@ -27,7 +27,7 @@ export class CardChatstoryComponent implements OnInit {
               private poopoverService: RegisterPopoverService) { }
 
   ngOnInit() {
-    // console.log(this.chatstory);
+    console.log(this.chatstory);
   }
 
   getColor() {

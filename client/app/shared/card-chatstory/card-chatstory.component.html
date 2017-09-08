@@ -2,7 +2,7 @@
   <div class="d-flex flex-row">
     <div class="d-flex flex-column">
       <div class="d-flex flex-row">
-        <div class="Chat-Image">
+        <div [ngStyle]="{'background-image': 'url('+this.chatstory.urlImagen+')'}" class="Chat-Image">
         </div>
       </div>
       <div class="d-flex flex-row justify-content-center" *ngIf="this.allowLibrary">

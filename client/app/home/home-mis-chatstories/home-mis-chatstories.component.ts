@@ -13,7 +13,7 @@ import { ModalService } from '../../services/modal.service';
 })
 export class HomeMisChatstoriesComponent implements OnInit {
   @ViewChild('div') div: ElementRef;
-  chats: Array<ChatStory>;
+  chats: Array<any>;
   paginador: Paginator;
   visible = false;
   skip = 0;
@@ -24,16 +24,16 @@ export class HomeMisChatstoriesComponent implements OnInit {
 
   ngOnInit() {
     // Inicialización de variables
-    this.chats = new Array<ChatStory>();
-    // if(this.authenticationService.isLoggedIn()) {
-    //   this.firstQuery();
-    // }
+    this.chats = new Array<any>();
+    if(this.authenticationService.isLoggedIn()) {
+      this.firstQuery();
+    }
 
   }
 
   firstQuery() {
     this.modalservice.load();
-    this.paginador = new Paginator(this.chats, this.div, 27, 9);
+    // this.paginador = new Paginator(this.chats, this.div, 27, 9);
     const myParams = new URLSearchParams();
     myParams.append('autor', this.authenticationService.getUser().id);
     myParams.append('sort', '-fechaCreacion');
@@ -44,6 +44,7 @@ export class HomeMisChatstoriesComponent implements OnInit {
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
       this.paginador = new Paginator(this.chats, this.div, 27, 9);
+      console.log(chatStories);
       this.modalservice.clear();
       this.visible = true;
       this.skip += 27;
