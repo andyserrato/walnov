@@ -79,15 +79,10 @@ function crearChatStory(req, res) {
   }
 }
 
-//  TODO paginacion
 function getChatStories(req, res) {
-  let limit;
-  let sort; // Relevantes (los que tengan mejores estadísticas en un intervalo de tiempo), seguidos, no seguidos,
   let query = ChatStory.find();
   query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
-  // query.select('estadistica autor');
   query.populate('estadistica autor');
-  // query.populate('estadistica autor');
   if (req.query && req.query.categoria) {
     query.where('categoria').equals(req.query.categoria);
   }
@@ -158,13 +153,16 @@ function getChatStories(req, res) {
       }
       else {
         if (req.query.timeLine === 'followers' && user.seguidores.length > 0) {
+          console.log('FOLLOWERS');
           query.where('autor').in(user.seguidores);
           ejecutarQuery();
         } else if (req.query.timeLine === 'following' && user.siguiendo.length > 0) {
           query.where('autor').in(user.seguidores);
           ejecutarQuery();
-        } else {
-          res.status(400).send('No Follow');
+        } else if (req.query.timeLine === 'following' && user.siguiendo.length === 0) {
+          res.status(400).send(new Error("No estas siguiendo a nadie"));
+        } else if (req.query.timeLine === 'followers' && user.seguidores.length === 0) {
+          res.status(400).send(new Error("No tienes seguidores"));
         }
       }
     });
