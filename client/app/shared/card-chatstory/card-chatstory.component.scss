@@ -91,6 +91,8 @@
   // bottom: 20px;
   &:hover{
     cursor: pointer;
+    color: $grey-1;
+    background-color: $main-1;
   }
 }
 
@@ -125,6 +127,8 @@ button {
   // bottom: 20px;
   &:hover{
     cursor: pointer;
+    background-color: $grey-1;
+    color: $main-1;
   }
 }
 
