@@ -31,7 +31,6 @@ export class CardChatstoryComponent implements OnInit {
               private translate: TranslateService) { }
 
   ngOnInit() {
-
   }
 
   checkLibrary() {

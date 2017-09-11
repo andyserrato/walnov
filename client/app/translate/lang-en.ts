@@ -184,7 +184,8 @@ export const LANG_EN_TRANS = {
 
   //forms
   'forms_nombre': 'Name',
-  'forms_apellidos': 'Lastname',
+  'forms_nombre_placeholder': 'Write your name here',
+  'forms_apellidos': 'Last name',
   'forms_idioma': 'Language',
   'forms_edad': 'Age',
   'forms_pais': 'Country',
@@ -200,6 +201,23 @@ export const LANG_EN_TRANS = {
   'forms_idiomas_placeholder': 'Languages',
   'forms_intereses': 'Interests',
   'forms_guardar_cambios': 'Save changes',
+  'forms_pago': 'Payment form',
+  'forms_primer_apellido': 'First surname',
+  'forms_primer_apellido_placeholder': '1st surname',
+  'forms_segundo_apellido': 'Second surname',
+  'forms_segundo_apellido_placeholder': '2nd surname',
+  'forms_recibo': 'for the receipt',
+  'forms_introduce': 'Write here your',
+  'forms_tarjeta': 'Credit card number',
+  'forms_pagar_con': 'Pay by',
+  'forms_fecha_cadudicad': 'Expiry date',
+  'forms_mes': 'Month',
+  'forms_año': 'Year',
+  'forms_codigo_seguridad': 'Security code',
+  'forms_propietario_tarjeta': 'Card owner’s name',
+  'forms_propietario_tarjeta_placeholder': 'Name Surname Surname',
+  'forms_confirmacion': 'I have read  Walnov’s conditions and policy and I accept them.',
+  'forms_confirmar': 'Confirm',
 
   //idiomas
   'español': 'Spanish',
@@ -340,5 +358,9 @@ export const LANG_EN_TRANS = {
   'premium_diario_precio': '0.99€/day',
   'premium_diario_acceso': 'A full premium access day',
   'premium_prueba_texto': 'Try the 7-free-days period and you won’t regret!',
-  'premium_prueba_solicitud': 'Try it',
+  'premium_prueba_solicitud': 'Try it!',
+  'premium_confirmar_plan' : 'Confirm your subscription',
+  'premium_prueba_confirmacion': 'We need some extra details before you get the 7-free-days period',
+  'premium_prueba_final': 'When it finishes, you’ll pay XX.XX€/month-year.',
+
 };

@@ -1,6 +1,11 @@
 <div class="container-fluid Rectangle-2">
   <div class="d-flex flex-row justify-content-between Rectangle-6">
-    <div class="d-flex flex-column align-self-center header-1 mr-auto" style="margin-left:120px;">
+    <div *ngIf = "!ingles" class="d-flex flex-column align-self-center header-1 mr-auto" style="margin-left:120px;">
+      <div class="d-flex">
+      {{'premium_pasarse' | translate}}
+      </div>
+    </div>
+    <div *ngIf = "ingles" class="d-flex flex-column align-self-center header-1 margen-ingles" style="margin-left:120px;">
       <div class="d-flex">
       {{'premium_pasarse' | translate}}
       </div>

@@ -181,6 +181,7 @@ export const LANG_ES_TRANS = {
 
   //forms
   'forms_nombre': 'Nombre',
+  'forms_nombre_placeholder': 'Escriba su nombre',
   'forms_apellidos': 'Apellidos',
   'forms_idioma': 'Idioma',
   'forms_edad': 'Edad',
@@ -197,6 +198,23 @@ export const LANG_ES_TRANS = {
   'forms_idiomas_placeholder': 'Idiomas',
   'forms_intereses': 'Intereses',
   'forms_guardar_cambios': 'Guardar cambios',
+  'forms_pago': 'Formulario de pago',
+  'forms_primer_apellido': 'Primer apellido',
+  'forms_primer_apellido_placeholder': '1er Apellido',
+  'forms_segundo_apellido': 'Segundo apellido',
+  'forms_segundo_apellido_placeholder': '2º Apellido',
+  'forms_recibo': 'para el recibo',
+  'forms_introduce': 'Introduce tu',
+  'forms_tarjeta': 'Número de la tarjeta de crédito',
+  'forms_pagar_con': 'Pagar con',
+  'forms_fecha_cadudicad': 'Fecha de expiración',
+  'forms_mes': 'Mes',
+  'forms_año': 'Año',
+  'forms_codigo_seguridad': 'Código de seguridad',
+  'forms_propietario_tarjeta': 'Nombre del propietario de la tarjeta',
+  'forms_propietario_tarjeta_placeholder': 'Nombre Apellido Apellido',
+  'forms_confirmacion': 'He leído y acepto las condiciones de uso y la política de Walnov.',
+  'forms_confirmar': 'Confirmar',
 
   //idiomas
   'español': 'Español',
@@ -338,6 +356,9 @@ export const LANG_ES_TRANS = {
   'premium_diario_acceso': 'Un día completo con acceso a premium',
   'premium_prueba_texto': '¡Prueba 7 días gratis y convéncete!',
   'premium_prueba_solicitud': 'Solicitar prueba gratuita',
+  'premium_confirmar_plan' : 'Confirma tu plan',
+  'premium_prueba_confirmacion': 'Para aplicar el plan de prueba gratuita necesitamos algunos datos',
+  'premium_prueba_final': 'Cuando termine la prueba gratuita, pasarás a pagar XX,XX€/mes-año.',
 
 
 

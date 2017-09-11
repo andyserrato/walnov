@@ -81,7 +81,7 @@ function crearChatStory(req, res) {
 
 function getChatStories(req, res) {
   let query = ChatStory.find();
-  query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
+  // query.select('titulo categoria autorNombre descripcion autor estadistica fechaCreacion');
   query.populate('estadistica autor');
   if (req.query && req.query.categoria) {
     query.where('categoria').equals(req.query.categoria);

@@ -2,7 +2,7 @@
   <div class="d-flex flex-row justify-content-between Rectangle-6">
     <div class="d-flex flex-column align-self-center header-1 mr-auto" style="margin-left:120px;">
       <div class="d-flex">
-      Confirma tu plan
+      {{'premium_confirmar_plan' | translate}}
       </div>
     </div>
     <div class="d-flex flex-column Oval-5-Copy mr-auto ml-auto">
@@ -33,7 +33,7 @@
     </div>
     <div class="d-flex flex-column d-flex align-self-center header-2 ml-auto">
       <div class="d-flex">
-        Apoya a la mayor Comunidad de Escritura Colaborativa para que siga creciendo y generando contenidos alucinantes
+        {{'premium_texto' | translate}}
       </div>
     </div>
   </div>
@@ -45,7 +45,7 @@
         <div class="Line-Copy">
         </div>
         <div class="Info-final-2">
-          Podrás cancelar tu suscripción cuando quieras
+          {{'premium_cancelacion' | translate}}
         </div>
       </div>
     </div>
@@ -53,40 +53,40 @@
       <div class="d-flex justify-content-center">
         <div class="Rectangle-7-Copy-5">
           <div class="title-prueba">
-            Formulario de pago
+            {{'forms_pago' | translate}}
           </div>
           <div class="d-flex flex-row">
             <form style="width:100%;">
               <div class="d-flex flex-row">
                 <div class="form-group" style="width:100%;">
-                  <label class="Datos" for="exampleInputName">Nombre</label>
-                  <input type="text" class="form-control Name" id="exampleInputName" placeholder="Escriba su nombre">
+                  <label class="Datos" for="exampleInputName">{{'forms_nombre' | translate}}</label>
+                  <input type="text" class="form-control Name" id="exampleInputName" placeholder="{{'forms_nombre_placeholder' | translate}}">
                 </div>
               </div>
               <div class="d-flex flex-row" style="margin-top:20px;">
                 <div class="d-flex flex-column" style="width:50%;">
                   <div class="form-group" style="width:90%;">
-                    <label class="Datos" for="exampleInputLastName1">Primer aprellido</label>
-                    <input type="text" class="form-control Lastname" id="exampleInputLastName1" placeholder="1er Apellido">
+                    <label class="Datos" for="exampleInputLastName1">{{'forms_primer_apellido' | translate}}</label>
+                    <input type="text" class="form-control Lastname" id="exampleInputLastName1" placeholder="{{'forms_primer_apellido_placeholder' | translate}}">
                   </div>
                 </div>
                 <div class="d-flex flex-column" style="width:50%;">
                   <div class="form-group" style="width:100%;">
-                    <label class="Datos" for="exampleInputLastName2">Segundo apellido</label>
-                    <input type="text" class="form-control Lastname Lastname2" id="exampleInputLastName2" placeholder="2º Apellido">
+                    <label class="Datos" for="exampleInputLastName2">{{'forms_segundo_apellido' | translate}}</label>
+                    <input type="text" class="form-control Lastname Lastname2" id="exampleInputLastName2" placeholder="{{'forms_segundo_apellido_placeholder' | translate}}">
                   </div>
                 </div>
               </div>
               <div class="d-flex flex-row" style="margin-top:20px;">
                 <div class="form-group" style="width:100%;">
-                  <label class="Datos" for="exampleInputEmail">Email para el recibo</label>
-                  <input type="email" class="form-control Name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Introduce tu email">
+                  <label class="Datos" for="exampleInputEmail">Email {{'forms_recibo' | translate}}</label>
+                  <input type="email" class="form-control Name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'forms_introduce' | translate}} email">
                 </div>
               </div>
               <div class="d-flex flex-row justify-content-between" style="margin-top:30px;">
                 <div class="d-flex flex-column">
                   <div class="form-group">
-                    <label class="Datos" for="exampleInputCard">Número de la tarjeta de crédito</label>
+                    <label class="Datos" for="exampleInputCard">{{'forms_tarjeta' | translate}}</label>
                     <input type="text" class="form-control Card" id="exampleInputCard" placeholder="0000-0000-0000-0000" maxlength="16">
                   </div>
                 </div>
@@ -107,7 +107,7 @@
                   </div>
                 </div>
                 <div class="d-flex flex-column" style="padding-top:9px;">
-                  <div class="payText" style="cursor:pointer;">Pagar con</div>
+                  <div class="payText" style="cursor:pointer;">{{'forms_pagar_con' | translate}}</div>
                   <div class="Rectangle-1 align-self-center" style="cursor:pointer;">
                     <span class="Pay">Pay</span>
                     <span class="Pal">Pal</span>
@@ -117,9 +117,9 @@
               <div class="d-flex flex-row justify-content-between" style="margin-top:20px;">
                 <div class="d-flex flex-column">
                   <div class="form-group">
-                    <label class="Datos" for="exampleSelectMonth">Fecha de expiración</label>
+                    <label class="Datos" for="exampleSelectMonth">{{'forms_fecha_cadudicad' | translate}}</label>
                     <select class="form-control seleccion Month" id="exampleSelectMonth">
-                      <option hidden>Mes</option>
+                      <option hidden>{{'forms_mes' | translate}}</option>
                       <option>01</option>
                       <option>02</option>
                       <option>03</option>
@@ -138,7 +138,7 @@
                   <div class="form-group">
                     <label class="Invisible" for="exampleSelectYear">Carta</label>
                     <select class="form-control seleccion Year" id="exampleSelectYear">
-                      <option hidden>Año</option>
+                      <option hidden>{{'forms_año' | translate}}</option>
                       <option>2017</option>
                       <option>2018</option>
                       <option>2019</option>
@@ -150,7 +150,7 @@
                 </div>
                 <div class="d-flex flex-column">
                   <div class="form-group">
-                    <label class="Datos" for="exampleInputCVV">Código de seguridad</label>
+                    <label class="Datos" for="exampleInputCVV">{{'forms_codigo_seguridad' | translate}}</label>
                     <input type="text" class="form-control Code" id="exampleInputCVV" placeholder="000" maxlength="3">
                     <img src="assets/images/security-code.png"
                          srcset="assets/images/security-code@2x.png 2x,
@@ -162,8 +162,8 @@
               <div class="d-flex flex-row" style="margin-top:20px;">
                 <div class="d-flex flex-column">
                   <div class="form-group">
-                    <label class="Datos" for="exampleInputPropietario">Nombre del propietario de la tarjeta</label>
-                    <input type="text" class="form-control Propietario" id="exampleInputPropietario" placeholder="Nombre Apellido Apellido">
+                    <label class="Datos" for="exampleInputPropietario">{{'forms_propietario_tarjeta' | translate}}</label>
+                    <input type="text" class="form-control Propietario" id="exampleInputPropietario" placeholder="{{'forms_propietario_tarjeta_placeholder' | translate}}">
                   </div>
                 </div>
               </div>
@@ -176,13 +176,13 @@
                   <span class="custom-control-indicator">
                     <i class="fa fa-check fa-check-2" aria-hidden="true"></i>
                   </span>
-                  <span class="custom-control-description">He leído y acepto las condiciones de uso y la política de Walnov.</span>
+                  <span class="custom-control-description">{{'forms_confirmacion' | translate}}</span>
               </label>
             </div>
             <div class="d-flex flex-column">
               <div class="Rectangle-7-Copy-6" style="cursor: pointer;">
                 <div class="btn-sol">
-                  Confirmar
+                  {{'forms_confirmar' | translate}}
                 </div>
               </div>
             </div>
