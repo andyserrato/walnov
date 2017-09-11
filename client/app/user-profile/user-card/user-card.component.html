@@ -11,7 +11,7 @@
       <div class="shape-8"></div>
     </div>
     <div class="img-profile" [ngStyle]="{'background-image': 'url('+this.user?.perfil.foto_perfil+')'}">
-      <span class="tooltiptext">{{this.user?.perfil.descripcion}}</span>
+      <span *ngIf = "this.user?.perfil.descripcion" class="tooltiptext">{{this.user?.perfil.descripcion}}</span>
       <!-- <div class="message-img">
         <span class="fa fa-comment"></span>
       </div> -->
