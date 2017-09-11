@@ -117,7 +117,7 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   checkDescription() {
-    if (this.chatstory.descripcion === undefined  || this.chatstory.descripcion.length === 0) {
+    if (!this.chatstory.descripcion) {
       this.chatstory.descripcion = 'Este chatstory no tiene ninguna descripción.';
     }
     return this.chatstory.descripcion;

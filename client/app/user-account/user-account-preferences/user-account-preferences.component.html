@@ -2,11 +2,11 @@
   <div class="outside-container">
     <div class="d-flex flex-column">
       <div class="main-title">
-        Preferencias
+        {{'user_preferencias' | translate}}
       </div>
       <div class="item d-flex align-items-center" *ngFor="let pref of preferencias">
         <div class="title">
-          {{pref.nombre}}
+          {{pref.nombre | translate}}
         </div>
         <div class="checker ml-auto d-flex flex-row" [ngClass]="{'checked': pref.active, 'unchecked':!pref.active}" (click)="pref.active=!pref.active">
           <div class="true d-flex align-items-center justify-content-center">
@@ -19,7 +19,7 @@
       </div>
       <div class="d-flex flex-row justify-content-end">
         <div class="button d-flex align-items-center justify-content-center">
-          Guardar cambios
+          {{'forms_guardar_cambios' | translate}}
         </div>
       </div>
       <!-- <div class="item d-flex align-items-center">

@@ -1,6 +1,6 @@
 <div #relcontainer class="rel-container">
   <div class="button d-flex" (click)="this.visible = !this.visible" [ngClass]="{'placeholder': this.languagesSel.length < 1, 'visible': this.visible}">
-    <span class="truncate">{{this.ph}}</span>
+    <span class="truncate">{{this.ph | translate}}</span>
     <div class="ml-auto d-flex flex-column align-items-center justify-content-center">
       <span class="fa fa-sort-asc arrow-top"></span>
       <span class="fa fa-sort-desc"></span>
@@ -15,7 +15,7 @@
         <span class="fa fa-check" *ngIf="l.selected"></span>
       </div>
       <div class="text">
-        {{l.text}}
+        {{l.text | translate}}
       </div>
     </div>
   </div>

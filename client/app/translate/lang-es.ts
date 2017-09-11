@@ -188,6 +188,36 @@ export const LANG_ES_TRANS = {
   'forms_verificar': 'Verificarme',
   'forms_cancelar': 'Cancelar',
   'forms_hecho': 'Hecho',
+  'forms_username': 'Nombre de usuario',
+  'forms_fecha_nacimiento': 'Fecha de nacimiento',
+  'forms_sexo': 'Sexo',
+  'forms_mujer': 'Mujer',
+  'forms_hombre': 'Hombre',
+  'forms_telefono' : 'Teléfono',
+  'forms_idiomas_placeholder': 'Idiomas',
+  'forms_intereses': 'Intereses',
+  'forms_guardar_cambios': 'Guardar cambios',
+
+  //idiomas
+  'español': 'Español',
+  'english': 'Inglés',
+  'frances': 'Francés',
+  'portugues': 'Portugués',
+  'chino': 'Chino',
+  'japones': 'Japonés',
+  'italiano': 'Italiano',
+  'ruso': 'Ruso',
+
+  //Intereses
+  'deportes':'Deportes',
+  'cultura': 'Cultura',
+  'historia': 'Historia',
+  'arte': 'Arte',
+  'musica': 'Música',
+  'viajar': 'Viajar',
+  'fantasia': 'Fantasía',
+  'misterio': 'Misterio',
+
 
   //user-profile
   'user_profile_conectar': 'Conectar',
@@ -247,4 +277,69 @@ export const LANG_ES_TRANS = {
   //comentarios
   'dejar_comentario': 'Dejar un comentario',
   'dejar_comentario_placeholder': '750 caracteres máximo',
-};
+
+  //user-account
+  'user_cuenta': 'Cuenta',
+  'user_profile': 'Datos del perfil',
+  'user_preferencias': 'Preferencias',
+  'user_premium': 'Mi cuenta Premium',
+  'user_descripcion': 'Descripción',
+  'user_details': 'Mis datos',
+  'user_preferencias_mensajes': 'Mensajes',
+  'user_preferencias_notificaciones': 'Notificaciones',
+
+  //contacto
+  'contacto_contactar': 'Contacta con nosotros',
+  'contacto_nombre_placeholder': 'Escriba su nombre',
+  'contacto_email_placeholder': 'Introduce tu email',
+  'contacto_asunto': 'Asunto',
+  'contacto_asunto_placeholder': 'Escriba un asunto',
+  'contacto_mensaje': 'Mensaje',
+  'contacto_mensaje_placeholder': 'Escribe tu mensaje',
+  'contacto_enviar': 'Enviar',
+  'contacto_mapa': 'Puedes encontrarnos en:',
+  'contacto_calle': 'Calle Pedro Duque, Valencia',
+  'contacto_edificio': 'Edificio 9B, despacho 19',
+
+  //pricing-partner
+  'partner_titulo': 'Conviértete en Partner de Walnov',
+  'partner_oferta': 'Empieza a ganar dinero haciendo lo que más te gusta, ¡Escribir!',
+  'partner_pregunta': '¿Qué te ofrecemos?',
+  'partner_suscripcion': 'Suscríbete ahora por 4,99€',
+  'partner_suscripcion_2': 'Los usuarios podrán suscribirse a tu contenido para que se lo brindes en exclusiva',
+  'partner_apoyo': 'Los usuarios que te apoyen podrán realizar donaciones para que sigas creando sin parar',
+  'partner_donacion': 'Realizar donación de _ _ _€',
+  'partner_iconos': 'Iconos para los tuyos. Aquellos que se suscriban obtendrán un icono exclusivo diseñado por ti que aparecerá en su perfil',
+  'partner_mas': 'Pero aún hay más, ¡Tendrás la posibilidad de monetizar cada publicación que hagas!',
+  'partner_mas_2': 'Para ser partner necesitamos ver que eres un creador activo, con seguidores y que generas contenido de calidad ¿Cumples los requisitos? ¡Empieza ahora!',
+  'partner_solicitud': 'Enviar solicitud',
+
+  //pricing-premium
+  'premium_pasarse': 'Pásate a Premium',
+  'premium_texto': 'Apoya a la mayor Comunidad de Escritura Colaborativa para que siga creciendo y generando contenidos alucinantes',
+  'premium_mensual': 'Plan mensual',
+  'premium_mensual_precio': '5.99€/mes',
+  'premium_iva': 'I.V.A. incluido',
+  'premium_cancelacion': 'Podrás cancelar tu suscripción en cualquier momento',
+  'premium_contenido': 'Leer chatstories desde PC sin límites',
+  'premium_contenido_2': 'Leer chatstories desde móvil sin límites',
+  'premium_contenido_3': 'Navegar sin publicidad en la web/app',
+  'premium_contenido_4': 'Libros y ebooks gratis',
+  'premium_contenido_5': 'Chatstories/walls/relatos exclusivos',
+  'premium_contenido_6': 'Descargar historias de forma offline en el app.',
+  'premium_contenido_7': 'Acceso anticipado a contenido.',
+  'premium_contenido_8': 'Suscripción al 50% a una persona cada mes.',
+  'premium_lo_quiero': '¡Lo quiero!',
+  'premium_anual': 'Plan anual',
+  'premium_anual_precio': '3.49€/mes',
+  'premium_contenido_9': '30% de descuento del precio total del plan',
+  'premium_diario': 'Pago diario',
+  'premium_diario_precio': '0.99€/día',
+  'premium_diario_acceso': 'Un día completo con acceso a premium',
+  'premium_prueba_texto': '¡Prueba 7 días gratis y convéncete!',
+  'premium_prueba_solicitud': 'Solicitar prueba gratuita',
+
+
+
+
+}
