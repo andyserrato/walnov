@@ -7,10 +7,11 @@ import {AuthenticationService} from './authentication.service';
 export class BibliotecaService {
 
   private bibliotecaUrl = '/apiv1/biblioteca';
-
+  private biblioteca: any;
   constructor(
     private http: Http,
-    private auth: AuthenticationService) { }
+    private auth: AuthenticationService) {
+  }
 
   getBibliotecaByCurrentUserId(): Observable<any> {
     const usuarioId = this.auth.getUser().id;
@@ -19,6 +20,14 @@ export class BibliotecaService {
         return res.json();
       })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  updateBiblioteca(b: any) {
+    this.biblioteca=b;
+  }
+
+  getCurrentBiblioteca() {
+    return this.biblioteca;
   }
 
   getChatStoryBibliotecaByCurrentUserId(): Observable<any> {
@@ -45,9 +54,12 @@ export class BibliotecaService {
     const usuarioId = this.auth.getUser().id;
     const bodyString = JSON.stringify({id: idChatStory}); // Stringify payload
     const headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    const options       = new RequestOptions({ headers: headers }); // Create a request option
+    const options       = new RequestOptions({
+                                    headers: headers,
+                                    body: bodyString
+                                  }); // Create a request option
     const bibliotecaChatStoriesUrl = this.bibliotecaUrl + '/' + usuarioId + '/chatstories';
-    return this.http.delete(bibliotecaChatStoriesUrl, bodyString) // ...using post request
+    return this.http.delete(bibliotecaChatStoriesUrl, options) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }

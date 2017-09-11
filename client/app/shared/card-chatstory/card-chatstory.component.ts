@@ -9,7 +9,8 @@ import { Paginator } from '../../models/paginador';
 import { CardMiBibliotecaBuscadorComponent } from '../card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
 import { CardChatstoriesPaginadorComponent } from '../card-chatstories-paginador/card-chatstories-paginador.component';
 import { RegisterPopoverService } from '../../services/register-popover.service';
-
+import { BibliotecaService } from '../../services/biblioteca.service';
+import { TranslateService } from '../../translate/translate.service';
 @Component({
   selector: 'app-card-chatstory',
   templateUrl: './card-chatstory.component.html',
@@ -20,14 +21,28 @@ export class CardChatstoryComponent implements OnInit {
   @ViewChild('likeButton') likeButton: ElementRef;
   @Input() chatstory: any;
   @Input() allowLibrary: boolean = true;
+  inLibrary: boolean = false;
   constructor(private repositorio: RepositorioService,
               private router: Router,
               private auth: AuthenticationService,
               private chatstoryService: ChatstoryService,
-              private poopoverService: RegisterPopoverService) { }
+              private poopoverService: RegisterPopoverService,
+              private bibliotecaService: BibliotecaService,
+              private translate: TranslateService) { }
 
   ngOnInit() {
-    // console.log(this.chatstory);
+
+  }
+
+  checkLibrary() {
+    this.inLibrary=this.bibliotecaService.getCurrentBiblioteca().chatStories.indexOf(this.chatstory.id)>-1;
+  }
+
+  updateLibrary() {
+    this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+      this.bibliotecaService.updateBiblioteca(biblioteca);
+      this.checkLibrary();
+    });
   }
 
   getColor() {
@@ -67,37 +82,34 @@ export class CardChatstoryComponent implements OnInit {
 
  }
 
+ addToLibrary() {
+   if(!this.inLibrary) {
+     console.log('hola');
+     this.bibliotecaService.addChatStoryOnBibliotecaByUserId(this.chatstory.id).subscribe(res => {
+       this.updateLibrary()
+     });
+    //  this.bibliotecaService.updateBiblioteca();
+  }else{
+    this.bibliotecaService.deleteChatStoryOnBibliotecaByUserId(this.chatstory.id).subscribe(res => {
+      this.updateLibrary();
+    });
+  }
+
+ }
+
+ addLibraryText() {
+   if(this.inLibrary){
+     return this.translate.translate('chatstorie_added_biblioteca');
+   } else {
+     return this.translate.translate('chatstorie_add_biblioteca');
+   }
+ }
+
   getNumber(numero: number) {
     if (numero >= 1000) {
       return '+' + Math.round(numero / 1000) + 'K';
     }
     return numero;
-
-  }
-
-  addBiblioteca() {
-    if(this.auth.isLoggedIn()) {
-      if (!this.chatstory.added) {
-        // this.repositorio.chatstories.push(chatstory);
-        if (CardChatstoriesPaginadorComponent.firstAdded === 0) {
-          CardMiBibliotecaBuscadorComponent.showMessage();
-          this.repositorio.paginadorChatstoriesBiblioteca.paginador = [];
-        }
-
-        CardChatstoriesPaginadorComponent.firstAdded++;
-
-        if (CardChatstoriesPaginadorComponent.firstAdded === 5) {
-          CardMiBibliotecaBuscadorComponent.turnFalse();
-        }
-
-        this.chatstory.added = true;
-        this.repositorio.paginadorChatstoriesBiblioteca.addItem(this.chatstory);
-        // console.log(this.repositorio.paginadorChatstoriesBiblioteca);
-      }
-    } else {
-      this.poopoverService.setVisible(true);
-    }
-
   }
 
   liked(){
@@ -110,10 +122,6 @@ export class CardChatstoryComponent implements OnInit {
       }else{
         return false;
       }
-
-
-
-
   }
 
   checkDescription() {
@@ -125,5 +133,9 @@ export class CardChatstoryComponent implements OnInit {
 
   getBackgroundImage() {
     return 'linear-gradient(to bottom,' + this.repositorio.categoriasHM.get(this.chatstory.categoria).opacidad + ',' + this.repositorio.categoriasHM.get(this.chatstory.categoria).color + ')';
+  }
+
+  goToUser() {
+    this.router.navigateByUrl('user-profile/'+this.chatstory.autor.id);
   }
 }

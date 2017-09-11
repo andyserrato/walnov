@@ -1,12 +1,12 @@
 <div class="container-fluid Rectangle-3">
   <div class="row">
     <div class="col-2 cols-no-padding">
-      <app-card-categorias (category)='changeCategory($event)'></app-card-categorias>
+      <app-card-categorias (category)='changeCategory($event)' (sortByEvent)='sortByFilter($event)'></app-card-categorias>
       <app-card-publicidad class="Publi"></app-card-publicidad>
     </div>
     <!-- /.col -->
     <div class="col cols-no-padding">
-      <app-card-chatstories-paginador [categoria] = 'this.categoria' [chatStoriesFiltrados] = 'this.chatStoriesFiltrados' (more)="this.loadMore()"></app-card-chatstories-paginador>
+      <app-card-chatstories-paginador [categoria] = 'this.categoria' [chatStoriesFiltrados] = 'this.chatStoriesFiltrados' (more)="this.loadMore()" *ngIf="this.bibliotecaService.getCurrentBiblioteca()"></app-card-chatstories-paginador>
     </div>
     <!-- /.col -->
   </div>

@@ -16,7 +16,7 @@ router.get("/:usuarioId", getBibliotecaByUserId);
 // ChatStories
 router.get("/:usuarioId/chatstories", getChatStoriesOnBibliotecaByUserId);
 router.post("/:usuarioId/chatstories", addChatStoryOnBibliotecaByUserId);
-router.delete("/:usuarioId/chatstories", deleteChatStoryOnBibliotecaByUserId);
+router.delete("/:usuarioId/chatstories/", deleteChatStoryOnBibliotecaByUserId);
 // Walls
 router.get("/:usuarioId/walls", getWallsOnBibliotecaByUserId);
 router.post("/:usuarioId/walls", addWallOnBibliotecaByUserId);
@@ -54,7 +54,7 @@ function getBibliotecaByUserId(req, res) {
   var findBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.find(query, function (err, biblioteca) {
+    Biblioteca.findOne(query, function (err, biblioteca) {
       if (err) {
         res.status(400).send("Ha ocurrido un error");
       }
@@ -153,7 +153,6 @@ function addChatStoryOnBibliotecaByUserId(req, res) {
 function deleteChatStoryOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
   let chatStoryId = req.body.id;
-
   User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
@@ -440,7 +439,3 @@ function sendSave(err, entity, res) {
     res.status(400).send('Ha ocurrido un error');
   }
 }
-
-
-
-

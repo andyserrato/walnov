@@ -5,6 +5,7 @@ import { ChatstoryService } from '../../services/chatstory.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import 'rxjs/add/operator/switchMap';
 import { ModalService } from '../../services/modal.service';
+import {AlertService} from '../../services/alert.service';
 
 @Component({
   selector: 'app-home-mis-chatstories',
@@ -13,27 +14,28 @@ import { ModalService } from '../../services/modal.service';
 })
 export class HomeMisChatstoriesComponent implements OnInit {
   @ViewChild('div') div: ElementRef;
-  chats: Array<ChatStory>;
+  chats: Array<any>;
   paginador: Paginator;
   visible = false;
   skip = 0;
   constructor(private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
-              private modalservice: ModalService) {
+              private modalservice: ModalService,
+              private alertService: AlertService) {
   }
 
   ngOnInit() {
     // Inicialización de variables
-    this.chats = new Array<ChatStory>();
-    // if(this.authenticationService.isLoggedIn()) {
-    //   this.firstQuery();
-    // }
+    this.chats = new Array<any>();
+    if(this.authenticationService.isLoggedIn()) {
+      this.firstQuery();
+    }
 
   }
 
   firstQuery() {
     this.modalservice.load();
-    this.paginador = new Paginator(this.chats, this.div, 27, 9);
+    // this.paginador = new Paginator(this.chats, this.div, 27, 9);
     const myParams = new URLSearchParams();
     myParams.append('autor', this.authenticationService.getUser().id);
     myParams.append('sort', '-fechaCreacion');
@@ -44,6 +46,7 @@ export class HomeMisChatstoriesComponent implements OnInit {
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
       this.paginador = new Paginator(this.chats, this.div, 27, 9);
+      console.log(chatStories);
       this.modalservice.clear();
       this.visible = true;
       this.skip += 27;
@@ -62,18 +65,29 @@ export class HomeMisChatstoriesComponent implements OnInit {
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
-      this.chats = chatStories;
-      for(let c of chatStories) {
-        this.paginador.paginador.push(c);
+      if(chatStories.length>0){
+        this.chats = chatStories;
+        for(let c of chatStories) {
+          this.paginador.paginador.push(c);
+        }
+        this.paginador.paginarDelante();
+        this.paginador.final=false;
+        this.modalservice.clear();
+        this.visible = true;
+        this.skip += 27;
+      } else {
+        this.modalservice.clear();
+        this.alertService.warning('No tienes más chatstories!');
+        this.paginador.final=false;
       }
-      this.paginador.paginarDelante();
-      this.paginador.final=false;
-      this.modalservice.clear();
-      this.visible = true;
-      this.skip += 27;
+
     }, error => {
       this.modalservice.clear();
     });
+  }
+
+  scrollTop() {
+    this.paginador.container.nativeElement.scrollTop = 0;
   }
 
 }

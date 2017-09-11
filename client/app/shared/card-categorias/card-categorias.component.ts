@@ -9,9 +9,11 @@ import { RepositorioService } from '../../services/repositorio.service';
 })
 export class CardCategoriasComponent implements OnInit {
   @Output() category: EventEmitter<Categoria>;
+  @Output() sortByEvent: EventEmitter<string>;
   allSelected = true;
   constructor(private repositorio: RepositorioService) {
     this.category = new EventEmitter();
+    this.sortByEvent = new EventEmitter();
    }
 
   ngOnInit() {
@@ -24,6 +26,8 @@ export class CardCategoriasComponent implements OnInit {
   }
 
   filtrarCategoria(event, categoria) {
+    console.log('filtrar Categoria evento ' + event.target);
+    console.log('filtrar Categoria ' + categoria.nombre);
     if (this.allSelected) {this.allSelected = false; }
     this.category.emit(categoria);
     this.toggleSelected(categoria);
@@ -60,7 +64,8 @@ export class CardCategoriasComponent implements OnInit {
     }
   }
 
-  onChange(event) {
+  onSortByChange(event) {
     console.log(event.target.value);
+    this.sortByEvent.emit(event.target.value);
   }
 }

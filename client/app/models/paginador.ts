@@ -2,16 +2,19 @@ export class Paginator {
  paginador: Array<Object> = new Array();
  indice: number;
  final: boolean;
+ inicio: boolean;
  paginar = true;
  vecesScroll = 0;
+ container: any;
 
-  constructor(private items: Array<Object>, private container, private limite:number, private cargar:number) {
+  constructor(private items: Array<Object>, private c, private limite:number, private cargar:number) {
     this.indice = limite;
     this.rellenar(items);
-    container.nativeElement.addEventListener("scroll", this.scroll.bind(this));
+    this.container = c;
+    this.container.nativeElement.addEventListener("scroll", this.scroll.bind(this));
     // console.log("inicializando");
     this.final = false;
-
+    this.inicio = true;
  }
 
  addItem(newItem) {
@@ -63,7 +66,7 @@ scroll (){
   //console.log(this.container.nativeElement.clientHeight);
   //console.log(this.container.nativeElement.scrollHeight);
   let porcentaje = (this.container.nativeElement.scrollTop * 100) / height;
-
+  this.inicio = porcentaje === 0 ? true : false;
   // console.log(porcentaje);
   //console.log(this.paginar);
 
@@ -97,6 +100,15 @@ rellenar(items) {
     this.paginador.push(items[i]);
   }
 
+}
+
+
+scrollTop() {
+  this.container.nativeElement.scrollTop=0;
+  while(this.indice>this.limite) {
+    this.paginarDetras();
+    this.container.nativeElement.scrollTop = 0;
+  }
 }
 
 }
