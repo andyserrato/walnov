@@ -28,7 +28,7 @@
       <div class="row">
         <span class="form-title">{{'chatstories_creacion_personaje' | translate}}</span>
         <select [(ngModel)]="message.personaje" class="form-control" #characterSelect required>
-            <option value="" disabled selected hidden>{{'chatstories_creacion_personaje_name' | translate}}</option>
+            <!-- <option value="" disabled selected hidden>{{'chatstories_creacion_personaje_name' | translate}}</option> -->
             <option *ngFor="let char of chatStory.personajes" value="{{char}}">{{char}}</option>
         </select>
       </div>
@@ -97,10 +97,7 @@
     </div>
   </div>
   <div class="col-3 no-padding">
-    <div class="btn-hecho pull-right" *ngIf="!auth.isLoggedIn()">
-      {{'all_publicar' | translate}} Chatstory
-    </div>
-    <div class="btn-hecho pull-right" *ngIf="auth.isLoggedIn()" (click)="publicarChatStory()">
+    <div class="btn-hecho pull-right" (click)="publicarChatStory()">
       {{'all_publicar' | translate}} Chatstory
     </div>
   </div>

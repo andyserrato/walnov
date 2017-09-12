@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, AfterViewChecked, ViewChild } from '@angular/core';
 import { ChatstoryMessage } from '../../models/chatstory-message';
-import {ChatstoryService} from '../../services/chatstory.service';
-import {AuthenticationService} from '../../services/authentication.service';
-import {AlertService} from '../../services/alert.service';
-import {ModalService} from '../../services/modal.service';
-import {RepositorioService} from '../../services/repositorio.service';
+import { ChatstoryService } from '../../services/chatstory.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { AlertService } from '../../services/alert.service';
+import { ModalService } from '../../services/modal.service';
+import { RepositorioService } from '../../services/repositorio.service';
+import { RegisterPopoverService } from '../../services/register-popover.service';
 import { TranslateService } from '../../translate';
 @Component({
   selector: 'app-crear-chatstory-step-2',
@@ -18,7 +19,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   @Output() done: EventEmitter<any>;
   @ViewChild('preview') private preview: ElementRef;
   @ViewChild('imgPlaceholder') private imgPlaceholder: ElementRef;
-  message: ChatstoryMessage = new ChatstoryMessage('', '');
+  message: ChatstoryMessage;
   @ViewChild('textArea') private textArea: ElementRef;
   editing = false;
   popover: boolean;
@@ -27,12 +28,14 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
               private alert: AlertService,
               private translate: TranslateService,
               private modalService: ModalService,
-              private repo: RepositorioService) {
+              private repo: RepositorioService,
+              private registerService: RegisterPopoverService) {
     this.back = new EventEmitter<any>();
     this.done = new EventEmitter<any>();
   }
 
   ngOnInit() {
+    this.message = new ChatstoryMessage(this.chatStory.personajes[0],'', '');
     if (!this.chatStory.chats) {
       this.chatStory.chats = new Array<ChatstoryMessage>();
     }
@@ -111,42 +114,46 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   publicarChatStory() {
-    // comprobamos que el chatstory al menos posee 5 chats
-    if (this.chatStory.tipo === 0) {
-      this.alert.warning(this.translate.instant('alert_chatstory_existente'));
-      this.alert.clearTimeOutAlert();
-    } else if (this.chatStory.chats.length < 5) {
-      this.alert.warning(this.translate.instant('alert_chatstory_requisitos'));
-      this.alert.clearTimeOutAlert();
-    } else if (!this.chatStory.tipo) { //  borrador
-      // set flag de publicado
-      this.chatStory.tipo = 0;
-      // set autorNombre
-      this.chatStory.autor = this.auth.getUser().id;
-      // set autor ID
-      this.chatStory.autorNombre = this.auth.getUser().perfil.display_name;
+    if(this.auth.isLoggedIn()) {
+      // comprobamos que el chatstory al menos posee 5 chats
+      if (this.chatStory.tipo === 0) {
+        this.alert.warning(this.translate.instant('alert_chatstory_existente'));
+        this.alert.clearTimeOutAlert();
+      } else if (this.chatStory.chats.length < 5) {
+        this.alert.warning(this.translate.instant('alert_chatstory_requisitos'));
+        this.alert.clearTimeOutAlert();
+      } else if (!this.chatStory.tipo) { //  borrador
+        // set flag de publicado
+        this.chatStory.tipo = 0;
+        // set autorNombre
+        this.chatStory.autor = this.auth.getUser().id;
+        // set autor ID
+        this.chatStory.autorNombre = this.auth.getUser().perfil.display_name;
 
-      const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
-      chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
-      // guardar
-      this.chatStoryService.addChatStory(chatStoryFulero).subscribe( chatStorySaved => {
-        const chatStoryUrl = '/chatstory/' + chatStorySaved.id;
-        this.modalService.share(this.translate.instant('modal_chatstory_posted'), chatStoryUrl);
-      }, error => {
-        this.alert.error(this.translate.instant('alert_chatstory_insercion'));
-        this.alert.clearTimeOutAlert();
-      } );
-    } else if (this.chatStory.tipo === 1) {
-      this.chatStory.tipo = 0; // publicado
-      const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
-      chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
-      this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe( chatStorySaved => {
-        const chatStoryUrl = '/chatstory/' + this.chatStory.id;
-        this.modalService.share(this.translate.instant('modal_chatstory_posted'), chatStoryUrl);
-      }, error => {
-        this.alert.error(this.translate.instant('alert_chatstory_insercion'));
-        this.alert.clearTimeOutAlert();
-      } );
+        const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
+        chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
+        // guardar
+        this.chatStoryService.addChatStory(chatStoryFulero).subscribe( chatStorySaved => {
+          const chatStoryUrl = '/chatstory/' + chatStorySaved.id;
+          this.modalService.share(this.translate.instant('modal_chatstory_posted'), chatStoryUrl);
+        }, error => {
+          this.alert.error(this.translate.instant('alert_chatstory_insercion'));
+          this.alert.clearTimeOutAlert();
+        } );
+      } else if (this.chatStory.tipo === 1) {
+        this.chatStory.tipo = 0; // publicado
+        const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
+        chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
+        this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe( chatStorySaved => {
+          const chatStoryUrl = '/chatstory/' + this.chatStory.id;
+          this.modalService.share(this.translate.instant('modal_chatstory_posted'), chatStoryUrl);
+        }, error => {
+          this.alert.error(this.translate.instant('alert_chatstory_insercion'));
+          this.alert.clearTimeOutAlert();
+        } );
+      }
+    } else {
+      this.registerService.setVisible(true);
     }
   }
 
