@@ -8,7 +8,7 @@ import 'rxjs/add/operator/switchMap';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ChatstoryService} from '../../services/chatstory.service';
 import { TranslateService } from '../../translate';
-
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-ver-chatstory',
   templateUrl: './ver-chatstory.component.html',
@@ -29,15 +29,20 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   stoped = false;
   autoplay = false;
   timer: any;
+  user:any;
+  tipo:string;
 
   constructor(private repositorio: RepositorioService,
               private router: Router,
               private route: ActivatedRoute,
               private chatstoryService: ChatstoryService,
-              private translate : TranslateService) {
+              private translate : TranslateService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
+
+
     this.route.paramMap
       .switchMap((params: ParamMap) =>
         this.chatstoryService.getChatStory(params.get('id')))
@@ -50,6 +55,17 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
         }else{
           this.chatStory.categoria = this.repositorio.categoriasAL[1];
         };
+        switch(this.chatStory.autor.tipo){
+          case 0:
+            this.tipo='normal';
+            break;
+          case 1:
+            this.tipo='premium';
+            break;
+          default:
+            this.tipo='normal';
+            break;
+        }
         console.log(this.chatStory);
         this.nextMessage();
         this.scrollToBottom();
