@@ -172,6 +172,9 @@ export const LANG_EN_TRANS = {
   'mis_chatstories_message_2': 'what are you waiting for?',
   'mis_chatstories_fecha': 'Last update',
 
+  'chatstories_relevantes': 'Relevant Chatstories',
+  'chatstories_relevantes_leer': 'Read',
+
   //card-informativo
   'card_info_entendido': 'Got it',
   'card_info_instr': 'Start by choosing a title and a category.',

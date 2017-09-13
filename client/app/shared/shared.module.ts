@@ -18,6 +18,7 @@ import { CardBuscadorContenidoComponent } from './card-buscador-contenido/card-b
 import {TRANSLATION_PROVIDERS} from '../translate/translations';
 import {TranslatePipe} from '../translate/translate.pipe';
 import {TranslateService} from '../translate/translate.service';
+import { CardChatstoryRelevanteComponent } from './card-chatstory-relevante/card-chatstory-relevante.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import {TranslateService} from '../translate/translate.service';
     CardInfoPremiumComponent,
     CardBuscadorPersonasComponent,
     CardBuscadorContenidoComponent,
+    CardChatstoryRelevanteComponent,
     // TRANSLATION_PROVIDERS,
     TranslatePipe,
     // TranslateService
@@ -57,7 +59,8 @@ import {TranslateService} from '../translate/translate.service';
     CardBuscadorPersonasComponent,
     CardBuscadorContenidoComponent,
     CardBuscadorContenidoComponent,
-    TranslatePipe
+    TranslatePipe,
+    CardChatstoryRelevanteComponent
   ],
   providers: [
     TRANSLATION_PROVIDERS,
