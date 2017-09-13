@@ -31,10 +31,21 @@ export class CardChatstoryComponent implements OnInit {
               private translate: TranslateService) { }
 
   ngOnInit() {
+    console.log(this.chatstory.autor);
+    console.log(this.auth.getUser());
   }
 
   checkLibrary() {
     this.inLibrary=this.bibliotecaService.getCurrentBiblioteca().chatStories.indexOf(this.chatstory.id)>-1;
+  }
+
+  checkUserChatstory() {
+    if(this.chatstory.autor){
+      return this.chatstory.autor.id == this.auth.getUser().id;
+    }else{
+      return false;
+    }
+
   }
 
   updateLibrary() {
