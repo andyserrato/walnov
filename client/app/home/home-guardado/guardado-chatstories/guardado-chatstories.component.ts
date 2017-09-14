@@ -4,6 +4,8 @@ import { Paginator } from '../../../models/paginador';
 import { RepositorioService } from '../../../services/repositorio.service';
 import { ChatstoryService } from '../../../services/chatstory.service';
 import { AuthenticationService } from '../../../services/authentication.service';
+import { BibliotecaService } from '../../../services/biblioteca.service';
+import { ModalService } from '../../../services/modal.service';
 import 'rxjs/add/operator/switchMap';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 @Component({
@@ -18,30 +20,20 @@ export class GuardadoChatstoriesComponent implements OnInit {
   constructor(private repositorio: RepositorioService,
               private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute,
+              private bibliotecaService: BibliotecaService,
+              private modal: ModalService) {
 
   }
 
   ngOnInit() {
+    this.modal.load();
 
-    this.chats = new Array<ChatStory>();
-    const myParams = new URLSearchParams();
-    myParams.append('autor', this.authenticationService.getUser().id);
-
-    this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
-      this.chats = chatStories;
-      this.paginador = new Paginator(this.chats, this.div, 18, 9);
+    this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+      this.bibliotecaService.updateBiblioteca(biblioteca);
+      this.paginador = new Paginator(this.bibliotecaService.getCurrentBiblioteca().chatStories, this.div, 18, 9);
+      this.modal.clear();
     });
-    //   this.chats.push(new ChatStory());
-    //   this.chats[i].titulo = 'Flipas' + i;
-    //   this.chats[i].descripcion = 'flipas';
-    //   this.chats[i].categoria = this.repositorio.categoriasAL[6];
-    //   this.chats[i].urlImagen = 'http://www.lorempixel.com/63/100';
-    //   this.chats[i].views = 0;
-    //   this.chats[i].likes = 0;
-    //   this.chats[i].added = false;
-    //   this.chats[i].selected = false;
-    // }
 
   }
 

@@ -33,10 +33,11 @@ export class CardChatstoryComponent implements OnInit {
   ngOnInit() {
     // console.log(this.chatstory.autor);
     // console.log(this.auth.getUser());
+    this.checkLibrary();
   }
 
   checkLibrary() {
-    this.inLibrary=this.bibliotecaService.getCurrentBiblioteca().chatStories.indexOf(this.chatstory.id)>-1;
+    this.inLibrary=this.bibliotecaService.getCurrentBiblioteca().chatStories.find(chat => chat.id==this.chatstory.id) ? true : false;
   }
 
   checkUserChatstory() {
@@ -94,7 +95,7 @@ export class CardChatstoryComponent implements OnInit {
 
  addToLibrary() {
    if(!this.inLibrary) {
-     console.log('hola');
+    //  console.log('hola');
      this.bibliotecaService.addChatStoryOnBibliotecaByUserId(this.chatstory.id).subscribe(res => {
        this.updateLibrary()
      });
