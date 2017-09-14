@@ -117,6 +117,8 @@ export const LANG_EN_TRANS = {
   'alert_chatstory_insercion': 'An error has been detected while inserting a Chatstory',
   'alert_chatstory_borrador': 'saved as draft',
   'alert_chatstory_borrador_updt': 'your draft has been updated',
+  'alert_chatstory_acabados' : 'You haven’t got more chatstories!',
+  'alert_chatstory_acabados_2': 'There’s no more chatstories!',
 
   'alert_wrong_email': 'Write a valid email address',
 

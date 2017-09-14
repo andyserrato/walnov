@@ -25,6 +25,8 @@ export class RepositorioService{
     hists: Array<Historia> = new Array<Historia>();
     actRec: Array<any> = new Array();
 
+    idUsuario:any; //Se actualiza cuando visitamos el perfil de un usuario.
+
     results: Object// Aquí se guadaran los resultados de busqueda
 
     PricingDiv = null; //Div que se utiliza para el pricing
