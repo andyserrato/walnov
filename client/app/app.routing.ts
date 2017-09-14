@@ -18,6 +18,7 @@ import { BuscadorRelatosComponent } from './relatos/buscador-relatos/buscador-re
 import { ListadoChatstoriesComponent } from './chatstory/listado-chatstories/listado-chatstories.component';
 import { VerChatstoryComponent } from './chatstory/ver-chatstory/ver-chatstory.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserProfileModule } from './user-profile/user-profile.module';
 import { CrearRelatoComponent } from './relatos/crear-relato/crear-relato.component';
 import { PricingPremiumComponent } from './pricing/pricing-premium/pricing-premium.component';
 import { PricingPartnerComponent } from './pricing/pricing-partner/pricing-partner.component';
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
           { path: 'crear-wall', component: CrearWallComponent },
         ]
     },
-    { path: 'user-profile/:id', component: UserProfileComponent},
+    { path: 'user-profile/:id', loadChildren: './user-profile/user-profile.module#UserProfileModule'},
     { path: 'user-account', loadChildren: './user-account/user-account.module#UserAccountModule'},
     { path: 'crear-relato', component: CrearRelatoComponent},
     { path: 'social-login/success', component: SuccessComponent},

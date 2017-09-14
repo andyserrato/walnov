@@ -2,7 +2,7 @@
 
   <div class="c-popover" *ngIf="this.visible">
     <div class="d-flex flex-column align-items-start">
-      <div class="block username" (click)="goTo('user-profile/'+this.authenticationService.getUser().id)">
+      <div class="block username" (click)="goTo('user-profile/'+this.authenticationService.getUser().id+'/walls')">
         {{ nombre }}
       </div>
       <div class="block title" (click)="goTo('user-account')">

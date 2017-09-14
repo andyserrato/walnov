@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./card-home-navigate.component.scss']
 })
 export class CardHomeNavigateComponent implements OnInit {
-  @Input() view: string;
+  // @Input() view: string;
 
   constructor(private route: ActivatedRoute, private router: Router) {
 
@@ -18,7 +18,7 @@ export class CardHomeNavigateComponent implements OnInit {
   }
 
   changeView(str: string){
-    this.view=str;
+    // this.view=str;
     this.router.navigate(['/home/'+str]);
 
   }

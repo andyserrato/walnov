@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // console.log(params['id']);
+      //console.log(params['id']);
       this.userService.getById(params['id']).subscribe(user => {
         this.user = user;
         switch(user.tipo){

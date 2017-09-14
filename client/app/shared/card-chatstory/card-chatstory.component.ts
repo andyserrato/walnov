@@ -31,8 +31,8 @@ export class CardChatstoryComponent implements OnInit {
               private translate: TranslateService) { }
 
   ngOnInit() {
-    console.log(this.chatstory.autor);
-    console.log(this.auth.getUser());
+    // console.log(this.chatstory.autor);
+    // console.log(this.auth.getUser());
   }
 
   checkLibrary() {
@@ -134,18 +134,11 @@ export class CardChatstoryComponent implements OnInit {
       }
   }
 
-  checkDescription() {
-    if (!this.chatstory.descripcion) {
-      this.chatstory.descripcion = 'Este chatstory no tiene ninguna descripción.';
-    }
-    return this.chatstory.descripcion;
-  }
-
   getBackgroundImage() {
     return 'linear-gradient(to bottom,' + this.repositorio.categoriasHM.get(this.chatstory.categoria).opacidad + ',' + this.repositorio.categoriasHM.get(this.chatstory.categoria).color + ')';
   }
 
   goToUser() {
-    this.router.navigateByUrl('user-profile/'+this.chatstory.autor.id);
+    this.router.navigateByUrl('user-profile/'+this.chatstory.autor.id+'/walls');
   }
 }

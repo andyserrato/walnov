@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../../services/authentication.service';
 import {AlertService} from '../../services/alert.service';
 import { TranslateService } from '../../translate';
+import { RepositorioService } from '../../services/repositorio.service';
 @Component({
   selector: 'app-profile-popover',
   templateUrl: './profile-popover.component.html',
@@ -16,6 +17,7 @@ export class ProfilePopoverComponent implements OnInit {
   @ViewChild('div') div: ElementRef;
   nombre = 'Nombre Usuario';
   constructor(private router: Router, private authenticationService: AuthenticationService,
+              private repositorio: RepositorioService,
               private alertService: AlertService, private translate: TranslateService) { }
 
   ngOnInit() {

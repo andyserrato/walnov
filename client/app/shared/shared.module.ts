@@ -4,6 +4,8 @@ import {FormsModule} from '@angular/forms';
 import { LanguageSelectComponent } from './language-select/language-select.component';
 import { CardInformativoComponent } from './card-informativo/card-informativo.component';
 import { CardChatstoryComponent } from './card-chatstory/card-chatstory.component';
+import { CardContinuacionComponent } from './card-continuacion/card-continuacion.component';
+import { CardHistoriaComponent } from './card-historia/card-historia.component';
 import { CardRelatoComponent } from './card-relato/card-relato.component';
 import { CardFollowUserComponent } from './card-follow-user/card-follow-user.component';
 import { CardActividadRecienteComponent } from './card-actividad-reciente/card-actividad-reciente.component';
@@ -19,7 +21,7 @@ import {TRANSLATION_PROVIDERS} from '../translate/translations';
 import {TranslatePipe} from '../translate/translate.pipe';
 import {TranslateService} from '../translate/translate.service';
 import { CardChatstoryRelevanteComponent } from './card-chatstory-relevante/card-chatstory-relevante.component';
-
+import { UserCardComponent } from '../user-profile/user-card/user-card.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -40,6 +42,9 @@ import { CardChatstoryRelevanteComponent } from './card-chatstory-relevante/card
     CardBuscadorPersonasComponent,
     CardBuscadorContenidoComponent,
     CardChatstoryRelevanteComponent,
+    CardContinuacionComponent,
+    CardHistoriaComponent,
+    UserCardComponent,
     // TRANSLATION_PROVIDERS,
     TranslatePipe,
     // TranslateService
@@ -60,7 +65,10 @@ import { CardChatstoryRelevanteComponent } from './card-chatstory-relevante/card
     CardBuscadorContenidoComponent,
     CardBuscadorContenidoComponent,
     TranslatePipe,
-    CardChatstoryRelevanteComponent
+    CardChatstoryRelevanteComponent,
+    CardContinuacionComponent,
+    CardHistoriaComponent,
+    UserCardComponent
   ],
   providers: [
     TRANSLATION_PROVIDERS,
