@@ -48,7 +48,7 @@ export class HomeMisChatstoriesComponent implements OnInit {
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
       this.paginador = new Paginator(this.chats, this.div, 27, 9);
-      console.log(chatStories);
+      // console.log(chatStories);
       this.modalservice.clear();
       this.visible = true;
       this.skip += 27;

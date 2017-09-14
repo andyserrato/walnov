@@ -46,6 +46,7 @@ export class CardWallRelevanteComponent implements OnInit {
     this.addWall(this.wall2);
     this.addWall(this.wall3);
 
+    //setInterval(this.showAnother.bind(this), 10000,);
   }
 
   ngAfterViewInit() {

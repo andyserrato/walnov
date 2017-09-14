@@ -47,7 +47,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
       .switchMap((params: ParamMap) =>
         this.chatstoryService.getChatStory(params.get('id')))
       .subscribe(chatStory => {
-        console.log('estamos dentro del subscribe');
+        // console.log('estamos dentro del subscribe');
 
         this.chatStory = chatStory;
         if(this.repositorio.categoriasHM.get(this.chatStory.categoria)){
@@ -66,7 +66,12 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
             this.tipo='normal';
             break;
         }
-        console.log(this.chatStory);
+        // console.log(this.chatStory);
+        this.messagesArray = [];
+        this.counter = 0;
+        this.lastclick = Date.now();
+        this.limite = 50;
+        this.stoped = false;
         this.nextMessage();
         this.scrollToBottom();
       });

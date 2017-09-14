@@ -39,6 +39,8 @@ export class CardChatstoryRelevanteComponent implements OnInit {
       }
     );
 
+    setInterval(this.showAnother.bind(this), 30000,);
+
   }
 
   showAnother() {
