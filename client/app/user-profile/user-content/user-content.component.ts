@@ -21,6 +21,7 @@ export class UserContentComponent implements OnInit {
       //console.log(params['id']);
       this.userService.getById(params['id']).subscribe(user => {
         this.user = user;
+        this.repositorio.idUsuario = this.user.id;
       });
     });
   }

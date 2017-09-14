@@ -3,6 +3,7 @@ import { ChatStory } from '../../models/chatstory.model';
 import { Paginator } from '../../models/paginador';
 import { ChatstoryService } from '../../services/chatstory.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { TranslateService } from '../../translate';
 import 'rxjs/add/operator/switchMap';
 import { ModalService } from '../../services/modal.service';
 import {AlertService} from '../../services/alert.service';
@@ -19,6 +20,7 @@ export class HomeMisChatstoriesComponent implements OnInit {
   visible = false;
   skip = 0;
   constructor(private chatservice: ChatstoryService,
+              private translate: TranslateService,
               private authenticationService: AuthenticationService,
               private modalservice: ModalService,
               private alertService: AlertService) {
@@ -77,7 +79,7 @@ export class HomeMisChatstoriesComponent implements OnInit {
         this.skip += 27;
       } else {
         this.modalservice.clear();
-        this.alertService.warning('No tienes más chatstories!');
+        this.alertService.warning(this.translate.instant('alert_chatstory_acabados'));
         this.paginador.final=false;
       }
 
