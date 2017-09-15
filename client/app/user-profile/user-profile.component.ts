@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  vista: number;
   tipo: string='normal';
   user: any;
   constructor(private auth: AuthenticationService,
@@ -18,6 +19,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getRuta();
+
+    console.log(this.vista);
+    console.log(this.router.url.includes("relatos"));
+
     this.route.params.subscribe(params => {
       //console.log(params['id']);
       this.userService.getById(params['id']).subscribe(user => {
@@ -35,6 +41,12 @@ export class UserProfileComponent implements OnInit {
         }
       });
     });
+  }
+
+  getRuta() {
+    if(this.router.url.includes("relatos")) this.vista = 0;
+    else if (this.router.url.includes("chatstories")) this.vista = 1;
+    else this.vista = 2;
   }
 
 }

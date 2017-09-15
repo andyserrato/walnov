@@ -22,6 +22,7 @@ import {TranslatePipe} from '../translate/translate.pipe';
 import {TranslateService} from '../translate/translate.service';
 import { CardChatstoryRelevanteComponent } from './card-chatstory-relevante/card-chatstory-relevante.component';
 import { UserCardComponent } from '../user-profile/user-card/user-card.component';
+import { CardRelatoRelevanteComponent } from './card-relato-relevante/card-relato-relevante.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -45,6 +46,7 @@ import { UserCardComponent } from '../user-profile/user-card/user-card.component
     CardContinuacionComponent,
     CardHistoriaComponent,
     UserCardComponent,
+    CardRelatoRelevanteComponent,
     // TRANSLATION_PROVIDERS,
     TranslatePipe,
     // TranslateService
@@ -68,7 +70,8 @@ import { UserCardComponent } from '../user-profile/user-card/user-card.component
     CardChatstoryRelevanteComponent,
     CardContinuacionComponent,
     CardHistoriaComponent,
-    UserCardComponent
+    UserCardComponent,
+    CardRelatoRelevanteComponent
   ],
   providers: [
     TRANSLATION_PROVIDERS,

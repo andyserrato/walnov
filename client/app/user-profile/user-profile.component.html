@@ -14,7 +14,11 @@
     <!-- /.col -->
     <div class="col-lg-3 hidden-md-down cols-no-padding">
       <app-card-usuario-tendencia></app-card-usuario-tendencia>
-      <app-card-chatstory-relevante></app-card-chatstory-relevante>
+      <!-- <div [ngSwitch] = "this.vista"> -->
+        <app-card-wall-relevante *ngIf="this.router.url.includes('walls') || this.router.url.includes('historias') || this.router.url.includes('cont')"></app-card-wall-relevante>
+        <app-card-relato-relevante *ngIf="this.router.url.includes('relatos')"></app-card-relato-relevante>
+        <app-card-chatstory-relevante *ngIf="this.router.url.includes('chatstories')"></app-card-chatstory-relevante>
+      <!-- </div> -->
       <app-card-publicidad></app-card-publicidad>
     </div>
     <!-- /.col -->

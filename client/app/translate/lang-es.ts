@@ -273,6 +273,7 @@ export const LANG_ES_TRANS = {
   'relatos_card_info': 'Info del Relato',
   'relatos_añadir': 'Añadir a mis listas',
   'relatos_eliminar': 'Eliminar de mis listas',
+  'relatos_relevantes': 'Relatos relevantes',
 
   //popover
   'popover_unirse':'Únete para poder publicar',

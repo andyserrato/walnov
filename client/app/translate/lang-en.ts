@@ -275,6 +275,7 @@ export const LANG_EN_TRANS = {
   'relatos_card_info': 'Short story info',
   'relatos_añadir': 'Add to my lists',
   'relatos_eliminar': 'Remove from my lists',
+  'relatos_relevantes': 'Relevant Short stories',
 
 
   //popover

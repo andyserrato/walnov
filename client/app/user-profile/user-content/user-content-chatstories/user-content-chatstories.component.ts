@@ -42,7 +42,7 @@ export class UserContentChatstoriesComponent implements OnInit {
     else {
       this.library = true;
     }
-    console.log(this.library);
+    // console.log(this.library);
     if(this.repositorio.idUsuario) {
       this.firstQuery();
     }

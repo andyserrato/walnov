@@ -1,0 +1,29 @@
+<div class="card Rectangle-3-Copy-4 hidden-md-down">
+  <div class="card-block">
+    <h4 class="Card-title">{{'relatos_relevantes' | translate}}</h4>
+    <div *ngFor="let relato of relatos | slice:0:1">
+      <!-- <div *ngIf = "wall.isRelevante"> -->
+        <div class="Rectangle-3">
+          <div class="row">
+            <div class="col-10">
+              <div class="Wall-title" title="{{relato.titulo}}">
+                {{relato.titulo}}
+              </div>
+            </div>
+            <button type="button" (click)="showAnother()" class="btn-close" name="button">
+              <i class="fa fa-arrow-circle-right close-Copy" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(relato)' [style.color] = 'getColor(relato)'>
+            {{relato.categoria.nombre | translate}}
+          </div>
+          <ul class="list-unstyled Estadisticas-Usuario">
+            <li>{{relato.likes}} Likes</li>
+            <li>{{relato.coments}} {{'all_opiniones' | translate}}</li>
+          </ul>
+          <button (click) = "loadRelato(relato)" type="button" class="btn-wall pull-right" name="button">{{'chatstories_relevantes_leer' | translate}}</button>
+        </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+@import 'main';
+
+.Rectangle-3-Copy-4 {
+  //width: 299px;
+  //height: 214px;
+  border-radius: 8px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  margin-bottom: 17px;
+}
+
+.Card-title {
+  padding-top: 4px;
+  font-family: Raleway;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+  //color: #808080;
+  color: $grey-7;
+
+}
+
+.Rectangle-3 {
+  //width: 252.5px;
+  //height: 131px;
+  border-radius: 8px;
+  margin-top: 20px;
+  //background-color: #ffffff;
+  background-color: $grey-1;
+  border: solid 1px #e0e0e0;
+}
+
+.Wall-title {
+  padding-left: 12px;
+  padding-top: 10px;
+  font-family: 'Maven Pro';
+  font-size: 14px;
+  text-align: left;
+  color: #3a204c;
+
+}
+
+.Rectangle-7-Copy-4 {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5px 8px !important;
+  //border: solid 1px #e65e20;
+  //border: solid 1px $cat-1;
+  margin-left: 12px;
+  margin-top: 10px;
+  padding: 0.8px 4px;
+}
+
+.Categoria {
+  text-transform: uppercase;
+  font-family: Raleway;
+  font-size: 0.6em;
+  font-weight: bold;
+  text-align: center;
+  //color: #e65e20;
+  //color: $cat-1;
+
+}
+
+.Estadisticas-Usuario {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  line-height: 25px;
+  padding-left:12px;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: left;
+  color: #6c626f;
+
+}
+
+.btn-wall {
+  //position: absolute;
+  //margin-right: 70px;
+  //padding-right: 25px;
+  //bottom: 30px;
+  //right: 25px;
+  //left: 200px;
+  border: 0;
+  background: 0;
+  outline: none;
+  cursor: pointer;
+  //margin-left: -20px;
+  //text-align: right;
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: bold;
+  //text-align: right;
+  // float: right;
+  //color: #8427bf;
+  color: $main-1;
+  margin-top: -40px;
+  padding-right: 15px;
+
+}
+
+.btn-wall:focus{
+  outline: none;
+
+}
+
+.fa-arrow-circle-right {
+  color: $main-1;
+}
+
+.close-Copy {
+  //margin-top: -10px;
+  position: relative;
+  right: 12px;
+  //bottom: 5px;
+  top: 2px;
+  //color: $grey-7;
+  //margin-left: 50px;
+  font-size: 20px;
+  // width: 12px;
+  // height: 12px;
+  object-fit: contain;
+
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ellipsis {
+  color: $main-1;
+  font-weight: bold;
+}
+
+.btn-close {
+  border: 0;
+  background: 0;
+  outline: none;
+  cursor: pointer;
+
+}
+
+.btn-close:focus {
+  outline: none;
+
+}
