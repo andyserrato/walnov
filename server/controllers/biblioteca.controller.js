@@ -54,7 +54,8 @@ function getBibliotecaByUserId(req, res) {
   var findBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.findOne(query, function (err, biblioteca) {
+    Biblioteca.findOne(query).populate('chatStories').populate({path: 'chatStories', populate: { path: 'autor estadistica'}}).exec(function (err, biblioteca) {
+
       if (err) {
         res.status(400).send("Ha ocurrido un error");
       }
