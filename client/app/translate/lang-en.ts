@@ -177,6 +177,9 @@ export const LANG_EN_TRANS = {
   'chatstories_relevantes': 'Relevant Chatstories',
   'chatstories_relevantes_leer': 'Read',
 
+  'chatstories_card_info': 'Chatstory info',
+  'chatstories_card_info_personajes': 'character(s)',
+
   //card-informativo
   'card_info_entendido': 'Got it',
   'card_info_instr': 'Start by choosing a title and a category.',
