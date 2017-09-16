@@ -116,8 +116,10 @@ const perfil = Schema({
   perfilCompleto: Boolean,
   twitter: String,
   google: String,
-  facebook: String
-
+  facebook: String,
+  numWallsCreated: {type: Number , default: 0},
+  numRelatosCreated: {type: Number , default: 0},
+  numChatStoriesCreated: {type: Number , default: 0},
 });
 
 const providerSchema = Schema({
@@ -157,6 +159,21 @@ usuario.methods.generateHash = function (password) {
 // checking if password is valid
 usuario.methods.authenticate = function (password) {
   return bcrypt.compareSync(password, this.password);
+};
+
+usuario.methods.increaseWallsCreated = function (callback) {
+  this.perfil.numWallsCreated++;
+  this.save(callback);
+};
+
+usuario.methods.increaseRelatosCreated = function (callback) {
+  this.perfil.numRelatosCreated++;
+  this.save(callback);
+};
+
+usuario.methods.increaseChatStoriesCreated = function (callback) {
+  this.perfil.numChatStoriesCreated++;
+  this.save(callback);
 };
 
 usuario.statics.findUniqueUsername = function (username, suffix,

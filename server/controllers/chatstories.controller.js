@@ -64,7 +64,13 @@ function crearChatStory(req, res) {
           User.findOne({_id: peticion.autor}, function (err, usu) {
             if (err)
               res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
-            notificar(notificacionNuevoChatStory, usu.seguidores, newChatStory);
+            usu.increaseChatStoriesCreated(function (err, newUsu) {
+                if (err)
+                  res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
+                notificar(notificacionNuevoChatStory, usu.seguidores, newChatStory);
+              }
+            );
+
           });
         } else {
           notificar(notificacionNuevoChatStory, peticion.usuario.seguidores, newChatStory);
@@ -145,6 +151,7 @@ function getChatStories(req, res) {
   query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
   query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
   query.where('activo').equals(true);
+  query.where('estadistica').ne(null);
 
   if (req.query && req.query.autor && req.query.timeLine && (req.query.timeLine === 'followers' || req.query.timeLine === 'following')) {
     User.findById(req.query.autor, (err, user) => {
