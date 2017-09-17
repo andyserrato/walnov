@@ -84,7 +84,8 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   loadMessage(m: ChatstoryMessage) {
     this.message = m;
     this.editing = true;
-    this.imgPlaceholder.nativeElement.innerHTML = this.translate.instant('shared_image_picker_changeimage') + ' ' + this.translate.instant('shared_image_picker_changeimage_2');
+    this.imgPlaceholder.nativeElement.innerHTML =
+      this.translate.instant('shared_image_picker_changeimage') + ' ' + this.translate.instant('shared_image_picker_changeimage_2');
   }
 
   getBack() {
@@ -114,8 +115,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   publicarChatStory() {
-    if(this.auth.isLoggedIn()) {
-      // comprobamos que el chatstory al menos posee 5 chats
+    if (this.auth.isLoggedIn()) {
       if (this.chatStory.tipo === 0) {
         this.alert.warning(this.translate.instant('alert_chatstory_existente'));
         this.alert.clearTimeOutAlert();
@@ -142,7 +142,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
         } );
       } else if (this.chatStory.tipo === 1) {
         this.chatStory.tipo = 0; // publicado
-        const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
+        const chatStoryFulero = {lang: this.translate.currentLang, chatStory: this.chatStory};
         chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
         this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe( chatStorySaved => {
           const chatStoryUrl = '/chatstory/' + this.chatStory.id;
@@ -158,41 +158,42 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   guardarComoBorradorChatStory() {
-    if (this.chatStory.tipo === 0) {
-      this.alert.warning(this.translate.instant('alert_chatstory_existente'));
-      this.alert.clearTimeOutAlert();
-    } else if (this.chatStory.chats.length < 5) {
-      this.alert.warning(this.translate.instant('alert_chatstory_requisitos'));
-      this.alert.clearTimeOutAlert();
-    } else if (!this.chatStory.tipo && this.chatStory.tipo !== 0) {
-      console.log('Uno nuevo');
-      console.log(this.chatStory.tipo);
-      // set flag de borrador
-      this.chatStory.tipo = 1;
-      // set autorNombre
-      this.chatStory.autor = this.auth.getUser().id;
-      // set autor ID
-      this.chatStory.autorNombre = this.auth.getUser().perfil.display_name;
-      const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
-      chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
-      // guardar
-      this.chatStoryService.addChatStory(chatStoryFulero).subscribe(chatStorySaved => {
-        this.chatStory = chatStorySaved;
-        this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
-        this.chatStory.categoria.selected = true;
-        this.alert.success(this.translate.instant('alert_chatstory_borrador'));
+    if (this.auth.isLoggedIn()) {
+      if (this.chatStory.tipo === 0) {
+        this.alert.warning(this.translate.instant('alert_chatstory_existente'));
         this.alert.clearTimeOutAlert();
-      }, error => this.alert.error(this.translate.instant('alert_chatstory_insercion')));
-    } else if (this.chatStory.tipo && this.chatStory.tipo === 1) {
-      const chatStoryFulero = {lang: 'es', chatStory: this.chatStory};
-      chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
-      this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe(chatStorySaved => {
-        this.chatStory = chatStorySaved;
-        this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
-        this.alert.success(this.translate.instant('alert_chatstory_borrador_updt'));
+      } else if (this.chatStory.chats.length < 5) {
+        this.alert.warning(this.translate.instant('alert_chatstory_requisitos'));
         this.alert.clearTimeOutAlert();
-      }, error => this.alert.error(this.translate.instant('alert_chatstory_insercion')));
+      } else if (!this.chatStory.tipo && this.chatStory.tipo !== 0) {
+        // set flag de borrador
+        this.chatStory.tipo = 1;
+        // set autorNombre
+        this.chatStory.autor = this.auth.getUser().id;
+        // set autor ID
+        this.chatStory.autorNombre = this.auth.getUser().perfil.display_name;
+        const chatStoryFulero = {lang: this.translate.currentLang, chatStory: this.chatStory};
+        chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
+        // guardar
+        this.chatStoryService.addChatStory(chatStoryFulero).subscribe(chatStorySaved => {
+          this.chatStory = chatStorySaved;
+          this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
+          this.chatStory.categoria.selected = true;
+          this.alert.success(this.translate.instant('alert_chatstory_borrador'));
+          this.alert.clearTimeOutAlert();
+        }, error => this.alert.error(this.translate.instant('alert_chatstory_insercion')));
+      } else if (this.chatStory.tipo && this.chatStory.tipo === 1) {
+        const chatStoryFulero = {lang: this.translate.currentLang, chatStory: this.chatStory};
+        chatStoryFulero.chatStory.categoria = this.chatStory.categoria.nombre;
+        this.chatStoryService.updateChatStory(chatStoryFulero, this.chatStory.id).subscribe(chatStorySaved => {
+          this.chatStory = chatStorySaved;
+          this.chatStory.categoria = this.repo.getCategoriaALByName(this.chatStory.categoria);
+          this.alert.success(this.translate.instant('alert_chatstory_borrador_updt'));
+          this.alert.clearTimeOutAlert();
+        }, error => this.alert.error(this.translate.instant('alert_chatstory_insercion')));
+      }
+    } else {
+      this.registerService.setVisible(true);
     }
-
   }
 }

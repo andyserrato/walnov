@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Categoria } from '../../../models/cats';
 import { RepositorioService } from '../../../services/repositorio.service';
-import { Relato } from '../../../models/relato';
+import { Relato } from '../../../models/relato.model';
 import { Usuario } from '../../../models/usuario.model';
 import { Paginator } from '../../../models/paginador';
 
@@ -22,7 +22,7 @@ export class GuardadoRelatosComponent implements OnInit {
 
          nuevoRL.categoria = this.repositorio.categoriasAL[j];
          nuevoRL.titulo = "Hola" + i;
-         nuevoRL.imagen_url = "https://lorempixel.com/158/129";
+         nuevoRL.urlImagen = "https://lorempixel.com/158/129";
          nuevoRL.coments = 200324;
          nuevoRL.resumen = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag.";
          nuevoRL.likes = 784;

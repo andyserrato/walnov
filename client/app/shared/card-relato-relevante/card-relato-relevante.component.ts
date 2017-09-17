@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositorioService } from '../../services/repositorio.service';
-import { Relato } from '../../models/relato';
+import { Relato } from '../../models/relato.model';
 
 @Component({
   selector: 'app-card-relato-relevante',

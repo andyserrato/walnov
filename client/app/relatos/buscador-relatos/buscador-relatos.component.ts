@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../../models/cats';
-import { Relato } from '../../models/relato';
+import { Relato } from '../../models/relato.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Paginator } from '../../models/paginador';
 

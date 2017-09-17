@@ -109,13 +109,23 @@ export const LANG_ES_TRANS = {
   'alert_crear_chatstory_2': 'Máximo 15 caracteres',
   'alert_crear_chatstory_3': 'Máximo 18 personajes',
 
-  'alert_chatstory_existente': 'El Chatstory ya se encuentra publicado',
-  'alert_chatstory_requisitos': 'El Chatstory debe contener al menos 5 chats para poder ser publicado',
-  'alert_chatstory_insercion': 'Ha ocurrido un error al intentar insertar un Chatstory',
-  'alert_chatstory_borrador': 'se ha guardado como borrador',
-  'alert_chatstory_borrador_updt': 'se ha actualizado tu borrador',
-  'alert_chatstory_acabados' : 'No tienes más chatstories!',
-  'alert_chatstory_acabados_2': 'No hay más chatstories!',
+  // Chatstories
+  'alert_chatstory_existente': 'El ChatStory ya se encuentra publicado',
+  'alert_chatstory_requisitos': 'El ChatStory debe contener al menos 5 chats para poder ser publicado',
+  'alert_chatstory_insercion': 'Ha ocurrido un error al intentar insertar un ChatStory',
+  'alert_chatstory_borrador': 'Se ha guardado como borrador',
+  'alert_chatstory_borrador_updt': 'Se ha actualizado tu borrador',
+  'alert_chatstory_acabados' : 'No tienes más ChatStories!',
+  'alert_chatstory_acabados_2': 'No hay más ChatStories!',
+
+  // Relatos
+  'alert_relato_existente': 'El Relato ya se encuentra publicado',
+  'alert_relato_requisitos': 'El Relato debe contener al menos 140 caracteres para poder ser publicado',
+  'alert_relato_insercion': 'Ha ocurrido un error al intentar insertar un Relato',
+  'alert_relato_borrador': 'Se ha guardado como borrador',
+  'alert_relato_borrador_updt': 'Se ha actualizado tu borrador',
+  'alert_relato_acabados' : 'No tienes más relatos!',
+  'alert_relato_acabados_2': 'No hay más relatos!',
 
   'alert_wrong_email': 'Escribe una dirección de email correcta',
 

@@ -61,10 +61,10 @@ function crearChatStory(req, res) {
         );
 
         if (!peticion.seguidores) {
-          User.findOne({_id: peticion.autor}, function (err, usu) {
+          User.findOne({_id: newChatStory.autor}, function (err, usu) {
             if (err)
               res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
-            usu.increaseChatStoriesCreated(function (err, newUsu) {
+            usu.increaseChatStoriesCreated(function (err) {
                 if (err)
                   res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
                 notificar(notificacionNuevoChatStory, usu.seguidores, newChatStory);
@@ -91,6 +91,10 @@ function getChatStories(req, res) {
   query.populate('estadistica autor');
   if (req.query && req.query.categoria) {
     query.where('categoria').equals(req.query.categoria);
+  }
+
+  if (req.query && req.query.titulo) {
+    query.where('titulo').equals(req.query.titulo);
   }
 
   if (req.query && req.query.autorNombre) {
@@ -209,9 +213,9 @@ function getChatStoryById(req, res) {
       chatStory.estadistica.save(function (err) {
         if (err)
           res.status(400).send(err);
-      })
 
-      res.status(200).send(chatStory);
+        res.status(200).send(chatStory);
+      })
     });
 }
 

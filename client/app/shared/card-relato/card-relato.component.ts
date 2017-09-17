@@ -1,7 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Categoria } from '../../models/cats';
 import { RepositorioService } from '../../services/repositorio.service';
-import { Relato } from '../../models/relato';
+import { Relato } from '../../models/relato.model';
 
 @Component({
   selector: 'app-card-relato',
@@ -19,7 +19,7 @@ export class CardRelatoComponent implements OnInit {
     // this.relatoPrueba = new Relato();
     // this.relatoPrueba.categoria = this.repositorio.categoriasAL[9];
     // this.relatoPrueba.coments = 200324;
-    // this.relatoPrueba.imagen_url = "https://lorempixel.com/158/129";
+    // this.relatoPrueba.urlImagen = "https://lorempixel.com/158/129";
     // this.relatoPrueba.likes = 800;
     // this.relatoPrueba.titulo = "Integer dui leo, sodales et tortor in, consequat placerat tellus.";
     // this.relatoPrueba.resumen = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. ";
@@ -29,7 +29,7 @@ export class CardRelatoComponent implements OnInit {
     // this.relatoPrueba.userImage = "https://lorempixel.com/22/22";
 
   }
-  
+
   getBackgroundImage() {
     return 'linear-gradient(to bottom,'+this.relato.categoria.opacidad+','+this.relato.categoria.color+')';
   }

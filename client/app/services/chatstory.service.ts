@@ -23,7 +23,7 @@ export class ChatstoryService {
   getChatStory(id: any): Observable<any> {
     let query = this.chatStoriesUrl + '/' + id;
     if (this.auth.isLoggedIn()) {
-      query+="?usuarioId="+this.auth.getUser().id;
+      query += '?usuarioId=' + this.auth.getUser().id;
     }
     return this.http.get(query)
       .map((res: Response) => {
@@ -71,8 +71,8 @@ export class ChatstoryService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     return this.http.put(`${this.chatStoriesUrl}/like`, bodyString, options)
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }

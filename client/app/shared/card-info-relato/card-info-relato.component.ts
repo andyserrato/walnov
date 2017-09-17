@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Relato } from '../../models/relato';
+import { Relato } from '../../models/relato.model';
 import { Usuario } from '../../models/usuario.model';
 import { RepositorioService } from '../../services/repositorio.service';
 
@@ -19,7 +19,7 @@ export class CardInfoRelatoComponent implements OnInit {
 
     this.relato.categoria = this.repositorio.categoriasAL[0];
     this.relato.titulo = "Hola";
-    this.relato.imagen_url = "https://lorempixel.com/158/129";
+    this.relato.urlImagen = "https://lorempixel.com/158/129";
     this.relato.coments = 200324;
     this.relato.resumen = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. ";
     this.relato.likes = 784;

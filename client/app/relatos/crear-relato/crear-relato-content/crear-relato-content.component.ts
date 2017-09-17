@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { RepositorioService } from '../../../services/repositorio.service';
-import { Relato } from '../../../models/relato';
+import { Relato } from '../../../models/relato.model';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AlertService } from '../../../services/alert.service';
 import { ModalService } from '../../../services/modal.service';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { TranslateService } from '../../../translate';
+import {RegisterPopoverService} from "../../../services/register-popover.service";
+import {RelatoService} from "../../../services/relato.service";
 @Component({
   selector: 'app-crear-relato-content',
   templateUrl: './crear-relato-content.component.html',
@@ -21,7 +23,14 @@ export class CrearRelatoContentComponent implements OnInit {
   popover = false;
   publicando = false;
   @ViewChild('textarea') textarea: ElementRef;
-  constructor(private repositorio: RepositorioService, fb: FormBuilder, private alert: AlertService, private modal: ModalService, private auth: AuthenticationService, private translate: TranslateService) {
+  constructor(private repositorio: RepositorioService,
+              fb: FormBuilder,
+              private alert: AlertService,
+              private modal: ModalService,
+              private auth: AuthenticationService,
+              private translate: TranslateService,
+              private registerService: RegisterPopoverService,
+              private relatoService: RelatoService) {
     this.dedicatorias = new Array<string>();
     this.friends = new Array<string>();
     this.complexForm = fb.group({
@@ -37,7 +46,7 @@ export class CrearRelatoContentComponent implements OnInit {
   }
 
   newFriend(event) {
-    if (event.value && this.friends.indexOf(event.value) == -1){
+    if (event.value && this.friends.indexOf(event.value) === -1) {
       this.friends.push(event.value);
     }
     event.value = '';
@@ -62,15 +71,15 @@ export class CrearRelatoContentComponent implements OnInit {
   }
 
   changeImage(event) {
-    this.relato.imagen_url = event;
+    this.relato.urlImagen = event;
   }
 
   publish() {
     if (this.complexForm.valid) {
-      if (this.auth.isLoggedIn()){
+      if (this.auth.isLoggedIn()) {
         this.share();
-      }else{
-        this.popover = true;
+      } else {
+        this.registerService.setVisible(true);
       }
     }else{
       this.complexForm.controls['title'].markAsTouched();
@@ -84,5 +93,23 @@ export class CrearRelatoContentComponent implements OnInit {
     setTimeout(() => {
       this.publicando = false;
     }, 1000);
+  }
+
+  /**
+   * Crea un relato nuevo
+   */
+  createRegister(tipo: number) {
+    this.relato.tipo = tipo;
+    this.relato.autor = this.auth.getUser().id;
+    this.relato.autorNombre = this.auth.getUser().perfil.display_name;
+    const relatoInterface = {lang: this.translate.currentLang, relato: this.relato};
+    relatoInterface.relato.categoria = this.relato.categoria.nombre;
+
+    this.relatoService.createRelato(relatoInterface).subscribe( relatoSaved => {
+
+    }, error => {
+      this.alert.error(this.translate.instant('alert_relato_insersion'));
+    });
+
   }
 }

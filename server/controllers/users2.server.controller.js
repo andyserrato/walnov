@@ -140,7 +140,8 @@ function signup(req, res) {
   const user = new User({
     login: req.body.login,
     perfil: {
-      email: req.body.email
+      email: req.body.email,
+      display_name: req.body.login
     }
   });
   user.password = user.generateHash(req.body.password);

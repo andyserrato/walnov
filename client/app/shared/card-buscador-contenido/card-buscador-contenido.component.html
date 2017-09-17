@@ -18,7 +18,7 @@
           <div class="lista d-flex flex-row">
             <div class="d-flex flex-column" style="margin-right:18px;">
               <div class="Rectangle-7-Copy-3">
-                <img  class="Imagen-Relato" src={{this.entrada.imagen_url}} alt="">
+                <img class="Imagen-Relato" src="{{this.entrada.urlImagen}}" alt="">
                 <div class="Fondo-Imagen">
                 </div>
                 <div class="Degradado-Imagen" [ngStyle] = "{'border': getBorder(entrada), 'background-image': getBackgroundImage(entrada)}">
@@ -64,7 +64,7 @@
           <div class="lista d-flex flex-row">
             <div class="d-flex flex-column" style="margin-right:18px;">
               <div class="Rectangle-7-Copy-3">
-                <img  class="Imagen-Relato" src={{this.entrada.imagen_url}} alt="">
+                <img  class="Imagen-Relato" src={{this.entrada.urlImagen}} alt="">
                 <div class="Fondo-Imagen">
                 </div>
                 <div class="Degradado-Imagen" [ngStyle] = "{'border': getBorder(entrada), 'background-image': getBackgroundImage(entrada)}">

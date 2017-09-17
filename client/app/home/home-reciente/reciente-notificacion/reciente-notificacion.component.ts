@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { RepositorioService } from '../../../services/repositorio.service';
-import { Relato } from '../../../models/relato';
+import { Relato } from '../../../models/relato.model';
 import { Wall } from '../../../models/wall';
 import { ChatStory } from '../../../models/chatstory.model';
 import { Continuacion } from '../../../models/continuacion';
@@ -22,99 +22,104 @@ export class RecienteNotificacionComponent implements OnInit {
 
   ngOnInit() {
 
-    for(let i=0; i<1; i++) {
-      for(let j=1; j<11; j++) {
-        let nuevoRL = new Relato();
+    for (let i = 0; i < 1; i++) {
+      for (let j = 1; j < 11; j++) {
+        const nuevoRL = new Relato();
 
 
-         nuevoRL.categoria = this.repositorio.categoriasAL[j-1];
-         nuevoRL.titulo = "Hola" + i;
-         nuevoRL.imagen_url = "https://lorempixel.com/158/129";
+         nuevoRL.categoria = this.repositorio.categoriasAL[j - 1];
+         nuevoRL.titulo = 'Hola' + i;
+         nuevoRL.urlImagen = 'https://lorempixel.com/158/129';
          nuevoRL.coments = 200324;
-         nuevoRL.texto = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag.";
+         nuevoRL.texto = 'Portland ugh fashion axe Helvetica, YOLO Echo Park Austin' +
+           ' gastropub roof party. Meggings cred before they sold out messenger bag.';
          nuevoRL.likes = 784;
          nuevoRL.views = 2000;
          nuevoRL.usuario = new Usuario();
-         nuevoRL.usuario.nombre = "Amorentrelineas";
-         nuevoRL.usuario.imagen = "https://lorempixel.com/30/30";
+         nuevoRL.usuario.nombre = 'Amorentrelineas';
+         nuevoRL.usuario.imagen = 'https://lorempixel.com/30/30';
          nuevoRL.usuario.seguido = true;
-         nuevoRL.fechaCreacion = new Date(2013,j,17+j);
+         nuevoRL.fechaCreacion = new Date(2013, j, 17 + j);
          this.addNotification(this.repositorio.actRec, nuevoRL);
       }
-      for(let j=1; j<11; j++) {
-        let nuevoRL = new Historia();
+      for (let j = 1; j < 11; j++) {
+        const nuevoRL = new Historia();
 
 
         //  nuevoRL.categoria = this.repositorio.categoriasAL[j];
          nuevoRL.wall = new Wall();
-         nuevoRL.wall.titulo = "Hola" + i;
+         nuevoRL.wall.titulo = 'Hola' + i;
         //  nuevoRL.titulo = "Hola" + i;
-        //  nuevoRL.imagen_url = "https://lorempixel.com/158/129";
+        //  nuevoRL.urlImagen = "https://lorempixel.com/158/129";
         //  nuevoRL.coments = 200324;
-         nuevoRL.texto = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag.";
+         nuevoRL.texto = 'Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings ' +
+           'cred before they sold out messenger bag.';
          nuevoRL.likes = 784;
         //  nuevoRL.views = 2000;
          nuevoRL.usuario = new Usuario();
-         nuevoRL.usuario.nombre = "Amorentrelineas";
-         nuevoRL.usuario.imagen = "https://lorempixel.com/30/30";
+         nuevoRL.usuario.nombre = 'Amorentrelineas';
+         nuevoRL.usuario.imagen = 'https://lorempixel.com/30/30';
          nuevoRL.usuario.seguido = true;
-         nuevoRL.fechaCreacion = new Date(2014,j,17-j);
+         nuevoRL.fechaCreacion = new Date(2014, j, 17 - j);
          this.addNotification(this.repositorio.actRec, nuevoRL);
       }
-      for(let j=1; j<11; j++) {
-        let nuevoRL = new Wall();
+      for (let j = 1; j < 11; j++) {
+        const nuevoRL = new Wall();
 
 
-         nuevoRL.cat = this.repositorio.categoriasAL[j-1];
-         nuevoRL.titulo = "Hola" + i;
-         nuevoRL.imagen_url = "https://lorempixel.com/158/129";
+         nuevoRL.cat = this.repositorio.categoriasAL[j - 1];
+         nuevoRL.titulo = 'Hola' + i;
+         nuevoRL.urlImagen = 'https://lorempixel.com/158/129';
         //  nuevoRL.coments = 200324;
-         nuevoRL.texto = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag.";
+         nuevoRL.texto = 'Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. ' +
+           'Meggings cred before they sold out messenger bag.';
          nuevoRL.likes = 784;
         //  nuevoRL.views = 2000;
          nuevoRL.usuario = new Usuario();
-         nuevoRL.usuario.nombre = "Amorentrelineas";
-         nuevoRL.usuario.imagen = "https://lorempixel.com/30/30";
+         nuevoRL.usuario.nombre = 'Amorentrelineas';
+         nuevoRL.usuario.imagen = 'https://lorempixel.com/30/30';
          nuevoRL.usuario.seguido = true;
-         nuevoRL.fechaCreacion = new Date(2015,9,j);
+         nuevoRL.fechaCreacion = new Date(2015, 9, j);
          this.addNotification(this.repositorio.actRec, nuevoRL);
       }
-      for(let j=1; j<11; j++) {
-        let nuevoRL = new ChatStory();
+      for (let j = 1; j < 11; j++) {
+        const nuevoRL = new ChatStory();
 
 
-         nuevoRL.categoria = this.repositorio.categoriasAL[j-1];
-         nuevoRL.titulo = "Hola" + i;
-        //  nuevoRL.imagen_url = "https://lorempixel.com/158/129";
+         nuevoRL.categoria = this.repositorio.categoriasAL[j - 1];
+         nuevoRL.titulo = 'Hola' + i;
+        //  nuevoRL.urlImagen = "https://lorempixel.com/158/129";
         //  nuevoRL.coments = 200324;
-         nuevoRL.descripcion = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag.";
+         nuevoRL.descripcion = 'Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. ' +
+           'Meggings cred before they sold out messenger bag.';
          nuevoRL.likes = 784;
          nuevoRL.views = 2000;
          nuevoRL.usuario = new Usuario();
-         nuevoRL.usuario.nombre = "Amorentrelineas";
-         nuevoRL.usuario.imagen = "https://lorempixel.com/30/30";
+         nuevoRL.usuario.nombre = 'Amorentrelineas';
+         nuevoRL.usuario.imagen = 'https://lorempixel.com/30/30';
          nuevoRL.usuario.seguido = true;
-         nuevoRL.fechaCreacion = new Date(2016,j,17-j+3);
+         nuevoRL.fechaCreacion = new Date(2016, j, 17 - j + 3);
          this.addNotification(this.repositorio.actRec, nuevoRL);
       }
-      for(let j=1; j<11; j++) {
-        let nuevoRL = new Continuacion();
+      for (let j = 1; j < 11; j++) {
+        const nuevoRL = new Continuacion();
 
 
         //  nuevoRL.categoria = this.repositorio.categoriasAL[j];
          nuevoRL.wall = new Wall();
-         nuevoRL.wall.titulo = "Hola" + i;
+         nuevoRL.wall.titulo = 'Hola' + i;
         //  nuevoRL.titulo = "Hola" + i;
-        //  nuevoRL.imagen_url = "https://lorempixel.com/158/129";
+        //  nuevoRL.urlImagen = "https://lorempixel.com/158/129";
         //  nuevoRL.coments = 200324;
-         nuevoRL.texto = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag.";
+         nuevoRL.texto = 'Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. ' +
+           'Meggings cred before they sold out messenger bag.';
          nuevoRL.likes = 784;
         //  nuevoRL.views = 2000;
          nuevoRL.usuario = new Usuario();
-         nuevoRL.usuario.nombre = "Amorentrelineas";
-         nuevoRL.usuario.imagen = "https://lorempixel.com/30/30";
+         nuevoRL.usuario.nombre = 'Amorentrelineas';
+         nuevoRL.usuario.imagen = 'https://lorempixel.com/30/30';
          nuevoRL.usuario.seguido = true;
-         nuevoRL.fechaCreacion = new Date(2012,10,j);
+         nuevoRL.fechaCreacion = new Date(2012, 10, j);
          this.addNotification(this.repositorio.actRec, nuevoRL);
       }
     }
@@ -123,9 +128,9 @@ export class RecienteNotificacionComponent implements OnInit {
   }
 
   sortByDate(value: any, args?: any): any {
-      let newVal = value.sort((a: any, b: any) => {
-          let date1 = new Date(a.fechaCreacion);
-          let date2 = new Date(b.fechaCreacion);
+      const newVal = value.sort((a: any, b: any) => {
+          const date1 = new Date(a.fechaCreacion);
+          const date2 = new Date(b.fechaCreacion);
 
           if (date1 > date2) {
               return -1;
@@ -138,8 +143,8 @@ export class RecienteNotificacionComponent implements OnInit {
       return newVal;
   }
 
-  addNotification(array:any, object: any) {
-    if(object.usuario.seguido) {
+  addNotification(array: any, object: any) {
+    if (object.usuario.seguido) {
       array.push(object);
       array = this.sortByDate(array);
 

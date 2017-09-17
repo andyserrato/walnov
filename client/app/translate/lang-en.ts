@@ -112,13 +112,23 @@ export const LANG_EN_TRANS = {
   'alert_crear_chatstory_2': '15 characters maximum',
   'alert_crear_chatstory_3': 'Maximum of 18 characters',
 
-  'alert_chatstory_existente': 'This Chatstory has already been posted',
-  'alert_chatstory_requisitos': 'All chatstories must have 5 chats to be posted',
-  'alert_chatstory_insercion': 'An error has been detected while inserting a Chatstory',
-  'alert_chatstory_borrador': 'saved as draft',
-  'alert_chatstory_borrador_updt': 'your draft has been updated',
-  'alert_chatstory_acabados' : 'You haven’t got more chatstories!',
-  'alert_chatstory_acabados_2': 'There’s no more chatstories!',
+  // ChatStories
+  'alert_chatstory_existente': 'This ChatStory has already been posted',
+  'alert_chatstory_requisitos': 'All ChatStories must have 5 chats to be posted',
+  'alert_chatstory_insercion': 'An error has been detected while inserting a ChatStory',
+  'alert_chatstory_borrador': 'Saved as draft',
+  'alert_chatstory_borrador_updt': 'Your draft has been updated',
+  'alert_chatstory_acabados' : 'You haven’t got more ChatStories!',
+  'alert_chatstory_acabados_2': 'There’s no more ChatStories!',
+
+  // Relatos
+  'alert_relato_existente': 'This Short Story has already been posted',
+  'alert_relato_requisitos': 'All Short Story must have at least 140 characters to be posted',
+  'alert_relato_insercion': 'An error has been detected while inserting a Short Story',
+  'alert_relato_borrador': 'Saved as a draft',
+  'alert_relato_borrador_updt': 'Your draft has been updated',
+  'alert_relato_acabados' : 'You haven’t got more Short Stories!',
+  'alert_relato_acabados_2': 'There’s no more Short Stories!',
 
   'alert_wrong_email': 'Write a valid email address',
 
