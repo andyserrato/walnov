@@ -28,7 +28,7 @@
 }
 
 .seccion{
-    margin-right: 40px;
+    // margin-right: 40px;
     cursor: pointer;
     outline: none;
     &:hover{
@@ -57,6 +57,7 @@
 
 .boton-crear{
     height: 26px;
+    width: fit-content;
     border-radius: 4px;
     background-color: $main-1;
     font-family: Raleway;
@@ -64,8 +65,8 @@
     font-weight: bold;
     text-align: center;
     color: $grey-1;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 9px;
+    padding-right: 11px;
     padding-top: 6px;
     padding-bottom: 6px;
     &:hover{
@@ -87,15 +88,20 @@
     padding-left: 10px;
     padding-right: 10px;
     cursor: pointer;
-    margin-left: 40px;
-    margin-right: 10px;
+    outline: none;
+    &:hover {
+      cursor: pointer;
+      background-color: $main-3;
+    }
+    // margin-left: 40px;
+    // margin-right: 10px;
 }
 
 .boton-notificaciones{
     color: $main-3;
     margin-top: 12px;
     cursor: pointer;
-    margin-left: 10px;
+    // margin-left: 10px;
     &:hover{
       color:$main-4;
     }
@@ -105,7 +111,7 @@
     color: $main-3;
     margin-top: 12px;
     cursor: pointer;
-    margin-left: 20px;
+    // margin-left: 20px;
     &:hover{
       color:$main-4;
     }
@@ -114,7 +120,7 @@
 #imagen-perfil{
     margin-top: 5px;
     cursor: pointer;
-    margin-left: 20px;
+    // margin-left: 20px;
 }
 
 .Comunidad {
@@ -185,6 +191,11 @@
   color:black !important;
 }
 
+.focused2{
+  background-color:white !important;
+  color:$main-1 !important;
+}
+
 #buscador .inputtext{
     background-color: transparent;
     border: none;
@@ -195,4 +206,18 @@
     height: 30px;
     outline: none;
     font-family: Raleway;
+}
+
+.dropdown-menu {
+  left: 13px !important;
+  background-color: $main-1;
+}
+
+.dropdown-item {
+  padding: 3px 0.5rem !important;
+  color: $grey-1 !important;
+  &:hover {
+    background-color: $main-3 !important;
+    color: $grey-1 !important;
+  }
 }

@@ -41,6 +41,7 @@ export class RepositorioService {
 
   constructor(private translate: TranslateService) {
     this.translate.use(navigator.language);
+    // this.translate.use('en');
 
     this.categoriasHM.set('accion', new Categoria('accion', '#e65e20'));
     this.categoriasHM.set('aventura', new Categoria('aventura', '#29ba6f'));
