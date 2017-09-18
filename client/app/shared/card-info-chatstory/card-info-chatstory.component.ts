@@ -27,13 +27,13 @@ export class CardInfoChatstoryComponent implements OnInit {
         // console.log('estamos dentro del subscribe');
 
         this.chatstory = chatStory;
-        console.log(this.chatstory.categoria);
+        // console.log(this.chatstory.categoria);
         // if(this.repositorio.categoriasHM.get(this.chatstory.categoria)){
         //   this.chatstory.categoria = this.repositorio.categoriasHM.get(this.chatstory.categoria);
         // }else{
         //   this.chatstory.categoria = this.repositorio.categoriasAL[1];
         // };
-        console.log(this.chatstory);
+        // console.log(this.chatstory);
       });
     //console.log(this.chatstory);
 

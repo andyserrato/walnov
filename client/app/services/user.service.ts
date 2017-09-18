@@ -12,6 +12,7 @@ export class UserService {
 
     getAll() {
         console.log('Inicio UserService.getAll');
+        // console.log(this.http.get('/users', this.jwt()).map((response: Response) => response.json()));
         return this.http.get('/users', this.jwt()).map((response: Response) => response.json());
     }
 
@@ -46,7 +47,7 @@ export class UserService {
     private jwt() {
         // create authorization header with jwt token
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log('Current User', currentUser);
+        // console.log('Current User', currentUser);
         if (currentUser && currentUser.token) {
             const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             return new RequestOptions({ headers: headers });

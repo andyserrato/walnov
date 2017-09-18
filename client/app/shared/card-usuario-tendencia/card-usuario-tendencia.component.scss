@@ -32,6 +32,8 @@
 }
 
 .Imagen-Usuario {
+  height: 22px;
+  width: 22px;
   margin-top: -3px;
   border-radius: 50%;
 
@@ -47,6 +49,10 @@
   text-align: left;
   //color: #8427bf;
   color: $main-1;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
   // white-space: nowrap;
   // overflow: hidden;
   // text-overflow: ellipsis;

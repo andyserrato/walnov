@@ -19,9 +19,9 @@
     <div class="info-container">
           <span class="user-name">{{this.user?.perfil.nombre}}</span>
         <div class="status">
-          <div class="status-text">23 Walls</div>
-          <div class="status-text">4 Chatstories</div>
-          <div class="status-text">8 {{'all_relatos_cortos' | translate}}</div>
+          <div class="status-text">{{this.user?.perfil.numWallsCreated}} Walls</div>
+          <div class="status-text">{{this.user?.perfil.numChatStoriesCreated}} Chatstories</div>
+          <div class="status-text">{{this.user?.perfil.numRelatosCreated}} {{'all_relatos_cortos' | translate}}</div>
         </div>
         <div class="button">
           {{'user_profile_conectar' | translate}}

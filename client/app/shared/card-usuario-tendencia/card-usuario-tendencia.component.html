@@ -1,26 +1,26 @@
 <div class="card Rectangle-3-Copy-4 hidden-md-down">
   <div class="card-block">
     <h4 class="Card-title">{{'shared_usuarios_tendencia' | translate}}</h4>
-    <div  *ngFor="let usuario of usuarios">
-      <div *ngIf="usuario.isTendencia">
-        <div class="Rectangle-3" *ngIf="usuario.visible">
+    <div  *ngFor="let user of users | slice:0:1">
+      <!-- <div *ngIf="usuario.isTendencia"> -->
+        <div class="Rectangle-3">
           <div class="row" style="padding-left:12px; padding-top:12px">
             <div class="col-2">
-              <img class="Imagen-Usuario" src={{usuario.imagen}} alt="Foto de perfil">
+              <img class="Imagen-Usuario" src={{user.perfil.foto_perfil}} alt="user.perfil.nombre">
             </div>
             <div class="col-8 ellipsis">
-              <span class="Nombre-Usuario">{{usuario.nombre}}</span>
+              <span (click)="goToUser(user)" class="Nombre-Usuario">{{user.perfil.nombre}}</span>
             </div>
-            <button (click)="showAnother(usuario)" type="button" class="btn-close" name="button">
+            <button (click)="showAnother()" type="button" class="btn-close" name="button">
               <i class="fa fa-arrow-circle-right close-Copy" aria-hidden="true"></i>
             </button>
           </div>
           <ul class="list-unstyled Estadisticas-Usuario">
-            <li>{{usuario.walls}} Walls</li>
-            <li>{{usuario.chatstories}} Chatstories</li>
+            <li>{{user.perfil.numWallsCreated}} Walls</li>
+            <li>{{user.perfil.numChatStoriesCreated}} Chatstories</li>
             <div class="row">
               <div class="col-8">
-                <li>{{usuario.relatos}} {{'all_relatos_cortos' | translate}}</li>
+                <li>{{user.perfil.numRelatosCreated}} {{'all_relatos_cortos' | translate}}</li>
               </div>
               <div class="col-4">
                 <button type="button" class="btn-usuario" name="button">{{'all_seguir' | translate}}</button>
@@ -28,7 +28,7 @@
             </div>
           </ul>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>
