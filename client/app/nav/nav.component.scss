@@ -22,7 +22,7 @@
 #secciones{
     font-family: Raleway;
     color: $grey-1;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     margin-top: 9px;
 }
@@ -100,6 +100,7 @@
 .boton-notificaciones{
     color: $main-3;
     margin-top: 12px;
+    font-size: 15px;
     cursor: pointer;
     // margin-left: 10px;
     &:hover{
@@ -110,6 +111,7 @@
 .boton-mensajes{
     color: $main-3;
     margin-top: 12px;
+    font-size: 15px;
     cursor: pointer;
     // margin-left: 20px;
     &:hover{
@@ -120,6 +122,7 @@
 .boton-lenguage{
     color: $main-3;
     margin-top: 12px;
+    font-size: 15px;
     cursor: pointer;
     // margin-left: 20px;
     &:hover{
@@ -219,7 +222,7 @@
 }
 
 .dropdown-menu {
-  left: 13px !important;
+  left: 38px !important;
   background-color: $main-1;
 }
 
@@ -230,4 +233,64 @@
     background-color: $main-3 !important;
     color: $grey-1 !important;
   }
+}
+
+.navbar-brand {
+  font-family: 'Maven Pro';
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  color: $grey-1;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #secciones {
+    padding-left: 40px !important;
+    padding-right: 15px !important;
+  }
+
+  #opciones {
+    padding-left: 15px !important;
+  }
+
+  .dropdown-menu {
+    left: 13px !important;
+  }
+}
+
+.Rectangle-4 {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: solid 1px $main-1;
+}
+
+.Rectangle-4-Copy {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: solid 1px $main-1;
+  &:hover {
+    background-color: $main-3;
+  }
+}
+
+.fa-search {
+  font-size: 15px;
+}
+
+.fa-search-Copy {
+  position: absolute;
+  font-size: 15px;
+  top: 6px;
+  left: 7px;
+}
+
+.fa-info {
+  position: absolute;
+  font-size: 15px;
+  top: 7px;
+  left: 11px;
 }

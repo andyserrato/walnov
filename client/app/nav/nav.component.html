@@ -5,19 +5,19 @@
     <div class="row" style="width:100%;">
       <div class="col-lg-12">
         <div class="row">
-          <div class="col-lg-2">
-            <div class="row">
-              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <div class="row-fluid">
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> -->
                 <a class="navbar-brand mb-0" routerLink="/home">
                   <img src="assets/images/Logo Walnov-04.svg" width="40" height="30" class="d-inline-block align-top" alt="">
                   Walnov
                 </a>
-              </div>
+              <!-- </div> -->
             </div>
           </div>
 
 
-          <div class="col-lg-3 d-flex" id="secciones">
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6 d-flex" style="padding-right: 40px;" id="secciones">
             <div class="d-flex flex-row justify-content-between" style="width:100%;">
               <div class="d-flex flex-column seccion">Walls</div>
               <div class="d-flex flex-column seccion" routerLink="/relatos">{{'all_relatos' | translate}}</div>
@@ -25,18 +25,18 @@
             </div>
           </div>
 
-          <div style="padding-right: 25px; padding-left:40px;" class="col-lg-3" >
-              <div #buscador id="buscador"  [ngClass]="{'focused': this.searching}" class="d-flex">
+          <div style="padding-right: 0px; padding-left: 0px;" class="col-xl-2 col-lg-2 col-md-1 col-sm-4 col-xs-6 d-flex justify-content-center">
+              <div #buscador id="buscador"  [ngClass]="{'focused': this.searching}" class="d-flex hidden-md-down">
                   <input type="text" (keyup.enter)="searchTerm$.next($event.target.value)" class="inputtext" (focus)="this.searching=true" (focusout)="this.searching=false">
                   <i (click)="searchTerm$.next($event.target.value)" [ngClass]="{'focused2': this.searching}" class="fa fa-search fa-flip-horizontal" style="margin-right: 16px; line-height: 29px;" aria-hidden="true"></i>
               </div>
-            <span class="fa-stack fal-lg hidden-lg-up">
-              <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i>
-              <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+            <span class="Rectangle-4 hidden-lg-up"  style="top: 4px;">
+              <!-- <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i> -->
+              <i class="fa fa-search fa-search-Copy fa-inverse fa-flip-horizontal"></i>
             </span>
           </div>
 
-          <div class="d-flex col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-5">
+          <div class="d-flex col-xl-5 col-lg-5 col-md col-sm-6 col-xs-5" style="padding-left: 40px;" id="opciones">
             <div class="d-flex flex-row justify-content-between" style="width:100%;">
               <div style="margin-top: 6px;" class="d-flex flex-column">
                 <a  class="boton-crear dropdown-toggle" href="https://example.com" id="dropdownMenuCrear"
@@ -55,9 +55,9 @@
               <!-- COMO FUNCIONA -->
               <div class="d-flex flex-column">
                   <button class="boton-como-funciona hidden-md-down">{{'nav_como_funciona' | translate}}</button>
-                  <span class="fa-stack fal-lg hidden-lg-up">
-                    <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i>
-                    <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+                  <span class="Rectangle-4-Copy hidden-lg-up" style="top: 4px;">
+                    <!-- <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i> -->
+                    <i class="fa fa-info fa-inverse"></i>
                   </span>
               </div>
 
