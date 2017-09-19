@@ -69,6 +69,13 @@
                   <i class="boton-mensajes fa fa-inbox"></i>
               </div>
 
+              <div class="d-flex flex-column">
+                <i class="img-rel boton-lenguage fa fa-globe" aria-hidden="true">
+                  <app-nav-language-select></app-nav-language-select>
+                </i>
+
+              </div>
+
               <div id="imagen-perfil" class="d-flex flex-column img-rel" >
                   <app-profile-popover *ngIf="auth.isLoggedIn()"></app-profile-popover>
                   <app-prot-popover-register *ngIf="!auth.isLoggedIn()"></app-prot-popover-register>

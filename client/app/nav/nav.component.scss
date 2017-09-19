@@ -117,6 +117,16 @@
     }
 }
 
+.boton-lenguage{
+    color: $main-3;
+    margin-top: 12px;
+    cursor: pointer;
+    // margin-left: 20px;
+    &:hover{
+      color:$grey-1;
+    }
+}
+
 #imagen-perfil{
     margin-top: 5px;
     cursor: pointer;

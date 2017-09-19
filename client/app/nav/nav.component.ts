@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
   visible: boolean;
   isNavBarHidden: boolean;
   searching = false;
+  idioma = false;
   user: any;
   profilePicture: string;
   constructor(location: Location,
