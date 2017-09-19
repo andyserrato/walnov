@@ -18,10 +18,11 @@ export class UserContentComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      //console.log(params['id']);
+      // console.log(params['id']);
+      this.repositorio.idUsuario=params['id'];
       this.userService.getById(params['id']).subscribe(user => {
         this.user = user;
-        this.repositorio.idUsuario = this.user.id;
+        // this.repositorio.idUsuario = this.user.id;
       });
     });
   }

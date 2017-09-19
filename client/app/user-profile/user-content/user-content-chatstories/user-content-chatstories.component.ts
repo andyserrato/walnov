@@ -45,6 +45,7 @@ export class UserContentChatstoriesComponent implements OnInit {
       this.library = true;
     }
     // console.log(this.library);
+    console.log(this.repositorio.idUsuario);
     if(this.repositorio.idUsuario) {
       this.firstQuery();
     }
@@ -55,10 +56,11 @@ export class UserContentChatstoriesComponent implements OnInit {
 
   firstQuery() {
     this.modalservice.load();
+    console.log(this.repositorio.idUsuario)
     // this.paginador = new Paginator(this.chats, this.div, 27, 9);
     const myParams = new URLSearchParams();
     myParams.append('autor', this.repositorio.idUsuario);
-    console.log(this.repositorio.idUsuario);
+
     // myParams.append('sort', '-fechaCreacion');
     myParams.append('top', '27');
     myParams.append('skip', this.skip+'');
