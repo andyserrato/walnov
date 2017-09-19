@@ -4,6 +4,7 @@ import { Paginator } from '../../../models/paginador';
 import { RepositorioService } from '../../../services/repositorio.service';
 import { ChatstoryService } from '../../../services/chatstory.service';
 import { AuthenticationService } from '../../../services/authentication.service';
+import { BibliotecaService } from '../../../services/biblioteca.service';
 import { TranslateService } from '../../../translate';
 import 'rxjs/add/operator/switchMap';
 import { ModalService } from '../../../services/modal.service';
@@ -31,7 +32,8 @@ export class UserContentChatstoriesComponent implements OnInit {
               private modalservice: ModalService,
               private translate: TranslateService,
               private userService: UserService, private route: ActivatedRoute, private router: Router,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private bibliotecaService: BibliotecaService) {
   }
 
   ngOnInit() {
@@ -56,17 +58,29 @@ export class UserContentChatstoriesComponent implements OnInit {
     // this.paginador = new Paginator(this.chats, this.div, 27, 9);
     const myParams = new URLSearchParams();
     myParams.append('autor', this.repositorio.idUsuario);
-    myParams.append('sort', '-fechaCreacion');
+    console.log(this.repositorio.idUsuario);
+    // myParams.append('sort', '-fechaCreacion');
     myParams.append('top', '27');
     myParams.append('skip', this.skip+'');
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
-      this.paginador = new Paginator(this.chats, this.div, 27, 9);
-      this.modalservice.clear();
-      this.visible = true;
-      this.skip += 27;
+      if(!this.bibliotecaService.getCurrentBiblioteca()) {
+          this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+            this.bibliotecaService.updateBiblioteca(biblioteca);
+            this.paginador = new Paginator(this.chats, this.div, 27, 9);
+            this.modalservice.clear();
+            this.visible = true;
+            this.skip += 27;
+          });
+      } else {
+        this.paginador = new Paginator(this.chats, this.div, 27, 9);
+        this.modalservice.clear();
+        this.visible = true;
+        this.skip += 27;
+      }
+
     }, error => {
       this.modalservice.clear();
     });
@@ -76,7 +90,7 @@ export class UserContentChatstoriesComponent implements OnInit {
     this.modalservice.load();
     const myParams = new URLSearchParams();
     myParams.append('autor', this.repositorio.idUsuario);
-    myParams.append('sort', '-fechaCreacion');
+    // myParams.append('sort', '-fechaCreacion');
     myParams.append('top', '27');
     myParams.append('skip', this.skip+'');
     myParams.append('activo', 'true');

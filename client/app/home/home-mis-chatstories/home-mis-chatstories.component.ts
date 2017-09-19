@@ -3,6 +3,7 @@ import { ChatStory } from '../../models/chatstory.model';
 import { Paginator } from '../../models/paginador';
 import { ChatstoryService } from '../../services/chatstory.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { BibliotecaService } from '../../services/biblioteca.service';
 import { TranslateService } from '../../translate';
 import 'rxjs/add/operator/switchMap';
 import { ModalService } from '../../services/modal.service';
@@ -23,7 +24,8 @@ export class HomeMisChatstoriesComponent implements OnInit {
               private translate: TranslateService,
               private authenticationService: AuthenticationService,
               private modalservice: ModalService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private bibliotecaService: BibliotecaService) {
   }
 
   ngOnInit() {
@@ -47,11 +49,20 @@ export class HomeMisChatstoriesComponent implements OnInit {
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
-      this.paginador = new Paginator(this.chats, this.div, 27, 9);
-      // console.log(chatStories);
-      this.modalservice.clear();
-      this.visible = true;
-      this.skip += 27;
+      if(!this.bibliotecaService.getCurrentBiblioteca()){
+        this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+          this.bibliotecaService.updateBiblioteca(biblioteca);
+          this.paginador = new Paginator(this.chats, this.div, 27, 9);
+          this.modalservice.clear();
+          this.visible = true;
+          this.skip += 27;
+        });
+      }else{
+        this.paginador = new Paginator(this.chats, this.div, 27, 9);
+        this.modalservice.clear();
+        this.visible = true;
+        this.skip += 27;
+      }
     }, error => {
       this.modalservice.clear();
     });
