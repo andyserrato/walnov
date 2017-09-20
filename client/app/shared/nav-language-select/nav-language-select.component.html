@@ -1,0 +1,33 @@
+<div #div class="launcher" (click)="this.visible=true">
+
+  <div class="c-popover" *ngIf="this.visible">
+    <div class="d-flex flex-column align-items-start">
+      <div class="username" style="margin-bottom:10px;">
+        {{'selector_titulo' | translate}}
+      </div>
+      <div class="block title d-flex flex-row justify-content-between" (click) = "changeTo('es')">
+        <div class="d-flex flex-column align-self-center">
+          {{'español' | translate}}
+        </div>
+        <div class="d-flex flex-column">
+          <div class="d-flex flex-row">
+            <img class="bandera" src="assets/images/banderas/Spain.png">
+            <img class="bandera" style="margin-left:3px;" src="assets/images/banderas/Mexico.png">
+          </div>
+        </div>
+      </div>
+      <div class="block title d-flex flex-row justify-content-between" (click) = "changeTo('en')">
+        <div class="d-flex flex-column align-self-center">
+          {{'english' | translate}}
+        </div>
+        <div class="d-flex flex-column">
+          <div class="d-flex flex-row">
+            <img class="bandera" src="assets/images/banderas/United Kingdom(Great Britain).png">
+            <img class="bandera" style="margin-left:3px;" src="assets/images/banderas/United States of America(USA).png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

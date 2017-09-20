@@ -113,13 +113,13 @@ export const LANG_EN_TRANS = {
   'alert_crear_chatstory_3': 'Maximum of 18 characters',
 
   // ChatStories
-  'alert_chatstory_existente': 'This ChatStory has already been posted',
-  'alert_chatstory_requisitos': 'All ChatStories must have 5 chats to be posted',
-  'alert_chatstory_insercion': 'An error has been detected while inserting a ChatStory',
+  'alert_chatstory_existente': 'This Chatstory has already been posted',
+  'alert_chatstory_requisitos': 'All Chatstories must have 5 chats to be posted',
+  'alert_chatstory_insercion': 'An error has been detected while inserting a Chatstory',
   'alert_chatstory_borrador': 'Saved as draft',
   'alert_chatstory_borrador_updt': 'Your draft has been updated',
-  'alert_chatstory_acabados' : 'You haven’t got more ChatStories!',
-  'alert_chatstory_acabados_2': 'There’s no more ChatStories!',
+  'alert_chatstory_acabados' : 'You haven’t got more Chatstories!',
+  'alert_chatstory_acabados_2': 'There’s no more Chatstories!',
 
   // Relatos
   'alert_relato_existente': 'This Short Story has already been posted',
@@ -381,5 +381,9 @@ export const LANG_EN_TRANS = {
   'premium_confirmar_plan' : 'Confirm your subscription',
   'premium_prueba_confirmacion': 'We need some extra details before you get the 7-free-days period',
   'premium_prueba_final': 'When it finishes, you’ll pay XX.XX€/month-year.',
+
+  //selector_idioma
+  'selector_titulo': 'Language',
+
 
 };
