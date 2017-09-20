@@ -1,6 +1,12 @@
-<div #div class="launcher" (click)="this.visible=true">
+<div #div id="div" class="launcher" (click)="iniciar();">
 
-  <div class="c-popover" *ngIf="this.visible">
+  <div #buscador *ngIf="this.visible" id="buscador"  [ngClass]="{'focused': this.visible}" class="d-flex">
+      <input id="caja" [(ngModel)]="busqueda" type="text" (keyup.enter)="searchTerm$.next($event.target.value); this.visible=false; busqueda=''; setValue()" class="inputtext" autofocus>
+      <i (click)="searchTerm$.next($event.target.value); this.visible=false; busqueda=''; setValue()" [ngClass]="{'focused2': this.visible}" class="fa fa-search fa-flip-horizontal" style="line-height: 29px;" aria-hidden="true"></i>
+      <i (click)="close()" class="fa fa-times" aria-hidden="true" style="cursor:pointer; line-height: 29px;"></i>
+  </div>
+
+  <!-- <div class="c-popover" *ngIf="this.visible">
     <div class="d-flex flex-column align-items-start">
       <div class="username" style="margin-bottom:10px;">
         {{'selector_titulo' | translate}}
@@ -23,11 +29,11 @@
         <div class="d-flex flex-column">
           <div class="d-flex flex-row">
             <img class="bandera" src="assets/images/banderas/United Kingdom(Great Britain).png">
-            <img class="bandera" style="margin-left:3px;" src="assets/images/banderas/United States of America.png">
+            <img class="bandera" style="margin-left:3px;" src="assets/images/banderas/United States of America(USA).png">
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>

@@ -25,6 +25,7 @@ import { UserCardComponent } from '../user-profile/user-card/user-card.component
 import { CardRelatoRelevanteComponent } from './card-relato-relevante/card-relato-relevante.component';
 import { CardInfoChatstoryComponent } from './card-info-chatstory/card-info-chatstory.component';
 import { NavLanguageSelectComponent } from './nav-language-select/nav-language-select.component';
+import { NavBuscadorComponent } from './nav-buscador/nav-buscador.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -51,6 +52,7 @@ import { NavLanguageSelectComponent } from './nav-language-select/nav-language-s
     CardRelatoRelevanteComponent,
     CardInfoChatstoryComponent,
     NavLanguageSelectComponent,
+    NavBuscadorComponent,
     // TRANSLATION_PROVIDERS,
     TranslatePipe,
     // TranslateService
@@ -77,7 +79,8 @@ import { NavLanguageSelectComponent } from './nav-language-select/nav-language-s
     UserCardComponent,
     CardRelatoRelevanteComponent,
     CardInfoChatstoryComponent,
-    NavLanguageSelectComponent
+    NavLanguageSelectComponent,
+    NavBuscadorComponent
   ],
   providers: [
     TRANSLATION_PROVIDERS,

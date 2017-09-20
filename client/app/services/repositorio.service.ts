@@ -37,6 +37,8 @@ export class RepositorioService {
   paginadorCardsContinuaciones = null;
   paginadorCardsHistorias = null;
 
+  busquedaActual: String;
+
   // english: boolean = false;
 
   constructor(private translate: TranslateService) {

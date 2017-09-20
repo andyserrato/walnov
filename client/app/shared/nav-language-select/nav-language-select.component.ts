@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {Router} from '@angular/router';
-import {AuthenticationService} from '../../services/authentication.service';
-import {AlertService} from '../../services/alert.service';
 import { TranslateService } from '../../translate';
 import { RepositorioService } from '../../services/repositorio.service';
 
