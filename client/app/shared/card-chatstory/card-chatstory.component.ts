@@ -33,7 +33,12 @@ export class CardChatstoryComponent implements OnInit {
   ngOnInit() {
     // console.log(this.chatstory.autor);
     // console.log(this.auth.getUser());
-    this.checkLibrary();
+    if(this.auth.isLoggedIn()) {
+      this.checkLibrary();
+    } else {
+      this.allowLibrary=false;
+    }
+
   }
 
   checkLibrary() {
