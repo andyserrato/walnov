@@ -98,6 +98,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { OrderByPipe } from './pipe/order-by/order-by.pipe';
 import { BibliotecaService } from './services/biblioteca.service';
 import { RegisterPopoverService } from './services/register-popover.service';
+import { LandingMobileComponent } from './landing/landing-mobile/landing-mobile.component';
 // import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from './translate'
 
 @NgModule({
@@ -172,6 +173,7 @@ import { RegisterPopoverService } from './services/register-popover.service';
     ContactoComponent,
     OrderByPipe,
     ModalDecorationComponent,
+    LandingMobileComponent,
     // TranslatePipe
   ],
   imports: [

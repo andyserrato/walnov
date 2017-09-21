@@ -37,14 +37,13 @@ export class RepositorioService {
   paginadorCardsContinuaciones = null;
   paginadorCardsHistorias = null;
 
-  busquedaActual: String;
+  busquedaActual: String; //Esto se usa para guardar la búsqueda del usuario cuando está desde la tablet
 
   // english: boolean = false;
 
   constructor(private translate: TranslateService) {
     this.translate.use(navigator.language);
-    // this.translate.use('en');
-
+    
     this.categoriasHM.set('accion', new Categoria('accion', '#e65e20'));
     this.categoriasHM.set('aventura', new Categoria('aventura', '#29ba6f'));
     this.categoriasHM.set('scifi', new Categoria('scifi', '#16d7d3'));
