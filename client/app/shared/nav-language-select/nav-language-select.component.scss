@@ -1,0 +1,70 @@
+@import "main";
+
+.launcher{
+  // cursor: pointer;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+div{
+  outline:0;
+}
+
+.c-popover{
+  width: 14rem;
+  position: absolute;
+  top: calc(100% + 23px);
+  right: -23.5px;
+  padding:0.5em 1.5em;
+  background-color:$main-1;
+  border-radius:.5em;
+  cursor:initial;
+  box-shadow: 0 4px 36px 0 rgba(0, 0, 0, 0.24);
+  &::after{
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 15px 15px 15px;
+    border-color: transparent transparent $main-1 transparent;
+    position: absolute;
+    bottom:99%;
+    right: 15px;
+    cursor:initial;
+  }
+}
+
+.block{
+  margin: .3em 0;
+}
+
+.username{
+  font-family: Raleway;
+  font-size: 1rem;
+  color:white;
+  &:hover{
+    cursor: pointer;
+    // text-decoration: underline;
+  }
+}
+
+.title{
+  width: 100%;
+  font-family: Raleway;
+  font-size: 1rem;
+  color:white;
+  font-weight: bold;
+  &:hover{
+    cursor: pointer;
+    background-color: $main-3;
+}
+
+.bandera {
+  // margin-top: 2px;
+  width: 16px;
+  height: 16px;
+}
+
+}

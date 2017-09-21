@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CrearWallComponent } from './crear-wall/crear-wall.component';
 import { VisorWall } from './visor-wall/visor-wall.component';
 import {LandingComponent} from './landing/landing.component';
+import {LandingMobileComponent} from './landing/landing-mobile/landing-mobile.component';
 import {CrearChatstoryStep1Component} from './chatstory/crear-chatstory-step-1/crear-chatstory-step-1.component';
 import { Walls } from './walls/walls.component';
 import { ListadoWalls } from './walls/listado-walls.component';
@@ -31,6 +32,7 @@ import { UserAccountComponent } from './user-account/user-account.component';
 import { UserAccountModule } from './user-account/user-account.module';
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
+    { path: 'descarga-la-app', component: LandingMobileComponent },
     { path: 'home', loadChildren: './home/home.module#HomeModule'},
     { path: 'inicio', component: InicioComponent}, //canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },

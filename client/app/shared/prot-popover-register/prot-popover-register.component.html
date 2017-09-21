@@ -6,7 +6,7 @@
           <span>{{'popover_unirse' | translate}}</span>
           <span class="fa fa-times ml-auto" (click)="close()"></span>
         </div>
-        <div class="alternatives d-flex flex-column">
+        <div class="alternatives d-flex flex-column" style="min-width:100px;">
           <div class="d-flex flex-column">
             <span class="simple-title">{{'popover_registro' | translate}}</span>
             <div class="icon facebook" (click)="doSocialLogin('/apiv1/users/oauth/facebook?url=')">

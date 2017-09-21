@@ -167,6 +167,11 @@ button {
   &:hover{
     cursor: pointer;
   }
+  & .fa{
+    &:hover{
+      color:$main-1;
+    }
+  }
 }
 
 .fa-eye {

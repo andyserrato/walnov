@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
   visible: boolean;
   isNavBarHidden: boolean;
   searching = false;
+  idioma = false;
   user: any;
   profilePicture: string;
   constructor(location: Location,
@@ -35,6 +36,8 @@ export class NavComponent implements OnInit {
       } else if (location.path().indexOf('social-login/failure') !== -1) {
         this.isNavBarHidden = true;
       } else if (location.isCurrentPathEqualTo('')) {
+        this.isNavBarHidden = true;
+      } else if (location.path().indexOf('descarga-la-app') !== -1) {
         this.isNavBarHidden = true;
       } else {
         this.isNavBarHidden = false;

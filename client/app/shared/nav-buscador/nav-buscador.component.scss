@@ -1,0 +1,67 @@
+@import "main";
+
+.launcher{
+  // cursor: pointer;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+}
+
+div{
+  outline:0;
+}
+
+#buscador{
+    position: absolute;
+    z-index: 99;
+    top: -1px;
+    right: -2px;
+    width: 260px;
+    padding-right: 15px;
+    // margin-top: 4px;
+    border-radius: 12px;
+    border: solid 1px $main-1;
+    background: transparent;
+    color: $grey-1;
+    height: 30px;
+    line-height: 30px;
+    & .fa:hover{
+      cursor: pointer;
+    }
+}
+
+.focused{
+  background-color:white !important;
+  color:black !important;
+}
+
+.focused2{
+  background-color:white !important;
+  color:$main-1 !important;
+}
+
+#buscador .inputtext{
+    background-color: transparent;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: $grey-8;
+    width: 85%;
+    height: 30px;
+    outline: none;
+    font-family: Raleway;
+}
+
+.fa-search {
+  font-size: 15px;
+}
+
+.fa-times {
+  font-size: 15px;
+  color: $grey-6;
+  position: absolute;
+  right: 15px;
+
+}
