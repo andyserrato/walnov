@@ -28,6 +28,7 @@ router.get('/auth/isLoggedIn', function isLoggedIn(req, res) {
 router.get('/oauth/userdataPassportLoggedIn', isLoggedIn, findUserByProviderIdPassportLoggedIn);
 
 router.get('/oauth/passport/:provider/:providerId', getUserByProviderAndProviderId);
+router.get('', getUserByParams);
 router.get('/auth/:id', getUserById);
 router.put('/auth/:id', updateUserProfileById);
 router.post('', createUser);
@@ -311,4 +312,79 @@ function updateUserProfileById(req, res) {
   //
   //   res.status(200).send(user);
   // });
+}
+
+function getUserByParams(req, res) {
+  let queries = req.query;
+  let query = User.find();
+  console.log(queries);
+  // if (Object.hasOwnProperty(queries).length === undefined) {
+  if (Object.keys(queries).length === 0) {
+    res.status(400).send('Queries required');
+  } else {
+
+    if (queries && queries.id) {
+      query.where('_id').equals(queries.id);
+    }
+
+    if (queries && queries.login) {
+      query.where('perfil.login').equals(queries.login);
+    }
+
+    if (queries && queries.nombre) {
+      query.where('perfil.nombre').equals(queries.nombre);
+    }
+
+    if (queries && queries.apellidos) {
+      query.where('perfil.apellidos').equals(queries.apellidos);
+    }
+
+    if (queries && queries.email) {
+      query.where('perfil.email').equals(queries.email);
+    }
+
+    if (queries && queries.display_name) {
+      query.where('perfil.display_name').equals(queries.display_name);
+    }
+
+    if (queries && queries.display_name) {
+      query.where('perfil.display_name').equals(queries.display_name);
+    }
+
+    // relevantes
+    if (queries && queries.sort) {
+      let sortQueries = queries.sort.split(',');
+
+      for (i = 0; i < sortQueries.length; i++) {
+        if (sortQueries[i].indexOf('fechaModificacion') !== -1) {
+          query.sort(sortQueries[i]);
+        } else if (sortQueries[i].indexOf('fechaCreacion') !== -1) {
+          query.sort(sortQueries[i]);
+        } else if (sortQueries[i].indexOf('relevantes') !== -1) {
+          query.where('perfil.numWallsCreated').ne(null);
+          query.where('perfil.numRelatosCreated').ne(null);
+          query.where('perfil.numChatStoriesCreated').ne(null);
+          query.sort('-perfil.numWallsCreated');
+          query.sort('-perfil.numRelatosCreated');
+          query.sort('-perfil.numChatStoriesCreated');
+        }
+      }
+    }
+
+    query.limit((isNaN(queries.top)) ? 10 : +queries.top);
+    query.skip((isNaN(queries.skip)) ? 0 : +queries.skip);
+    query.where('activo').equals(true);
+    ejecutarQuery();
+  }
+
+  function ejecutarQuery() {
+    query.exec(function (err, users) {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(users);
+      }
+    });
+  }
+
 }
