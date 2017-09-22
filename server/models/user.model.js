@@ -120,6 +120,9 @@ const perfil = Schema({
   numWallsCreated: {type: Number , default: 0},
   numRelatosCreated: {type: Number , default: 0},
   numChatStoriesCreated: {type: Number , default: 0},
+  // num likes recibidos en sus WCR
+  // num veces compartidos recibidos en sus WCR
+  // num comentarios realizados en relatos
 });
 
 const providerSchema = Schema({
@@ -145,6 +148,12 @@ const usuario = Schema({
   necesitaRevalidarPassword: {type: Boolean, default: false},
   providers: [providerSchema]
 });
+
+usuario.index({login: 'text'});
+usuario.index({'perfil.display_name': 'text'});
+usuario.index({'perfil.nombre': 'text'});
+usuario.index({'perfil.apellidos': 'text'});
+
 
 // plugins ============
 usuario.plugin(datosComunes);
