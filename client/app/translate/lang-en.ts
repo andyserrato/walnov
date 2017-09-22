@@ -385,5 +385,8 @@ export const LANG_EN_TRANS = {
   //selector_idioma
   'selector_titulo': 'Language',
 
+  //landingMobiled
+  'landing_mobile_mensaje': 'Leave your mark',
+  'landing_mobile_descarga': 'Get the app on your phone',
 
 };
