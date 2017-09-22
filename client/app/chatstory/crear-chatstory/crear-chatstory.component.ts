@@ -6,6 +6,7 @@ import { ChatstoryMessage } from '../../models/chatstory-message';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute} from '@angular/router';
 import {ChatstoryService} from '../../services/chatstory.service';
+import { CardInformativoComponent } from '../../shared/card-informativo/card-informativo.component';
 @Component({
   selector: 'app-crear-chatstory',
   templateUrl: './crear-chatstory.component.html',
@@ -52,6 +53,10 @@ export class CrearChatstoryComponent implements OnInit {
         }
       });
 
+  }
+
+  getInfoCard() {
+    return CardInformativoComponent.showCard;
   }
 
 }

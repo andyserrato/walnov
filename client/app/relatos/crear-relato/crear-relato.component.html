@@ -1,12 +1,13 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-2 cols-no-padding custom-padding-1">
+    <div class="col-lg-2 col-md-3 cols-no-padding custom-padding-1">
       <app-card-informativo [view]="'relato'"></app-card-informativo>
+      <app-card-tags *ngIf="!this.getInfoCard()" [view]="'all_relato_corto'" [tags]="relato.tags"></app-card-tags>
     </div>
     <div class="col cols-no-padding">
       <app-crear-relato-content [relato]="relato"></app-crear-relato-content>
     </div>
-    <div class="col-lg-2 cols-no-padding no-rel">
+    <div *ngIf="this.getInfoCard()" class="col-lg-2 hidden-md-down no-rel" style="padding-left:0px;">
       <app-card-tags [view]="'all_relato_corto'" [tags]="relato.tags"></app-card-tags>
     </div>
     <!-- /.col -->

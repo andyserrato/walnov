@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Relato } from '../../models/relato.model';
 import { RepositorioService } from '../../services/repositorio.service';
+import { CardInformativoComponent } from '../../shared/card-informativo/card-informativo.component';
 
 @Component({
   selector: 'app-crear-relato',
@@ -15,6 +16,10 @@ export class CrearRelatoComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  getInfoCard() {
+    return CardInformativoComponent.showCard;
   }
 
 }

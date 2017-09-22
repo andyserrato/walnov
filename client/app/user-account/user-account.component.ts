@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CardInformativoComponent } from '../shared/card-informativo/card-informativo.component';
+
 
 @Component({
   selector: 'app-user-account',
@@ -14,5 +16,8 @@ export class UserAccountComponent implements OnInit {
   ngOnInit() {
   }
 
+  getInfoCard() {
+    return CardInformativoComponent.showCard;
+  }
 
 }
