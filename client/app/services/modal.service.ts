@@ -18,7 +18,7 @@ export class ModalService {
     this.subject.next({ type: 'share', text: message, enlace: enlace });
   }
 
-  load(){
+  load() {
     this.subject.next({type: 'loader'});
   }
 

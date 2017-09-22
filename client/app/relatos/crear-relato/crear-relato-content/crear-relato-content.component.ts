@@ -1,13 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { RepositorioService } from '../../../services/repositorio.service';
-import { Relato } from '../../../models/relato.model';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { AlertService } from '../../../services/alert.service';
-import { ModalService } from '../../../services/modal.service';
-import { AuthenticationService } from '../../../services/authentication.service';
-import { TranslateService } from '../../../translate';
-import {RegisterPopoverService} from "../../../services/register-popover.service";
-import {RelatoService} from "../../../services/relato.service";
+import {Component, OnInit, ViewChild, ElementRef, Input} from '@angular/core';
+import {RepositorioService} from '../../../services/repositorio.service';
+import {Relato} from '../../../models/relato.model';
+import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
+import {AlertService} from '../../../services/alert.service';
+import {ModalService} from '../../../services/modal.service';
+import {AuthenticationService} from '../../../services/authentication.service';
+import {TranslateService} from '../../../translate';
+import {RegisterPopoverService} from '../../../services/register-popover.service';
+import {RelatoService} from '../../../services/relato.service';
+
 @Component({
   selector: 'app-crear-relato-content',
   templateUrl: './crear-relato-content.component.html',
@@ -15,14 +16,16 @@ import {RelatoService} from "../../../services/relato.service";
 })
 
 export class CrearRelatoContentComponent implements OnInit {
-  @Input() relato: Relato;
+  @Input() relato: any;
   friends: Array<string>;
   dedicatorias: Array<string>;
   dedicatoriaForm: FormControl;
   complexForm: any;
   popover = false;
   publicando = false;
+  relatoUrl = '/relato/';
   @ViewChild('textarea') textarea: ElementRef;
+
   constructor(private repositorio: RepositorioService,
               fb: FormBuilder,
               private alert: AlertService,
@@ -34,8 +37,8 @@ export class CrearRelatoContentComponent implements OnInit {
     this.dedicatorias = new Array<string>();
     this.friends = new Array<string>();
     this.complexForm = fb.group({
-      'title' : [null, Validators.compose([Validators.required , Validators.maxLength(30)])],
-      'content' : [null, Validators.compose([Validators.required, Validators.maxLength(3000)])]
+      'title': [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
+      'content': [null, Validators.compose([Validators.required, Validators.maxLength(3000)])]
     });
     this.dedicatoriaForm = new FormControl();
     this.dedicatoriaForm.setValidators(Validators.compose([Validators.required, Validators.email]));
@@ -60,7 +63,7 @@ export class CrearRelatoContentComponent implements OnInit {
     if (this.dedicatoriaForm.valid) {
       this.dedicatorias.push(event.target.value);
       event.target.value = '';
-    }else{
+    } else {
       this.alert.warning(this.translate.instant('alert_wrong_email'));
     }
 
@@ -74,20 +77,49 @@ export class CrearRelatoContentComponent implements OnInit {
     this.relato.urlImagen = event;
   }
 
-  publish() {
+  publicarRelato() {
+
     if (this.complexForm.valid) {
       if (this.auth.isLoggedIn()) {
-        this.share();
+        if (this.relato.tipo === 0) {
+          this.alert.warning(this.translate.instant('alert_relato_existente'));
+          this.alert.clearTimeOutAlert();
+        } else if (!this.relato.tipo) {
+          this.createRelato(0);
+        } else if (this.relato.tipo === 1) {
+          console.log('modificamos relato');
+          this.modificarRelato(0);
+        }
       } else {
         this.registerService.setVisible(true);
       }
-    }else{
+    } else {
       this.complexForm.controls['title'].markAsTouched();
       this.complexForm.controls['content'].markAsTouched();
     }
   }
 
-  share(){
+  guardarComoBorradorRelato() {
+    if (this.complexForm.valid) {
+      if (this.auth.isLoggedIn()) {
+        if (this.relato.tipo === 0) {
+          this.alert.warning(this.translate.instant('alert_relato_existente'));
+          this.alert.clearTimeOutAlert();
+        } else if (!this.relato.tipo && this.relato.tipo !== 0) {
+          this.createRelato(1);
+        } else if (this.relato.tipo && this.relato.tipo === 1) {
+          this.modificarRelato(1);
+        }
+      } else {
+        this.registerService.setVisible(true);
+      }
+    } else {
+      this.complexForm.controls['title'].markAsTouched();
+      this.complexForm.controls['content'].markAsTouched();
+    }
+  }
+
+  share() {
     this.modal.share(this.translate.instant('modal_relato_posted'), '');
     this.publicando = true;
     setTimeout(() => {
@@ -98,18 +130,41 @@ export class CrearRelatoContentComponent implements OnInit {
   /**
    * Crea un relato nuevo
    */
-  createRegister(tipo: number) {
+  createRelato(tipo: number) {
     this.relato.tipo = tipo;
     this.relato.autor = this.auth.getUser().id;
     this.relato.autorNombre = this.auth.getUser().perfil.display_name;
     const relatoInterface = {lang: this.translate.currentLang, relato: this.relato};
     relatoInterface.relato.categoria = this.relato.categoria.nombre;
 
-    this.relatoService.createRelato(relatoInterface).subscribe( relatoSaved => {
+    this.relatoService.createRelato(relatoInterface).subscribe(relatoSaved => {
+      this.publicarMensajeFeedback(relatoSaved);
+    }, error => {
+      this.alert.error(this.translate.instant('alert_relato_insersion'));
+    });
+  }
 
+  modificarRelato(tipo: number) {
+    this.relato.tipo = tipo;
+    const relatoInterface = {lang: this.translate.currentLang, relato: this.relato};
+    relatoInterface.relato.categoria = this.relato.categoria.nombre;
+
+    this.relatoService.updateRelato(relatoInterface).subscribe(relatoSaved => {
+      this.publicarMensajeFeedback(relatoSaved);
     }, error => {
       this.alert.error(this.translate.instant('alert_relato_insersion'));
     });
 
+  }
+
+  publicarMensajeFeedback(relatoSaved: any) {
+    console.log('publicar mensaje: ' + relatoSaved.tipo);
+    if (relatoSaved.tipo === 0) {
+      this.modal.share(this.translate.instant('modal_relato_posted'), this.relatoUrl + relatoSaved.id);
+    } else if (relatoSaved.tipo === 1) {
+      this.relato = relatoSaved;
+      this.relato.categoria = this.repositorio.getCategoriaALByName(this.relato.categoria);
+      this.alert.success(this.translate.instant('alert_relato_borrador'));
+    }
   }
 }

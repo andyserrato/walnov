@@ -16,6 +16,7 @@ const Constantes = require("../constantes/constantes");
 router.post("/", crearNuevoRelato);
 router.get("/", getRelatos);
 router.get("/:idRelato", getRelatoById);
+router.put('/', updateRelato);
 router.post("/opinion", crearNuevaOpinion);
 router.post("/responderOpinion", responderOpinion);
 
@@ -33,8 +34,9 @@ function crearNuevoRelato(req, resp) {
     let nuevoRelato = new Relato(peticion.relato);
     let estadistica = new Estadistica();
 
-    estadistica.save(function (err) {
+    estadistica.save(function (err, estadistica) {
       if (err) {
+        // TODO evaluar y mirar lo de eliminar en caso de error para agregar algo de atomicidad
         resp.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
       } else {
         nuevoRelato.estadistica = estadistica;
@@ -53,14 +55,14 @@ function crearNuevoRelato(req, resp) {
                     resp.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
                   }
                   GestorNotificaciones.addNotificacionFeed(notificacionNuevoRelato, usu.seguidores);
-                  _devolverResultados(err, {resultado: "OK"}, resp);
+                  _devolverResultados(err, nuevoRelato, resp);
                 }
               );
 
             });
           } else {
             GestorNotificaciones.addNotificacionFeed(notificacionNuevoRelato, peticion.seguidores);
-            _devolverResultados(err, {resultado: "OK"}, resp);
+            _devolverResultados(err, nuevoRelato, resp);
           }
         });
       }
@@ -294,5 +296,23 @@ function getRelatos(req, res) {
         res.status(200).send(relatos);
       }
     });
+  }
+}
+
+function updateRelato(req, res) {
+  let id = req.body.relato.id;
+  let relato = req.body.relato;
+  if (!id || id === undefined) {
+    res.status(400).send('Debes proporcionar el id del Relato');
+  } else if (!relato || relato === undefined) {
+    res.status(400).send('El Relato se encuentra vacío');
+  } else {
+    Relato.findByIdAndUpdate(id, relato, {new: true},
+      function (err, updatedRelato) {
+        if (err)
+          res.status(400).send("Ha ocurrido un error al actualizar el Relato " + err);
+
+        res.status(200).send(updatedRelato);
+      });
   }
 }

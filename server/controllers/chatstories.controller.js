@@ -17,7 +17,7 @@ router.get('/', getChatStories);
 
 router.get('/:id', getChatStoryById);
 router.put('/like', updateLike);
-router.put('/:id', updateChatStory);
+router.put('/', updateChatStory);
 
 router.put('/:id/compartido', updateCompartido);
 router.put('/:id/visitas', updateVisitas);
@@ -220,11 +220,11 @@ function getChatStoryById(req, res) {
 }
 
 function updateChatStory(req, res) {
-  let id = req.params.id;
+  let id = req.body.chatStory.id;
   let chatStory = req.body.chatStory;
-  if (!req.params.id || req.params.id === undefined) {
+  if (!id || id === undefined) {
     res.status(400).send('Debes proporcionar el id del Chatstory');
-  } else if (!req.body.chatStory || req.body.chatStory === undefined) {
+  } else if (!chatStory || chatStory === undefined) {
     res.status(400).send('El ChatStory se encuentra vacío');
   } else {
     ChatStory.findByIdAndUpdate(id, chatStory, {new: true},

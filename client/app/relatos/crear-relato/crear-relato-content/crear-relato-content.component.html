@@ -18,7 +18,7 @@
   <div class="master">
     <div class="section section-foto">
       <div class="img-picker" [ngStyle]="{'background-image': 'url('+this.relato.urlImagen+')'}">
-        <div class="img-filter" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(222, 25, 109, 0), '+this.relato.categoria.color+')'}">
+        <div class="img-filter" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(222, 25, 109, 0), '+this.relato.categoria?.color+')'}">
         </div>
         <div class="img-picker-div">
           <app-image-picker [white]="true" (imageUploaded)="changeImage($event)"></app-image-picker>
@@ -96,10 +96,16 @@
       <span class="error-span" *ngIf="!this.complexForm.controls['content'].valid && this.complexForm.controls['content'].touched">{{'relatos_restriccion_3' | translate}}</span>
     </div>
     <div class="section d-flex align-items-center justify-content-end section-botones">
-      <div class="link">
-        {{'relatos_vista_previa' | translate}}
+
+
+      <!--<div class="link">-->
+        <!--{{'relatos_vista_previa' | translate}}-->
+      <!--</div>-->
+      <div class="button" (click)="guardarComoBorradorRelato()" [ngClass]="{'button-disabled': !complexForm.valid, 'animationStripes': publicando}">
+        <span *ngIf="!this.publicado">{{'chatstories_creacion_guardar_borrador' | translate}}</span>
+        <span *ngIf="this.publicado">{{'all_guardando' | translate}}</span>
       </div>
-      <div class="button" (click)="publish()" [ngClass]="{'button-disabled': !this.complexForm.valid, 'animationStripes': this.publicando}">
+      <div class="button" (click)="publicarRelato()" [ngClass]="{'button-disabled': !complexForm.valid, 'animationStripes': publicando}">
         <span *ngIf="!this.publicado">{{'all_publicar' | translate}}</span>
         <span *ngIf="this.publicado">{{'all_publicando' | translate}}</span>
       </div>
