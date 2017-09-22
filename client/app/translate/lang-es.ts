@@ -383,6 +383,10 @@ export const LANG_ES_TRANS = {
   //selector_idioma
   'selector_titulo': 'Seleccionar idioma',
 
+  //landingMobiled
+  'landing_mobile_mensaje': 'Deja tu huella',
+  'landing_mobile_descarga': 'Descarga la app en tu móvil',
+
 
 
 }

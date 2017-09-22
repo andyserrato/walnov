@@ -13,10 +13,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 export class AppComponent {
-  // innerWidth: number;
+  innerWidth: number;
 
   constructor(private route: ActivatedRoute, private router: Router, private repositorio: RepositorioService, private translate: TranslateService, private cdr: ChangeDetectorRef){
-      this.detectmob();
+      if(this.detectMob() && this.detectRes()) this.router.navigate(['descarga-la-app']);
 
       // this.landingMobile();
       // let getWindow = () => {
@@ -31,7 +31,6 @@ export class AppComponent {
       //
       // };
 
-      // navigator.userAgent.match
       //Esto debe de ir en el login del usuario, es decir, una vez haga login
       // var socket = io();
       // console.log("trolola");
@@ -43,14 +42,19 @@ export class AppComponent {
       // repositorio.socket.emit('identificacion', {id:"594925553fa21737b09babbd"});
   }
 
-  // landingMobile() {
-  //   console.log("navegando");
-  //   if(this.innerWidth < 768) {
-  //     this.router.navigate(['/home/']);
-  //   }
-  // }
+  detectRes() {
+    let getWindow = () => {
+          return window.innerWidth;
+    };
+    this.innerWidth = getWindow();
+    if(this.innerWidth < 768) {
+      return true;
+    } else {
+        return false;
+    }
+  }
 
-  detectmob() {
+  detectMob() {
      if( navigator.userAgent.match(/Android/i)
      || navigator.userAgent.match(/webOS/i)
      || navigator.userAgent.match(/iPhone/i)
@@ -59,8 +63,10 @@ export class AppComponent {
      || navigator.userAgent.match(/BlackBerry/i)
      || navigator.userAgent.match(/Windows Phone/i)
      ){
-       this.router.navigate(['descarga-la-app']);
-     }
+       return true;
+    } else {
+        return false;
+    }
    }
 
 
