@@ -89,10 +89,7 @@
     </span>
   </div>
   <div class="col-3 no-padding">
-    <div class="btn-hecho pull-right" *ngIf="!auth.isLoggedIn()">
-      {{'chatstories_creacion_guardar_borrador' | translate}}
-    </div>
-    <div class="btn-hecho pull-right" *ngIf="auth.isLoggedIn()" (click)="guardarComoBorradorChatStory()">
+    <div class="btn-hecho pull-right" (click)="guardarComoBorradorChatStory()">
       {{'chatstories_creacion_guardar_borrador' | translate}}
     </div>
   </div>
