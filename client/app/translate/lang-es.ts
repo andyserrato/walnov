@@ -100,9 +100,9 @@ export const LANG_ES_TRANS = {
   'modal_chatstory_posted': '¡Chatstory publicado con éxito!',
   'modal_relato_posted': '¡Relato publicado con éxito!',
 
-
   //alerts,warnings
   'alert_home': 'Debes seguir al menos a 5 usuarios',
+  'alert_borrador_no_encontrado': 'Borrador no encontrado',
   'alert_home_chatstories': 'No tienes chatstories creados, ',
   'alert_home_chatstories2': '¡Empieza a crear!',
 
@@ -127,6 +127,8 @@ export const LANG_ES_TRANS = {
   'alert_relato_borrador_updt': 'Se ha actualizado tu borrador',
   'alert_relato_acabados' : 'No tienes más relatos!',
   'alert_relato_acabados_2': 'No hay más relatos!',
+  'alert_relato_no_encontrado': 'El Relato no se encuentra ha sido robado',
+
 
   'alert_wrong_email': 'Escribe una dirección de email correcta',
 
