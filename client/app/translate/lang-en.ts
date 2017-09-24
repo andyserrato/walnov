@@ -22,6 +22,8 @@ export const LANG_EN_TRANS = {
   'home_reciente_select_option_3': '-Liked',
   'home_reciente_select_option_4': 'Followers',
   'home_reciente_select_option_5': 'Following',
+  'home_reciente_select_option_6': '+Viewed',
+  'home_reciente_select_option_7': '-Viewed',
 
   'home_reciente_suggested_users': 'Suggested users',
   'home_reciente_button_1': 'Continue',

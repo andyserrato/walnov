@@ -88,6 +88,7 @@ function crearChatStory(req, res) {
 function getChatStories(req, res) {
   let query = ChatStory.find();
   // query.select('titulo categoria autorNombre descripcion autor estadistica fechaCreacion');
+  query.select('estadistica');
   query.populate('estadistica autor');
   if (req.query && req.query.categoria) {
     query.where('categoria').equals(req.query.categoria);
@@ -164,7 +165,6 @@ function getChatStories(req, res) {
       }
       else {
         if (req.query.timeLine === 'followers' && user.seguidores.length > 0) {
-          console.log('FOLLOWERS');
           query.where('autor').in(user.seguidores);
           ejecutarQuery();
         } else if (req.query.timeLine === 'following' && user.siguiendo.length > 0) {

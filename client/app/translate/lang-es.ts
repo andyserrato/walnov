@@ -22,6 +22,8 @@ export const LANG_ES_TRANS = {
   'home_reciente_select_option_3': '-Votados',
   'home_reciente_select_option_4': 'Seguidores',
   'home_reciente_select_option_5': 'Siguiendo',
+  'home_reciente_select_option_6': '+Vistos',
+  'home_reciente_select_option_7': '-Vistos',
 
   'home_reciente_suggested_users': 'Usuarios recomendados',
   'home_reciente_button_1': 'Continuar',
