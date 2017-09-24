@@ -53,9 +53,6 @@ export class CrearRelatoComponent implements OnInit, OnDestroy {
     this.relato.categoria = this.repositorio.categoriasAL[0];
   }
 
-  ngOnInit() {
-  }
-
   getInfoCard() {
     return CardInformativoComponent.showCard;
   }
