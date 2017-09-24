@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { TranslateService } from '../../translate';
 
 @Component({
@@ -7,19 +7,21 @@ import { TranslateService } from '../../translate';
   styleUrls: ['./card-informativo.component.scss']
 })
 export class CardInformativoComponent implements OnInit {
-  showCard = true;
+  static showCard = true;
   showButton: boolean;
   buttonText: string;
   titulo: string;
   parrafos: Array<string>;
   @Input() view: string;
   @Input() cats: any;
+  @Output() desaparece: any;
 
   constructor(private translate: TranslateService) {
     // de forma momentánea pues no
   }
 
   ngOnInit() {
+    CardInformativoComponent.showCard = true;
     this.showButton = true;
     this.buttonText = this.translate.instant('card_info_entendido');
     this.parrafos = new Array<string>();
@@ -47,8 +49,12 @@ export class CardInformativoComponent implements OnInit {
   }
 
   public entendido () {
-    this.showCard = false;
-    console.log(this.cats);
+    CardInformativoComponent.showCard = false;
+    // console.log(this.cats);
+  }
+
+  public getCard() {
+    return CardInformativoComponent.showCard;
   }
 
 }

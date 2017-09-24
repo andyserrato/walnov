@@ -8,6 +8,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ChatstoryService} from '../../services/chatstory.service';
 import {TranslateService} from '../../translate/translate.service';
 
+import { CardInformativoComponent } from '../../shared/card-informativo/card-informativo.component';
 @Component({
   selector: 'app-crear-chatstory',
   templateUrl: './crear-chatstory.component.html',
@@ -60,4 +61,9 @@ export class CrearChatstoryComponent implements OnInit, OnDestroy {
     this.chatStory = new ChatStory('', new Array<string>(), this.repo.categoriasAL[0],
       new Array<ChatstoryMessage>(), 'https://www.lorempixel.com/1600/1200', '', false);
   }
+
+  getInfoCard() {
+    return CardInformativoComponent.showCard;
+  }
+
 }

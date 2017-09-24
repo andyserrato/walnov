@@ -6,7 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {RelatoService} from '../../services/relato.service';
 import {Subscription} from 'rxjs/Subscription';
 import {TranslateService} from '../../translate/translate.service';
-
+import { CardInformativoComponent } from '../../shared/card-informativo/card-informativo.component';
 @Component({
   selector: 'app-crear-relato',
   templateUrl: './crear-relato.component.html',
@@ -52,4 +52,12 @@ export class CrearRelatoComponent implements OnInit, OnDestroy {
     this.relato = new Relato();
     this.relato.categoria = this.repositorio.categoriasAL[0];
   }
+
+  ngOnInit() {
+  }
+
+  getInfoCard() {
+    return CardInformativoComponent.showCard;
+  }
+
 }

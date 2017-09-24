@@ -1,10 +1,11 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-2 cols-no-padding">
+    <div class="col-lg-2 col-md-3 cols-no-padding">
       <app-card-informativo [view] = "'chat-story'"></app-card-informativo>
+      <app-mis-chatstories *ngIf="!this.getInfoCard()"></app-mis-chatstories>
     </div>
     <!-- /.col -->
-    <div class="col-8">
+    <div class="col">
       <div class="outside-container" [ngSwitch]="view">
         <app-crear-chatstory-step-1 *ngSwitchCase="'step1'" (done)="changeView('step2',$event)" [chatStory]="this.chatStory"></app-crear-chatstory-step-1>
         <app-crear-chatstory-step-2 *ngSwitchCase="'step2'" (back)="changeView('step1',$event)" (done)="changeView('view',$event)" [chatStory]="chatStory"></app-crear-chatstory-step-2>
@@ -12,7 +13,7 @@
       </div>
     </div>
     <!-- /.col -->
-    <div class="col-2 hidden-md-down cols-no-padding">
+    <div *ngIf="this.getInfoCard()" class="col-lg-2 hidden-md-down" style="padding-left:0;">
         <app-mis-chatstories></app-mis-chatstories>
     </div>
     <!-- /.col -->

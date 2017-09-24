@@ -1,4 +1,4 @@
-<div *ngIf="showCard" class="card Card3">
+<div *ngIf="this.getCard()" class="card Card3">
   <div class="card-block">
     <h4 *ngIf="titulo" class="Card-title">{{titulo}}</h4>
     <p class="card-text Card-content" *ngFor="let parrafo of parrafos">{{parrafo}}</p>

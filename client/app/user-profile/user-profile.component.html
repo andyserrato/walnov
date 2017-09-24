@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row" style="padding-top:16px;">
     <div class="col-lg-2 col-md-3 cols-no-padding">
       <app-user-card [userType] = "this.tipo" [user]="this.user"></app-user-card>
@@ -12,7 +12,7 @@
       </div>
     </div>
     <!-- /.col -->
-    <div class="col-lg-3 hidden-md-down cols-no-padding">
+    <div class="col-lg-3 hidden-md-down" style="padding-left:0px;">
       <app-card-usuario-tendencia></app-card-usuario-tendencia>
       <!-- <div [ngSwitch] = "this.vista"> -->
         <app-card-wall-relevante *ngIf="this.router.url.includes('walls') || this.router.url.includes('historias') || this.router.url.includes('cont')"></app-card-wall-relevante>
