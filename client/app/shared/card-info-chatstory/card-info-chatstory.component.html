@@ -7,7 +7,7 @@
   <div class="d-flex justify-content-center">
     <div class="d-flex flex-row Rectangle-7-Copy-15" [style.border] = 'getBorder()' [style.color] = 'getColor()'>
       <div class="d-flex flex-column align-items-center Categoria">
-        {{this.chatstory.categoria | translate}}
+        {{chatstory.categoria?.nombre | translate}}
       </div>
     </div>
   </div>

@@ -20,7 +20,6 @@ export class CardInfoRelatoComponent implements OnInit {
 
   getColor() {
     return this.relato.categoria.color;
-
   }
 
   formatearNumero(nStr) {
