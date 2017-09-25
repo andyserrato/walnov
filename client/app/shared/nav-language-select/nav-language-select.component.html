@@ -1,6 +1,7 @@
 <div #div class="launcher" (click)="this.visible=true">
 
   <div class="c-popover" *ngIf="this.visible">
+    <i (click)="close();" class="fa fa-close" aria-hidden="true"></i>
     <div class="d-flex flex-column align-items-start">
       <div class="username" style="margin-bottom:10px;">
         {{'selector_titulo' | translate}}

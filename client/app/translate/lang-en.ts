@@ -385,4 +385,8 @@ export const LANG_EN_TRANS = {
   'landing_mobile_mensaje': 'Leave your mark',
   'landing_mobile_descarga': 'Get the app on your phone',
 
+  //404
+  'pagina_no_encontrada': 'Page not found',
+  'pagina_no_encontrada_mensaje': 'Ups! It seems our writers have lost their papers and we can’t find what you’re looking for...',
+  'pagina_no_encontrada_mensaje_2': 'You can keep browsing if you want:',
 };

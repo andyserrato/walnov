@@ -391,6 +391,9 @@ export const LANG_ES_TRANS = {
   'landing_mobile_mensaje': 'Deja tu huella',
   'landing_mobile_descarga': 'Descarga la app en tu móvil',
 
-
+  //404
+  'pagina_no_encontrada': 'Página no encontrada',
+  'pagina_no_encontrada_mensaje': 'Ups! Parece que nuestros escritores han perdido sus folios y no podemos encontrar lo que estás buscando...',
+  'pagina_no_encontrada_mensaje_2': 'Si quieres, puedes seguir navegando:',
 
 }
