@@ -1,63 +1,67 @@
-<div class="d-flex flex-row justify-content-center flex-wrap">
-  <div class="d-flex flex-column">
-    <div class="Rectangle-3-Copy-8">
-      <div class="title">
-          {{'contacto_contactar' | translate}}
-      </div>
-      <div class="d-flex flex-row">
-        <form style="width:100%;">
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="d-flex flex-row justify-content-center flex-wrap">
+      <div class="d-flex flex-column">
+        <div class="Rectangle-3-Copy-8">
+          <div class="title">
+              {{'contacto_contactar' | translate}}
+          </div>
           <div class="d-flex flex-row">
-            <div class="form-group" style="width:100%;">
-              <label class="Datos" for="exampleInputName">  {{'forms_nombre' | translate}}*</label>
-              <input type="text" class="form-control" id="exampleInputName" placeholder="{{'contacto_nombre_placeholder' | translate}}">
-            </div>
+            <form style="width:100%;">
+              <div class="d-flex flex-row">
+                <div class="form-group" style="width:100%;">
+                  <label class="Datos" for="exampleInputName">  {{'forms_nombre' | translate}}*</label>
+                  <input type="text" class="form-control" id="exampleInputName" placeholder="{{'contacto_nombre_placeholder' | translate}}">
+                </div>
+              </div>
+              <div class="d-flex flex-row" style="margin-top:20px;">
+                <div class="form-group" style="width:100%;">
+                  <label class="Datos" for="exampleInputEmail">Email*</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'contacto_email_placeholder' | translate}}">
+                </div>
+              </div>
+              <div class="d-flex flex-row" style="margin-top:20px;">
+                <div class="form-group" style="width:100%;">
+                  <label class="Datos" for="exampleInputAsunto">{{'contacto_asunto' | translate}}*</label>
+                  <input type="text" class="form-control" id="exampleInputAsunto" placeholder="{{'contacto_asunto_placeholder' | translate}}">
+                </div>
+              </div>
+              <div class="d-flex flex-row" style="margin-top:20px;">
+                <div class="form-group" style="width:100%;">
+                  <label class="Datos" for="exampleInputMensaje">{{'contacto_mensaje' | translate}}*</label>
+                  <textarea rows=8 class="Comment-Box Input-Background" type="text" placeholder="{{'contacto_mensaje_placeholder' | translate}}"></textarea>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="d-flex flex-row" style="margin-top:20px;">
-            <div class="form-group" style="width:100%;">
-              <label class="Datos" for="exampleInputEmail">Email*</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'contacto_email_placeholder' | translate}}">
-            </div>
-          </div>
-          <div class="d-flex flex-row" style="margin-top:20px;">
-            <div class="form-group" style="width:100%;">
-              <label class="Datos" for="exampleInputAsunto">{{'contacto_asunto' | translate}}*</label>
-              <input type="text" class="form-control" id="exampleInputAsunto" placeholder="{{'contacto_asunto_placeholder' | translate}}">
-            </div>
-          </div>
-          <div class="d-flex flex-row" style="margin-top:20px;">
-            <div class="form-group" style="width:100%;">
-              <label class="Datos" for="exampleInputMensaje">{{'contacto_mensaje' | translate}}*</label>
-              <textarea rows=8 class="Comment-Box Input-Background" type="text" placeholder="{{'contacto_mensaje_placeholder' | translate}}"></textarea>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="d-flex flex-row">
-        <div class="d-flex ml-auto">
-          <div class="Rectangle-7" style="cursor:pointer;">
-            <div class="btn-content">
-              {{'contacto_enviar' | translate}}
+          <div class="d-flex flex-row">
+            <div class="d-flex ml-auto">
+              <div class="Rectangle-7" style="cursor:pointer;">
+                <div class="btn-content">
+                  {{'contacto_enviar' | translate}}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="d-flex flex-column">
-    <div class="Rectangle-3-Copy-9">
-      <div class="title">
-        {{'contacto_mapa' | translate}}
+      <div class="d-flex flex-column">
+        <div class="Rectangle-3-Copy-9">
+          <div class="title">
+            {{'contacto_mapa' | translate}}
+          </div>
+          <div class="Adress">
+            {{'contacto_calle' | translate}}
+          </div>
+          <div class="Adress" style="margin-bottom:32px;">
+            {{'contacto_edificio' | translate}}
+          </div>
+          <agm-map class="Bitmap" [latitude]="lat" [longitude]="lng" [zoom] = "15">
+            <agm-marker class="Bitmap" [latitude]="lat" [longitude]="lng">
+            </agm-marker>
+          </agm-map>
+        </div>
       </div>
-      <div class="Adress">
-        {{'contacto_calle' | translate}}
-      </div>
-      <div class="Adress" style="margin-bottom:32px;">
-        {{'contacto_edificio' | translate}}
-      </div>
-      <agm-map class="Bitmap" [latitude]="lat" [longitude]="lng" [zoom] = "15">
-        <agm-marker class="Bitmap" [latitude]="lat" [longitude]="lng">
-        </agm-marker>
-      </agm-map>
     </div>
   </div>
 </div>

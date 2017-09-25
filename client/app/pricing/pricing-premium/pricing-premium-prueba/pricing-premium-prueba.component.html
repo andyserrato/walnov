@@ -1,194 +1,198 @@
-<div class="container-fluid Rectangle-2">
-  <div class="d-flex flex-row justify-content-between Rectangle-6">
-    <div *ngIf = "!ingles" class="d-flex flex-column align-self-center header-1 mr-auto" style="margin-left:120px;">
-      <div class="d-flex">
-      {{'premium_pasarse' | translate}}
-      </div>
-    </div>
-    <div *ngIf = "ingles" class="d-flex flex-column align-self-center header-1 margen-ingles" style="margin-left:120px;">
-      <div class="d-flex">
-      {{'premium_pasarse' | translate}}
-      </div>
-    </div>
-    <div class="d-flex flex-column Oval-3 mr-auto ml-auto">
-      <div class="shape-1"></div>
-      <div class="shape-2"></div>
-      <div class="shape-3"></div>
-      <div class="shape-4"></div>
-      <div class="shape-5"></div>
-      <div class="shape-6"></div>
-      <div class="shape-7"></div>
-      <div class="shape-8"></div>
-      <div class="shape-9"></div>
-      <div class="shape-10"></div>
-      <div class="shape-11"></div>
-      <div class="shape-12"></div>
-      <div class="shape-13"></div>
-      <div class="Oval-5">
-        <div class="shape-14">
-          <div class="shape-17"></div>
-        </div>
-        <div class="shape-15">
-          <div class="shape-18"></div>
-        </div>
-        <div class="shape-16"></div>
-        <div class="shape-19"></div>
-      </div>
-      <div class="img-profile-2">
-        <div class="semicircle d-flex justify-content-center">
-          <div class="Tipo-Usuario">
-            Premium
+<div class="container">
+  <div class="row">
+    <div class="container-fluid Rectangle-2">
+      <div class="d-flex flex-row justify-content-between Rectangle-6">
+        <div *ngIf = "!ingles" class="d-flex flex-column align-self-center header-1 mr-auto" style="margin-left:120px;">
+          <div class="d-flex">
+          {{'premium_pasarse' | translate}}
           </div>
         </div>
-      </div>
-    </div>
-    <div class="d-flex flex-column d-flex align-self-center header-2 ml-auto">
-      <div class="d-flex">
-        {{'premium_texto' | translate}}
-      </div>
-    </div>
-  </div>
-  <div class="d-flex justify-content-center">
-    <div class="Rectangle-7-Copy-5 ml-auto mr-auto">
-      <div class="title-prueba">
-        {{'premium_prueba_confirmacion' | translate}}
-      </div>
-      <div class="d-flex flex-row">
-        <form style="width:100%;">
-          <div class="d-flex flex-row justify-content-between">
-            <div class="d-flex flex-column fila1-col1" style="margin-right:30px;">
-              <div class="form-group">
-                <label class="Datos" for="exampleInputName">{{'forms_nombre' | translate}}</label>
-                <input type="text" class="form-control Name" id="exampleInputName" placeholder="{{'forms_nombre_placeholder' | translate}}">
-              </div>
+        <div *ngIf = "ingles" class="d-flex flex-column align-self-center header-1 margen-ingles" style="margin-left:120px;">
+          <div class="d-flex">
+          {{'premium_pasarse' | translate}}
+          </div>
+        </div>
+        <div class="d-flex flex-column Oval-3 mr-auto ml-auto">
+          <div class="shape-1"></div>
+          <div class="shape-2"></div>
+          <div class="shape-3"></div>
+          <div class="shape-4"></div>
+          <div class="shape-5"></div>
+          <div class="shape-6"></div>
+          <div class="shape-7"></div>
+          <div class="shape-8"></div>
+          <div class="shape-9"></div>
+          <div class="shape-10"></div>
+          <div class="shape-11"></div>
+          <div class="shape-12"></div>
+          <div class="shape-13"></div>
+          <div class="Oval-5">
+            <div class="shape-14">
+              <div class="shape-17"></div>
             </div>
-            <div class="d-flex flex-column fila1-col2" style="margin-right:24px;">
-              <div class="form-group">
-                <label class="Datos" for="exampleInputCard">{{'forms_tarjeta' | translate}}</label>
-                <input type="text" class="form-control Card" id="exampleInputCard" placeholder="0000-0000-0000-0000" maxlength="16">
-              </div>
+            <div class="shape-15">
+              <div class="shape-18"></div>
             </div>
-            <div class="d-flex flex-column fila1-col3" style="padding-top:32px; margin-right:40px;">
-              <div class="d-flex flex-row">
-                <img src="assets/images/visa-dark.png"
-                      srcset="assets/images/visa-dark@2x.png 2x,
-                           assets/images/visa-dark@3x.png 3x"
-                      class="Visa-dark">
-                <img src="assets/images/master-card-dark.png"
-                     srcset="assets/images/master-card-dark@2x.png 2x,
-                     assets/images/master-card-dark@3x.png 3x"
-                     class="MasterCard-dark">
-                <img src="assets/images/discover-dark.png"
-                     srcset="assets/images/discover-dark@2x.png 2x,
-                      assets/images/discover-dark@3x.png 3x"
-                     class="Discover-dark">
-              </div>
-            </div>
-            <div class="d-flex flex-column" style="padding-top:9px;">
-              <div class="payText" style="cursor:pointer;">{{'forms_pagar_con' | translate}}</div>
-              <div class="Rectangle-1 align-self-center" style="cursor:pointer;">
-                <span class="Pay">Pay</span>
-                <span class="Pal">Pal</span>
+            <div class="shape-16"></div>
+            <div class="shape-19"></div>
+          </div>
+          <div class="img-profile-2">
+            <div class="semicircle d-flex justify-content-center">
+              <div class="Tipo-Usuario">
+                Premium
               </div>
             </div>
           </div>
-          <div class="d-flex flex-row justify-content-between" style="margin-top:20px;">
-            <div class="d-flex flex-column">
-              <div class="form-group">
-                <label class="Datos" for="exampleInputLastName1">{{'forms_primer_apellido' | translate}}</label>
-                <input type="text" class="form-control Lastname" id="exampleInputLastName1" placeholder="{{'forms_primer_apellido_placeholder' | translate}}">
-              </div>
-            </div>
-            <div class="d-flex flex-column fila2-col2" style="margin-left:2px;">
-              <div class="form-group">
-                <label class="Datos" for="exampleInputLastName2">{{'forms_segundo_apellido' | translate}}</label>
-                <input type="text" class="form-control Lastname Lastname2" id="exampleInputLastName2" placeholder="{{'forms_segundo_apellido_placeholder' | translate}}">
-              </div>
-            </div>
-            <div class="d-flex flex-column fila2-col3" style="margin-left:12px;">
-              <div class="form-group">
-                <label class="Datos" for="exampleSelectMonth">{{'forms_fecha_cadudicad' | translate}}</label>
-                <select class="form-control seleccion Month" id="exampleSelectMonth">
-                  <option hidden>{{'forms_mes' | translate}}</option>
-                  <option>01</option>
-                  <option>02</option>
-                  <option>03</option>
-                  <option>04</option>
-                  <option>05</option>
-                  <option>06</option>
-                  <option>08</option>
-                  <option>09</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
-                </select>
-              </div>
-            </div>
-            <div class="d-flex flex-column fila2-col4" style="margin-left:-10px;">
-              <div class="form-group">
-                <label class="Invisible" for="exampleSelectYear">Nada</label>
-                <select class="form-control seleccion Year" id="exampleSelectYear">
-                  <option hidden>{{'forms_año' | translate}}</option>
-                  <option>2017</option>
-                  <option>2018</option>
-                  <option>2019</option>
-                  <option>2020</option>
-                  <option>2021</option>
-                  <option>2022</option>
-                </select>
-              </div>
-            </div>
-            <div class="d-flex flex-column">
-              <div class="form-group">
-                <label class="Datos" for="exampleInputCVV">{{'forms_codigo_seguridad' | translate}}</label>
-                <input type="text" class="form-control Code" id="exampleInputCVV" placeholder="000" maxlength="3">
-                <img src="assets/images/security-code.png"
-                     srcset="assets/images/security-code@2x.png 2x,
-                     assets/images/security-code@3x.png 3x"
-                     class="SecurityCode">
-              </div>
-            </div>
+        </div>
+        <div class="d-flex flex-column d-flex align-self-center header-2 ml-auto">
+          <div class="d-flex">
+            {{'premium_texto' | translate}}
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="Rectangle-7-Copy-5 ml-auto mr-auto">
+          <div class="title-prueba">
+            {{'premium_prueba_confirmacion' | translate}}
           </div>
           <div class="d-flex flex-row">
-            <div class="d-flex flex-column" style="margin-right:30px;">
-              <div class="form-group">
-                <label class="Datos" for="exampleInputEmail">Email {{'forms_recibo' | translate}}</label>
-                <input type="email" class="form-control Name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'forms_introduce' | translate}} email">
+            <form style="width:100%;">
+              <div class="d-flex flex-row justify-content-between">
+                <div class="d-flex flex-column fila1-col1" style="margin-right:30px;">
+                  <div class="form-group">
+                    <label class="Datos" for="exampleInputName">{{'forms_nombre' | translate}}</label>
+                    <input type="text" class="form-control Name" id="exampleInputName" placeholder="{{'forms_nombre_placeholder' | translate}}">
+                  </div>
+                </div>
+                <div class="d-flex flex-column fila1-col2" style="margin-right:24px;">
+                  <div class="form-group">
+                    <label class="Datos" for="exampleInputCard">{{'forms_tarjeta' | translate}}</label>
+                    <input type="text" class="form-control Card" id="exampleInputCard" placeholder="0000-0000-0000-0000" maxlength="16">
+                  </div>
+                </div>
+                <div class="d-flex flex-column fila1-col3" style="padding-top:32px; margin-right:40px;">
+                  <div class="d-flex flex-row">
+                    <img src="assets/images/visa-dark.png"
+                          srcset="assets/images/visa-dark@2x.png 2x,
+                               assets/images/visa-dark@3x.png 3x"
+                          class="Visa-dark">
+                    <img src="assets/images/master-card-dark.png"
+                         srcset="assets/images/master-card-dark@2x.png 2x,
+                         assets/images/master-card-dark@3x.png 3x"
+                         class="MasterCard-dark">
+                    <img src="assets/images/discover-dark.png"
+                         srcset="assets/images/discover-dark@2x.png 2x,
+                          assets/images/discover-dark@3x.png 3x"
+                         class="Discover-dark">
+                  </div>
+                </div>
+                <div class="d-flex flex-column" style="padding-top:9px;">
+                  <div class="payText" style="cursor:pointer;">{{'forms_pagar_con' | translate}}</div>
+                  <div class="Rectangle-1 align-self-center" style="cursor:pointer;">
+                    <span class="Pay">Pay</span>
+                    <span class="Pal">Pal</span>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-row justify-content-between" style="margin-top:20px;">
+                <div class="d-flex flex-column">
+                  <div class="form-group">
+                    <label class="Datos" for="exampleInputLastName1">{{'forms_primer_apellido' | translate}}</label>
+                    <input type="text" class="form-control Lastname" id="exampleInputLastName1" placeholder="{{'forms_primer_apellido_placeholder' | translate}}">
+                  </div>
+                </div>
+                <div class="d-flex flex-column fila2-col2" style="margin-left:2px;">
+                  <div class="form-group">
+                    <label class="Datos" for="exampleInputLastName2">{{'forms_segundo_apellido' | translate}}</label>
+                    <input type="text" class="form-control Lastname Lastname2" id="exampleInputLastName2" placeholder="{{'forms_segundo_apellido_placeholder' | translate}}">
+                  </div>
+                </div>
+                <div class="d-flex flex-column fila2-col3" style="margin-left:12px;">
+                  <div class="form-group">
+                    <label class="Datos" for="exampleSelectMonth">{{'forms_fecha_cadudicad' | translate}}</label>
+                    <select class="form-control seleccion Month" id="exampleSelectMonth">
+                      <option hidden>{{'forms_mes' | translate}}</option>
+                      <option>01</option>
+                      <option>02</option>
+                      <option>03</option>
+                      <option>04</option>
+                      <option>05</option>
+                      <option>06</option>
+                      <option>08</option>
+                      <option>09</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="d-flex flex-column fila2-col4" style="margin-left:-10px;">
+                  <div class="form-group">
+                    <label class="Invisible" for="exampleSelectYear">Nada</label>
+                    <select class="form-control seleccion Year" id="exampleSelectYear">
+                      <option hidden>{{'forms_año' | translate}}</option>
+                      <option>2017</option>
+                      <option>2018</option>
+                      <option>2019</option>
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="d-flex flex-column">
+                  <div class="form-group">
+                    <label class="Datos" for="exampleInputCVV">{{'forms_codigo_seguridad' | translate}}</label>
+                    <input type="text" class="form-control Code" id="exampleInputCVV" placeholder="000" maxlength="3">
+                    <img src="assets/images/security-code.png"
+                         srcset="assets/images/security-code@2x.png 2x,
+                         assets/images/security-code@3x.png 3x"
+                         class="SecurityCode">
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-row">
+                <div class="d-flex flex-column" style="margin-right:30px;">
+                  <div class="form-group">
+                    <label class="Datos" for="exampleInputEmail">Email {{'forms_recibo' | translate}}</label>
+                    <input type="email" class="form-control Name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'forms_introduce' | translate}} email">
+                  </div>
+                </div>
+                <div class="d-flex flex-column">
+                  <div class="form-group">
+                    <label class="Datos" for="exampleInputPropietario">{{'forms_propietario_tarjeta' | translate}}</label>
+                    <input type="text" class="form-control Propietario" id="exampleInputPropietario" placeholder="{{'forms_propietario_tarjeta_placeholder' | translate}}">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="d-flex flex-row justify-content-between" style="margin-top:20px;">
+            <div class="d-flex flex-column" style="max-width:240px; padding-left:10px; margin-right:10px;">
+              <div class="Info-final" style="margin-bottom:10px;">
+                {{'premium_prueba_final' | translate}}
+              </div>
+              <div class="Info-final">
+                {{'premium_cancelacion' | translate}}
               </div>
             </div>
             <div class="d-flex flex-column">
-              <div class="form-group">
-                <label class="Datos" for="exampleInputPropietario">{{'forms_propietario_tarjeta' | translate}}</label>
-                <input type="text" class="form-control Propietario" id="exampleInputPropietario" placeholder="{{'forms_propietario_tarjeta_placeholder' | translate}}">
-              </div>
+              <label class="d-flex flex-row">
+                <input type="checkbox">
+                <!-- <div class="d-flex flex-row"> -->
+                  <span class="custom-control-indicator">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </span>
+                  <span class="custom-control-description">{{'forms_confirmacion' | translate}}</span>
+                <!-- </div> -->
+              </label>
             </div>
-          </div>
-        </form>
-      </div>
-      <div class="d-flex flex-row justify-content-between" style="margin-top:20px;">
-        <div class="d-flex flex-column" style="max-width:240px; padding-left:10px; margin-right:10px;">
-          <div class="Info-final" style="margin-bottom:10px;">
-            {{'premium_prueba_final' | translate}}
-          </div>
-          <div class="Info-final">
-            {{'premium_cancelacion' | translate}}
-          </div>
-        </div>
-        <div class="d-flex flex-column">
-          <label class="d-flex flex-row">
-            <input type="checkbox">
-            <!-- <div class="d-flex flex-row"> -->
-              <span class="custom-control-indicator">
-                <i class="fa fa-check" aria-hidden="true"></i>
-              </span>
-              <span class="custom-control-description">{{'forms_confirmacion' | translate}}</span>
-            <!-- </div> -->
-          </label>
-        </div>
-        <div class="d-flex flex-column">
-          <div class="Rectangle-7-Copy-6" style="cursor: pointer;">
-            <div class="btn-sol">
-              {{'forms_confirmar' | translate}}
+            <div class="d-flex flex-column">
+              <div class="Rectangle-7-Copy-6" style="cursor: pointer;">
+                <div class="btn-sol">
+                  {{'forms_confirmar' | translate}}
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -31,7 +31,7 @@ export class NavLanguageSelectComponent implements OnInit {
 
   changeTo(idioma) {
     this.translate.use(idioma);
-    // this.close();
+    this.close();
   }
 
 }

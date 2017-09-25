@@ -1,203 +1,207 @@
-<div class="container-fluid Rectangle-2">
-  <div class="d-flex flex-row justify-content-between Rectangle-6">
-    <div *ngIf = "!ingles" class="d-flex flex-column align-self-center header-1 mr-auto" style="margin-left:120px;">
-      <div class="d-flex">
-      {{'premium_pasarse' | translate}}
-      </div>
-    </div>
-    <div *ngIf = "ingles" class="d-flex flex-column align-self-center header-1 margen-ingles" style="margin-left:120px;">
-      <div class="d-flex">
-      {{'premium_pasarse' | translate}}
-      </div>
-    </div>
-    <div class="d-flex flex-column Oval-3 mr-auto ml-auto">
-      <div class="shape-1"></div>
-      <div class="shape-2"></div>
-      <div class="shape-3"></div>
-      <div class="shape-4"></div>
-      <div class="shape-5"></div>
-      <div class="shape-6"></div>
-      <div class="shape-7"></div>
-      <div class="shape-8"></div>
-      <div class="shape-9"></div>
-      <div class="shape-10"></div>
-      <div class="shape-11"></div>
-      <div class="shape-12"></div>
-      <div class="shape-13"></div>
-      <div class="Oval-5">
-        <div class="shape-14">
-          <div class="shape-17"></div>
-        </div>
-        <div class="shape-15">
-          <div class="shape-18"></div>
-        </div>
-        <div class="shape-16"></div>
-        <div class="shape-19"></div>
-      </div>
-      <div class="img-profile-2">
-        <div class="semicircle d-flex justify-content-center">
-          <div class="Tipo-Usuario">
-            Premium
+<div class="container">
+  <div class="row">
+    <div class="container-fluid Rectangle-2">
+      <div class="d-flex flex-row justify-content-between Rectangle-6">
+        <div *ngIf = "!ingles" class="d-flex flex-column align-self-center header-1 mr-auto" style="margin-left:120px;">
+          <div class="d-flex">
+          {{'premium_pasarse' | translate}}
           </div>
         </div>
-      </div>
-    </div>
-    <div class="d-flex flex-column d-flex align-self-center header-2 ml-auto">
-      <div class="d-flex">
-        {{'premium_texto' | translate}}
-      </div>
-    </div>
-  </div>
-  <div class="d-flex flex-row" style="margin-left:30px; margin-right:30px;">
-    <div class="d-flex flex-colum mr-auto panel-1">
-      <div class="Rectangle-7">
-        <div #panel1>
-          <div class="title" id="color0">
-            {{'premium_mensual' | translate}}
+        <div *ngIf = "ingles" class="d-flex flex-column align-self-center header-1 margen-ingles" style="margin-left:120px;">
+          <div class="d-flex">
+          {{'premium_pasarse' | translate}}
           </div>
-          <div class="d-flex justify-content-center">
-            <div class="Line-Copy" id="line0">
+        </div>
+        <div class="d-flex flex-column Oval-3 mr-auto ml-auto">
+          <div class="shape-1"></div>
+          <div class="shape-2"></div>
+          <div class="shape-3"></div>
+          <div class="shape-4"></div>
+          <div class="shape-5"></div>
+          <div class="shape-6"></div>
+          <div class="shape-7"></div>
+          <div class="shape-8"></div>
+          <div class="shape-9"></div>
+          <div class="shape-10"></div>
+          <div class="shape-11"></div>
+          <div class="shape-12"></div>
+          <div class="shape-13"></div>
+          <div class="Oval-5">
+            <div class="shape-14">
+              <div class="shape-17"></div>
+            </div>
+            <div class="shape-15">
+              <div class="shape-18"></div>
+            </div>
+            <div class="shape-16"></div>
+            <div class="shape-19"></div>
+          </div>
+          <div class="img-profile-2">
+            <div class="semicircle d-flex justify-content-center">
+              <div class="Tipo-Usuario">
+                Premium
+              </div>
             </div>
           </div>
-          <div class="title" id="color1" style="margin-top:22px;">
-            {{'premium_mensual_precio' | translate}}
-          </div>
-          <div class="info" id="color2">
-            {{'premium_iva' | translate}}
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="info-2" id="color3">
-              {{'premium_cancelacion' | translate}}
-            </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="Line-Copy" id="line1" style="margin-bottom:13px;">
-            </div>
-          </div>
-          <div class="Detalles" id="color4">
-            <ul style="list-style: none; padding:0;">
-              <li><i class="fa fa-check" id="color5" aria-hidden="true"></i>{{'premium_contenido' | translate}}</li>
-              <li><i class="fa fa-check" id="color6" aria-hidden="true"></i>{{'premium_contenido_2' | translate}}</li>
-              <li><i class="fa fa-check" id="color7" aria-hidden="true"></i>{{'premium_contenido_3' | translate}}</li>
-              <li><i class="fa fa-check" id="color8" aria-hidden="true"></i>{{'premium_contenido_4' | translate}}</li>
-              <li><i class="fa fa-check" id="color9" aria-hidden="true"></i>{{'premium_contenido_5' | translate}}</li>
-              <li><i class="fa fa-check" id="color10" aria-hidden="true"></i>{{'premium_contenido_6' | translate}}</li>
-              <li><i class="fa fa-check" id="color11" aria-hidden="true"></i>{{'premium_contenido_7' | translate}}</li>
-              <li><i class="fa fa-check" id="color12" aria-hidden="true"></i>{{'premium_contenido_8' | translate}}</li>
-            </ul>
-          </div>
         </div>
-        <div class="d-flex justify-content-center">
-          <div (click) = "capturaDiv(panel1)" class="Rectangle-7-Copy-3 btn" style="cursor:pointer;">
-            {{'premium_lo_quiero' | translate}}
+        <div class="d-flex flex-column d-flex align-self-center header-2 ml-auto">
+          <div class="d-flex">
+            {{'premium_texto' | translate}}
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-flex flex-colum ml-auto mr-auto panel-2">
-      <div class="Rectangle-7-Copy">
-        <div class="Imagen">
-          <img src="assets/images/top-right.png"
-               srcset="assets/images/top-right@2x.png 2x,
-               assets/images/top-right@3x.png 3x">
-          <div class="image-content">
-            -35%
+      <div class="d-flex flex-row" style="margin-left:30px; margin-right:30px;">
+        <div class="d-flex flex-colum mr-auto panel-1">
+          <div class="Rectangle-7">
+            <div #panel1>
+              <div class="title" id="color0">
+                {{'premium_mensual' | translate}}
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="Line-Copy" id="line0">
+                </div>
+              </div>
+              <div class="title" id="color1" style="margin-top:22px;">
+                {{'premium_mensual_precio' | translate}}
+              </div>
+              <div class="info" id="color2">
+                {{'premium_iva' | translate}}
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="info-2" id="color3">
+                  {{'premium_cancelacion' | translate}}
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="Line-Copy" id="line1" style="margin-bottom:13px;">
+                </div>
+              </div>
+              <div class="Detalles" id="color4">
+                <ul style="list-style: none; padding:0;">
+                  <li><i class="fa fa-check" id="color5" aria-hidden="true"></i>{{'premium_contenido' | translate}}</li>
+                  <li><i class="fa fa-check" id="color6" aria-hidden="true"></i>{{'premium_contenido_2' | translate}}</li>
+                  <li><i class="fa fa-check" id="color7" aria-hidden="true"></i>{{'premium_contenido_3' | translate}}</li>
+                  <li><i class="fa fa-check" id="color8" aria-hidden="true"></i>{{'premium_contenido_4' | translate}}</li>
+                  <li><i class="fa fa-check" id="color9" aria-hidden="true"></i>{{'premium_contenido_5' | translate}}</li>
+                  <li><i class="fa fa-check" id="color10" aria-hidden="true"></i>{{'premium_contenido_6' | translate}}</li>
+                  <li><i class="fa fa-check" id="color11" aria-hidden="true"></i>{{'premium_contenido_7' | translate}}</li>
+                  <li><i class="fa fa-check" id="color12" aria-hidden="true"></i>{{'premium_contenido_8' | translate}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <div (click) = "capturaDiv(panel1)" class="Rectangle-7-Copy-3 btn" style="cursor:pointer;">
+                {{'premium_lo_quiero' | translate}}
+              </div>
+            </div>
           </div>
         </div>
-        <div #panel2>
-          <div class="title" id="color13">
-            {{'premium_anual' | translate}}
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="Line-Copy" id="line2">
+        <div class="d-flex flex-colum ml-auto mr-auto panel-2">
+          <div class="Rectangle-7-Copy">
+            <div class="Imagen">
+              <img src="assets/images/top-right.png"
+                   srcset="assets/images/top-right@2x.png 2x,
+                   assets/images/top-right@3x.png 3x">
+              <div class="image-content">
+                -35%
+              </div>
             </div>
-          </div>
-          <div class="title" id="color14" style="margin-top:25px;">
-            {{'premium_anual_precio' | translate}}
-          </div>
-          <div class="info-Copy" id="color15">
-            {{'premium_iva' | translate}}
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="info-2-Copy" id="color16">
-              {{'premium_cancelacion' | translate}}
+            <div #panel2>
+              <div class="title" id="color13">
+                {{'premium_anual' | translate}}
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="Line-Copy" id="line2">
+                </div>
+              </div>
+              <div class="title" id="color14" style="margin-top:25px;">
+                {{'premium_anual_precio' | translate}}
+              </div>
+              <div class="info-Copy" id="color15">
+                {{'premium_iva' | translate}}
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="info-2-Copy" id="color16">
+                  {{'premium_cancelacion' | translate}}
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="Line-Copy" id="line3" style="margin-bottom:13px;">
+                </div>
+              </div>
+              <div class="Detalles" id="color17">
+                <ul style="list-style: none; padding:0;">
+                  <li><i class="fa fa-check" id="color18" aria-hidden="true"></i>{{'premium_contenido' | translate}}</li>
+                  <li><i class="fa fa-check" id="color19" aria-hidden="true"></i>{{'premium_contenido_2' | translate}}</li>
+                  <li><i class="fa fa-check" id="color20" aria-hidden="true"></i>{{'premium_contenido_3' | translate}}</li>
+                  <li><i class="fa fa-check" id="color21" aria-hidden="true"></i>{{'premium_contenido_4' | translate}}</li>
+                  <li><i class="fa fa-check" id="color22" aria-hidden="true"></i>{{'premium_contenido_5' | translate}}</li>
+                  <li><i class="fa fa-check" id="color23" aria-hidden="true"></i>{{'premium_contenido_6' | translate}}</li>
+                  <li><i class="fa fa-check" id="color24" aria-hidden="true"></i>{{'premium_contenido_7' | translate}}</li>
+                  <li><i class="fa fa-check" id="color25" aria-hidden="true"></i>{{'premium_contenido_8' | translate}}</li>
+                  <li><i class="fa fa-check" id="color26" aria-hidden="true"></i>{{'premium_contenido_9' | translate}}</li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="Line-Copy" id="line3" style="margin-bottom:13px;">
+            <div class="d-flex justify-content-center">
+              <div (click) = "capturaDiv(panel2)" class="Rectangle-7-Copy-3 btn" style="cursor:pointer;">
+                {{'premium_lo_quiero' | translate}}
+              </div>
             </div>
-          </div>
-          <div class="Detalles" id="color17">
-            <ul style="list-style: none; padding:0;">
-              <li><i class="fa fa-check" id="color18" aria-hidden="true"></i>{{'premium_contenido' | translate}}</li>
-              <li><i class="fa fa-check" id="color19" aria-hidden="true"></i>{{'premium_contenido_2' | translate}}</li>
-              <li><i class="fa fa-check" id="color20" aria-hidden="true"></i>{{'premium_contenido_3' | translate}}</li>
-              <li><i class="fa fa-check" id="color21" aria-hidden="true"></i>{{'premium_contenido_4' | translate}}</li>
-              <li><i class="fa fa-check" id="color22" aria-hidden="true"></i>{{'premium_contenido_5' | translate}}</li>
-              <li><i class="fa fa-check" id="color23" aria-hidden="true"></i>{{'premium_contenido_6' | translate}}</li>
-              <li><i class="fa fa-check" id="color24" aria-hidden="true"></i>{{'premium_contenido_7' | translate}}</li>
-              <li><i class="fa fa-check" id="color25" aria-hidden="true"></i>{{'premium_contenido_8' | translate}}</li>
-              <li><i class="fa fa-check" id="color26" aria-hidden="true"></i>{{'premium_contenido_9' | translate}}</li>
-            </ul>
           </div>
         </div>
-        <div class="d-flex justify-content-center">
-          <div (click) = "capturaDiv(panel2)" class="Rectangle-7-Copy-3 btn" style="cursor:pointer;">
-            {{'premium_lo_quiero' | translate}}
+        <div class="d-flex flex-colum ml-auto panel-3">
+          <div class="Rectangle-7" >
+            <div #panel3>
+              <div class="title" id="color27">
+                {{'premium_diario' | translate}}
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="Line-Copy" id="line4">
+                </div>
+              </div>
+              <div class="title" id="color28" style="margin-top:22px;">
+                {{'premium_diario_precio' | translate}}
+              </div>
+              <div class="info" id="color29">
+                {{'premium_iva' | translate}}
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="info-2" id="color30" style="margin-top:35px;">
+                  {{'premium_diario_acceso' | translate}}
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="Line-Copy" id="line5" style="margin-bottom:13px;">
+                </div>
+              </div>
+              <div class="Detalles" id="color31">
+                <ul style="list-style: none; padding:0;">
+                  <li><i class="fa fa-check" id="color32" aria-hidden="true"></i>{{'premium_contenido' | translate}}</li>
+                  <li><i class="fa fa-check" id="color33" aria-hidden="true"></i>{{'premium_contenido_2' | translate}}</li>
+                  <li><i class="fa fa-check" id="color34" aria-hidden="true"></i>{{'premium_contenido_3' | translate}}</li>
+                  <li><i class="fa fa-check" id="color35" aria-hidden="true"></i>{{'premium_contenido_4' | translate}}</li>
+                  <li><i class="fa fa-check" id="color36" aria-hidden="true"></i>{{'premium_contenido_5' | translate}}</li>
+                  <li><i class="fa fa-check" id="color37" aria-hidden="true"></i>{{'premium_contenido_6' | translate}}</li>
+                  <li><i class="fa fa-check" id="color38" aria-hidden="true"></i>{{'premium_contenido_7' | translate}}</li>
+                  <li><i class="fa fa-check" id="color39" aria-hidden="true"></i>{{'premium_contenido_8' | translate}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <div (click) = "capturaDiv(panel3)" class="Rectangle-7-Copy-3 btn" style="cursor:pointer;">
+                {{'premium_lo_quiero' | translate}}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-flex flex-colum ml-auto panel-3">
-      <div class="Rectangle-7" >
-        <div #panel3>
-          <div class="title" id="color27">
-            {{'premium_diario' | translate}}
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="Line-Copy" id="line4">
-            </div>
-          </div>
-          <div class="title" id="color28" style="margin-top:22px;">
-            {{'premium_diario_precio' | translate}}
-          </div>
-          <div class="info" id="color29">
-            {{'premium_iva' | translate}}
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="info-2" id="color30" style="margin-top:35px;">
-              {{'premium_diario_acceso' | translate}}
-            </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="Line-Copy" id="line5" style="margin-bottom:13px;">
-            </div>
-          </div>
-          <div class="Detalles" id="color31">
-            <ul style="list-style: none; padding:0;">
-              <li><i class="fa fa-check" id="color32" aria-hidden="true"></i>{{'premium_contenido' | translate}}</li>
-              <li><i class="fa fa-check" id="color33" aria-hidden="true"></i>{{'premium_contenido_2' | translate}}</li>
-              <li><i class="fa fa-check" id="color34" aria-hidden="true"></i>{{'premium_contenido_3' | translate}}</li>
-              <li><i class="fa fa-check" id="color35" aria-hidden="true"></i>{{'premium_contenido_4' | translate}}</li>
-              <li><i class="fa fa-check" id="color36" aria-hidden="true"></i>{{'premium_contenido_5' | translate}}</li>
-              <li><i class="fa fa-check" id="color37" aria-hidden="true"></i>{{'premium_contenido_6' | translate}}</li>
-              <li><i class="fa fa-check" id="color38" aria-hidden="true"></i>{{'premium_contenido_7' | translate}}</li>
-              <li><i class="fa fa-check" id="color39" aria-hidden="true"></i>{{'premium_contenido_8' | translate}}</li>
-            </ul>
-          </div>
-        </div>
-        <div class="d-flex justify-content-center">
-          <div (click) = "capturaDiv(panel3)" class="Rectangle-7-Copy-3 btn" style="cursor:pointer;">
-            {{'premium_lo_quiero' | translate}}
-          </div>
+      <div class="d-flex flex-row justify-content-center">
+        <div class="Rectangle-7-Copy-2">
+          <span class="Solicitud">{{'premium_prueba_texto' | translate}}</span>
+          <span (click)='pruebaGratis();' class="Rectangle-7-Copy-4 btn-sol" style="cursor:pointer;">{{'premium_prueba_solicitud' | translate}}</span>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="d-flex flex-row justify-content-center">
-    <div class="Rectangle-7-Copy-2">
-      <span class="Solicitud">{{'premium_prueba_texto' | translate}}</span>
-      <span (click)='pruebaGratis();' class="Rectangle-7-Copy-4 btn-sol" style="cursor:pointer;">{{'premium_prueba_solicitud' | translate}}</span>
     </div>
   </div>
 </div>
