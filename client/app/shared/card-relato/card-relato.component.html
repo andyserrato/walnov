@@ -1,4 +1,4 @@
-<div [ngSwitch]="this.vista">
+<div [ngSwitch]="this.vista" (click)="handleClick($event)">
   <div *ngSwitchCase="'buscador'" class="Rectangle-7-Copy-5 d-flex flex-row">
     <div class="d-flex flex-column" style="margin-right:19px;">
       <div class="Rectangle-5">

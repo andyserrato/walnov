@@ -10,14 +10,13 @@ var Utils = require("../services/utils.service").Utils;
 //Schema's
 var opinionRelato = Schema({
   texto: String,
-  fechaCreacion: Date,
-  fecha: String,
-  hora: String,
-  urlFoto: String,
+  urlImagen: String,
   autor: mongoose.Schema.Types.ObjectId,
   autorName: String,
   respuesta: this
 });
+
+opinionRelato.plugin(datosComunes);
 
 var relato = Schema({
   titulo: String,

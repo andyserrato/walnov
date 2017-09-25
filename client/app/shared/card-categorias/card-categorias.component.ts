@@ -26,8 +26,6 @@ export class CardCategoriasComponent implements OnInit {
   }
 
   filtrarCategoria(event, categoria) {
-    console.log('filtrar Categoria evento ' + event.target);
-    console.log('filtrar Categoria ' + categoria.nombre);
     if (this.allSelected) {this.allSelected = false; }
     this.category.emit(categoria);
     this.toggleSelected(categoria);

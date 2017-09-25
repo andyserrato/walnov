@@ -1,9 +1,9 @@
 <div class="Rectangle-3-Copy-7">
   <div class="Relato-Title">
-    {{this.relato.titulo}}
+    {{relato.titulo}}
   </div>
   <div class="Rectangle-5">
-    <img  class="Imagen-Relato" src={{this.relato.urlImagen}} alt="">
+    <img  class="Imagen-Relato" src={{relato.urlImagen}} alt="">
     <div class="Fondo-Imagen">
     </div>
     <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="d-flex flex column" style="margin-right:15px; margin-top:2px;">
-        {{getNumber(this.relato.views)}}
+       {{getNumber(relato?.estadistica?.vecesVisto)}}
       </div>
       <div class="d-flex flex column" style="margin-right:7px;">
         <div class="Oval">
@@ -23,12 +23,12 @@
         </div>
       </div>
       <div class="d-flex flex column" style="margin-top:2px;">
-        {{getNumber(this.relato.likes)}}
+        {{getNumber(relato?.estadistica?.likes)}}
       </div>
     </div>
   </div>
-  <div class="Relato-Content" *ngFor = "let parrafo of this.relato.contenido">
-    {{parrafo}}
+  <div class="Relato-Content">
+    {{relato.texto}}
   </div>
   <div class="d-flex flex-row justify-content-end Botones">
     <div *ngIf='!this.added' (click) = 'addLista()'class="d-flex flex-column" style="margin-right:7px;margin-top:3px; cursor:pointer;">
@@ -43,13 +43,10 @@
     <div *ngIf='this.added' (click) = 'deleteLista()' class="d-flex flex-column" style="margin-right:50px; cursor:pointer;">
       {{'relatos_eliminar' | translate}}
     </div>
-    <div  *ngIf='!liked' (click) = 'plusLike()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
-      <i class="fa fa-heart-o" aria-hidden="true"></i>
+    <div (click)='like()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
+      <i class="fa" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}"></i>
     </div>
-    <div  *ngIf='liked' (click) = 'plusLike()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
-      <i class="fa fa-heart" aria-hidden="true"></i>
-    </div>
-    <div (click) = 'plusLike()' class="d-flex flex-column" style="margin-right:50px;cursor:pointer;">
+    <div (click)='like()' class="d-flex flex-column" style="margin-right:50px;cursor:pointer;">
       {{'all_like' | translate}}
     </div>
     <div class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">

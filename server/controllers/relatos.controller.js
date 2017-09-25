@@ -15,7 +15,8 @@ const Constantes = require("../constantes/constantes");
 
 router.post("/", crearNuevoRelato);
 router.get("/", getRelatos);
-router.get("/:idRelato", getRelatoById);
+router.get("/:id", getRelatoById);
+router.put('/like', updateLike);
 router.put('/', updateRelato);
 router.post("/opinion", crearNuevaOpinion);
 router.post("/responderOpinion", responderOpinion);
@@ -68,37 +69,36 @@ function crearNuevoRelato(req, resp) {
       }
     });
   }
-
-
 }
 
 function getRelatoById(req, res) {
-  // Relato.findById(req.params.idRelato, function (err, relato) {
-  //   _devolverResultados(err, relato, resp);
-  // });
 
   let id = req.params.id;
   let idUsuario = req.query.usuarioId;
   Relato.findById(id)
     .populate('estadistica autor')
     .exec(function (err, relato) {
-      if (err)
+      if (err || relato === null) {
         res.status(400).send("No se encuentra el relato");
+      } else {
+        if (relato.estadistica === null)
+          relato.estadistica = new Estadistica();
 
-      // Relato no es borrador
-      if (relato.tipo != 1)
-        relato.estadistica.vecesVisto++;
+        // Relato no es borrador
+        if (relato && relato.tipo != 1 && relato.estadistica)
+          relato.estadistica.vecesVisto++;
 
-      if (idUsuario && relato.estadistica.visitas.indexOf(idUsuario) === -1) {
-        relato.estadistica.visitas.push(idUsuario);
+        if (idUsuario && relato && relato.estadistica && relato.estadistica.visitas.indexOf(idUsuario) === -1) {
+          relato.estadistica.visitas.push(idUsuario);
+        }
+
+        relato.estadistica.save(function (err) {
+          if (err)
+            res.status(400).send(err);
+
+          res.status(200).send(relato);
+        });
       }
-
-      relato.estadistica.save(function (err) {
-        if (err)
-          res.status(400).send(err);
-
-        res.status(200).send(relato);
-      });
     });
 }
 
@@ -313,6 +313,39 @@ function updateRelato(req, res) {
           res.status(400).send("Ha ocurrido un error al actualizar el Relato " + err);
 
         res.status(200).send(updatedRelato);
+      });
+  }
+}
+
+function updateLike(req, res) {
+  let id = req.body.relatoId;
+  let idUsuario = req.body.usuarioId;
+
+  if (id === undefined || idUsuario === undefined) {
+    res.status(404).send('El id del relato y el id del usuario son campos requeridos');
+  } else {
+    Relato.findById(id)
+      .populate('estadistica autor')
+      .exec(function (err, relato) {
+        if (relato.estadistica === null)
+          relato.estadistica = new Estadistica();
+        // Así comprobamos que el puto ya le ha dado a like
+        if (idUsuario && relato.estadistica.likers.indexOf(idUsuario) === -1) {
+          relato.estadistica.likers.push(idUsuario);
+          relato.estadistica.likes++;
+          if (relato && relato.estadistica && relato.estadistica.likes && (relato.estadistica.likes / 50 > 1 )) {
+            // TODO notificacion  de cantidad aquí
+          }
+
+          // TODO notificación de que un puto le ha dado a like aquí
+        }
+
+        relato.estadistica.save(function (err, resultados) {
+          if (err)
+            res.send(err);
+          else
+            res.send(resultados);
+        })
       });
   }
 }

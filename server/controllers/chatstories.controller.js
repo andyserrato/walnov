@@ -164,7 +164,6 @@ function getChatStories(req, res) {
       }
       else {
         if (req.query.timeLine === 'followers' && user.seguidores.length > 0) {
-          console.log('FOLLOWERS');
           query.where('autor').in(user.seguidores);
           ejecutarQuery();
         } else if (req.query.timeLine === 'following' && user.siguiendo.length > 0) {
@@ -199,23 +198,27 @@ function getChatStoryById(req, res) {
   ChatStory.findById(id)
     .populate('estadistica autor')
     .exec(function (err, chatStory) {
-      if (err)
+      if (err || chatStory === null) {
         res.status(400).send("No se encuentra el ChatStory");
+      } else {
+        // ChatStory no es borrador
+        if (chatStory.estadistica === null)
+          chatStory.estadistica = new Estadistica();
 
-      // ChatStory no es borrador
-      if (chatStory.tipo != 1)
-        chatStory.estadistica.vecesVisto++;
+        if (chatStory && chatStory.tipo != 1 && chatStory.estadistica)
+          chatStory.estadistica.vecesVisto++;
 
-      if (idUsuario && chatStory.estadistica.visitas.indexOf(idUsuario) === -1) {
-        chatStory.estadistica.visitas.push(idUsuario);
+        if (idUsuario && chatStory && chatStory.estadistica && chatStory.estadistica.visitas.indexOf(idUsuario) === -1) {
+          chatStory.estadistica.visitas.push(idUsuario);
+        }
+
+        chatStory.estadistica.save(function (err) {
+          if (err)
+            res.status(400).send(err);
+
+          res.status(200).send(chatStory);
+        })
       }
-
-      chatStory.estadistica.save(function (err) {
-        if (err)
-          res.status(400).send(err);
-
-        res.status(200).send(chatStory);
-      })
     });
 }
 
@@ -326,28 +329,35 @@ function updateCompartido(req, res) {
 function updateLike(req, res) {
   let id = req.body.chatStoryId;
   let idUsuario = req.body.usuarioId;
-  ChatStory.findById(id)
-    .populate('estadistica autor')
-    .exec(function (err, chatStory) {
 
-      // Así comprobamos que el puto ya le ha dado a like
-      if (idUsuario && chatStory.estadistica.likers.indexOf(idUsuario) === -1) {
-        chatStory.estadistica.likers.push(idUsuario);
-        chatStory.estadistica.likes++;
-        if (chatStory && chatStory.estadistica && chatStory.estadistica.likes && (chatStory.estadistica.likes / 50 > 1 )) {
-          // TODO notificacion  de cantidad aquí
+  if (id === undefined || idUsuario === undefined) {
+    res.status(404).send('El id del relato y el id del usuario son campos requeridos');
+  } else {
+    ChatStory.findById(id)
+      .populate('estadistica autor')
+      .exec(function (err, chatStory) {
+        if (chatStory.estadistica === null)
+          chatStory.estadistica = new Estadistica();
+
+        // Así comprobamos que el puto ya le ha dado a like
+        if (idUsuario && chatStory.estadistica.likers.indexOf(idUsuario) === -1) {
+          chatStory.estadistica.likers.push(idUsuario);
+          chatStory.estadistica.likes++;
+          if (chatStory && chatStory.estadistica && chatStory.estadistica.likes && (chatStory.estadistica.likes / 50 > 1 )) {
+            // TODO notificacion  de cantidad aquí
+          }
+
+          // TODO notificación de que un puto le ha dado a like aquí
         }
 
-        // TODO notificación de que un puto le ha dado a like aquí
-      }
-
-      chatStory.estadistica.save(function (err, resultados) {
-        if (err)
-          res.send(err);
-        else
-          res.send(resultados);
-      })
-    });
+        chatStory.estadistica.save(function (err, resultados) {
+          if (err)
+            res.send(err);
+          else
+            res.send(resultados);
+        })
+      });
+  }
 }
 
 function getChatStoriesByUserName(req, res) {

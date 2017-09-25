@@ -343,14 +343,6 @@ function getUserByParams(req, res) {
       query.where('perfil.email').equals(queries.email);
     }
 
-    if (queries && queries.display_name) {
-      query.where('perfil.display_name').equals(queries.display_name);
-    }
-
-    if (queries && queries.display_name) {
-      query.where('perfil.display_name').equals(queries.display_name);
-    }
-
     // relevantes
     if (queries && queries.sort) {
       let sortQueries = queries.sort.split(',');

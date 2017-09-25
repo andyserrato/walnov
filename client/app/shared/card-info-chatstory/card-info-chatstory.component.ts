@@ -12,40 +12,21 @@ import { ChatstoryService } from '../../services/chatstory.service';
   styleUrls: ['./card-info-chatstory.component.scss']
 })
 export class CardInfoChatstoryComponent implements OnInit {
-  chatstory: any;
+  @Input() chatstory: any;
   constructor(private repositorio: RepositorioService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private chatstoryService: ChatstoryService) {
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.route.paramMap
-      .switchMap((params: ParamMap) =>
-        this.chatstoryService.getChatStory(params.get('id')))
-      .subscribe(chatStory => {
-        // console.log('estamos dentro del subscribe');
-
-        this.chatstory = chatStory;
-        // console.log(this.chatstory.categoria);
-        // if(this.repositorio.categoriasHM.get(this.chatstory.categoria)){
-        //   this.chatstory.categoria = this.repositorio.categoriasHM.get(this.chatstory.categoria);
-        // }else{
-        //   this.chatstory.categoria = this.repositorio.categoriasAL[1];
-        // };
-        // console.log(this.chatstory);
-      });
-    //console.log(this.chatstory);
-
   }
 
   getBorder() {
-    return 'solid 1.5px ' + this.repositorio.categoriasHM.get(this.chatstory.categoria).color;
+    return 'solid 1.5px ' + this.repositorio.categoriasHM.get(this.chatstory.categoria.nombre).color;
 
   }
 
   getColor() {
-    return this.repositorio.categoriasHM.get(this.chatstory.categoria).color;
+    return this.chatstory.categoria.color;
 
   }
 

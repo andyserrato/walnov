@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { ChatStory } from '../../models/chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { ChatstoryMessage } from '../../models/chatstory-message';
-import { Paginator } from '../../models/paginador';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
@@ -29,14 +27,14 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   stoped = false;
   autoplay = false;
   timer: any;
-  user:any;
-  tipo:string;
+  user: any;
+  tipo: string;
 
   constructor(private repositorio: RepositorioService,
               private router: Router,
               private route: ActivatedRoute,
               private chatstoryService: ChatstoryService,
-              private translate : TranslateService,
+              private translate: TranslateService,
               private userService: UserService) {
   }
 
@@ -50,20 +48,20 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
         // console.log('estamos dentro del subscribe');
 
         this.chatStory = chatStory;
-        if(this.repositorio.categoriasHM.get(this.chatStory.categoria)){
+        if (this.repositorio.categoriasHM.get(this.chatStory.categoria)){
           this.chatStory.categoria = this.repositorio.categoriasHM.get(this.chatStory.categoria);
         }else{
           this.chatStory.categoria = this.repositorio.categoriasAL[1];
         };
-        switch(this.chatStory.autor.tipo){
+        switch (this.chatStory.autor.tipo){
           case 0:
-            this.tipo='normal';
+            this.tipo = 'normal';
             break;
           case 1:
-            this.tipo='premium';
+            this.tipo = 'premium';
             break;
           default:
-            this.tipo='normal';
+            this.tipo = 'normal';
             break;
         }
         // console.log(this.chatStory);
@@ -110,13 +108,13 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
           this.messagesArray.push(new ChatstoryMessage(this.chatStory.chats[this.counter].personaje, '', '', true));
 
           setTimeout(() => {
-            this.chatStory.chats[this.counter-1].delay = false;
-            this.messagesArray[this.messagesArray.length - 1] = this.chatStory.chats[this.counter-1];
+            this.chatStory.chats[this.counter - 1].delay = false;
+            this.messagesArray[this.messagesArray.length - 1] = this.chatStory.chats[this.counter - 1];
             this.limite = 1000;
             this.lastclick = Date.now();
-            setTimeout(()=>{
+            setTimeout(() => {
               this.stoped = false;
-            })
+            });
           }, 3000);
         }else{
           this.messagesArray.push(this.chatStory.chats[this.counter]);

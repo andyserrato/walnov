@@ -22,7 +22,7 @@ export class RelatoService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }
 
-  updateRelato (body: Object, id?: any): Observable<any> {
+  updateRelato (body: Object): Observable<any> {
     const bodyString = JSON.stringify(body); // Stringify payload
     const headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     const options       = new RequestOptions({ headers: headers }); // Create a request option
@@ -31,6 +31,31 @@ export class RelatoService {
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .do(data => console.log('updateRelato' + JSON.stringify(data)))
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
+  }
+
+  getRelatoById(id: any): Observable<any> {
+    let query = this.relatosUrl + '/' + id;
+    if (this.auth.isLoggedIn()) {
+      query += '?usuarioId=' + this.auth.getUser().id;
+    }
+    return this.http.get(query)
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  likeRelato(relatoId: string, usuarioId: string): Observable<any> {
+    const body = {
+      relatoId : relatoId,
+      usuarioId : usuarioId
+    };
+    const bodyString = JSON.stringify(body);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this.http.put(`${this.relatosUrl}/like`, bodyString, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }

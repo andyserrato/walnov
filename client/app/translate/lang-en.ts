@@ -1,7 +1,7 @@
 export const LANG_EN_NAME = 'en';
 
 export const LANG_EN_TRANS = {
-  //home
+  // home
   'home_card_navegacion': 'Lastest Activity',
   'home_card_navegacion_2': 'My Walls',
   'home_card_navegacion_3': 'My Short Stories',
@@ -22,6 +22,8 @@ export const LANG_EN_TRANS = {
   'home_reciente_select_option_3': '-Liked',
   'home_reciente_select_option_4': 'Followers',
   'home_reciente_select_option_5': 'Following',
+  'home_reciente_select_option_6': '+Viewed',
+  'home_reciente_select_option_7': '-Viewed',
 
   'home_reciente_suggested_users': 'Suggested users',
   'home_reciente_button_1': 'Continue',
@@ -34,10 +36,7 @@ export const LANG_EN_TRANS = {
   'home_buscador_nada': 'We have not found any result',
   'home_buscador_personas': 'People',
 
-
-
-
-  //todo
+  // todo
   'all_relatos_cortos': 'Short stories',
   'all_relatos': 'Short stories',
   'all_relato_corto' : 'Short story',
@@ -63,10 +62,7 @@ export const LANG_EN_TRANS = {
   'all_compartir': 'Share',
   'all_reportar': 'Report',
 
-
-
-
-  //categorias
+  // categorias
   'accion': 'Action',
   'aventura': 'Adventure',
   'scifi': 'SCI-FI',
@@ -78,7 +74,7 @@ export const LANG_EN_TRANS = {
   'terror': 'Terror',
   'reflexion': 'Reflexion',
 
-  //shared
+  // shared
   'shared_usuarios_tendencia': 'Top users',
   'shared_walls_relevantes': 'Relevant Walls',
   'shared_image_picker_changeimage' : 'Change',
@@ -91,10 +87,7 @@ export const LANG_EN_TRANS = {
   'shared_verify_user_browse' : 'Browse',
   'shared_verify_user_restrictions' : 'JPG Format - Minimum size',
 
-
-
-
-  //modal
+  // modal
   'modal_home': 'Great! Your own community has started',
   'modal_info': 'View users activity',
   'modal_compartir_enlace': 'Share link',
@@ -104,8 +97,9 @@ export const LANG_EN_TRANS = {
   'modal_chatstory_posted': 'Chatstory posted successfully!',
   'modal_relato_posted': 'Short story posted successfully!',
 
-  //alerts,warnings
+  // alerts,warnings
   'alert_home': 'You must follow five users at least',
+  'alert_borrador_no_encontrado': 'Draft not Found',
   'alert_home_chatstories': 'You have not written a Chatstory yet, ',
   'alert_home_chatstories2': 'Start right now!',
 
@@ -130,10 +124,10 @@ export const LANG_EN_TRANS = {
   'alert_relato_borrador_updt': 'Your draft has been updated',
   'alert_relato_acabados' : 'You haven’t got more Short Stories!',
   'alert_relato_acabados_2': 'There’s no more Short Stories!',
-
   'alert_wrong_email': 'Write a valid email address',
+  'alert_relato_no_encontrado': 'ShortStory not found',
 
-  'alert_popover_error': 'An error occurred',
+  'alert_popover_error': 'An error has occurred',
 
   'alert_bienvenido': 'Welcome',
 
@@ -141,7 +135,7 @@ export const LANG_EN_TRANS = {
 
   'alert_card_tags': 'Invalid tag, try again',
 
-  //chatstories
+  // chatstories
   'chatstorie_add_biblioteca': 'Add to my Library',
   'chatstorie_added_biblioteca': 'Added',
 
@@ -191,7 +185,7 @@ export const LANG_EN_TRANS = {
   'chatstories_card_info': 'Chatstory info',
   'chatstories_card_info_personajes': 'character(s)',
 
-  //card-informativo
+  // card-informativo
   'card_info_entendido': 'Got it',
   'card_info_instr': 'Start by choosing a title and a category.',
   'card_info_title': 'You are writing a',
@@ -201,7 +195,7 @@ export const LANG_EN_TRANS = {
   'card_info_instr_relato': 'Choose a picture and write your Short story. Let’s go!',
   'card_info_instr_2': 'Don’t forget to tell your friends and share your content on the social media!',
 
-  //forms
+  // forms
   'forms_nombre': 'Name',
   'forms_nombre_placeholder': 'Write your name here',
   'forms_apellidos': 'Last name',
@@ -238,7 +232,7 @@ export const LANG_EN_TRANS = {
   'forms_confirmacion': 'I have read  Walnov’s conditions and policy and I accept them.',
   'forms_confirmar': 'Confirm',
 
-  //idiomas
+  // idiomas
   'español': 'Spanish',
   'english': 'English',
   'frances': 'French',
@@ -248,8 +242,8 @@ export const LANG_EN_TRANS = {
   'italiano': 'Italian',
   'ruso': 'Russian',
 
-  //Intereses
-  'deportes':'Sport',
+  // Intereses
+  'deportes': 'Sport',
   'cultura': 'Culture',
   'historia': 'History',
   'arte': 'Art',
@@ -258,7 +252,7 @@ export const LANG_EN_TRANS = {
   'fantasia': 'Fantasy',
   'misterio': 'Mistery',
 
-  //user-profile
+  // user-profile
   'user_profile_conectar': 'Connect',
   'user_profile_message': 'Send message',
   'user_profile_seguidores': 'Followers',
@@ -269,13 +263,13 @@ export const LANG_EN_TRANS = {
   'user_profile_suscrito': 'Suscribed',
   'user_profile_desuscribir': 'Unsuscribe',
 
-  //continuaciones
+  // continuaciones
   'card_continuacion': 'Sequel',
 
-  //card-tags
+  // card-tags
   'add_tags': 'Add tags to your',
 
-  //Relatos
+  // Relatos
   'relatos_creacion': 'Short story Creation',
   'relatos_dedicatoria': 'Do you want to dedicate your Short story?',
   'relatos_dedicatoria_placeholder': 'name@mail.com; @username…',
@@ -292,8 +286,8 @@ export const LANG_EN_TRANS = {
   'relatos_relevantes': 'Relevant Short stories',
 
 
-  //popover
-  'popover_unirse':'Join us to post your content',
+  // popover
+  'popover_unirse': 'Join us to post your content',
   'popover_registro': 'Sign in with:',
   'popover_contraseña': 'Password',
   'popover_error_mail': 'Write a valid mail',
@@ -305,21 +299,21 @@ export const LANG_EN_TRANS = {
   'popover_unirse_2': 'Join',
   'popover_entrar': 'Log in',
 
-  //profile-popover
+  // profile-popover
   'profile_popover_cuenta': 'Account',
   'profile_popover_salir': 'Log out',
   'profile_popover_nivel': 'Go up a level!',
 
-  //nav
+  // nav
   'nav_crear': 'Write',
   'nav_crear_un': 'Write a',
   'nav_como_funciona': 'How it works',
 
-  //comentarios
+  // comentarios
   'dejar_comentario': 'Let your comment',
   'dejar_comentario_placeholder': '750 characters maximum',
 
-  //user-account
+  // user-account
   'user_cuenta': 'Account',
   'user_profile': 'Profile details',
   'user_preferencias': 'Preferences',
@@ -329,7 +323,7 @@ export const LANG_EN_TRANS = {
   'user_preferencias_mensajes': 'Messages',
   'user_preferencias_notificaciones': 'Notifications',
 
-  //contacto
+  // contacto
   'contacto_contactar': 'Contact with us',
   'contacto_nombre_placeholder': 'Write your name here',
   'contacto_email_placeholder': 'Write your email here',
@@ -342,7 +336,7 @@ export const LANG_EN_TRANS = {
   'contacto_calle': 'Pedro Duque’s street, Valencia, Spain',
   'contacto_edificio': '9B building, office number 19',
 
-  //pricing-partner
+  // pricing-partner
   'partner_titulo': 'Become a Walnov’s Partner',
   'partner_oferta': 'Earn money by doing the most you like, Writing!',
   'partner_pregunta': 'What do we offer?',
@@ -352,10 +346,11 @@ export const LANG_EN_TRANS = {
   'partner_donacion': 'Make a _ _ _€ donation',
   'partner_iconos': 'Special icons for your fans. You can design an icon for your fans and it will appear on their profile',
   'partner_mas': 'What’s better, you can earn money for every post you make!',
-  'partner_mas_2': 'To be partner you need to be an active user who writes high-quality-content for a lot of followers. Do you think you fit in? Start right now!',
+  'partner_mas_2': 'To be partner you need to be an active user who writes high-quality-content for a lot of followers. ' +
+  'Do you think you fit in? Start right now!',
   'partner_solicitud': 'Send my request',
 
-  //pricing-premium
+  // pricing-premium
   'premium_pasarse': 'Go Premium',
   'premium_texto': 'Support the biggest Colaborative-Writing-Community and make it grow to generate amazing content',
   'premium_mensual': 'Monthly subscription',
@@ -383,10 +378,10 @@ export const LANG_EN_TRANS = {
   'premium_prueba_confirmacion': 'We need some extra details before you get the 7-free-days period',
   'premium_prueba_final': 'When it finishes, you’ll pay XX.XX€/month-year.',
 
-  //selector_idioma
+  // selector_idioma
   'selector_titulo': 'Language',
 
-  //landingMobiled
+  // landingMobiled
   'landing_mobile_mensaje': 'Leave your mark',
   'landing_mobile_descarga': 'Get the app on your phone',
 

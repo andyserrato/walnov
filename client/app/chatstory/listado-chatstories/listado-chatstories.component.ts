@@ -42,14 +42,14 @@ export class ListadoChatstoriesComponent implements OnInit {
     myParams.append('skip', '' + this.skip);
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatstories => {
-      if(this.authenticationService.isLoggedIn()) {
+      if (this.authenticationService.isLoggedIn()) {
         this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
           this.bibliotecaService.updateBiblioteca(biblioteca);
           // this.changeCategory(null);
           this.repositorio.chatstories = chatstories;
           this.chatStoriesFiltrados = chatstories;
           this.paginador = new Paginator(this.chatStoriesFiltrados, this.div,  24, 6);
-          this.skip+=60;
+          this.skip += 60;
           this.modalservice.clear();
         });
       } else {
@@ -58,7 +58,7 @@ export class ListadoChatstoriesComponent implements OnInit {
         this.chatStoriesFiltrados = chatstories;
         this.paginador = new Paginator(this.chatStoriesFiltrados, this.div,  24, 6);
         // this.changeCategory(null);
-        this.skip+=60;
+        this.skip += 60;
         this.modalservice.clear();
       }
 
@@ -67,13 +67,6 @@ export class ListadoChatstoriesComponent implements OnInit {
 
   changeCategory(event: Categoria) {
     this.categoria = event;
-
-    // if (this.categoria === null) {
-    //   this.chatStoriesFiltrados = this.repositorio.chatstories;
-    // } else {
-    //   this.chatStoriesFiltrados = this.repositorio.chatstories.filter(ChatStory => this.translateService.translate(ChatStory.categoria) === this.translateService.translate(this.categoria.nombre));
-    // }
-    // this.repositorio.paginadorCardsChatstories.rellenar(this.chatStoriesFiltrados);
     this.sortByFilter('categoria');
   }
 
@@ -106,18 +99,22 @@ export class ListadoChatstoriesComponent implements OnInit {
     }
 
     if (this.sortBy !== null && this.sortBy !== '') {
-      if (this.sortBy === 'Relevant') {
+      if (this.sortBy === this.translateService.instant('home_reciente_select_option_1')) {
         myParams.append('sort', 'relevantes');
-      } else if (this.sortBy === '+Liked') {
+      } else if (this.sortBy === this.translateService.instant('home_reciente_select_option_2')) {
         myParams.append('sort', '+likes');
-      } else if (this.sortBy === '-Liked') {
+      } else if (this.sortBy === this.translateService.instant('home_reciente_select_option_3')) {
         myParams.append('sort', '-likes');
-      } else if (this.sortBy === 'Followers') {
+      } else if (this.sortBy === this.translateService.instant('home_reciente_select_option_4')) {
         myParams.append('autor', this.authenticationService.getUser().id ? this.authenticationService.getUser().id : '');
         myParams.append('timeLine', 'followers');
-      } else if (this.sortBy === 'Following') {
+      } else if (this.sortBy === this.translateService.instant('home_reciente_select_option_5')) {
         myParams.append('autor', this.authenticationService.getUser().id ? this.authenticationService.getUser().id : '');
         myParams.append('timeLine', 'following');
+      } else if (this.sortBy === this.translateService.instant('home_reciente_select_option_6')) {
+        myParams.append('sort', '+vecesVisto');
+      } else if (this.sortBy === this.translateService.instant('home_reciente_select_option_7')) {
+        myParams.append('sort', '-vecesVisto');
       }
     }
 
@@ -132,7 +129,8 @@ export class ListadoChatstoriesComponent implements OnInit {
       this.chatStoriesFiltrados = new Array<ChatStory>();
       this.repositorio.chatstories = chatstories;
       this.chatStoriesFiltrados = chatstories;
-      // this.repositorio.paginadorCardsChatstories.rellenar(this.chatStoriesFiltrados);
+      this.paginador = new Paginator(this.chatStoriesFiltrados, this.div,  24, 6);
+      this.skip += 60;
       this.modalservice.clear();
       this.skip += 20;
     }, error => {

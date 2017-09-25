@@ -7,19 +7,19 @@
   <div class="d-flex justify-content-center">
     <div class="d-flex flex-row Rectangle-7-Copy-15" [style.border] = 'getBorder()' [style.color] = 'getColor()'>
       <div class="d-flex flex-column align-items-center Categoria">
-        {{this.relato.categoria.nombre | translate}}
+        {{relato.categoria?.nombre | translate}}
       </div>
     </div>
   </div>
   <div class="Relato-Estadisticas">
     <div style="margin-bottom:2px;">
-      {{this.formatearNumero(this.relato.coments)}} {{'all_opiniones' | translate}}
+      {{this.formatearNumero(relato.opiniones?.length)}} {{'all_opiniones' | translate}}
     </div>
     <div style="margin-bottom:2px;">
-      {{this.formatearNumero(this.relato.likes)}} Likes
+      {{this.formatearNumero(relato.estadistica?.likes)}} Likes
     </div>
     <div>
-      {{this.formatearNumero(this.relato.views)}} {{'all_visualizaciones' | translate}}
+      {{this.formatearNumero(relato.estadistica?.vecesVisto)}} {{'all_visualizaciones' | translate}}
     </div>
   </div>
   <div class="Line-2">
@@ -29,15 +29,15 @@
   </div>
   <div class="Rectangle-3">
     <div class="d-flex justify-content-center flex-row">
-      <img class="Oval-2" src={{this.relato.usuario.imagen}} alt={{this.relato.usuario.nombre}}>
+      <img class="Oval-2" src={{relato.autor?.perfil.foto_perfil}} alt={{relato.autorNombre}}>
     </div>
-    <div class="Usuario-Nombre ellipsis" title={{this.relato.usuario.nombre}}>
-      {{this.relato.usuario.nombre}}
+    <div class="Usuario-Nombre ellipsis" title={{relato.autorNombre}}>
+      {{relato.autorNombre}}
     </div>
     <div class="Usuario-Estadisticas">
-      <div>{{this.relato.usuario.walls}} Walls</div>
-      <div>{{this.relato.usuario.chatstories}} Chatstories</div>
-      <div>{{this.relato.usuario.relatos}} {{'all_relatos_cortos' | translate}}</div>
+      <div>{{relato.autor?.perfil.numWallsCreated}} Walls</div>
+      <div>{{relato.autor?.perfil.numChatStoriesCreated}} Chatstories</div>
+      <div>{{relato.autor?.perfil.numRelatosCreated}} {{'all_relatos_cortos' | translate}}</div>
     </div>
     <div class="d-flex flex-row  justify-content-center" style="height: 30px;">
       <div class="d-flex flex-column align-self-end">
