@@ -30,7 +30,7 @@ module.exports = function () {
 
       usuario = new User();
       usuario.login = profile.username ? profile.username : '';
-      usuario.estado = Constantes.Usuario.ESTADO_VERIFICADO;
+      usuario.estado = Constantes.Usuario.ESTADO_SIN_VERIFICAR;
       usuario.perfil = {
         nombre: providerData.name ? providerData.name : '',
         apellidos: '',

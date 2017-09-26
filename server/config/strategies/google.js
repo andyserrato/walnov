@@ -30,7 +30,7 @@ module.exports = function() {
 			// Create the user OAuth profile
       usuario = new User();
       usuario.login = providerData.nickname ? providerData.nickname : '';
-      usuario.estado = Constantes.Usuario.ESTADO_VERIFICADO;
+      usuario.estado = Constantes.Usuario.ESTADO_SIN_VERIFICAR;
       usuario.perfil = {
         nombre: providerData.name ? providerData.name.givenName  ? providerData.name.givenName : '' : '',
         apellidos: providerData.name ? providerData.name.familyName ? providerData.name.familyName : '' : '',

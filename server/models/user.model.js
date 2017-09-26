@@ -99,6 +99,11 @@ const mensajePrivado = Schema({
   remitente: mongoose.Schema.Types.ObjectId
 });
 
+const preferenciaSchema = Schema ({
+  nombre: String,
+  activo: Boolean
+});
+
 const perfil = Schema({
   nombre: String,
   apellidos: String,
@@ -114,12 +119,14 @@ const perfil = Schema({
   descripcion: String,
   display_name: String,
   perfilCompleto: Boolean,
+  fechaNacimiento: Date,
   twitter: String,
   google: String,
   facebook: String,
   numWallsCreated: {type: Number , default: 0},
   numRelatosCreated: {type: Number , default: 0},
   numChatStoriesCreated: {type: Number , default: 0},
+  preferencias: [preferenciaSchema]
   // num likes recibidos en sus WCR
   // num veces compartidos recibidos en sus WCR
   // num comentarios realizados en relatos
@@ -275,3 +282,4 @@ const NotificacionNuevaOpinionRelato = mongoose.model('notificacionNuevaOpinionR
 const NotificacionNuevaOpinionChatStory = mongoose.model('notificacionNuevaOpinionChatStory', notificacionNuevaOpinionChatStory);
 const Perfil = mongoose.model('perfil', perfil);
 const ProviderSchema = mongoose.model('provider', providerSchema);
+const PreferenciaSchema = mongoose.model('preferencia', preferenciaSchema)

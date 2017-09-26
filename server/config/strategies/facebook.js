@@ -41,7 +41,7 @@ module.exports = function() {
 			});
 
       usuario.login = profile.username ? profile.username : '';
-      usuario.estado = Constantes.Usuario.ESTADO_VERIFICADO;
+      usuario.estado = Constantes.Usuario.ESTADO_SIN_VERIFICAR;
       usuario.perfil = {
         nombre: providerData.first_name ? providerData.first_name : '',
         apellidos: providerData.last_name ? providerData.last_name : '',
