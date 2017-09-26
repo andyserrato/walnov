@@ -16,7 +16,7 @@
             </span>
           </div>
           <div class="row no-padding-margin">
-            <input type="text" class="form-control" name="" value="">
+            <input type="text" class="form-control" name="" value="" placeholder="{{'forms_username' | translate}}" [(ngModel)]="user().perfil.display_name">
           </div>
         </div>
 
@@ -27,7 +27,7 @@
             </span>
           </div>
           <div class="row no-padding-margin">
-            <input type="text" class="form-control" name="" value="">
+            <input type="text" class="form-control" name="" value="" placeholder="{{'forms_apellidos' | translate}}" [(ngModel)]="user().perfil.apellidos">
           </div>
         </div>
       </div>
@@ -35,11 +35,11 @@
         <div class="col-4">
           <div class="row no-padding-margin">
             <span class="fixed-title">
-              {{'forms_edad'  | translate}}
+              {{'forms_fecha_nacimiento'  | translate}}
             </span>
           </div>
           <div class="row no-padding-margin">
-            <input type="date" class="form-control" name="" value="">
+            <input type="date" class="form-control" name="" value="" placeholder="dd/mm/yyyy" [(ngModel)]="user().perfil.fechaNacimiento">
           </div>
         </div>
         <div class="col-4">

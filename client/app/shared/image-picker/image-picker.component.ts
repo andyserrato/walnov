@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
-import { RegisterPopoverService } from '../../services/register-popover.service';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {AuthenticationService} from '../../services/authentication.service';
+import {RegisterPopoverService} from '../../services/register-popover.service';
 
 @Component({
   selector: 'app-image-picker',
@@ -8,51 +8,56 @@ import { RegisterPopoverService } from '../../services/register-popover.service'
   styleUrls: ['./image-picker.component.scss']
 })
 export class ImagePickerComponent implements OnInit {
-  view:string;
+  view: string;
   focus: boolean;
   @Input() white: boolean;
   @Output() imageUploaded: EventEmitter<any>;
+
   constructor(private auth: AuthenticationService,
-              private regitserPopover: RegisterPopoverService) {
-    this.focus=false;
-    this.view="select";
+              private registerPopoverService: RegisterPopoverService) {
+    this.focus = false;
+    this.view = 'select';
     this.imageUploaded = new EventEmitter<any>();
   }
 
   ngOnInit() {
   }
 
-  changeView(int: string){
-    this.view=int;
+  changeView(vista: string) {
+
+    if (this.auth.getUser().estado === 0) {
+      this.view = 'verify';
+    } else {
+      this.view = vista;
+    }
   }
 
-  expand($event: HTMLElement, selectBox: HTMLElement){
-    if(this.auth.isLoggedIn()){
-      let cibox = $event;
-      if(!this.focus){
-        cibox.style.backgroundColor = "white";
-        cibox.style.color = "gray";
-        cibox.style.position = "absolute";
-        cibox.style.height = "100%";
-        selectBox.style.display="block";
-        cibox.style.zIndex = "2";
-        // cibox.parentElement.parentElement.style.height = "8em";
-        this.focus=true;
-      }else{
-        cibox.removeAttribute("style");
-        selectBox.removeAttribute("style");
-        this.focus=false;
-        this.view="select";
+  expand($event: HTMLElement, selectBox: HTMLElement) {
+    if (this.auth.isLoggedIn()) {
+      const cibox = $event;
+      if (!this.focus) {
+        cibox.style.backgroundColor = 'white';
+        cibox.style.color = 'gray';
+        cibox.style.position = 'absolute';
+        cibox.style.height = '100%';
+        selectBox.style.display = 'block';
+        cibox.style.zIndex = '2';
+        this.focus = true;
+      } else {
+        cibox.removeAttribute('style');
+        selectBox.removeAttribute('style');
+        this.focus = false;
+        this.view = 'select';
       }
-    }else{
-      this.regitserPopover.setVisible(true);
+    } else {
+      this.registerPopoverService.setVisible(true);
     }
 
   }
 
-  uploadImage(event,$event,selectBox){
-    if(event){
-        this.imageUploaded.emit(event);
+  uploadImage(event, $event, selectBox) {
+    if (event) {
+      this.imageUploaded.emit(event);
     }
     this.expand($event, selectBox);
   }
