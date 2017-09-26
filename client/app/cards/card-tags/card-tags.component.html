@@ -6,12 +6,13 @@
         <div class="row">
           <div class="col-8  cols-no-padding">
             <input #newTag class="Input-Text"
+                [formControl]="this.tagForm"
                 type="text" placeholder="tags..."
-                (keyup.enter)="addTag(newTag.value); newTag.value=''"
-                (blur)="addTag(newTag.value); newTag.value='' ">
+                (keyup.enter)="addTag(newTag);"
+            >
           </div>
           <div class="col-4  cols-no-padding">
-              <button (click)="addTag(newTag.value)" class="plus-btn">
+              <button (click)="addTag(newTag);" class="plus-btn">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
               </button>
           </div>

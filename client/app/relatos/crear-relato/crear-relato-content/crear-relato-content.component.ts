@@ -23,6 +23,7 @@ export class CrearRelatoContentComponent implements OnInit {
   complexForm: any;
   popover = false;
   publicando = false;
+  borrador = false;
   relatoUrl = '/relato/';
   @ViewChild('textarea') textarea: ElementRef;
 
@@ -38,19 +39,22 @@ export class CrearRelatoContentComponent implements OnInit {
     this.friends = new Array<string>();
     this.complexForm = fb.group({
       'title': [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
-      'content': [null, Validators.compose([Validators.required, Validators.maxLength(3000)])]
+      'content': [null, Validators.compose([Validators.required, Validators.maxLength(3000), Validators.minLength(140)])]
     });
     this.dedicatoriaForm = new FormControl();
     this.dedicatoriaForm.setValidators(Validators.compose([Validators.required, Validators.email]));
   }
 
   ngOnInit() {
-
   }
 
   newFriend(event) {
-    if (event.value && this.friends.indexOf(event.value) === -1) {
-      this.friends.push(event.value);
+    if (event.value) {
+      if(this.friends.indexOf(event.value) === -1) {
+        this.friends.push(event.value);
+      } else {
+        this.alert.warning(this.translate.instant('alert_existent_invitation'));
+      }
     }
     event.value = '';
   }
@@ -61,7 +65,11 @@ export class CrearRelatoContentComponent implements OnInit {
 
   newDedicatoria(event) {
     if (this.dedicatoriaForm.valid) {
-      this.dedicatorias.push(event.target.value);
+      if(this.dedicatorias.indexOf(event.target.value) === -1) {
+        this.dedicatorias.push(event.target.value);
+      } else {
+        this.alert.warning(this.translate.instant('alert_existent_email'));
+      }
       event.target.value = '';
     } else {
       this.alert.warning(this.translate.instant('alert_wrong_email'));
@@ -78,7 +86,7 @@ export class CrearRelatoContentComponent implements OnInit {
   }
 
   publicarRelato() {
-
+    this.esperarPublicar();
     if (this.complexForm.valid) {
       if (this.auth.isLoggedIn()) {
         if (this.relato.tipo === 0) {
@@ -99,21 +107,42 @@ export class CrearRelatoContentComponent implements OnInit {
     }
   }
 
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async esperarPublicar() {
+    this.publicando = true;
+    await this.sleep(3000);
+    this.publicando = false;
+  }
+
+  async esperarBorrador() {
+    this.borrador = true;
+    await this.sleep(3000);
+    this.borrador = false;
+  }
+
   guardarComoBorradorRelato() {
+    this.esperarBorrador();
     if (this.complexForm.valid) {
       if (this.auth.isLoggedIn()) {
         if (this.relato.tipo === 0) {
           this.alert.warning(this.translate.instant('alert_relato_existente'));
           this.alert.clearTimeOutAlert();
+          // this.publicando = false;
         } else if (!this.relato.tipo && this.relato.tipo !== 0) {
           this.createRelato(1);
+          // this.publicando = false;
         } else if (this.relato.tipo && this.relato.tipo === 1) {
           this.modificarRelato(1);
+          // this.publicando = false;
         }
       } else {
         this.registerService.setVisible(true);
       }
     } else {
+      // this.publicando = false;
       this.complexForm.controls['title'].markAsTouched();
       this.complexForm.controls['content'].markAsTouched();
     }

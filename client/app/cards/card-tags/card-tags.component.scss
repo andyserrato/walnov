@@ -11,6 +11,16 @@
   cursor: pointer;
 }
 
+.form-error{
+  border:1px solid red !important;
+}
+
+span.error-span {
+    font-family: Raleway;
+    font-size: 1em;
+    color: red;
+}
+
 .closebtn:focus{
   outline: none;
 }

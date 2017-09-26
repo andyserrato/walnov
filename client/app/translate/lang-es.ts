@@ -133,14 +133,17 @@ export const LANG_ES_TRANS = {
 
 
   'alert_wrong_email': 'Escribe una dirección de email correcta',
-
+  'alert_existent_email': 'Ya le has dedicado el relato a esta persona',
+  'alert_existent_invitation': 'Ya has invitado a este amigo',
   'alert_bienvenido': 'Bienvenido',
 
   'alert_popover_error': 'Ha ocurrido un error',
 
   'alert_sesion_terminada': 'Ha terminado la sesión',
 
-  'alert_card_tags': 'Introduce un tag válido',
+  'alert_card_tags': 'Introduce un tag válido (Solo letras y/o números)',
+  'alert_card_tags_2': 'Tag máximo: 15 caracteres',
+  'alert_card_tags_3': 'Este tag ya existe', 
 
   //chatstories
   'chatstorie_add_biblioteca': 'Añadir a la biblioteca',
@@ -285,8 +288,8 @@ export const LANG_ES_TRANS = {
   'relatos_mensaje_placeholder': '@Nombreamigo',
   'relatos_titulo' : 'Título del Relato',
   'relatos_restriccion': 'Introduce un título de un máximo de 30 caracteres',
-  'relatos_restriccion_2': 'Texto máximo 3000 caracteres',
-  'relatos_restriccion_3': 'Escribe un relato de un máximo de 3000 caracteres',
+  'relatos_restriccion_2': 'Texto desde 140 a 3000 caracteres',
+  'relatos_restriccion_3': 'Escribe un relato cuyo contenido esté comprendido entre 140 y 3000 caracteres',
   'relatos_vista_previa': 'Vista Previa',
   'relatos_card_info': 'Info del Relato',
   'relatos_añadir': 'Añadir a mis listas',

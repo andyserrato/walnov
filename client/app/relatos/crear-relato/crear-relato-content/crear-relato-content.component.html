@@ -66,6 +66,7 @@
           maxlength="30"
           class="span-title"
           contenteditable="true"
+          (focus) = "this.complexForm.controls['title'].markAsUntouched();"
           #spanTitle
         >
           <span class="fa fa-pencil" (click)="spanTitle.focus()"></span>
@@ -91,17 +92,18 @@
         [formControl]="this.complexForm.controls['content']"
         maxlength="3000"
         [ngClass]="{'form-error': !this.complexForm.controls['content'].valid && this.complexForm.controls['content'].touched}"
+        (focus) = "this.complexForm.controls['content'].markAsUntouched();"
       ></textarea>
       <div class="letter-counter">{{textarea.value.length}}/3000</div>
       <span class="error-span" *ngIf="!this.complexForm.controls['content'].valid && this.complexForm.controls['content'].touched">{{'relatos_restriccion_3' | translate}}</span>
     </div>
-    <div class="section d-flex align-items-center justify-content-end section-botones">
+    <div class="section d-flex ml-auto align-items-center justify-content-between section-botones" style="width:40%">
 
 
       <!--<div class="link">-->
         <!--{{'relatos_vista_previa' | translate}}-->
       <!--</div>-->
-      <div class="button" (click)="guardarComoBorradorRelato()" [ngClass]="{'button-disabled': !complexForm.valid, 'animationStripes': publicando}">
+      <div class="button" (click)="guardarComoBorradorRelato()" [ngClass]="{'button-disabled': !complexForm.valid, 'animationStripes': borrador}">
         <span *ngIf="!this.publicado">{{'chatstories_creacion_guardar_borrador' | translate}}</span>
         <span *ngIf="this.publicado">{{'all_guardando' | translate}}</span>
       </div>

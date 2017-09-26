@@ -125,6 +125,10 @@ export const LANG_EN_TRANS = {
   'alert_relato_acabados' : 'You haven’t got more Short Stories!',
   'alert_relato_acabados_2': 'There’s no more Short Stories!',
   'alert_wrong_email': 'Write a valid email address',
+  'alert_existent_email': 'This dedication already exists',
+  'alert_existent_invitation': 'This invitation already exists',
+
+
   'alert_relato_no_encontrado': 'ShortStory not found',
 
   'alert_popover_error': 'An error has occurred',
@@ -133,7 +137,9 @@ export const LANG_EN_TRANS = {
 
   'alert_sesion_terminada': 'Session finished',
 
-  'alert_card_tags': 'Invalid tag, try again',
+  'alert_card_tags': 'Write a valid tag (Only letters/numbers)',
+  'alert_card_tags_2': 'Maximum tag length: 15 characters',
+  'alert_card_tags_3': 'This tag already exists',
 
   // chatstories
   'chatstorie_add_biblioteca': 'Add to my Library',
@@ -277,8 +283,8 @@ export const LANG_EN_TRANS = {
   'relatos_mensaje_placeholder': '@Friends’name',
   'relatos_titulo' : 'Short story’s title',
   'relatos_restriccion': 'Write a 30-chatacters-maximum title',
-  'relatos_restriccion_2': '3000-chatacters-maximum Text',
-  'relatos_restriccion_3': 'Write a 3000-chatacters-maximum Short story',
+  'relatos_restriccion_2': 'Text from 140 to 3000 characters',
+  'relatos_restriccion_3': 'Your Short story’s length must be between 140 and 3000 characters',
   'relatos_vista_previa': 'Preview',
   'relatos_card_info': 'Short story info',
   'relatos_añadir': 'Add to my lists',
