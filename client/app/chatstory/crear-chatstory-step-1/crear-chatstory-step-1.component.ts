@@ -40,6 +40,7 @@ export class CrearChatstoryStep1Component implements OnInit {
   get chatStory(): any { return this._chatStory; }
 
   refreshArray() {
+    this.maxChars = new Array<string>(18);
     for (let i = 0; i < this.chatStory.personajes.length; i++) {
       this.maxChars[i] = this.chatStory.personajes[(this.chatStory.personajes.length - 1) - i];
     }
@@ -99,7 +100,25 @@ export class CrearChatstoryStep1Component implements OnInit {
   }
 
   deleteChar(event) {
+    console.log(event);
+    console.log(this.chatStory);
+    let contador = 0;
+    if(this.chatStory.chats && this.chatStory.chats.length>0) {
+      for(let c of this.chatStory.chats) {
+        contador = contador + (c.personaje === event ? 1 : 0);
+      }
+      if(contador==0) {
+        this.chatStory.personajes.splice(this.chatStory.personajes.indexOf(event),1);
 
+      }else{
+        console.log(contador);
+        this.alert.warning("Existen mensajes con este personaje");
+      }
+    } else {
+      this.chatStory.personajes.splice(this.chatStory.personajes.indexOf(event),1);
+    }
+    console.log(this.chatStory);
+    this.refreshArray();
   }
 
   selectChar(event) {

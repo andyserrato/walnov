@@ -19,7 +19,7 @@
           {{this.chatstory.titulo}}
         </div>
       </div>
-      <div class="d-flex flex-row" *ngIf="this.allowLibrary && this.chatstory.autor" (click)="goToUser()">
+      <div class="d-flex flex-row" *ngIf="this.chatstory.autor" (click)="goToUser()">
         <div class="autor-title">
           {{this.chatstory.autor.perfil.display_name}}
         </div>
