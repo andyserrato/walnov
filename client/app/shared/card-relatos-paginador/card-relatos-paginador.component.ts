@@ -17,32 +17,11 @@ export class CardRelatosPaginadorComponent implements OnInit {
   constructor(private repositorio: RepositorioService) { }
 
   ngOnInit() {
-
-    //for(let i=0; i<25; i++) {
-      for(let j=0; j<100; j++) {
-        let nuevoRL = new Relato();
-
-
-         nuevoRL.categoria = this.repositorio.categoriasAL[0];
-         nuevoRL.titulo = "Hola" + j;
-         nuevoRL.urlImagen = "https://lorempixel.com/158/129";
-         nuevoRL.coments = 200324;
-         nuevoRL.resumen = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. ";
-         nuevoRL.likes = 784;
-         nuevoRL.views = 2000;
-         nuevoRL.usuario = new Usuario();
-         nuevoRL.usuario.nombre = "Amorentrelineas";
-         nuevoRL.usuario.imagen = "https://lorempixel.com/22/22";
-         this.repositorio.relatos.push(nuevoRL);
-      }
-    //}
-
     this.repositorio.paginadorCardsRelatos = new Paginator(this.relatosFiltrados, this.contenedorBiblioteca, 12, 6);
-
   }
 
   getBackgroundImage() {
-    return 'linear-gradient(to bottom,'+this.categoria.opacidad+','+this.categoria.color+')';
+    return 'linear-gradient(to bottom,' + this.categoria.opacidad + ',' + this.categoria.color + ')';
   }
 
 }

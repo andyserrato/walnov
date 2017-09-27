@@ -1,21 +1,21 @@
-<div [ngSwitch]="this.vista" (click)="handleClick($event)">
+<div [ngSwitch]="vista" (click)="handleClick($event)">
   <div *ngSwitchCase="'buscador'" class="Rectangle-7-Copy-5 d-flex flex-row">
     <div class="d-flex flex-column" style="margin-right:19px;">
       <div class="Rectangle-5">
-        <img class="Imagen-Relato" src="{{this.relato.urlImagen}}" alt="">
+        <img class="Imagen-Relato" src="{{relato.urlImagen}}" alt="">
         <div class="Fondo-Imagen">
         </div>
         <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
         </div>
         <div class="Titulo-Categoria Rectangle-7-Copy-10" [style.backgroundColor] = 'getColor()'>
-          {{this.relato.categoria.nombre | translate}}
+          {{relato.categoria | translate}}
           <div class="d-flex flex-row Usuario-Relato">
             <div class="d-flex flex-column">
-              <img class="Imagen-Usuario" src={{this.relato.usuario.imagen}} alt={{this.relato.userName}}>
+              <img class="Imagen-Usuario" src={{relato.autor.perfil.foto_perfil}} alt={{relato.autorNombre}}>
             </div>
             <div class="d-flex flex-column">
-              <div class="Nombre-Usuario ellipsis" title="{{this.relato.userName}}">
-              {{this.relato.usuario.nombre}}
+              <div class="Nombre-Usuario ellipsis" title="{{relato.autorNombre}}">
+              {{relato.autorNombre}}
               </div>
             </div>
           </div>
@@ -24,23 +24,23 @@
     </div>
     <div class="d-flex flex-column align-items-start">
       <div class="d-flex flex-row Titulo-Relato">
-        {{this.relato.titulo}}
+        {{relato.titulo}}
       </div>
       <div class="d-flex flex-row Resumen-Relato">
-        {{this.relato.resumen}}
+        {{relato.texto | slice:0:140}}...
       </div>
       <div class="d-flex flex-row mt-auto ml-auto Relato-Estadisticas">
         <div class="d-flex flex column" style="margin-right:25px;">
           <i class="fa fa-eye" aria-hidden="true" style="margin-top:3px; margin-right:2px;"></i>
-          {{getNumber(this.relato.views)}}
+          {{getNumber(relato.estadistica?.vecesVisto)}}
         </div>
         <div class="d-flex flex column" style="margin-right:25px;">
           <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:2px; margin-right:2px;"></i>
-          {{getNumber(this.relato.likes)}}
+          {{getNumber(relato.estadistica?.likes)}}
         </div>
         <div class="d-flex flex column">
           <i class="fa fa-comment-o" aria-hidden="true" style="margin-top:1px; margin-right:2px;"></i>
-          {{getNumber(this.relato.coments)}}
+          {{getNumber(relato.opiniones?.length)}}
         </div>
       </div>
     </div>
@@ -49,35 +49,35 @@
   <div *ngSwitchCase="'guardado'" class="Rectangle-7-Copy-6 d-flex flex-row">
     <div class="d-flex flex-column" style="margin-right:19px;">
       <div class="Rectangle-5">
-        <img  class="Imagen-Relato " src={{this.relato.urlImagen}} alt="">
+        <img  class="Imagen-Relato " src={{relato.urlImagen}} alt="">
         <div class="Fondo-Imagen">
         </div>
         <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
         </div>
         <div class="Titulo-Categoria Rectangle-7-Copy-10" [style.backgroundColor] = 'getColor()'>
-          {{this.relato.categoria.nombre | translate}}
+          {{relato.categoria | translate}}
         </div>
       </div>
     </div>
     <div class="d-flex flex-column align-items-start Rectangle-8">
       <div class="d-flex flex-row Titulo-Relato" style="margin-right:15px;">
-        {{this.relato.titulo}}
+        {{relato.titulo}}
       </div>
       <div class="d-flex flex-row Resumen-Relato" style="margin-right:15px;">
-        {{this.relato.resumen}}
+        {{relato.texto | slice:0:140}}...
       </div>
       <div class="d-flex flex-row mt-auto ml-auto Relato-Estadisticas">
         <div class="d-flex flex column" style="margin-right:70px;">
           <i class="fa fa-eye" aria-hidden="true" style="margin-top:3px; margin-right:2px;"></i>
-          {{getNumber(this.relato.views)}}
+          {{getNumber(relato.estadistica?.vecesVisto)}}
         </div>
         <div class="d-flex flex column" style="margin-right:70px;">
           <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:2px; margin-right:2px;"></i>
-          {{getNumber(this.relato.likes)}}
+          {{getNumber(relato.estadistica?.likes)}}
         </div>
         <div class="d-flex flex column">
           <i class="fa fa-comment-o" aria-hidden="true" style="margin-top:1px; margin-right:2px;"></i>
-          {{getNumber(this.relato.coments)}}
+          {{getNumber(relato.opiniones?.length)}}
         </div>
       </div>
     </div>
@@ -86,35 +86,35 @@
   <div *ngSwitchCase="'userProfile'" class="Rectangle-7-Copy-7 d-flex flex-row">
     <div class="d-flex flex-column" style="margin-right:19px;">
       <div class="Rectangle-5">
-        <img  class="Imagen-Relato " src={{this.relato.urlImagen}} alt="">
+        <img  class="Imagen-Relato " src={{relato.urlImagen}} alt="">
         <div class="Fondo-Imagen">
         </div>
         <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
         </div>
         <div class="Titulo-Categoria Rectangle-7-Copy-10" [style.backgroundColor] = 'getColor()'>
-          {{this.relato.categoria.nombre | translate}}
+          {{relato.categoria | translate}}
         </div>
       </div>
     </div>
     <div class="d-flex flex-column align-items-start Rectangle-8">
       <div class="d-flex flex-row Titulo-Relato" style="margin-right:15px;">
-        {{this.relato.titulo}}
+        {{relato.titulo}}
       </div>
       <div class="d-flex flex-row Resumen-Relato" style="margin-right:15px;">
-        {{this.relato.resumen}}
+        {{relato.texto | slice:0:140}}...
       </div>
       <div class="d-flex flex-row mt-auto ml-auto Relato-Estadisticas">
         <div class="d-flex flex column" style="margin-right:70px;">
           <i class="fa fa-eye" aria-hidden="true" style="margin-top:3px; margin-right:2px;"></i>
-          {{getNumber(this.relato.views)}}
+          {{getNumber(relato.estadistica?.vecesVisto)}}
         </div>
         <div class="d-flex flex column" style="margin-right:70px;">
           <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:2px; margin-right:2px;"></i>
-          {{getNumber(this.relato.likes)}}
+          {{getNumber(relato.estadistica?.likes)}}
         </div>
         <div class="d-flex flex column">
           <i class="fa fa-comment-o" aria-hidden="true" style="margin-top:1px; margin-right:2px;"></i>
-          {{getNumber(this.relato.coments)}}
+          {{getNumber(relato.opiniones?.length)}}
         </div>
       </div>
     </div>
@@ -123,35 +123,35 @@
   <div *ngSwitchCase="'mis-relatos'" class="Rectangle-7-Copy-8 d-flex flex-row">
     <div class="d-flex flex-column" style="margin-right:19px;">
       <div class="Rectangle-5">
-        <img  class="Imagen-Relato " src={{this.relato.urlImagen}} alt="">
+        <img  class="Imagen-Relato " src={{relato.urlImagen}} alt="">
         <div class="Fondo-Imagen">
         </div>
         <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
         </div>
         <div class="Titulo-Categoria Rectangle-7-Copy-10" [style.backgroundColor] = 'getColor()'>
-          {{this.relato.categoria.nombre | translate}}
+          {{relato.categoria | translate}}
         </div>
       </div>
     </div>
     <div class="d-flex flex-column align-items-start Rectangle-8">
       <div class="d-flex flex-row Titulo-Relato" style="margin-right:15px;">
-        {{this.relato.titulo}}
+        {{relato.titulo}}
       </div>
       <div class="d-flex flex-row Resumen-Relato" style="margin-right:15px;">
-        {{this.relato.resumen}}
+        {{relato.texto | slice:0:140}}...
       </div>
       <div class="d-flex flex-row mt-auto ml-auto Relato-Estadisticas">
         <div class="d-flex flex column" style="margin-right:70px;">
           <i class="fa fa-eye" aria-hidden="true" style="margin-top:3px; margin-right:2px;"></i>
-          {{getNumber(this.relato.views)}}
+          {{getNumber(relato.estadistica?.vecesVisto)}}
         </div>
         <div class="d-flex flex column" style="margin-right:70px;">
           <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:2px; margin-right:2px;"></i>
-          {{getNumber(this.relato.likes)}}
+          {{getNumber(relato.estadistica?.likes)}}
         </div>
         <div class="d-flex flex column">
           <i class="fa fa-comment-o" aria-hidden="true" style="margin-top:1px; margin-right:2px;"></i>
-          {{getNumber(this.relato.coments)}}
+          {{getNumber(relato.opiniones?.length)}}
         </div>
       </div>
     </div>
