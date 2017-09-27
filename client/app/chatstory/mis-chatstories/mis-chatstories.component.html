@@ -6,7 +6,7 @@
       <div class="Message">{{'mis_chatstories_message_2' | translate}}</div>
     </div>
     <div class="Rectangle-3" *ngFor="let story of chatStories" [routerLink]="['/chatstory', story.id]">
-      <h4 class="Story-title">{{story.titulo}}</h4>
+      <h4 class="Story-title ellipsis" title="{{story.titulo}}">{{story.titulo}}</h4>
       <footer class="layer">{{'mis_chatstories_fecha' | translate}} {{story.fechaCreacion | date: 'dd/MM/yy'}}</footer>
     </div>
   </div>

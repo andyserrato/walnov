@@ -12,7 +12,7 @@
 
   <div class="row" >
     <div class="col-8">
-      <input  (change)="validateField($event,'title')" [(ngModel)]="chatStory.titulo" [ngClass]="{'input-invalid': this.validate['title']}" maxlength="48" class="form-control" type="text" name=""  placeholder="{{'chatstories_creacion_name_placeholder' | translate}}">
+      <input  (change)="validateField($event,'title')" (focus)="this.validate['title'] = false;" [(ngModel)]="chatStory.titulo" [ngClass]="{'input-invalid': this.validate['title']}" maxlength="48" class="form-control" type="text" name=""  placeholder="{{'chatstories_creacion_name_placeholder' | translate}}">
       <span class="text-invalid" *ngIf="this.validate['title']">{{'chatstories_creacion_validate' | translate}}</span>
     </div>
     <div class="col-4">
@@ -29,7 +29,7 @@
         </div>
         <div class="description-box">
           <span class="fixed-title-2"><b>{{'chatstories_creacion_descripcion' | translate}}</b></span>
-          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="{{'chatstories_creacion_descripcion_placeholder' | translate}}" [(ngModel)]="this.chatStory.descripcion" [ngClass]="{'input-invalid': this.validate['description']}" (change)="validateField($event,'description')"></textarea>
+          <textarea class="form-control" resizeable="false" [maxLength]="162" placeholder="{{'chatstories_creacion_descripcion_placeholder' | translate}}" [(ngModel)]="this.chatStory.descripcion" [ngClass]="{'input-invalid': this.validate['description']}" (change)="validateField($event,'description')" (focus)="this.validate['description'] = false;"></textarea>
           <span class="text-invalid" *ngIf="this.validate['description']">{{'chatstories_creacion_validate_2' | translate}}</span>
         </div>
       </div>

@@ -7,10 +7,15 @@
     <div class="col">
       <div class="outside-container">
         <div class="row no-padding full-height">
-          <div class="description">
-            {{chatStory?.descripcion}}
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-row chat-title">
+              {{chatStory?.titulo}}
+            </div>
+            <div class="d-flex flex-row description">
+              {{chatStory?.descripcion}}
+            </div>
           </div>
-          <div class="col-12 no-padding full-height col-chatstory-preview">
+          <div class="col-12 no-padding col-chatstory-preview" style="height:90%;">
             <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+chatStory?.urlImagen+'\')'}">
             </div>
             <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+chatStory?.categoria.color+')'}" #preview>

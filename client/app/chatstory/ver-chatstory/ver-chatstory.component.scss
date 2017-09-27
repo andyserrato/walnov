@@ -3,11 +3,22 @@
 .outside-container{
   // padding: 2.5em;
   padding: 2em;
+  padding-top: 5px;
   position: relative;
-  height: 604px;
+  height: 600px;
   border-radius: 8px;
   background-color: #fdfdfd;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.chat-title {
+    width: 100%;
+    // margin-bottom: 18px;
+    font-family: 'Maven Pro';
+    font-size: 26px;
+    font-weight: bold;
+    text-align: left;
+    color: $grey-8;
 }
 .messages-content{
   position: absolute;
