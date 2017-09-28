@@ -1,0 +1,18 @@
+<div #div class="launcher" (click)="inicializa();">
+
+  <div #contenedorBiblioteca class="c-popover Limite" *ngIf="this.visible">
+    <i (click)="close();" class="fa fa-close" aria-hidden="true"></i>
+    <div class="d-flex flex-column align-items-start">
+      <div class="d-flex flex-row justify-content-center username" style="margin-bottom:10px; width:100%;">
+        Notificaciones
+      </div>
+    </div>
+    <div class="line">
+    </div>
+    <div *ngFor= "let entrada of this.repositorio.actRec">
+      <!-- <app-card-actividad-reciente [tipo] = "'logros'" [entrada] = "entrada"></app-card-actividad-reciente> -->
+      <app-card-notificacion [tipo] = "'otros'" [entrada] = "entrada"></app-card-notificacion>
+    </div>
+  </div>
+
+</div>

@@ -1,4 +1,4 @@
-<div #div class="launcher" (click)="this.visible=true">
+<div #div class="launcher" (click)="this.visible=!this.visible">
 
   <div class="c-popover" *ngIf="this.visible">
     <i (click)="close();" class="fa fa-close" aria-hidden="true"></i>

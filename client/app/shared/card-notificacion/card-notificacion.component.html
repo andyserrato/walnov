@@ -1,0 +1,136 @@
+<div [ngSwitch]="this.tipo">
+  <div *ngSwitchCase="'otros'">
+    <div [ngSwitch]="this.tipoEntrada">
+      <div *ngSwitchCase="0" class="Rectangle-3-Copy-7">
+        <div class="d-flex flex-row">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-column" style="margin-right:10px;">
+              <div class="d-flex align-self-center">
+                <img class="user-image" src={{this.entrada.usuario.imagen}} alt="">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column mr-auto">
+            <div class="Contenido-Copy">
+              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Wall de {{this.entrada.cat.nombre | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.cat.nombre | translate}} Wall</span>
+              <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="1" class="Rectangle-3-Copy-7">
+        <div class="d-flex flex-row">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-column" style="margin-right:10px;">
+              <div class="d-flex align-self-center">
+                <img class="user-image" src={{this.entrada.usuario.imagen}} alt="">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column mr-auto">
+            <div class="Contenido-Copy">
+              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Relato de {{this.entrada.categoria.nombre | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre | translate}} {{'all_relato_corto' | translate}}</span>
+              <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="2" class="Rectangle-3-Copy-7">
+        <div class="d-flex flex-row">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-column" style="margin-right:10px;">
+              <div class="d-flex align-self-center">
+                <img class="user-image" src={{this.entrada.usuario.imagen}} alt="">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column mr-auto">
+            <div class="Contenido-Copy">
+              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Chatstory de {{this.entrada.categoria.nombre | translate}}</span>
+              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre | translate}} Chatstory</span>
+              <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="3" class="Rectangle-3-Copy-7">
+        <div class="d-flex flex-row">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-column" style="margin-right:10px;">
+              <div class="d-flex align-self-center">
+                <img class="user-image" src={{this.entrada.usuario.imagen}} alt="">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column mr-auto">
+            <div class="Contenido-Copy">
+              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="text-style-1">{{'home_reciente_creacion' | translate}} {{'home_reciente_creacion_historia' | translate}}</span>
+              <span>'{{this.entrada.wall.titulo}}'</span>
+              <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="4" class="Rectangle-3-Copy-7">
+        <div class="d-flex flex-row">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-column" style="margin-right:10px;">
+              <div class="d-flex align-self-center">
+                <img class="user-image" src={{this.entrada.usuario.imagen}} alt="">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column mr-auto">
+            <div class="Contenido-Copy">
+              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="text-style-1">{{'home_reciente_participacion' | translate}}</span>
+              <span>'{{this.entrada.wall.titulo}}'</span>
+              <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'logros'">
+    <div class="Rectangle-3-Copy-9">
+      <div class="d-flex flex-row">
+        <div class="d-flex flex-column mr-auto">
+          <div class="Contenido">
+            <span class="text-style-1">¡Tu Wall</span>
+            <span>'Las increíbles historias de Nurum Itzar'</span>
+            <span class="text-style-1">Ha superado los</span>
+            <span class="text-style-2">20k 'loves'!</span>
+          </div>
+        </div>
+        <div class="d-flex flex-column ml-auto align-self-end" style="width:20%">
+          <div class="time">
+            hace 1 minuto
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-row" style="margin-top:17px;">
+        <div class="d-flex flex-column" style="margin-right:8px;">
+          <div class="Oval">
+            <i class="fa fa-heart-o fa-heart-o-Copy" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-self-center">
+          <div class="comunity">
+            ¡La comunidad te adora!
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
