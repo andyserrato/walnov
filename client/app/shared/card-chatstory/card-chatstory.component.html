@@ -49,11 +49,11 @@
     <div class="d-flex flex-colum ml-auto">
       <div class="Chat-Views">
         <i class="fa fa-eye" aria-hidden="true"></i>
-        {{this.chatstory.estadistica?.vecesVisto}}
+        {{getNumber(this.chatstory.estadistica?.vecesVisto)}}
       </div>
       <div #likeButton class="Chat-Likes" (click)="this.like()">
         <i class="fa" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}"></i>
-        {{this.chatstory.estadistica?.likes}}
+        {{getNumber(this.chatstory.estadistica?.likes)}}
       </div>
     </div>
   </div>

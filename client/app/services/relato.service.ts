@@ -58,4 +58,16 @@ export class RelatoService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  getRelatoByQueryParams(myParams?: URLSearchParams): Observable<any> {
+    const myHeaders = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    const options = new RequestOptions({ headers: myHeaders, params: myParams  });
+    return this.http.get(this.relatosUrl + '?' + myParams, options)
+      .map((res: Response) => {
+        return res.json();
+      })
+      // .do(data => console.log('getChatStoryByQueryParams' + JSON.stringify(data)))
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+
 }
