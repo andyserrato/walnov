@@ -135,10 +135,11 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   getBackgroundImage() {
-    return 'linear-gradient(to bottom,' + this.repositorio.categoriasHM.get(this.chatstory.categoria).opacidad + ',' + this.repositorio.categoriasHM.get(this.chatstory.categoria).color + ')';
+    return 'linear-gradient(to bottom,' + this.repositorio.categoriasHM.get(this.chatstory.categoria).opacidad + ',' +
+      this.repositorio.categoriasHM.get(this.chatstory.categoria).color + ')';
   }
 
   goToUser() {
-    this.router.navigateByUrl('user-profile/' + this.chatstory.autor.id + '/walls');
+    this.router.navigateByUrl('user-profile/' + this.chatstory.autor.id + '/chatstories');
   }
 }

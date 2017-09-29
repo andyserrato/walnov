@@ -19,11 +19,14 @@ export class CardRelatoComponent implements OnInit {
   ngOnInit() {}
 
   getBackgroundImage() {
-    return 'linear-gradient(to bottom,' + this.relato.categoria.opacidad + ',' + this.relato.categoria.color + ')';
+    return 'linear-gradient(to bottom,' + this.repositorio.categoriasHM.get(this.relato.categoria).opacidad + ',' +
+      this.repositorio.categoriasHM.get(this.relato.categoria).color + ')';
   }
 
   getColor() {
-    return this.relato.categoria.color;
+    return this.repositorio.categoriasHM.get(this.relato.categoria) ?
+      this.repositorio.categoriasHM.get(this.relato.categoria).color :
+      'blue';
   }
 
   getNumber(numero: number) {

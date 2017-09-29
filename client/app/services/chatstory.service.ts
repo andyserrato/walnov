@@ -32,7 +32,7 @@ export class ChatstoryService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getChatStoryByQueryParams(myParams?: URLSearchParams): Observable<ChatStory[]> {
+  getChatStoryByQueryParams(myParams?: URLSearchParams): Observable<any> {
     const myHeaders = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     const options = new RequestOptions({ headers: myHeaders, params: myParams  });
     return this.http.get('/apiv1/chatstories?' + myParams, options)
