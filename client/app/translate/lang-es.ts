@@ -143,7 +143,7 @@ export const LANG_ES_TRANS = {
 
   'alert_card_tags': 'Introduce un tag válido (Solo letras y/o números)',
   'alert_card_tags_2': 'Tag máximo: 15 caracteres',
-  'alert_card_tags_3': 'Este tag ya existe', 
+  'alert_card_tags_3': 'Este tag ya existe',
 
   //chatstories
   'chatstorie_add_biblioteca': 'Añadir a la biblioteca',
@@ -398,5 +398,8 @@ export const LANG_ES_TRANS = {
   'pagina_no_encontrada': 'Página no encontrada',
   'pagina_no_encontrada_mensaje': 'Ups! Parece que nuestros escritores han perdido sus folios y no podemos encontrar lo que estás buscando...',
   'pagina_no_encontrada_mensaje_2': 'Si quieres, puedes seguir navegando:',
+
+  //Notificaciones
+  'notificaciones_ver_todas': 'Ver todas las notificaciones',
 
 }

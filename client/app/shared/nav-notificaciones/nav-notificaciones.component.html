@@ -1,10 +1,10 @@
 <div #div class="launcher" (click)="inicializa();">
 
-  <div #contenedorBiblioteca class="c-popover" *ngIf="this.visible">
+  <div #contenedorBiblioteca class="c-popover" *ngIf="this.visible" [style.height] = "getAltura()">
     <i (click)="close();" class="fa fa-close" aria-hidden="true" style="cursor:pointer;"></i>
     <div class="d-flex flex-column align-items-start">
       <div class="d-flex flex-row justify-content-center username" style="margin-bottom:10px; width:100%;">
-        Notificaciones
+        {{'user_preferencias_notificaciones' | translate}}
       </div>
     </div>
     <div class="d-flex flex-row justify-content-center">
@@ -18,10 +18,11 @@
           <app-card-notificacion [tipo] = "'otros'" [entrada] = "entrada"></app-card-notificacion>
         </div>
       </div>
-      <div class="d-flex flex-row final" style="padding: 2px 15px;">
-        <div class="username-2">
-          Ver todas las notificaciones
-        </div>
+
+    </div>
+    <div class="d-flex flex-row final" style="padding: 2px 15px;">
+      <div class="username-2">
+        {{'notificaciones_ver_todas' | translate}}
       </div>
     </div>
 

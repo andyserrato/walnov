@@ -395,4 +395,7 @@ export const LANG_EN_TRANS = {
   'pagina_no_encontrada': 'Page not found',
   'pagina_no_encontrada_mensaje': 'Ups! It seems our writers have lost their papers and we can’t find what you’re looking for...',
   'pagina_no_encontrada_mensaje_2': 'You can keep browsing if you want:',
+
+  //Notificaciones
+  'notificaciones_ver_todas': 'See all notifications',
 };

@@ -28,16 +28,32 @@ div{
 }
 
 .c-popover{
-    width: 33.4rem;
-    height: 90vh;
+    width: 28rem;
+    min-height: 80px !important;
+    max-height: 692px !important;
+    // height: 80vh;
     position: absolute;
-    top: calc(100% + 23px);
-    right: -137.5px;
+    top: calc(100% + 16px);
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    right: -22.5px;
     padding: 1em 0em 0em;
     background-color: #8427bf;
     border-radius: .3em;
     cursor: initial;
     box-shadow: 0 4px 36px 0 rgba(0, 0, 0, 0.24);
+    &::after{
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 20px 15px 15px 15px;
+      border-color: transparent transparent $main-1 transparent;
+      position: absolute;
+      bottom:99%;
+      right: 15px;
+      cursor:initial;
+    }
 }
 
 .block{
@@ -65,6 +81,8 @@ div{
   z-index: 99;
   background-color: #8427bf;
   margin-top: -2px;
+  border-bottom-left-radius: .3em;
+  border-bottom-right-radius: .3em;
 
 }
 
@@ -83,21 +101,22 @@ div{
 
 @media (min-width: 768px) and (max-width: 991px) {
   .c-popover{
-      width: 24.8rem !important;
-      right: -105.5px !important;
+      width: 25rem !important;
+      // right: -105.5px !important;
   }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1241px) {
   .c-popover{
-      width: 29.7rem !important;
-      right: -95.5px !important;
+    top: calc(100% + 14px);
+      // width: 29.7rem !important;
+      // right: -95.5px !important;
   }
 
 }
 
 .Limite {
-  height: 75vh;
+  height: 90%;
   overflow-y: auto;
 
 

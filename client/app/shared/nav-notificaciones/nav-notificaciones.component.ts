@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, ChangeDetectorRef } from '@angular/core';
 import { MessageTimePipe } from '../../pipe/message-time/message-time.pipe';
 import { Usuario } from '../../models/usuario.model';
 import { Paginator } from '../../models/paginador';
@@ -18,11 +18,24 @@ import { TranslateService } from '../../translate';
   }
 })
 export class NavNotificacionesComponent implements OnInit {
+  Altura: number;
   visible = false;
   nots: Array<any>;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
   @ViewChild('div') div: ElementRef;
-  constructor(private repositorio: RepositorioService, private translate: TranslateService) { }
+  constructor(private repositorio: RepositorioService, private translate: TranslateService) {
+    let getWindow = () => {
+          return window.innerHeight;
+    };
+    this.Altura = getWindow() - 100;
+    window.onresize = () => {
+        this.Altura = getWindow() - 100;
+        // this.cdr.detectChanges(); //running change detection manually
+        // this.landingMobile();
+        // console.log(this.Altura);
+
+    };
+  }
 
   ngOnInit() {
 
@@ -170,6 +183,11 @@ export class NavNotificacionesComponent implements OnInit {
     this.visible=!this.visible;
     // this.repositorio.paginadorActividadReciente = new Paginator(this.repositorio.actRec, this.contenedorBiblioteca, 12, 6);
 
+  }
+
+  getAltura() {
+    console.log(this.Altura + 'px');
+    return this.Altura + 'px';
   }
 
 }
