@@ -14,6 +14,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { RepositorioService } from './services/repositorio.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -190,7 +191,8 @@ import { LandingMobileComponent } from './landing/landing-mobile/landing-mobile.
     NgbModule.forRoot(),
     SharedModule,
     HomeModule,
-    UserProfileModule
+    UserProfileModule,
+    ClipboardModule
   ],
   providers: [
     AppConfig,

@@ -18,14 +18,15 @@
           <div class="simple-title">
             {{'modal_compartir_enlace' | translate }}
           </div>
-          <div id="copyToClipboard" class="link margin-top-1" >
+          <input class="inputCopy" value="{{ message.enlaceCopiar }}" #mensajeCopy>
+          <div class="link margin-top-1">
             {{ message.enlaceCopiar }}
           </div>
           <div class="">
-            <div class="button-white margin-top-1" (click)="copy()">
+            <button class="button-white margin-top-1" type="button" [ngxClipboard]="mensajeCopy" (cbOnSuccess)="isCopied = true" >
               <span *ngIf="!isCopied">{{'modal_copy' | translate }}</span>
               <span *ngIf="isCopied">{{'modal_copied' | translate }}</span>
-            </div>
+            </button>
           </div>
         </div>
         <div class="d-flex flex-column justify-content-start">
