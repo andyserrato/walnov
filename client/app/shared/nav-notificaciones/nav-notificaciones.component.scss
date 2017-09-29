@@ -69,6 +69,7 @@ div{
 .username-2{
   font-family: Raleway;
   font-size: 1.2rem;
+  // font-weight: bold;
   color:white;
   &:hover {
     cursor: pointer;
@@ -77,8 +78,8 @@ div{
 }
 
 .final {
-  position: relative;
-  z-index: 99;
+  // position: relative;
+  // z-index: 99;
   background-color: #8427bf;
   margin-top: -2px;
   border-bottom-left-radius: .3em;
