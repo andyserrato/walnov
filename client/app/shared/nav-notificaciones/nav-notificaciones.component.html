@@ -1,18 +1,29 @@
 <div #div class="launcher" (click)="inicializa();">
 
-  <div #contenedorBiblioteca class="c-popover Limite" *ngIf="this.visible">
+  <div #contenedorBiblioteca class="c-popover" *ngIf="this.visible">
     <i (click)="close();" class="fa fa-close" aria-hidden="true"></i>
     <div class="d-flex flex-column align-items-start">
       <div class="d-flex flex-row justify-content-center username" style="margin-bottom:10px; width:100%;">
         Notificaciones
       </div>
     </div>
-    <div class="line">
+    <div class="d-flex flex-row justify-content-center">
+      <div class="line">
+      </div>
     </div>
-    <div *ngFor= "let entrada of this.repositorio.actRec">
-      <!-- <app-card-actividad-reciente [tipo] = "'logros'" [entrada] = "entrada"></app-card-actividad-reciente> -->
-      <app-card-notificacion [tipo] = "'otros'" [entrada] = "entrada"></app-card-notificacion>
+    <div class="Limite">
+      <div class="Rectangle">
+        <div *ngFor= "let entrada of this.repositorio.actRec | slice:0:10">
+          <!-- <app-card-actividad-reciente [tipo] = "'logros'" [entrada] = "entrada"></app-card-actividad-reciente> -->
+          <app-card-notificacion [tipo] = "'otros'" [entrada] = "entrada"></app-card-notificacion>
+        </div>
+      </div>
+      <div class="d-flex flex-row final" style="padding: 2px 15px;">
+        <div class="username-2">
+          Ver todas las notificaciones
+        </div>
+      </div>
     </div>
-  </div>
 
+  </div>
 </div>

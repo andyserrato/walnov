@@ -17,7 +17,7 @@
 }
 
 .line {
-  width: 100%;
+  width: 98%;
   height: 1px;
   margin-bottom: 10px;
   border: solid 0.02rem $grey-1;
@@ -29,10 +29,11 @@ div{
 
 .c-popover{
     width: 33.4rem;
+    height: 90vh;
     position: absolute;
     top: calc(100% + 23px);
     right: -137.5px;
-    padding: 0.5em 1.5em;
+    padding: 1em 0em 0em;
     background-color: #8427bf;
     border-radius: .3em;
     cursor: initial;
@@ -47,6 +48,24 @@ div{
   font-family: Raleway;
   font-size: 1.2rem;
   color:white;
+}
+
+.username-2{
+  font-family: Raleway;
+  font-size: 1.2rem;
+  color:white;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.final {
+  position: relative;
+  z-index: 99;
+  background-color: #8427bf;
+  margin-top: -2px;
+
 }
 
 .title{
@@ -78,7 +97,7 @@ div{
 }
 
 .Limite {
-  height: 600px;
+  height: 75vh;
   overflow-y: auto;
 
 
@@ -91,9 +110,9 @@ div{
 
 .Rectangle {
   width: 100%;
-  height: 100%;
+  // height: 100%;
   // border-radius: 4px;
-  padding: 0.5em 0.5em;
+  // padding: 0.5em 0.5em;
   background-color: $grey-1;
 
 }

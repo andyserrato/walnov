@@ -12,11 +12,13 @@
           </div>
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
-              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="subrayado">{{this.entrada.usuario.nombre}}</span>
               <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
-              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Wall de {{this.entrada.cat.nombre | translate}}</span>
-              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.cat.nombre | translate}} Wall</span>
+              <span class="subrayado" *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Wall de {{this.entrada.cat.nombre | translate}}</span>
+              <span class="subrayado" *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.cat.nombre | translate}} Wall</span>
               <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+            <div class="line">
             </div>
           </div>
         </div>
@@ -32,11 +34,13 @@
           </div>
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
-              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="subrayado">{{this.entrada.usuario.nombre}}</span>
               <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
-              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Relato de {{this.entrada.categoria.nombre | translate}}</span>
-              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre | translate}} {{'all_relato_corto' | translate}}</span>
+              <span class="subrayado" *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Relato de {{this.entrada.categoria.nombre | translate}}</span>
+              <span class="subrayado" *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre | translate}} {{'all_relato_corto' | translate}}</span>
               <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+            <div class="line">
             </div>
           </div>
         </div>
@@ -52,11 +56,13 @@
           </div>
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
-              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="subrayado">{{this.entrada.usuario.nombre}}</span>
               <span class="text-style-1">{{'home_reciente_creacion' | translate}}</span>
-              <span *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Chatstory de {{this.entrada.categoria.nombre | translate}}</span>
-              <span *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre | translate}} Chatstory</span>
+              <span class="subrayado" *ngIf = "this.translate.currentLang === 'es'" [style.color] = 'getColor()'>Chatstory de {{this.entrada.categoria.nombre | translate}}</span>
+              <span class="subrayado" *ngIf = "this.translate.currentLang === 'en'" [style.color] = 'getColor()'>{{this.entrada.categoria.nombre | translate}} Chatstory</span>
               <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+            <div class="line">
             </div>
           </div>
         </div>
@@ -72,10 +78,12 @@
           </div>
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
-              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="subrayado">{{this.entrada.usuario.nombre}}</span>
               <span class="text-style-1">{{'home_reciente_creacion' | translate}} {{'home_reciente_creacion_historia' | translate}}</span>
-              <span>'{{this.entrada.wall.titulo}}'</span>
+              <span class="subrayado">'{{this.entrada.wall.titulo}}'</span>
               <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+            <div class="line">
             </div>
           </div>
         </div>
@@ -91,10 +99,12 @@
           </div>
           <div class="d-flex flex-column mr-auto">
             <div class="Contenido-Copy">
-              <span>{{this.entrada.usuario.nombre}}</span>
+              <span class="subrayado">{{this.entrada.usuario.nombre}}</span>
               <span class="text-style-1">{{'home_reciente_participacion' | translate}}</span>
-              <span>'{{this.entrada.wall.titulo}}'</span>
+              <span class="subrayado">'{{this.entrada.wall.titulo}}'</span>
               <span class="time">{{ this.entrada.fechaCreacion | messageTime }}</span>
+            </div>
+            <div class="line">
             </div>
           </div>
         </div>
