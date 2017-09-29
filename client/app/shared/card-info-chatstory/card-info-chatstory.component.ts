@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RepositorioService } from '../../services/repositorio.service';
 import { ChatStory } from '../../models/chatstory.model';
+import { AuthenticationService } from '../../services/authentication.service';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
@@ -13,11 +14,12 @@ import { ChatstoryService } from '../../services/chatstory.service';
 })
 export class CardInfoChatstoryComponent implements OnInit {
   @Input() chatstory: any;
-  constructor(private repositorio: RepositorioService,
+  constructor(private repositorio: RepositorioService, private auth: AuthenticationService,
               private router: Router) {
   }
 
   ngOnInit() {
+    // console.log(this.chatstory.autor.id);
   }
 
   getBorder() {
@@ -43,7 +45,11 @@ export class CardInfoChatstoryComponent implements OnInit {
   }
 
   goToUser() {
-    this.router.navigateByUrl('user-profile/'+this.chatstory.autor.id+'/walls');
+    this.router.navigateByUrl('user-profile/'+this.chatstory.autor.id+'/chatstories');
+  }
+
+  checkUser() {
+    return this.chatstory.autor.id === this.auth.getUser().id;
   }
 
 }

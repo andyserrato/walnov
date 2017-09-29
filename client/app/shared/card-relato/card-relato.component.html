@@ -1,5 +1,5 @@
-<div [ngSwitch]="vista" (click)="handleClick($event)">
-  <div *ngSwitchCase="'buscador'" class="Rectangle-7-Copy-5 d-flex flex-row">
+<div [ngSwitch]="vista">
+  <div *ngSwitchCase="'buscador'" (click)="handleClick($event)" class="Rectangle-7-Copy-5 d-flex flex-row">
     <div class="d-flex flex-column" style="margin-right:19px;">
       <div class="Rectangle-5">
         <img class="Imagen-Relato" src="{{relato.urlImagen}}" alt="">
@@ -14,7 +14,7 @@
               <img class="Imagen-Usuario" src={{relato.autor.perfil.foto_perfil}} alt={{relato.autorNombre}}>
             </div>
             <div class="d-flex flex-column">
-              <div class="Nombre-Usuario ellipsis" title="{{relato.autorNombre}}">
+              <div (click)="goToUser()" class="Nombre-Usuario ellipsis" title="{{relato.autorNombre}}">
               {{relato.autorNombre}}
               </div>
             </div>
@@ -34,8 +34,8 @@
           <i class="fa fa-eye" aria-hidden="true" style="margin-top:3px; margin-right:2px;"></i>
           {{getNumber(relato.estadistica?.vecesVisto)}}
         </div>
-        <div class="d-flex flex column" style="margin-right:25px;">
-          <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:2px; margin-right:2px;"></i>
+        <div #likeButton class="d-flex flex column" (click)="this.like()" style="margin-right:25px;">
+          <i class="fa" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}" style="margin-top:2px; margin-right:2px;"></i>
           {{getNumber(relato.estadistica?.likes)}}
         </div>
         <div class="d-flex flex column">

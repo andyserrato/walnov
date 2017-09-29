@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RepositorioService } from '../../services/repositorio.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/switchMap';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-card-info-relato',
@@ -8,9 +12,12 @@ import { RepositorioService } from '../../services/repositorio.service';
 })
 export class CardInfoRelatoComponent implements OnInit {
   @Input() relato: any;
-  constructor(private repositorio: RepositorioService) { }
+  constructor(private repositorio: RepositorioService, private auth: AuthenticationService,
+              private router: Router) {
+  }
 
   ngOnInit() {
+    // console.log(this.relato);
   }
 
   getBorder() {
@@ -32,6 +39,17 @@ export class CardInfoRelatoComponent implements OnInit {
             x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
-}
+  }
+
+  goToUser() {
+    // console.log(this.relato);
+    this.router.navigateByUrl('user-profile/'+this.relato.autor.id+'/relatos');
+  }
+
+  checkUser() {
+    if(this.relato.autor) {
+      return this.relato.autor.id === this.auth.getUser().id;
+    }
+  }
 
 }

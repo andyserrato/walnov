@@ -23,7 +23,7 @@
                 <li>{{user.perfil.numRelatosCreated}} {{'all_relatos_cortos' | translate}}</li>
               </div>
               <div class="col-4">
-                <button type="button" class="btn-usuario" name="button">{{'all_seguir' | translate}}</button>
+                <button *ngIf = "!checkUser(user)" type="button" class="btn-usuario" name="button">{{'all_seguir' | translate}}</button>
               </div>
             </div>
           </ul>
