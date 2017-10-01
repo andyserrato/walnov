@@ -11,8 +11,8 @@ var Utils = require("../services/utils.service").Utils;
 var opinionRelato = Schema({
   texto: String,
   urlImagen: String,
-  autor: mongoose.Schema.Types.ObjectId,
-  autorName: String,
+  autor: {type: Schema.Types.ObjectId, ref: 'usuarios'},
+  autorNombre: String,
   respuesta: this
 });
 

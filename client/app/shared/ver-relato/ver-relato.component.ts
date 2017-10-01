@@ -14,8 +14,6 @@ import {BibliotecaService} from '../../services/biblioteca.service';
 })
 export class VerRelatoComponent implements OnInit {
   @Input() relato: any;
-  opinionWriter: Usuario;
-  comentarios = Array<String>();
   biblioteca: any;
   addedBiblioteca = false; // se pone a true cuando el relato es añadido a la lista
   constructor(private repositorio: RepositorioService,
@@ -54,15 +52,6 @@ export class VerRelatoComponent implements OnInit {
     } else {
       return false;
     }
-  }
-
-  addComent(event: string) {
-    this.comentarios.push(event);
-  }
-
-  setOpinionWriter(event: Usuario) {
-    this.opinionWriter = event;
-
   }
 
   anyadidoBiblioteca() {

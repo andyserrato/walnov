@@ -7,11 +7,14 @@ import { Usuario } from '../../models/usuario.model';
   styleUrls: ['./opinion-usuario.component.scss']
 })
 export class OpinionUsuarioComponent implements OnInit {
-  @Input() opiniones = Array<String>();
-  @Input() usuario = new Usuario();
+  @Input() opiniones = Array<any>();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  actualizarComentario($event: Event) {
+    console.log(event);
   }
 
 }

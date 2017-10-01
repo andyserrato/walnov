@@ -130,7 +130,7 @@ export const LANG_ES_TRANS = {
   'alert_relato_acabados' : 'No tienes más relatos!',
   'alert_relato_acabados_2': 'No hay más relatos!',
   'alert_relato_no_encontrado': 'El Relato no se encuentra ha sido robado',
-
+  'alert_comment_length': 'El opinion debe contener al menos 10 caracteres para poder ser publicado',
 
   'alert_wrong_email': 'Escribe una dirección de email correcta',
   'alert_existent_email': 'Ya le has dedicado el relato a esta persona',
@@ -320,7 +320,7 @@ export const LANG_ES_TRANS = {
   'nav_como_funciona': 'Cómo Funciona',
 
   //comentarios
-  'dejar_comentario': 'Dejar un comentario',
+  'dejar_comentario': 'Dejar un opinion',
   'dejar_comentario_placeholder': '750 caracteres máximo',
 
   //user-account

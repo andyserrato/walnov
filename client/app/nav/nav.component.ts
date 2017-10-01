@@ -61,10 +61,8 @@ export class NavComponent implements OnInit {
   }
 
   popover() {
-    if(!this.visible){
+    if (!this.visible) {
       this.popoverService.setVisible(true);
     }
-
   }
-
 }

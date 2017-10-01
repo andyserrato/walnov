@@ -76,7 +76,7 @@ function getRelatoById(req, res) {
   let id = req.params.id;
   let idUsuario = req.query.usuarioId;
   Relato.findById(id)
-    .populate('estadistica autor')
+    .populate('estadistica autor opiniones opiniones.autor')
     .exec(function (err, relato) {
       if (err || relato === null) {
         res.status(400).send("No se encuentra el relato");
@@ -136,12 +136,25 @@ function responderOpinion(req, resp) {
 
 function crearNuevaOpinion(req, resp) {
   let peticion = req.body;
-  let nuevaOpinionRelato = new OpinionRelato(peticion.nuevaOpinion);
+  let nuevaOpinionRelato = new OpinionRelato(peticion.opinion);
 
-  Relato.findOneAndUpdate({_id: peticion.idRelato}, {$push: {opiniones: nuevaOpinionRelato}}, function (err, relato) {
+  Relato.findOneAndUpdate({_id: peticion.idRelato}, {$push: {opiniones: nuevaOpinionRelato}}, {new: true})
+    .populate('estadistica autor opiniones opiniones.autor')
+    .exec(function (err, relato) {
     let nuevaNotificacionOpinionRelato = GestorNotificaciones.crearNotificacionNuevaOpinionRelato(nuevaOpinionRelato.texto, new Date(), nuevaOpinionRelato.autor, nuevaOpinionRelato.autorNombre, relato._id, relato.tituloRelato);
-    GestorNotificaciones.addNotificacionFeed(nuevaNotificacionOpinionRelato, peticion.seguidores);
-    _devolverResultados(err, {resultado: "OK"}, resp);
+    if (!peticion.seguidores) {
+        User.findOne({id: nuevaOpinionRelato.autor}, function (err, usu){
+          if (err) {
+            resp.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
+          } else {
+            GestorNotificaciones.addNotificacionFeed(nuevaNotificacionOpinionRelato, usu.seguidores);
+            _devolverResultados(err, relato, resp);
+          }
+        });
+    } else {
+      GestorNotificaciones.addNotificacionFeed(nuevaNotificacionOpinionRelato, peticion.seguidores);
+      _devolverResultados(err, relato, resp);
+    }
   });
 }
 

@@ -118,7 +118,7 @@ export const LANG_EN_TRANS = {
 
   // Relatos
   'alert_relato_existente': 'This Short Story has already been posted',
-  'alert_relato_requisitos': 'All Short Story must have at least 140 characters to be posted',
+  'alert_relato_requisitos': 'All Short Stories must have at least 140 characters to be posted',
   'alert_relato_insercion': 'An error has been detected while inserting a Short Story',
   'alert_relato_borrador': 'Saved as a draft',
   'alert_relato_borrador_updt': 'Your draft has been updated',
@@ -127,7 +127,7 @@ export const LANG_EN_TRANS = {
   'alert_wrong_email': 'Write a valid email address',
   'alert_existent_email': 'This dedication already exists',
   'alert_existent_invitation': 'This invitation already exists',
-
+  'alert_comment_length': 'Your comment must have at least 10 characters to be posted',
 
   'alert_relato_no_encontrado': 'ShortStory not found',
 
