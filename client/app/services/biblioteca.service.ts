@@ -23,7 +23,7 @@ export class BibliotecaService {
   }
 
   updateBiblioteca(b: any) {
-    this.biblioteca=b;
+    this.biblioteca = b;
   }
 
   getCurrentBiblioteca() {

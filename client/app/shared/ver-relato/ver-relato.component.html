@@ -31,17 +31,12 @@
     {{relato.texto}}
   </div>
   <div class="d-flex flex-row justify-content-end Botones">
-    <div *ngIf='!this.added' (click) = 'addLista()'class="d-flex flex-column" style="margin-right:7px;margin-top:3px; cursor:pointer;">
-      <i class="fa fa-plus" aria-hidden="true"></i>
+    <div *ngIf="!soyAutor()" (click)='anyadirRelatoToBiblioteca()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
+      <i class="fa" aria-hidden="true" [ngClass]="{'fa-plus':!addedBiblioteca, 'fa-times':addedBiblioteca}"></i>
     </div>
-    <div *ngIf='!this.added' (click) = 'addLista()' class="d-flex flex-column" style="margin-right:50px; cursor:pointer;">
-      {{'relatos_añadir' | translate}}
-    </div>
-    <div *ngIf='this.added' (click) = 'deleteLista()'class="d-flex flex-column" style="margin-right:7px;margin-top:3px; cursor:pointer;">
-      <i class="fa fa-times" aria-hidden="true"></i>
-    </div>
-    <div *ngIf='this.added' (click) = 'deleteLista()' class="d-flex flex-column" style="margin-right:50px; cursor:pointer;">
-      {{'relatos_eliminar' | translate}}
+    <div *ngIf="!soyAutor()" (click)='anyadirRelatoToBiblioteca()' class="d-flex flex-column" style="margin-right:50px;cursor:pointer;">
+      <span *ngIf="!addedBiblioteca">{{'relatos_añadir' | translate}}</span>
+      <span *ngIf="addedBiblioteca">{{'relatos_eliminar' | translate}}</span>
     </div>
     <div (click)='like()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
       <i class="fa" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}"></i>

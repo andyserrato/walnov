@@ -38,7 +38,6 @@ export class RelatoComponent implements OnInit, OnDestroy {
         const id = params['id'];
         if (id !== '0') {
           this.relatoService.getRelatoById(id).subscribe(relato => {
-              console.log(relato);
               this.relato = relato;
               this.relato.categoria = this.repositorio.getCategoriaALByName(this.relato.categoria);
             },

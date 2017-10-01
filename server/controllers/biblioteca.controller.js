@@ -375,8 +375,8 @@ function addRelatoOnBibliotecaByUserId(req, res) {
         } else {
           if (biblioteca.relatos.indexOf(relatoId) === -1) {
             // hay que comprobar que el wall exista o que no se metan ids mal formados
-            if (mongoose.Types.ObjectId.isValid(wallId)) {
-              biblioteca.relatos.push(wallId);
+            if (mongoose.Types.ObjectId.isValid(relatoId)) {
+              biblioteca.relatos.push(relatoId);
               biblioteca.save(sendSave(err, biblioteca, res));
             } else {
               res.status(400).send("No es un ID válido");

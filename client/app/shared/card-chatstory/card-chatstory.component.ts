@@ -42,7 +42,7 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   checkLibrary() {
-    this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.find(chat => chat.id == this.chatstory.id) ? true : false;
+    this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.find(chat => chat.id === this.chatstory.id) ? true : false;
   }
 
   checkUserChatstory() {
