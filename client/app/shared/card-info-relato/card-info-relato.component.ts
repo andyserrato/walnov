@@ -47,8 +47,8 @@ export class CardInfoRelatoComponent implements OnInit {
   }
 
   checkUser() {
-    if(this.relato.autor) {
-      return this.relato.autor.id === this.auth.getUser().id;
+    if (this.relato.autor) {
+      return this.auth.isLoggedIn() && this.relato.autor.id === this.auth.getUser().id;
     }
   }
 

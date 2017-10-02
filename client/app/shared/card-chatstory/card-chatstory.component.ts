@@ -47,7 +47,7 @@ export class CardChatstoryComponent implements OnInit {
 
   checkUserChatstory() {
     if (this.chatstory.autor) {
-      return this.chatstory.autor.id === this.auth.getUser().id;
+      return this.auth.isLoggedIn() && this.chatstory.autor.id === this.auth.getUser().id;
     }else {
       return false;
     }

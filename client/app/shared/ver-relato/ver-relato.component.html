@@ -51,6 +51,6 @@
       {{'all_compartir' | translate}}
     </div>
   </div>
-  <app-dejar-comentario [relato]='relato'></app-dejar-comentario>
-  <app-opinion-usuario [opiniones] ='relato.opiniones' (opinion)="actualizarComentario($event)"></app-opinion-usuario>
+  <app-dejar-comentario [relato]='relato' [opinionSibling]="opinionSibling"></app-dejar-comentario>
+  <app-opinion-usuario [opiniones] ='relato.opiniones' #opinionSibling></app-opinion-usuario>
 </div>

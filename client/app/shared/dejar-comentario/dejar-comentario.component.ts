@@ -13,6 +13,7 @@ import {RegisterPopoverService} from '../../services/register-popover.service';
 })
 export class DejarComentarioComponent implements OnInit {
   @Input() relato: any;
+  @Input() opinionSibling: any;
   user: any;
   profilePicture = 'https://lorempixel.com/30/30';
   loggedInUserName = 'Walgo';
@@ -50,7 +51,7 @@ export class DejarComentarioComponent implements OnInit {
 
         this.relatoService.addOpinionToRelato(opinionInterface).subscribe(relato => {
             this.relato = relato;
-            this.opinion.emit(this.relato.opiniones);
+            this.opinionSibling.opiniones = this.relato.opiniones;
           },
           error => {
             this.alert.error(error);
@@ -67,9 +68,9 @@ export class DejarComentarioComponent implements OnInit {
       this.profilePicture = this.auth.getUser().perfil.foto_perfil;
     }
 
-    if (this.auth.getUser().perfil.display_name) {
+    if (this.auth.isLoggedIn() && this.auth.getUser().perfil.display_name) {
       this.loggedInUserName = this.auth.getUser().perfil.display_name;
-    } else if (this.auth.getUser().login) {
+    } else if (this.auth.isLoggedIn() && this.auth.getUser().login) {
       this.loggedInUserName = this.auth.getUser().login;
     }
   }

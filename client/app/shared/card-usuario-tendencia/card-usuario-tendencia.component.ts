@@ -12,7 +12,7 @@ import { Usuario } from '../../models/usuario.model';
 export class CardUsuarioTendenciaComponent implements OnInit {
   users: any;
 
-  constructor(private userService: UserService, private auth: AuthenticationService, private router: Router, private route: ActivatedRoute,) { }
+  constructor(private userService: UserService, private auth: AuthenticationService, private router: Router, private route: ActivatedRoute, ) { }
 
   ngOnInit() {
     this.users = new Array();
@@ -26,7 +26,7 @@ export class CardUsuarioTendenciaComponent implements OnInit {
       this.users.push(user);
     });
 
-    setInterval(this.showAnother.bind(this), 30000,);
+    setInterval(this.showAnother.bind(this), 30000, );
 
   }
 
@@ -35,17 +35,17 @@ export class CardUsuarioTendenciaComponent implements OnInit {
   }
 
   showAnother() {
-    let user = this.users[0];
-    this.users.splice(0,1);
+    const user = this.users[0];
+    this.users.splice(0, 1);
     this.users.push(user);
 
   }
 
   goToUser(user) {
-    this.router.navigateByUrl('user-profile/'+user.id+'/walls');
+    this.router.navigateByUrl('user-profile/' + user.id + '/walls');
   }
 
   checkUser(user) {
-    return user.id === this.auth.getUser().id;
+    return this.auth.isLoggedIn() && user.id === this.auth.getUser().id;
   }
 }
