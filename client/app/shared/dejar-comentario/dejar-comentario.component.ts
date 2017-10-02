@@ -15,8 +15,6 @@ export class DejarComentarioComponent implements OnInit {
   @Input() relato: any;
   @Input() opinionSibling: any;
   user: any;
-  profilePicture = 'https://lorempixel.com/30/30';
-  loggedInUserName = 'Walgo';
   localComent: string;
   @Output() opinion: EventEmitter<any>;
 
@@ -29,7 +27,6 @@ export class DejarComentarioComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.obtenerUsuario();
     this.localComent = '';
   }
 
@@ -63,15 +60,21 @@ export class DejarComentarioComponent implements OnInit {
     }
   }
 
-  obtenerUsuario() {
-    if (this.auth.isLoggedIn() && this.auth.getUser() && this.auth.getUser().perfil && this.auth.getUser().perfil.foto_perfil) {
-      this.profilePicture = this.auth.getUser().perfil.foto_perfil;
-    }
-
+  obtenerProfileName() {
     if (this.auth.isLoggedIn() && this.auth.getUser().perfil.display_name) {
-      this.loggedInUserName = this.auth.getUser().perfil.display_name;
+      return this.auth.getUser().perfil.display_name;
     } else if (this.auth.isLoggedIn() && this.auth.getUser().login) {
-      this.loggedInUserName = this.auth.getUser().login;
+      return this.auth.getUser().login;
+    } else {
+      return 'Walgo';
+    }
+  }
+
+  obtenerProfilePicture() {
+    if (this.auth.isLoggedIn() && this.auth.getUser() && this.auth.getUser().perfil && this.auth.getUser().perfil.foto_perfil) {
+      return this.auth.getUser().perfil.foto_perfil;
+    } else {
+      return 'https://lorempixel.com/30/30';
     }
   }
 }
