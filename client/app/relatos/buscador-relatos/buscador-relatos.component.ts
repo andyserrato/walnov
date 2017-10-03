@@ -6,7 +6,7 @@ import {Paginator} from '../../models/paginador';
 import {RelatoService} from "../../services/relato.service";
 import {AuthenticationService} from "../../services/authentication.service";
 import {BibliotecaService} from "../../services/biblioteca.service";
-
+import { ModalService } from "../../services/modal.service";
 @Component({
   selector: 'app-buscador-relatos',
   templateUrl: './buscador-relatos.component.html',
@@ -21,7 +21,8 @@ export class BuscadorRelatosComponent implements OnInit {
   constructor(private repositorio: RepositorioService,
               private relatosService: RelatoService,
               private authenticationService: AuthenticationService,
-              private bibliotecaService: BibliotecaService) {
+              private bibliotecaService: BibliotecaService,
+              private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -44,6 +45,7 @@ export class BuscadorRelatosComponent implements OnInit {
   }
 
   getRelatosByParams() {
+    this.modalService.load();
     this.relatosFiltrados = new Array<Relato>();
     this.categoria = null;
     // this.modalservice.load();
@@ -59,6 +61,42 @@ export class BuscadorRelatosComponent implements OnInit {
       }
       this.relatosFiltrados = relatos;
       this.repositorio.paginadorCardsRelatos.rellenar(this.relatosFiltrados);
+      this.modalService.clear();
+      // this.paginador = new Paginator(this.relatosFiltrados, this.div,  24, 6);
+      // this.changeCategory(null);
+      this.skip += 60;
+      // this.modalservice.clear();
+
+    });
+  }
+
+  scrollTop() {
+    this.repositorio.paginadorCardsRelatos.scrollTop();
+  }
+
+  loadMore() {
+    this.modalService.load();
+    this.relatosFiltrados = new Array<Relato>();
+    this.categoria = null;
+    // this.modalservice.load();
+    const myParams = new URLSearchParams();
+    myParams.append('top', '60');
+    myParams.append('skip', '' + this.skip);
+
+    this.relatosService.getRelatoByQueryParams(myParams).subscribe(relatos => {
+      if (this.authenticationService.isLoggedIn()) {
+        this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+          this.bibliotecaService.updateBiblioteca(biblioteca);
+        });
+      }
+      for(let r of relatos) {
+        this.repositorio.paginadorCardsRelatos.push(r);
+      }
+      // this.repositorio.paginadorCardsRelatos.rellenar(this.relatosFiltrados);
+      this.modalService.clear();
+      this.repositorio.paginadorCardsRelatos.final.paginarDelante();      
+      this.repositorio.paginadorCardsRelatos.final = false;
+      this.skip += 60;
       // this.paginador = new Paginator(this.relatosFiltrados, this.div,  24, 6);
       // this.changeCategory(null);
       // this.skip += 60;
@@ -66,5 +104,4 @@ export class BuscadorRelatosComponent implements OnInit {
 
     });
   }
-
 }

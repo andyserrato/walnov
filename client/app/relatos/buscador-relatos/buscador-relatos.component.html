@@ -6,6 +6,10 @@
     </div>
     <div class="col-lg-10 col-md-9 cols-no-padding">
       <app-card-relatos-paginador [categoria] = 'this.categoria' [relatosFiltrados] = 'this.relatosFiltrados'></app-card-relatos-paginador>
+      <div class="d-flex flex-row align-items-center justify-content-center">
+        <div class="load-more-button d-flex align-items-center justify-content-center" *ngIf="this.repositorio.paginadorCardsRelatos?.final" (click)="loadMore()"><span class="fa fa-plus"></span></div>
+        <div class="load-more-button d-flex align-items-center justify-content-center" *ngIf="!this.repositorio.paginadorCardsRelatos?.inicio" (click)="scrollTop()"><span class="fa fa-chevron-up"></span></div>
+      </div>
     </div>
   </div>
 </div>
