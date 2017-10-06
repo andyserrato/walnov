@@ -94,7 +94,7 @@ export class BuscadorRelatosComponent implements OnInit {
       }
       // this.repositorio.paginadorCardsRelatos.rellenar(this.relatosFiltrados);
       this.modalService.clear();
-      this.repositorio.paginadorCardsRelatos.final.paginarDelante();      
+      this.repositorio.paginadorCardsRelatos.paginarDelante();      
       this.repositorio.paginadorCardsRelatos.final = false;
       this.skip += 60;
       // this.paginador = new Paginator(this.relatosFiltrados, this.div,  24, 6);

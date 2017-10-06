@@ -17,9 +17,9 @@
 }
 .Rectangle-7-Copy-5 {
   width: 440px;
-  height: 172px;
+  // height: 172px;
   padding-top: 22px;
-  padding-bottom: 22px;
+  padding-bottom: 1em;
   padding-left: 16px;
   padding-right: 10px;
   margin-left: 20px;
@@ -225,4 +225,21 @@
   //background-color: #ffffff;
   background-color: $grey-1;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.library-button {
+  margin-top:1em;
+  width: 127px;
+  height: 20px;
+  border-radius: 4px;
+  color: $main-1;
+  border: solid 1px $main-1;
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  &:hover{
+    color:white;
+    background-color: $main-1;
+  }
 }
