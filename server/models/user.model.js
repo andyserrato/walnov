@@ -63,6 +63,12 @@ const notificacionNuevaOpinionChatStory = Schema({
   nombreAutor: String,
 });
 
+const notificacionNuevoSeguidor = Schema({
+  texto: String,
+  nombreSeguidor: String,
+  idSeguidor: mongoose.Schema.Types.ObjectId
+});
+
 const notificacionFeed = Schema({
   tipo: Number,
   //Este es el texto de lo que se quiere mostrar, la accion en si ira en tipo, es decir,
@@ -74,23 +80,15 @@ const notificacionFeed = Schema({
   notificacionNuevoChatStory: notificacionNuevoChatStory,
   notificacionNuevaOpinionRelato: notificacionNuevaOpinionRelato,
   notificacionNuevaOpinionChatStory: notificacionNuevaOpinionChatStory,
-  fechaCreacion: {type: Date, default: Date.now},
-  fecha: String,
-  hora: String
+  notificacionNuevoSeguidor: notificacionNuevoSeguidor
 });
 
 const notificacionGlobal = Schema({
   tipo: Number,
   texto: String,
-  fechaCreacion: {type: Date, default: Date.now},
-  fecha: String,
-  hora: String
 });
 
 const mensajePrivado = Schema({
-  fecha: String,
-  hora: String,
-  fechaCreacion: {type: Date, default: Date.now},
   leido: {type: Boolean, default: false},
   destinatario: mongoose.Schema.Types.ObjectId,
   destinatarioName: String,
@@ -164,11 +162,12 @@ usuario.index({'perfil.apellidos': 'text'});
 
 // plugins ============
 usuario.plugin(datosComunes);
-
+notificacionFeed.plugin(datosComunes);
+mensajePrivado.plugin(datosComunes);
+notificacionGlobal.plugin(datosComunes);
 // methods ======================
 // generating a hash
 usuario.methods.generateHash = function (password) {
-  console.log((password));
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };
 
@@ -280,6 +279,7 @@ const NotificacionNuevoRelato = mongoose.model('notificacionNuevoRelato', notifi
 const NotificacionNuevoChatStory = mongoose.model('notificacionNuevoChatStory', notificacionNuevoChatStory);
 const NotificacionNuevaOpinionRelato = mongoose.model('notificacionNuevaOpinionRelato', notificacionNuevaOpinionRelato);
 const NotificacionNuevaOpinionChatStory = mongoose.model('notificacionNuevaOpinionChatStory', notificacionNuevaOpinionChatStory);
+const NotificacionNuevoSeguidor = mongoose.model('notificacionNuevoSeguidor', notificacionNuevoSeguidor);
 const Perfil = mongoose.model('perfil', perfil);
 const ProviderSchema = mongoose.model('provider', providerSchema);
 const PreferenciaSchema = mongoose.model('preferencia', preferenciaSchema)

@@ -7,6 +7,8 @@ const express = require('express');
 const router = express.Router();
 const Constantes = require("../constantes/constantes");
 const Biblioteca = mongoose.model('Biblioteca');
+const GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
+
 var redirection = '';
 // Rutas
 // Set up the 'signup' routes
@@ -32,6 +34,8 @@ router.get('', getUserByParams);
 router.get('/auth/:id', getUserById);
 router.put('/auth/:id', updateUserProfileById);
 router.post('', createUser);
+router.post('/follow', followUser);
+router.post('/unfollow', unFollowUser);
 
 // Set up the Facebook OAuth routes
 router.get('/oauth/facebook', passport.authenticate('facebook', {
@@ -156,33 +160,33 @@ function signup(req, res) {
       User.findEmailDuplicate(user, function (user) {
         if (!user) {
           res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra);
-        }  else {
-        // Try saving the User
-        user.save((err) => {
-          if (err) {
-            return res.status(400).send({
-              message: getErrorMessage(err)
-            });
-          } else {
-            // Remove sensitive data before login
-            user.password = undefined;
+        } else {
+          // Try saving the User
+          user.save((err) => {
+            if (err) {
+              return res.status(400).send({
+                message: getErrorMessage(err)
+              });
+            } else {
+              // Remove sensitive data before login
+              user.password = undefined;
 
-            // Login the user
-            req.login(user, function (err) {
-              if (err) {
-                res.status(400).send(err);
-              } else {
-                let biblioteca = new Biblioteca();
-                biblioteca.usuario = user.id;
-                biblioteca.save( (err) => {
-                  if (err) res.status(400).send(err);
-                  res.status(200).send(user);
-                });
-              }
-            });
-          }
-        });
-      }
+              // Login the user
+              req.login(user, function (err) {
+                if (err) {
+                  res.status(400).send(err);
+                } else {
+                  let biblioteca = new Biblioteca();
+                  biblioteca.usuario = user.id;
+                  biblioteca.save((err) => {
+                    if (err) res.status(400).send(err);
+                    res.status(200).send(user);
+                  });
+                }
+              });
+            }
+          });
+        }
       });
     }
   });
@@ -247,32 +251,32 @@ function createUser(req, res) {
         if (!user) {
           res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra);
         } else {
-        // Try saving the User
-        user.save((err) => {
-          if (err) {
-            return res.status(400).send({
-              message: getErrorMessage(err)
-            });
-          } else {
-            // Remove sensitive data before login
-            user.password = undefined;
+          // Try saving the User
+          user.save((err) => {
+            if (err) {
+              return res.status(400).send({
+                message: getErrorMessage(err)
+              });
+            } else {
+              // Remove sensitive data before login
+              user.password = undefined;
 
-            // Login the user
-            req.login(user, function (err) {
-              if (err) {
-                res.status(400).send(err);
-              } else {
-                let biblioteca = new Biblioteca();
-                biblioteca.usuario = user.id;
-                biblioteca.save( (err) => {
-                  if (err) res.status(400).send(err);
-                  res.status(200).send(user);
-                });
-              }
-            });
-          }
-        });
-      }
+              // Login the user
+              req.login(user, function (err) {
+                if (err) {
+                  res.status(400).send(err);
+                } else {
+                  let biblioteca = new Biblioteca();
+                  biblioteca.usuario = user.id;
+                  biblioteca.save((err) => {
+                    if (err) res.status(400).send(err);
+                    res.status(200).send(user);
+                  });
+                }
+              });
+            }
+          });
+        }
       });
     }
   });
@@ -298,10 +302,10 @@ function updateUserProfileById(req, res) {
   User.findById(req.params.id)
     .exec(function (err, user) {
       user.perfil = req.body.perfil;
-      user.save(function (err,resultados) {
-        if(err) {
+      user.save(function (err, resultados) {
+        if (err) {
           res.send(err);
-        }else{
+        } else {
           res.send(resultados);
         }
       });
@@ -379,4 +383,96 @@ function getUserByParams(req, res) {
     });
   }
 
+}
+
+function followUser(req, res) {
+  let peticion = req.body;
+
+  if (!peticion || !peticion.userId || !peticion.userIdToFollow) {
+    res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.followUnfollow : Constantes.Mensajes.MENSAJES.es.followUnfollow);
+  } else {
+    User.findById(peticion.userId, function (err, userFollowing) {
+      if (err) {
+        res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.userNotFound : Constantes.Mensajes.MENSAJES.es.userNotFound);
+      } else {
+        User.findById(peticion.userIdToFollow, function (err, userFollowed) {
+          if (err) {
+            res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.userNotFound : Constantes.Mensajes.MENSAJES.es.userNotFound);
+          } else {
+            if (userFollowing.siguiendo.indexOf(userFollowed.id) === -1) {
+              userFollowing.siguiendo.push(userFollowed.id);
+              userFollowing.save(function (err) {
+                if (err) {
+                  res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.errorSavingUser : Constantes.Mensajes.MENSAJES.es.errorSavingUser);
+                } else {
+                  userFollowed.seguidores.push(userFollowing.id);
+                  userFollowed.save(function (err) {
+                    if (err) {
+                      res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.errorSavingUser : Constantes.Mensajes.MENSAJES.es.errorSavingUser);
+                    } else {
+                      // ha comenzado a seguirte el quetal jajajja
+                      let notificacionNuevoSeguidor = GestorNotificaciones.crearNotificacionNuevoSeguidor(
+                        peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.followMessage : Constantes.Mensajes.MENSAJES.es.followMessage,
+                        userFollowing.perfil.display_name,
+                        userFollowing.id
+                      );
+                      GestorNotificaciones.addNotificacionFeed(notificacionNuevoSeguidor, [userFollowed.id]);
+                      res.status(200).send(peticion.lang === 'en' ?
+                        'User: ' + userFollowing.id + ' has followed user: ' +  userFollowed.id :
+                        'El usuario: ' + userFollowing.id + ' ha comenzado a seguir al usuario: ' +  userFollowed.id);
+                    }
+                  });
+                }
+              });
+            } else {
+              res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.alreadyFollowing : Constantes.Mensajes.MENSAJES.es.alreadyFollowing);
+            }
+          }
+        });
+      }
+    });
+  }
+}
+
+function unFollowUser(req, res) {
+  let peticion = req.body;
+
+  if (!peticion || !peticion.userId || !peticion.userIdToUnFollow) {
+    res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.followUnfollow : Constantes.Mensajes.MENSAJES.es.followUnfollow);
+  } else {
+    User.findById(peticion.userId, function (err, userFollowing) {
+      if (err) {
+        res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.userNotFound : Constantes.Mensajes.MENSAJES.es.userNotFound);
+      } else {
+        User.findById(peticion.userIdToUnFollow, function (err, userFollowed) {
+          if (err) {
+            res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.userNotFound : Constantes.Mensajes.MENSAJES.es.userNotFound);
+          } else {
+            if (userFollowing.siguiendo.indexOf(userFollowed.id) !== -1) {
+              userFollowing.siguiendo.splice(userFollowing.siguiendo.indexOf(userFollowed.id), 1);
+              userFollowing.save(function (err) {
+                if (err) {
+                  res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.errorSavingUser : Constantes.Mensajes.MENSAJES.es.errorSavingUser);
+                } else {
+                  userFollowed.seguidores.splice(userFollowed.seguidores.indexOf(userFollowing.id), 1);
+                  userFollowed.save(function (err) {
+                    if (err) {
+                      res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.errorSavingUser : Constantes.Mensajes.MENSAJES.es.errorSavingUser);
+                    } else {
+                      // ha comenzado a seguirte el quetal jajajja
+                      res.status(200).send(peticion.lang === 'en' ?
+                                            'User: ' + userFollowing.id + ' has unfollowed user: ' +  userFollowed.id :
+                                            'El usuario: ' + userFollowing.id + ' ha dejado de seguir al usuario: ' +  userFollowed.id);
+                    }
+                  });
+                }
+              });
+            } else {
+              res.status(400).send(peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.notFollowing : Constantes.Mensajes.MENSAJES.es.notFollowing);
+            }
+          }
+        });
+      }
+    });
+  }
 }

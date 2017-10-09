@@ -3,10 +3,10 @@
     {{relato.titulo}}
   </div>
   <div class="Rectangle-5">
-    <img  class="Imagen-Relato" src={{relato.urlImagen}} alt="">
+    <img class="Imagen-Relato" src={{relato.urlImagen}} alt="">
     <div class="Fondo-Imagen">
     </div>
-    <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
+    <div class="Degradado-Imagen" [ngStyle]="{'background-image': getBackgroundImage()}">
     </div>
     <div class="d-flex flex-row justify-content-center Relato-Estadisticas">
       <div class="d-flex flex column" style="margin-right:7px;">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="d-flex flex column" style="margin-right:15px; margin-top:2px;">
-       {{getNumber(relato?.estadistica?.vecesVisto)}}
+        {{getNumber(relato?.estadistica?.vecesVisto)}}
       </div>
       <div class="d-flex flex column" style="margin-right:7px;">
         <div class="Oval">
@@ -31,26 +31,41 @@
     {{relato.texto}}
   </div>
   <div class="d-flex flex-row justify-content-end Botones">
-    <div *ngIf="!soyAutor()" (click)='anyadirRelatoToBiblioteca()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
+    <div *ngIf="!soyAutor()" (click)='anyadirRelatoToBiblioteca()' class="d-flex flex-column"
+         style="margin-right:7px;margin-top:3px;cursor:pointer;">
       <i class="fa" aria-hidden="true" [ngClass]="{'fa-plus':!addedBiblioteca, 'fa-times':addedBiblioteca}"></i>
     </div>
-    <div *ngIf="!soyAutor()" (click)='anyadirRelatoToBiblioteca()' class="d-flex flex-column" style="margin-right:50px;cursor:pointer;">
+    <div *ngIf="!soyAutor()" (click)='anyadirRelatoToBiblioteca()' class="d-flex flex-column"
+         style="margin-right:50px;cursor:pointer;">
       <span *ngIf="!addedBiblioteca">{{'relatos_añadir' | translate}}</span>
       <span *ngIf="addedBiblioteca">{{'relatos_eliminar' | translate}}</span>
     </div>
     <div (click)='like()' class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
-      <i class="fa" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}"></i>
+      <div class="flex-row align-items-center" style="margin-right:50px;cursor:pointer;">
+        <i class="fa" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}"></i>
+        {{'all_like' | translate}}
+      </div>
     </div>
-    <div (click)='like()' class="d-flex flex-column" style="margin-right:50px;cursor:pointer;">
-      {{'all_like' | translate}}
+
+    <!-- INICIO COMPARTIR-->
+    <div *ngIf="showCompartir"  (click)="toggleCompartir()" class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
+      <div class="flex-row align-items-center" style="cursor:pointer;margin-right:50px;">
+        <i class="fa fa-share" aria-hidden="true"></i>
+        {{'all_compartir' | translate}}
+      </div>
     </div>
-    <div class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
-      <i class="fa fa-share" aria-hidden="true"></i>
+    <div *ngIf="!showCompartir" class="d-flex flex-column" style="margin-right:7px;margin-top:3px;cursor:pointer;">
+      <div class="flex-row align-items-center align-middle">
+        <a href="" class="flex-column" (click)="compartirFacebook()">
+          <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
+        </a>
+        <span class="flex-column" (click)="compartirTwitter()" style="margin-left:10px;">
+            <i class="fa fa-twitter-square fa-lg"></i>
+        </span>
+      </div>
     </div>
-    <div class="d-flex flex-column" style="cursor:pointer;">
-      {{'all_compartir' | translate}}
-    </div>
+    <!-- FIN COMPARTIR-->
   </div>
   <app-dejar-comentario [relato]='relato' [opinionSibling]="opinionSibling"></app-dejar-comentario>
-  <app-opinion-usuario [opiniones] ='relato.opiniones' #opinionSibling></app-opinion-usuario>
+  <app-opinion-usuario [opiniones]='relato.opiniones' #opinionSibling></app-opinion-usuario>
 </div>

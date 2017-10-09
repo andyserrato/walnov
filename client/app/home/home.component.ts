@@ -20,14 +20,4 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  deleteUser(_id: string) {
-    this.userService.delete(_id).subscribe(() => { this.loadAllUsers(); });
-  }
-
-  private loadAllUsers() {
-    console.log('Obteniendo todos los usuarios');
-    this.userService.getAll().subscribe(users => { this.users = users; });
-  }
-
 }

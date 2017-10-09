@@ -2,8 +2,6 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {HomeComponent} from './home/home.component';
 import {HomeModule} from './home/home.module';
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
 import {AuthGuard} from './guards/auth-guard.guard';
 import {InicioComponent} from './inicio/inicio.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
@@ -30,16 +28,14 @@ import {SuccessComponent} from './shared/social-login/success/success.component'
 import {FailureComponent} from './shared/social-login/failure/failure.component';
 import {UserAccountComponent} from './user-account/user-account.component';
 import {UserAccountModule} from './user-account/user-account.module';
-import {VerRelatoComponent} from "./shared/ver-relato/ver-relato.component";
-import {RelatoComponent} from "./relatos/relato/relato.component";
+import {VerRelatoComponent} from './shared/ver-relato/ver-relato.component';
+import {RelatoComponent} from './relatos/relato/relato.component';
 
 const appRoutes: Routes = [
   {path: '', component: LandingComponent},
   {path: 'descarga-la-app', component: LandingMobileComponent},
   {path: 'home', loadChildren: './home/home.module#HomeModule'},
   {path: 'inicio', component: InicioComponent}, //canActivate: [AuthGuard] },
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: 'pricing-premium', component: PricingPremiumComponent},
   {path: 'pricing-premium/prueba', component: PricingPremiumPruebaComponent},

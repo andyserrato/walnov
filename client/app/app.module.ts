@@ -20,8 +20,6 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './alert/alert.component';
 //Walls
 import { Walls } from './walls/walls.component';
@@ -36,7 +34,6 @@ import { FeedComponent } from './feed/feed.component';
 import { CardInformativoComponent } from './shared/card-informativo/card-informativo.component';
 import { CardTagsComponent } from './cards/card-tags/card-tags.component';
 
-import { RegisterPopoverComponent } from './shared/register-popover/register-popover.component';
 import { CrearChatstoryStep1Component } from './chatstory/crear-chatstory-step-1/crear-chatstory-step-1.component';
 import { ImagePickerComponent } from './shared/image-picker/image-picker.component';
 import { CrearPersonajeChatstoryComponent } from './chatstory/crear-personaje-chatstory/crear-personaje-chatstory.component';
@@ -107,13 +104,10 @@ import { LandingMobileComponent } from './landing/landing-mobile/landing-mobile.
     NavComponent,
     PageNotFoundComponent,
     InicioComponent,
-    LoginComponent,
-    RegisterComponent,
     AlertComponent,
     CrearWallComponent,
     LandingComponent,
     FeedComponent,
-    RegisterPopoverComponent,
     CrearChatstoryStep1Component,
     ImagePickerComponent,
     CrearPersonajeChatstoryComponent,

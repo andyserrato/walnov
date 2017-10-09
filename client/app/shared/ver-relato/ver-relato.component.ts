@@ -1,7 +1,4 @@
 import { Component, OnInit, Input  } from '@angular/core';
-import { Relato } from '../../models/relato.model';
-import { Usuario } from '../../models/usuario.model';
-import { RepositorioService } from '../../services/repositorio.service';
 import {AuthenticationService} from '../../services/authentication.service';
 import {RelatoService} from '../../services/relato.service';
 import {RegisterPopoverService} from '../../services/register-popover.service';
@@ -15,9 +12,11 @@ import {BibliotecaService} from '../../services/biblioteca.service';
 export class VerRelatoComponent implements OnInit {
   @Input() relato: any;
   biblioteca: any;
-  addedBiblioteca = false; // se pone a true cuando el relato es añadido a la lista
-  constructor(private repositorio: RepositorioService,
-              private auth: AuthenticationService,
+  addedBiblioteca = false;
+  showCompartir = true;
+
+  // se pone a true cuando el relato es añadido a la lista
+  constructor(private auth: AuthenticationService,
               private relatoService: RelatoService,
               private popOverService: RegisterPopoverService,
               private bibliotecaService: BibliotecaService) { }
@@ -95,5 +94,17 @@ export class VerRelatoComponent implements OnInit {
         this.anyadidoBiblioteca();
       });
     }
+  }
+
+  toggleCompartir() {
+    this.showCompartir ? this.showCompartir = false : this.showCompartir = true;
+  }
+
+  compartirTwitter() {
+    this.toggleCompartir();
+  }
+
+  compartirFacebook() {
+    this.toggleCompartir();
   }
 }
