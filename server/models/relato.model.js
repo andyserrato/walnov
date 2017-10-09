@@ -13,6 +13,7 @@ var opinionRelato = Schema({
   urlImagen: String,
   autor: {type: Schema.Types.ObjectId, ref: 'usuarios'},
   autorNombre: String,
+  numReports: {type: Number, default: 0},
   respuesta: this
 });
 

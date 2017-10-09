@@ -17,7 +17,7 @@ export class WindowService {
       return null;
     }
 
-    const options = `width=${width},height=${height},left=${screen.width/2 - width/2},top=${screen.height/2 - height/2}`;
+    const options = `width=${width},height=${height},left=${screen.width / 2 - width / 2},top=${screen.height / 2 - height / 2}`;
 
     return window.open(url, name, options);
   }

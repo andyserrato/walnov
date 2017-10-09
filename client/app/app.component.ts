@@ -15,8 +15,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AppComponent {
   innerWidth: number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private repositorio: RepositorioService, private translate: TranslateService, private cdr: ChangeDetectorRef){
-      if(this.detectMob() && this.detectRes()) this.router.navigate(['descarga-la-app']);
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private repositorio: RepositorioService,
+              private translate: TranslateService,
+              private cdr: ChangeDetectorRef) {
+      if (this.detectMob() && this.detectRes()) {
+        this.router.navigate(['descarga-la-app']);
+      }
 
       // this.landingMobile();
       // let getWindow = () => {
@@ -43,11 +49,11 @@ export class AppComponent {
   }
 
   detectRes() {
-    let getWindow = () => {
+    const getWindow = () => {
           return window.innerWidth;
     };
     this.innerWidth = getWindow();
-    if(this.innerWidth < 768) {
+    if (this.innerWidth < 768) {
       return true;
     } else {
         return false;
@@ -55,14 +61,14 @@ export class AppComponent {
   }
 
   detectMob() {
-     if( navigator.userAgent.match(/Android/i)
+     if ( navigator.userAgent.match(/Android/i)
      || navigator.userAgent.match(/webOS/i)
      || navigator.userAgent.match(/iPhone/i)
      || navigator.userAgent.match(/iPad/i)
      || navigator.userAgent.match(/iPod/i)
      || navigator.userAgent.match(/BlackBerry/i)
      || navigator.userAgent.match(/Windows Phone/i)
-     ){
+     ) {
        return true;
     } else {
         return false;

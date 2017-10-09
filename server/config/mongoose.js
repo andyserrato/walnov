@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 // Define the Mongoose configuration method
 module.exports = function () {
   // Use Mongoose to connect to MongoDB
-  const db =  mongoose.connect(config.db);
+  const db =  mongoose.connect(config.db,{
+    useMongoClient: true
+  });
 
   mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${config.db}`);

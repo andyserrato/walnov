@@ -23,6 +23,7 @@ export class RepositorioService {
   conts: Array<Continuacion> = new Array<Continuacion>();
   hists: Array<Historia> = new Array<Historia>();
   actRec: Array<any> = new Array();
+  facebookAppId = '118102758792110';
 
   idUsuario: any; //Se actualiza cuando visitamos el perfil de un usuario.
 

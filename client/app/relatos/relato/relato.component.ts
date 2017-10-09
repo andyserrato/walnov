@@ -52,5 +52,4 @@ export class RelatoComponent implements OnInit, OnDestroy {
     this.relato = new Relato();
     this.relato.categoria = this.repositorio.categoriasAL[0];
   }
-
 }
