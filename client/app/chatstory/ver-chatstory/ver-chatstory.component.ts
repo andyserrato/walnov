@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { RepositorioService } from '../../services/repositorio.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { BibliotecaService } from '../../services/biblioteca.service';
 import { ChatstoryMessage } from '../../models/chatstory-message';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
@@ -18,8 +20,12 @@ import { UserService } from '../../services/user.service';
 })
 export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   @ViewChild('clickBox') clickBox: ElementRef;
+  @ViewChild('addButton') addButton: ElementRef;
   @ViewChild('previewScroll') previewScroll: ElementRef;
   @Input() chatStory: any;
+  allowLibrary = true;
+  inLibrary = false;
+
   messagesArray: Array<any> = new Array<any>();
   lastclick: number= Date.now();
   limite= 50;
@@ -32,14 +38,26 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
 
   constructor(private repositorio: RepositorioService,
               private router: Router,
+              private auth: AuthenticationService,
+              private bibliotecaService: BibliotecaService,
               private route: ActivatedRoute,
               private chatstoryService: ChatstoryService,
               private translate: TranslateService,
               private userService: UserService) {
+
+
   }
 
   ngOnInit() {
 
+    if (this.auth.isLoggedIn()) {
+      //this.checkLibrary();
+      console.log("es esta línea Andy");
+    } else {
+      this.allowLibrary = false;
+    }
+
+    //console.log(this.bibliotecaService.getCurrentBiblioteca());
 
     this.route.paramMap
       .switchMap((params: ParamMap) =>
@@ -74,6 +92,8 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
         this.scrollToBottom();
       });
 
+
+
     // this.chatStory = new ChatStory('hola', ['hola'], this.repositorio.categoriasAL[0], [], 'https://www.lorempixel.com/1600/1200', 'Hola que tal estamos por aquí?');
     // for (let i = 0; i < 60; i++) {
     //   if (i == 10) {
@@ -93,6 +113,56 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
       try {
           this.previewScroll.nativeElement.scrollTop = this.previewScroll.nativeElement.scrollHeight;
       } catch (err) { }
+  }
+
+  checkLibrary() {
+    // if(this.bibliotecaService.getCurrentBiblioteca()) {
+      //console.log("funciono")
+      this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.find(chat => chat.id === this.chatStory.id) ? true : false;
+      console.log(this.inLibrary);
+    // }
+  }
+
+  checkUserChatstory() {
+    if (this.chatStory) {
+      return this.auth.isLoggedIn() && this.chatStory.autor.id === this.auth.getUser().id;
+    }else {
+      return false;
+    }
+  }
+
+  updateLibrary() {
+    this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+      this.bibliotecaService.updateBiblioteca(biblioteca);
+      this.checkLibrary();
+    });
+    // console.log("me han llamado");
+  }
+
+  addToLibrary() {
+    if (!this.inLibrary) {
+    //  console.log('añado');
+      this.bibliotecaService.addChatStoryOnBibliotecaByUserId(this.chatStory.id).subscribe(res => {
+        // console.log("estoy añadiendo");
+        this.updateLibrary();
+      });
+     //  this.bibliotecaService.updateBiblioteca();
+   }else{
+    //  console.log('elimino');
+     this.bibliotecaService.deleteChatStoryOnBibliotecaByUserId(this.chatStory.id).subscribe(res => {
+      //  console.log("estoy elimiando");
+       this.updateLibrary();
+     });
+   }
+
+  }
+
+  addLibraryText() {
+    if (this.inLibrary){
+      return this.translate.translate('chatstorie_added_biblioteca');
+    } else {
+      return this.translate.translate('chatstorie_add_biblioteca');
+    }
   }
 
 

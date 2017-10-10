@@ -49,7 +49,11 @@ export class CardInfoChatstoryComponent implements OnInit {
   }
 
   checkUser() {
-    return this.chatstory.autor.id === this.auth.getUser().id;
+    if(this.auth.getUser()) {
+      return this.chatstory.autor.id === this.auth.getUser().id;
+    } else {
+      return false;
+    }
   }
 
 }

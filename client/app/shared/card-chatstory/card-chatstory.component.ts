@@ -39,6 +39,8 @@ export class CardChatstoryComponent implements OnInit {
       this.allowLibrary = false;
     }
 
+    //console.log( this.bibliotecaService.getCurrentBiblioteca());
+
   }
 
   checkLibrary() {

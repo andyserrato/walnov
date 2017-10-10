@@ -186,7 +186,7 @@ export class NavNotificacionesComponent implements OnInit {
   }
 
   getAltura() {
-    console.log(this.Altura + 'px');
+    // console.log(this.Altura + 'px');
     return this.Altura + 'px';
   }
 

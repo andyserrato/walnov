@@ -97,3 +97,59 @@
 .click-box:active{
   background-color: rgba(0,0,0,0.15);
 }
+
+.user-chatstory {
+  visibility: hidden;
+}
+
+button {
+  outline: none;
+  border:0;
+  background-color: inherit;
+
+}
+
+
+.btn-details {
+  //width: 106.2px;
+  //height: 11px;
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  //color: #8427bf;
+  color: inherit;
+}
+
+.Rectangle-7-Copy-4 {
+  width: 127px;
+  height: 20px;
+  border-radius: 4px;
+  color:$main-1;
+  //border: solid 1px #8427bf;
+  border: solid 1px $main-1;
+  // position: absolute;
+  // bottom: 20px;
+  &:hover{
+    cursor: pointer;
+    color: $grey-1;
+    background-color: $main-1;
+  }
+}
+
+.Rectangle-7-Copy-4-2 {
+  width: 127px;
+  height: 20px;
+  border-radius: 4px;
+  //border: solid 1px #8427bf;
+  border: solid 1px $main-1;
+  background-color: $main-1;
+  color:white;
+  // position: absolute;
+  // bottom: 20px;
+  &:hover{
+    cursor: pointer;
+    background-color: $grey-1;
+    color: $main-1;
+  }
+}
