@@ -142,4 +142,8 @@ export class ListadoChatstoriesComponent implements OnInit {
   scrollTop() {
     this.paginador.scrollTop();
   }
+
+  getBackgroundImage() {
+    return 'linear-gradient(to bottom,' + this.categoria.opacidad + ',' + this.categoria.color + ')';
+  }
 }
