@@ -242,4 +242,20 @@
     color:white;
     background-color: $main-1;
   }
+  &.added{
+    background-color: $main-1;
+    color: white;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+.like-button{
+  &:hover{
+    color:$main-2;
+  }
+  & .fa-heart-o{
+    color:inherit; 
+  }
 }

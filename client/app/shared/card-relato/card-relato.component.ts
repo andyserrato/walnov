@@ -6,6 +6,7 @@ import { RepositorioService } from '../../services/repositorio.service';
 import { Relato } from '../../models/relato.model';
 import {Router} from "@angular/router";
 import { RelatoService } from '../../services/relato.service';
+import {BibliotecaService} from '../../services/biblioteca.service';
 
 @Component({
   selector: 'app-card-relato',
@@ -16,12 +17,28 @@ export class CardRelatoComponent implements OnInit {
   @Input() relato: any;
   @Input() vista: string;
   @ViewChild('likeButton') likeButton: ElementRef;
+  @ViewChild('addButton') addButton: ElementRef;
+  inLibrary: boolean = false;
 
   constructor(private repositorio: RepositorioService, private auth: AuthenticationService,
               private poopoverService: RegisterPopoverService, private relatoService: RelatoService,
-              private router: Router) { }
+              private router: Router, private bibliotecaService: BibliotecaService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkInLibrary();
+  }
+
+  checkInLibrary() {
+    // console.log(this.bibliotecaService.getCurrentBiblioteca());
+    this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel==this.relato.id) != null ? true : false;
+  }
+
+  updateBiblioteca() {
+    this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(b => {
+      this.bibliotecaService.updateBiblioteca(b);
+      this.checkInLibrary();
+    });
+  }
 
   getBackgroundImage() {
     return 'linear-gradient(to bottom,' + this.repositorio.categoriasHM.get(this.relato.categoria).opacidad + ',' +
@@ -47,7 +64,7 @@ export class CardRelatoComponent implements OnInit {
     //     this.router.navigate(['/chatstory/' + this.chatstory.id]);
     //   }
     // }else{
-      if (!this.likeButton.nativeElement.contains(event.target)) {
+      if (!this.likeButton.nativeElement.contains(event.target) && !this.addButton.nativeElement.contains(event.target)) {
         this.router.navigate(['/relato/' + this.relato.id]);
       }
     // }
@@ -75,6 +92,19 @@ export class CardRelatoComponent implements OnInit {
       } else {
         return false;
       }
+  }
+
+  addToLibrary(event) {
+    if(!this.inLibrary) {
+      this.bibliotecaService.addRelatoOnBibliotecaByUserId(this.relato.id).subscribe(rel => {
+        this.updateBiblioteca();
+      });
+    } else {
+      this.bibliotecaService.deleteRelatoOnBibliotecaByUserId(this.relato.id).subscribe(rel => {
+        console.log(rel);
+        this.updateBiblioteca();
+      });
+    }
   }
 
 }

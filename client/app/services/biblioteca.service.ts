@@ -88,9 +88,12 @@ export class BibliotecaService {
     const usuarioId = this.auth.getUser().id;
     const bodyString = JSON.stringify({id: idRelato}); // Stringify payload
     const headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    const options       = new RequestOptions({ headers: headers }); // Create a request option
+    const options       = new RequestOptions({
+      headers: headers,
+      body: bodyString
+    }); // Create a request option
     const bibliotecaRelatosUrl = this.bibliotecaUrl + '/' + usuarioId + '/relatos';
-    return this.http.delete(bibliotecaRelatosUrl, bodyString) // ...using post request
+    return this.http.delete(bibliotecaRelatosUrl, options) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }
