@@ -4,22 +4,26 @@
       <app-card-info-chatstory [chatstory]="chatStory"></app-card-info-chatstory>
     </div>
 
-    <div class="col">
+    <div class="col-lg-7 col-md-9">
       <div class="outside-container">
         <div class="row no-padding full-height">
           <div class="d-flex flex-column" style="width:100%;">
             <div class="d-flex flex-row" style="width:100%;">
-              <div class="d-flex flex-column">
-                <div class="d-flex flex-row chat-title">
-                  {{chatStory?.titulo}}
+              <div class="d-flex flex-column" style="width:70%;">
+                <div class="d-flex flex-row chat-title" title="{{chatStory?.titulo}}">
+                  <div class="ellipsis">
+                    {{chatStory?.titulo}}
+                  </div>
                 </div>
                 <div class="d-flex flex-row description">
-                  {{chatStory?.descripcion}}
+                  <div class="ellipsis">
+                    {{chatStory?.descripcion}}
+                  </div>
                 </div>
               </div>
-              <div class="d-flex flex-column">
-                <div class="d-flex flex-row">
-                  <div  #addButton class="d-flex flex-column align-items-center" *ngIf="this.allowLibrary" [ngClass]="{'user-chatstory': checkUserChatstory()}">
+              <div class="d-flex flex-column justify-content-around ml-auto" style="width:25%;">
+                <div class="d-flex flex-row justify-content-center" *ngIf="this.checkAllow()">
+                  <div class="d-flex flex-column align-items-center"  [ngClass]="{'user-chatstory': checkUserChatstory()}">
                     <button type="button" [ngClass]="{'Rectangle-7-Copy-4': !this.inLibrary, 'Rectangle-7-Copy-4-2': this.inLibrary}" (click)='addToLibrary()' name="button" style="cursor:pointer;">
                       <div class="btn-details">
                         {{this.addLibraryText()}}
@@ -27,8 +31,8 @@
                     </button>
                   </div>
                 </div>
-                <div class="d-flex flex-row">
-
+                <div class="d-flex flex-row justify-content-around">
+                  <span class="compartir">{{'modal_compartir_redes' | translate}}</span><i class="fa fa-twitter" aria-hidden="true" title="Twitter" style="margin-top:5px;"></i><i class="fa fa-facebook-official" title="Facebook" aria-hidden="true" style="margin-top:5px;"></i>
                 </div>
               </div>
             </div>
