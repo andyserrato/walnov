@@ -6,12 +6,17 @@ import {AppConfig} from '../app.config';
 import {WindowService} from './window.service';
 import {Observable} from 'rxjs/Observable';
 import {AlertService} from './alert.service';
+import {UserService} from "./user.service";
 
 @Injectable()
 export class AuthenticationService {
   private windowHandle: any = null;
   private locationWatcher = new EventEmitter();
-  constructor(private http: Http, private config: AppConfig, private windowService: WindowService, private alertService: AlertService) {
+  constructor(private http: Http,
+              private config: AppConfig,
+              private windowService: WindowService,
+              private alertService: AlertService,
+              private userService: UserService) {
   }
 
   login(username: string, password: string): Observable<any> {
@@ -62,9 +67,12 @@ export class AuthenticationService {
     return this.getUser() !== null;
   }
 
-  revalidateUser(user: any) {
-    localStorage.removeItem('currentUser');
-    localStorage.setItem('currentUser', JSON.stringify(user));
+  revalidateUser() {
+    this.userService.getById(this.getUser().id).subscribe(
+      (user) => {
+        localStorage.removeItem('currentUser');
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      });
   }
 
   doSocialLogin(url: string) {

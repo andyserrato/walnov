@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng build -w\" \"nodemon \\server\\server.js\"",
+    "start": "concurrently --kill-others \"ng build --watch --no-delete-output-path\" \"nodemon server\\server.js\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

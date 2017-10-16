@@ -4,6 +4,9 @@ import { AuthenticationService } from '../../services/authentication.service';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {RegisterPopoverService} from '../../services/register-popover.service';
+import {UserService} from '../../services/user.service';
+import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: 'app-card-info-relato',
@@ -12,17 +15,19 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 })
 export class CardInfoRelatoComponent implements OnInit {
   @Input() relato: any;
-  constructor(private repositorio: RepositorioService, private auth: AuthenticationService,
-              private router: Router) {
+  constructor(private repositorio: RepositorioService,
+              private auth: AuthenticationService,
+              private router: Router,
+              private popOverService: RegisterPopoverService,
+              private userService: UserService,
+              private alert: AlertService) {
   }
 
   ngOnInit() {
-    // console.log(this.relato);
   }
 
   getBorder() {
     return 'solid 1.5px ' + this.repositorio.categoriasHM.get(this.relato.categoria.nombre).color;
-
   }
 
   getColor() {
@@ -42,8 +47,7 @@ export class CardInfoRelatoComponent implements OnInit {
   }
 
   goToUser() {
-    // console.log(this.relato);
-    this.router.navigateByUrl('user-profile/'+this.relato.autor.id+'/relatos');
+    this.router.navigateByUrl('user-profile/' + this.relato.autor.id + '/relatos');
   }
 
   checkUser() {
@@ -51,5 +55,44 @@ export class CardInfoRelatoComponent implements OnInit {
       return this.auth.isLoggedIn() && this.relato.autor.id === this.auth.getUser().id;
     }
   }
+
+  isAlreadyFollowed() {
+    if (this.auth.isLoggedIn() && this.relato && this.relato.autor) {
+      console.log(this.auth.getUser());
+      console.log(this.relato.autor.id);
+      return this.auth.getUser().siguiendo.indexOf(this.relato.autor.id) !== -1;
+    } else {
+      return false;
+    }
+  }
+
+  follow() {
+    if (this.auth.isLoggedIn() && this.relato && this.relato.autor) {
+      this.userService.follow(this.auth.getUser().id, this.relato.autor.id).subscribe(
+        (mensaje) => {
+          this.auth.revalidateUser();
+          this.alert.success(mensaje);
+          },
+        (error) => this.alert.error(error)
+        );
+    } else {
+      this.popOverService.setVisible(true);
+    }
+  }
+
+  unFollow() {
+    if (this.auth.isLoggedIn() && this.relato && this.relato.autor) {
+      this.userService.unFollow(this.auth.getUser().id, this.relato.autor.id).subscribe(
+        (mensaje) => {
+          this.auth.revalidateUser();
+          this.alert.success(mensaje);
+        },
+        (error) => this.alert.error(error)
+      );
+    } else {
+      this.popOverService.setVisible(true);
+    }
+  }
+
 
 }

@@ -64,6 +64,7 @@ export const LANG_ES_TRANS = {
   'all_like': 'Me gusta',
   'all_compartir': 'Compartir',
   'all_reportar': 'Reportar',
+  'all_donar': 'Donar',
 
 
   //categorias

@@ -42,27 +42,40 @@ function getBibliotecaByUserId(req, res) {
 
   User.findById(usuarioId, 'id', function (err, userId) {
     if (err) {
-      res.status(400).send('Ha ocurrido un error');
+      res.status(400).send({error: 'Usuario no encontrado'});
     }
     if (userId) {
       findBibliotecaByUserId(userId);
     } else {
-      res.status(400).send('El usuario no se ha encontrado');
+      res.status(400).send({error: 'Error en operación de usuario'});
     }
   });
 
   var findBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.findOne(query).populate('chatStories').populate({path: 'chatStories', populate: { path: 'autor estadistica'}}).exec(function (err, biblioteca) {
-
-      if (err) {
-        res.status(400).send("Ha ocurrido un error");
-      }
-      else {
-        res.status(200).send(biblioteca);
-      }
-    });
+    Biblioteca.findOne(query)
+      .populate('chatStories')
+      .populate('relatos')
+      .populate('walls')
+      .populate({path: 'chatStories', populate: {path: 'autor estadistica'}})
+      .populate({path: 'relatos', populate: {path: 'autor estadistica'}})
+      .populate({path: 'walls', populate: {path: 'autor estadistica'}})
+      .exec(function (err, biblioteca) {
+        if (err) {
+          res.status(400).send({error: 'Error obteniendo biblioteca'});
+        }
+        else if (biblioteca) {
+          res.status(200).send(biblioteca);
+        } else {
+          let biblioteca = new Biblioteca();
+          biblioteca.usuario = userId;
+          biblioteca.save((err, bibliotecaGuardada) => {
+            if (err) res.status(400).send(err);
+            res.status(200).send(bibliotecaGuardada);
+          });
+        }
+      });
   }
 }
 
