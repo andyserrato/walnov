@@ -5,6 +5,7 @@ import { Relato } from '../../models/relato.model';
 import { Usuario } from '../../models/usuario.model';
 import { Paginator } from '../../models/paginador';
 import { BibliotecaService } from '../../services/biblioteca.service';
+import {AuthenticationService} from "../../services/authentication.service";
 @Component({
   selector: 'app-card-relatos-paginador',
   templateUrl: './card-relatos-paginador.component.html',
@@ -14,15 +15,19 @@ export class CardRelatosPaginadorComponent implements OnInit {
   @Input() relatosFiltrados: Array<Relato>;
   @Input() categoria: Categoria;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
-  bibliotecaLoaded: boolean = false;
-  constructor(private repositorio: RepositorioService, private bibliotecaService: BibliotecaService) { }
+  bibliotecaLoaded = false;
+  constructor(private repositorio: RepositorioService,
+              private bibliotecaService: BibliotecaService,
+              private auth: AuthenticationService) { }
 
   ngOnInit() {
     this.repositorio.paginadorCardsRelatos = new Paginator(this.relatosFiltrados, this.contenedorBiblioteca, 12, 6);
-    this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(bibl => {
-      this.bibliotecaService.updateBiblioteca(bibl);
-      this.bibliotecaLoaded = true;
-    });
+    if (this.auth.isLoggedIn()) {
+      this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+        this.bibliotecaService.updateBiblioteca(biblioteca);
+        this.bibliotecaLoaded = true;
+      });
+    }
   }
 
   getBackgroundImage() {

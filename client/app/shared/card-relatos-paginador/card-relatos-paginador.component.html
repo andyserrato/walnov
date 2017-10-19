@@ -11,7 +11,7 @@
   </div>
 </div>
 <div #contenedorBiblioteca>
-  <div  class="d-flex justify-content-center flex-row flex-wrap Limite" *ngIf="bibliotecaLoaded">
+  <div class="d-flex justify-content-center flex-row flex-wrap Limite">
       <div *ngFor= "let relato of repositorio.paginadorCardsRelatos.paginador">
           <app-card-relato [vista] = "'buscador'" [relato] = 'relato'></app-card-relato>
         </div>
