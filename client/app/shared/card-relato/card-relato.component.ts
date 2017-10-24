@@ -4,7 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { RegisterPopoverService } from '../../services/register-popover.service';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Relato } from '../../models/relato.model';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 import { RelatoService } from '../../services/relato.service';
 import {BibliotecaService} from '../../services/biblioteca.service';
 
@@ -18,22 +18,27 @@ export class CardRelatoComponent implements OnInit {
   @Input() vista: string;
   @ViewChild('likeButton') likeButton: ElementRef;
   @ViewChild('addButton') addButton: ElementRef;
-  inLibrary: boolean = false;
+  inLibrary = false;
 
   constructor(private repositorio: RepositorioService, private auth: AuthenticationService,
-              private poopoverService: RegisterPopoverService, private relatoService: RelatoService,
+              private popoverService: RegisterPopoverService, private relatoService: RelatoService,
               private router: Router, private bibliotecaService: BibliotecaService) { }
 
   ngOnInit() {
+<<<<<<< HEAD
     if(this.auth.isLoggedIn()) {
       this.checkInLibrary();  
     }
     
+=======
+    if (this.auth.isLoggedIn()) {
+      this.checkInLibrary();
+    }
+>>>>>>> cf6744306fada434c994fb58c7686bc9fd8764c0
   }
 
   checkInLibrary() {
-    // console.log(this.bibliotecaService.getCurrentBiblioteca());
-    this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel==this.relato.id) != null ? true : false;
+    this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel === this.relato.id) != null ? true : false;
   }
 
   updateBiblioteca() {
@@ -80,7 +85,7 @@ export class CardRelatoComponent implements OnInit {
         this.relato.estadistica = estadistica;
       });
     } else {
-      this.poopoverService.setVisible(true);
+      this.popoverService.setVisible(true);
     }
 
   }
@@ -98,15 +103,19 @@ export class CardRelatoComponent implements OnInit {
   }
 
   addToLibrary(event) {
-    if(!this.inLibrary) {
-      this.bibliotecaService.addRelatoOnBibliotecaByUserId(this.relato.id).subscribe(rel => {
-        this.updateBiblioteca();
-      });
+    if (this.auth.isLoggedIn()) {
+      if (!this.inLibrary) {
+        this.bibliotecaService.addRelatoOnBibliotecaByUserId(this.relato.id).subscribe(rel => {
+          this.updateBiblioteca();
+        });
+      } else {
+        this.bibliotecaService.deleteRelatoOnBibliotecaByUserId(this.relato.id).subscribe(rel => {
+          console.log(rel);
+          this.updateBiblioteca();
+        });
+      }
     } else {
-      this.bibliotecaService.deleteRelatoOnBibliotecaByUserId(this.relato.id).subscribe(rel => {
-        console.log(rel);
-        this.updateBiblioteca();
-      });
+      this.popoverService.setVisible(true);
     }
   }
 
