@@ -25,7 +25,10 @@ export class CardRelatoComponent implements OnInit {
               private router: Router, private bibliotecaService: BibliotecaService) { }
 
   ngOnInit() {
-    this.checkInLibrary();
+    if(this.auth.isLoggedIn()) {
+      this.checkInLibrary();  
+    }
+    
   }
 
   checkInLibrary() {

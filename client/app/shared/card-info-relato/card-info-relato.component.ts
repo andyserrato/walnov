@@ -1,12 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RepositorioService } from '../../services/repositorio.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {RegisterPopoverService} from '../../services/register-popover.service';
 import {UserService} from '../../services/user.service';
-import {AlertService} from "../../services/alert.service";
+import {AlertService} from '../../services/alert.service';
 
 @Component({
   selector: 'app-card-info-relato',
@@ -58,8 +57,6 @@ export class CardInfoRelatoComponent implements OnInit {
 
   isAlreadyFollowed() {
     if (this.auth.isLoggedIn() && this.relato && this.relato.autor) {
-      console.log(this.auth.getUser());
-      console.log(this.relato.autor.id);
       return this.auth.getUser().siguiendo.indexOf(this.relato.autor.id) !== -1;
     } else {
       return false;

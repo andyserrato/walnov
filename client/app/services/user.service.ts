@@ -39,21 +39,21 @@ export class UserService {
     const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
     const options = new RequestOptions({headers: headers}); // Create a request option
     return this.http.post(`${this.config.USERS_ENDPOINT}/follow`, bodyString, options) // ...using put request
-      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .map((res: Response) => res.json().mensaje) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }
 
   unFollow(userId: string, userIdToUnFollow: string) {
     const body = {
       lang: this.translate.currentLang,
-      userIdToFollow: userIdToUnFollow,
+      userIdToUnFollow: userIdToUnFollow,
       userId: userId
     };
     const bodyString = JSON.stringify(body); // Stringify payload
     const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
     const options = new RequestOptions({headers: headers}); // Create a request option
     return this.http.post(`${this.config.USERS_ENDPOINT}/unfollow`, bodyString, options) // ...using put request
-      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .map((res: Response) => res.json().mensaje) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }
 
@@ -61,7 +61,6 @@ export class UserService {
   private jwt() {
     // create authorization header with jwt token
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // console.log('Current User', currentUser);
     if (currentUser && currentUser.token) {
       const headers = new Headers({'Authorization': 'Bearer ' + currentUser.token});
       return new RequestOptions({headers: headers});

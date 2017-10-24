@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ChatStory } from '../../../models/chatstory.model';
 import { Paginator } from '../../../models/paginador';
 import { RepositorioService } from '../../../services/repositorio.service';
 import { ChatstoryService } from '../../../services/chatstory.service';
@@ -20,7 +19,7 @@ import { UserService } from '../../../services/user.service';
 export class UserContentChatstoriesComponent implements OnInit {
   @ViewChild('div') div: ElementRef;
   chats: Array<any>;
-  user:any;
+  user: any;
   library: boolean;
   paginador: Paginator;
   visible = false;
@@ -31,27 +30,24 @@ export class UserContentChatstoriesComponent implements OnInit {
               private repositorio: RepositorioService,
               private modalservice: ModalService,
               private translate: TranslateService,
-              private userService: UserService, private route: ActivatedRoute, private router: Router,
+              private userService: UserService,
+              private route: ActivatedRoute,
+              private router: Router,
               private alertService: AlertService,
               private bibliotecaService: BibliotecaService) {
   }
 
   ngOnInit() {
     this.chats = new Array<any>();
-    if(this.authenticationService.isLoggedIn()) {
-      this.library = this.authenticationService.getUser().id != this.repositorio.idUsuario;
-    }
-    else {
+    if (this.authenticationService.isLoggedIn()) {
+      this.library = this.authenticationService.getUser().id !== this.repositorio.idUsuario;
+    } else {
       this.library = true;
     }
-    // console.log(this.library);
-    console.log(this.repositorio.idUsuario);
-    if(this.repositorio.idUsuario) {
+
+    if (this.repositorio.idUsuario) {
       this.firstQuery();
     }
-
-
-
   }
 
   firstQuery() {
@@ -63,12 +59,12 @@ export class UserContentChatstoriesComponent implements OnInit {
 
     // myParams.append('sort', '-fechaCreacion');
     myParams.append('top', '27');
-    myParams.append('skip', this.skip+'');
+    myParams.append('skip', this.skip + '');
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
-      if(!this.bibliotecaService.getCurrentBiblioteca()) {
+      if (!this.bibliotecaService.getCurrentBiblioteca()) {
           this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
             this.bibliotecaService.updateBiblioteca(biblioteca);
             this.paginador = new Paginator(this.chats, this.div, 27, 9);
@@ -94,24 +90,24 @@ export class UserContentChatstoriesComponent implements OnInit {
     myParams.append('autor', this.repositorio.idUsuario);
     // myParams.append('sort', '-fechaCreacion');
     myParams.append('top', '27');
-    myParams.append('skip', this.skip+'');
+    myParams.append('skip', this.skip + '');
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
-      if(chatStories.length>0){
+      if (chatStories.length > 0){
         this.chats = chatStories;
-        for(let c of chatStories) {
+        for (const c of chatStories) {
           this.paginador.paginador.push(c);
         }
         this.paginador.paginarDelante();
-        this.paginador.final=false;
+        this.paginador.final = false;
         this.modalservice.clear();
         this.visible = true;
         this.skip += 27;
       } else {
         this.modalservice.clear();
         this.alertService.warning(this.translate.instant('alert_chatstory_acabados_2'));
-        this.paginador.final=false;
+        this.paginador.final = false;
       }
 
     }, error => {

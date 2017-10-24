@@ -296,7 +296,6 @@ function getUserById(req, res) {
 }
 
 function updateUserProfileById(req, res) {
-  // console.log(req.params);
   if (!req.params.id)
     res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
   User.findById(req.params.id)
@@ -310,18 +309,11 @@ function updateUserProfileById(req, res) {
         }
       });
     });
-  // User.findOneAndUpdate({id :req.params.id}, {$set: req.body.perfil} ,function (err, user) {
-  //   if (err)
-  //     res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
-  //
-  //   res.status(200).send(user);
-  // });
 }
 
 function getUserByParams(req, res) {
   let queries = req.query;
   let query = User.find();
-  console.log(queries);
   // if (Object.hasOwnProperty(queries).length === undefined) {
   if (Object.keys(queries).length === 0) {
     res.status(400).send('Queries required');
@@ -389,7 +381,7 @@ function followUser(req, res) {
   let peticion = req.body;
 
   if (!peticion || !peticion.userId || !peticion.userIdToFollow) {
-    res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.followUnfollow }: { error: Constantes.Mensajes.MENSAJES.es.followUnfollow });
+    res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.follow }: { error: Constantes.Mensajes.MENSAJES.es.follow });
   } else {
     User.findById(peticion.userId, function (err, userFollowing) {
       if (err) {
@@ -418,8 +410,8 @@ function followUser(req, res) {
                       );
                       GestorNotificaciones.addNotificacionFeed(notificacionNuevoSeguidor, [userFollowed.id]);
                       res.status(200).send(peticion.lang === 'en' ?
-                        { mensaje: 'User: ' + userFollowing.perfil.display_name + ' has followed user: ' +  userFollowed.perfil.display_name }:
-                        { mensaje: 'El usuario: ' + userFollowing.perfil.display_name + ' ha comenzado a seguir al usuario: ' +  userFollowed.perfil.display_name });
+                        { mensaje: 'Hi  ' + userFollowing.perfil.display_name + ' has followed user: ' +  userFollowed.perfil.display_name }:
+                        { mensaje: 'Hola ' + userFollowing.perfil.display_name + ' haz comenzado a seguir a: ' +  userFollowed.perfil.display_name });
                     }
                   });
                 }
@@ -438,7 +430,7 @@ function unFollowUser(req, res) {
   let peticion = req.body;
 
   if (!peticion || !peticion.userId || !peticion.userIdToUnFollow) {
-    res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.followUnfollow }: { error: Constantes.Mensajes.MENSAJES.es.followUnfollow });
+    res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.unFollow }: { error: Constantes.Mensajes.MENSAJES.es.unFollow });
   } else {
     User.findById(peticion.userId, function (err, userFollowing) {
       if (err) {
@@ -461,8 +453,8 @@ function unFollowUser(req, res) {
                     } else {
                       // ha comenzado a seguirte el quetal jajajja
                       res.status(200).send(peticion.lang === 'en' ?
-                        { mensaje: 'User: ' + userFollowing.perfil.display_name + ' has unfollowed user: ' +  userFollowed.perfil.display_name } :
-                        { mensaje: 'El usuario: ' + userFollowing.perfil.display_name + ' ha dejado de seguir al usuario: ' +  userFollowed.perfil.display_name });
+                        { mensaje: 'Hi ' + userFollowing.perfil.display_name + ' has unfollowed user: ' +  userFollowed.perfil.display_name } :
+                        { mensaje: 'Hola ' + userFollowing.perfil.display_name + ' haz dejado de seguir a: ' +  userFollowed.perfil.display_name });
                     }
                   });
                 }
