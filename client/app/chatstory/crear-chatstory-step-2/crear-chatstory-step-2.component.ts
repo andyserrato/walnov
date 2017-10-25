@@ -35,7 +35,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    this.message = new ChatstoryMessage(this.chatStory.personajes[0],'', '');
+    this.message = new ChatstoryMessage(this.chatStory.personajes[0], '', '');
     if (!this.chatStory.chats) {
       this.chatStory.chats = new Array<ChatstoryMessage>();
     }

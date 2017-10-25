@@ -18,7 +18,10 @@ export class CrearChatstoryStep1Component implements OnInit {
   categorias: Array<Categoria>;
   maxChars: Array<string> = new Array<string>(18);
   validate: any;
-  constructor(private repositorio: RepositorioService, private translate: TranslateService, private alert: AlertService, private fb: FormBuilder, private authenticationService: AuthenticationService) {
+  constructor(private repositorio: RepositorioService,
+              private translate: TranslateService,
+              private alert: AlertService,
+              private authenticationService: AuthenticationService) {
     this.done = new EventEmitter<any>();
     this.categorias = repositorio.categoriasAL;
 
@@ -100,29 +103,20 @@ export class CrearChatstoryStep1Component implements OnInit {
   }
 
   deleteChar(event) {
-    console.log(event);
-    console.log(this.chatStory);
     let contador = 0;
-    if(this.chatStory.chats && this.chatStory.chats.length>0) {
-      for(let c of this.chatStory.chats) {
+    if (this.chatStory.chats && this.chatStory.chats.length > 0) {
+      for (const c of this.chatStory.chats) {
         contador = contador + (c.personaje === event ? 1 : 0);
       }
-      if(contador==0) {
-        this.chatStory.personajes.splice(this.chatStory.personajes.indexOf(event),1);
-
-      }else{
-        console.log(contador);
-        this.alert.warning("Existen mensajes con este personaje");
+      if (contador === 0) {
+        this.chatStory.personajes.splice(this.chatStory.personajes.indexOf(event), 1);
+      }else {
+        this.alert.warning('Existen mensajes con este personaje');
       }
     } else {
-      this.chatStory.personajes.splice(this.chatStory.personajes.indexOf(event),1);
+      this.chatStory.personajes.splice(this.chatStory.personajes.indexOf(event), 1);
     }
-    console.log(this.chatStory);
     this.refreshArray();
-  }
-
-  selectChar(event) {
-
   }
 
 }

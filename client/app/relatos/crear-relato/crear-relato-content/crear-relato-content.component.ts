@@ -95,7 +95,6 @@ export class CrearRelatoContentComponent implements OnInit {
         } else if (!this.relato.tipo) {
           this.createRelato(0);
         } else if (this.relato.tipo === 1) {
-          console.log('modificamos relato');
           this.modificarRelato(0);
         }
       } else {
@@ -187,7 +186,6 @@ export class CrearRelatoContentComponent implements OnInit {
   }
 
   publicarMensajeFeedback(relatoSaved: any) {
-    console.log('publicar mensaje: ' + relatoSaved.tipo);
     if (relatoSaved.tipo === 0) {
       this.modal.share(this.translate.instant('modal_relato_posted'), this.relatoUrl + relatoSaved.id);
     } else if (relatoSaved.tipo === 1) {

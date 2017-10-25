@@ -64,7 +64,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
         email: this.validateForm.controls['mail'].value
       };
       this.authenticationService.signup(user).subscribe(result  => {
-          console.log('Ruta buena' + user);
+        // todo no se debe loguear el usuario de inmediato
           localStorage.setItem('currentUser', JSON.stringify(result));
           this.visible = false;
           this.loged.emit();
