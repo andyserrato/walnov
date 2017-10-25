@@ -298,7 +298,7 @@ export const LANG_EN_TRANS = {
   'popover_registro': 'Sign in with:',
   'popover_contraseña': 'Password',
   'popover_error_mail': 'Write a valid mail',
-  'popover_error_contraseña': 'Write a password',
+  'popover_error_contraseña': 'Write a valid password (8 characters min)',
   'popover_error_nombre': 'Write a valid username',
   'popover_error_olvidada': 'I have forgot my password',
   'popover_ya_registrado': 'I have an account, log in',

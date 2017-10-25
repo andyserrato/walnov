@@ -34,7 +34,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
     this.validateForm = fb.group({
       'mail': [null, Validators.compose([Validators.required, Validators.email])],
       'user': [null, Validators.required],
-      'pass': [null, Validators.required]
+      'pass': [null, Validators.compose([Validators.required, Validators.minLength(8)])]
     });
     this.popoverService.isVisible().subscribe(b => {
         this.visible=b ? true : false;

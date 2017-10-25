@@ -302,7 +302,7 @@ export const LANG_ES_TRANS = {
   'popover_registro': 'Regístrate con:',
   'popover_contraseña': 'Contraseña',
   'popover_error_mail': 'Introduce un mail valido',
-  'popover_error_contraseña': 'Introduce una contraseña',
+  'popover_error_contraseña': 'Introduce una contraseña válida (mínimo 8 caracteres)',
   'popover_error_nombre': 'Introduce un nombre de usuario',
   'popover_error_olvidada': '¿Has olvidado tu contraseña?',
   'popover_ya_registrado': 'Ya tengo cuenta, entrar',
