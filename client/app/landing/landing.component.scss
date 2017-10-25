@@ -1,0 +1,280 @@
+@import "main";
+
+section {
+  width: 100%;
+  // height: 100%;
+
+}
+
+.Walnov {
+  font-family: 'Maven Pro';
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
+
+.mensaje-movil {
+  font-family: Raleway;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  color: $grey-1;
+}
+
+.intro {
+  // width: 1280px;
+  position: relative;
+  z-index: 0;
+  padding: 0 !important;
+  // padding-top: 40px !important;
+  // height: initial !important;
+  opacity: 0.87;
+  // mix-blend-mode: hard-light;
+  background: none !important;
+  background-image: linear-gradient(338deg, #6c0092, #9c6dd8) !important;
+}
+
+.intro-2 {
+  position: absolute;
+  top: 0;
+  padding-top: 40px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.87;
+  mix-blend-mode: hard-light;
+  background-image: linear-gradient(162deg, #080011, #c96dd8);
+}
+
+// .intro-3 {
+//   position: absolute;
+//   top: 0;
+//   // height: 100%;
+//   // width: 100%;
+//   z-index: 2;
+//   // opacity: 0.87;
+//   // mix-blend-mode: hard-light;
+//   // background-image: linear-gradient(162deg, #080011, #c96dd8);
+// }
+
+.container {
+
+  padding-right: 40px !important;
+  padding-left: 40px !important;
+}
+
+.Barra {
+  // width: 98px;
+  // height: 16px;
+  font-family: Raleway;
+  font-size: 14px;
+  text-align: left;
+  color: $grey-1;
+}
+
+.Rectangle-2 {
+  height: fit-content;
+  width: fit-content;
+  padding: 5px 30px;
+  border-radius: 4px;
+  background-color: $main-3;
+  font-size: 12px !important;
+  &:hover {
+    background-color: $main-1;
+  }
+}
+
+.margenes {
+  margin-left: -1.2em !important;
+  margin-right: -1.2em !important;
+}
+
+.mensaje {
+  font-family: Raleway;
+  font-weight: bold;
+  text-align: left;
+  color: $grey-1;
+}
+
+.mensaje-2 {
+  font-size: 38px;
+}
+
+.mensaje-1 {
+  font-size: 24px;
+  font-weight: 300 !important;
+}
+
+.Rectangle-7-Copy {
+  height: fit-content;
+  width: fit-content;
+  padding: 12px 20px;
+  border-radius: 4px;
+  border: solid 1px $grey-1;
+  cursor: pointer;
+  &:hover {
+    background-color: $grey-1;
+    color: #6c0092;
+    text-decoration: none !important;
+
+  }
+}
+
+.btn-content {
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: $grey-1;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .mensaje-2 {
+    font-size: 25px !important;
+  }
+
+  .mensaje-1 {
+    font-size: 18px !important;
+  }
+
+  .btn-content {
+    font-size: 12px !important;
+  }
+
+  .img-responsive {
+    height: 400px !important;
+  }
+  .container {
+
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .Oval {
+    max-width: 198px !important;
+
+  }
+
+  ._Intro-App1x {
+      width: 172px !important;
+      height: 301px !important;
+      top: 51px !important;
+      right: 13px !important;
+  }
+
+  .shape-1 {
+    border-width: 190px 85px 210px 85px !important;
+    top: -48px !important;
+  }
+
+  .movil-dentro {
+    top: 98px !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .mensaje-2 {
+    font-size: 30px !important;
+  }
+
+  .mensaje-1 {
+    font-size: 20px !important;
+  }
+
+  .btn-content {
+    font-size: 15px !important;
+  }
+
+  .img-responsive {
+    height: 430px !important;
+  }
+
+  .Oval {
+    max-width: 215px !important;
+
+  }
+
+  ._Intro-App1x {
+      width: 184px !important;
+      height: 325px !important;
+      top: 54px !important;
+      right: 14px !important;
+  }
+
+  .shape-1 {
+    border-width: 208px 93px 205px 91px !important;
+    top: -40px !important;
+  }
+
+  .movil-dentro {
+    top: 105px !important;
+  }
+
+
+
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.imagen {
+  position: relative;
+  // background-image: url("assets/images/landing/bitmap.png");
+
+}
+
+.Oval {
+  max-width: 242px;
+  width: 100%;
+  right: 0;
+  bottom: -5px;
+  position: absolute;
+  z-index: -5;
+  height: 16px;
+  -webkit-filter: blur(6.9px);
+  filter: blur(6.9px);
+  background-color: rgba(108, 98, 111, 0.55);
+}
+
+._Intro-App1x {
+    width: 207px;
+    height: 367px;
+    position: absolute;
+    top: 62px;
+    right: 17px;
+    background-color: #491777;
+    overflow: hidden;
+}
+
+.shape-1{
+  position: relative;
+  top: -35px;
+  width: 100%;
+  height: 100%;
+  border-style: solid;
+  border-width: 245px 105px 210px 105px;
+  border-top-color: #491777;
+  border-right-color: #7f20ac;
+  border-bottom-color: #8a28b6;
+  border-left-color: #7f20ac;
+}
+
+.movil-dentro {
+  position: relative;
+  top: 115px;
+  z-index: 99;
+  // top: -200px;
+  // left: -53px;
+
+}
+
+.Walnov-2 {
+  font-family: 'Maven Pro';
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
