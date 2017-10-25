@@ -1,13 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ChatStory } from '../../../models/chatstory.model';
 import { Paginator } from '../../../models/paginador';
-import { RepositorioService } from '../../../services/repositorio.service';
-import { ChatstoryService } from '../../../services/chatstory.service';
-import { AuthenticationService } from '../../../services/authentication.service';
 import { BibliotecaService } from '../../../services/biblioteca.service';
-import { ModalService } from '../../../services/modal.service';
 import 'rxjs/add/operator/switchMap';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 @Component({
   selector: 'app-guardado-chatstories',
   templateUrl: './guardado-chatstories.component.html',
@@ -17,22 +12,12 @@ export class GuardadoChatstoriesComponent implements OnInit {
   @ViewChild('div') div: ElementRef;
   chats: Array<ChatStory>;
   paginador: Paginator;
-  constructor(private repositorio: RepositorioService,
-              private chatservice: ChatstoryService,
-              private authenticationService: AuthenticationService,
-              private route: ActivatedRoute,
-              private bibliotecaService: BibliotecaService,
-              private modal: ModalService) {
-
-  }
+  constructor(private bibliotecaService: BibliotecaService) { }
 
   ngOnInit() {
-    this.modal.load();
-
     this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
       this.bibliotecaService.updateBiblioteca(biblioteca);
       this.paginador = new Paginator(this.bibliotecaService.getCurrentBiblioteca().chatStories, this.div, 18, 9);
-      this.modal.clear();
     });
 
   }

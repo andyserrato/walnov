@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ChatStory } from '../../models/chatstory.model';
 import { Paginator } from '../../models/paginador';
 import { ChatstoryService } from '../../services/chatstory.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { BibliotecaService } from '../../services/biblioteca.service';
 import { TranslateService } from '../../translate';
 import 'rxjs/add/operator/switchMap';
-import { ModalService } from '../../services/modal.service';
 import {AlertService} from '../../services/alert.service';
 
 @Component({
@@ -23,7 +21,6 @@ export class HomeMisChatstoriesComponent implements OnInit {
   constructor(private chatservice: ChatstoryService,
               private translate: TranslateService,
               private authenticationService: AuthenticationService,
-              private modalservice: ModalService,
               private alertService: AlertService,
               private bibliotecaService: BibliotecaService) {
   }
@@ -31,71 +28,62 @@ export class HomeMisChatstoriesComponent implements OnInit {
   ngOnInit() {
     // Inicialización de variables
     this.chats = new Array<any>();
-    if(this.authenticationService.isLoggedIn()) {
+    if (this.authenticationService.isLoggedIn()) {
       this.firstQuery();
     }
 
   }
 
   firstQuery() {
-    this.modalservice.load();
-    // this.paginador = new Paginator(this.chats, this.div, 27, 9);
     const myParams = new URLSearchParams();
     myParams.append('autor', this.authenticationService.getUser().id);
     myParams.append('sort', '-fechaCreacion');
     myParams.append('top', '27');
-    myParams.append('skip', this.skip+'');
+    myParams.append('skip', this.skip + '');
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       this.chats = chatStories;
-      if(!this.bibliotecaService.getCurrentBiblioteca()){
+      if (!this.bibliotecaService.getCurrentBiblioteca()) {
         this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
           this.bibliotecaService.updateBiblioteca(biblioteca);
           this.paginador = new Paginator(this.chats, this.div, 27, 9);
-          this.modalservice.clear();
           this.visible = true;
           this.skip += 27;
         });
-      }else{
+      }else {
         this.paginador = new Paginator(this.chats, this.div, 27, 9);
-        this.modalservice.clear();
         this.visible = true;
         this.skip += 27;
       }
     }, error => {
-      this.modalservice.clear();
     });
   }
 
   loadMore() {
-    this.modalservice.load();
     const myParams = new URLSearchParams();
     myParams.append('autor', this.authenticationService.getUser().id);
     myParams.append('sort', '-fechaCreacion');
     myParams.append('top', '27');
-    myParams.append('skip', this.skip+'');
+    myParams.append('skip', this.skip + '');
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
-      if(chatStories.length>0){
+      if (chatStories.length > 0) {
         this.chats = chatStories;
-        for(let c of chatStories) {
+        for (const c of chatStories) {
           this.paginador.paginador.push(c);
         }
         this.paginador.paginarDelante();
-        this.paginador.final=false;
-        this.modalservice.clear();
+        this.paginador.final = false;
         this.visible = true;
         this.skip += 27;
       } else {
-        this.modalservice.clear();
         this.alertService.warning(this.translate.instant('alert_chatstory_acabados'));
-        this.paginador.final=false;
+        this.paginador.final = false;
       }
 
     }, error => {
-      this.modalservice.clear();
     });
   }
 

@@ -4,11 +4,10 @@ import { ChatStory } from '../../models/chatstory.model';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Paginator } from '../../models/paginador';
 import { ChatstoryService } from '../../services/chatstory.service';
-import { ModalService } from '../../services/modal.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { TranslateService } from '../../translate/translate.service';
 import {AlertService} from '../../services/alert.service';
-import {BibliotecaService} from "../../services/biblioteca.service";
+import {BibliotecaService} from '../../services/biblioteca.service';
 
 @Component({
   selector: 'app-listado-chatstories',
@@ -26,7 +25,6 @@ export class ListadoChatstoriesComponent implements OnInit {
   constructor(private repositorio: RepositorioService,
               private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
-              private modalservice: ModalService,
               private translateService: TranslateService,
               private alert: AlertService,
               private bibliotecaService: BibliotecaService) {
@@ -36,7 +34,6 @@ export class ListadoChatstoriesComponent implements OnInit {
   ngOnInit() {
     this.chatStoriesFiltrados = new Array<ChatStory>();
     this.categoria = null;
-    this.modalservice.load();
     const myParams = new URLSearchParams();
     myParams.append('top', '60');
     myParams.append('skip', '' + this.skip);
@@ -45,21 +42,17 @@ export class ListadoChatstoriesComponent implements OnInit {
       if (this.authenticationService.isLoggedIn()) {
         this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
           this.bibliotecaService.updateBiblioteca(biblioteca);
-          // this.changeCategory(null);
           this.repositorio.chatstories = chatstories;
           this.chatStoriesFiltrados = chatstories;
           this.paginador = new Paginator(this.chatStoriesFiltrados, this.div,  24, 6);
           this.skip += 60;
-          this.modalservice.clear();
         });
       } else {
 
         this.repositorio.chatstories = chatstories;
         this.chatStoriesFiltrados = chatstories;
         this.paginador = new Paginator(this.chatStoriesFiltrados, this.div,  24, 6);
-        // this.changeCategory(null);
         this.skip += 60;
-        this.modalservice.clear();
       }
 
     });
@@ -71,8 +64,6 @@ export class ListadoChatstoriesComponent implements OnInit {
   }
 
   loadMore() {
-    this.modalservice.load();
-
     const myParams = new URLSearchParams();
     myParams.append('top', '60');
     myParams.append('skip', '' + this.skip);
@@ -82,7 +73,6 @@ export class ListadoChatstoriesComponent implements OnInit {
         this.paginador.paginador.push(c);
       }
       this.repositorio.chatstories = this.chatStoriesFiltrados;
-      this.modalservice.clear();
       this.paginador.paginarDelante();
       this.paginador.final = false;
       this.skip += 60;
@@ -90,7 +80,6 @@ export class ListadoChatstoriesComponent implements OnInit {
   }
 
   sortByFilter(event: string) {
-    this.modalservice.load();
     const myParams = new URLSearchParams();
     myParams.append('top', '20');
 
@@ -131,11 +120,9 @@ export class ListadoChatstoriesComponent implements OnInit {
       this.chatStoriesFiltrados = chatstories;
       this.paginador = new Paginator(this.chatStoriesFiltrados, this.div,  24, 6);
       this.skip += 60;
-      this.modalservice.clear();
       this.skip += 20;
     }, error => {
       this.alert.warning(error);
-      this.modalservice.clear();
     });
   }
 
