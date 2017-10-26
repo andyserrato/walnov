@@ -4,6 +4,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 import {AlertService} from '../../services/alert.service';
 import {RegisterPopoverService} from '../../services/register-popover.service';
 import { TranslateService } from '../../translate';
+import {RepositorioService} from "../../services/repositorio.service";
 
 @Component({
   selector: 'app-prot-popover-register',
@@ -16,7 +17,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
   @ViewChild('mail') mail: ElementRef;
   @ViewChild('pass') pass: ElementRef;
   @ViewChild('user') user: ElementRef;
-  @Input() direction: string = "down";
+  @Input() direction = 'down';
   @Output() loged: EventEmitter<any>;
   @Output() focusOut: EventEmitter<any>;
   validateForm: FormGroup;
@@ -28,7 +29,8 @@ export class ProtPopoverRegisterComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private alertService: AlertService,
               private translate: TranslateService,
-              private popoverService: RegisterPopoverService) {
+              private popoverService: RegisterPopoverService,
+              private repositorio: RepositorioService) {
     this.loged = new EventEmitter<any>();
     this.focusOut = new EventEmitter<any>();
     this.validateForm = fb.group({
@@ -37,8 +39,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
       'pass': [null, Validators.compose([Validators.required, Validators.minLength(8)])]
     });
     this.popoverService.isVisible().subscribe(b => {
-        this.visible=b ? true : false;
-        // console.log(this.visible);
+        this.visible = b ? true : false;
     });
   }
 
@@ -63,7 +64,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
         email: this.validateForm.controls['mail'].value
       };
       this.authenticationService.signup(user).subscribe(result  => {
-          console.log('Ruta buena' + user);
+        // todo no se debe loguear el usuario de inmediato
           localStorage.setItem('currentUser', JSON.stringify(result));
           this.visible = false;
           this.loged.emit();
@@ -71,12 +72,15 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.alertService.success(this.translate.instant('alert_bienvenido') + ' ' + this.authenticationService.getUser().login);
         },
         error =>  {
+          if (error.tipo === this.repositorio.emailDuplicado) {
+            console.log('email duplicado');
+          } else if (error.tipo === this.repositorio.nombreUsuarioDuplicado) {
+            console.log('nombre usuario duplicado');
+          }
           this.loading = false;
-          this.alertService.error(error);
+
         });
       this.alertService.clearTimeOutAlert();
-      // console.log(this.mail.nativeElement.value + ', ' + this.pass.nativeElement.value + ', ' + this.user.nativeElement.value);
-      // console.log(this.user.nativeElement.value + ', ' + this.pass.nativeElement.value);
     }
   }
 
@@ -95,7 +99,6 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.alertService.error(error);
         });
       this.alertService.clearTimeOutAlert();
-      // console.log(this.user.nativeElement.value + ', ' + this.pass.nativeElement.value);
     }
   }
 

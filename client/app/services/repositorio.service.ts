@@ -11,9 +11,9 @@ import {TranslateService} from '../translate';
 
 @Injectable()
 export class RepositorioService {
-  //Aqui guardaos el socket una vez conectado
+  // Aqui guardaos el socket una vez conectado
   socket: any;
-  //Este array se utilizará para guardar las notificaciones que llegarán por los websockets, o través del inicio de sesión.
+  // Este array se utilizará para guardar las notificaciones que llegarán por los websockets, o través del inicio de sesión.
   notificaciones: Array<Object> = new Array();
   categoriasHM = new Map<string, Categoria>();
   categoriasAL = new Array();
@@ -24,12 +24,13 @@ export class RepositorioService {
   hists: Array<Historia> = new Array<Historia>();
   actRec: Array<any> = new Array();
   facebookAppId = '118102758792110';
-
-  idUsuario: any; //Se actualiza cuando visitamos el perfil de un usuario.
+  emailDuplicado = 0;
+  nombreUsuarioDuplicado = 1;
+  idUsuario: any; // Se actualiza cuando visitamos el perfil de un usuario.
 
   results: Object// Aquí se guadaran los resultados de busqueda
 
-  PricingDiv = null; //Div que se utiliza para el pricing
+  PricingDiv = null; // Div que se utiliza para el pricing
 
   paginadorActividadReciente = null;
   paginadorCardsChatstories = null;
@@ -38,9 +39,7 @@ export class RepositorioService {
   paginadorCardsContinuaciones = null;
   paginadorCardsHistorias = null;
 
-  busquedaActual: String; //Esto se usa para guardar la búsqueda del usuario cuando está desde la tablet
-
-  // english: boolean = false;
+  busquedaActual: String; // Esto se usa para guardar la búsqueda del usuario cuando está desde la tablet
 
   constructor(private translate: TranslateService) {
     this.translate.use(navigator.language);
@@ -72,6 +71,4 @@ export class RepositorioService {
   getCategoriaALByName(nombre: string): any {
     return this.categoriasAL.find(categoria => categoria.nombre === nombre);
   }
-
-
 }

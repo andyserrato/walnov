@@ -15,29 +15,7 @@ export class HomeMisRelatosComponent implements OnInit {
   constructor(private repositorio: RepositorioService) { }
 
   ngOnInit() {
-    // for (let i = 0; i < 25; i++) {
-    //   for (let j = 0; j < 10; j++) {
-    //     const nuevoRL = new Relato();
-    //
-    //
-    //      nuevoRL.categoria = this.repositorio.categoriasAL[j];
-    //      nuevoRL.titulo = 'Hola' + i;
-    //      nuevoRL.urlImagen = 'https://lorempixel.com/158/129';
-    //      nuevoRL.coments = 200324;
-    //      nuevoRL.resumen = 'Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. ' +
-    //        'Meggings cred before they sold out messenger bag.';
-    //      nuevoRL.likes = 784;
-    //      nuevoRL.views = 2000;
-    //      nuevoRL.usuario = new Usuario();
-    //      nuevoRL.usuario.nombre = 'Amorentrelineas';
-    //      nuevoRL.usuario.imagen = 'https://lorempixel.com/22/22';
-    //      this.repositorio.relatos.push(nuevoRL);
-    //   }
-    // }
-    //
     this.repositorio.paginadorCardsRelatos = new Paginator(this.repositorio.relatos, this.contenedorBiblioteca, 12, 6);
-    // // console.log(this.repositorio.paginadorCardsRelatos);
-
   }
 
 }

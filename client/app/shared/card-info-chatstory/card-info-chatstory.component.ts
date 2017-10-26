@@ -19,7 +19,6 @@ export class CardInfoChatstoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.chatstory.autor.id);
   }
 
   getBorder() {
@@ -34,10 +33,10 @@ export class CardInfoChatstoryComponent implements OnInit {
 
   formatearNumero(nStr) {
     nStr += '';
-    let x = nStr.split('.');
+    const x = nStr.split('.');
     let x1 = x[0];
-    let x2 = x.length > 1 ? ',' + x[1] : '';
-    let rgx = /(\d+)(\d{3})/;
+    const x2 = x.length > 1 ? ',' + x[1] : '';
+    const rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
             x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
@@ -45,11 +44,11 @@ export class CardInfoChatstoryComponent implements OnInit {
   }
 
   goToUser() {
-    this.router.navigateByUrl('user-profile/'+this.chatstory.autor.id+'/chatstories');
+    this.router.navigateByUrl('user-profile/' + this.chatstory.autor.id + '/chatstories');
   }
 
   checkUser() {
-    if(this.auth.getUser()) {
+    if (this.auth.getUser()) {
       return this.chatstory.autor.id === this.auth.getUser().id;
     } else {
       return false;

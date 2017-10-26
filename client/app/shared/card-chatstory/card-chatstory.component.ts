@@ -1,16 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
-import { Categoria } from '../../models/cats';
+import {Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild} from '@angular/core';
+import {Categoria} from '../../models/cats';
 import {Router} from '@angular/router';
-import { RepositorioService } from '../../services/repositorio.service';
-import { AuthenticationService } from '../../services/authentication.service';
-import { ChatstoryService } from '../../services/chatstory.service';
-import { ChatStory } from '../../models/chatstory.model';
-import { Paginator } from '../../models/paginador';
-import { CardMiBibliotecaBuscadorComponent } from '../card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
-import { CardChatstoriesPaginadorComponent } from '../card-chatstories-paginador/card-chatstories-paginador.component';
-import { RegisterPopoverService } from '../../services/register-popover.service';
-import { BibliotecaService } from '../../services/biblioteca.service';
-import { TranslateService } from '../../translate/translate.service';
+import {RepositorioService} from '../../services/repositorio.service';
+import {AuthenticationService} from '../../services/authentication.service';
+import {ChatstoryService} from '../../services/chatstory.service';
+import {ChatStory} from '../../models/chatstory.model';
+import {Paginator} from '../../models/paginador';
+import {CardMiBibliotecaBuscadorComponent} from '../card-mi-biblioteca-buscador/card-mi-biblioteca-buscador.component';
+import {CardChatstoriesPaginadorComponent} from '../card-chatstories-paginador/card-chatstories-paginador.component';
+import {RegisterPopoverService} from '../../services/register-popover.service';
+import {BibliotecaService} from '../../services/biblioteca.service';
+import {TranslateService} from '../../translate/translate.service';
+
 @Component({
   selector: 'app-card-chatstory',
   templateUrl: './card-chatstory.component.html',
@@ -22,25 +23,22 @@ export class CardChatstoryComponent implements OnInit {
   @Input() chatstory: any;
   @Input() allowLibrary = true;
   inLibrary = false;
+
   constructor(private repositorio: RepositorioService,
               private router: Router,
               private auth: AuthenticationService,
               private chatstoryService: ChatstoryService,
               private poopoverService: RegisterPopoverService,
               private bibliotecaService: BibliotecaService,
-              private translate: TranslateService) { }
+              private translate: TranslateService) {
+  }
 
   ngOnInit() {
-    // console.log(this.chatstory.autor);
-    // console.log(this.auth.getUser());
     if (this.auth.isLoggedIn()) {
       this.checkLibrary();
     } else {
       this.allowLibrary = false;
     }
-
-    //console.log( this.bibliotecaService.getCurrentBiblioteca());
-
   }
 
   checkLibrary() {
@@ -50,7 +48,7 @@ export class CardChatstoryComponent implements OnInit {
   checkUserChatstory() {
     if (this.chatstory.autor) {
       return this.auth.isLoggedIn() && this.chatstory.autor.id === this.auth.getUser().id;
-    }else {
+    } else {
       return false;
     }
   }
@@ -63,24 +61,19 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   getColor() {
-    // console.log(this.chatstory);
-    if (this.repositorio.categoriasHM.get(this.chatstory.categoria)){
+    if (this.repositorio.categoriasHM.get(this.chatstory.categoria)) {
       return this.repositorio.categoriasHM.get(this.chatstory.categoria).color;
-    }else{
+    } else {
       return 'blue';
     }
-
-    // console.log(this.repositorio.categoriasHM.get(this.chatstory.categoria).color);
-    // return this.repositorio.categoriasHM.get(this.chatstory.categoria).color;
-
   }
 
   loadChatstory(event) {
-    if (this.addButton){
+    if (this.addButton) {
       if (!this.addButton.nativeElement.contains(event.target) && !this.likeButton.nativeElement.contains(event.target)) {
         this.router.navigate(['/chatstory/' + this.chatstory.id]);
       }
-    }else{
+    } else {
       if (!this.likeButton.nativeElement.contains(event.target)) {
         this.router.navigate(['/chatstory/' + this.chatstory.id]);
       }
@@ -96,30 +89,28 @@ export class CardChatstoryComponent implements OnInit {
     } else {
       this.poopoverService.setVisible(true);
     }
- }
-
- addToLibrary() {
-   if (!this.inLibrary) {
-    //  console.log('hola');
-     this.bibliotecaService.addChatStoryOnBibliotecaByUserId(this.chatstory.id).subscribe(res => {
-       this.updateLibrary();
-     });
-    //  this.bibliotecaService.updateBiblioteca();
-  }else{
-    this.bibliotecaService.deleteChatStoryOnBibliotecaByUserId(this.chatstory.id).subscribe(res => {
-      this.updateLibrary();
-    });
   }
 
- }
+  addToLibrary() {
+    if (!this.inLibrary) {
+      this.bibliotecaService.addChatStoryOnBibliotecaByUserId(this.chatstory.id).subscribe(res => {
+        this.updateLibrary();
+      });
+    } else {
+      this.bibliotecaService.deleteChatStoryOnBibliotecaByUserId(this.chatstory.id).subscribe(res => {
+        this.updateLibrary();
+      });
+    }
 
- addLibraryText() {
-   if (this.inLibrary){
-     return this.translate.translate('chatstorie_added_biblioteca');
-   } else {
-     return this.translate.translate('chatstorie_add_biblioteca');
-   }
- }
+  }
+
+  addLibraryText() {
+    if (this.inLibrary) {
+      return this.translate.translate('chatstorie_added_biblioteca');
+    } else {
+      return this.translate.translate('chatstorie_add_biblioteca');
+    }
+  }
 
   getNumber(numero: number) {
     if (numero >= 1000) {
@@ -129,11 +120,11 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   liked() {
-      if (this.chatstory.estadistica && this.chatstory.estadistica.likers && this.auth.isLoggedIn()) {
-        return this.chatstory.estadistica.likers.indexOf(this.auth.getUser().id) > -1;
-      } else {
-        return false;
-      }
+    if (this.chatstory.estadistica && this.chatstory.estadistica.likers && this.auth.isLoggedIn()) {
+      return this.chatstory.estadistica.likers.indexOf(this.auth.getUser().id) > -1;
+    } else {
+      return false;
+    }
   }
 
   getBackgroundImage() {

@@ -42,7 +42,7 @@ export class AuthenticationService {
 
     return this.http.post('/apiv1/users/auth/signup/', body, options)
       .map(res => user = res.json())
-      .catch(this.handleError);
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   logout(): Observable<any> {
@@ -92,6 +92,6 @@ export class AuthenticationService {
   }
 
   private handleError(error: Response) {
-    return Observable.throw(error.json().message || 'Server error');
+    return Observable.throw(error.json().error || 'Server error');
   }
 }

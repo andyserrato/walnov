@@ -6,10 +6,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
 import { BibliotecaService } from '../../../services/biblioteca.service';
 import { TranslateService } from '../../../translate';
 import 'rxjs/add/operator/switchMap';
-import { ModalService } from '../../../services/modal.service';
 import { AlertService } from '../../../services/alert.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-content-chatstories',
@@ -28,11 +25,7 @@ export class UserContentChatstoriesComponent implements OnInit {
   constructor(private chatservice: ChatstoryService,
               private authenticationService: AuthenticationService,
               private repositorio: RepositorioService,
-              private modalservice: ModalService,
               private translate: TranslateService,
-              private userService: UserService,
-              private route: ActivatedRoute,
-              private router: Router,
               private alertService: AlertService,
               private bibliotecaService: BibliotecaService) {
   }
@@ -51,7 +44,6 @@ export class UserContentChatstoriesComponent implements OnInit {
   }
 
   firstQuery() {
-    this.modalservice.load();
     console.log(this.repositorio.idUsuario)
     // this.paginador = new Paginator(this.chats, this.div, 27, 9);
     const myParams = new URLSearchParams();
@@ -68,24 +60,20 @@ export class UserContentChatstoriesComponent implements OnInit {
           this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
             this.bibliotecaService.updateBiblioteca(biblioteca);
             this.paginador = new Paginator(this.chats, this.div, 27, 9);
-            this.modalservice.clear();
             this.visible = true;
             this.skip += 27;
           });
       } else {
         this.paginador = new Paginator(this.chats, this.div, 27, 9);
-        this.modalservice.clear();
         this.visible = true;
         this.skip += 27;
       }
 
     }, error => {
-      this.modalservice.clear();
     });
   }
 
   loadMore() {
-    this.modalservice.load();
     const myParams = new URLSearchParams();
     myParams.append('autor', this.repositorio.idUsuario);
     // myParams.append('sort', '-fechaCreacion');
@@ -94,24 +82,21 @@ export class UserContentChatstoriesComponent implements OnInit {
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
-      if (chatStories.length > 0){
+      if (chatStories.length > 0) {
         this.chats = chatStories;
         for (const c of chatStories) {
           this.paginador.paginador.push(c);
         }
         this.paginador.paginarDelante();
         this.paginador.final = false;
-        this.modalservice.clear();
         this.visible = true;
         this.skip += 27;
       } else {
-        this.modalservice.clear();
         this.alertService.warning(this.translate.instant('alert_chatstory_acabados_2'));
         this.paginador.final = false;
       }
 
     }, error => {
-      this.modalservice.clear();
     });
   }
 

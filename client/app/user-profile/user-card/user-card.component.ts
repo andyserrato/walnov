@@ -13,8 +13,4 @@ export class UserCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    // console.log(this.user);
-  }
-
 }

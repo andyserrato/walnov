@@ -1,12 +1,12 @@
 <div class="container-outside">
   <div class="row row-flanges" style="padding-right:0;">
-    <div class="flange" (click)="changeView('walls')" [ngClass]="{'flange-selected': this.router.url == '/home/guardado/walls'}">
+    <div class="flange" (click)="changeView('walls')" [ngClass]="{'flange-selected': router.url === '/home/guardado/walls'}">
       Walls
     </div>
-    <div class="flange" (click)="changeView('relatos')" [ngClass]="{'flange-selected': this.router.url == '/home/guardado/relatos'}">
+    <div class="flange" (click)="changeView('relatos')" [ngClass]="{'flange-selected': router.url === '/home/guardado/relatos'}">
       {{'all_relatos_cortos' | translate}}
     </div>
-    <div class="flange" (click)="changeView('chatstories')" [ngClass]="{'flange-selected': this.router.url == '/home/guardado/chatstories'}">
+    <div class="flange" (click)="changeView('chatstories')" [ngClass]="{'flange-selected': router.url === '/home/guardado/chatstories'}">
       Chatstories
     </div>
   </div>

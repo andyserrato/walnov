@@ -17,7 +17,7 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
     this.modal.getMessage().subscribe(message => {
         this.message = message;
-        if(message && message.type && message.type==='share') {
+        if (message && message.type && message.type === 'share') {
           this.message.enlaceCopiar = location.origin + this.message.enlace;
         }
 
@@ -36,8 +36,6 @@ export class ModalComponent implements OnInit {
 
   copy() {
     const target = document.getElementById('copyToClipboard');
-    console.log('target');
-    console.log(target);
     let range, select;
     if (document.createRange) {
       console.log('range creado');

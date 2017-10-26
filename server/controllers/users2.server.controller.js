@@ -133,13 +133,13 @@ function signin(req, res, next) {
 // Create a new controller method that creates new 'regular' users
 function signup(req, res) {
   if (!req.body) {
-    res.status(400).send('error usuario requerido ');
+    res.status(400).send({error: 'error usuario requerido '});
   } else if (!req.body.login) {
-    res.status(400).send('error username requerido');
+    res.status(400).send({error: 'error username requerido'});
   } else if (!req.body.email) {
-    res.status(400).send('error email requerido');
+    res.status(400).send({error: 'error email requerido'});
   } else if (!req.body.password) {
-    res.status(400).send('error password requerido');
+    res.status(400).send({error:'error password requerido'});
   }
 
   const user = new User({
@@ -155,17 +155,21 @@ function signup(req, res) {
   User.findLoginDuplicate(user, function (user) {
     // Ocurrió un error o el usuario ya se encuentra registrado
     if (!user) {
-      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra);
+      res.status(400).send(req.body.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra,
+                                                      tipo: 0}:
+                                                    {error: Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra,
+                                                    tipo: 0});
     } else {
       User.findEmailDuplicate(user, function (user) {
         if (!user) {
-          res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra);
+          res.status(400).send(req.body.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra,
+          tipo: 1} : {error: Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra, tipo: 1 });
         } else {
           // Try saving the User
           user.save((err) => {
             if (err) {
               return res.status(400).send({
-                message: getErrorMessage(err)
+                error: getErrorMessage(err)
               });
             } else {
               // Remove sensitive data before login
@@ -179,7 +183,7 @@ function signup(req, res) {
                   let biblioteca = new Biblioteca();
                   biblioteca.usuario = user.id;
                   biblioteca.save((err) => {
-                    if (err) res.status(400).send(err);
+                    if (err) res.status(400).send({error: err});
                     res.status(200).send(user);
                   });
                 }

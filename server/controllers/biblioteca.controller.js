@@ -408,9 +408,6 @@ function deleteRelatoOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
   let relatoId = req.body.id;
 
-  console.log(usuarioId);
-  console.log(relatoId);
-
   User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
