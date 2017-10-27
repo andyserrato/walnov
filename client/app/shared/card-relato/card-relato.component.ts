@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, ElementRef, ViewChild} from '@angular/core';
-import { Categoria } from '../../models/cats';
-import { AuthenticationService } from '../../services/authentication.service';
-import { RegisterPopoverService } from '../../services/register-popover.service';
-import { RepositorioService } from '../../services/repositorio.service';
-import { Relato } from '../../models/relato.model';
+import {Component, OnInit, Input, ElementRef, ViewChild} from '@angular/core';
+import {Categoria} from '../../models/cats';
+import {AuthenticationService} from '../../services/authentication.service';
+import {RegisterPopoverService} from '../../services/register-popover.service';
+import {RepositorioService} from '../../services/repositorio.service';
+import {Relato} from '../../models/relato.model';
 import {Router} from '@angular/router';
-import { RelatoService } from '../../services/relato.service';
+import {RelatoService} from '../../services/relato.service';
 import {BibliotecaService} from '../../services/biblioteca.service';
 
 @Component({
@@ -22,16 +22,24 @@ export class CardRelatoComponent implements OnInit {
 
   constructor(private repositorio: RepositorioService, private auth: AuthenticationService,
               private poopoverService: RegisterPopoverService, private relatoService: RelatoService,
-              private router: Router, private bibliotecaService: BibliotecaService) { }
+              private router: Router, private bibliotecaService: BibliotecaService) {
+  }
 
   ngOnInit() {
-    if (this.auth.isLoggedIn()) {
-      this.checkInLibrary();
-    }
+    this.checkInLibrary();
   }
 
   checkInLibrary() {
-    this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel === this.relato.id) != null ? true : false;
+    if (this.bibliotecaService.getCurrentBiblioteca()) {
+      this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel === this.relato.id) !== null ? true : false;
+    } else if (this.auth.isLoggedIn()) {
+      this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(
+        () => {
+          this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel === this.relato.id) !== null ? true : false
+        });
+    } else {
+      this.inLibrary = false;
+    }
   }
 
   updateBiblioteca() {
@@ -65,9 +73,9 @@ export class CardRelatoComponent implements OnInit {
     //     this.router.navigate(['/chatstory/' + this.chatstory.id]);
     //   }
     // }else{
-      if (!this.likeButton.nativeElement.contains(event.target) && !this.addButton.nativeElement.contains(event.target)) {
-        this.router.navigate(['/relato/' + this.relato.id]);
-      }
+    if (!this.likeButton.nativeElement.contains(event.target) && !this.addButton.nativeElement.contains(event.target)) {
+      this.router.navigate(['/relato/' + this.relato.id]);
+    }
     // }
     // this.router.navigate(['/relato/' + this.relato.id]);
   }
@@ -88,11 +96,11 @@ export class CardRelatoComponent implements OnInit {
   }
 
   liked() {
-      if (this.relato.estadistica && this.relato.estadistica.likers && this.auth.isLoggedIn()) {
-        return this.relato.estadistica.likers.indexOf(this.auth.getUser().id) > -1;
-      } else {
-        return false;
-      }
+    if (this.relato.estadistica && this.relato.estadistica.likers && this.auth.isLoggedIn()) {
+      return this.relato.estadistica.likers.indexOf(this.auth.getUser().id) > -1;
+    } else {
+      return false;
+    }
   }
 
   addToLibrary(event) {
@@ -108,4 +116,7 @@ export class CardRelatoComponent implements OnInit {
     }
   }
 
+  showAnyadirToBiblioteca() {
+    return this.auth.isLoggedIn() && (this.bibliotecaService.getCurrentBiblioteca() !== null);
+  }
 }

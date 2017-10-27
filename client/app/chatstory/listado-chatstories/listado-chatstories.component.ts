@@ -37,6 +37,7 @@ export class ListadoChatstoriesComponent implements OnInit {
     const myParams = new URLSearchParams();
     myParams.append('top', '60');
     myParams.append('skip', '' + this.skip);
+    myParams.append('sort', '-fechaCreacion');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatstories => {
       if (this.authenticationService.isLoggedIn()) {
@@ -67,7 +68,7 @@ export class ListadoChatstoriesComponent implements OnInit {
     const myParams = new URLSearchParams();
     myParams.append('top', '60');
     myParams.append('skip', '' + this.skip);
-
+    myParams.append('sort', '-fechaCreacion');
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatstories => {
       for (const c of chatstories) {
         this.paginador.paginador.push(c);
@@ -82,7 +83,6 @@ export class ListadoChatstoriesComponent implements OnInit {
   sortByFilter(event: string) {
     const myParams = new URLSearchParams();
     myParams.append('top', '20');
-
     if (event !== 'categoria') {
       this.sortBy = event;
     }

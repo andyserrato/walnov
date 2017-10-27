@@ -34,15 +34,22 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.auth.isLoggedIn()) {
-      this.checkLibrary();
-    } else {
-      this.allowLibrary = false;
-    }
+    this.checkLibrary();
   }
 
   checkLibrary() {
-    this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.find(chat => chat.id === this.chatstory.id) ? true : false;
+    if (this.bibliotecaService.getCurrentBiblioteca()) {
+      this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.
+      find(chat => chat.id === this.chatstory.id) !== null ? true : false;
+    } else if (this.auth.isLoggedIn()) {
+      this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(
+        () => {
+          this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.
+          find(chat => chat.id === this.chatstory.id) !== null ? true : false;
+        });
+    } else {
+      this.inLibrary = false;
+    }
   }
 
   checkUserChatstory() {
@@ -134,5 +141,9 @@ export class CardChatstoryComponent implements OnInit {
 
   goToUser() {
     this.router.navigateByUrl('user-profile/' + this.chatstory.autor.id + '/chatstories');
+  }
+
+  showAnyadirToBiblioteca() {
+    return this.auth.isLoggedIn() && (this.bibliotecaService.getCurrentBiblioteca() !== null);
   }
 }

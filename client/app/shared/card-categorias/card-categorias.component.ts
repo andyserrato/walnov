@@ -22,7 +22,6 @@ export class CardCategoriasComponent implements OnInit {
 
   getColor(categoria: Categoria) {
     return categoria.color;
-
   }
 
   filtrarCategoria(event, categoria) {
@@ -63,7 +62,6 @@ export class CardCategoriasComponent implements OnInit {
   }
 
   onSortByChange(event) {
-    console.log(event.target.value);
     this.sortByEvent.emit(event.target.value);
   }
 }

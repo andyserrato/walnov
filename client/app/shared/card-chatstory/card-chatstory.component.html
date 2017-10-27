@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="d-flex flex-row align-items-center" style="margin-top:1em">
-    <div  #addButton class="d-flex flex-column align-items-center" *ngIf="this.allowLibrary" [ngClass]="{'user-chatstory': checkUserChatstory()}">
+    <div  #addButton class="d-flex flex-column align-items-center" *ngIf="showAnyadirToBiblioteca()" [ngClass]="{'user-chatstory': checkUserChatstory()}">
       <button type="button" [ngClass]="{'Rectangle-7-Copy-4': !this.inLibrary, 'Rectangle-7-Copy-4-2': this.inLibrary}" (click)='addToLibrary()' name="button" style="cursor:pointer;">
         <div class="btn-details">
           {{this.addLibraryText()}}

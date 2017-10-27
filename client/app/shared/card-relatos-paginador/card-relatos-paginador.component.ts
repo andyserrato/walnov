@@ -15,13 +15,13 @@ export class CardRelatosPaginadorComponent implements OnInit {
   @Input() relatosFiltrados: Array<Relato>;
   @Input() categoria: Categoria;
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
-  bibliotecaLoaded: boolean = false;
+  bibliotecaLoaded = false;
   constructor(private repositorio: RepositorioService, private bibliotecaService: BibliotecaService,
               private auth: AuthenticationService) { }
 
   ngOnInit() {
     this.repositorio.paginadorCardsRelatos = new Paginator(this.relatosFiltrados, this.contenedorBiblioteca, 12, 6);
-    if(this.auth.isLoggedIn()) {
+    if (this.auth.isLoggedIn()) {
       this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(bibl => {
         this.bibliotecaService.updateBiblioteca(bibl);
         this.bibliotecaLoaded = true;

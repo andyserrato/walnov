@@ -7,7 +7,7 @@ import {AuthenticationService} from './authentication.service';
 export class BibliotecaService {
 
   private bibliotecaUrl = '/apiv1/biblioteca';
-  private biblioteca: any;
+  private biblioteca: any = null;
   constructor(
     private http: Http,
     private auth: AuthenticationService) {
@@ -27,7 +27,7 @@ export class BibliotecaService {
   }
 
   getCurrentBiblioteca() {
-    return this.biblioteca;
+      return this.biblioteca;
   }
 
   getChatStoryBibliotecaByCurrentUserId(): Observable<any> {

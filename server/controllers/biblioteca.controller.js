@@ -55,12 +55,13 @@ function getBibliotecaByUserId(req, res) {
     var query = {usuario: userId};
 
     Biblioteca.findOne(query)
-      .populate('chatStories')
-      .populate('relatos')
-      .populate('walls')
-      .populate({path: 'chatStories', populate: {path: 'autor estadistica'}})
-      .populate({path: 'relatos', populate: {path: 'autor estadistica'}})
-      .populate({path: 'walls', populate: {path: 'autor estadistica'}})
+      // todo hablar con dany sobre este funcionamiento
+      // .populate('chatStories')
+      // .populate('relatos')
+      // .populate('walls')
+      // .populate({path: 'chatStories', populate: {path: 'autor estadistica'}})
+      // .populate({path: 'relatos', populate: {path: 'autor estadistica'}})
+      // .populate({path: 'walls', populate: {path: 'autor estadistica'}})
       .exec(function (err, biblioteca) {
         if (err) {
           res.status(400).send({error: 'Error obteniendo biblioteca'});
