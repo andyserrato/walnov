@@ -315,7 +315,7 @@ header{
 /*===== intro ====*/
 .intro{
     height: 100vh;
-    background: url("../../../assets/images/landing/intro-bg.jpg") no-repeat fixed top center/ cover;
+    /*background: url("../../../assets/images/landing/intro-bg.jpg") no-repeat fixed top center/ cover;*/
 }
 
 .intro-content > h1 {

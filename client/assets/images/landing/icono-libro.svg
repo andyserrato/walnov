@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="162" height="125" viewBox="0 0 162 125">
+    <defs>
+        <path id="a" d="M36 0h55v62H36z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(0 28)">
+            <circle cx="47.5" cy="49.5" r="47.5" fill="#FAF1FF"/>
+            <use fill="#A855E4" xlink:href="#a"/>
+            <path stroke="#8427BF" stroke-width="3" d="M37.5 1.5h52v59h-52z"/>
+        </g>
+        <ellipse cx="140.5" cy="21" fill="#FAF1FF" rx="21.5" ry="21"/>
+        <g stroke="#8427BF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path fill="#A855E4" d="M91.092 22.765l45.74-1.905v67.514c-12.184-11.217-45.74 0-45.74 0v-65.61zm45.74-1.905s-3.582-3.86-7.082-3.735l7.082 3.735z"/>
+            <path fill="#FFF" d="M91.092 88.374s-15.78-10.44-45.74 0V21.192S71 10.24 91.091 23.087v65.287zM91.908 23.61v64.764l37.573-13.08V8z"/>
+            <path d="M98.443 32.916l22.053-8.037M98.443 42.56l22.053-8.037M98.443 53.01l22.053-8.038M98.443 63.458l22.053-8.037M98.443 73.103l22.053-8.038M55.97 34.523s14.68-4.726 25.32-.945M55.97 44.972s14.68-4.726 25.32-.945M55.97 55.42s14.68-4.725 25.32-.945M55.97 65.065s14.68-4.725 25.32-.945M55.97 74.71s14.68-4.726 25.32-.945"/>
+        </g>
+    </g>
+</svg>
