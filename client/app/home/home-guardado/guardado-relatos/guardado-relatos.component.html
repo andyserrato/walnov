@@ -1,5 +1,6 @@
 <div #contenedorBiblioteca class="Limite">
-  <div *ngFor= "let relato of repositorio.paginadorCardsRelatos.paginador">
+  <div *ngFor= "let relato of repositorio.paginadorCardsRelatos?.paginador">
     <app-card-relato [vista] = "'guardado'" [relato] = 'relato'></app-card-relato>
+    <app-no-content *ngIf="noContent" [message]="message"></app-no-content>
   </div>
 </div>

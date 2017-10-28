@@ -27,7 +27,11 @@ export class GuardadoChatstoriesComponent implements OnInit {
   obtenerChatStoriesFromBiblioteca() {
     if (this.auth.isLoggedIn()) {
       this.bibliotecaService.getChatStoryBibliotecaByCurrentUserId().subscribe(chatStories => {
-        this.paginador = new Paginator(chatStories.chatStories, this.div, 18, 9);
+        if (chatStories && chatStories.chatStories && chatStories.chatStories.length > 0) {
+          this.paginador = new Paginator(chatStories.chatStories, this.div, 18, 9);
+        } else {
+          this.showNoContent();
+        }
       });
     } else {
       this.showNoContent();

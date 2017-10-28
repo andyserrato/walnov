@@ -88,7 +88,8 @@ export const LANG_EN_TRANS = {
   'shared_verify_user_browse' : 'Browse',
   'shared_verify_user_restrictions' : 'JPG Format - Minimum size',
   'shared_no_content_ver_chatstories': 'Oops! your ChatStories library is empty, What are you waiting for!',
-  'shared_no_content_ver_chatstories_button_text': 'Check ChatStories',
+  'shared_no_content_ver_relatos': 'Oops! your Short Stories library is empty, What are you waiting for!',
+  'shared_no_content_ver_relatos_button_text': 'Check Short Stories',
 
   // modal
   'modal_home': 'Great! Your own community has started',

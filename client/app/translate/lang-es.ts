@@ -94,6 +94,8 @@ export const LANG_ES_TRANS = {
   'shared_verify_user_restrictions' : 'Formato JPG - Tamaño mínimo',
   'shared_no_content_ver_chatstories': 'Aún no tienes Chatstories en tu biblioteca que esperas para agregar uno',
   'shared_no_content_ver_chatstories_button_text': 'Ver ChatStories',
+  'shared_no_content_ver_relatos': 'Aún no tienes Relatos en tu biblioteca que esperas para agregar uno',
+  'shared_no_content_ver_relatos_button_text': 'Ver Relatos',
 
   //modal
   'modal_home': '¡Enhorabuena! Ya has empezado a crear tu comunidad',
