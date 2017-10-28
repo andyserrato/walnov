@@ -46,8 +46,8 @@
             </div>
           </div>
     </div>
-    <div class=" d-flex flex-row align-items-center justify-content-end" *ngIf="showAnyadirToBiblioteca()">
-      <div #addButton class="library-button d-flex align-items-center justify-content-center" [ngClass]="{'added': this.inLibrary}" (click)="addToLibrary($event)">
+    <div class=" d-flex flex-row align-items-center justify-content-end" *ngIf="showAnyadirToBiblioteca()" [ngClass]="{'user-relato': checkUserRelato()}">
+      <div #addButton class="library-button d-flex align-items-center justify-content-center" [ngClass]="{'added': inLibrary}" (click)="addToLibrary($event)">
         {{ !this.inLibrary ? "Añadir a la biblioteca" : "Añadido" }}
       </div>
     </div>

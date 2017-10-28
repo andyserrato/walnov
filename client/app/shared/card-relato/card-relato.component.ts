@@ -31,11 +31,12 @@ export class CardRelatoComponent implements OnInit {
 
   checkInLibrary() {
     if (this.bibliotecaService.getCurrentBiblioteca()) {
-      this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel === this.relato.id) !== null ? true : false;
+      this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel === this.relato.id) ? true : false;
     } else if (this.auth.isLoggedIn()) {
       this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(
-        () => {
-          this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel === this.relato.id) !== null ? true : false
+        (biblioteca) => {
+          this.bibliotecaService.updateBiblioteca(biblioteca);
+          this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().relatos.find(rel => rel === this.relato.id) ? true : false
         });
     } else {
       this.inLibrary = false;
@@ -68,16 +69,15 @@ export class CardRelatoComponent implements OnInit {
   }
 
   handleClick(event) {
-    // if (this.addButton){
-    //   if (!this.addButton.nativeElement.contains(event.target) && !this.likeButton.nativeElement.contains(event.target)) {
-    //     this.router.navigate(['/chatstory/' + this.chatstory.id]);
-    //   }
-    // }else{
-    if (!this.likeButton.nativeElement.contains(event.target) && !this.addButton.nativeElement.contains(event.target)) {
-      this.router.navigate(['/relato/' + this.relato.id]);
+    if (this.addButton) {
+      if (!this.addButton.nativeElement.contains(event.target) && !this.likeButton.nativeElement.contains(event.target)) {
+        this.router.navigate(['/relato/' + this.relato.id]);
+      }
+    } else {
+      if (!this.likeButton.nativeElement.contains(event.target)) {
+        this.router.navigate(['/relato/' + this.relato.id]);
+      }
     }
-    // }
-    // this.router.navigate(['/relato/' + this.relato.id]);
   }
 
   like() {
@@ -118,5 +118,13 @@ export class CardRelatoComponent implements OnInit {
 
   showAnyadirToBiblioteca() {
     return this.auth.isLoggedIn() && (this.bibliotecaService.getCurrentBiblioteca() !== null);
+  }
+
+  checkUserRelato() {
+    if (this.relato.autor) {
+      return this.auth.isLoggedIn() && this.relato.autor.id === this.auth.getUser().id;
+    } else {
+      return false;
+    }
   }
 }

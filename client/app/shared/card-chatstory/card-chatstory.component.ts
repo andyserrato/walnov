@@ -40,12 +40,13 @@ export class CardChatstoryComponent implements OnInit {
   checkLibrary() {
     if (this.bibliotecaService.getCurrentBiblioteca()) {
       this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.
-      find(chat => chat.id === this.chatstory.id) !== null ? true : false;
+      find(chat => chat === this.chatstory.id) ? true : false;
     } else if (this.auth.isLoggedIn()) {
       this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(
-        () => {
+        (biblioteca) => {
+          this.bibliotecaService.updateBiblioteca(biblioteca);
           this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.
-          find(chat => chat.id === this.chatstory.id) !== null ? true : false;
+          find(chat => chat === this.chatstory.id) ? true : false;
         });
     } else {
       this.inLibrary = false;
@@ -85,7 +86,6 @@ export class CardChatstoryComponent implements OnInit {
         this.router.navigate(['/chatstory/' + this.chatstory.id]);
       }
     }
-
   }
 
   like() {
@@ -144,6 +144,10 @@ export class CardChatstoryComponent implements OnInit {
   }
 
   showAnyadirToBiblioteca() {
-    return this.auth.isLoggedIn() && (this.bibliotecaService.getCurrentBiblioteca() !== null);
+    if (this.auth.isLoggedIn() && (this.bibliotecaService.getCurrentBiblioteca() !== null)) {
+      this.checkLibrary();
+    }
+
+    return this.auth.isLoggedIn();
   }
 }
