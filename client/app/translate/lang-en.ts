@@ -87,6 +87,8 @@ export const LANG_EN_TRANS = {
   'shared_verify_user_upload' : 'Great, you are now a Verify User!',
   'shared_verify_user_browse' : 'Browse',
   'shared_verify_user_restrictions' : 'JPG Format - Minimum size',
+  'shared_no_content_ver_chatstories': 'Oops! your ChatStories library is empty, What are you waiting for!',
+  'shared_no_content_ver_chatstories_button_text': 'Check ChatStories',
 
   // modal
   'modal_home': 'Great! Your own community has started',

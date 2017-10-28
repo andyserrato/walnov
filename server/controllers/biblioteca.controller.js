@@ -55,13 +55,6 @@ function getBibliotecaByUserId(req, res) {
     var query = {usuario: userId};
 
     Biblioteca.findOne(query)
-      // todo hablar con dany sobre este funcionamiento
-      // .populate('chatStories')
-      // .populate('relatos')
-      // .populate('walls')
-      // .populate({path: 'chatStories', populate: {path: 'autor estadistica'}})
-      // .populate({path: 'relatos', populate: {path: 'autor estadistica'}})
-      // .populate({path: 'walls', populate: {path: 'autor estadistica'}})
       .exec(function (err, biblioteca) {
         if (err) {
           res.status(400).send({error: 'Error obteniendo biblioteca'});
@@ -97,9 +90,9 @@ function getChatStoriesOnBibliotecaByUserId(req, res) {
   var findChatStoriesBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.find(query)
-      .select('_id usuario chatStories')
-      .populate('chatStories')
+    Biblioteca.findOne(query)
+      .populate({path: 'chatStories', options: { sort: { fechaCreacion: -1 }}})
+      .populate({path: 'chatStories', populate: { path: 'autor estadistica'}, options: { sort: { fechaCreacion: -1 }}})
       .exec(function (err, biblioteca) {
         if (err) {
           res.status(400).send("Ha ocurrido un error");
@@ -221,14 +214,17 @@ function getWallsOnBibliotecaByUserId(req, res) {
   var findWallsBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.find(query, '_id usuario walls', function (err, biblioteca) {
-      if (err) {
-        res.status(400).send("Ha ocurrido un error");
-      }
-      else {
-        res.status(200).send(biblioteca);
-      }
-    });
+    Biblioteca.findOne(query)
+      .populate({path: 'walls', options: { sort: { fechaCreacion: -1 }}})
+      .populate({path: 'walls', populate: { path: 'autor estadistica'}, options: { sort: { fechaCreacion: -1 }}})
+      .exec(function (err, biblioteca) {
+        if (err) {
+          res.status(400).send("Ha ocurrido un error");
+        }
+        else {
+          res.status(200).send(biblioteca);
+        }
+      });
   }
 }
 
@@ -342,14 +338,17 @@ function getRelatosOnBibliotecaByUserId(req, res) {
   var findRelatosBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.find(query, '_id usuario relatos', function (err, biblioteca) {
-      if (err) {
-        res.status(400).send("Ha ocurrido un error");
-      }
-      else {
-        res.status(200).send(biblioteca);
-      }
-    });
+    Biblioteca.findOne(query)
+      .populate({path: 'relatos', options: { sort: { fechaCreacion: -1 }}})
+      .populate({path: 'relatos', populate: { path: 'autor estadistica'}, options: { sort: { fechaCreacion: -1 }}})
+      .exec(function (err, biblioteca) {
+        if (err) {
+          res.status(400).send("Ha ocurrido un error");
+        }
+        else {
+          res.status(200).send(biblioteca);
+        }
+      });
   }
 }
 

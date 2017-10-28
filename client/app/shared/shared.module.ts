@@ -28,6 +28,7 @@ import { NavLanguageSelectComponent } from './nav-language-select/nav-language-s
 import { NavBuscadorComponent } from './nav-buscador/nav-buscador.component';
 import { NavNotificacionesComponent } from './nav-notificaciones/nav-notificaciones.component';
 import { CardNotificacionComponent } from './card-notificacion/card-notificacion.component';
+import { NoContentComponent } from './no-content/no-content.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -57,6 +58,7 @@ import { CardNotificacionComponent } from './card-notificacion/card-notificacion
     NavBuscadorComponent,
     NavNotificacionesComponent,
     CardNotificacionComponent,
+    NoContentComponent,
     // TRANSLATION_PROVIDERS,
     TranslatePipe,
     // TranslateService
@@ -86,7 +88,8 @@ import { CardNotificacionComponent } from './card-notificacion/card-notificacion
     NavLanguageSelectComponent,
     NavBuscadorComponent,
     NavNotificacionesComponent,
-    CardNotificacionComponent
+    CardNotificacionComponent,
+    NoContentComponent
   ],
   providers: [
     TRANSLATION_PROVIDERS,

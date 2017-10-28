@@ -147,8 +147,16 @@ function getChatStories(req, res) {
         query.sort('-estadistica.likes');
         query.sort('-estadistica.vecesCompartido');
         query.sort('-estadistica.vecesVisto');
+      } else if (sortQueries[i].indexOf('fechaModificacion') === -1) {
+        query.sort('-fechaModificacion');
+      } else if (sortQueries[i].indexOf('fechaCreacion') === -1) {
+        query.sort('-fechaCreacion');
       }
     }
+  } else {
+    console.log('dfjksdlfjsdlFJKDLSFJSKDLFJSKDFJKLSDJFKLSDJFKLJSDKLFJSDKLJFKLSDJFLDASDASDAS');
+    query.sort('-fechaModificacion');
+    query.sort('-fechaCreacion');
   }
 
   // paginacion
@@ -183,7 +191,7 @@ function getChatStories(req, res) {
   function ejecutarQuery() {
     query.exec(function (err, chatStories) {
       if (err) {
-        res.status(400).send(err);
+        res.status(400).send({error: err});
       } else {
         res.status(200).send(chatStories);
       }

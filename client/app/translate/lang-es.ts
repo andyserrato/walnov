@@ -92,6 +92,8 @@ export const LANG_ES_TRANS = {
   'shared_verify_user_upload' : '¡Enhorabuena, eres un usuario verficado!',
   'shared_verify_user_browse' : 'Busca en tu ordenador',
   'shared_verify_user_restrictions' : 'Formato JPG - Tamaño mínimo',
+  'shared_no_content_ver_chatstories': 'Aún no tienes Chatstories en tu biblioteca que esperas para agregar uno',
+  'shared_no_content_ver_chatstories_button_text': 'Ver ChatStories',
 
   //modal
   'modal_home': '¡Enhorabuena! Ya has empezado a crear tu comunidad',

@@ -1,3 +1,4 @@
 <div #div class="paginador d-flex justify-content-center flex-wrap">
   <app-card-chatstory *ngFor="let chatstory of this.paginador?.paginador" [chatstory]="chatstory"></app-card-chatstory>
+  <app-no-content *ngIf="noContent" [message]="message"></app-no-content>
 </div>
