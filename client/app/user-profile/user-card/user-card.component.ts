@@ -1,8 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import {AuthenticationService} from "../../services/authentication.service";
-import {UserService} from "../../services/user.service";
-import {RegisterPopoverService} from "../../services/register-popover.service";
-import {AlertService} from "../../services/alert.service";
+import { Component, Input, OnInit} from '@angular/core';
+import {AuthenticationService} from '../../services/authentication.service';
+import {UserService} from '../../services/user.service';
+import {RegisterPopoverService} from '../../services/register-popover.service';
+import {AlertService} from '../../services/alert.service';
 
 @Component({
   selector: 'app-user-card',
