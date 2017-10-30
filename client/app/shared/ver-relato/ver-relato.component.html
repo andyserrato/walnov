@@ -18,8 +18,8 @@
         {{getNumber(relato?.estadistica?.vecesVisto)}}
       </div>
       <div class="d-flex flex column" style="margin-right:7px;">
-        <div class="Oval">
-          <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:6px;"></i>
+        <div class="Oval" (click)="like()">
+          <i class="fa" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}" style="margin-top:6px;cursor: pointer;"></i>
         </div>
       </div>
       <div class="d-flex flex column" style="margin-top:2px;">
