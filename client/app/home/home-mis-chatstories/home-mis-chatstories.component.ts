@@ -18,6 +18,9 @@ export class HomeMisChatstoriesComponent implements OnInit {
   paginador: Paginator;
   visible = false;
   skip = 0;
+  noContent = false;
+  message: any;
+
   constructor(private chatservice: ChatstoryService,
               private translate: TranslateService,
               private authenticationService: AuthenticationService,
@@ -28,8 +31,11 @@ export class HomeMisChatstoriesComponent implements OnInit {
   ngOnInit() {
     // Inicialización de variables
     this.chats = new Array<any>();
+    this.paginador = new Paginator(this.chats, this.div, 27, 9);
     if (this.authenticationService.isLoggedIn()) {
       this.firstQuery();
+    } else {
+      this.showNoContent();
     }
 
   }
@@ -43,18 +49,23 @@ export class HomeMisChatstoriesComponent implements OnInit {
     myParams.append('activo', 'true');
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
-      this.chats = chatStories;
-      if (!this.bibliotecaService.getCurrentBiblioteca()) {
-        this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
-          this.bibliotecaService.updateBiblioteca(biblioteca);
+      if (chatStories && chatStories.length > 0) {
+        console.log('entramos');
+        this.chats = chatStories;
+        if (!this.bibliotecaService.getCurrentBiblioteca()) {
+          this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+            this.bibliotecaService.updateBiblioteca(biblioteca);
+            this.paginador = new Paginator(this.chats, this.div, 27, 9);
+            this.visible = true;
+            this.skip += 27;
+          });
+        } else {
           this.paginador = new Paginator(this.chats, this.div, 27, 9);
           this.visible = true;
           this.skip += 27;
-        });
-      }else {
-        this.paginador = new Paginator(this.chats, this.div, 27, 9);
-        this.visible = true;
-        this.skip += 27;
+        }
+      } else {
+        this.showNoContent();
       }
     }, error => {
     });
@@ -89,6 +100,12 @@ export class HomeMisChatstoriesComponent implements OnInit {
 
   scrollTop() {
     this.paginador.container.nativeElement.scrollTop = 0;
+  }
+
+  showNoContent() {
+    this.noContent = true;
+    this.message = { text: this.translate.instant('shared_no_content_ver_chatstories'),
+      enlace: '/chatstories', buttonText: this.translate.instant('shared_no_content_ver_chatstories_button_text') };
   }
 
 }

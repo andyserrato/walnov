@@ -21,7 +21,6 @@ export class GuardadoRelatosComponent implements OnInit {
               private translate: TranslateService) {
   }
 
-  // todo revisar esto
   ngOnInit() {
     this.obtenerrelatosFromBiblioteca();
   }
