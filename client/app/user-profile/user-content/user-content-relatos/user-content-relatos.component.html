@@ -1,5 +1,10 @@
 <div #contenedorBiblioteca class="Limite">
-  <div *ngFor= "let relato of repositorio.paginadorCardsRelatos.paginador">
+  <div *ngFor= "let relato of repositorio.paginadorCardsRelatos?.paginador">
     <app-card-relato [vista] = "'userProfile'" [relato] = 'relato'></app-card-relato>
   </div>
+  <app-no-content *ngIf="noContent" [message]="message"></app-no-content>
+</div>
+<div class="d-flex flex-row align-items-center justify-content-center">
+  <div class="load-more-button d-flex align-items-center justify-content-center" *ngIf="repositorio.paginadorCardsRelatos?.final" (click)="loadMore()"><span class="fa fa-plus"></span></div>
+  <div class="load-more-button d-flex align-items-center justify-content-center" *ngIf="!repositorio.paginadorCardsRelatos?.inicio" (click)="scrollTop()"><span class="fa fa-chevron-up"></span></div>
 </div>

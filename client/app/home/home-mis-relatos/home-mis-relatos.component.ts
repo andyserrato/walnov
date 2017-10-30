@@ -34,7 +34,6 @@ export class HomeMisRelatosComponent implements OnInit {
     } else {
       this.showNoContent();
     }
-
   }
 
   firstQuery() {

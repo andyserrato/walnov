@@ -50,7 +50,6 @@ export class HomeMisChatstoriesComponent implements OnInit {
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
       if (chatStories && chatStories.length > 0) {
-        console.log('entramos');
         this.chats = chatStories;
         if (!this.bibliotecaService.getCurrentBiblioteca()) {
           this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
