@@ -25,7 +25,7 @@ section {
 
 .intro {
   // width: 1280px;
-  height: 710px !important;
+  height: 765px !important;
   position: relative;
   z-index: 0;
   padding: 0 !important;
@@ -105,6 +105,8 @@ section {
 
 .mensaje-2 {
   font-size: 38px;
+  // fonte
+  line-height: 1.4;
 }
 
 .mensaje-1 {
@@ -162,6 +164,11 @@ section {
     height: 615px !important;
   }
 
+  .que-es {
+    // width: 1280px;
+    height: 615px !important;
+  }
+
   .triangulos-principal {
 
     top: 160px !important;
@@ -197,6 +204,11 @@ section {
     height: 650px !important;
   }
 
+  .que-es {
+    // width: 1280px;
+    height: 615px !important;
+  }
+
 }
 
 .no-padding {
@@ -211,13 +223,33 @@ section {
 
 .footer-intro{
     position: absolute;
-    bottom: -144px;
+    bottom: -100px;
     width: 120%;
     left: 0px;
-    z-index: 5;
+    z-index: 4;
     height: 240px;
     background-color: white;
-    transform: rotate(-7deg);
+    transform: rotate(-5deg);
+}
+
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .footer-intro {
+      bottom: -106px !important;
+
+  }
+
+  .que-es {
+    height: 660px !important;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .footer-intro {
+      bottom: -160px !important;
+
+  }
+
 }
 
 .desplegable {
@@ -249,7 +281,7 @@ section {
 
 .foto-Landing {
   position: absolute;
-  top: 0;
+  // top: 0;
   z-index: 2;
   opacity: 0.3;
   width: 100%;
@@ -261,7 +293,7 @@ section {
   position: absolute;
   // bottom: 0;
   top: 142px;
-  z-index: 6;
+  z-index: 5;
   // opacity: 0.3;
   width: 100%;
   // height: 675px;
@@ -270,7 +302,106 @@ section {
 
 @media (max-width: 1199px) {
   .foto-Landing {
+    width: initial !important;
     height: 125% !important;
     // object-fit: contain;
   }
+}
+
+@media (max-width: 1439px) {
+  .foto-Landing {
+    top:0 !important;
+    // object-fit: contain;
+  }
+}
+
+.que-es {
+  // width: 1280px;
+  height: 685px;
+  position: relative;
+  z-index: 0;
+  padding: 0 !important;
+  overflow: hidden;
+  // padding-top: 40px !important;
+  // height: initial !important;
+  // opacity: 0.87;
+  // mix-blend-mode: hard-light;
+  // border: 3px solid #555 !important;
+  background-color: white !important;
+  background-image: none !important;
+
+}
+
+.que-es-titulo {
+  font-family: Raleway;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: $main-1;
+
+}
+
+.seccion-titulo {
+  margin-top: 30px;
+  margin-bottom: 12px;
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: $main-1;
+}
+
+.seccion-contenido {
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.28;
+  text-align: center;
+  color: #6c626f;
+
+}
+
+.Group-6 {
+  width: 162px;
+  height: 125px;
+  object-fit: contain;
+}
+
+.Group-3 {
+  width: 134px;
+  height: 104px;
+  object-fit: contain;
+}
+
+.Group-15 {
+  width: 144px;
+  height: 111px;
+  object-fit: contain;
+}
+
+.footer-que-es{
+    position: absolute;
+    bottom: -100px;
+    width: 120%;
+    left: 0px;
+    z-index: 4;
+    height: 240px;
+    background-image: linear-gradient(to bottom, #8429ac, $main-2);
+    transform: rotate(-5deg);
+}
+
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .footer-que-es {
+      bottom: -106px !important;
+
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .footer-que-es {
+      bottom: -160px !important;
+
+  }
+
 }
