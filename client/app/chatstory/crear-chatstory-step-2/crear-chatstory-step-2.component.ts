@@ -53,7 +53,7 @@ export class CrearChatstoryStep2Component implements OnInit, AfterViewChecked {
   }
 
   newMessage(character: any, text: any, preview: HTMLElement, input) {
-    if (character.value && character.value !== 'none' && text.value) {
+    if (character.value && character.value !== 'none' && (text.value || this.message.urlImagen)) {
       const message = new ChatstoryMessage(character.value, text.value, this.message.urlImagen, this.message.delay);
       this.chatStory.chats.push(message);
       this.message = new ChatstoryMessage(character.value, '');
