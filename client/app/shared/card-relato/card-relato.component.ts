@@ -69,15 +69,7 @@ export class CardRelatoComponent implements OnInit {
   }
 
   handleClick(event) {
-    if (this.addButton) {
-      if (!this.addButton.nativeElement.contains(event.target) && !this.likeButton.nativeElement.contains(event.target)) {
-        this.router.navigate(['/relato/' + this.relato.id]);
-      }
-    } else {
-      if (!this.likeButton.nativeElement.contains(event.target)) {
-        this.router.navigate(['/relato/' + this.relato.id]);
-      }
-    }
+    this.router.navigate(['/relato/' + this.relato.id]);
   }
 
   like() {
