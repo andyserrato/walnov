@@ -144,6 +144,74 @@
       </div>
 
   </section>
+
+  <!-- final de que es -->
+
+  <!-- inicio de lee -->
+  <section class="lee">
+
+    <div class="footer-lee">
+    </div>
+
+      <div class="container" style="z-index:99 !important;">
+
+        <div class="row">
+          <div class="col-12" style="padding-left:70px; padding-right:70px;">
+            <div class="d-flex flex-row">
+              <div class="d-flex flex-column" style="width:100%;">
+                <div class="d-flex flex-row align-self-center lee-titulo">
+                  LEE
+
+                </div>
+                <div class="d-flex flex-row align-self-center">
+                  <img src="assets/images/landing/subrayado-titulos.svg"
+                    class="Group-16">
+
+                </div>
+
+              </div>
+            </div>
+
+              <div class=" lee-contenido" style="margin-bottom:70px;">
+                Encuentra las creaciones que más te gusten filtrando el contenido por <strong>categorías.</strong>
+              </div>
+
+            <div class="d-flex flex-row justify-content-start flex-wrap cuadrados-categorias">
+              <div class="" *ngFor="let categoria of repositorio.categoriasAL">
+                <div class="categoria-cuadrado" style="cursor:pointer; margin-right:25px; margin-bottom:25px;">
+                  <div class="Fondo-Imagen">
+                  </div>
+                  <img class="img-fluid imagen-categoria" src="https://lorempixel.com/237/222" alt="">
+                  <div class="capa-color" [style.backgroundColor] = 'getBackColor(categoria)'>
+                  </div>
+                  <div class="categoria-contenido d-flex flex-row justify-content-center">
+                    <div class="d-flex flex-column justify-content-center" style="height:100%;">
+                      <div class="categoria-titulo">
+                        {{categoria.nombre | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="mas-categorias">
+                <div class="d-flex flex-row justify-content-center" style="height:100%;">
+                  <div class="d-flex flex-column justify-content-center" style="height:100%;">
+                    <div class="categoria-titulo">
+                      Y PRONTO MUCHAS MÁS…
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+  </section>
+  <!-- final de lee -->
 </div>
 
 <!--======== end intro =========-->
