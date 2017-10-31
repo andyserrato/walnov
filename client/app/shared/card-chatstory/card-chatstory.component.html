@@ -1,9 +1,12 @@
-<div class="d-flex flex-column Rectangle-7" (click)="loadChatstory($event)">
+<div class="d-flex flex-column Rectangle-7" >
   <div class="d-flex flex-row">
     <div class="d-flex flex-column">
       <div class="d-flex flex-row">
-        <div [ngStyle]="{'background-image': 'url('+this.chatstory.urlImagen+')'}" class="Chat-Image">
+        <div [ngStyle]="{'background-image': 'url('+this.chatstory.urlImagen+')'}" class="Chat-Image" (click)="loadChatstory($event)">
           <div class="Chat-Filter" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(0, 0, 0, 0), '+getColor()+')'}"></div>
+          <div class="Fade-Black d-flex align-items-center justify-content-center" title="Ver Chatstory">
+            <i class="fa fa-eye"></i>
+          </div>
         </div>
         
       </div>
