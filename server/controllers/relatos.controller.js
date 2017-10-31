@@ -142,9 +142,9 @@ function crearNuevaOpinion(req, resp) {
   Relato.findOneAndUpdate({_id: peticion.idRelato}, {$push: {opiniones: nuevaOpinionRelato}}, {new: true})
     .populate('estadistica autor opiniones opiniones.autor')
     .exec(function (err, relato) {
-    let nuevaNotificacionOpinionRelato = GestorNotificaciones.crearNotificacionNuevaOpinionRelato(nuevaOpinionRelato.texto, new Date(), nuevaOpinionRelato.autor, nuevaOpinionRelato.autorNombre, relato._id, relato.tituloRelato);
-    if (!peticion.seguidores) {
-        User.findOne({id: nuevaOpinionRelato.autor}, function (err, usu){
+      let nuevaNotificacionOpinionRelato = GestorNotificaciones.crearNotificacionNuevaOpinionRelato(nuevaOpinionRelato.texto, new Date(), nuevaOpinionRelato.autor, nuevaOpinionRelato.autorNombre, relato._id, relato.tituloRelato);
+      if (!peticion.seguidores) {
+        User.findOne({id: nuevaOpinionRelato.autor}, function (err, usu) {
           if (err) {
             resp.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
           } else {
@@ -152,11 +152,11 @@ function crearNuevaOpinion(req, resp) {
             _devolverResultados(err, relato, resp);
           }
         });
-    } else {
-      GestorNotificaciones.addNotificacionFeed(nuevaNotificacionOpinionRelato, peticion.seguidores);
-      _devolverResultados(err, relato, resp);
-    }
-  });
+      } else {
+        GestorNotificaciones.addNotificacionFeed(nuevaNotificacionOpinionRelato, peticion.seguidores);
+        _devolverResultados(err, relato, resp);
+      }
+    });
 }
 
 function _getFiltrosQuery(opciones, siguiendo) {
@@ -365,38 +365,32 @@ function updateLike(req, res) {
 }
 
 function reportarOpinion(req, res) {
-  res.send('hola');
   let opinionId = req.body.opinionId;
   let idUsuario = req.body.usuarioId;
 
   if (opinionId === undefined || idUsuario === undefined) {
-    res.status(404).send({ error: 'El id del relato y el id del usuario son campos requeridos' });
+    res.status(404).send({error: 'El id del relato y el id del usuario son campos requeridos'});
   } else {
     OpinionRelato.findById(id)
       .exec(function (err, opinion) {
         if (err) {
           res.status(400).send({error: err});
+        } else if (opinion === null) {
+          res.status(404).send({error: 'No se encuentra la opinión'});
+        } else if (idUsuario && opinion.reporters.indexOf(idUsuario) === -1) {
+          opinion.reporters.push(idUsuario);
+          opinion.reports++;
+          opinion.save(function (err) {
+            if (err) {
+              res.status(400).send({error: err});
+            } else {
+              res.status(200).send({mensaje: 'reportado'});
+            }
+
+          });
+        } else {
+          res.status(200).send({mensaje: 'Already reported'});
         }
-
-        if (opinion === null)
-          relato.estadistica = new Estadistica();
-        // Así comprobamos que el puto ya le ha dado a like
-        if (idUsuario && relato.estadistica.likers.indexOf(idUsuario) === -1) {
-          relato.estadistica.likers.push(idUsuario);
-          relato.estadistica.likes++;
-          if (relato && relato.estadistica && relato.estadistica.likes && (relato.estadistica.likes / 50 > 1 )) {
-            // TODO notificacion  de cantidad aquí
-          }
-
-          // TODO notificación de que un puto le ha dado a like aquí
-        }
-
-        relato.estadistica.save(function (err, resultados) {
-          if (err)
-            res.send(err);
-          else
-            res.send(resultados);
-        })
       });
   }
 }
