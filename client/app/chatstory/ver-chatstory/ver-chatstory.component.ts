@@ -9,6 +9,8 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ChatstoryService} from '../../services/chatstory.service';
 import {TranslateService} from '../../translate';
 import {UserService} from '../../services/user.service';
+import {ShareButtonsService} from 'ngx-sharebuttons';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ver-chatstory',
@@ -42,7 +44,9 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
               private route: ActivatedRoute,
               private chatstoryService: ChatstoryService,
               private translate: TranslateService,
-              private userService: UserService) {
+              private userService: UserService,
+              private location: Location,
+              public share: ShareButtonsService) {
 
 
   }
@@ -95,9 +99,6 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   }
 
   showAnyadirToBiblioteca() {
-    console.log('biblioteca' + this.bibliotecaService.getCurrentBiblioteca());
-    console.log('showAnyadirToBiblioteca ' + (this.auth.isLoggedIn() && (this.bibliotecaService.getCurrentBiblioteca() !== null)));
-
     if (this.auth.isLoggedIn() && (this.bibliotecaService.getCurrentBiblioteca() === null)) {
       this.checkLibrary();
     }
@@ -128,9 +129,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
       isUserChatStory = this.auth.isLoggedIn() && this.chatStory.autor.id === this.auth.getUser().id;
     }
 
-    console.log('isUserCS ' + isUserChatStory);
     return isUserChatStory;
-
   }
 
   updateLibrary() {
@@ -236,4 +235,9 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
 
   }
 
+  onCompartir(redSocial: string) {
+    if (this.auth.isLoggedIn()) {
+      this.chatstoryService.updateContadorCompartido(this.chatStory.id, this.auth.getUser().id, redSocial);
+    }
+  }
 }

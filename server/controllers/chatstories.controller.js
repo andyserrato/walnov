@@ -17,9 +17,9 @@ router.get('/', getChatStories);
 
 router.get('/:id', getChatStoryById);
 router.put('/like', updateLike);
+router.put('/compartido', updateCompartido);
 router.put('/', updateChatStory);
 
-router.put('/:id/compartido', updateCompartido);
 router.put('/:id/visitas', updateVisitas);
 
 router.get('/usuario/:userName', getChatStoriesByUserName);
@@ -167,23 +167,28 @@ function getChatStories(req, res) {
 
   if (req.query && req.query.autor && req.query.timeLine && (req.query.timeLine === 'followers' || req.query.timeLine === 'following')) {
     User.findById(req.query.autor, (err, user) => {
-      if (err) {
+      if(err) {
         res.status(400).send(err);
       }
       else {
-        if (req.query.timeLine === 'followers' && user.seguidores.length > 0) {
-          query.where('autor').in(user.seguidores);
-          ejecutarQuery();
-        } else if (req.query.timeLine === 'following' && user.siguiendo.length > 0) {
-          query.where('autor').in(user.seguidores);
-          ejecutarQuery();
-        } else if (req.query.timeLine === 'following' && user.siguiendo.length === 0) {
-          res.status(400).send(new Error("No estas siguiendo a nadie"));
-        } else if (req.query.timeLine === 'followers' && user.seguidores.length === 0) {
-          res.status(400).send(new Error("No tienes seguidores"));
-        }
-      }
-    });
+        if(req.query.timeLine === 'followers' && user.seguidores.length > 0
+  )
+    {
+      query.where('autor').in(user.seguidores);
+      ejecutarQuery();
+    }
+  else
+    if (req.query.timeLine === 'following' && user.siguiendo.length > 0) {
+      query.where('autor').in(user.seguidores);
+      ejecutarQuery();
+    } else if (req.query.timeLine === 'following' && user.siguiendo.length === 0) {
+      res.status(400).send(new Error("No estas siguiendo a nadie"));
+    } else if (req.query.timeLine === 'followers' && user.seguidores.length === 0) {
+      res.status(400).send(new Error("No tienes seguidores"));
+    }
+  }
+  })
+    ;
   } else {
     ejecutarQuery();
   }
@@ -274,64 +279,79 @@ function updateVisitas(req, res) {
 }
 
 function updateCompartido(req, res) {
-  let id = req.params.id;
-  let idUsuario = req.body.usuario.id;
+  let id = req.body.chatStoryId;
+  let idUsuario = req.body.usuarioId;
   let redSocial = req.body.redSocial;
-  ChatStory.findById(id)
-    .populate('estadistica autor')
-    .exec(function (err, chatStory) {
 
-      if (err)
-        res.status(400).send('Ha ocurrido un eror');
+  if (id === undefined || idUsuario === undefined || redSocial === undefined) {
 
-      if (chatStory) {
-        chatStory.estadistica.vecesCompartido++;
-
-        if (redSocial && (redSocial === 'facebook') && chatStory) {
-          chatStory.estadistica.vecesCompartidoFacebook++;
-
-          if (idUsuario && chatStory.estadistica.compartidoFacebook.indexOf(idUsuario) === -1) {
-            chatStory.estadistica.compartidoFacebook.push(idUsuario);
-          }
-
-          if (chatStory.estadistica.vecesCompartidoFacebook / 50 > 1) {
-            // TODO notificacion  de cantidad aquí
-          }
-
-        } else if (redSocial && (redSocial === 'twitter')) {
-          chatStory.estadistica.vecesCompartidoTwitter++;
-
-          if (idUsuario && chatStory.estadistica.compartidoTwitter.indexOf(idUsuario) === -1) {
-            chatStory.estadistica.compartidoTwitter.push(idUsuario);
-          }
-
-          if (chatStory.estadistica.vecesCompartidoTwitter / 50 > 1) {
-            // TODO notificacion  de cantidad aquí
-          }
-
-        } else if (redSocial && (redSocial === 'google')) {
-          chatStory.estadistica.vecesCompartidoGoogle++;
-
-          if (idUsuario && chatStory.estadistica.compartidoGoogle.indexOf(idUsuario) === -1) {
-            chatStory.estadistica.compartidoGoogle.push(idUsuario);
-          }
-
-          if (chatStory.estadistica.vecesCompartidoGoogle / 50 > 1) {
-            // TODO notificacion  de cantidad aquí
-          }
-
-        }
-      }
-
-      // TODO notificación de que un puto le ha dado a compartir aquí
-
-      chatStory.estadistica.save(function (err, resultados) {
-        if (err)
-          res.send(err);
-        else
-          res.send(resultados);
-      })
+    res.status(400).send({
+      error: 'ERROR PARÁMETROS MALFORMADOS'
     });
+  } else {
+    ChatStory.findById(id)
+      .populate('estadistica autor')
+      .exec(function (err, chatStory) {
+
+        if (err) {
+          res.status(400).send({
+            error: 'ERROR'
+          });
+        }
+
+        if (chatStory) {
+          chatStory.estadistica.vecesCompartido++;
+
+          if (redSocial && (redSocial === 'facebook') && chatStory) {
+            chatStory.estadistica.vecesCompartidoFacebook++;
+
+            if (idUsuario && chatStory.estadistica.compartidoFacebook.indexOf(idUsuario) === -1) {
+              chatStory.estadistica.compartidoFacebook.push(idUsuario);
+            }
+
+            if (chatStory.estadistica.vecesCompartidoFacebook / 50 > 1) {
+              // TODO notificacion  de cantidad aquí
+            }
+
+          } else if (redSocial && (redSocial === 'twitter')) {
+            chatStory.estadistica.vecesCompartidoTwitter++;
+
+            if (idUsuario && chatStory.estadistica.compartidoTwitter.indexOf(idUsuario) === -1) {
+              chatStory.estadistica.compartidoTwitter.push(idUsuario);
+            }
+
+            if (chatStory.estadistica.vecesCompartidoTwitter / 50 > 1) {
+              // TODO notificacion  de cantidad aquí
+            }
+
+          } else if (redSocial && (redSocial === 'google')) {
+            chatStory.estadistica.vecesCompartidoGoogle++;
+
+            if (idUsuario && chatStory.estadistica.compartidoGoogle.indexOf(idUsuario) === -1) {
+              chatStory.estadistica.compartidoGoogle.push(idUsuario);
+            }
+
+            if (chatStory.estadistica.vecesCompartidoGoogle / 50 > 1) {
+              // TODO notificacion  de cantidad aquí
+            }
+
+          }
+        }
+
+        // TODO notificación de que un puto le ha dado a compartir aquí
+
+        chatStory.estadistica.save(function (err, resultados) {
+          if (err) {
+            res.status(400).send({
+              error: err
+            });
+          }
+          else
+            res.send(resultados);
+        })
+      });
+  }
+
 }
 
 function updateLike(req, res) {
