@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { RepositorioService } from '../services/repositorio.service';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private repositorio: RepositorioService) { }
 
   ngOnInit() {
   }
 
+  getBackColor(categoria) {
+      return categoria.color;
+  }
 }
