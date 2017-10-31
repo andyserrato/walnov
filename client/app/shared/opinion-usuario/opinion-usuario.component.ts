@@ -13,8 +13,8 @@ export class OpinionUsuarioComponent implements OnInit {
   ngOnInit() {
   }
 
-  actualizarComentario($event: Event) {
-    console.log(event);
+  reportar() {
+
   }
 
 }

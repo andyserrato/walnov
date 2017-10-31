@@ -17,6 +17,7 @@ router.post("/", crearNuevoRelato);
 router.get("/", getRelatos);
 router.get("/:id", getRelatoById);
 router.put('/like', updateLike);
+router.put('/reportOpinion', reportarOpinion);
 router.put('/', updateRelato);
 router.post("/opinion", crearNuevaOpinion);
 router.post("/responderOpinion", responderOpinion);
@@ -341,6 +342,43 @@ function updateLike(req, res) {
       .populate('estadistica autor')
       .exec(function (err, relato) {
         if (relato.estadistica === null)
+          relato.estadistica = new Estadistica();
+        // Así comprobamos que el puto ya le ha dado a like
+        if (idUsuario && relato.estadistica.likers.indexOf(idUsuario) === -1) {
+          relato.estadistica.likers.push(idUsuario);
+          relato.estadistica.likes++;
+          if (relato && relato.estadistica && relato.estadistica.likes && (relato.estadistica.likes / 50 > 1 )) {
+            // TODO notificacion  de cantidad aquí
+          }
+
+          // TODO notificación de que un puto le ha dado a like aquí
+        }
+
+        relato.estadistica.save(function (err, resultados) {
+          if (err)
+            res.send(err);
+          else
+            res.send(resultados);
+        })
+      });
+  }
+}
+
+function reportarOpinion(req, res) {
+  res.send('hola');
+  let opinionId = req.body.opinionId;
+  let idUsuario = req.body.usuarioId;
+
+  if (opinionId === undefined || idUsuario === undefined) {
+    res.status(404).send({ error: 'El id del relato y el id del usuario son campos requeridos' });
+  } else {
+    OpinionRelato.findById(id)
+      .exec(function (err, opinion) {
+        if (err) {
+          res.status(400).send({error: err});
+        }
+
+        if (opinion === null)
           relato.estadistica = new Estadistica();
         // Así comprobamos que el puto ya le ha dado a like
         if (idUsuario && relato.estadistica.likers.indexOf(idUsuario) === -1) {
