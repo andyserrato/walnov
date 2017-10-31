@@ -11,37 +11,43 @@
       <div class="shape-8"></div>
     </div>
     <div class="img-profile" [ngStyle]="{'background-image': 'url('+this.user?.perfil.foto_perfil+')'}">
-      <span *ngIf = "this.user?.perfil.descripcion" class="tooltiptext">{{this.user?.perfil.descripcion}}</span>
+      <span *ngIf="this.user?.perfil.descripcion" class="tooltiptext">{{this.user?.perfil.descripcion}}</span>
       <!-- <div class="message-img">
         <span class="fa fa-comment"></span>
       </div> -->
     </div>
     <div class="info-container">
-          <span class="user-name">{{this.user?.perfil.nombre}}</span>
-        <div class="status">
-          <div class="status-text">{{this.user?.perfil.numWallsCreated}} Walls</div>
-          <div class="status-text">{{this.user?.perfil.numChatStoriesCreated}} Chatstories</div>
-          <div class="status-text">{{this.user?.perfil.numRelatosCreated}} {{'all_relatos_cortos' | translate}}</div>
-        </div>
-        <div class="button">
-          {{'user_profile_conectar' | translate}}
-        </div>
-        <div class="button-2">
-          {{'user_profile_message' | translate}}
-        </div>
+      <span class="user-name">{{this.user?.perfil.nombre}}</span>
+      <div class="status">
+        <div class="status-text">{{this.user?.perfil.numWallsCreated}} Walls</div>
+        <div class="status-text">{{this.user?.perfil.numChatStoriesCreated}} Chatstories</div>
+        <div class="status-text">{{this.user?.perfil.numRelatosCreated}} {{'all_relatos_cortos' | translate}}</div>
+      </div>
+      <div class="button" *ngIf="!checkUser() && !isAlreadyFollowed()" (click)="follow()">
+        {{'user_profile_conectar' | translate}}
+      </div>
+      <div class="button-2" *ngIf="!checkUser() && isAlreadyFollowed()" (click)="unFollow()">
+        {{'all_siguiendo' | translate}}
+      </div>
+      <div class="button-2">
+        {{'user_profile_message' | translate}}
+      </div>
+      <div class="button">
+        {{'all_donar' | translate}}
+      </div>
     </div>
     <div class="followers-container">
       <div class="number-followers-container">
         <span class="number-followers">34.954 {{'user_profile_seguidores' | translate}}</span>
       </div>
       <div class="followers">
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
       </div>
       <div class="all-followers-button">{{'user_profile_todos' | translate}}</div>
@@ -72,31 +78,31 @@
       </div>
     </div>
     <div class="info-container">
-          <span class="user-name">MalenaKrueger</span>
-        <div class="status">
-          <div class="status-text">23 Walls</div>
-          <div class="status-text">4 Chatstories</div>
-          <div class="status-text">8 {{'all_relatos_cortos' | translate}}</div>
-        </div>
-        <div class="button">
-          {{'user_profile_conectar' | translate}}
-        </div>
-        <div class="button-2">
-          {{'user_profile_message' | translate}}
-        </div>
+      <span class="user-name">MalenaKrueger</span>
+      <div class="status">
+        <div class="status-text">23 Walls</div>
+        <div class="status-text">4 Chatstories</div>
+        <div class="status-text">8 {{'all_relatos_cortos' | translate}}</div>
+      </div>
+      <div class="button">
+        {{'user_profile_conectar' | translate}}
+      </div>
+      <div class="button-2">
+        {{'user_profile_message' | translate}}
+      </div>
     </div>
     <div class="followers-container">
       <div class="number-followers-container">
         <span class="number-followers">34.954 {{'user_profile_seguidores' | translate}}</span>
       </div>
       <div class="followers">
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
       </div>
       <div class="all-followers-button">{{'user_profile_todos' | translate}}</div>
@@ -127,31 +133,31 @@
       </div>
     </div>
     <div class="info-container">
-          <span class="user-name">MalenaKrueger</span>
-        <div class="status">
-          <div class="status-text">23 Walls</div>
-          <div class="status-text">4 Chatstories</div>
-          <div class="status-text">8 {{'all_relatos_cortos' | translate}}</div>
-        </div>
-        <div class="button">
-          {{'user_profile_conectar' | translate}}
-        </div>
-        <div class="button-2">
-          {{'user_profile_message' | translate}}
-        </div>
+      <span class="user-name">MalenaKrueger</span>
+      <div class="status">
+        <div class="status-text">23 Walls</div>
+        <div class="status-text">4 Chatstories</div>
+        <div class="status-text">8 {{'all_relatos_cortos' | translate}}</div>
+      </div>
+      <div class="button">
+        {{'user_profile_conectar' | translate}}
+      </div>
+      <div class="button-2">
+        {{'user_profile_message' | translate}}
+      </div>
     </div>
     <div class="followers-container">
       <div class="number-followers-container">
         <span class="number-followers">34.954 {{'user_profile_seguidores' | translate}}</span>
       </div>
       <div class="followers">
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
-        <div class="img-follower" >
+        <div class="img-follower">
         </div>
       </div>
       <div class="all-followers-button">{{'user_profile_todos' | translate}}</div>

@@ -15,6 +15,9 @@
   &:hover {
     background-color: #d8d8d8;
   }
+  &:hover .Fade-Black {
+    visibility: initial;
+  }
 }
 
 .Chat-Image {
@@ -24,6 +27,30 @@
   width: 6em;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
+  position: relative;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.Chat-Filter{
+  height: 100%;
+  width: 100%;
+}
+
+.Fade-Black {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 2em;
+  & i{
+    color:white;
+    margin:0;
+  }
 }
 
 .Rectangle-7-Copy-3 {
