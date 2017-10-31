@@ -87,7 +87,7 @@ export class CrearChatstoryStep1Component implements OnInit {
       this.alert.warning(this.translate.instant('alert_crear_chatstory_3'));
       this.alert.clearTimeOutAlert();
     } else if (event.value && this.chatStory.personajes.length < 18 &&
-      !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value)]) {
+      !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value.trim())]) {
       this.chatStory.personajes.push(event.value);
       event.value = '';
       this.refreshArray();

@@ -72,6 +72,10 @@ export class CardRelatoComponent implements OnInit {
     this.router.navigate(['/relato/' + this.relato.id]);
   }
 
+  goToUser() {
+    this.router.navigateByUrl('user-profile/' + this.relato.autor.id + '/relatos');
+  }
+
   like() {
     if (this.auth.isLoggedIn()) {
       this.relatoService.likeRelato(this.relato.id, this.auth.getUser().id).subscribe((estadistica) => {
@@ -80,11 +84,6 @@ export class CardRelatoComponent implements OnInit {
     } else {
       this.poopoverService.setVisible(true);
     }
-
-  }
-
-  goToUser() {
-    this.router.navigateByUrl('user-profile/' + this.relato.autor.id + '/relatos');
   }
 
   liked() {
