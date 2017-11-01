@@ -1,14 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RepositorioService } from '../../services/repositorio.service';
-import { ChatStory } from '../../models/chatstory.model';
 import { AuthenticationService } from '../../services/authentication.service';
-import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import { ChatstoryService } from '../../services/chatstory.service';
-import {UserService} from "../../services/user.service";
-import {AlertService} from "../../services/alert.service";
-import {RegisterPopoverService} from "../../services/register-popover.service";
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { AlertService } from '../../services/alert.service';
+import { RegisterPopoverService } from '../../services/register-popover.service';
 
 @Component({
   selector: 'app-card-info-chatstory',

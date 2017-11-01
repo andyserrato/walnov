@@ -414,8 +414,8 @@ function followUser(req, res) {
                       );
                       GestorNotificaciones.addNotificacionFeed(notificacionNuevoSeguidor, [userFollowed.id]);
                       res.status(200).send(peticion.lang === 'en' ?
-                        { mensaje: 'Hi  ' + userFollowing.perfil.display_name + ' has followed user: ' +  userFollowed.perfil.display_name }:
-                        { mensaje: 'Hola ' + userFollowing.perfil.display_name + ' haz comenzado a seguir a: ' +  userFollowed.perfil.display_name });
+                        { mensaje: userFollowing.perfil.display_name + ' has followed user: ' +  userFollowed.perfil.display_name }:
+                        { mensaje: userFollowing.perfil.display_name + ' has comenzado a seguir a: ' +  userFollowed.perfil.display_name });
                     }
                   });
                 }
@@ -457,8 +457,8 @@ function unFollowUser(req, res) {
                     } else {
                       // ha comenzado a seguirte el quetal jajajja
                       res.status(200).send(peticion.lang === 'en' ?
-                        { mensaje: 'Hi ' + userFollowing.perfil.display_name + ' has unfollowed user: ' +  userFollowed.perfil.display_name } :
-                        { mensaje: 'Hola ' + userFollowing.perfil.display_name + ' haz dejado de seguir a: ' +  userFollowed.perfil.display_name });
+                        { mensaje: userFollowing.perfil.display_name + ' has unfollowed user: ' +  userFollowed.perfil.display_name } :
+                        { mensaje: userFollowing.perfil.display_name + ' has dejado de seguir a: ' +  userFollowed.perfil.display_name });
                     }
                   });
                 }
