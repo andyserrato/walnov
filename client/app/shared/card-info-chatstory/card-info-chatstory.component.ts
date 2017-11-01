@@ -6,6 +6,9 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import { ChatstoryService } from '../../services/chatstory.service';
+import {UserService} from "../../services/user.service";
+import {AlertService} from "../../services/alert.service";
+import {RegisterPopoverService} from "../../services/register-popover.service";
 
 @Component({
   selector: 'app-card-info-chatstory',
@@ -14,8 +17,12 @@ import { ChatstoryService } from '../../services/chatstory.service';
 })
 export class CardInfoChatstoryComponent implements OnInit {
   @Input() chatstory: any;
-  constructor(private repositorio: RepositorioService, private auth: AuthenticationService,
-              private router: Router) {
+  constructor(private repositorio: RepositorioService,
+              private auth: AuthenticationService,
+              private router: Router,
+              private userService: UserService,
+              private alert: AlertService,
+              private popOverService: RegisterPopoverService) {
   }
 
   ngOnInit() {
@@ -48,8 +55,44 @@ export class CardInfoChatstoryComponent implements OnInit {
   }
 
   checkUser() {
-    if (this.auth.getUser()) {
+    if (this.auth.getUser() && this.chatstory && this.chatstory.autor) {
       return this.chatstory.autor.id === this.auth.getUser().id;
+    } else {
+      return false;
+    }
+  }
+
+  follow() {
+    if (this.auth.isLoggedIn() && this.chatstory && this.chatstory.autor) {
+      this.userService.follow(this.auth.getUser().id, this.chatstory.autor.id).subscribe(
+        (mensaje) => {
+          this.auth.revalidateUser();
+          this.alert.success(mensaje);
+        },
+        (error) => this.alert.error(error)
+      );
+    } else {
+      this.popOverService.setVisible(true);
+    }
+  }
+
+  unFollow() {
+    if (this.auth.isLoggedIn() && this.chatstory && this.chatstory.autor) {
+      this.userService.unFollow(this.auth.getUser().id, this.chatstory.autor.id).subscribe(
+        (mensaje) => {
+          this.auth.revalidateUser();
+          this.alert.success(mensaje);
+        },
+        (error) => this.alert.error(error)
+      );
+    } else {
+      this.popOverService.setVisible(true);
+    }
+  }
+
+  isAlreadyFollowed() {
+    if (this.auth.isLoggedIn() && this.chatstory && this.chatstory.autor) {
+      return this.auth.getUser().siguiendo.indexOf(this.chatstory.autor.id) !== -1;
     } else {
       return false;
     }
