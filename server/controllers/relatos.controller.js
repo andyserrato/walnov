@@ -17,6 +17,7 @@ router.post("/", crearNuevoRelato);
 router.get("/", getRelatos);
 router.get("/:id", getRelatoById);
 router.put('/like', updateLike);
+router.put('/compartido', updateCompartido);
 router.put('/', updateRelato);
 router.post("/opinion", crearNuevaOpinion);
 router.post("/responderOpinion", responderOpinion);
@@ -361,4 +362,79 @@ function updateLike(req, res) {
         })
       });
   }
+}
+function updateCompartido(req, res) {
+  let id = req.body.relatoId;
+  let idUsuario = req.body.usuarioId;
+  let redSocial = req.body.redSocial;
+
+  if (id === undefined || idUsuario === undefined || redSocial === undefined) {
+
+    res.status(400).send({
+      error: 'ERROR PARÁMETROS MALFORMADOS'
+    });
+  } else {
+    Relato.findById(id)
+      .populate('estadistica autor')
+      .exec(function (err, relato) {
+
+        if (err) {
+          res.status(400).send({
+            error: 'ERROR'
+          });
+        }
+
+        if (relato) {
+          relato.estadistica.vecesCompartido++;
+
+          if (redSocial && (redSocial === 'facebook') && relato) {
+            relato.estadistica.vecesCompartidoFacebook++;
+
+            if (idUsuario && relato.estadistica.compartidoFacebook.indexOf(idUsuario) === -1) {
+              relato.estadistica.compartidoFacebook.push(idUsuario);
+            }
+
+            if (relato.estadistica.vecesCompartidoFacebook / 50 > 1) {
+              // TODO notificacion  de cantidad aquí
+            }
+
+          } else if (redSocial && (redSocial === 'twitter')) {
+            relato.estadistica.vecesCompartidoTwitter++;
+
+            if (idUsuario && relato.estadistica.compartidoTwitter.indexOf(idUsuario) === -1) {
+              relato.estadistica.compartidoTwitter.push(idUsuario);
+            }
+
+            if (relato.estadistica.vecesCompartidoTwitter / 50 > 1) {
+              // TODO notificacion  de cantidad aquí
+            }
+
+          } else if (redSocial && (redSocial === 'google')) {
+            relato.estadistica.vecesCompartidoGoogle++;
+
+            if (idUsuario && relato.estadistica.compartidoGoogle.indexOf(idUsuario) === -1) {
+              relato.estadistica.compartidoGoogle.push(idUsuario);
+            }
+
+            if (relato.estadistica.vecesCompartidoGoogle / 50 > 1) {
+              // TODO notificacion  de cantidad aquí
+            }
+
+          }
+        }
+
+        // TODO notificación de que un puto le ha dado a compartir aquí
+
+        relato.estadistica.save(function (err, resultados) {
+          if (err) {
+            res.status(400).send({
+              error: err
+            });
+          }
+          else
+            res.send(resultados);
+        })
+      });
+  }
+
 }
