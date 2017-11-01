@@ -88,8 +88,11 @@ export const LANG_EN_TRANS = {
   'shared_verify_user_browse' : 'Browse',
   'shared_verify_user_restrictions' : 'JPG Format - Minimum size',
   'shared_no_content_ver_chatstories': 'Oops! your ChatStories library is empty, What are you waiting for!',
+  'shared_no_content_crear_chatstories': 'Oops! you have not created any ChatStories yet, What are you waiting for!',
+  'shared_no_content_ver_chatstories_button_text': 'Check ChatStories',
+  'shared_no_content_crear_chatstories_button_text': 'Create ChatStories',
   'shared_no_content_ver_relatos': 'Oops! your Short Stories library is empty, What are you waiting for!',
-  'shared_no_content_mis_relatos': 'Oops! you have not created Short Stories yet, What are you waiting for!',
+  'shared_no_content_mis_relatos': 'Oops! you have not created any Short Stories yet, What are you waiting for!',
   'shared_no_content_ver_relatos_button_text': 'Check Short Stories',
   'shared_no_content_crear_relatos_button_text': 'Create Short Stories',
 

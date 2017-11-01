@@ -103,8 +103,8 @@ export class HomeMisChatstoriesComponent implements OnInit {
 
   showNoContent() {
     this.noContent = true;
-    this.message = { text: this.translate.instant('shared_no_content_ver_chatstories'),
-      enlace: '/chatstories', buttonText: this.translate.instant('shared_no_content_ver_chatstories_button_text') };
+    this.message = { text: this.translate.instant('shared_no_content_crear_chatstories'),
+      enlace: '/crear-chatstory/0', buttonText: this.translate.instant('shared_no_content_crear_chatstories_button_text') };
   }
 
 }
