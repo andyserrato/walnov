@@ -98,6 +98,8 @@ import { RegisterPopoverService } from './services/register-popover.service';
 import { LandingMobileComponent } from './landing/landing-mobile/landing-mobile.component';
 // import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from './translate'
 
+import { ShareButtonModule } from 'ngx-sharebuttons';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -186,7 +188,8 @@ import { LandingMobileComponent } from './landing/landing-mobile/landing-mobile.
     SharedModule,
     HomeModule,
     UserProfileModule,
-    ClipboardModule
+    ClipboardModule,
+    ShareButtonModule.forRoot()
   ],
   providers: [
     AppConfig,

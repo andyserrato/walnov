@@ -75,4 +75,15 @@ export class ChatstoryService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  updateContadorCompartido(chatstoryId: string, usuarioId: string, redSocial: string) {
+    const body = {
+      chatStoryId : chatstoryId,
+      usuarioId : usuarioId,
+      redSocial: redSocial
+    };
+    const bodyString = JSON.stringify(body);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    this.http.put(`${this.chatStoriesUrl}/compartido`, bodyString, options).subscribe();
+  }
 }
