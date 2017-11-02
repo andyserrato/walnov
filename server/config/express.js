@@ -25,9 +25,13 @@ module.exports = function () {
   process.env.TZ = 'Europe/Madrid';
 
   // Use the 'NDOE_ENV' variable to activate the 'morgan' logger or 'compress' middleware
+  var environment = process.env.NODE_ENV
+  console.log('environment:' + environment);
   if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
   } else if (process.env.NODE_ENV === 'production') {
+    app.use(compress());
+  } else if (process.env.NODE_ENV === 'pre') {
     app.use(compress());
   }
 

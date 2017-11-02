@@ -36,7 +36,7 @@ section {
   // width: 1280px;
   height: 765px !important;
   position: relative;
-  z-index: 0;
+  z-index: 1;
   padding: 0 !important;
   overflow: hidden;
   // padding-top: 40px !important;
@@ -51,7 +51,7 @@ section {
   // width: 1280px;
   // height: 710px !important;
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   height: 100%;
   width: 100%;
   object-fit: contain;
@@ -66,7 +66,7 @@ section {
   // padding-top: 40px;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   object-fit: contain;
   opacity: 0.87;
   background-image: linear-gradient(338deg, #6c0092, #9c6dd7);
@@ -75,7 +75,7 @@ section {
 .foto-Landing {
   position: absolute;
   // top: 0;
-  z-index: 2;
+  z-index: 3;
   opacity: 0.3;
   width: 100%;
   // height: 125%;
@@ -86,7 +86,18 @@ section {
   position: absolute;
   // bottom: 0;
   top: 142px;
-  z-index: 5;
+  z-index: 1;
+  // opacity: 0.3;
+  width: 100%;
+  // height: 675px;
+  object-fit: contain;
+}
+
+.triangulos-principal-2 {
+  position: absolute;
+  // bottom: 0;
+  top: 142px;
+  z-index: 6;
   // opacity: 0.3;
   width: 100%;
   // height: 675px;
@@ -177,7 +188,7 @@ section {
     bottom: -100px;
     width: 120%;
     left: 0px;
-    z-index: 4;
+    z-index: 5;
     height: 240px;
     background-color: white;
     transform: rotate(-5deg);
@@ -350,12 +361,17 @@ section {
 .categoria-cuadrado {
   width: 237.1px;
   height: 222.4px;
+  // width: 189.1px;
+  // height: 185.4px;
   position: relative;
   z-index: 0;
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .capa-color {
+  // width: 237.1px;
+  // height: 222.4px;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -366,6 +382,8 @@ section {
 }
 
 .categoria-contenido {
+  // width: 237.1px;
+  // height: 222.4px;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -374,6 +392,8 @@ section {
 }
 
 .imagen-categoria {
+  // width: 237.1px;
+  // height: 222.4px;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -386,6 +406,8 @@ section {
   position: absolute;
   z-index: 2;
   top:0;
+  // width: 237.1px;
+  // height: 222.4px;
   width: 100%;
   height: 100%;
   background-color: #000000;
@@ -402,11 +424,104 @@ section {
 .mas-categorias {
   width: 496px;
   height: 223px;
+  // width: 403px;
+  // height: 177.38px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+// crea
 
+.crea {
+  // width: 1280px;
+  height: 2525px;
+  position: relative;
+  z-index: 0;
+  padding: 0 !important;
+  overflow: hidden;
+  // padding-top: 40px !important;
+  // height: initial !important;
+  // opacity: 0.87;
+  // mix-blend-mode: hard-light;
+  // border: 3px solid #555 !important;
+  background-color: white !important;
+  background-image: none !important;
+
+}
+
+.footer-crea{
+    position: absolute;
+    bottom: -100px;
+    width: 120%;
+    left: 0px;
+    z-index: 4;
+    height: 240px;
+    background-color: #8429ac;
+    // background-image: linear-gradient(to bottom, #8429ac, $main-2);
+    transform: rotate(-5deg);
+}
+
+.crea-contenido {
+  font-family: Raleway;
+  font-size: 24px;
+  text-align: center;
+  color: #6c626f;
+}
+
+.Page-3 {
+  width: 474px;
+  height: 652px;
+  object-fit: contain;
+}
+
+.titulo-creacion {
+  font-family: Raleway;
+  font-size: 64px;
+  font-weight: bold;
+  text-align: left;
+  color: $main-2;
+}
+
+.contenido-creacion {
+  font-family: Raleway;
+  font-size: 24px;
+  text-align: left;
+  color: #6c626f;
+  margin-top: 25px;
+  margin-bottom: 70px;
+}
+
+.boton-creacion {
+  height: fit-content;
+  width: fit-content;
+  padding: 5px 15px 5px 15px;
+  border-radius: 4px;
+  background-color: #984dce;
+  &:hover {
+    cursor: pointer;
+    background-color: $main-1;
+  }
+}
+
+.boton-contenido {
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: $grey-1;
+}
+
+.chatstory {
+  width: 367px;
+  height: 527px;
+  object-fit: contain;
+}
+
+.Page-2 {
+  width: 475px;
+  height: 769px;
+  object-fit: contain;
+}
 //responsive
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -420,6 +535,11 @@ section {
   //intro
 
   .triangulos-principal {
+
+    top: 160px !important;
+  }
+
+  .triangulos-principal-2 {
 
     top: 160px !important;
   }
@@ -456,13 +576,80 @@ section {
   // lee
   .lee {
     // width: 1280px;
-    height: 1800px !important;
+    height: 845px !important;
+  }
+
+  .categoria-cuadrado {
+
+    // width: 189.1px !important;
+    // height: 177.38px !important;
+    width: 154.1px !important;
+    height: 144.55px !important;
+
+  }
+
+  .mas-categorias {
+    width: 334px !important;
+    height: 144.55px !important;
+  }
+
+  // crea
+  .crea {
+    // width: 1280px;
+    height: 2060px !important;
+  }
+
+  .Page-3 {
+    width: 390px !important;
+  }
+
+  .Page-2 {
+    width: 390px !important;
+  }
+
+  .titulo-creacion {
+    font-size: 40px !important;
+  }
+
+  .contenido-creacion {
+    font-size: 20px !important;
+    margin-top: 20px !important;
+    margin-bottom: 50px !important;
+  }
+
+  .boton-contenido {
+    font-size: 16px !important;
+  }
+
+  .crea-contenido {
+    margin-bottom: 0 !important;
+  }
+
+  .chat-contenido {
+    margin-left: 75px !important;
+  }
+
+  .chatstory {
+    width: 288px !important;
+  }
+
+  .interlineado {
+    margin-bottom: -45px !important;
+  }
+
+  .interlineado-2 {
+    margin-bottom: -70px !important;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   //intro
   .triangulos-principal {
+
+    top: 150px !important;
+  }
+
+  .triangulos-principal-2 {
 
     top: 150px !important;
   }
@@ -497,7 +684,32 @@ section {
   //lee
   .lee {
     // width: 1280px;
-    height: 1295px !important;
+    height: 950px !important;
+  }
+
+  .categoria-cuadrado {
+
+    width: 189.1px !important;
+    height: 177.38px !important;
+    // width: 154.1px;
+    // height: 144.55px;
+
+  }
+
+  .mas-categorias {
+    width: 403px !important;
+    height: 177.38px !important;
+  }
+
+  // crea
+  .crea {
+    // width: 1280px;
+    height: 2470px !important;
+  }
+
+
+  .chat-contenido {
+    margin-left: 90px !important;
   }
 }
 
@@ -526,6 +738,16 @@ section {
 
   .lee {
     height: 1120px !important;
+  }
+
+  // crea
+  .footer-crea {
+      bottom: -106px !important;
+
+  }
+
+  .crea {
+    height: 2490px !important;
   }
 
 }
@@ -557,9 +779,24 @@ section {
 
   }
 
-  .cuadrados-categorias {
-    justify-content: center !important;
+  //crea
+  .footer-crea {
+      bottom: -160px !important;
+
   }
+
+  .cuadrados-categorias {
+    // justify-content: center !important;
+  }
+
+  .mas-categorias {
+    margin-right: 25px !important;
+  }
+
+  .chat-imagen {
+    margin-left: auto !important;
+  }
+
 }
 
 @media (min-width: 1200px) {
