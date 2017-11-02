@@ -99,8 +99,8 @@ export class HomeMisRelatosComponent implements OnInit {
 
   showNoContent() {
     this.noContent = true;
-    this.message = { text: this.translate.instant('shared_no_content_ver_relatos'),
-      enlace: '/relatos', buttonText: this.translate.instant('shared_no_content_ver_relatos_button_text') };
+    this.message = { text: this.translate.instant('shared_no_content_mis_relatos'),
+      enlace: '/crear-relato/0', buttonText: this.translate.instant('shared_no_content_crear_relatos_button_text') };
   }
 
 }

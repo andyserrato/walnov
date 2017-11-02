@@ -15,6 +15,9 @@ export class TranslateService {
 
     public use(lang: string): void {
         // set current language
+        if(lang == 'es-ES'){
+            lang = 'es';
+        }
         this._currentLang = lang;
     }
 
