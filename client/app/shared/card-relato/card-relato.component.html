@@ -149,8 +149,8 @@
           <i class="fa fa-eye" aria-hidden="true" style="margin-top:3px; margin-right:2px;"></i>
           {{getNumber(relato.estadistica?.vecesVisto)}}
         </div>
-        <div class="d-flex flex column like-button" style="margin-right:70px;">
-          <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:2px; margin-right:2px;"></i>
+        <div class="d-flex flex column like-button" (click)="like()" style="margin-right:70px;">
+          <i class="fa fa-heart-o" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}" style="margin-top:2px; margin-right:2px;"></i>
           {{getNumber(relato.estadistica?.likes)}}
         </div>
         <div class="d-flex flex column">
@@ -199,8 +199,8 @@
           <i class="fa fa-eye" aria-hidden="true" style="margin-top:3px; margin-right:2px;"></i>
           {{getNumber(relato.estadistica?.vecesVisto)}}
         </div>
-        <div class="d-flex flex column like-button" style="margin-right:70px;">
-          <i class="fa fa-heart-o" aria-hidden="true" style="margin-top:2px; margin-right:2px;"></i>
+        <div class="d-flex flex column like-button" (click)="like()" style="margin-right:70px;">
+          <i class="fa fa-heart-o" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}" style="margin-top:2px; margin-right:2px;"></i>
           {{getNumber(relato.estadistica?.likes)}}
         </div>
         <div class="d-flex flex column">
