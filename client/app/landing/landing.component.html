@@ -189,9 +189,9 @@
                 Encuentra las creaciones que más te gusten filtrando el contenido por <strong>categorías.</strong>
               </div>
 
-            <div class="d-flex flex-row justify-content-start flex-wrap cuadrados-categorias">
+            <div class="d-flex flex-row justify-content-between flex-wrap cuadrados-categorias">
               <div class="" *ngFor="let categoria of repositorio.categoriasAL">
-                <div class="categoria-cuadrado" style="cursor:pointer; margin-right:25px; margin-bottom:25px;">
+                <div class="categoria-cuadrado" style="cursor:pointer; margin-bottom:25px;">
                   <div class="Fondo-Imagen">
                   </div>
                   <img class="img-fluid imagen-categoria" src="https://lorempixel.com/237/222" alt="">
@@ -440,6 +440,116 @@
 
   </section>
   <!-- final de colabora -->
+
+  <!-- inicio de acceso -->
+  <section class="acceso" style="padding-bottom: 35px !important;">
+
+    <!-- <div class="footer-crea">
+    </div> -->
+
+    <div class="container" style="z-index:99 !important;">
+
+      <div class="row">
+        <div class="col-12" style="padding-left:70px; padding-right:70px;">
+          <div class="d-flex flex-row justify-content-center">
+            <div class="d-flex flex-row acceso-titulo" style="width:48%;">
+              ¡Empieza a disfrutar ya
+              de la experiencia Walnov!
+            </div>
+
+          </div>
+          <div class="d-flex flex-row justify-content-center">
+            <div class="d-flex flex-row c-popover" style="width:47%;">
+              <div class="simple-container">
+                <!-- <div class="title d-flex flex-row align-items-center">
+                  <span>{{'popover_unirse' | translate}}</span>
+                  <span class="fa fa-times ml-auto" (click)="close()"></span>
+                </div> -->
+                <div class="icon facebook d-flex justify-content-center" style="width:100%;" (click)="doSocialLogin('/apiv1/users/oauth/facebook?url=')">
+                  <span class="fa fa-facebook"></span>
+                  <span>Sign in with Facebook</span>
+                </div>
+                <div class="icon google d-flex justify-content-center" style="width:100%;" (click)="doSocialLogin('/apiv1/users/oauth/google?url=')">
+                  <span class="fa fa-google"></span>
+                  <span>Sign in with Google </span>
+                </div>
+                <!-- <div class="alternatives d-flex flex-column" style="min-width:100px;">
+                  <div class="d-flex flex-column">
+                    <span class="simple-title">{{'popover_registro' | translate}}</span>
+
+                    <div class="icon twitter" (click)="doSocialLogin('/apiv1/users/oauth/twitter?url=')">
+                      <span class="fa fa-twitter mr-auto"></span>
+                      <span>TWITTER</span>
+                    </div>
+
+                  </div>
+                </div> -->
+
+                <div class="register-form d-flex flex-column">
+                  <div class="d-flex flex-column"  *ngIf="this.view==='register'">
+                    <div class="relative-container d-flex flex-column">
+                      <span class="simple-title">Email</span>
+                      <input (focus) = "this.validateForm.controls['mail'].markAsUntouched();" [formControl]="this.validateForm.controls['mail']" #mail type="text" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['mail'].valid && this.validateForm.controls['mail'].touched}">
+                      <span class="error-span" *ngIf="!this.validateForm.controls['mail'].valid && this.validateForm.controls['mail'].touched">{{'popover_error_mail' | translate}}</span>
+                    </div>
+                    <div class="relative-container d-flex flex-column">
+                      <span class="simple-title">{{'popover_contraseña'| translate}}</span>
+                      <input (focus) = "this.validateForm.controls['pass'].markAsUntouched();" [formControl]="this.validateForm.controls['pass']" #pass type="password" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched}">
+                      <span class="error-span" *ngIf="!this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched">{{'popover_error_contraseña' | translate}}</span>
+                    </div>
+                    <div class="relative-container d-flex flex-column">
+                      <span class="simple-title">{{'all_nombre_usuario' | translate}}</span>
+                      <input (focus) = "this.validateForm.controls['user'].markAsUntouched();" [formControl]="this.validateForm.controls['user']" #user type="text" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched}">
+                      <span class="error-span" *ngIf="!this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched">{{'popover_error_nombre' | translate}}</span>
+                    </div>
+
+                  </div>
+                  <div class="d-flex flex-column" *ngIf="this.view==='login'">
+                    <div class="relative-container d-flex flex-column">
+                      <span class="simple-title">Nombre de usuario</span>
+                      <input (focus) = "this.validateForm.controls['user'].markAsUntouched();" [formControl]="this.validateForm.controls['user']" #user type="text" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched}">
+                      <span class="error-span" *ngIf="!this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched">{{'popover_error_nombre' | translate}}</span>
+                    </div>
+                    <div class="relative-container d-flex flex-column">
+                      <span class="simple-title">{{'popover_contraseña'| translate}}</span>
+                      <input (focus) = "this.validateForm.controls['pass'].markAsUntouched();" [formControl]="this.validateForm.controls['pass']" #pass type="password" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched}">
+                      <span class="error-span" *ngIf="!this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched">{{'popover_error_contraseña' | translate}}</span>
+                    </div>
+                    <div class="link">{{'popover_error_olvidada' | translate}}</div>
+                  </div>
+                </div>
+                <div class="button-grid d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center justify-content-between" style="width:100%;">
+
+                   <div class="button d-flex justify-content-center" style="width:45%;" *ngIf="this.view==='login'" (click)="login()">
+                     <span *ngIf="!loading">Iniciar sesión</span>
+                     <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+                     <span class="sr-only">Loading...</span>
+                   </div>
+                    <div *ngIf="this.view==='register'" style="width:45%;" class="button-2 d-flex justify-content-center" (click)="changeView('login')" [hidden]="this.view==='login'">
+                      <span>Iniciar seión</span>
+                    </div>
+                    <div *ngIf="this.view==='login'" style="width:45%;"class="button-2 d-flex justify-content-center" (click)="changeView('register')" [hidden]="this.view==='register'">
+                      <span>Registrarse</span>
+                     </div>
+                    <div class="button d-flex justify-content-center" style="width:45%;" (click)="register()" *ngIf="this.view==='register'">
+                      <span *ngIf="!loading">Registrarse</span>
+                      <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+  <!-- final de acceso -->
 </div>
 
 <!--======== end intro =========-->
