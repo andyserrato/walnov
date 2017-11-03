@@ -210,96 +210,113 @@ function _devolverResultados(err, item, resp) {
 
 function getRelatos(req, res) {
   let query = Relato.find();
-  // query.select('titulo categoria autorNombre descripcion autor estadistica fechaCreacion');
-  query.populate('estadistica autor');
-  if (req.query && req.query.categoria) {
-    query.where('categoria').equals(req.query.categoria);
+  if (req.query && req.query.sort && req.query.sort.split(',').indexOf('relevantes') !== -1) {
+    console.log('holis');
+    query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
+    query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
+    query.where('activo').equals(true);
+    query.where('estadistica').ne(null);
+    query.populate({path: 'estadistica', options: {
+      sort: { vecesVisto: -1, likes: -1, vecesCompartido: -1}}})
+    ejecutarQuery();
+
+  } else {
+    getRelatosGeneral();
   }
 
-  if (req.query && req.query.titulo) {
-    query.where('titulo').equals(req.query.titulo);
-  }
+  function getRelatosGeneral() {
 
-  if (req.query && req.query.autorNombre) {
-    query.where('autorNombre').equals(req.query.autorNombre);
-  }
+    // query.select('titulo categoria autorNombre descripcion autor estadistica fechaCreacion');
+    query.populate('estadistica autor');
+    if (req.query && req.query.categoria) {
+      query.where('categoria').equals(req.query.categoria);
+    }
 
-  if (req.query && req.query.autor && !req.query.timeLine) {
-    query.where('autor').equals(req.query.autor);
-  }
+    if (req.query && req.query.titulo) {
+      query.where('titulo').equals(req.query.titulo);
+    }
 
-  if (req.query && req.query.lang) {
-    query.where('lang').equals(req.query.lang);
-  }
+    if (req.query && req.query.autorNombre) {
+      query.where('autorNombre').equals(req.query.autorNombre);
+    }
 
-  if (req.query && req.query.tipo) {
-    query.where('tipo').equals(req.query.tipo);
-  }
+    if (req.query && req.query.autor && !req.query.timeLine) {
+      query.where('autor').equals(req.query.autor);
+    }
 
-  if (req.query && req.query.titulo) {
-    query.find({$text: {$search: req.query.titulo}});
-  }
+    if (req.query && req.query.lang) {
+      query.where('lang').equals(req.query.lang);
+    }
 
-  if (req.query && req.query.sort) {
-    let sortQueries = req.query.sort.split(',');
+    if (req.query && req.query.tipo) {
+      query.where('tipo').equals(req.query.tipo);
+    }
 
-    for (i = 0; i < sortQueries.length; i++) {
-      if (sortQueries[i].indexOf('fechaModificacion') !== -1) {
-        query.sort(sortQueries[i]);
-      } else if (sortQueries[i].indexOf('fechaCreacion') !== -1) {
-        query.sort(sortQueries[i]);
-      } else if (sortQueries[i].indexOf('vecesVisto') !== -1) {
-        if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
-          query.sort('-estadistica.vecesVisto');
-        } else if (sortQueries[i].indexOf('+vecesVisto') !== -1) {
-          query.sort('+estadistica.vecesVisto');
-        }
-      } else if (sortQueries[i].indexOf('likes') !== -1) {
-        if (sortQueries[i].indexOf('-likes') !== -1) {
+    if (req.query && req.query.titulo) {
+      query.find({$text: {$search: req.query.titulo}});
+    }
+
+    if (req.query && req.query.sort) {
+      let sortQueries = req.query.sort.split(',');
+
+      for (i = 0; i < sortQueries.length; i++) {
+        if (sortQueries[i].indexOf('fechaModificacion') !== -1) {
+          query.sort(sortQueries[i]);
+        } else if (sortQueries[i].indexOf('fechaCreacion') !== -1) {
+          query.sort(sortQueries[i]);
+        } else if (sortQueries[i].indexOf('vecesVisto') !== -1) {
+          if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
+            query.sort('-estadistica.vecesVisto');
+          } else if (sortQueries[i].indexOf('+vecesVisto') !== -1) {
+            query.sort('+estadistica.vecesVisto');
+          }
+        } else if (sortQueries[i].indexOf('likes') !== -1) {
+          if (sortQueries[i].indexOf('-likes') !== -1) {
+            query.sort('-estadistica.likes');
+          } else if (sortQueries[i].indexOf('+likes') !== -1) {
+            query.sort('+estadistica.likes');
+          }
+        } else if (sortQueries[i].indexOf('vecesCompartido') !== -1) {
+          if (sortQueries[i].indexOf('-vecesCompartido') !== -1) {
+            query.sort('-estadistica.vecesCompartido');
+          } else if (sortQueries[i].indexOf('+vecesCompartido') !== -1) {
+            query.sort('+estadistica.vecesCompartido');
+          }
+        } else if (sortQueries[i].indexOf('relevantes') !== -1) {
           query.sort('-estadistica.likes');
-        } else if (sortQueries[i].indexOf('+likes') !== -1) {
-          query.sort('+estadistica.likes');
-        }
-      } else if (sortQueries[i].indexOf('vecesCompartido') !== -1) {
-        if (sortQueries[i].indexOf('-vecesCompartido') !== -1) {
           query.sort('-estadistica.vecesCompartido');
-        } else if (sortQueries[i].indexOf('+vecesCompartido') !== -1) {
-          query.sort('+estadistica.vecesCompartido');
+          query.sort('-estadistica.vecesVisto');
         }
-      } else if (sortQueries[i].indexOf('relevantes') !== -1) {
-        query.sort('-estadistica.likes');
-        query.sort('-estadistica.vecesCompartido');
-        query.sort('-estadistica.vecesVisto');
       }
     }
-  }
 
-  // paginacion
-  query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
-  query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
-  query.where('activo').equals(true);
-  query.where('estadistica').ne(null);
+    // paginacion
+    query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
+    query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
+    query.where('activo').equals(true);
+    query.where('estadistica').ne(null);
 
-  if (req.query && req.query.autor && req.query.timeLine && (req.query.timeLine === 'followers' || req.query.timeLine === 'following')) {
-    User.findById(req.query.autor, (err, user) => {
-      if (err) {
-        res.status(400).send(err);
-      }
-      else {
-        if (req.query.timeLine === 'followers' && user.seguidores.length > 0) {
-          query.where('autor').in(user.seguidores);
-          ejecutarQuery();
-        } else if (req.query.timeLine === 'following' && user.siguiendo.length > 0) {
-          ejecutarQuery();
-        } else if (req.query.timeLine === 'following' && user.siguiendo.length === 0) {
-          res.status(400).send(new Error("No estas siguiendo a nadie"));
-        } else if (req.query.timeLine === 'followers' && user.seguidores.length === 0) {
-          res.status(400).send(new Error("No tienes seguidores"));
+    if (req.query && req.query.autor && req.query.timeLine && (req.query.timeLine === 'followers' || req.query.timeLine === 'following')) {
+      User.findById(req.query.autor, (err, user) => {
+        if (err) {
+          res.status(400).send(err);
         }
-      }
-    });
-  } else {
-    ejecutarQuery();
+        else {
+          if (req.query.timeLine === 'followers' && user.seguidores.length > 0) {
+            query.where('autor').in(user.seguidores);
+            ejecutarQuery();
+          } else if (req.query.timeLine === 'following' && user.siguiendo.length > 0) {
+            ejecutarQuery();
+          } else if (req.query.timeLine === 'following' && user.siguiendo.length === 0) {
+            res.status(400).send(new Error("No estas siguiendo a nadie"));
+          } else if (req.query.timeLine === 'followers' && user.seguidores.length === 0) {
+            res.status(400).send(new Error("No tienes seguidores"));
+          }
+        }
+      });
+    } else {
+      ejecutarQuery();
+    }
   }
 
   function ejecutarQuery() {

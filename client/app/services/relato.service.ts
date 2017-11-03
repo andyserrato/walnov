@@ -30,7 +30,7 @@ export class RelatoService {
 
     return this.http.put(this.relatosUrl, bodyString, options) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-      .do(data => console.log('updateRelato' + JSON.stringify(data)))
+      // .do(data => console.log('updateRelato' + JSON.stringify(data)))
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }
 
@@ -43,7 +43,7 @@ export class RelatoService {
       .map((res: Response) => {
         return res.json();
       })
-      .do(data => console.log(data))
+      // .do(data => console.log(data))
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
