@@ -83,7 +83,7 @@ class Tipo {
   }
 
   static get EXCLUSIVO() {
-    return 3;
+    return 4;
   }
 }
 

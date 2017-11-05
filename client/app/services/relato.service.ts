@@ -43,7 +43,7 @@ export class RelatoService {
       .map((res: Response) => {
         return res.json();
       })
-      // .do(data => console.log(data))
+      .do(data => console.log(data))
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
