@@ -14,7 +14,6 @@ var opinionRelato = Schema({
   autor: {type: Schema.Types.ObjectId, ref: 'usuarios'},
   autorNombre: String,
   numReports: {type: Number, default: 0},
-  reporters: {type: Schema.Types.ObjectId, ref: 'usuarios'},
   respuesta: this
 });
 
@@ -39,16 +38,6 @@ var relato = Schema({
 relato.plugin(datosComunes);
 relato.index({titulo: 'text'});
 relato.index({texto: 'text'});
-
-opinionRelato.plugin(datosComunes);
-
-opinionRelato.pre('save', function (next) {
-
-  this.fecha = Utils.getFecha(fechaCreacion);
-  this.hora = Utils.getHora(fechaCreacion);
-
-  next();
-});
 
 relato.set('toJSON', {
   getters: true,

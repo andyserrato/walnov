@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositorioService } from '../../services/repositorio.service';
 import { Relato } from '../../models/relato.model';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-card-relato-relevante',
@@ -13,7 +14,8 @@ export class CardRelatoRelevanteComponent implements OnInit {
   relato1: any;
   relato2: any;
   relato3: any;
-  constructor(private repositorio: RepositorioService) { }
+  constructor(private repositorio: RepositorioService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -53,7 +55,8 @@ export class CardRelatoRelevanteComponent implements OnInit {
   }
 
   loadRelato(relato) {
-    //this.router.navigate(['/chatstory/'+chatstory.id]);
+    console.log(relato)
+    this.router.navigate(['/relato/'+relato.id]);
   }
 
   getBorder(relato: any) {

@@ -15,6 +15,7 @@ import { UserContentComponent } from './user-content/user-content.component';
 import { UserProfileRoutingModule } from './user-profile.routing';
 import { SharedModule } from '../shared/shared.module';
 import { UserContentWallsComponent } from './user-content/user-content-walls/user-content-walls.component';
+import { UserFollowersComponent } from './user-followers/user-followers.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -30,7 +31,8 @@ import { UserContentWallsComponent } from './user-content/user-content-walls/use
     UserContentRelatosComponent,
     UserContentWallsComponent,
     // UserCardComponent,
-    UserContentComponent
+    UserContentComponent,
+    UserFollowersComponent
   ]
 })
 export class UserProfileModule { }
