@@ -53,7 +53,7 @@ export class NavComponent implements OnInit {
   }
 
   getProfilePicture(): string {
-    this.profilePicture = 'https://lorempixel.com/22/22/cats';
+    this.profilePicture = 'assets/images/user-placeholder.png';
     if (this.auth.isLoggedIn() && this.auth.getUser() && this.auth.getUser().perfil && this.auth.getUser().perfil.foto_perfil) {
       this.profilePicture = this.auth.getUser().perfil.foto_perfil;
     }

@@ -127,36 +127,27 @@ function getChatStories(req, res) {
         query.sort(sortQueries[i]);
       } else if (sortQueries[i].indexOf('vecesVisto') !== -1) {
         if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
-          query.sort('-estadistica.vecesVisto');
+          query.populate({path: 'estadistica', options: { sort: { vecesVisto: -1}}});
         } else if (sortQueries[i].indexOf('+vecesVisto') !== -1) {
-          query.sort('+estadistica.vecesVisto');
+          query.populate({path: 'estadistica', options: { sort: { vecesVisto: +1}}});
         }
       } else if (sortQueries[i].indexOf('likes') !== -1) {
         if (sortQueries[i].indexOf('-likes') !== -1) {
-          query.sort('-estadistica.likes');
+          query.populate({path: 'estadistica', options: { sort: { likes: -1}}});
         } else if (sortQueries[i].indexOf('+likes') !== -1) {
-          query.sort('+estadistica.likes');
+          query.populate({path: 'estadistica', options: { sort: { likes: +1}}});
         }
       } else if (sortQueries[i].indexOf('vecesCompartido') !== -1) {
         if (sortQueries[i].indexOf('-vecesCompartido') !== -1) {
-          query.sort('-estadistica.vecesCompartido');
+          query.populate({path: 'estadistica', options: { sort: { vecesCompartido: -1}}});
         } else if (sortQueries[i].indexOf('+vecesCompartido') !== -1) {
-          query.sort('+estadistica.vecesCompartido');
+          query.populate({path: 'estadistica', options: { sort: { vecesCompartido: +1}}});
         }
       } else if (sortQueries[i].indexOf('relevantes') !== -1) {
-        query.sort('-estadistica.likes');
-        query.sort('-estadistica.vecesCompartido');
-        query.sort('-estadistica.vecesVisto');
-      } else if (sortQueries[i].indexOf('fechaModificacion') === -1) {
-        query.sort('-fechaModificacion');
-      } else if (sortQueries[i].indexOf('fechaCreacion') === -1) {
-        query.sort('-fechaCreacion');
+        query.populate({path: 'estadistica', options: {
+          sort: { vecesVisto: -1, likes: -1, vecesCompartido: -1}}});
       }
     }
-  } else {
-    console.log('dfjksdlfjsdlFJKDLSFJSKDLFJSKDFJKLSDJFKLSDJFKLJSDKLFJSDKLJFKLSDJFLDASDASDAS');
-    query.sort('-fechaModificacion');
-    query.sort('-fechaCreacion');
   }
 
   // paginacion
@@ -198,9 +189,57 @@ function getChatStories(req, res) {
       if (err) {
         res.status(400).send({error: err});
       } else {
-        res.status(200).send(chatStories);
+        res.status(200).send(ordenar(chatStories));
       }
     });
+  }
+
+  function ordenar(chatStories) {
+    if (req.query && req.query.sort) {
+      let sortQueries = req.query.sort.split(',');
+
+      for (i = 0; i < sortQueries.length; i++) {
+        if (sortQueries[i].indexOf('vecesVisto') !== -1) {
+          if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.vecesVisto > b.estadistica.vecesVisto;
+            });
+          } else if (sortQueries[i].indexOf('+vecesVisto') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.vecesVisto < b.estadistica.vecesVisto;
+            });
+          }
+        } else if (sortQueries[i].indexOf('likes') !== -1) {
+          if (sortQueries[i].indexOf('-likes') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.likes > b.estadistica.likes;
+            });
+          } else if (sortQueries[i].indexOf('+likes') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.likes < b.estadistica.likes;
+            });
+          }
+        } else if (sortQueries[i].indexOf('vecesCompartido') !== -1) {
+          if (sortQueries[i].indexOf('-vecesCompartido') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.vecesCompartido > b.estadistica.vecesCompartido;
+            });
+          } else if (sortQueries[i].indexOf('+vecesCompartido') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.vecesCompartido < b.estadistica.vecesCompartido;
+            });
+          }
+        } else if (sortQueries[i].indexOf('relevantes') !== -1) {
+          chatStories.sort(function (a, b) {
+            let numberA = a.estadistica.vecesVisto + a.estadistica.likes + a.estadistica.vecesCompartido;
+            let numberB = b.estadistica.vecesVisto + b.estadistica.likes + b.estadistica.vecesCompartido;
+            return numberA < numberB;
+          });
+        }
+      }
+    }
+
+    return chatStories;
   }
 }
 

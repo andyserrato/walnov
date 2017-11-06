@@ -15,7 +15,7 @@
                 {{relato.categoria | translate}}
                 <div class="d-flex flex-row Usuario-Relato">
                   <div class="d-flex flex-column">
-                    <img class="Imagen-Usuario" src={{relato.autor.perfil.foto_perfil}} alt={{relato.autorNombre}}>
+                    <img class="Imagen-Usuario" src={{relato.autor.perfil?.foto_perfil}}>
                   </div>
                   <div class="d-flex flex-column">
                     <div (click)="goToUser()" class="Nombre-Usuario ellipsis" title="{{relato.autorNombre}}">

@@ -39,14 +39,6 @@ relato.plugin(datosComunes);
 relato.index({titulo: 'text'});
 relato.index({texto: 'text'});
 
-opinionRelato.pre('save', function (next) {
-
-  this.fecha = Utils.getFecha(fechaCreacion);
-  this.hora = Utils.getHora(fechaCreacion);
-
-  next();
-});
-
 relato.set('toJSON', {
   getters: true,
   virtuals: true

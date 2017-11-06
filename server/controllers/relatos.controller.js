@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const faker = require('faker');
 mongoose.set('debug', true);
 
 //Modelos
@@ -142,9 +143,9 @@ function crearNuevaOpinion(req, resp) {
   Relato.findOneAndUpdate({_id: peticion.idRelato}, {$push: {opiniones: nuevaOpinionRelato}}, {new: true})
     .populate('estadistica autor opiniones opiniones.autor')
     .exec(function (err, relato) {
-    let nuevaNotificacionOpinionRelato = GestorNotificaciones.crearNotificacionNuevaOpinionRelato(nuevaOpinionRelato.texto, new Date(), nuevaOpinionRelato.autor, nuevaOpinionRelato.autorNombre, relato._id, relato.tituloRelato);
-    if (!peticion.seguidores) {
-        User.findOne({id: nuevaOpinionRelato.autor}, function (err, usu){
+      let nuevaNotificacionOpinionRelato = GestorNotificaciones.crearNotificacionNuevaOpinionRelato(nuevaOpinionRelato.texto, new Date(), nuevaOpinionRelato.autor, nuevaOpinionRelato.autorNombre, relato._id, relato.tituloRelato);
+      if (!peticion.seguidores) {
+        User.findOne({id: nuevaOpinionRelato.autor}, function (err, usu) {
           if (err) {
             resp.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
           } else {
@@ -152,11 +153,11 @@ function crearNuevaOpinion(req, resp) {
             _devolverResultados(err, relato, resp);
           }
         });
-    } else {
-      GestorNotificaciones.addNotificacionFeed(nuevaNotificacionOpinionRelato, peticion.seguidores);
-      _devolverResultados(err, relato, resp);
-    }
-  });
+      } else {
+        GestorNotificaciones.addNotificacionFeed(nuevaNotificacionOpinionRelato, peticion.seguidores);
+        _devolverResultados(err, relato, resp);
+      }
+    });
 }
 
 function _getFiltrosQuery(opciones, siguiendo) {
@@ -210,8 +211,9 @@ function _devolverResultados(err, item, resp) {
 
 function getRelatos(req, res) {
   let query = Relato.find();
+
   // query.select('titulo categoria autorNombre descripcion autor estadistica fechaCreacion');
-  query.populate('estadistica autor');
+  query.populate('autor estadistica');
   if (req.query && req.query.categoria) {
     query.where('categoria').equals(req.query.categoria);
   }
@@ -250,28 +252,32 @@ function getRelatos(req, res) {
         query.sort(sortQueries[i]);
       } else if (sortQueries[i].indexOf('vecesVisto') !== -1) {
         if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
-          query.sort('-estadistica.vecesVisto');
+          query.populate({path: 'estadistica', options: {sort: {vecesVisto: -1}}});
         } else if (sortQueries[i].indexOf('+vecesVisto') !== -1) {
-          query.sort('+estadistica.vecesVisto');
+          query.populate({path: 'estadistica', options: {sort: {vecesVisto: +1}}});
         }
       } else if (sortQueries[i].indexOf('likes') !== -1) {
         if (sortQueries[i].indexOf('-likes') !== -1) {
-          query.sort('-estadistica.likes');
+          query.populate({path: 'estadistica', options: {sort: {likes: -1}}});
         } else if (sortQueries[i].indexOf('+likes') !== -1) {
-          query.sort('+estadistica.likes');
+          query.populate({path: 'estadistica', options: {sort: {likes: +1}}});
         }
       } else if (sortQueries[i].indexOf('vecesCompartido') !== -1) {
         if (sortQueries[i].indexOf('-vecesCompartido') !== -1) {
-          query.sort('-estadistica.vecesCompartido');
+          query.populate({path: 'estadistica', options: {sort: {vecesCompartido: -1}}});
         } else if (sortQueries[i].indexOf('+vecesCompartido') !== -1) {
-          query.sort('+estadistica.vecesCompartido');
+          query.populate({path: 'estadistica', options: {sort: {vecesCompartido: +1}}});
         }
       } else if (sortQueries[i].indexOf('relevantes') !== -1) {
-        query.sort('-estadistica.likes');
-        query.sort('-estadistica.vecesCompartido');
-        query.sort('-estadistica.vecesVisto');
+        query.populate({
+          path: 'estadistica', options: {
+            sort: {vecesVisto: -1, likes: -1, vecesCompartido: -1}
+          }
+        });
       }
     }
+  } else {
+    query.populate('estadistica');
   }
 
   // paginacion
@@ -302,14 +308,63 @@ function getRelatos(req, res) {
     ejecutarQuery();
   }
 
+
   function ejecutarQuery() {
     query.exec(function (err, relatos) {
       if (err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send(relatos);
+        res.status(200).send(ordenar(relatos));
       }
     });
+  }
+
+  function ordenar(relatos) {
+    if (req.query && req.query.sort) {
+      let sortQueries = req.query.sort.split(',');
+
+      for (i = 0; i < sortQueries.length; i++) {
+        if (sortQueries[i].indexOf('vecesVisto') !== -1) {
+          if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
+            relatos.sort(function (a, b) {
+              return a.estadistica.vecesVisto > b.estadistica.vecesVisto;
+            });
+          } else if (sortQueries[i].indexOf('+vecesVisto') !== -1) {
+            relatos.sort(function (a, b) {
+              return a.estadistica.vecesVisto < b.estadistica.vecesVisto;
+            });
+          }
+        } else if (sortQueries[i].indexOf('likes') !== -1) {
+          if (sortQueries[i].indexOf('-likes') !== -1) {
+            relatos.sort(function (a, b) {
+              return a.estadistica.likes > b.estadistica.likes;
+            });
+          } else if (sortQueries[i].indexOf('+likes') !== -1) {
+            relatos.sort(function (a, b) {
+              return a.estadistica.likes < b.estadistica.likes;
+            });
+          }
+        } else if (sortQueries[i].indexOf('vecesCompartido') !== -1) {
+          if (sortQueries[i].indexOf('-vecesCompartido') !== -1) {
+            relatos.sort(function (a, b) {
+              return a.estadistica.vecesCompartido > b.estadistica.vecesCompartido;
+            });
+          } else if (sortQueries[i].indexOf('+vecesCompartido') !== -1) {
+            relatos.sort(function (a, b) {
+              return a.estadistica.vecesCompartido < b.estadistica.vecesCompartido;
+            });
+          }
+        } else if (sortQueries[i].indexOf('relevantes') !== -1) {
+          relatos.sort(function (a, b) {
+            let numberA = a.estadistica.vecesVisto + a.estadistica.likes + a.estadistica.vecesCompartido;
+            let numberB = b.estadistica.vecesVisto + b.estadistica.likes + b.estadistica.vecesCompartido;
+            return numberA < numberB;
+          });
+        }
+      }
+    }
+
+    return relatos;
   }
 }
 
@@ -363,6 +418,7 @@ function updateLike(req, res) {
       });
   }
 }
+
 function updateCompartido(req, res) {
   let id = req.body.relatoId;
   let idUsuario = req.body.usuarioId;
