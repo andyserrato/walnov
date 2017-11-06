@@ -46,7 +46,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    // if(this.authenticationService.isLoggedIn()) this.router.navigate(['/home']);
 
   }
 
@@ -111,7 +111,7 @@ export class LandingComponent implements OnInit {
   doSocialLogin(url: string) {
     // console.log(this.loged);
     this.authenticationService.doSocialLogin(url + this.callbackURL);
-  
+
     this.loged.emit();
     // console.log(this.loged);
     // if(this.authenticationService.isLoggedIn()) this.router.navigate(['/home']);

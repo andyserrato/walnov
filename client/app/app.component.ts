@@ -2,6 +2,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { RepositorioService } from './services/repositorio.service';
 import { TranslateService } from './translate';
 import { Router, ActivatedRoute } from '@angular/router';
+import {AuthenticationService} from './services/authentication.service';
+
 // import { TranslatePipe } from './translate';
 // import * as io from 'socket.io-client';
 
@@ -17,12 +19,15 @@ export class AppComponent {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private authenticationService: AuthenticationService,
               private repositorio: RepositorioService,
               private translate: TranslateService,
               private cdr: ChangeDetectorRef) {
       if (this.detectMob() && this.detectRes()) {
         this.router.navigate(['descarga-la-app']);
       }
+
+
 
       // this.landingMobile();
       // let getWindow = () => {
