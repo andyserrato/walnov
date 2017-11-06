@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
+import {RelatoService} from "../../services/relato.service";
 
 @Component({
   selector: 'app-opinion-usuario',
@@ -8,13 +9,13 @@ import { Usuario } from '../../models/usuario.model';
 })
 export class OpinionUsuarioComponent implements OnInit {
   @Input() opiniones = Array<any>();
-  constructor() { }
+  constructor(private relatosService: RelatoService) { }
 
   ngOnInit() {
   }
 
-  reportar() {
-
+  reportar(opinion) {
+    this.relatosService.reportRelato(opinion._id);
   }
 
 }

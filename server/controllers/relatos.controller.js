@@ -445,9 +445,10 @@ function reportarOpinion(req, res) {
   let idUsuario = req.body.usuarioId;
 
   if (opinionId === undefined || idUsuario === undefined) {
-    res.status(404).send({error: 'El id del relato y el id del usuario son campos requeridos'});
+    res.status(404).send({ error: 'El id del relato y el id del usuario son campos requeridos' });
   } else {
-    OpinionRelato.findById(id)
+    OpinionRelato
+      .findById(opinionId)
       .exec(function (err, opinion) {
         if (err) {
           res.status(400).send({error: err});
@@ -460,12 +461,12 @@ function reportarOpinion(req, res) {
             if (err) {
               res.status(400).send({error: err});
             } else {
-              res.status(200).send({mensaje: 'reportado'});
+              res.status(200).send({mensaje: 'ok'});
             }
 
           });
         } else {
-          res.status(200).send({mensaje: 'Already reported'});
+          res.status(200).send({mensaje: 'ok'});
         }
       });
   }
