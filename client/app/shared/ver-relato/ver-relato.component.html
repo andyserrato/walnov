@@ -67,5 +67,5 @@
     <!-- FIN COMPARTIR-->
   </div>
   <app-dejar-comentario [relato]='relato' [opinionSibling]="opinionSibling"></app-dejar-comentario>
-  <app-opinion-usuario [opiniones]='relato.opiniones' #opinionSibling></app-opinion-usuario>
+  <app-opinion-usuario [opiniones]='relato.opiniones' #opinionSibling [relatoId]='relato.id'></app-opinion-usuario>
 </div>

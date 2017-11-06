@@ -42,7 +42,9 @@ export class DejarComentarioComponent implements OnInit {
             texto: this.localComent,
             urlImagen: '',
             autor: this.auth.getUser().id,
-            autorNombre: this.auth.getUser().perfil.display_name
+            autorNombre: this.auth.getUser().perfil.display_name,
+            numReports: 0,
+            reporters: []
           }
         };
 

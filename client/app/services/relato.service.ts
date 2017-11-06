@@ -21,7 +21,7 @@ export class RelatoService {
 
     return this.http.post(this.relatosUrl, bodyString, options) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-      .do(data => console.log('createRelato' + JSON.stringify(data)))
+      // .do(data => console.log('createRelato' + JSON.stringify(data)))
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
   }
 
@@ -84,11 +84,12 @@ export class RelatoService {
       .catch((error: any) => Observable.throw(error || 'Server error')); // ...errors if any
   }
 
-  reportRelato(opinionId: any): Observable<any> {
+  reportRelato(opinionId: any, relatoId: any): Observable<any> {
     if (this.auth.isLoggedIn()) {
       const body = {
         opinionId: opinionId,
-        usuarioId: this.auth.getUser().id
+        usuarioId: this.auth.getUser().id,
+        relatoId: relatoId
       };
       const bodyString = JSON.stringify(body); // Stringify payload
       const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
@@ -96,7 +97,7 @@ export class RelatoService {
 
       return this.http.put(this.relatosUrl + '/reportOpinion', bodyString, options) // ...using post request
         .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-        .do(data => console.log('updateRelato' + JSON.stringify(data)))
+        // .do(data => console.log('updateRelato' + JSON.stringify(data)))
         .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
     } else {
       this.registerPopOverService.setVisible(true);
