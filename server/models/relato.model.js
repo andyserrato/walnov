@@ -14,6 +14,7 @@ var opinionRelato = Schema({
   autor: {type: Schema.Types.ObjectId, ref: 'usuarios'},
   autorNombre: String,
   numReports: {type: Number, default: 0},
+  reporters: [{type:mongoose.Schema.Types.ObjectId, ref:'usuarios'}],
   respuesta: this
 });
 
@@ -22,7 +23,6 @@ opinionRelato.plugin(datosComunes);
 var relato = Schema({
   titulo: String,
   autor: {type: Schema.Types.ObjectId, ref: 'usuarios'},
-  // categoria: {type: String , enum: Constantes.Categorias.CATEGORIAS},
   autorNombre: String,
   categoria: String,
   urlImagen: String,

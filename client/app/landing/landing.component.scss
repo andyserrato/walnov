@@ -93,6 +93,39 @@ section {
   object-fit: contain;
 }
 
+.triangulos-crear {
+  position: absolute;
+  // bottom: 0;
+  top: 905px;
+  z-index: 6;
+  // opacity: 0.3;
+  width: 100%;
+  // height: 675px;
+  object-fit: contain;
+}
+
+.triangulos-final {
+  position: absolute;
+  // bottom: 0;
+  top: 1092px;
+  z-index: 6;
+  // opacity: 0.3;
+  width: 100%;
+  // height: 675px;
+  object-fit: contain;
+}
+
+.triangulos-final-acceso {
+  position: absolute;
+  // bottom: 0;
+  top: -222px;
+  z-index: 6;
+  // opacity: 0.3;
+  width: 100%;
+  // height: 675px;
+  object-fit: contain;
+}
+
 .triangulos-principal-2 {
   position: absolute;
   // bottom: 0;
@@ -104,6 +137,31 @@ section {
   object-fit: contain;
 }
 
+.triangulos-crear-2 {
+  position: absolute;
+  // bottom: 0;
+  top: -261px;
+  z-index: 6;
+  // opacity: 0.3;
+  width: 100%;
+  // height: 675px;
+  object-fit: contain;
+}
+a.nostyle:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+    &:hover {
+      text-decoration: underline;
+    }
+}
+
+a.nostyle:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
 .Barra {
   // width: 98px;
   // height: 16px;
@@ -111,6 +169,11 @@ section {
   font-size: 14px;
   text-align: left;
   color: $grey-1;
+  // &:hover {
+  //   a {
+  //
+  //   }
+  // }
 }
 
 .Rectangle-2 {
@@ -1211,6 +1274,11 @@ input.error-input{
   .footer-lee {
     height: 213px !important;
   }
+
+  .triangulos-crear {
+    top: 680px !important;
+  }
+
   // crea
   .crea {
     // width: 1280px;
@@ -1272,6 +1340,10 @@ input.error-input{
     height: 588px !important;
   }
 
+  .triangulos-crear-2 {
+    top: -165px !important;
+  }
+
   // colabora
   .Mockup {
 
@@ -1316,6 +1388,28 @@ input.error-input{
 
   .acceso-titulo {
     font-size: 24px !important;
+  }
+
+  .triangulos-final {
+    // position: absolute;
+    // bottom: 0;
+    top: 844px !important;
+    // z-index: 6;
+    // // opacity: 0.3;
+    // width: 100%;
+    // // height: 675px;
+    // object-fit: contain;
+  }
+
+  .triangulos-final-acceso {
+    // position: absolute;
+    // bottom: 0;
+    top: -85px !important;
+    // z-index: 6;
+    // // opacity: 0.3;
+    // width: 100%;
+    // // height: 675px;
+    // object-fit: contain;
   }
 
   .icon {
@@ -1443,6 +1537,10 @@ input.error-input{
 
   }
 
+  .triangulos-crear {
+    top: 792px !important;
+  }
+
   .mas-categorias {
     width: 415px !important;
     height: 177.38px !important;
@@ -1470,6 +1568,10 @@ input.error-input{
 
   .fondo-gris {
     top: 855px !important;
+  }
+
+  .triangulos-crear-2 {
+    top: -158px !important;
   }
 
   //colabora
@@ -1516,6 +1618,28 @@ input.error-input{
 
   .acceso-titulo {
     font-size: 30px !important;
+  }
+
+  .triangulos-final {
+    // position: absolute;
+    // bottom: 0;
+    top: 996px !important;
+    // z-index: 6;
+    // // opacity: 0.3;
+    // width: 100%;
+    // // height: 675px;
+    // object-fit: contain;
+  }
+
+  .triangulos-final-acceso {
+    // position: absolute;
+    // bottom: 0;
+    top: -100px !important;
+    // z-index: 6;
+    // // opacity: 0.3;
+    // width: 100%;
+    // // height: 675px;
+    // object-fit: contain;
   }
 
   //seccion footer
@@ -1572,6 +1696,17 @@ input.error-input{
     height: 2432px !important;
   }
 
+  .triangulos-crear-2 {
+    // position: absolute;
+    // bottom: 0;
+    top: -176px !important;
+    // z-index: 6;
+    // opacity: 0.3;
+    // width: 100%;
+    // height: 675px;
+    // object-fit: contain;
+  }
+
   //colabora
   .colabora {
     height: 1250px !important;
@@ -1580,6 +1715,28 @@ input.error-input{
 
   .footer-colabora {
     height: 177px !important;
+  }
+
+  .triangulos-final {
+    // position: absolute;
+    // bottom: 0;
+    top: 1142px !important;
+    // z-index: 6;
+    // // opacity: 0.3;
+    // width: 100%;
+    // // height: 675px;
+    // object-fit: contain;
+  }
+
+  .triangulos-final-acceso {
+    // position: absolute;
+    // bottom: 0;
+    top: -108px !important;
+    // z-index: 6;
+    // // opacity: 0.3;
+    // width: 100%;
+    // // height: 675px;
+    // object-fit: contain;
   }
 
 }

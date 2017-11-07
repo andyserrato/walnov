@@ -10,18 +10,18 @@
             {{opinion.autorNombre}}
           </div>
         </div>
-        <div class="d-flex ml-auto flex-column Opciones" style="margin-right:25px;">
-          <div class="d-flex flex-row" style="cursor:pointer;">
-            <i class="fa fa-flag-o" aria-hidden="true"></i>
+        <div class="d-flex ml-auto flex-column Opciones">
+          <div class="d-flex flex-row" style="cursor:pointer;" (click)="reportar(opinion)">
+            <i class="fa fa-flag-o" [ngClass]="{'fa-flag-o':!reportado(opinion), 'fa-flag':reportado(opinion)}" aria-hidden="true"></i>
             {{'all_reportar' | translate}}
           </div>
         </div>
-        <div class="d-flex flex-column Opciones">
-          <div class="d-flex flex-row" style="cursor:pointer;">
-            <i class="fa fa-share" aria-hidden="true"></i>
-            {{'all_compartir' | translate}}
-          </div>
-        </div>
+        <!--<div class="d-flex flex-column Opciones">-->
+          <!--<div class="d-flex flex-row" style="cursor:pointer;">-->
+            <!--<i class="fa fa-share" aria-hidden="true"></i>-->
+            <!--{{'all_compartir' | translate}}-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
       <div class="Content">
         {{opinion?.texto}}
