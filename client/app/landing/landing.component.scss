@@ -985,6 +985,105 @@ input.error-input{
   width: 100%;
   height: 100%;
 }
+
+//seccion footer
+.footer-final {
+  // width: 1280px;
+  // height: 388px;
+  padding-top: 54px;
+  padding-bottom: 20px;
+  background-color: #6c626f;
+}
+
+.footer-titulo {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  color: $grey-1;
+  margin-bottom: 20px;
+}
+
+.footer-contenido {
+  font-family: Raleway;
+  font-size: 14px;
+  line-height: 2.43;
+  text-align: left;
+  color: $grey-1;
+}
+
+.Line-4 {
+  width: 100%;
+  // height: 3px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  border: solid .5px #979797;
+}
+
+.pie-de-pagina {
+  opacity: 0.6;
+  font-family: Raleway;
+  font-size: 14px;
+  line-height: 2.43;
+  text-align: left;
+  color: $grey-1;
+}
+
+.enlace {
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.contacto {
+  font-family: Raleway;
+  font-size: 14px;
+  line-height: 2.43;
+  text-align: left;
+  color: $grey-1;
+}
+
+.Ovalo-redes {
+  width: 30px;
+  position: relative;
+  height: 30px;
+  border: solid 1px $grey-1;
+  border-radius: 50%;
+  .fa {
+    color: white;
+    font-size: 15px;
+  }
+  .fa-facebook {
+
+    position: absolute;
+    top: 25%;
+    left: 30%;
+
+  }
+  .fa-twitter {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+  }
+  .fa-instagram {
+    position: absolute;
+    top: 25%;
+    left: 28%;
+  }
+  .fa-google-plus {
+    position: absolute;
+    top: 25%;
+    left: 18%;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $grey-1;
+    .fa {
+      color: #6c626f;
+    }
+  }
+}
 //responsive
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -1239,6 +1338,40 @@ input.error-input{
     font-size: 14px !important;
   }
 
+  //footer pagina
+  .footer-titulo {
+    font-size: 10px !important;
+  }
+  .footer-contenido {
+    font-size: 10px !important;
+  }
+  .contacto {
+    font-size: 10px !important;
+  }
+
+  .Ovalo-redes {
+    .fa {
+      font-size: 12px !important;
+    }
+  }
+
+  .pie-de-pagina {
+    font-size: 10px !important;
+  }
+
+  .parte-izquierda {
+    width: 55% !important;
+  }
+
+  .redes {
+    width: 75% !important;
+  }
+
+  .Ovalo-redes {
+    width: 25px !important;
+    height: 25px !important;
+  }
+
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -1383,6 +1516,15 @@ input.error-input{
 
   .acceso-titulo {
     font-size: 30px !important;
+  }
+
+  //seccion footer
+  .parte-izquierda {
+    width: 55% !important;
+  }
+
+  .redes {
+    width: 75% !important;
   }
 }
 

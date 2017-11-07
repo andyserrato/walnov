@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const faker = require('faker');
+
 mongoose.set('debug', true);
 
 //Modelos
@@ -18,6 +18,7 @@ router.post("/", crearNuevoRelato);
 router.get("/", getRelatos);
 router.get("/:id", getRelatoById);
 router.put('/like', updateLike);
+router.put('/reportOpinion', reportarOpinion);
 router.put('/compartido', updateCompartido);
 router.put('/', updateRelato);
 router.post("/opinion", crearNuevaOpinion);
@@ -493,4 +494,38 @@ function updateCompartido(req, res) {
       });
   }
 
+}
+
+function reportarOpinion(req, res) {
+  let opinionId = req.body.opinionId;
+  let idUsuario = req.body.usuarioId;
+  let relatoId = req.body.relatoId;
+
+  if (opinionId === undefined || idUsuario === undefined) {
+    res.status(404).send({ error: 'El id del relato y el id del usuario son campos requeridos' });
+  } else {
+    Relato
+      .findById(relatoId)
+      .exec(function (err, relato) {
+        if (err) {
+          res.status(400).send({error: err});
+        } else if (relato === null || (relato.opiniones && relato.opiniones.length < 1)) {
+          res.status(404).send({error: 'No se encuentra la opinión'});
+        } else if (idUsuario && relato.opiniones.id(opinionId).reporters.indexOf(idUsuario) === -1) {
+          let opinion = relato.opiniones.id(opinionId);
+          opinion.reporters.push(idUsuario);
+          opinion.reports++;
+          relato.save(function (err) {
+            if (err) {
+              res.status(400).send({error: err});
+            } else {
+              res.status(200).send({mensaje: 'ok'});
+            }
+
+          });
+        } else {
+          res.status(200).send({mensaje: 'ok'});
+        }
+      });
+  }
 }
