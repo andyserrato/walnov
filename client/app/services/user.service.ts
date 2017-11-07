@@ -19,6 +19,11 @@ export class UserService {
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
+  getFollowersById(_id: string) {
+    return this.http.get(this.config.USERS_AUTH_ENDPOINT + '/' + _id + '/followers')
+    .map((response: Response) => response.json())
+    .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
   update(body: any) {
     const bodyString = JSON.stringify(body); // Stringify payload

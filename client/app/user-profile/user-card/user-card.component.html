@@ -50,7 +50,7 @@
         <div class="img-follower">
         </div>
       </div>
-      <div class="all-followers-button">{{'user_profile_todos' | translate}}</div>
+      <div class="all-followers-button" (click)="allFollowers()">{{'user_profile_todos' | translate}}</div>
     </div>
   </div>
   <div *ngSwitchCase="'partner'" class="container">
@@ -105,7 +105,7 @@
         <div class="img-follower">
         </div>
       </div>
-      <div class="all-followers-button">{{'user_profile_todos' | translate}}</div>
+      <div class="all-followers-button"  (click)="allFollowers()">{{'user_profile_todos' | translate}}</div>
     </div>
   </div>
   <div *ngSwitchCase="'premium'" class="container">
@@ -160,7 +160,7 @@
         <div class="img-follower">
         </div>
       </div>
-      <div class="all-followers-button">{{'user_profile_todos' | translate}}</div>
+      <div class="all-followers-button" (click)="allFollowers()">{{'user_profile_todos' | translate}}</div>
     </div>
   </div>
 </div>

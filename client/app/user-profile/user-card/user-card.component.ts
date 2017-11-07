@@ -3,7 +3,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 import {UserService} from '../../services/user.service';
 import {RegisterPopoverService} from '../../services/register-popover.service';
 import {AlertService} from '../../services/alert.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
@@ -15,7 +15,8 @@ export class UserCardComponent implements OnInit {
   constructor(private auth: AuthenticationService,
               private userService: UserService,
               private popOverService: RegisterPopoverService,
-              private alert: AlertService) { }
+              private alert: AlertService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -60,6 +61,10 @@ export class UserCardComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  allFollowers() {
+    this.router.navigateByUrl('/user-profile/'+this.user.id+'/followers')
   }
 
 }

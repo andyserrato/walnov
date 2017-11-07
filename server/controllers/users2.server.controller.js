@@ -32,6 +32,7 @@ router.get('/oauth/userdataPassportLoggedIn', isLoggedIn, findUserByProviderIdPa
 router.get('/oauth/passport/:provider/:providerId', getUserByProviderAndProviderId);
 router.get('', getUserByParams);
 router.get('/auth/:id', getUserById);
+router.get('/auth/:id/followers', getUserFollowers);
 router.put('/auth/:id', updateUserProfileById);
 router.post('', createUser);
 router.post('/follow', followUser);
@@ -287,14 +288,25 @@ function createUser(req, res) {
 }
 
 function getUserById(req, res) {
-
+  console.log('holi');
   if (!req.params.id)
     res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
 
   User.findById(req.params.id).exec(function (err, user) {
     if (err)
       res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+    res.status(200).send(user);
+  });
+}
 
+function getUserFollowers(req, res) {
+  if (!req.params.id)
+  res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+
+  User.findById(req.params.id).populate('seguidores').exec(function (err, user) {
+    if (err)
+      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+    
     res.status(200).send(user);
   });
 }

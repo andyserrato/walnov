@@ -6,6 +6,7 @@ import { UserContentContinuacionesComponent } from './user-content/user-content-
 import { UserContentHistoriasComponent } from './user-content/user-content-historias/user-content-historias.component';
 import { UserContentRelatosComponent } from './user-content/user-content-relatos/user-content-relatos.component';
 import { UserContentWallsComponent } from './user-content/user-content-walls/user-content-walls.component';
+import { UserFollowersComponent } from './user-followers/user-followers.component';
 
 const routes: Routes = [{
   path: 'user-profile/:id',
@@ -16,6 +17,7 @@ const routes: Routes = [{
     { path: 'continuaciones', component: UserContentContinuacionesComponent },
     { path: 'chatstories', component: UserContentChatstoriesComponent },
     { path: 'relatos', component: UserContentRelatosComponent },
+    { path: 'followers', component: UserFollowersComponent },
     //{ path: '', redirectTo: 'user-profile/:id/walls', pathMatch: 'full'}
   ],
 }];
