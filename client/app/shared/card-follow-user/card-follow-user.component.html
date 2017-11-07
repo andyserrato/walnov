@@ -1,17 +1,17 @@
 <div class="outside-container d-flex flex-column align-items-center">
-  <div class="user-img" [ngStyle]="{'background-image': 'url('+this.user.imagen+')'}">
+  <div class="user-img" [ngStyle]="{'background-image': 'url('+this.user.perfil.foto_perfil+')'}">
 
   </div>
-  <div class="title">
-    {{this.user.nombre}}
+  <div class="title" (click)="goToUser()">
+    {{this.user.perfil.display_name}}
   </div>
   <div class="inside-info d-flex flex-column align-items-center">
-    <span class="info">{{this.user.walls}} Walls</span>
-    <span class="info">{{this.user.chatstories}} Chatstories</span>
-    <span class="info">{{this.user.relatos}} {{'all_relatos_cortos' | translate}}</span>
+    <span class="info">{{this.user.perfil.numWallsCreated}} Walls</span>
+    <span class="info">{{this.user.perfil.numChatStoriesCreated}} Chatstories</span>
+    <span class="info">{{this.user.perfil.numRelatosCreated}} {{'all_relatos_cortos' | translate}} </span>
   </div>
   <div class="follow d-flex align-items-center justify-content-center" [ngClass]="{'selected': this.seguido}" (click)="this.seguido = !this.seguido" (click)="follow()">
-    <span *ngIf="this.seguido"><span class="fa fa-check"></span> {{'all_siguiendo' | translate}}</span>
-    <span *ngIf="!this.seguido">{{'all_seguir' | translate}}</span>
+    <span *ngIf="this.seguido" (click)="unfollow()"><span class="fa fa-check"></span> {{'all_siguiendo' | translate}}</span>
+    <span *ngIf="!this.seguido" (click)="follow()">{{'all_seguir' | translate}}</span>
   </div>
 </div>

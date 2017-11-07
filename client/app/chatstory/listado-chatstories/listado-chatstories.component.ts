@@ -37,7 +37,14 @@ export class ListadoChatstoriesComponent implements OnInit {
     const myParams = new URLSearchParams();
     myParams.append('top', '60');
     myParams.append('skip', '' + this.skip);
-    myParams.append('sort', '-fechaCreacion');
+    if (this.categoria && this.categoria.nombre != null) {
+      myParams.append('categoria', this.categoria.nombre);
+      // if (this.sortBy == null) {
+        myParams.append('sort', 'relevantes');
+      // }
+    } else {
+      myParams.append('sort', '-fechaCreacion');
+    }
 
     this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatstories => {
       if (this.authenticationService.isLoggedIn()) {

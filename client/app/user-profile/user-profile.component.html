@@ -15,7 +15,7 @@
     <div class="col-lg-3 hidden-md-down" style="padding-left:0px;">
       <app-card-usuario-tendencia></app-card-usuario-tendencia>
       <!-- <div [ngSwitch] = "this.vista"> -->
-        <app-card-wall-relevante *ngIf="this.router.url.includes('walls') || this.router.url.includes('historias') || this.router.url.includes('cont')"></app-card-wall-relevante>
+        <app-card-wall-relevante *ngIf="this.router.url.includes('walls') || this.router.url.includes('historias') || this.router.url.includes('cont') || this.router.url.includes('followers')"></app-card-wall-relevante>
         <app-card-relato-relevante *ngIf="this.router.url.includes('relatos')"></app-card-relato-relevante>
         <app-card-chatstory-relevante *ngIf="this.router.url.includes('chatstories')"></app-card-chatstory-relevante>
       <!-- </div> -->
