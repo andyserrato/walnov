@@ -11,7 +11,8 @@
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="Walnov">
-  <meta property="og:description" content="La mejor forma de descubrir los últimos microrrelatos, el último Wall y una página única. Disfruta como nunca antes Walnov y sus microrrelatos.">
+  <meta property="og:description"
+        content="La mejor forma de descubrir los últimos microrrelatos, el último Wall y una página única. Disfruta como nunca antes Walnov y sus microrrelatos.">
   <meta property="og:url" content="https://www.walnov.com/">
   <meta property="og:site_name" content="Walnov">
   <meta property="article:publisher" content="https://www.facebook.com/Walnov-1755665758013483/">
@@ -19,10 +20,12 @@
   <meta property="article:published_time" content="2017-09-22T23:58:41+02:00">
   <meta property="og:image" content="https://www.walnov.com/wp-content/uploads/2016/04/walnov-1.jpg">
   <meta property="fb:api" content="118102758792110">
-  <meta name="description" content="La mejor forma de descubrir los últimos microrrelatos, el último Wall y una página única. Disfruta como nunca antes Walnov y sus microrrelatos.">
+  <meta name="description"
+        content="La mejor forma de descubrir los últimos microrrelatos, el último Wall y una página única. Disfruta como nunca antes Walnov y sus microrrelatos.">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:description" content="La mejor forma de descubrir los últimos microrrelatos, el último Wall y una página única. Disfruta como nunca antes Walnov y sus microrrelatos.">
+  <meta name="twitter:description"
+        content="La mejor forma de descubrir los últimos microrrelatos, el último Wall y una página única. Disfruta como nunca antes Walnov y sus microrrelatos.">
   <meta name="twitter:title" content="Inicio - Microrrelatos Walnov">
   <meta name="twitter:image" content="https://www.walnov.com/wp-content/uploads/2016/04/walnov-1.jpg">
   <meta name="twitter:site" content="@Walnov_">
@@ -32,6 +35,7 @@
 <body>
 <app-root>
   <style>
+    @import url('https://fonts.googleapis.com/css?family=Maven+Pro');
     .spinner {
       width: 40px;
       height: 40px;
@@ -63,24 +67,50 @@
     }
 
     @-webkit-keyframes sk-bounce {
-      0%, 100% { -webkit-transform: scale(0.0) }
-      50% { -webkit-transform: scale(1.0) }
+      0%, 100% {
+        -webkit-transform: scale(0.0)
+      }
+      50% {
+        -webkit-transform: scale(1.0)
+      }
     }
 
     @keyframes sk-bounce {
       0%, 100% {
         transform: scale(0.0);
         -webkit-transform: scale(0.0);
-      } 50% {
-          transform: scale(1.0);
-          -webkit-transform: scale(1.0);
-        }
+      }
+      50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+      }
+    }
+
+    .container-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+      width: 100vw;
+    }
+
+    .walnov {
+      font-family: 'Maven Pro';
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
     }
   </style>
-  <div class="spinner">
-    <div class="double-bounce1"></div>
-    <div class="double-bounce2"></div>
+  <div class="container-spinner">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+      <img src="assets/images/Logo Walnov-04.svg" width="40px" height="40px" style="padding-top: 40px" class="d-inline-block align-top" alt="">
+      <!--<div class="walnov">Walnov</div>-->
+    </div>
   </div>
+
 </app-root>
 
 <!-- <script src="/socket.io/socket.io.js"></script> -->
