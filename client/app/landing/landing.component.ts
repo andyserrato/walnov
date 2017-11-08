@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {AuthenticationService} from '../services/authentication.service';
 import {AlertService} from '../services/alert.service';
@@ -6,14 +6,15 @@ import {RegisterPopoverService} from '../services/register-popover.service';
 import { TranslateService } from '../translate';
 import { RepositorioService } from '../services/repositorio.service';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss', '../landing/styles/bootstrap.min.css', '../landing/styles/font-awesome.min.css', '../landing/styles/linearicons.css', '../landing/styles/owl.carousel.css', '../landing/styles/owl.theme.css', '../landing/styles/responsive.css', '../landing/styles/style.css']
 })
-export class LandingComponent implements OnInit {
-  // visible: boolean;
+export class LandingComponent implements OnInit, OnDestroy {
   @ViewChild('div') div: ElementRef;
   @ViewChild('mail') mail: ElementRef;
   @ViewChild('pass') pass: ElementRef;
@@ -25,6 +26,7 @@ export class LandingComponent implements OnInit {
   view = 'login';
   loading = false;
   callbackURL = '/social-login/success';
+  private subscription: Subscription;
 
   constructor(private fb: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -40,20 +42,11 @@ export class LandingComponent implements OnInit {
       'user': [null, Validators.required],
       'pass': [null, Validators.compose([Validators.required, Validators.minLength(8)])]
     });
-    // this.popoverService.isVisible().subscribe(b => {
-    //     this.visible = b ? true : false;
-    // });
   }
 
   ngOnInit() {
-    // if(this.authenticationService.isLoggedIn()) this.router.navigate(['/home']);
 
   }
-
-  // close() {
-  //   this.popoverService.setVisible(false);
-  //   this.view = 'register';
-  // }
 
   changeView(str: string) {
     this.view = str;
@@ -70,7 +63,6 @@ export class LandingComponent implements OnInit {
       this.authenticationService.signup(user).subscribe(result  => {
         // todo no se debe loguear el usuario de inmediato
           localStorage.setItem('currentUser', JSON.stringify(result));
-          // this.visible = false;
           this.loged.emit();
           this.loading = false;
           this.router.navigate(['/home']);
@@ -94,7 +86,6 @@ export class LandingComponent implements OnInit {
       this.loading = true;
       this.authenticationService.login(this.validateForm.controls['user'].value, this.validateForm.controls['pass'].value).subscribe(
         result => {
-          // this.visible = false;
           this.loged.emit();
           this.loading = false;
           this.router.navigate(['/home']);
@@ -109,15 +100,30 @@ export class LandingComponent implements OnInit {
   }
 
   doSocialLogin(url: string) {
-    // console.log(this.loged);
     this.authenticationService.doSocialLogin(url + this.callbackURL);
-
+    this.subscription = this.checkforUser().subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.router.navigate(['/home']);
+      }
+    });
     this.loged.emit();
-    // console.log(this.loged);
-    // if(this.authenticationService.isLoggedIn()) this.router.navigate(['/home']);
   }
 
   getBackColor(categoria) {
       return categoria.color;
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  checkforUser(): Observable<boolean> {
+    return Observable
+      .interval(1000)
+      .flatMap(() => {
+        return Observable.of(this.authenticationService.isLoggedIn());
+      });
   }
 }
