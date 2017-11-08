@@ -32,10 +32,10 @@ import {VerRelatoComponent} from './shared/ver-relato/ver-relato.component';
 import {RelatoComponent} from './relatos/relato/relato.component';
 
 const appRoutes: Routes = [
-  {path: '', component: LandingComponent},
+  {path: '', component: LandingComponent, canActivate: [AuthGuard] },
   {path: 'descarga-la-app', component: LandingMobileComponent},
   {path: 'home', loadChildren: './home/home.module#HomeModule'},
-  {path: 'inicio', component: InicioComponent}, //canActivate: [AuthGuard] },
+  {path: 'inicio', component: InicioComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: 'pricing-premium', component: PricingPremiumComponent},
   {path: 'pricing-premium/prueba', component: PricingPremiumPruebaComponent},
@@ -62,10 +62,6 @@ const appRoutes: Routes = [
   {path: 'chatstory/:id', component: VerChatstoryComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},
-
-
-  // otherwise redirect to home
-  /*{ path: '**', redirectTo: '' }*/
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
