@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RepositorioService} from '../../services/repositorio.service';
 import {UserService} from '../../services/user.service';
+import { Paginator } from '../../models/paginador';
 @Component({
   selector: 'app-user-followers',
   templateUrl: './user-followers.component.html',

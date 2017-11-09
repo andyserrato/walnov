@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
-import {Router} from '@angular/router';
-import {AuthenticationService} from '../../services/authentication.service';
-import {UserService} from '../../services/user.service';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication.service';
+import { UserService } from '../../services/user.service';
+
 @Component({
   selector: 'app-card-follow-user',
   templateUrl: './card-follow-user.component.html',
@@ -11,6 +12,7 @@ import {UserService} from '../../services/user.service';
 export class CardFollowUserComponent implements OnInit {
   @Input() user: any;
   @Input() seguido: boolean;
+  invisible: boolean;
   @Output() followClick : EventEmitter<any>;
   constructor(private router: Router,
               private auth: AuthenticationService,
@@ -26,6 +28,7 @@ export class CardFollowUserComponent implements OnInit {
     }else{
       this.seguido=false;
     }
+    this.invisible = this.user.id == this.auth.getUser().id;
   }
 
   follow() {
