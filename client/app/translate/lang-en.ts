@@ -95,6 +95,7 @@ export const LANG_EN_TRANS = {
   'shared_no_content_mis_relatos': 'Oops! you have not created any Short Stories yet, What are you waiting for!',
   'shared_no_content_ver_relatos_button_text': 'Check Short Stories',
   'shared_no_content_crear_relatos_button_text': 'Create Short Stories',
+  'shared_no_content_followers': 'Oops! no followers here!',
 
   // modal
   'modal_home': 'Great! Your own community has started',

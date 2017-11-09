@@ -42,7 +42,7 @@
     <div class="title-box d-flex align-items-center justify-content-center">
       {{message.text}}
     </div>
-    <div class="button-box d-flex justify-content-end">
+    <div *ngIf="message.buttonText" class="button-box d-flex justify-content-end">
       <div class="button d-flex align-items-center justify-content-center" (click)="navigate()">
         {{ message.buttonText }}
       </div>
