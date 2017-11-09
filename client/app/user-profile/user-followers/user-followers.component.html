@@ -1,3 +1,11 @@
-<div *ngIf="this.user" class="d-flex frex-wrap align-items-center justify-content-center users-container">
-  <app-card-follow-user *ngFor="let u of this.user.seguidores" [user]="u"></app-card-follow-user>
+<!--<div *ngIf="user" class="d-flex frex-wrap align-items-center justify-content-center users-container">-->
+  <!--<app-card-follow-user *ngFor="let u of user?.seguidores" [user]="u"></app-card-follow-user>-->
+<!--</div>-->
+
+<div *ngIf="user" class="app flex-row align-items-center justify-content-center users-container">
+  <div class="container">
+    <div class="card-deck row">
+      <app-card-follow-user *ngFor="let u of user?.seguidores" [user]="u"></app-card-follow-user>
+    </div>
+  </div>
 </div>

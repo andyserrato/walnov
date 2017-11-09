@@ -301,12 +301,19 @@ function getUserById(req, res) {
 
 function getUserFollowers(req, res) {
   if (!req.params.id)
-  res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+  res.status(400).send(req.body.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.error } : { error: Constantes.Mensajes.MENSAJES.es.error });
 
-  User.findById(req.params.id).populate('seguidores').exec(function (err, user) {
+  const options = { limit: (isNaN(req.query.top)) ? 12 : +req.query.top,
+                    skip: (isNaN(req.query.skip)) ? 0 : +req.query.skip };
+
+  User.findById(req.params.id)
+    .select('seguidores')
+    .populate({ path: 'seguidores', select: 'perfil id', options} )
+    // .where('active').eq(true)
+    .exec(function (err, user) {
     if (err)
-      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
-    
+      res.status(400).send(req.body.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.error } : { error: Constantes.Mensajes.MENSAJES.es.error });
+
     res.status(200).send(user);
   });
 }

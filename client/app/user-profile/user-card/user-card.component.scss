@@ -86,10 +86,14 @@
   font-weight: 500;
   text-align: left;
   color: $grey-8;
+  text-align: center;
 }
 
 .number-followers-container{
   margin-bottom: 1em;
+  text-align: center;
+  display: inline-grid;
+  width: 100%;
 }
 
 .all-followers-button{

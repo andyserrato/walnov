@@ -19,8 +19,10 @@ export class UserService {
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
-  getFollowersById(_id: string) {
-    return this.http.get(this.config.USERS_AUTH_ENDPOINT + '/' + _id + '/followers')
+  getFollowersById(_id: string, myParams?: URLSearchParams) {
+    const myHeaders = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
+    const options = new RequestOptions({headers: myHeaders, params: myParams});
+    return this.http.get(this.config.USERS_AUTH_ENDPOINT + '/' + _id + '/followers' + '?' + myParams, options)
     .map((response: Response) => response.json())
     .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
