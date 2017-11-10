@@ -1,5 +1,8 @@
-<div #container>
-  <div *ngIf="this.paginador" class="d-flex frex-wrap align-items-center justify-content-start users-container">
-    <app-card-follow-user *ngFor="let u of this.paginador.paginador" [user]="u"></app-card-follow-user>
+<div class="app flex-row align-items-center justify-content-center users-container">
+  <div *ngIf="user" class="container">
+    <div class="card-deck row">
+      <app-card-follow-user *ngFor="let u of user?.seguidores" [user]="u"></app-card-follow-user>
+    </div>
   </div>
-</div>
+  <app-no-content *ngIf="noContent" [message]="message"></app-no-content>
+</div> 

@@ -1,17 +1,17 @@
-<div class="outside-container d-flex flex-column align-items-center">
-  <div class="user-img" [ngStyle]="{'background-image': 'url('+(this.user?.perfil.foto_perfil ? this.user.perfil.foto_perfil : 'www.lorempixel.com/1600/1200')+')'}">
+<div class="outside-container d-flex flex-column align-items-center col-md-4">
+  <div class="user-img" [ngStyle]="{'background-image': 'url('+(user.perfil.foto_perfil ? user.perfil.foto_perfil : '/assets/images/user-placeholder.png')+')'}">
 
   </div>
   <div class="title" (click)="goToUser()">
-    {{this.user?.perfil.display_name ? this.user.perfil.display_name : 'unknown'}}
+    {{user.perfil.display_name ? user.perfil.display_name : 'unknown'}}
   </div>
   <div class="inside-info d-flex flex-column align-items-center">
-    <span class="info">{{this.user?.perfil?.numWallsCreated}} Walls</span>
-    <span class="info">{{this.user?.perfil?.numChatStoriesCreated}} Chatstories</span>
-    <span class="info">{{this.user?.perfil?.numRelatosCreated}} {{'all_relatos_cortos' | translate}} </span>
+    <span class="info">{{user.perfil.numWallsCreated}} Walls</span>
+    <span class="info">{{user.perfil.numChatStoriesCreated}} Chatstories</span>
+    <span class="info">{{user.perfil.numRelatosCreated}} {{'all_relatos_cortos' | translate}} </span>
   </div>
-  <div class="follow d-flex align-items-center justify-content-center" [ngClass]="{'selected': this.seguido, 'invisible': this.invisible}" (click)="this.seguido = !this.seguido" (click)="follow()">
-    <span *ngIf="this.seguido" (click)="unfollow()"><span class="fa fa-check"></span> {{'all_siguiendo' | translate}}</span>
-    <span *ngIf="!this.seguido" (click)="follow()">{{'all_seguir' | translate}}</span>
+  <div class="follow d-flex align-items-center justify-content-center" [ngClass]="{'selected': seguido, 'invisible': invisible}" (click)="seguido = !seguido" (click)="follow()">
+    <span *ngIf="seguido" (click)="unfollow()"><span class="fa fa-check"></span> {{'all_siguiendo' | translate}}</span>
+    <span *ngIf="!seguido" (click)="follow()">{{'all_seguir' | translate}}</span>
   </div>
 </div>
