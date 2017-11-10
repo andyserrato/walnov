@@ -21,14 +21,16 @@ export class CardFollowUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.auth.getUser().siguiendo);
-    console.log(this.user.id);
-    if(this.auth.getUser().siguiendo.indexOf(this.user.id)>-1){
-      this.seguido=true;
-    }else{
-      this.seguido=false;
+    if(this.user){
+      console.log(this.auth.getUser().siguiendo);
+      console.log(this.user.id);
+      if(this.auth.getUser().siguiendo.indexOf(this.user.id)>-1){
+        this.seguido=true;
+      }else{
+        this.seguido=false;
+      }
+      this.invisible = this.user.id == this.auth.getUser().id;
     }
-    this.invisible = this.user.id == this.auth.getUser().id;
   }
 
   follow() {

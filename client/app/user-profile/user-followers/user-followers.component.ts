@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {RepositorioService} from '../../services/repositorio.service';
 import {UserService} from '../../services/user.service';
 import { Paginator } from '../../models/paginador';
@@ -9,6 +9,8 @@ import { Paginator } from '../../models/paginador';
 })
 export class UserFollowersComponent implements OnInit {
   user: any;
+  paginador: Paginator;
+  @ViewChild('container') container: ElementRef;
   constructor(private repo: RepositorioService,
               private userService: UserService) {
 
@@ -16,8 +18,10 @@ export class UserFollowersComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getFollowersById(this.repo.idUsuario).subscribe(user => {
+      console.log(user);
       this.user = user;
-      // console.log(user);
+      let array = new Array(20);
+      this.paginador = new Paginator(array, this.container, 12, 6 );
     });
     
   }

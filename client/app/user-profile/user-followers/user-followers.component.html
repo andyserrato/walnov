@@ -1,3 +1,5 @@
-<div *ngIf="this.user" class="d-flex frex-wrap align-items-center justify-content-center users-container">
-  <app-card-follow-user *ngFor="let u of this.user.seguidores" [user]="u"></app-card-follow-user>
+<div #container>
+  <div *ngIf="this.paginador" class="d-flex frex-wrap align-items-center justify-content-start users-container">
+    <app-card-follow-user *ngFor="let u of this.paginador.paginador" [user]="u"></app-card-follow-user>
+  </div>
 </div>
