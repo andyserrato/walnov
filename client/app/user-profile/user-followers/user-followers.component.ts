@@ -31,10 +31,11 @@ export class UserFollowersComponent implements OnInit {
 
   loadUserfolowers() {
     const myParams = new URLSearchParams();
-    myParams.append('top', '12');
+    myParams.append('top', '15');
     myParams.append('skip', this.skip + '');
     this.userService.getFollowersById(this.repo.idUsuario, myParams).subscribe(user => {
       this.user = user;
+      this.paginador = new Paginator(user.seguidores,this.container,12,6);
       if (this.user && (this.user.seguidores.length === 0)) {
         this.showNoContent();
       }

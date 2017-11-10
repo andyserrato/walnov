@@ -29,7 +29,7 @@ export class Paginator {
     if (this.indice < 0) {
       this.indice = 0;
     }
-
+    // console.log(this.items);
     for (let i = 0; i < this.cargar; i++) {
       if (this.indice < this.items.length) {
         this.paginador.shift();
@@ -64,7 +64,6 @@ export class Paginator {
     const height = this.container.nativeElement.scrollHeight - (this.container.nativeElement.clientHeight);
     const porcentaje = (this.container.nativeElement.scrollTop * 100) / height;
     this.inicio = porcentaje === 0 ? true : false;
-
     if (this.vecesScroll === 4) {
       this.paginar = true;
     }
