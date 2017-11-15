@@ -87,6 +87,8 @@ export class CardChatstoriesPaginadorComponent implements OnInit {
 
   loadMore() {
     this.more.emit();
-    
+  }
+  scrollTop() {
+    this.repositorio.paginadorCardsChatstories.scrollTop();
   }
 }

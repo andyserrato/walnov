@@ -1,12 +1,17 @@
-<div class="d-flex Rectangle-7" (click)="loadChatstory($event)">
+<div class="d-flex flex-column Rectangle-7" >
   <div class="d-flex flex-row">
     <div class="d-flex flex-column">
       <div class="d-flex flex-row">
-        <div [ngStyle]="{'background-image': 'url('+this.chatstory.urlImagen+')'}" class="Chat-Image">
+        <div [ngStyle]="{'background-image': 'url('+this.chatstory.urlImagen+')'}" class="Chat-Image" (click)="loadChatstory($event)">
+          <div class="Chat-Filter" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(0, 0, 0, 0), '+getColor()+')'}"></div>
+          <div class="Fade-Black d-flex align-items-center justify-content-center" title="Ver Chatstory">
+            <i class="fa fa-eye"></i>
+          </div>
         </div>
+        
       </div>
-      <div class="d-flex flex-row justify-content-center">
-        <div class="Rectangle-7-Copy-3" [style.backgroundColor] = 'getColor()'>
+      <div class="d-flex flex-row justify-content-center" *ngIf="this.allowLibrary">
+        <div class="Rectangle-7-Copy-3 margin-top" [style.backgroundColor] = 'getColor()'>
           <div class="Categoria">
             {{this.chatstory.categoria | translate}}
           </div>
@@ -19,34 +24,41 @@
           {{this.chatstory.titulo}}
         </div>
       </div>
+      <div class="d-flex flex-row" *ngIf="this.chatstory.autor" (click)="goToUser()">
+        <div class="autor-title">
+          {{this.chatstory.autor.perfil.display_name}}
+        </div>
+      </div>
       <div class="d-flex flex-row" style="margin-top:10px;">
         <div class="Chat-Descripcion">
-          {{this.checkDescription(chatstory)}}
+          {{this.chatstory.descripcion}}
         </div>
       </div>
     </div>
   </div>
-  <div class="d-flex flex-row" style="position:absolute; bottom:20px;">
-    <div  #addButton class="d-flex flex-column">
-      <button *ngIf= '!this.chatstory.added' type="button" class="Rectangle-7-Copy-4" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
+  <div class="d-flex flex-row align-items-center" style="margin-top:1em">
+    <div  #addButton class="d-flex flex-column align-items-center" *ngIf="showAnyadirToBiblioteca()" [ngClass]="{'user-chatstory': checkUserChatstory()}">
+      <button type="button" [ngClass]="{'Rectangle-7-Copy-4': !this.inLibrary, 'Rectangle-7-Copy-4-2': this.inLibrary}" (click)='addToLibrary()' name="button" style="cursor:pointer;">
         <div class="btn-details">
-          {{'chatstorie_add_biblioteca' | translate}}
-        </div>
-      </button>
-      <button *ngIf= 'this.chatstory.added' type="button" class="Rectangle-7-Copy-4-2" (click)='addBiblioteca()' name="button" style="cursor:pointer;">
-        <div class="btn-details-2">
-          {{'chatstorie_added_biblioteca' | translate}}
+          {{this.addLibraryText()}}
         </div>
       </button>
     </div>
-    <div class="d-flex flex-colum">
+    <div class="d-flex flex-column align-items-center" *ngIf="!this.allowLibrary">
+      <div class="Rectangle-7-Copy-3" [style.backgroundColor] = 'getColor()'>
+        <div class="Categoria">
+          {{this.chatstory.categoria | translate}}
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-colum ml-auto">
       <div class="Chat-Views">
         <i class="fa fa-eye" aria-hidden="true"></i>
-        {{this.chatstory.estadistica?.vecesVisto}}
+        {{getNumber(this.chatstory.estadistica?.vecesVisto)}}
       </div>
-      <div #likeButton class="Chat-Likes" (click)="this.like()">
+      <div #likeButton class="Chat-Likes" (click)="like()">
         <i class="fa" aria-hidden="true" [ngClass]="{'fa-heart-o':!liked(),'fa-heart':liked()}"></i>
-        {{this.chatstory.estadistica?.likes}}
+        {{getNumber(this.chatstory.estadistica?.likes)}}
       </div>
     </div>
   </div>

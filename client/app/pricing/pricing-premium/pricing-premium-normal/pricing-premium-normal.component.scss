@@ -26,6 +26,10 @@
       margin-left: 40px !important;
     }
 
+    .margen-ingles {
+      margin-right: 30px !important;
+    }
+
     .header-2 {
       max-width: 190px !important;
       margin-right: -20px !important;
@@ -383,6 +387,7 @@
 .Rectangle-7 {
   //width: 338px;
   //height: 530px;
+  max-width: 320px;
   margin-bottom: 17px;
   margin-top: 42px;
   padding: 24px 25px 20px 25px;
@@ -495,6 +500,7 @@
 .Rectangle-7-Copy {
   //width: 338px;
   //height: 530px;
+  max-width: 320px;
   position: relative;
   margin-top: 24px;
   z-index: 1;
@@ -585,4 +591,8 @@
   text-align: center;
   color: $grey-1;
   z-index: 3;
+}
+
+.margen-ingles {
+  margin-right: 115px;
 }

@@ -6,7 +6,6 @@ mongoose.set('debug', true);
 const ChatStory = mongoose.model('ChatStory');
 const Chat = mongoose.model('Chat');
 const Estadistica = mongoose.model('Estadistica');
-const usersController = require('../controllers/users2.server.controller');
 const User = mongoose.model('usuarios');
 const GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
 const NotificacionNuevoChatStory = mongoose.model('notificacionNuevoChatStory');
@@ -18,9 +17,9 @@ router.get('/', getChatStories);
 
 router.get('/:id', getChatStoryById);
 router.put('/like', updateLike);
-router.put('/:id', updateChatStory);
+router.put('/compartido', updateCompartido);
+router.put('/', updateChatStory);
 
-router.put('/:id/compartido', updateCompartido);
 router.put('/:id/visitas', updateVisitas);
 
 router.get('/usuario/:userName', getChatStoriesByUserName);
@@ -34,9 +33,7 @@ module.exports = router;
 
 // Implementaciones de las rutas
 function crearChatStory(req, res) {
-  console.log('holis');
   let peticion = req.body.chatStory;
-  console.log(peticion);
   if (!peticion) {
     res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
   } else {
@@ -45,32 +42,35 @@ function crearChatStory(req, res) {
     let estadistica = new Estadistica();
     estadistica.save(function (err) {
       if (err) {
-        console.log(err);
         res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
       }
     });
     chatStory.estadistica = estadistica;
 
     chatStory.save(function (err, newChatStory) {
-      console.log('salvando');
       if (err) {
-        console.log(err);
         res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
       } else {
         var notificacionNuevoChatStory = GestorNotificaciones.crearNotificacionNuevoChatstory(
-          req.body.lang === 'es' ?  Constantes.Mensajes.MENSAJES.es.creado :  Constantes.Mensajes.MENSAJES.en.created,
+          req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.creado : Constantes.Mensajes.MENSAJES.en.created,
           Date.now().toString(),
           newChatStory.autor,
           newChatStory.autorNombre,
           newChatStory.id,
           newChatStory.titulo
-          );
+        );
 
         if (!peticion.seguidores) {
-          User.findOne({_id: peticion.autor}, function (err, usu) {
+          User.findOne({_id: newChatStory.autor}, function (err, usu) {
             if (err)
               res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
-            notificar(notificacionNuevoChatStory, usu.seguidores, newChatStory);
+            usu.increaseChatStoriesCreated(function (err) {
+                if (err)
+                  res.status(400).send(req.body.lang === 'es' ? Constantes.Mensajes.MENSAJES.es.error : Constantes.Mensajes.MENSAJES.en.error);
+                notificar(notificacionNuevoChatStory, usu.seguidores, newChatStory);
+              }
+            );
+
           });
         } else {
           notificar(notificacionNuevoChatStory, peticion.usuario.seguidores, newChatStory);
@@ -85,22 +85,23 @@ function crearChatStory(req, res) {
   }
 }
 
-//  TODO paginacion
 function getChatStories(req, res) {
-  let limit;
-  let sort; // Relevantes (los que tengan mejores estadísticas en un intervalo de tiempo), seguidos, no seguidos,
   let query = ChatStory.find();
-  // query.select('titulo categoria autorNombre autor estadistica fechaCreacion');
+  query.select('titulo autor autorNombre categoria urlImagen descripcion tipo exclusivo estadistica fechaCreacion fechaModificacion');
   query.populate('estadistica autor');
   if (req.query && req.query.categoria) {
     query.where('categoria').equals(req.query.categoria);
+  }
+
+  if (req.query && req.query.titulo) {
+    query.where('titulo').equals(req.query.titulo);
   }
 
   if (req.query && req.query.autorNombre) {
     query.where('autorNombre').equals(req.query.autorNombre);
   }
 
-  if (req.query && req.query.autor) {
+  if (req.query && req.query.autor && !req.query.timeLine) {
     query.where('autor').equals(req.query.autor);
   }
 
@@ -117,33 +118,34 @@ function getChatStories(req, res) {
   }
 
   if (req.query && req.query.sort) {
-    console.log(req.query.sort);
     let sortQueries = req.query.sort.split(',');
 
     for (i = 0; i < sortQueries.length; i++) {
       if (sortQueries[i].indexOf('fechaModificacion') !== -1) {
         query.sort(sortQueries[i]);
       } else if (sortQueries[i].indexOf('fechaCreacion') !== -1) {
-        console.log('encontrado')
         query.sort(sortQueries[i]);
       } else if (sortQueries[i].indexOf('vecesVisto') !== -1) {
         if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
-          query.sort('-estadistica.vecesVisto');
+          query.populate({path: 'estadistica', options: { sort: { vecesVisto: -1}}});
         } else if (sortQueries[i].indexOf('+vecesVisto') !== -1) {
-          query.sort('+estadistica.vecesVisto');
+          query.populate({path: 'estadistica', options: { sort: { vecesVisto: +1}}});
         }
       } else if (sortQueries[i].indexOf('likes') !== -1) {
         if (sortQueries[i].indexOf('-likes') !== -1) {
-          query.sort('-estadistica.likes');
+          query.populate({path: 'estadistica', options: { sort: { likes: -1}}});
         } else if (sortQueries[i].indexOf('+likes') !== -1) {
-          query.sort('+estadistica.likes');
+          query.populate({path: 'estadistica', options: { sort: { likes: +1}}});
         }
       } else if (sortQueries[i].indexOf('vecesCompartido') !== -1) {
         if (sortQueries[i].indexOf('-vecesCompartido') !== -1) {
-          query.sort('-estadistica.vecesCompartido');
+          query.populate({path: 'estadistica', options: { sort: { vecesCompartido: -1}}});
         } else if (sortQueries[i].indexOf('+vecesCompartido') !== -1) {
-          query.sort('+estadistica.vecesCompartido');
+          query.populate({path: 'estadistica', options: { sort: { vecesCompartido: +1}}});
         }
+      } else if (sortQueries[i].indexOf('relevantes') !== -1) {
+        query.populate({path: 'estadistica', options: {
+          sort: { vecesVisto: -1, likes: -1, vecesCompartido: -1}}});
       }
     }
   }
@@ -151,19 +153,96 @@ function getChatStories(req, res) {
   // paginacion
   query.limit((isNaN(req.query.top)) ? 10 : +req.query.top);
   query.skip((isNaN(req.query.skip)) ? 0 : +req.query.skip);
-
   query.where('activo').equals(true);
-  // relevantes
+  query.where('estadistica').ne(null);
 
-  query.exec(function (err, chatStories) {
-    if (err) {
-      res.status(400).send(err);
-    } else {
-      // TODO update views si se ve conveniente
-      res.status(200).send(chatStories);
+  if (req.query && req.query.autor && req.query.timeLine && (req.query.timeLine === 'followers' || req.query.timeLine === 'following')) {
+    User.findById(req.query.autor, (err, user) => {
+      if(err) {
+        res.status(400).send(err);
+      }
+      else {
+        if(req.query.timeLine === 'followers' && user.seguidores.length > 0
+  )
+    {
+      query.where('autor').in(user.seguidores);
+      ejecutarQuery();
     }
-  });
+  else
+    if (req.query.timeLine === 'following' && user.siguiendo.length > 0) {
+      query.where('autor').in(user.seguidores);
+      ejecutarQuery();
+    } else if (req.query.timeLine === 'following' && user.siguiendo.length === 0) {
+      res.status(400).send(new Error("No estas siguiendo a nadie"));
+    } else if (req.query.timeLine === 'followers' && user.seguidores.length === 0) {
+      res.status(400).send(new Error("No tienes seguidores"));
+    }
+  }
+  })
+    ;
+  } else {
+    ejecutarQuery();
+  }
+
+  function ejecutarQuery() {
+    query.exec(function (err, chatStories) {
+      if (err) {
+        res.status(400).send({error: err});
+      } else {
+        res.status(200).send(ordenar(chatStories));
+      }
+    });
+  }
+
+  function ordenar(chatStories) {
+    if (req.query && req.query.sort) {
+      let sortQueries = req.query.sort.split(',');
+
+      for (i = 0; i < sortQueries.length; i++) {
+        if (sortQueries[i].indexOf('vecesVisto') !== -1) {
+          if (sortQueries[i].indexOf('-vecesVisto') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.vecesVisto > b.estadistica.vecesVisto;
+            });
+          } else if (sortQueries[i].indexOf('+vecesVisto') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.vecesVisto < b.estadistica.vecesVisto;
+            });
+          }
+        } else if (sortQueries[i].indexOf('likes') !== -1) {
+          if (sortQueries[i].indexOf('-likes') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.likes > b.estadistica.likes;
+            });
+          } else if (sortQueries[i].indexOf('+likes') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.likes < b.estadistica.likes;
+            });
+          }
+        } else if (sortQueries[i].indexOf('vecesCompartido') !== -1) {
+          if (sortQueries[i].indexOf('-vecesCompartido') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.vecesCompartido > b.estadistica.vecesCompartido;
+            });
+          } else if (sortQueries[i].indexOf('+vecesCompartido') !== -1) {
+            chatStories.sort(function (a, b) {
+              return a.estadistica.vecesCompartido < b.estadistica.vecesCompartido;
+            });
+          }
+        } else if (sortQueries[i].indexOf('relevantes') !== -1) {
+          chatStories.sort(function (a, b) {
+            let numberA = a.estadistica.vecesVisto + a.estadistica.likes + a.estadistica.vecesCompartido;
+            let numberB = b.estadistica.vecesVisto + b.estadistica.likes + b.estadistica.vecesCompartido;
+            return numberA < numberB;
+          });
+        }
+      }
+    }
+
+    return chatStories;
+  }
 }
+
 
 function getChatStoryById(req, res) {
   let id = req.params.id;
@@ -171,34 +250,36 @@ function getChatStoryById(req, res) {
   ChatStory.findById(id)
     .populate('estadistica autor')
     .exec(function (err, chatStory) {
-      if (err)
+      if (err || chatStory === null) {
         res.status(400).send("No se encuentra el ChatStory");
+      } else {
+        // ChatStory no es borrador
+        if (chatStory.estadistica === null)
+          chatStory.estadistica = new Estadistica();
 
-      chatStory.estadistica.vecesVisto++;
+        if (chatStory && chatStory.tipo != 1 && chatStory.estadistica)
+          chatStory.estadistica.vecesVisto++;
 
-      if (idUsuario && chatStory.estadistica.visitas.indexOf(idUsuario) === -1) {
-        chatStory.estadistica.visitas.push(idUsuario);
+        if (idUsuario && chatStory && chatStory.estadistica && chatStory.estadistica.visitas.indexOf(idUsuario) === -1) {
+          chatStory.estadistica.visitas.push(idUsuario);
+        }
+
+        chatStory.estadistica.save(function (err) {
+          if (err)
+            res.status(400).send(err);
+
+          res.status(200).send(chatStory);
+        })
       }
-
-      chatStory.estadistica.save(function (err) {
-        if (err)
-          res.status(400).send(err);
-      })
-
-      res.status(200).send(chatStory);
     });
 }
 
 function updateChatStory(req, res) {
-  console.log('updateChatStory');
-  let id = req.params.id;
+  let id = req.body.chatStory.id;
   let chatStory = req.body.chatStory;
-  console.log('id: ' + id);
-  console.log('chatstpry ' + chatStory);
-  console.log('req.body.chatStory ' + req.body.chatStory);
-  if (!req.params.id ||  req.params.id === undefined) {
+  if (!id || id === undefined) {
     res.status(400).send('Debes proporcionar el id del Chatstory');
-  } else if (!req.body.chatStory ||  req.body.chatStory === undefined) {
+  } else if (!chatStory || chatStory === undefined) {
     res.status(400).send('El ChatStory se encuentra vacío');
   } else {
     ChatStory.findByIdAndUpdate(id, chatStory, {new: true},
@@ -237,93 +318,113 @@ function updateVisitas(req, res) {
 }
 
 function updateCompartido(req, res) {
-  let id = req.params.id;
-  let idUsuario = req.body.usuario.id;
+  let id = req.body.chatStoryId;
+  let idUsuario = req.body.usuarioId;
   let redSocial = req.body.redSocial;
-  ChatStory.findById(id)
-    .populate('estadistica autor')
-    .exec(function (err, chatStory) {
 
-      if (err)
-        res.status(400).send('Ha ocurrido un eror');
+  if (id === undefined || idUsuario === undefined || redSocial === undefined) {
 
-      if (chatStory) {
-        chatStory.estadistica.vecesCompartido++;
-
-        if (redSocial && (redSocial === 'facebook') && chatStory) {
-          chatStory.estadistica.vecesCompartidoFacebook++;
-
-          if (idUsuario && chatStory.estadistica.compartidoFacebook.indexOf(idUsuario) === -1) {
-            chatStory.estadistica.compartidoFacebook.push(idUsuario);
-          }
-
-          if (chatStory.estadistica.vecesCompartidoFacebook / 50 > 1) {
-            // TODO notificacion  de cantidad aquí
-          }
-
-        } else if (redSocial && (redSocial === 'twitter')) {
-          chatStory.estadistica.vecesCompartidoTwitter++;
-
-          if (idUsuario && chatStory.estadistica.compartidoTwitter.indexOf(idUsuario) === -1) {
-            chatStory.estadistica.compartidoTwitter.push(idUsuario);
-          }
-
-          if (chatStory.estadistica.vecesCompartidoTwitter / 50 > 1) {
-            // TODO notificacion  de cantidad aquí
-          }
-
-        } else if (redSocial && (redSocial === 'google')) {
-          chatStory.estadistica.vecesCompartidoGoogle++;
-
-          if (idUsuario && chatStory.estadistica.compartidoGoogle.indexOf(idUsuario) === -1) {
-            chatStory.estadistica.compartidoGoogle.push(idUsuario);
-          }
-
-          if (chatStory.estadistica.vecesCompartidoGoogle / 50 > 1) {
-            // TODO notificacion  de cantidad aquí
-          }
-
-        }
-      }
-
-      // TODO notificación de que un puto le ha dado a compartir aquí
-
-      chatStory.estadistica.save(function (err, resultados) {
-        if (err)
-          res.send(err);
-        else
-          res.send(resultados);
-      })
+    res.status(400).send({
+      error: 'ERROR PARÁMETROS MALFORMADOS'
     });
+  } else {
+    ChatStory.findById(id)
+      .populate('estadistica autor')
+      .exec(function (err, chatStory) {
+
+        if (err) {
+          res.status(400).send({
+            error: 'ERROR'
+          });
+        }
+
+        if (chatStory) {
+          chatStory.estadistica.vecesCompartido++;
+
+          if (redSocial && (redSocial === 'facebook') && chatStory) {
+            chatStory.estadistica.vecesCompartidoFacebook++;
+
+            if (idUsuario && chatStory.estadistica.compartidoFacebook.indexOf(idUsuario) === -1) {
+              chatStory.estadistica.compartidoFacebook.push(idUsuario);
+            }
+
+            if (chatStory.estadistica.vecesCompartidoFacebook / 50 > 1) {
+              // TODO notificacion  de cantidad aquí
+            }
+
+          } else if (redSocial && (redSocial === 'twitter')) {
+            chatStory.estadistica.vecesCompartidoTwitter++;
+
+            if (idUsuario && chatStory.estadistica.compartidoTwitter.indexOf(idUsuario) === -1) {
+              chatStory.estadistica.compartidoTwitter.push(idUsuario);
+            }
+
+            if (chatStory.estadistica.vecesCompartidoTwitter / 50 > 1) {
+              // TODO notificacion  de cantidad aquí
+            }
+
+          } else if (redSocial && (redSocial === 'google')) {
+            chatStory.estadistica.vecesCompartidoGoogle++;
+
+            if (idUsuario && chatStory.estadistica.compartidoGoogle.indexOf(idUsuario) === -1) {
+              chatStory.estadistica.compartidoGoogle.push(idUsuario);
+            }
+
+            if (chatStory.estadistica.vecesCompartidoGoogle / 50 > 1) {
+              // TODO notificacion  de cantidad aquí
+            }
+
+          }
+        }
+
+        // TODO notificación de que un puto le ha dado a compartir aquí
+
+        chatStory.estadistica.save(function (err, resultados) {
+          if (err) {
+            res.status(400).send({
+              error: err
+            });
+          }
+          else
+            res.send(resultados);
+        })
+      });
+  }
+
 }
 
 function updateLike(req, res) {
-  console.log('updateLikeServer');
   let id = req.body.chatStoryId;
   let idUsuario = req.body.usuarioId;
-  console.log(req.body);
-  ChatStory.findById(id)
-    .populate('estadistica autor')
-    .exec(function (err, chatStory) {
 
-      // Así comprobamos que el puto ya le ha dado a like
-      if (idUsuario && chatStory.estadistica.likers.indexOf(idUsuario) === -1) {
-        chatStory.estadistica.likers.push(idUsuario);
-        chatStory.estadistica.likes++;
-        if (chatStory && chatStory.estadistica && chatStory.estadistica.likes && (chatStory.estadistica.likes / 50 > 1 )) {
-          // TODO notificacion  de cantidad aquí
+  if (id === undefined || idUsuario === undefined) {
+    res.status(404).send('El id del relato y el id del usuario son campos requeridos');
+  } else {
+    ChatStory.findById(id)
+      .populate('estadistica autor')
+      .exec(function (err, chatStory) {
+        if (chatStory.estadistica === null)
+          chatStory.estadistica = new Estadistica();
+
+        // Así comprobamos que el puto ya le ha dado a like
+        if (idUsuario && chatStory.estadistica.likers.indexOf(idUsuario) === -1) {
+          chatStory.estadistica.likers.push(idUsuario);
+          chatStory.estadistica.likes++;
+          if (chatStory && chatStory.estadistica && chatStory.estadistica.likes && (chatStory.estadistica.likes / 50 > 1 )) {
+            // TODO notificacion  de cantidad aquí
+          }
+
+          // TODO notificación de que un puto le ha dado a like aquí
         }
 
-        // TODO notificación de que un puto le ha dado a like aquí
-      }
-
-      chatStory.estadistica.save(function (err, resultados) {
-        if (err)
-          res.send(err);
-        else
-          res.send(resultados);
-      })
-    });
+        chatStory.estadistica.save(function (err, resultados) {
+          if (err)
+            res.send(err);
+          else
+            res.send(resultados);
+        })
+      });
+  }
 }
 
 function getChatStoriesByUserName(req, res) {

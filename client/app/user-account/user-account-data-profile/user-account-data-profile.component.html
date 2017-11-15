@@ -3,77 +3,77 @@
   <app-profile-header></app-profile-header>
   <div class="outside-container d-flex flex-column">
     <div class="thin-title">
-      Descripción
+      {{'user_descripcion' | translate}}
     </div>
-    <textarea class="form-control" [(ngModel)]="this.auth.getUser().perfil.descripcion"></textarea>
+    <textarea class="form-control" [(ngModel)]="this.user.perfil.descripcion"></textarea>
   </div>
   <div class="outside-container d-flex flex-column">
     <div class="thin-title">
-      Mis datos
+      {{'user_details' | translate}}
     </div>
     <div class="d-flex flex-row flex-wrap">
       <div class="input">
         <div class="title">
-            Nombre de usuario
+            {{'forms_username' | translate}}
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Nombre de usuario" [(ngModel)]="this.auth.getUser().perfil.display_name">
+        <input type="text" class="form-control" name="" value="" placeholder="{{'forms_username' | translate}}" [(ngModel)]="this.user.perfil.display_name">
       </div>
       <div class="input">
         <div class="title">
-            Fecha de nacimiento
+            {{'forms_fecha_nacimiento' | translate}}
         </div>
         <input #date type="date" class="form-control" name="" value="yyyy-mm-dd " placeholder="dd/mm/yyyy">
       </div>
       <div class="input">
         <div class="title">
-            Nombre
+            {{'forms_nombre' | translate}}
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Nombre" [(ngModel)]="this.auth.getUser().perfil.nombre">
+        <input type="text" class="form-control" name="" value="" placeholder="{{'forms_nombre' | translate}}" [(ngModel)]="this.user.perfil.nombre">
       </div>
       <div class="input">
         <div class="title">
-            Apellidos
+            {{'forms_apellidos' | translate}}
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Apellidos" [(ngModel)]="this.auth.getUser().perfil.apellidos">
+        <input type="text" class="form-control" name="" value="" placeholder="{{'forms_apellidos' | translate}}" [(ngModel)]="this.user.perfil.apellidos">
       </div>
       <div class="input">
         <div class="title">
-            País
+            {{'forms_pais' | translate}}
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="País">
+        <input type="text" class="form-control" name="" value="" placeholder="{{'forms_pais' | translate}}" [(ngModel)]="this.user.perfil.pais">
       </div>
       <div class="input">
         <div class="title">
-            Sexo
+            {{'forms_sexo' | translate}}
         </div>
-        <select class="form-control" name="" [(ngModel)]="this.auth.getUser().perfil.sexo">
-          <option value="female">Mujer</option>
-          <option value="male">Hombre</option>
+        <select class="form-control" name="" [(ngModel)]="this.user.perfil.sexo">
+          <option value="female">{{'forms_mujer' | translate}}</option>
+          <option value="male">{{'forms_hombre' | translate}}</option>
         </select>
       </div>
       <div class="input">
         <div class="title">
-            Idioma
+            {{'forms_idioma' | translate}}
         </div>
-        <app-language-select [languages]="languages" [placeholder]="'Idiomas'"></app-language-select>
+        <app-language-select [languages]="languages" [placeholder]="'forms_idiomas_placeholder'"></app-language-select>
       </div>
       <div class="input">
         <div class="title">
-            Teléfono
+            {{'forms_telefono' | translate}}
         </div>
-        <input type="tel" class="form-control" name="" value="" placeholder="665654564">
+        <input type="tel" class="form-control" name="" value="" placeholder="665654564" [(ngModel)]="this.user.perfil.telefono">
       </div>
       <div class="input">
         <div class="title">
             Blog
         </div>
-        <input type="text" class="form-control" name="" value="" placeholder="Blog">
+        <input type="text" class="form-control" name="" value="" placeholder="Blog" [(ngModel)]="this.user.perfil.blog">
       </div>
       <div class="input">
         <div class="title">
-            Intereses
+            {{'forms_intereses' | translate}}
         </div>
-        <app-language-select [languages]="interests" [placeholder]="'Intereses'"></app-language-select>
+        <app-language-select [languages]="interests" [placeholder]="'forms_intereses'"></app-language-select>
       </div>
     </div>
   </div>
@@ -99,7 +99,7 @@
       </div>
     </div>
     <div class="button ml-auto d-flex align-items-center justify-content-center" (click)="save()">
-      Guardar cambios
+      {{'forms_guardar_cambios' | translate}}
     </div>
   </div>
 </div>

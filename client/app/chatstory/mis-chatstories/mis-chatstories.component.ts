@@ -26,9 +26,9 @@ export class MisChatstoriesComponent implements OnInit {
     const myParams = new URLSearchParams();
     myParams.append('autor', this.authenticationService.getUser().id);
     myParams.append('sort', '-fechaCreacion');
-    myParams.append('top', '5');
+    myParams.append('top', '8');
     myParams.append('activo', 'true');
-    myParams.append('tipo', '1'); // tipo publicado
+    myParams.append('tipo', '0'); // tipo publicado
     this.chatStoryService.getChatStoryByQueryParams(myParams).subscribe(
       chatStories => {
         if (chatStories && chatStories.length > 0) {

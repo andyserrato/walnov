@@ -5,6 +5,7 @@ import { RepositorioService } from '../../services/repositorio.service';
 import { Categoria } from '../../models/cats';
 import { AlertService } from '../../services/alert.service';
 import {AuthenticationService} from '../../services/authentication.service';
+import {TranslateService} from '../../translate';
 @Component({
   selector: 'app-crear-chatstory-step-1',
   templateUrl: './crear-chatstory-step-1.component.html',
@@ -17,7 +18,10 @@ export class CrearChatstoryStep1Component implements OnInit {
   categorias: Array<Categoria>;
   maxChars: Array<string> = new Array<string>(18);
   validate: any;
-  constructor(private repositorio: RepositorioService, private alert: AlertService, private fb: FormBuilder, private authenticationService: AuthenticationService) {
+  constructor(private repositorio: RepositorioService,
+              private translate: TranslateService,
+              private alert: AlertService,
+              private authenticationService: AuthenticationService) {
     this.done = new EventEmitter<any>();
     this.categorias = repositorio.categoriasAL;
 
@@ -39,6 +43,7 @@ export class CrearChatstoryStep1Component implements OnInit {
   get chatStory(): any { return this._chatStory; }
 
   refreshArray() {
+    this.maxChars = new Array<string>(18);
     for (let i = 0; i < this.chatStory.personajes.length; i++) {
       this.maxChars[i] = this.chatStory.personajes[(this.chatStory.personajes.length - 1) - i];
     }
@@ -64,7 +69,7 @@ export class CrearChatstoryStep1Component implements OnInit {
         this.validate['description'] = true;
       }
       if (this.chatStory.personajes.length <= 0) {
-        this.alert.error('Introduce al menos un personaje');
+        this.alert.error(this.translate.instant('alert_crear_chatstory'));
       }
 
     }
@@ -76,13 +81,13 @@ export class CrearChatstoryStep1Component implements OnInit {
 
   newPersonaje(event: HTMLInputElement) {
     if (event.value && event.value.length >= 15 ) {
-      this.alert.warning('Máximo 15 caracteres');
+      this.alert.warning(this.translate.instant('alert_crear_chatstory_2'));
       this.alert.clearTimeOutAlert();
     } else if (event.value && this.chatStory.personajes.length === 18) {
-      this.alert.warning('Máximo 18 personajes');
+      this.alert.warning(this.translate.instant('alert_crear_chatstory_3'));
       this.alert.clearTimeOutAlert();
     } else if (event.value && this.chatStory.personajes.length < 18 &&
-      !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value)]) {
+      !this.chatStory.personajes[this.chatStory.personajes.indexOf(event.value.trim())]) {
       this.chatStory.personajes.push(event.value);
       event.value = '';
       this.refreshArray();
@@ -98,11 +103,20 @@ export class CrearChatstoryStep1Component implements OnInit {
   }
 
   deleteChar(event) {
-
-  }
-
-  selectChar(event) {
-
+    let contador = 0;
+    if (this.chatStory.chats && this.chatStory.chats.length > 0) {
+      for (const c of this.chatStory.chats) {
+        contador = contador + (c.personaje === event ? 1 : 0);
+      }
+      if (contador === 0) {
+        this.chatStory.personajes.splice(this.chatStory.personajes.indexOf(event), 1);
+      }else {
+        this.alert.warning('Existen mensajes con este personaje');
+      }
+    } else {
+      this.chatStory.personajes.splice(this.chatStory.personajes.indexOf(event), 1);
+    }
+    this.refreshArray();
   }
 
 }

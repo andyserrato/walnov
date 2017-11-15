@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
+import { UserService } from '../../services/user.service';
 import { SelectItem } from '../../models/select-item';
 @Component({
   selector: 'app-user-account-data-profile',
@@ -11,29 +12,39 @@ export class UserAccountDataProfileComponent implements OnInit {
   user:any;
   languages: Array<SelectItem> = new Array<SelectItem>();
   interests: Array<SelectItem> = new Array<SelectItem>();
-  constructor(private auth: AuthenticationService) {
-    this.languages.push(new SelectItem('Español'));
-    this.languages.push(new SelectItem('Inglés'));
-    this.languages.push(new SelectItem('Francés'));
-    this.languages.push(new SelectItem('Portugués'));
-    this.languages.push(new SelectItem('Chino'));
-    this.languages.push(new SelectItem('Japonés'));
-    this.languages.push(new SelectItem('Italiano'));
-    this.languages.push(new SelectItem('Ruso'));
+  constructor(private auth: AuthenticationService,
+              private userService: UserService) {
+    this.languages.push(new SelectItem('español'));
+    this.languages.push(new SelectItem('english'));
+    this.languages.push(new SelectItem('frances'));
+    this.languages.push(new SelectItem('portugues'));
+    this.languages.push(new SelectItem('chino'));
+    this.languages.push(new SelectItem('japones'));
+    this.languages.push(new SelectItem('italiano'));
+    this.languages.push(new SelectItem('ruso'));
 
-    this.interests.push(new SelectItem('Deportes'));
-    this.interests.push(new SelectItem('Cultura'));
-    this.interests.push(new SelectItem('Historia'));
-    this.interests.push(new SelectItem('Arte'));
-    this.interests.push(new SelectItem('Música'));
-    this.interests.push(new SelectItem('Viajar'));
-    this.interests.push(new SelectItem('Fantasía'));
-    this.interests.push(new SelectItem('Misterio'));
+    this.interests.push(new SelectItem('deportes'));
+    this.interests.push(new SelectItem('cultura'));
+    this.interests.push(new SelectItem('historia'));
+    this.interests.push(new SelectItem('arte'));
+    this.interests.push(new SelectItem('musica'));
+    this.interests.push(new SelectItem('viajar'));
+    this.interests.push(new SelectItem('fantasia'));
+    this.interests.push(new SelectItem('misterio'));
     this.user = this.auth.getUser();
-    console.log(this.user);
+    // console.log(this.user);
   }
 
   ngOnInit() {
+
+  }
+
+  save() {
+    console.log(this.user);
+    // this.userService.update(this.user).subscribe(user => {
+    //   this.auth.revalidateUser(user);
+    //   this.user = this.auth.getUser();
+    // });
   }
 
 }

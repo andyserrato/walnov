@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Wall } from '../../models/wall';
 import { Continuacion } from '../../models/continuacion';
 import { RepositorioService } from '../../services/repositorio.service';
+import { TranslateService } from '../../translate';
+
 
 @Component({
   selector: 'app-card-continuacion',
@@ -10,7 +12,7 @@ import { RepositorioService } from '../../services/repositorio.service';
 })
 export class CardContinuacionComponent implements OnInit {
 
-  constructor(private repositorio: RepositorioService) { }
+  constructor(private repositorio: RepositorioService, private translate: TranslateService) { }
   @Input() continuacion: Continuacion;
   ngOnInit() {
     // this.wall = new Wall();

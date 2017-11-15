@@ -2,78 +2,91 @@
      style="background-color: #4d1274">
   <div class="container">
 
-    <div class="row" style="width:100%;">
-      <div class="col-lg-12">
+    <div class="row-fluid" style="width:100%;">
+      <div class="col-lg-12" style="padding: 0;">
         <div class="row">
-          <div class="col-lg-2">
-            <div class="row">
-              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div class="col-xl-2 col-lg-2 col-md-2">
+            <div class="row" id="desplazamiento">
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> -->
                 <a class="navbar-brand mb-0" routerLink="/home">
                   <img src="assets/images/Logo Walnov-04.svg" width="40" height="30" class="d-inline-block align-top" alt="">
                   Walnov
                 </a>
-              </div>
+              <!-- </div> -->
             </div>
           </div>
 
 
-          <div class="col-lg-3 d-flex" id="secciones">
-              <div class="seccion">Walls</div>
-              <div class="seccion" routerLink="/relatos">Relatos</div>
-              <div class="seccion" routerLink="/chatstories">Chatstories</div>
+          <div class="col-xl-3 col-lg-3 col-md-4 d-flex" style="padding-right: 40px;" id="secciones">
+            <div class="d-flex flex-row justify-content-between" style="width:100%;">
+              <div class="d-flex flex-column seccion">Walls</div>
+              <div class="d-flex flex-column seccion" routerLink="/relatos">{{'all_relatos' | translate}}</div>
+              <div class="d-flex flex-column seccion" routerLink="/chatstories">Chatstories</div>
+            </div>
           </div>
 
-          <div style="padding-right: 30px;" class="col-lg-3" >
-              <div #buscador id="buscador"  [ngClass]="{'focused': this.searching}" class="d-flex">
+          <div style="padding-right: 0px; padding-left: 0px;" class="col-xl-2 col-lg-2 col-md-1 d-flex justify-content-center">
+              <div #buscador id="buscador"  [ngClass]="{'focused': this.searching}" class="d-flex hidden-md-down">
                   <input type="text" (keyup.enter)="searchTerm$.next($event.target.value)" class="inputtext" (focus)="this.searching=true" (focusout)="this.searching=false">
-                  <i (click)="searchTerm$.next($event.target.value)" class="fa fa-search fa-flip-horizontal" style="margin-right: 16px; line-height: 29px;" aria-hidden="true"></i>
+                  <i (click)="searchTerm$.next($event.target.value)" [ngClass]="{'focused2': this.searching}" class="fa fa-search fa-flip-horizontal" style="margin-right: 16px; line-height: 29px;" aria-hidden="true"></i>
               </div>
-            <span class="fa-stack fal-lg hidden-lg-up">
-              <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i>
-              <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+            <span class="Rectangle-4 hidden-lg-up"  style="top: 4px;">
+              <!-- <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i> -->
+              <app-nav-buscador></app-nav-buscador>
+              <i class="fa fa-search fa-search-Copy fa-inverse fa-flip-horizontal"></i>
             </span>
           </div>
 
-          <div class="d-flex col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-5">
-            <div class="row">
-              <div style="margin-top: 6px;" class="">
+          <div class="d-flex col-xl-5 col-lg-5 col-md" style="padding-left: 40px;" id="opciones">
+            <div class="d-flex flex-row justify-content-between" style="width:100%;">
+              <div style="margin-top: 6px;" class="d-flex flex-column">
                 <a  class="boton-crear dropdown-toggle" href="https://example.com" id="dropdownMenuCrear"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i style="margin-right: 7px" class="fa fa-pencil"></i>
-                  Crear...&nbsp;&nbsp;
+                  _<i style="margin-right: 7px" class="fa fa-pencil"></i>
+                  {{'nav_crear' | translate}}&nbsp;&nbsp;
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuCrear">
-                  <a class="dropdown-item" routerLink="/walls/crear-wall">Crear Walls</a>
-                  <a class="dropdown-item" [routerLink]="['/crear-chatstory', '0']">Crear ChatStories</a>
-                  <a class="dropdown-item" routerLink="/crear-relato">Crear Relatos Cortos</a>
+                  <a class="dropdown-item" routerLink="/walls/crear-wall">{{'nav_crear' | translate}} Walls</a>
+                  <a class="dropdown-item" [routerLink]="['/crear-chatstory', '0']">{{'nav_crear' | translate}} Chatstories</a>
+                  <a class="dropdown-item" [routerLink]="['/crear-relato', '0']">{{'nav_crear' | translate}} {{'all_relatos_cortos' | translate}}</a>
                 </div>
               </div>
-            </div>
+            <!-- </div> -->
 
-            <!-- COMO FUNCIONA -->
-            <div>
-                <button class="boton-como-funciona hidden-md-down">Cómo Funciona</button>
-                <span class="fa-stack fal-lg hidden-lg-up">
-                  <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i>
-                  <i class="fa fa-info fa-stack-1x fa-inverse"></i>
-                </span>
-            </div>
+              <!-- COMO FUNCIONA -->
+              <div class="d-flex flex-column">
+                  <button class="boton-como-funciona hidden-md-down">{{'nav_como_funciona' | translate}}</button>
+                  <span class="Rectangle-4-Copy hidden-lg-up" style="top: 4px;">
+                    <!-- <i class="fa fa-circle-o fa-stack-2x fa-inverse"></i> -->
+                    <i class="fa fa-info fa-inverse"></i>
+                  </span>
+              </div>
 
-            <div>
-                <i class="boton-notificaciones fa fa-bell"></i>
-            </div>
+              <div class="d-flex flex-column">
+                  <i class="img-rel boton-notificaciones fa fa-bell">
+                  <app-nav-notificaciones></app-nav-notificaciones>
+                  </i>
 
-            <div>
-                <i class="boton-mensajes fa fa-inbox"></i>
-            </div>
+              </div>
 
-            <div id="imagen-perfil" class="img-rel">
-                <app-profile-popover *ngIf="auth.isLoggedIn()"></app-profile-popover>
-                <app-prot-popover-register [direction]="'down'" *ngIf="!auth.isLoggedIn()" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
-                <div [ngStyle]="{'background-image': 'url('+getProfilePicture()+')'}" class="rounded-circle nav-user-img img-responsive"></div>
-            </div>
+              <div class="d-flex flex-column">
+                  <i class="boton-mensajes fa fa-inbox"></i>
+              </div>
 
-        </div>
+              <div class="d-flex flex-column">
+                <i class="img-rel boton-lenguage fa fa-globe" aria-hidden="true">
+                  <app-nav-language-select></app-nav-language-select>
+                </i>
+
+              </div>
+
+              <div id="imagen-perfil" class="d-flex flex-column img-rel" >
+                  <app-profile-popover *ngIf="auth.isLoggedIn()"></app-profile-popover>
+                  <app-prot-popover-register *ngIf="!auth.isLoggedIn()"></app-prot-popover-register>
+                  <div [ngStyle]="{'background-image': 'url('+getProfilePicture()+')'}" class="rounded-circle nav-user-img img-responsive" (click)="popover()"></div>
+              </div>
+            </div>
+          </div>
 
 
 

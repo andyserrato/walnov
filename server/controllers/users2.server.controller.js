@@ -7,6 +7,8 @@ const express = require('express');
 const router = express.Router();
 const Constantes = require("../constantes/constantes");
 const Biblioteca = mongoose.model('Biblioteca');
+const GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
+
 var redirection = '';
 // Rutas
 // Set up the 'signup' routes
@@ -28,9 +30,13 @@ router.get('/auth/isLoggedIn', function isLoggedIn(req, res) {
 router.get('/oauth/userdataPassportLoggedIn', isLoggedIn, findUserByProviderIdPassportLoggedIn);
 
 router.get('/oauth/passport/:provider/:providerId', getUserByProviderAndProviderId);
+router.get('', getUserByParams);
 router.get('/auth/:id', getUserById);
+router.get('/auth/:id/followers', getUserFollowers);
 router.put('/auth/:id', updateUserProfileById);
 router.post('', createUser);
+router.post('/follow', followUser);
+router.post('/unfollow', unFollowUser);
 
 // Set up the Facebook OAuth routes
 router.get('/oauth/facebook', passport.authenticate('facebook', {
@@ -128,19 +134,20 @@ function signin(req, res, next) {
 // Create a new controller method that creates new 'regular' users
 function signup(req, res) {
   if (!req.body) {
-    res.status(400).send('error usuario requerido ');
+    res.status(400).send({error: 'error usuario requerido '});
   } else if (!req.body.login) {
-    res.status(400).send('error username requerido');
+    res.status(400).send({error: 'error username requerido'});
   } else if (!req.body.email) {
-    res.status(400).send('error email requerido');
+    res.status(400).send({error: 'error email requerido'});
   } else if (!req.body.password) {
-    res.status(400).send('error password requerido');
+    res.status(400).send({error:'error password requerido'});
   }
 
   const user = new User({
     login: req.body.login,
     perfil: {
-      email: req.body.email
+      email: req.body.email,
+      display_name: req.body.login
     }
   });
   user.password = user.generateHash(req.body.password);
@@ -149,38 +156,42 @@ function signup(req, res) {
   User.findLoginDuplicate(user, function (user) {
     // Ocurrió un error o el usuario ya se encuentra registrado
     if (!user) {
-      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra);
+      res.status(400).send(req.body.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra,
+                                                      tipo: 0}:
+                                                    {error: Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra,
+                                                    tipo: 0});
     } else {
       User.findEmailDuplicate(user, function (user) {
         if (!user) {
-          res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra);
-        }  else {
-        // Try saving the User
-        user.save((err) => {
-          if (err) {
-            return res.status(400).send({
-              message: getErrorMessage(err)
-            });
-          } else {
-            // Remove sensitive data before login
-            user.password = undefined;
+          res.status(400).send(req.body.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra,
+          tipo: 1} : {error: Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra, tipo: 1 });
+        } else {
+          // Try saving the User
+          user.save((err) => {
+            if (err) {
+              return res.status(400).send({
+                error: getErrorMessage(err)
+              });
+            } else {
+              // Remove sensitive data before login
+              user.password = undefined;
 
-            // Login the user
-            req.login(user, function (err) {
-              if (err) {
-                res.status(400).send(err);
-              } else {
-                let biblioteca = new Biblioteca();
-                biblioteca.usuario = user.id;
-                biblioteca.save( (err) => {
-                  if (err) res.status(400).send(err);
-                  res.status(200).send(user);
-                });
-              }
-            });
-          }
-        });
-      }
+              // Login the user
+              req.login(user, function (err) {
+                if (err) {
+                  res.status(400).send(err);
+                } else {
+                  let biblioteca = new Biblioteca();
+                  biblioteca.usuario = user.id;
+                  biblioteca.save((err) => {
+                    if (err) res.status(400).send({error: err});
+                    res.status(200).send(user);
+                  });
+                }
+              });
+            }
+          });
+        }
       });
     }
   });
@@ -245,45 +256,63 @@ function createUser(req, res) {
         if (!user) {
           res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra : Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra);
         } else {
-        // Try saving the User
-        user.save((err) => {
-          if (err) {
-            return res.status(400).send({
-              message: getErrorMessage(err)
-            });
-          } else {
-            // Remove sensitive data before login
-            user.password = undefined;
+          // Try saving the User
+          user.save((err) => {
+            if (err) {
+              return res.status(400).send({
+                message: getErrorMessage(err)
+              });
+            } else {
+              // Remove sensitive data before login
+              user.password = undefined;
 
-            // Login the user
-            req.login(user, function (err) {
-              if (err) {
-                res.status(400).send(err);
-              } else {
-                let biblioteca = new Biblioteca();
-                biblioteca.usuario = user.id;
-                biblioteca.save( (err) => {
-                  if (err) res.status(400).send(err);
-                  res.status(200).send(user);
-                });
-              }
-            });
-          }
-        });
-      }
+              // Login the user
+              req.login(user, function (err) {
+                if (err) {
+                  res.status(400).send(err);
+                } else {
+                  let biblioteca = new Biblioteca();
+                  biblioteca.usuario = user.id;
+                  biblioteca.save((err) => {
+                    if (err) res.status(400).send(err);
+                    res.status(200).send(user);
+                  });
+                }
+              });
+            }
+          });
+        }
       });
     }
   });
 }
 
 function getUserById(req, res) {
-
+  console.log('holi');
   if (!req.params.id)
     res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
 
   User.findById(req.params.id).exec(function (err, user) {
     if (err)
       res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+    res.status(200).send(user);
+  });
+}
+
+function getUserFollowers(req, res) {
+  if (!req.params.id)
+  res.status(400).send(req.body.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.error } : { error: Constantes.Mensajes.MENSAJES.es.error });
+
+  const options = { limit: (isNaN(req.query.top)) ? 12 : +req.query.top,
+                    skip: (isNaN(req.query.skip)) ? 0 : +req.query.skip };
+
+  User.findById(req.params.id)
+    .select('seguidores')
+    .populate({ path: 'seguidores', select: 'perfil id', options} )
+    // .where('active').eq(true)
+    .exec(function (err, user) {
+    if (err)
+      res.status(400).send(req.body.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.error } : { error: Constantes.Mensajes.MENSAJES.es.error });
 
     res.status(200).send(user);
   });
@@ -292,11 +321,173 @@ function getUserById(req, res) {
 function updateUserProfileById(req, res) {
   if (!req.params.id)
     res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+  User.findById(req.params.id)
+    .exec(function (err, user) {
+      user.perfil = req.body.perfil;
+      user.save(function (err, resultados) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(resultados);
+        }
+      });
+    });
+}
 
-  User.findOneAndUpdate({id :req.params.id}, {$set: req.body.perfil} ,function (err, user) {
-    if (err)
-      res.status(400).send(req.body.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error);
+function getUserByParams(req, res) {
+  let queries = req.query;
+  let query = User.find();
+  // if (Object.hasOwnProperty(queries).length === undefined) {
+  if (Object.keys(queries).length === 0) {
+    res.status(400).send('Queries required');
+  } else {
 
-    res.status(200).send(user);
-  });
+    if (queries && queries.id) {
+      query.where('_id').equals(queries.id);
+    }
+
+    if (queries && queries.login) {
+      query.where('perfil.login').equals(queries.login);
+    }
+
+    if (queries && queries.nombre) {
+      query.where('perfil.nombre').equals(queries.nombre);
+    }
+
+    if (queries && queries.apellidos) {
+      query.where('perfil.apellidos').equals(queries.apellidos);
+    }
+
+    if (queries && queries.email) {
+      query.where('perfil.email').equals(queries.email);
+    }
+
+    // relevantes
+    if (queries && queries.sort) {
+      let sortQueries = queries.sort.split(',');
+
+      for (i = 0; i < sortQueries.length; i++) {
+        if (sortQueries[i].indexOf('fechaModificacion') !== -1) {
+          query.sort(sortQueries[i]);
+        } else if (sortQueries[i].indexOf('fechaCreacion') !== -1) {
+          query.sort(sortQueries[i]);
+        } else if (sortQueries[i].indexOf('relevantes') !== -1) {
+          query.where('perfil.numWallsCreated').ne(null);
+          query.where('perfil.numRelatosCreated').ne(null);
+          query.where('perfil.numChatStoriesCreated').ne(null);
+          query.sort('-perfil.numWallsCreated');
+          query.sort('-perfil.numRelatosCreated');
+          query.sort('-perfil.numChatStoriesCreated');
+        }
+      }
+    }
+
+    query.limit((isNaN(queries.top)) ? 10 : +queries.top);
+    query.skip((isNaN(queries.skip)) ? 0 : +queries.skip);
+    query.where('activo').equals(true);
+    ejecutarQuery();
+  }
+
+  function ejecutarQuery() {
+    query.exec(function (err, users) {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(users);
+      }
+    });
+  }
+
+}
+
+function followUser(req, res) {
+  let peticion = req.body;
+
+  if (!peticion || !peticion.userId || !peticion.userIdToFollow) {
+    res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.follow }: { error: Constantes.Mensajes.MENSAJES.es.follow });
+  } else {
+    User.findById(peticion.userId, function (err, userFollowing) {
+      if (err) {
+        res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.userNotFound }: { error: Constantes.Mensajes.MENSAJES.es.userNotFound });
+      } else {
+        User.findById(peticion.userIdToFollow, function (err, userFollowed) {
+          if (err) {
+            res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.userNotFound }: { error: Constantes.Mensajes.MENSAJES.es.userNotFound });
+          } else {
+            if (userFollowing.siguiendo.indexOf(userFollowed.id) === -1) {
+              userFollowing.siguiendo.push(userFollowed.id);
+              userFollowing.save(function (err) {
+                if (err) {
+                  res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.errorSavingUser } : { error: Constantes.Mensajes.MENSAJES.es.errorSavingUser });
+                } else {
+                  userFollowed.seguidores.push(userFollowing.id);
+                  userFollowed.save(function (err) {
+                    if (err) {
+                      res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.errorSavingUser }: { error: Constantes.Mensajes.MENSAJES.es.errorSavingUser });
+                    } else {
+                      // ha comenzado a seguirte el quetal jajajja
+                      let notificacionNuevoSeguidor = GestorNotificaciones.crearNotificacionNuevoSeguidor(
+                        peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.followMessage : Constantes.Mensajes.MENSAJES.es.followMessage,
+                        userFollowing.perfil.display_name,
+                        userFollowing.id
+                      );
+                      GestorNotificaciones.addNotificacionFeed(notificacionNuevoSeguidor, [userFollowed.id]);
+                      res.status(200).send(peticion.lang === 'en' ?
+                        { mensaje: userFollowing.perfil.display_name + ' has followed user: ' +  userFollowed.perfil.display_name }:
+                        { mensaje: userFollowing.perfil.display_name + ' has comenzado a seguir a: ' +  userFollowed.perfil.display_name });
+                    }
+                  });
+                }
+              });
+            } else {
+              res.status(400).send( peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.alreadyFollowing }: { error: Constantes.Mensajes.MENSAJES.es.alreadyFollowing });
+            }
+          }
+        });
+      }
+    });
+  }
+}
+
+function unFollowUser(req, res) {
+  let peticion = req.body;
+
+  if (!peticion || !peticion.userId || !peticion.userIdToUnFollow) {
+    res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.unFollow }: { error: Constantes.Mensajes.MENSAJES.es.unFollow });
+  } else {
+    User.findById(peticion.userId, function (err, userFollowing) {
+      if (err) {
+        res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.userNotFound }: { error: Constantes.Mensajes.MENSAJES.es.userNotFound });
+      } else {
+        User.findById(peticion.userIdToUnFollow, function (err, userFollowed) {
+          if (err) {
+            res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.userNotFound }: { error: Constantes.Mensajes.MENSAJES.es.userNotFound });
+          } else {
+            if (userFollowing.siguiendo.indexOf(userFollowed.id) !== -1) {
+              userFollowing.siguiendo.splice(userFollowing.siguiendo.indexOf(userFollowed.id), 1);
+              userFollowing.save(function (err) {
+                if (err) {
+                  res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.errorSavingUser }: { error: Constantes.Mensajes.MENSAJES.es.errorSavingUser });
+                } else {
+                  userFollowed.seguidores.splice(userFollowed.seguidores.indexOf(userFollowing.id), 1);
+                  userFollowed.save(function (err) {
+                    if (err) {
+                      res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.errorSavingUser }: { error: Constantes.Mensajes.MENSAJES.es.errorSavingUser });
+                    } else {
+                      // ha comenzado a seguirte el quetal jajajja
+                      res.status(200).send(peticion.lang === 'en' ?
+                        { mensaje: userFollowing.perfil.display_name + ' has unfollowed user: ' +  userFollowed.perfil.display_name } :
+                        { mensaje: userFollowing.perfil.display_name + ' has dejado de seguir a: ' +  userFollowed.perfil.display_name });
+                    }
+                  });
+                }
+              });
+            } else {
+              res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.notFollowing }: { error: Constantes.Mensajes.MENSAJES.es.notFollowing });
+            }
+          }
+        });
+      }
+    });
+  }
 }

@@ -1,25 +1,25 @@
 <div class="Rectangle-3-Copy-2">
   <div class="Card-Title">
-    Info del Relato
+    {{'relatos_card_info' | translate}}
   </div>
   <div class="Line">
   </div>
   <div class="d-flex justify-content-center">
     <div class="d-flex flex-row Rectangle-7-Copy-15" [style.border] = 'getBorder()' [style.color] = 'getColor()'>
       <div class="d-flex flex-column align-items-center Categoria">
-        {{this.relato.categoria.nombre}}
+        {{relato.categoria?.nombre | translate}}
       </div>
     </div>
   </div>
   <div class="Relato-Estadisticas">
     <div style="margin-bottom:2px;">
-      {{this.formatearNumero(this.relato.coments)}} opiniones
+      {{this.formatearNumero(relato.opiniones?.length)}} {{'all_opiniones' | translate}}
     </div>
     <div style="margin-bottom:2px;">
-      {{this.formatearNumero(this.relato.likes)}} Likes
+      {{this.formatearNumero(relato.estadistica?.likes)}} Likes
     </div>
     <div>
-      {{this.formatearNumero(this.relato.views)}} visualizaciones
+      {{this.formatearNumero(relato.estadistica?.vecesVisto)}} {{'all_visualizaciones' | translate}}
     </div>
   </div>
   <div class="Line-2">
@@ -29,19 +29,25 @@
   </div>
   <div class="Rectangle-3">
     <div class="d-flex justify-content-center flex-row">
-      <img class="Oval-2" src={{this.relato.usuario.imagen}} alt={{this.relato.usuario.nombre}}>
+      <img class="Oval-2" src={{relato.autor?.perfil.foto_perfil}} alt={{relato.autorNombre}}>
     </div>
-    <div class="Usuario-Nombre ellipsis" title={{this.relato.usuario.nombre}}>
-      {{this.relato.usuario.nombre}}
+    <div class="Usuario-Nombre ellipsis" (click) = "goToUser()" style="cursor: pointer;" title={{relato.autorNombre}}>
+      {{this.relato.autor?.perfil.nombre}}
     </div>
     <div class="Usuario-Estadisticas">
-      <div>{{this.relato.usuario.walls}} Walls</div>
-      <div>{{this.relato.usuario.chatstories}} Chatstories</div>
-      <div>{{this.relato.usuario.relatos}} Relatos cortos</div>
+      <div>{{relato.autor?.perfil.numWallsCreated}} Walls</div>
+      <div>{{relato.autor?.perfil.numChatStoriesCreated}} Chatstories</div>
+      <div>{{relato.autor?.perfil.numRelatosCreated}} {{'all_relatos_cortos' | translate}}</div>
+    </div>
+    <div *ngIf ="!checkUser()" class="d-flex flex-row  justify-content-center" style="height: 30px;">
+      <div class="d-flex flex-column align-self-end">
+        <button *ngIf="!isAlreadyFollowed()" type="button" class="btn-usuario d-flex" name="button" (click)="follow()">{{'all_seguir' | translate}}</button>
+        <button *ngIf="isAlreadyFollowed()" type="button" class="btn-usuario d-flex" name="button" (click)="unFollow()">{{'all_siguiendo' | translate}}</button>
+      </div>
     </div>
     <div class="d-flex flex-row  justify-content-center" style="height: 30px;">
       <div class="d-flex flex-column align-self-end">
-        <button type="button" class="btn-usuario d-flex" name="button">Seguir</button>
+        <button type="button" class="btn-usuario d-flex" name="button">{{'all_donar' | translate}}</button>
       </div>
     </div>
   </div>

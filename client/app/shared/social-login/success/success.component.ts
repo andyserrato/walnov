@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {AlertService} from '../../../services/alert.service';
 import {WindowService} from '../../../services/window.service';
+import { TranslateService } from '../../../translate';
 
 @Component({
   selector: 'app-success',
@@ -10,7 +11,7 @@ import {WindowService} from '../../../services/window.service';
 })
 export class SuccessComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService, private alertService: AlertService,
-              private windowService: WindowService) { }
+              private windowService: WindowService, private translate: TranslateService ) { }
 
   ngOnInit() {
     this.authenticationService.getSocialProfile().subscribe( user => {
@@ -19,9 +20,9 @@ export class SuccessComponent implements OnInit {
         nombre = this.authenticationService.getUser().perfil.display_name;
       }
 
-      this.alertService.success('Bienvenido ' + nombre, true );
+      this.alertService.success(this.translate.instant('alert_bienvenido') + ' ' + nombre, true );
     },
-      error => (this.alertService.error('Ha ocurrido un error')));
+      error => (this.alertService.error(this.translate.instant('alert_popover_error'))));
 
     this.closeWindowTimer();
   }

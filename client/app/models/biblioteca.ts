@@ -1,6 +1,6 @@
 import { Usuario } from './usuario.model';
 import { ChatStory } from './chatstory.model';
-import { Relato } from './relato';
+import { Relato } from './relato.model';
 import { Wall } from './wall';
 
 export class Biblioteca {

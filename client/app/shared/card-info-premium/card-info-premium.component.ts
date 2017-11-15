@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TranslateService } from '../../translate';
 
 @Component({
   selector: 'app-card-info-premium',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardInfoPremiumComponent implements OnInit {
   @Input() vista:string;
   suscrito: boolean = false;
-  constructor() { }
+  constructor(private translate: TranslateService) { }
 
   ngOnInit() {
   }
@@ -18,7 +19,8 @@ export class CardInfoPremiumComponent implements OnInit {
   }
 
   unsuscribe() {
-    this.suscrito = false;    
+    this.suscrito = false;
   }
+
 
 }

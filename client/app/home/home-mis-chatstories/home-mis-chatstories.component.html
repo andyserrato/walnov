@@ -1,6 +1,8 @@
-<div #div class="paginador d-flex flex-wrap" >
-  <app-card-chatstory *ngFor="let chatstory of this.paginador?.paginador" [chatstory]="chatstory"></app-card-chatstory>
+<div #div class="paginador d-flex justify-content-center flex-wrap" >
+  <app-card-chatstory *ngFor="let chatstory of this.paginador?.paginador" [chatstory]="chatstory" [allowLibrary]="false"></app-card-chatstory>
+  <app-no-content *ngIf="noContent" [message]="message"></app-no-content>
 </div>
-<!-- <div class="empty-title d-flex align-items-center justify-content-center" *ngIf="this.paginador?.paginador.length < 1">
-  <span>{{'alert_home_chatstories' | translate}}<span class="empty-title-link" routerLink="/crear-chatstory">{{'alert_home_chatstories2' | translate}}</span></span>
-</div> -->
+<div class="d-flex flex-row align-items-center justify-content-center">
+  <div class="load-more-button d-flex align-items-center justify-content-center" *ngIf="this.paginador?.final" (click)="loadMore()"><span class="fa fa-plus"></span></div>
+  <div class="load-more-button d-flex align-items-center justify-content-center" *ngIf="!this.paginador?.inicio" (click)="scrollTop()"><span class="fa fa-chevron-up"></span></div>
+</div>

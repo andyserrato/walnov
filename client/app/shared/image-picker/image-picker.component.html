@@ -1,10 +1,10 @@
 <div #ciBox class="change-img" [ngClass]="{ 'color-white': white}" (click)="expand(ciBox, selectBox)">
       <i class="fa fa-image fa-lg fa-2x fa-4"></i>
-      <span class="Check-Label-Copy-7 pull-right">Cambiar <br> Imagen</span>
+      <span class="Check-Label-Copy-7 pull-right">{{'shared_image_picker_changeimage' | translate}} <br> {{'shared_image_picker_changeimage_2' | translate}}</span>
 </div>
 <div #selectBox class="Rectangle-10">
-  <span class="fixed-title"> Selecciona una imagen</span>
-  <span class="fixed-title-right pull-right" (click)="changeView('verify')">Sube tu imagen</span>
+  <span class="fixed-title">{{'shared_image_picker_selection' | translate}}</span>
+  <span class="fixed-title-right pull-right" (click)="changeView('verify')">{{'shared_image_picker_upload' | translate}}</span>
   <div class="app-select-image" [ngSwitch]="view">
     <div *ngSwitchCase="'select'">
       <app-select-image (selected)="uploadImage($event,ciBox,selectBox)"></app-select-image>

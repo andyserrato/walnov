@@ -6,14 +6,17 @@
   margin-right: 10px;
   margin-bottom: 18px;
   width: 295px;
-  height: 248px;
+  // min-height:191px;
   border-radius: 8px;
   padding: 10px 15px 20px 11px;
   //background-color: #ffffff;
   background-color: $grey-1;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
   &:hover {
-    background-color: $grey-3;
+    background-color: #d8d8d8;
+  }
+  &:hover .Fade-Black {
+    visibility: initial;
   }
 }
 
@@ -24,15 +27,39 @@
   width: 6em;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
+  position: relative;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.Chat-Filter{
+  height: 100%;
+  width: 100%;
+}
+
+.Fade-Black {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 2em;
+  & i{
+    color:white;
+    margin:0;
+  }
 }
 
 .Rectangle-7-Copy-3 {
-  margin-top: 14px;
-  padding-top: 0.2px;
   width: 56px;
-  height: 12px;
   //background-color: #29ba6f;
   //background-color: $cat-2;
+  &.margin-top{
+    margin-top:1em;
+  }
 }
 
 .Categoria {
@@ -58,6 +85,15 @@
   color: $grey-8;
 }
 
+.autor-title {
+  color: $main-1;
+  font-size:.8em;
+  &:hover {
+    text-decoration: underline;
+    cursor:pointer;
+  }
+}
+
 .Chat-Descripcion {
   //width: 218.5px;
   //height: 119px;
@@ -67,19 +103,28 @@
   text-align: left;
   //color: #000000;
   color: $grey-10;
+  overflow: hidden;
+    max-height: 5.5em;
 }
 
 .Rectangle-7-Copy-4 {
   width: 127px;
   height: 20px;
   border-radius: 4px;
+  color:$main-1;
   //border: solid 1px #8427bf;
   border: solid 1px $main-1;
   // position: absolute;
   // bottom: 20px;
   &:hover{
     cursor: pointer;
+    color: $grey-1;
+    background-color: $main-1;
   }
+}
+
+.user-chatstory {
+  visibility: hidden;
 }
 
 button {
@@ -89,6 +134,7 @@ button {
 
 }
 
+
 .btn-details {
   //width: 106.2px;
   //height: 11px;
@@ -97,7 +143,7 @@ button {
   font-weight: bold;
   text-align: center;
   //color: #8427bf;
-  color: $main-1;
+  color: inherit;
 }
 
 .Rectangle-7-Copy-4-2 {
@@ -107,10 +153,13 @@ button {
   //border: solid 1px #8427bf;
   border: solid 1px $main-1;
   background-color: $main-1;
+  color:white;
   // position: absolute;
   // bottom: 20px;
   &:hover{
     cursor: pointer;
+    background-color: $grey-1;
+    color: $main-1;
   }
 }
 
@@ -145,6 +194,11 @@ button {
   &:hover{
     cursor: pointer;
   }
+  & .fa{
+    &:hover{
+      color:$main-1;
+    }
+  }
 }
 
 .fa-eye {
@@ -160,5 +214,5 @@ button {
 }
 
 .fa-heart{
-  color:red;
+  color:$main-1;
 }

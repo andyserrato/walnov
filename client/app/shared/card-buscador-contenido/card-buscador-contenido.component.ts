@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { Wall } from '../../models/wall';
-import { Relato } from '../../models/relato';
+import { Relato } from '../../models/relato.model';
 import { ChatStory } from '../../models/chatstory.model';
 import { Biblioteca } from '../../models/biblioteca';
 import { RepositorioService } from '../../services/repositorio.service';
@@ -48,8 +48,8 @@ export class CardBuscadorContenidoComponent implements OnInit {
     //   nuevoRelato.categoria = this.repositorio.categoriasAL[7];
     //   nuevoChatstory.categoria = this.repositorio.categoriasAL[3];
     //
-    //   nuevoWall.imagen_url = "https://lorempixel.com/158/129";
-    //   nuevoRelato.imagen_url = "https://lorempixel.com/158/129";
+    //   nuevoWall.urlImagen = "https://lorempixel.com/158/129";
+    //   nuevoRelato.urlImagen = "https://lorempixel.com/158/129";
     //   nuevoChatstory.urlImagen = "https://lorempixel.com/158/129";
     //
     //   this.entradas.push(nuevoWall);

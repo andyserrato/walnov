@@ -1,0 +1,149 @@
+@import "main";
+
+.launcher{
+  // cursor: pointer;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fa-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 15px;
+  color: white;
+}
+
+.line {
+  width: 98%;
+  height: 1px;
+  margin-bottom: 10px;
+  border: solid 0.02rem $grey-1;
+}
+
+div{
+  outline:0;
+}
+
+.c-popover{
+    width: 28rem;
+    min-height: 80px !important;
+    max-height: 692px !important;
+    // height: 80vh;
+    position: absolute;
+    top: calc(100% + 16px);
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    right: -22.5px;
+    padding: 1em 0em 0em;
+    background-color: #8427bf;
+    border-radius: .3em;
+    cursor: initial;
+    box-shadow: 0 4px 36px 0 rgba(0, 0, 0, 0.24);
+    &::after{
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 20px 15px 15px 15px;
+      border-color: transparent transparent $main-1 transparent;
+      position: absolute;
+      bottom:99%;
+      right: 15px;
+      cursor:initial;
+    }
+}
+
+.block{
+  margin: .3em 0;
+}
+
+.username{
+  font-family: Raleway;
+  font-size: 1.2rem;
+  color:white;
+}
+
+.username-2{
+  font-family: Raleway;
+  font-size: 1.2rem;
+  // font-weight: bold;
+  color:white;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.final {
+  // position: relative;
+  // z-index: 99;
+  background-color: #8427bf;
+  margin-top: -2px;
+  border-bottom-left-radius: .3em;
+  border-bottom-right-radius: .3em;
+
+}
+
+.title{
+  width: 100%;
+  font-family: Raleway;
+  font-size: 1rem;
+  color:white;
+  font-weight: bold;
+  &:hover{
+    cursor: pointer;
+    background-color: $main-3;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .c-popover{
+      width: 25rem !important;
+      // right: -105.5px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1241px) {
+  .c-popover{
+    top: calc(100% + 14px);
+      // width: 29.7rem !important;
+      // right: -95.5px !important;
+  }
+
+}
+
+.Limite {
+  height: 90%;
+  overflow-y: auto;
+
+
+}
+
+.Limite::-webkit-scrollbar {
+  display: none;
+
+}
+
+.Rectangle {
+  width: 100%;
+  // height: 100%;
+  // border-radius: 4px;
+  // padding: 0.5em 0.5em;
+  background-color: $grey-1;
+
+}
+
+.Rectangle-Copy {
+  width: 100%;
+  height: 20px;
+  // margin-bottom: 5px;
+  border: dashed 0.1em $main-4;
+  border-radius: 4px;
+  // padding: 1em 1em;
+  background-color: $grey-1;
+
+}

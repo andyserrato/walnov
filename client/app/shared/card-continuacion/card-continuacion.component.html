@@ -1,9 +1,13 @@
 <div class="Rectangle-9">
   <div class="Titulo">
-    <span class="text-style-1">Continuación</span>
-    <span class="text-style-2">del wall de</span>
-    <span class="text-style-3" [style.color] = 'getColor()'>{{this.continuacion.wall.cat.nombre}}
-      <span class="text-style-2" style="margin-left:-2px;">:</span>
+    <span class="text-style-1">{{'card_continuacion' | translate}}</span>
+    <span *ngIf = "this.translate.currentLang === 'es'" class="text-style-2">del wall de</span>
+    <span *ngIf = "this.translate.currentLang === 'en'" class="text-style-2">from the</span>
+    <span class="text-style-3" [style.color] = 'getColor()'>{{this.continuacion.wall.cat.nombre | translate}}
+      <span *ngIf = "this.translate.currentLang === 'es'" class="text-style-2" style="margin-left:-2px;">:</span>
+    </span>
+    <span *ngIf = "this.translate.currentLang === 'en'" class="text-style-2">wall
+      <span  class="text-style-2" style="margin-left:-2px;">:</span>
     </span>
     <span>{{this.continuacion.wall.titulo}}</span>
   </div>

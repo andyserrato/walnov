@@ -1,0 +1,149 @@
+@import "main";
+
+.Rectangle-3-Copy-9 {
+  padding: 16px 16px 19px 16px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  margin-bottom: 9px;
+}
+
+.subrayado {
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.Contenido {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $main-2;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  margin-top: 16px;
+  border: solid 0.02rem $main-4;
+}
+
+.Contenido .text-style-1 {
+  font-weight: normal;
+  color: $grey-8;
+}
+
+.Contenido .text-style-2 {
+  color: $grey-8;
+}
+
+.time {
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: right;
+  color: $grey-6;
+}
+
+.Oval {
+  width: 26px;
+  height: 26px;
+  background-color: #dec9ed;
+  border-radius: 50%;
+  position: relative;
+}
+
+.fa-heart-o-Copy {
+  font-size: 18px;
+  color: $grey-1;
+  position: absolute;
+  left: 15%;
+  top: 22%;
+}
+
+.fa-heart-o {
+  font-size: 18px;
+  color: #9f9f9f;
+}
+
+.fa-heart {
+  font-size: 18px;
+  color: #ff0000;
+}
+
+.comunity {
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: italic;
+  text-align: left;
+  color: $grey-8;
+}
+
+.Rectangle-3-Copy-7 {
+  padding: 16px 27px 0px 15px;
+  height: fit-content;
+  background-color: $grey-1;
+  // border-radius: 8px;
+  // border-bottom-right-radius: 0;
+  // border-bottom-left-radius: 0;
+  // border: solid 1px rgba(253, 253, 253, 0.9);
+  // background-color: rgba(253, 253, 253, 0.9);
+  // box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+  // opacity: 0.5;
+  // margin-bottom: 9px;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(132, 39, 191, 0.1);
+    .time {
+      color: $grey-8;
+    }
+  }
+}
+
+div{
+  outline:0;
+}
+
+.Contenido-Copy {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: $main-2;
+}
+
+.Contenido-Copy .text-style-1 {
+  font-weight: normal;
+  color: $grey-8;
+}
+
+.Rectangle-4 {
+  margin-top: 14px;
+  width: 100%;
+  // height: 115px;
+  padding: 15px 30px 15px 16px;
+  border-radius: 8px;
+  background-color: $grey-1;
+  border: dashed 1px #e0e0e0;
+}
+
+.user-image {
+  border-radius: 50%;
+}
+
+.Notification-Content {
+  font-family: 'Maven Pro';
+  font-size: 14px;
+  text-align: left;
+  color: $grey-8;
+}
+
+.titulo {
+  font-family: 'Maven Pro';
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  color: $grey-8;
+  margin-bottom: 15px;
+}

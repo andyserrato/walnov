@@ -1,14 +1,14 @@
 <div class="outside-container">
   <div class="title d-flex justify-content-center">
-    Cuenta
+    {{'user_cuenta' | translate}}
   </div>
   <div class="link" [ngClass]="{'active': this.view==='datos'}" (click)="clickView('datos')">
-    Datos de perfil
+    {{'user_profile' | translate}}
   </div>
   <div class="link" [ngClass]="{'active': this.view==='preferencias'}" (click)="clickView('preferencias')">
-    Preferencias
+    {{'user_preferencias' | translate}}
   </div>
   <div class="link" [ngClass]="{'active': this.view==='premium'}" (click)="clickView('premium')">
-    Mi cuenta Premium
+    {{'user_premium' | translate}}
   </div>
 </div>

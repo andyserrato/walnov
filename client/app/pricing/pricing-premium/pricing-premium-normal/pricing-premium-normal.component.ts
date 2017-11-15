@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Router} from '@angular/router';
 import { RepositorioService } from '../../../services/repositorio.service';
-
+import { TranslateService} from '../../../translate';
 @Component({
   selector: 'app-pricing-premium-normal',
   templateUrl: './pricing-premium-normal.component.html',
@@ -10,9 +10,11 @@ import { RepositorioService } from '../../../services/repositorio.service';
 export class PricingPremiumNormalComponent implements OnInit {
   @Output() vista: EventEmitter<String>;
   planSel: boolean = false;
+  ingles: boolean;
 
-  constructor(private router: Router, private repositorio: RepositorioService) {
+  constructor(private router: Router, private repositorio: RepositorioService, private translate: TranslateService) {
     this.vista= new EventEmitter();
+    this.ingles = translate.currentLang === 'en';
   }
 
   ngOnInit() {

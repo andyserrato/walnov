@@ -10,11 +10,11 @@ export class UserAccountPreferencesComponent implements OnInit {
   constructor() {
     this.preferencias = [
       {
-        'nombre': 'Mensajes',
+        'nombre': 'user_preferencias_mensajes',
         'active': true
       },
       {
-        'nombre': 'Notificaciones',
+        'nombre': 'user_preferencias_notificaciones',
         'active': false
       }
     ];

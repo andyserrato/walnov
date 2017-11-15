@@ -1,30 +1,30 @@
-<div *ngIf = 'this.opiniones'>
-  <div *ngFor = "let opinion of this.opiniones">
+<div *ngIf = 'opiniones'>
+  <div *ngFor = "let opinion of opiniones">
     <div class="Rectangle-9">
       <div class="d-flex flex-row justify-content-start">
         <div class="d-flex flex-column">
-          <img class="Oval-2" src={{this.usuario.imagen}} alt={{this.usuario.nombre}}>
+          <img class="Oval-2" src={{opinion.autor?.perfil.foto_perfil}} alt={{opinion.autorNombre}}>
         </div>
         <div class="d-flex flex-column">
           <div class="Box-Title">
-            {{this.usuario.nombre}}
+            {{opinion.autorNombre}}
           </div>
         </div>
-        <div class="d-flex ml-auto flex-column Opciones" style="margin-right:25px;">
-          <div class="d-flex flex-row" style="cursor:pointer;">
-            <i class="fa fa-flag-o" aria-hidden="true"></i>
-            Reportar
+        <div class="d-flex ml-auto flex-column Opciones">
+          <div class="d-flex flex-row" style="cursor:pointer;" (click)="reportar(opinion)">
+            <i class="fa fa-flag-o" [ngClass]="{'fa-flag-o':!reportado(opinion), 'fa-flag':reportado(opinion)}" aria-hidden="true"></i>
+            {{'all_reportar' | translate}}
           </div>
         </div>
-        <div class="d-flex flex-column Opciones">
-          <div class="d-flex flex-row" style="cursor:pointer;">
-            <i class="fa fa-share" aria-hidden="true"></i>
-            Compartir
-          </div>
-        </div>
+        <!--<div class="d-flex flex-column Opciones">-->
+          <!--<div class="d-flex flex-row" style="cursor:pointer;">-->
+            <!--<i class="fa fa-share" aria-hidden="true"></i>-->
+            <!--{{'all_compartir' | translate}}-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
       <div class="Content">
-        {{opinion}}
+        {{opinion?.texto}}
       </div>
     </div>
   </div>

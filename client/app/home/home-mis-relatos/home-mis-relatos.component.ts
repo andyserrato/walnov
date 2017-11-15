@@ -1,9 +1,14 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Categoria } from '../../models/cats';
 import { RepositorioService } from '../../services/repositorio.service';
-import { Relato } from '../../models/relato';
+import { Relato } from '../../models/relato.model';
 import { Usuario } from '../../models/usuario.model';
 import { Paginator } from '../../models/paginador';
+import {AuthenticationService} from '../../services/authentication.service';
+import {BibliotecaService} from '../../services/biblioteca.service';
+import {RelatoService} from '../../services/relato.service';
+import {TranslateService} from '../../translate/translate.service';
+import {AlertService} from '../../services/alert.service';
 
 @Component({
   selector: 'app-home-mis-relatos',
@@ -12,31 +17,90 @@ import { Paginator } from '../../models/paginador';
 })
 export class HomeMisRelatosComponent implements OnInit {
   @ViewChild('contenedorBiblioteca') contenedorBiblioteca: ElementRef;
-  constructor(private repositorio: RepositorioService) { }
+  skip = 0;
+  noContent = false;
+  message: any;
+  constructor(private repositorio: RepositorioService,
+              private auth: AuthenticationService,
+              private bibliotecaService: BibliotecaService,
+              private relatoService: RelatoService,
+              private translate: TranslateService,
+              private alertService: AlertService) { }
 
   ngOnInit() {
-    for(let i=0; i<25; i++) {
-      for(let j=0; j<10; j++) {
-        let nuevoRL = new Relato();
-
-
-         nuevoRL.categoria = this.repositorio.categoriasAL[j];
-         nuevoRL.titulo = "Hola" + i;
-         nuevoRL.imagen_url = "https://lorempixel.com/158/129";
-         nuevoRL.coments = 200324;
-         nuevoRL.resumen = "Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag.";
-         nuevoRL.likes = 784;
-         nuevoRL.views = 2000;
-         nuevoRL.usuario = new Usuario();
-         nuevoRL.usuario.nombre = "Amorentrelineas";
-         nuevoRL.usuario.imagen = "https://lorempixel.com/22/22";
-         this.repositorio.relatos.push(nuevoRL);
-      }
-    }
-
     this.repositorio.paginadorCardsRelatos = new Paginator(this.repositorio.relatos, this.contenedorBiblioteca, 12, 6);
-    // console.log(this.repositorio.paginadorCardsRelatos);
+    if (this.auth.isLoggedIn()) {
+      this.firstQuery();
+    } else {
+      this.showNoContent();
+    }
+  }
 
+  firstQuery() {
+    const myParams = new URLSearchParams();
+    myParams.append('autor', this.auth.getUser().id);
+    myParams.append('sort', '-fechaCreacion');
+    myParams.append('top', '12');
+    myParams.append('skip', this.skip + '');
+    myParams.append('activo', 'true');
+
+    this.relatoService.getRelatoByQueryParams(myParams).subscribe(relatos => {
+      if (relatos && relatos.length > 0) {
+        this.noContent = false;
+        if (!this.bibliotecaService.getCurrentBiblioteca()) {
+          this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+            this.bibliotecaService.updateBiblioteca(biblioteca);
+            this.repositorio.paginadorCardsRelatos = new Paginator(relatos, this.contenedorBiblioteca, 12, 9);
+            // this.visible = true;
+            this.skip += 12;
+          });
+        } else {
+          this.repositorio.paginadorCardsRelatos = new Paginator(relatos, this.contenedorBiblioteca, 12, 9);
+          // this.visible = true;
+          this.skip += 12;
+        }
+      } else {
+        this.showNoContent();
+      }
+    }, error => {
+    });
+
+  }
+
+  loadMore() {
+    const myParams = new URLSearchParams();
+    myParams.append('autor', this.auth.getUser().id);
+    myParams.append('sort', '-fechaCreacion');
+    myParams.append('top', '12');
+    myParams.append('skip', this.skip + '');
+    myParams.append('activo', 'true');
+
+    this.relatoService.getRelatoByQueryParams(myParams).subscribe(relatos => {
+      if (relatos.length > 0) {
+        for (const c of relatos) {
+          this.repositorio.paginadorCardsRelatos.push(c);
+        }
+        this.repositorio.paginadorCardsRelatos.paginarDelante();
+        this.repositorio.paginadorCardsRelatos.final = false;
+        // this.visible = true;
+        this.skip += 12;
+      } else {
+        this.alertService.warning(this.translate.instant('alert_chatstory_acabados'));
+        this.repositorio.paginadorCardsRelatos.final = false;
+      }
+
+    }, error => {
+    });
+  }
+
+  scrollTop() {
+    this.repositorio.paginadorCardsRelatos.container.nativeElement.scrollTop = 0;
+  }
+
+  showNoContent() {
+    this.noContent = true;
+    this.message = { text: this.translate.instant('shared_no_content_mis_relatos'),
+      enlace: '/crear-relato/0', buttonText: this.translate.instant('shared_no_content_crear_relatos_button_text') };
   }
 
 }

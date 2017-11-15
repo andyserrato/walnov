@@ -16,7 +16,7 @@ router.get("/:usuarioId", getBibliotecaByUserId);
 // ChatStories
 router.get("/:usuarioId/chatstories", getChatStoriesOnBibliotecaByUserId);
 router.post("/:usuarioId/chatstories", addChatStoryOnBibliotecaByUserId);
-router.delete("/:usuarioId/chatstories", deleteChatStoryOnBibliotecaByUserId);
+router.delete("/:usuarioId/chatstories/", deleteChatStoryOnBibliotecaByUserId);
 // Walls
 router.get("/:usuarioId/walls", getWallsOnBibliotecaByUserId);
 router.post("/:usuarioId/walls", addWallOnBibliotecaByUserId);
@@ -39,30 +39,37 @@ function getBibliotecas(req, res) {
 
 function getBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
+
   User.findById(usuarioId, 'id', function (err, userId) {
     if (err) {
-      res.status(400).send('Ha ocurrido un error');
+      res.status(400).send({error: 'Usuario no encontrado'});
     }
     if (userId) {
       findBibliotecaByUserId(userId);
     } else {
-      res.status(400).send('El usuario no se ha encontrado');
+      res.status(400).send({error: 'Error en operación de usuario'});
     }
   });
 
   var findBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.find(query)
-      .populate('walls chatstories relatos')
+    Biblioteca.findOne(query)
       .exec(function (err, biblioteca) {
-      if (err) {
-        res.status(400).send("Ha ocurrido un error");
-      }
-      else {
-        res.status(200).send(biblioteca);
-      }
-    });
+        if (err) {
+          res.status(400).send({error: 'Error obteniendo biblioteca'});
+        }
+        else if (biblioteca) {
+          res.status(200).send(biblioteca);
+        } else {
+          let biblioteca = new Biblioteca();
+          biblioteca.usuario = userId;
+          biblioteca.save((err, bibliotecaGuardada) => {
+            if (err) res.status(400).send(err);
+            res.status(200).send(bibliotecaGuardada);
+          });
+        }
+      });
   }
 }
 
@@ -82,17 +89,18 @@ function getChatStoriesOnBibliotecaByUserId(req, res) {
 
   var findChatStoriesBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
-    Biblioteca.find(query)
-      .select('_id usuario chatStories')
-      .populate('chatStories')
+
+    Biblioteca.findOne(query)
+      .populate({path: 'chatStories', options: { sort: { fechaCreacion: -1 }}})
+      .populate({path: 'chatStories', populate: { path: 'autor estadistica'}, options: { sort: { fechaCreacion: -1 }}})
       .exec(function (err, biblioteca) {
-      if (err) {
-        res.status(400).send("Ha ocurrido un error");
-      }
-      else {
-        res.status(200).send(biblioteca);
-      }
-    });
+        if (err) {
+          res.status(400).send("Ha ocurrido un error");
+        }
+        else {
+          res.status(200).send(biblioteca);
+        }
+      });
   }
 }
 
@@ -153,7 +161,6 @@ function addChatStoryOnBibliotecaByUserId(req, res) {
 function deleteChatStoryOnBibliotecaByUserId(req, res) {
   let usuarioId = req.params.usuarioId;
   let chatStoryId = req.body.id;
-
   User.findById(usuarioId, '_id', function (err, userId) {
     if (err) {
       res.status(400).send('Ha ocurrido un error');
@@ -180,7 +187,7 @@ function deleteChatStoryOnBibliotecaByUserId(req, res) {
       }
 
       if (biblioteca.chatStories.indexOf(chatStoryId) !== -1) {
-        biblioteca.chatStories.splice(biblioteca.chatStories.indexOf(chatStoryId),1);
+        biblioteca.chatStories.splice(biblioteca.chatStories.indexOf(chatStoryId), 1);
         biblioteca.save(sendSave(err, biblioteca, res));
       } else {
         res.status(200).send(biblioteca);
@@ -207,14 +214,17 @@ function getWallsOnBibliotecaByUserId(req, res) {
   var findWallsBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.find(query, '_id usuario walls', function (err, biblioteca) {
-      if (err) {
-        res.status(400).send("Ha ocurrido un error");
-      }
-      else {
-        res.status(200).send(biblioteca);
-      }
-    });
+    Biblioteca.findOne(query)
+      .populate({path: 'walls', options: { sort: { fechaCreacion: -1 }}})
+      .populate({path: 'walls', populate: { path: 'autor estadistica'}, options: { sort: { fechaCreacion: -1 }}})
+      .exec(function (err, biblioteca) {
+        if (err) {
+          res.status(400).send("Ha ocurrido un error");
+        }
+        else {
+          res.status(200).send(biblioteca);
+        }
+      });
   }
 }
 
@@ -302,7 +312,7 @@ function deleteWallOnBibliotecaByUserId(req, res) {
       }
 
       if (biblioteca.walls.indexOf(wallId) !== -1) {
-        biblioteca.walls.splice(biblioteca.walls.indexOf(wallId),1);
+        biblioteca.walls.splice(biblioteca.walls.indexOf(wallId), 1);
         biblioteca.save(sendSave(err, biblioteca, res));
       } else {
         res.status(200).send(biblioteca);
@@ -328,14 +338,17 @@ function getRelatosOnBibliotecaByUserId(req, res) {
   var findRelatosBibliotecaByUserId = function (userId) {
     var query = {usuario: userId};
 
-    Biblioteca.find(query, '_id usuario relatos', function (err, biblioteca) {
-      if (err) {
-        res.status(400).send("Ha ocurrido un error");
-      }
-      else {
-        res.status(200).send(biblioteca);
-      }
-    });
+    Biblioteca.findOne(query)
+      .populate({path: 'relatos', options: { sort: { fechaCreacion: -1 }}})
+      .populate({path: 'relatos', populate: { path: 'autor estadistica'}, options: { sort: { fechaCreacion: -1 }}})
+      .exec(function (err, biblioteca) {
+        if (err) {
+          res.status(400).send("Ha ocurrido un error");
+        }
+        else {
+          res.status(200).send(biblioteca);
+        }
+      });
   }
 }
 
@@ -375,8 +388,8 @@ function addRelatoOnBibliotecaByUserId(req, res) {
         } else {
           if (biblioteca.relatos.indexOf(relatoId) === -1) {
             // hay que comprobar que el wall exista o que no se metan ids mal formados
-            if (mongoose.Types.ObjectId.isValid(wallId)) {
-              biblioteca.relatos.push(wallId);
+            if (mongoose.Types.ObjectId.isValid(relatoId)) {
+              biblioteca.relatos.push(relatoId);
               biblioteca.save(sendSave(err, biblioteca, res));
             } else {
               res.status(400).send("No es un ID válido");
@@ -421,7 +434,7 @@ function deleteRelatoOnBibliotecaByUserId(req, res) {
       }
 
       if (biblioteca.relatos.indexOf(relatoId) !== -1) {
-        biblioteca.relatos.splice(biblioteca.relatos.indexOf(relatoId),1);
+        biblioteca.relatos.splice(biblioteca.relatos.indexOf(relatoId), 1);
         biblioteca.save(sendSave(err, biblioteca, res));
       } else {
         res.status(200).send(biblioteca);
@@ -440,7 +453,3 @@ function sendSave(err, entity, res) {
     res.status(400).send('Ha ocurrido un error');
   }
 }
-
-
-
-

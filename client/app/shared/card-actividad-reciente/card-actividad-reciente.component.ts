@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MessageTimePipe } from '../../pipe/message-time/message-time.pipe';
 import { Usuario } from '../../models/usuario.model';
 import { ChatStory } from '../../models/chatstory.model';
-import { Relato } from '../../models/relato';
+import { Relato } from '../../models/relato.model';
 import { Wall } from '../../models/wall';
 import { Continuacion } from '../../models/continuacion';
 import { Historia } from '../../models/historia';

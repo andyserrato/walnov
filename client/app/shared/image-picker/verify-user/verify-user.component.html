@@ -2,7 +2,7 @@
   <div class="row row-margin-top-1">
     <div class="col-lg-12">
       <div class="info-box">
-          Para poder subir imágenes debes ser un Usuario Verificado
+          {{'shared_verify_user' | translate}}
       </div>
     </div>
   </div>
@@ -12,22 +12,22 @@
         <div class="col-6">
           <div class="row no-padding-margin">
             <span class="fixed-title">
-              Nombre
+              {{'forms_nombre' | translate}}
             </span>
           </div>
           <div class="row no-padding-margin">
-            <input type="text" class="form-control" name="" value="">
+            <input type="text" class="form-control" name="" value="" placeholder="{{'forms_username' | translate}}" [(ngModel)]="user().perfil.display_name">
           </div>
         </div>
 
         <div class="col-6">
           <div class="row no-padding-margin">
             <span class="fixed-title">
-              Apellidos
+              {{'forms_apellidos' | translate}}
             </span>
           </div>
           <div class="row no-padding-margin">
-            <input type="text" class="form-control" name="" value="">
+            <input type="text" class="form-control" name="" value="" placeholder="{{'forms_apellidos' | translate}}" [(ngModel)]="user().perfil.apellidos">
           </div>
         </div>
       </div>
@@ -35,17 +35,17 @@
         <div class="col-4">
           <div class="row no-padding-margin">
             <span class="fixed-title">
-              Edad
+              {{'forms_fecha_nacimiento'  | translate}}
             </span>
           </div>
           <div class="row no-padding-margin">
-            <input type="date" class="form-control" name="" value="">
+            <input type="date" class="form-control" name="" value="" placeholder="dd/mm/yyyy" [(ngModel)]="user().perfil.fechaNacimiento">
           </div>
         </div>
         <div class="col-4">
           <div class="row no-padding-margin">
             <span class="fixed-title">
-              Idioma
+              {{'forms_idioma' | translate}}
             </span>
           </div>
           <div class="row no-padding-margin">
@@ -57,7 +57,7 @@
         <div class="col-4">
           <div class="row no-padding-margin">
             <span class="fixed-title">
-              País
+              {{'forms_pais' | translate}}
             </span>
           </div>
           <div class="row no-padding-margin">
@@ -71,8 +71,8 @@
   </div>
   <div class="row row-margin-top-1">
     <div class="col no-padding">
-      <div class="btn-hecho margin-left pull-right" (click)="verify()">Verificarme</div>
-      <div class="btn-cancelar pull-right" (click)="cancel()">Cancelar</div>
+      <div class="btn-hecho margin-left pull-right" (click)="verify()">{{'forms_verificar' | translate}}</div>
+      <div class="btn-cancelar pull-right" (click)="cancel()">{{'forms_cancelar' | translate}}</div>
 
     </div>
   </div>

@@ -6,18 +6,18 @@ export class Wall {
     titulo: string;
     categoria: number;
     cat: Categoria;
-    imagen_url: string;
+    urlImagen: string;
     resumen: string;
     texto: string;
     usuario: Usuario;
 
-    likes:number;
+    likes: number;
     tags: Array<string>;
     participantes: number;
     historias: number;
-    visible: boolean = false;
+    visible = false;
 
-    isRelevante: boolean = false;
+    isRelevante = false;
     fechaCreacion: Date;
 
 }

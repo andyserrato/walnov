@@ -1,0 +1,42 @@
+@import "main";
+
+.Path-3 {
+  width: 100%;
+  height: 667px;
+  background-image: linear-gradient(to top, #d45cff, $main-1);
+}
+
+.Walnov {
+  font-family: 'Maven Pro';
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  color: $grey-1;
+}
+
+.mensaje {
+  font-family: Raleway;
+  margin-top: 30px;
+  font-size: 26px;
+  font-weight: 500;
+  text-align: center;
+  color: $grey-1;
+}
+
+.mensaje-2 {
+  font-family: Raleway;
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  color: $grey-1;
+}
+
+.app {
+  // width:85%;
+  height:70px;
+  cursor:pointer;
+  margin-left: auto;
+  margin-right: auto;
+
+}

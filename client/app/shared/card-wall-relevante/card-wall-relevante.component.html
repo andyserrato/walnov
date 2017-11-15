@@ -1,17 +1,17 @@
 <div class="card Rectangle-3-Copy-4 hidden-md-down">
   <div class="card-block">
     <h4 class="Card-title">{{'shared_walls_relevantes' | translate}}</h4>
-    <div *ngFor="let wall of walls">
-      <div *ngIf = "wall.isRelevante">
-        <div class="Rectangle-3" *ngIf = "wall.visible">
+    <div *ngFor="let wall of walls | slice:0:1">
+      <!-- <div *ngIf = "wall.isRelevante"> -->
+        <div class="Rectangle-3">
           <div class="row">
             <div class="col-10">
-              <div class="Wall-title" title="{{wall.titulo}}">
+              <div class="Wall-title truncate" title="{{wall.titulo}}">
                 {{wall.titulo}}
               </div>
             </div>
-            <button type="button" (click)="showAnother(wall)" class="btn-close" name="button">
-              <img src="assets/images/close-copy@2x.png" class="close-Copy  img-responsive" alt="No seguir">
+            <button type="button" (click)="showAnother()" class="btn-close" name="button">
+              <i class="fa fa-arrow-circle-right close-Copy" aria-hidden="true"></i>
             </button>
           </div>
           <div class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(wall)' [style.color] = 'getColor(wall)'>
@@ -21,9 +21,9 @@
             <li>{{wall.participantes}} {{'all_participantes' | translate}}</li>
             <li>{{wall.historias}} {{'all_historias' | translate}}</li>
           </ul>
-          <button type="button" class="btn-wall pull-right" name="button">{{'all_participar' | translate}}</button>
+          <button (click) = "participar(wall)" type="button" class="btn-wall pull-right" name="button">{{'all_participar' | translate}}</button>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>

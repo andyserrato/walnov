@@ -32,6 +32,8 @@
 }
 
 .Imagen-Usuario {
+  height: 22px;
+  width: 22px;
   margin-top: -3px;
   border-radius: 50%;
 
@@ -47,6 +49,10 @@
   text-align: left;
   //color: #8427bf;
   color: $main-1;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
   // white-space: nowrap;
   // overflow: hidden;
   // text-overflow: ellipsis;
@@ -93,6 +99,11 @@
 
 }
 
+.fa-arrow-circle-right {
+  color: $main-1;
+  font-size: 20px;
+}
+
 .close-Copy {
   //margin-top: -10px;
   position: relative;
@@ -101,8 +112,6 @@
   //top: 62px;
   //color: $grey-7;
   //margin-left: 50px;
-  width: 12px;
-  height: 12px;
   object-fit: contain;
 
 

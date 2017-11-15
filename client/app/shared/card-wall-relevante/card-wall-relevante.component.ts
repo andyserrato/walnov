@@ -42,9 +42,11 @@ export class CardWallRelevanteComponent implements OnInit {
     this.wall3.isRelevante = true;
 
 
-    this.addWall(this.wall1);
-    this.addWall(this.wall2);
-    this.addWall(this.wall3);
+    this.walls.push(this.wall1);
+    this.walls.push(this.wall2);
+    this.walls.push(this.wall3);
+
+    setInterval(this.showAnother.bind(this), 30000,);
 
   }
 
@@ -52,24 +54,16 @@ export class CardWallRelevanteComponent implements OnInit {
 
   }
 
-  addWall(newWall: Wall) {
-    if (newWall) {
-        this.walls.push(newWall);
-    }
+
+  showAnother() {
+    let wall = this.walls[0];
+    this.walls.splice(0,1);
+    this.walls.push(wall);
 
   }
 
-  deleteWall(oldWall: Wall){
-    this.walls.splice(this.walls.indexOf(oldWall), 1);
-
-  }
-
-  showAnother(previousWall: Wall) {
-    previousWall.visible = false;
-    let position = this.walls.indexOf(previousWall);
-    if(position === (this.walls.length - 1)) position = -1;
-    this.walls[position + 1].visible = true;
-
+  participar(wall) {
+    //this.router.navigate(['/chatstory/'+chatstory.id]);
   }
 
   getBorder(wall: Wall) {

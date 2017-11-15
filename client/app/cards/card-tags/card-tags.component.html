@@ -1,17 +1,18 @@
-<div class="card Rectangle-3-Copy-3 hidden-md-down">
+<div class="card Rectangle-3-Copy-3">
   <div class="card-block">
-    <h4 class="card-title Check-Label-Copy-10">Añade tags a tu {{this.view}}</h4>
+    <h4 class="card-title Check-Label-Copy-10">{{'add_tags' | translate}} {{this.view | translate}}</h4>
     <div class="row-fluid Input-Background-Copy-3">
       <div class="col-lg-12">
         <div class="row">
-          <div class="col-8 hidden-md-down cols-no-padding">
+          <div class="col-8  cols-no-padding">
             <input #newTag class="Input-Text"
+                [formControl]="this.tagForm"
                 type="text" placeholder="tags..."
-                (keyup.enter)="addTag(newTag.value); newTag.value=''"
-                (blur)="addTag(newTag.value); newTag.value='' ">
+                (keyup.enter)="addTag(newTag);"
+            >
           </div>
-          <div class="col-4 hidden-md-down cols-no-padding">
-              <button (click)="addTag(newTag.value)" class="plus-btn">
+          <div class="col-4  cols-no-padding">
+              <button (click)="addTag(newTag);" class="plus-btn">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
               </button>
           </div>

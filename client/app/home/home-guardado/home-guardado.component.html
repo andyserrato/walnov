@@ -1,17 +1,18 @@
 <div class="container-outside">
-  <div class="row row-flanges">
-    <div class="flange" (click)="changeView('walls')" [ngClass]="{'flange-selected': this.view==='walls'}">
+  <div class="row row-flanges" style="padding-right:0;">
+    <div class="flange" (click)="changeView('walls')" [ngClass]="{'flange-selected': router.url === '/home/guardado/walls'}">
       Walls
     </div>
-    <div class="flange" (click)="changeView('relatos')" [ngClass]="{'flange-selected': this.view==='relatos'}">
+    <div class="flange" (click)="changeView('relatos')" [ngClass]="{'flange-selected': router.url === '/home/guardado/relatos'}">
       {{'all_relatos_cortos' | translate}}
     </div>
-    <div class="flange" (click)="changeView('chatstories')" [ngClass]="{'flange-selected': this.view==='chatstories'}">
+    <div class="flange" (click)="changeView('chatstories')" [ngClass]="{'flange-selected': router.url === '/home/guardado/chatstories'}">
       Chatstories
     </div>
   </div>
-  <div class="container" [ngSwitch]="this.view">
-    <app-guardado-chatstories *ngSwitchCase="'chatstories'"></app-guardado-chatstories>
-    <app-guardado-relatos *ngSwitchCase="'relatos'"></app-guardado-relatos>
+  <div class="container">
+    <router-outlet></router-outlet>
+    <!-- <app-guardado-chatstories *ngSwitchCase="'chatstories'"></app-guardado-chatstories>
+    <app-guardado-relatos *ngSwitchCase="'relatos'"></app-guardado-relatos> -->
   </div>
 </div>

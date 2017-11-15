@@ -73,7 +73,7 @@ export class CardMiBibliotecaBuscadorComponent implements OnInit {
     //
     //   nuevoCS.categoria = this.repositorio.categoriasAL[0];
     //   nuevoCS.titulo = "Hola" + i;
-    //   nuevoCS.imagen_url = "https://lorempixel.com/45/56";
+    //   nuevoCS.urlImagen = "https://lorempixel.com/45/56";
     //   nuevoCS.likes = 784;
     //   nuevoCS.views = 2000;
     //   this.addChat(nuevoCS);

@@ -10,17 +10,26 @@
   </div>
   <div *ngSwitchCase="'userProfile'"class="container-2">
     <div class="title-2">
-        Apoya a
-     MalenaKrueger
-  a escibir más y mejor
+      {{'user_profile_apoyar' | translate}}
+                  MalenaKrueger
+      {{'user_profile_apoyar_message' | translate}}
     </div>
     <div class="d-flex justify-content-center">
       <div *ngIf = '!suscrito' (click) = "suscribir();" class="button-2">
-    Suscríbete
+    {{'user_profile_suscribir' | translate}}
       </div>
-      <div *ngIf = 'suscrito' (click) = "unsuscribe();" class="button-3">
-        <div class="btn-content">
-          Suscrito
+      <div *ngIf = "this.translate.currentLang === 'es'">
+        <div *ngIf = 'suscrito' (click) = "unsuscribe();" class="button-3">
+          <div class="btn-content">
+            {{'user_profile_suscrito' | translate}}
+          </div>
+        </div>
+      </div>
+      <div *ngIf = "this.translate.currentLang === 'en'">
+        <div *ngIf = 'suscrito' (click) = "unsuscribe();" class="button-3-2">
+          <div  class="btn-content-2">
+            {{'user_profile_suscrito' | translate}}
+          </div>
         </div>
       </div>
     </div>

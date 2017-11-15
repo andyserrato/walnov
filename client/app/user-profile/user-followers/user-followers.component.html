@@ -1,0 +1,8 @@
+<div class="app flex-row align-items-center justify-content-center users-container" #container>
+  <div *ngIf="!noContent" class="container" >
+    <div class="card-deck row">
+      <app-card-follow-user *ngFor="let u of this.paginador?.paginador" [user]="u"></app-card-follow-user>
+    </div>
+  </div>
+  <app-no-content *ngIf="noContent" [message]="message"></app-no-content>
+</div> 

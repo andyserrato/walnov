@@ -9,7 +9,8 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  tipo: string='normal';
+  vista: number;
+  tipo= 'normal';
   user: any;
   constructor(private auth: AuthenticationService,
               private router: Router,
@@ -18,19 +19,19 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.route.params.subscribe(params => {
-      // console.log(params['id']);
       this.userService.getById(params['id']).subscribe(user => {
         this.user = user;
-        switch(user.tipo){
+        switch (user.tipo) {
           case 0:
-            this.tipo='normal';
+            this.tipo = 'normal';
             break;
           case 1:
-            this.tipo='premium';
+            this.tipo = 'premium';
             break;
           default:
-            this.tipo='normal';
+            this.tipo = 'normal';
             break;
         }
       });

@@ -1,7 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ChatStory } from '../../../models/chatstory.model';
-import { Paginator } from '../../../models/paginador';
-import { RepositorioService } from '../../../services/repositorio.service';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Paginator} from '../../../models/paginador';
+import {RepositorioService} from '../../../services/repositorio.service';
+import {ChatstoryService} from '../../../services/chatstory.service';
+import {AuthenticationService} from '../../../services/authentication.service';
+import {BibliotecaService} from '../../../services/biblioteca.service';
+import {TranslateService} from '../../../translate';
+import 'rxjs/add/operator/switchMap';
+import {AlertService} from '../../../services/alert.service';
+
 @Component({
   selector: 'app-user-content-chatstories',
   templateUrl: './user-content-chatstories.component.html',
@@ -9,26 +15,106 @@ import { RepositorioService } from '../../../services/repositorio.service';
 })
 export class UserContentChatstoriesComponent implements OnInit {
   @ViewChild('div') div: ElementRef;
-  chats: Array<ChatStory>;
+  chats: Array<any>;
+  library: boolean;
   paginador: Paginator;
-  constructor(private repositorio: RepositorioService) {
+  visible = false;
+  skip = 0;
+  noContent = false;
+  message: any;
 
+  constructor(private chatservice: ChatstoryService,
+              private authenticationService: AuthenticationService,
+              private repositorio: RepositorioService,
+              private translate: TranslateService,
+              private alertService: AlertService,
+              private bibliotecaService: BibliotecaService) {
   }
 
   ngOnInit() {
-    this.chats = new Array<ChatStory>();
-    for (let i = 0; i < 60; i++) {
-      this.chats.push(new ChatStory());
-      this.chats[i].titulo = 'Flipas' + i;
-      this.chats[i].descripcion = 'flipas';
-      this.chats[i].categoria = this.repositorio.categoriasAL[6];
-      this.chats[i].urlImagen = 'http://www.lorempixel.com/63/100';
-      this.chats[i].views = 0;
-      this.chats[i].likes = 0;
-      this.chats[i].added = false;
-      this.chats[i].selected = false;
+    // todo obtención del id por la url estaría bien
+    this.chats = new Array<any>();
+    if (this.authenticationService.isLoggedIn()) {
+      this.library = this.authenticationService.getUser().id !== this.repositorio.idUsuario;
+    } else {
+      this.library = true;
     }
-    this.paginador = new Paginator(this.chats, this.div, 18, 9);
+
+    if (this.repositorio.idUsuario) {
+      this.firstQuery();
+    } else {
+      this.showNoContent();
+    }
+  }
+
+  firstQuery() {
+    const myParams = new URLSearchParams();
+    myParams.append('autor', this.repositorio.idUsuario);
+    myParams.append('sort', '-fechaCreacion');
+    myParams.append('top', '27');
+    myParams.append('skip', this.skip + '');
+    myParams.append('activo', 'true');
+
+    this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
+      if (chatStories && chatStories.length > 0) {
+        this.chats = chatStories;
+        if (!this.bibliotecaService.getCurrentBiblioteca()) {
+          this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(biblioteca => {
+            this.bibliotecaService.updateBiblioteca(biblioteca);
+            this.paginador = new Paginator(this.chats, this.div, 27, 9);
+            this.visible = true;
+            this.skip += 27;
+          });
+        } else {
+          this.paginador = new Paginator(this.chats, this.div, 27, 9);
+          this.visible = true;
+          this.skip += 27;
+        }
+      } else {
+        this.showNoContent();
+      }
+    }, error => {
+    });
+  }
+
+  loadMore() {
+    const myParams = new URLSearchParams();
+    myParams.append('autor', this.repositorio.idUsuario);
+    myParams.append('sort', '-fechaCreacion');
+    myParams.append('top', '27');
+    myParams.append('skip', this.skip + '');
+    myParams.append('activo', 'true');
+
+    this.chatservice.getChatStoryByQueryParams(myParams).subscribe(chatStories => {
+      if (chatStories.length > 0) {
+        this.chats = chatStories;
+        for (const c of chatStories) {
+          this.paginador.paginador.push(c);
+        }
+        this.paginador.paginarDelante();
+        this.paginador.final = false;
+        this.visible = true;
+        this.skip += 27;
+      } else {
+        this.alertService.warning(this.translate.instant('alert_chatstory_acabados_2'));
+        this.paginador.final = false;
+      }
+
+    }, error => {
+    });
+  }
+
+  scrollTop() {
+    this.paginador.container.nativeElement.scrollTop = 0;
+  }
+
+  showNoContent() {
+    // todo cambiar mensaje
+    this.noContent = true;
+    this.message = {
+      text: this.translate.instant('shared_no_content_ver_chatstories'),
+      enlace: '/chatstories', buttonText: this.translate.instant('shared_no_content_ver_chatstories_button_text')
+    };
   }
 
 }

@@ -1,36 +1,70 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-3 cols-no-padding">
-      <app-card-mi-biblioteca></app-card-mi-biblioteca>
+    <div class="col-lg-2 col-md-3 cols-no-padding">
+      <app-card-info-chatstory [chatstory]="chatStory"></app-card-info-chatstory>
     </div>
 
-    <div class="col-7">
+    <div class="col-lg-7 col-md-9">
       <div class="outside-container">
         <div class="row no-padding full-height">
-          <div class="col-12 no-padding full-height col-chatstory-preview">
-            <div class="description">
-              {{chatStory?.description}}
+          <div class="d-flex flex-column" style="width:100%;">
+            <div class="d-flex flex-row" style="width:100%;">
+              <div class="d-flex flex-column" style="width:70%;">
+                <div class="d-flex flex-row chat-title" title="{{chatStory?.titulo}}">
+                  <div class="ellipsis">
+                    {{chatStory?.titulo}}
+                  </div>
+                </div>
+                <div class="d-flex flex-row description">
+                  <div class="ellipsis" title="{{chatStory?.descripcion}}">
+                    {{chatStory?.descripcion}}
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-column justify-content-around ml-auto" style="width:25%;">
+                <div class="d-flex flex-row justify-content-center" *ngIf="showAnyadirToBiblioteca() && !checkUserChatstory()">
+                  <div class="d-flex flex-column align-items-center">
+                    <button type="button" [ngClass]="{'Rectangle-7-Copy-4': !inLibrary, 'Rectangle-7-Copy-4-2': inLibrary}" (click)='addToLibrary()' name="button" style="cursor:pointer;">
+                      <div class="btn-details">
+                        {{addLibraryText()}}
+                      </div>
+                    </button>
+                  </div>
+                </div>
+                <div class="d-flex flex-row justify-content-around">
+                  <span class="compartir">{{'modal_compartir_redes' | translate}}</span>
+                  <button md-icon-button shareButton="twitter" (sbOpened)="onCompartir('twitter')" [sbUrl]="location.href" [sbDescription]="chatStory?.descripcion.substr(0, 50) + '...'" [sbTags]="'walnov'" [style.color]="share.meta.twitter.color">
+                    <i [class]="share.meta.twitter.icon"></i>
+                  </button>
+                  <button md-icon-button shareButton="facebook" (sbOpened)="onCompartir('facebook')" [sbUrl]="location.href" [sbDescription]="chatStory?.descripcion.substr(0, 50) + '...'" [sbImage]="'http://lorempixel.com/400/200/'" [style.color]="share.meta.facebook.color">
+                    <i [class]="share.meta.facebook.icon"></i>
+                  </button>
+                </div>
+              </div>
             </div>
+
+          </div>
+          <div class="col-12 no-padding col-chatstory-preview" style="height:90%;">
             <div class="chatstory-preview-image" [ngStyle]="{'background-image': 'url(\''+chatStory?.urlImagen+'\')'}">
             </div>
             <div id="preview" class="chatstory-preview" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(41, 186, 111, 0), '+chatStory?.categoria.color+')'}" #preview>
               <div class="messages-content" #previewScroll>
-                <div class="row no-padding" *ngFor="let m of this.messagesArray">
+                <div class="row no-padding" *ngFor="let m of messagesArray">
                   <app-chatstory-message [big]="true" [message]="m" (click)="loadMessage(m)"></app-chatstory-message>
                 </div>
               </div>
             </div>
             <div class="click-box" #clickBox (click)="nextMessageClick()">
-              Haz clic en esta zona para ver más o pulsa  la barra espaciadora
+              {{'chatstories_ver_footer' | translate}}
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-2 hidden-md-down cols-no-padding">
+    <div class="col-lg-3 hidden-md-down" style="padding-left:0px;">
         <app-card-usuario-tendencia></app-card-usuario-tendencia>
-        <app-card-wall-relevante></app-card-wall-relevante>
+        <app-card-chatstory-relevante></app-card-chatstory-relevante>
         <!-- <app-card-publicidad></app-card-publicidad> -->
 
     </div>

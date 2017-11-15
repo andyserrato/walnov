@@ -1,27 +1,24 @@
 <div class="container">
   <div class="content">
     <div class="header">
-      <div class="page" (click)="this.view='walls'" [ngClass]="{'current-page': this.view==='walls'}">
+      <div class="page" (click)="changeView('walls')" [ngClass]="{'current-page': this.router.url.includes('walls')}">
         Walls
       </div>
-      <div class="page"(click)="this.view='historias'" [ngClass]="{'current-page': this.view==='historias'}">
-        Historias
+      <div class="page" (click)="changeView('historias')" [ngClass]="{'current-page': this.router.url.includes('historias')}">
+        {{'all_historias' | translate}}
       </div>
-      <div class="page"(click)="this.view='continuaciones'" [ngClass]="{'current-page': this.view==='continuaciones'}">
-        Continuaciones
+      <div class="page" (click)="changeView('continuaciones')" [ngClass]="{'current-page': this.router.url.includes('continuaciones')}">
+        {{'all_continuaciones' | translate}}
       </div>
-      <div class="page"(click)="this.view='chatstories'" [ngClass]="{'current-page': this.view==='chatstories'}">
+      <div class="page" (click)="changeView('chatstories')" [ngClass]="{'current-page': this.router.url.includes('chatstories')}">
         Chatstories
       </div>
-      <div class="page"(click)="this.view='relatos'" [ngClass]="{'current-page': this.view==='relatos'}">
-        Relatos cortos
+      <div class="page" (click)="changeView('relatos')" [ngClass]="{'current-page': this.router.url.includes('relatos')}">
+        {{'all_relatos_cortos' | translate}}
       </div>
     </div>
-    <div class="content-container" [ngSwitch]="this.view">
-      <app-user-content-chatstories *ngSwitchCase="'chatstories'"></app-user-content-chatstories>
-      <app-user-content-relatos *ngSwitchCase="'relatos'"></app-user-content-relatos>
-      <app-user-content-continuaciones *ngSwitchCase="'continuaciones'"></app-user-content-continuaciones>
-      <app-user-content-historias *ngSwitchCase="'historias'"></app-user-content-historias>
+    <div class="content-container">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

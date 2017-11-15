@@ -1,15 +1,31 @@
-<div class="container-fluid Rectangle-3">
+<div class="container Rectangle-3">
   <div class="row">
-    <div class="col-2 cols-no-padding">
-      <app-card-categorias (category)='changeCategory($event)'></app-card-categorias>
+    <div class="col-lg-2 col-md-3 col-sm-3 cols-no-padding">
+      <app-card-categorias (category)='changeCategory($event)' (sortByEvent)='sortByFilter($event)'></app-card-categorias>
       <app-card-publicidad class="Publi"></app-card-publicidad>
     </div>
     <!-- /.col -->
-    <div class="col-7 cols-no-padding">
-      <app-card-chatstories-paginador [categoria] = 'this.categoria' [chatStoriesFiltrados] = 'this.chatStoriesFiltrados' (more)="this.loadMore()"></app-card-chatstories-paginador>
-    </div>
-    <div class="col-3 cols-no-padding">
-      <app-card-mi-biblioteca-buscador></app-card-mi-biblioteca-buscador>
+    <div class="col cols-no-padding">
+      <div class="Rectangle-5" *ngIf='categoria'>
+        <img class="Img-Categorias" src="https://lorempixel.com/957/72" alt="">
+        <div class="Fondo-Imagen">
+        </div>
+        <div class="Degradado-Imagen" [ngStyle] = "{'background-image': getBackgroundImage()}">
+        </div>
+        <div class="d-flex flex-row justify-content-start align-items-center Detalles-Categoria">
+          <div class="Titulo-Categoria">
+            {{categoria.nombre | translate}}
+          </div>
+        </div>
+      </div>
+      <!-- <app-card-chatstories-paginador [categoria] = 'this.categoria' [chatStoriesFiltrados] = 'this.chatStoriesFiltrados' (more)="this.loadMore()" *ngIf="this.bibliotecaService.getCurrentBiblioteca()"></app-card-chatstories-paginador> -->
+      <div #div class="d-flex flex-wrap justify-content-center align-items-center chatstories-container">
+        <app-card-chatstory *ngFor="let chatstory of this.paginador?.paginador" [chatstory]="chatstory"></app-card-chatstory>
+      </div>
+      <div class="d-flex flex-row align-items-center justify-content-center">
+        <div class="load-more-button d-flex align-items-center justify-content-center" *ngIf="this.paginador?.final" (click)="loadMore()"><span class="fa fa-plus"></span></div>
+        <div class="load-more-button d-flex align-items-center justify-content-center" *ngIf="!this.paginador?.inicio" (click)="scrollTop()"><span class="fa fa-chevron-up"></span></div>
+      </div>
     </div>
     <!-- /.col -->
   </div>

@@ -83,7 +83,7 @@ class Tipo {
   }
 
   static get EXCLUSIVO() {
-    return 3;
+    return 4;
   }
 }
 
@@ -120,6 +120,10 @@ class Notificacion {
 
   static get NUEVA_OPINION_CHAT_STORY() {
     return 7;
+  }
+
+  static get NUEVO_SEGUIDOR() {
+    return 8;
   }
 }
 
@@ -163,13 +167,26 @@ class Mensajes {
         error : "Ha ocurrido un error",
         creado: "Ha creado un ChatStory",
         usuarioYaSeEncuentra: "Nombre de usuario ya registrado",
-        emailYaSeEncuentra: "El email ya se encuentra registrado"
+        emailYaSeEncuentra: "El email ya se encuentra registrado",
+        follow: "Campos userId y userIdToFollow requeridos",
+        unFollow: "Campos userId y userIdToUnFollow requeridos",
+        userNotFound: "Usuario no encontrado",
+        errorSavingUser: "Error actualizando usuario",
+        followMessage: "Ha conectado contigo",
+        alreadyFollowing: "Ya sigue al usuario",
+        notFollowing: "Usuario no seguido"
       },
       en : {
         error: "Bad Request",
         created: "Created a ChaStory",
         usuarioYaSeEncuentra: "User name already taken",
-        emailYaSeEncuentra: "Email already taken"
+        emailYaSeEncuentra: "Email already taken",
+        follow: "userId and userIdToFollow are required",
+        unFollow: "userId and userIdToUnFollow are required",
+        userNotFound: "User not found",
+        errorSavingUser: "Error updating user",
+        followMessage: "Has connected with you",
+        notFollowing: "User not followed"
       }
     };
   }

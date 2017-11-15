@@ -1,8 +1,8 @@
 
 <div class="row no-padding">
   <div class="col-12 no-padding">
-    <span class="fixed-title">Creación de Chatstories - <b>Paso 2/2</b></span>
-    <span class="click-span pull-right" (click)="getBack()">< Volver al paso 1 </span>
+    <span class="fixed-title">{{'chatstories_creacion_header' | translate}} - <b>{{'chatstories_creacion_step' | translate}} 2/2</b></span>
+    <span class="click-span pull-right" (click)="getBack()">< {{'chatstories_creacion_back' | translate}} </span>
   </div>
 
 </div>
@@ -18,7 +18,7 @@
 </div>
 <div class="row no-padding">
     <div class="category no-padding" [ngStyle]="{'background-color': this.chatStory.categoria?.color}">
-      {{this.chatStory.categoria?.nombre | uppercase}}
+      {{this.chatStory.categoria?.nombre | translate | uppercase}}
     </div>
 </div>
 
@@ -26,14 +26,14 @@
   <div class="col-6 no-padding padding-right">
     <div class="chatstory-message-creator" >
       <div class="row">
-        <span class="form-title">Personaje</span>
+        <span class="form-title">{{'chatstories_creacion_personaje' | translate}}</span>
         <select [(ngModel)]="message.personaje" class="form-control" #characterSelect required>
-            <option value="" disabled selected hidden>Nombre del personaje</option>
+            <!-- <option value="" disabled selected hidden>{{'chatstories_creacion_personaje_name' | translate}}</option> -->
             <option *ngFor="let char of chatStory.personajes" value="{{char}}">{{char}}</option>
         </select>
       </div>
       <div class="row row-margin-top">
-        <span class="form-title">Texto</span>
+        <span class="form-title">{{'all_texto' | translate}}</span>
         <textarea #textArea [(ngModel)]="message.chat" class="form-control" rows="8" cols="80" maxlength="485" #messageText></textarea>
       </div>
       <div class="row row-margin-top">
@@ -42,7 +42,7 @@
             <input #imageInput type="file" class="form-control img-input" name="" value="" (change)="uploadImage($event, imagePlaceholder)">
             <div class="row">
               <div class="col">
-                <span #imgPlaceholder class="img-placeholder vertical-center">Añadir imagen</span>
+                <span #imgPlaceholder class="img-placeholder vertical-center">{{'chatstories_creacion_add_image' | translate}}</span>
               </div>
               <div class="col">
                 <div class="btn-img pull-right">
@@ -61,9 +61,9 @@
           <span class="time vertical-center" (click)="delayMessage()" [ngClass]="{'delay-selected': this.message.delay}">3’’ <span class="fa fa-clock-o"></span></span>
         </div>
         <div class="col no-padding">
-          <div *ngIf="!this.editing" class="btn-hecho pull-right" (click)="newMessage(characterSelect, messageText, chatstoryPreview, imageInput)">Añadir mensaje</div>
-          <div *ngIf="this.editing" class="btn-hecho pull-right" (click)="forceNewMessage()">Guardar Cambios</div>
-          <div *ngIf="this.editing" class="btn-hecho pull-right margin-top" (click)="deleteMessage()">Borrar Mensaje</div>
+          <div *ngIf="!this.editing" class="btn-hecho pull-right" (click)="newMessage(characterSelect, messageText, chatstoryPreview, imageInput)">{{'chatstories_creacion_add_message' | translate}}</div>
+          <div *ngIf="this.editing" class="btn-hecho pull-right" (click)="forceNewMessage()">{{'chatstories_creacion_save_changes' | translate}}</div>
+          <div *ngIf="this.editing" class="btn-hecho pull-right margin-top" (click)="deleteMessage()">{{'chatstories_creacion_delete_message' | translate}}</div>
 
         </div>
       </div>
@@ -85,25 +85,17 @@
 <div class="row no-padding row-margin-top">
   <div class="col-6 relative">
     <span class="pull-right vertical-center phrase">
-      ¿Todo listo? ¡Ahora publícalo!
+      {{'chatstories_creacion_publica_message' | translate}}
     </span>
   </div>
   <div class="col-3 no-padding">
-    <div class="btn-hecho pull-right" *ngIf="!auth.isLoggedIn()">
-      <app-prot-popover-register [direction]="'up'" *ngIf="!auth.isLoggedIn()" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
-      Guardar Borrador
-    </div>
-    <div class="btn-hecho pull-right" *ngIf="auth.isLoggedIn()" (click)="guardarComoBorradorChatStory()">
-      Guardar Borrador
+    <div class="btn-hecho pull-right" (click)="guardarComoBorradorChatStory()">
+      {{'chatstories_creacion_guardar_borrador' | translate}}
     </div>
   </div>
   <div class="col-3 no-padding">
-    <div class="btn-hecho pull-right" *ngIf="!auth.isLoggedIn()">
-      <app-prot-popover-register [direction]="'up'" *ngIf="!auth.isLoggedIn()" [visible]="popover" (click)="this.popover = true" (focusOut)="this.popover = false"></app-prot-popover-register>
-      Publicar ChatStory
-    </div>
-    <div class="btn-hecho pull-right" *ngIf="auth.isLoggedIn()" (click)="publicarChatStory()">
-      Publicar ChatStory
+    <div class="btn-hecho pull-right" (click)="publicarChatStory()">
+      {{'all_publicar' | translate}} Chatstory
     </div>
   </div>
 </div>

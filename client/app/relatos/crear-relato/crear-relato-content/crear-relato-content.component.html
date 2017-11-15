@@ -13,12 +13,12 @@
 
 <div class="outside-container">
   <div class="title-info">
-    Creación de Relato Corto
+    {{'relatos_creacion' | translate}}
   </div>
   <div class="master">
     <div class="section section-foto">
-      <div class="img-picker" [ngStyle]="{'background-image': 'url('+this.relato.imagen_url+')'}">
-        <div class="img-filter" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(222, 25, 109, 0), '+this.relato.categoria.color+')'}">
+      <div class="img-picker" [ngStyle]="{'background-image': 'url('+this.relato.urlImagen+')'}">
+        <div class="img-filter" [ngStyle]="{'background-image': 'linear-gradient(to bottom, rgba(222, 25, 109, 0), '+this.relato.categoria?.color+')'}">
         </div>
         <div class="img-picker-div">
           <app-image-picker [white]="true" (imageUploaded)="changeImage($event)"></app-image-picker>
@@ -27,8 +27,8 @@
     </div>
     <div class="section section-dedicatoria d-flex align-items-center flex-column">
       <div class="d-flex flex-column">
-        <span class="section-title">¿Quieres dedicar tu Wall?</span>
-        <input [formControl]="this.dedicatoriaForm" (keydown.enter)="newDedicatoria($event)" class="form-control dedicatoria" type="text" name="" value="" placeholder="nombre@mail.com; @usuario…">
+        <span class="section-title">{{'relatos_dedicatoria' | translate}}</span>
+        <input [formControl]="this.dedicatoriaForm" (keydown.enter)="newDedicatoria($event)" class="form-control dedicatoria" type="text" name="" value="" placeholder="{{'relatos_dedicatoria_placeholder' | translate}}">
 
       </div>
       <div class="dedicatorias align-self-start">
@@ -39,11 +39,11 @@
 
     </div>
     <div class="section section-amigos">
-      <span class="section-title">Invita a tus amigos</span>
+      <span class="section-title">{{'relatos_mensaje' | translate}}</span>
       <div class="friends-container">
         <div class="friends-fields">
           <div class="friends-input d-flex align-items-center justify-content-end">
-              <input #friendInput type="text" class="form-control" name="" value="" placeholder="@Nombreamigo" (keydown.enter)="newFriend(friendInput)">
+              <input #friendInput type="text" class="form-control" name="" value="" placeholder="{{'relatos_mensaje_placeholder' | translate}}" (keydown.enter)="newFriend(friendInput)">
               <span class="fa fa-plus-circle" (click)="newFriend(friendInput)"></span>
           </div>
           <div class="friends">
@@ -62,22 +62,23 @@
           [(ngModel)]="this.relato.titulo"
           [formControl]="this.complexForm.controls['title']"
           [ngClass]="{'form-error': !this.complexForm.controls['title'].valid && this.complexForm.controls['title'].touched}"
-          placeholder="Título del Relato"
+          placeholder="{{'relatos_titulo' | translate}}"
           maxlength="30"
           class="span-title"
           contenteditable="true"
+          (focus) = "this.complexForm.controls['title'].markAsUntouched();"
           #spanTitle
         >
           <span class="fa fa-pencil" (click)="spanTitle.focus()"></span>
       </div>
-      <span class="error-span" *ngIf="!this.complexForm.controls['title'].valid && this.complexForm.controls['title'].touched">Introduce un título de un máximo de 30 caracteres</span>
+      <span class="error-span" *ngIf="!this.complexForm.controls['title'].valid && this.complexForm.controls['title'].touched">{{'relatos_restriccion' | translate}}</span>
 
     </div>
     <div class="section section-categoria">
       <div class="d-flex align-items-center justify-content-end">
-          <span class="pull-right">Categoria</span>
+          <span class="pull-right">{{'all_categoria' | translate}}</span>
           <select class="form-control cats" name="" [(ngModel)]="this.relato.categoria">
-            <option *ngFor="let cat of this.repositorio.categoriasAL" [ngValue]="cat">{{cat.nombre}}</option>
+            <option *ngFor="let cat of this.repositorio.categoriasAL" [ngValue]="cat">{{cat.nombre | translate}}</option>
           </select>
       </div>
     </div>
@@ -87,22 +88,28 @@
         [(ngModel)]="this.relato.texto"
         class="form-control"
         name="name"
-        placeholder="Texto máximo 3000 caracteres"
+        placeholder="{{'relatos_restriccion_2' | translate}}"
         [formControl]="this.complexForm.controls['content']"
         maxlength="3000"
         [ngClass]="{'form-error': !this.complexForm.controls['content'].valid && this.complexForm.controls['content'].touched}"
+        (focus) = "this.complexForm.controls['content'].markAsUntouched();"
       ></textarea>
       <div class="letter-counter">{{textarea.value.length}}/3000</div>
-      <span class="error-span" *ngIf="!this.complexForm.controls['content'].valid && this.complexForm.controls['content'].touched">Escribe un relato de un máximo de 3000 caracteres</span>
+      <span class="error-span" *ngIf="!this.complexForm.controls['content'].valid && this.complexForm.controls['content'].touched">{{'relatos_restriccion_3' | translate}}</span>
     </div>
-    <div class="section d-flex align-items-center justify-content-end section-botones">
-      <div class="link">
-        Vista Previa
+    <div class="section-copy d-flex ml-auto align-items-center justify-content-between section-botones">
+
+
+      <!--<div class="link">-->
+        <!--{{'relatos_vista_previa' | translate}}-->
+      <!--</div>-->
+      <div class="button" (click)="guardarComoBorradorRelato()" [ngClass]="{'button-disabled': !complexForm.valid, 'animationStripes': borrador}">
+        <span *ngIf="!this.publicado">{{'chatstories_creacion_guardar_borrador' | translate}}</span>
+        <span *ngIf="this.publicado">{{'all_guardando' | translate}}</span>
       </div>
-      <div class="button" (click)="publish()" [ngClass]="{'button-disabled': !this.complexForm.valid, 'animationStripes': this.publicando}">
-        <app-prot-popover-register [direction]="'up'" [visible]="popover" (loged)="share()" (focusOut)="popover = false"></app-prot-popover-register>
-        <span *ngIf="!this.publicado">Publicar</span>
-        <span *ngIf="this.publicado">Publicando</span>
+      <div class="button"  style="margin-left:20px;" (click)="publicarRelato()" [ngClass]="{'button-disabled': !complexForm.valid, 'animationStripes': publicando}">
+        <span *ngIf="!this.publicado">{{'all_publicar' | translate}}</span>
+        <span *ngIf="this.publicado">{{'all_publicando' | translate}}</span>
       </div>
     </div>
   </div>

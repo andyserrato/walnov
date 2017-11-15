@@ -1,18 +1,18 @@
-<div #div class="launcher" (click)="this.visible=true">
+<div #div class="launcher" (click)="this.visible=!this.visible">
 
   <div class="c-popover" *ngIf="this.visible">
     <div class="d-flex flex-column align-items-start">
-      <div class="block username" (click)="goTo('user-profile/'+this.authenticationService.getUser().id)">
+      <div class="block username" (click)="goTo('user-profile/'+this.authenticationService.getUser().id+'/walls')">
         {{ nombre }}
       </div>
       <div class="block title" (click)="goTo('user-account')">
-        Cuenta
+        {{'profile_popover_cuenta' | translate}}
       </div>
       <div class="block title" (click)="logout()">
-        Salir
+        {{'profile_popover_salir' | translate}}
       </div>
       <div class="lvl-button d-flex align-items-center justify-content-center">
-          <span>¡Sube de nivel!</span>
+          <span>{{'profile_popover_nivel' | translate}}</span>
       </div>
     </div>
   </div>

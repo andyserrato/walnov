@@ -22,13 +22,13 @@
 #secciones{
     font-family: Raleway;
     color: $grey-1;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     margin-top: 9px;
 }
 
 .seccion{
-    margin-right: 40px;
+    // margin-right: 40px;
     cursor: pointer;
     outline: none;
     &:hover{
@@ -57,6 +57,7 @@
 
 .boton-crear{
     height: 26px;
+    width: fit-content;
     border-radius: 4px;
     background-color: $main-1;
     font-family: Raleway;
@@ -64,8 +65,8 @@
     font-weight: bold;
     text-align: center;
     color: $grey-1;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 9px;
+    padding-right: 11px;
     padding-top: 6px;
     padding-bottom: 6px;
     &:hover{
@@ -87,15 +88,21 @@
     padding-left: 10px;
     padding-right: 10px;
     cursor: pointer;
-    margin-left: 40px;
-    margin-right: 10px;
+    outline: none;
+    &:hover {
+      cursor: pointer;
+      background-color: $main-3;
+    }
+    // margin-left: 40px;
+    // margin-right: 10px;
 }
 
 .boton-notificaciones{
     color: $main-3;
     margin-top: 12px;
+    font-size: 15px;
     cursor: pointer;
-    margin-left: 10px;
+    // margin-left: 10px;
     &:hover{
       color:$main-4;
     }
@@ -104,8 +111,20 @@
 .boton-mensajes{
     color: $main-3;
     margin-top: 12px;
+    font-size: 15px;
     cursor: pointer;
-    margin-left: 20px;
+    // margin-left: 20px;
+    &:hover{
+      color:$main-4;
+    }
+}
+
+.boton-lenguage{
+    color: $main-3;
+    margin-top: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    // margin-left: 20px;
     &:hover{
       color:$main-4;
     }
@@ -114,7 +133,7 @@
 #imagen-perfil{
     margin-top: 5px;
     cursor: pointer;
-    margin-left: 20px;
+    // margin-left: 20px;
 }
 
 .Comunidad {
@@ -185,6 +204,11 @@
   color:black !important;
 }
 
+.focused2{
+  background-color:white !important;
+  color:$main-1 !important;
+}
+
 #buscador .inputtext{
     background-color: transparent;
     border: none;
@@ -195,4 +219,82 @@
     height: 30px;
     outline: none;
     font-family: Raleway;
+}
+
+.dropdown-menu {
+  left: 38px !important;
+  background-color: $main-1;
+}
+
+.dropdown-item {
+  padding: 3px 0.5rem !important;
+  color: $grey-1 !important;
+  &:hover {
+    background-color: $main-3 !important;
+    color: $grey-1 !important;
+  }
+}
+
+.navbar-brand {
+  font-family: 'Maven Pro';
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  color: $grey-1;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #secciones {
+    padding-left: 40px !important;
+    padding-right: 15px !important;
+  }
+
+  #opciones {
+    padding-left: 15px !important;
+  }
+
+  .dropdown-menu {
+    left: 13px !important;
+  }
+
+  #desplazamiento {
+    margin-left: 0 !important;
+  }
+}
+
+.Rectangle-4 {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: solid 1px $main-1;
+}
+
+.Rectangle-4-Copy {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: solid 1px $main-1;
+  &:hover {
+    background-color: $main-3;
+  }
+}
+
+.fa-search {
+  font-size: 15px;
+}
+
+.fa-search-Copy {
+  position: absolute;
+  font-size: 15px;
+  top: 6px;
+  left: 7px;
+}
+
+.fa-info {
+  position: absolute;
+  font-size: 15px;
+  top: 7px;
+  left: 11px;
 }

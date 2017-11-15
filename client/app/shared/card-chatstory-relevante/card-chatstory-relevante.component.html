@@ -1,0 +1,29 @@
+<div class="card Rectangle-3-Copy-4 hidden-md-down">
+  <div class="card-block">
+    <h4 class="Card-title">{{'chatstories_relevantes' | translate}}</h4>
+    <div *ngFor="let chatstory of this.chatstories | slice:0:1">
+      <!-- <div *ngIf = "wall.isRelevante"> -->
+        <div class="Rectangle-3">
+          <div class="row">
+            <div class="col-10">
+              <div class="Wall-title truncate" title="{{chatstory.titulo}}">
+                {{chatstory.titulo}}
+              </div>
+            </div>
+            <button type="button" (click)="showAnother()" class="btn-close" name="button">
+              <i class="fa fa-arrow-circle-right close-Copy" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(chatstory)' [style.color] = 'getColor(chatstory)'>
+            {{this.chatstory.categoria | translate}}
+          </div>
+          <ul class="list-unstyled Estadisticas-Usuario">
+            <li>{{this.chatstory.estadistica?.vecesVisto}} {{'all_visualizaciones' | translate}}</li>
+            <li>{{this.chatstory.estadistica?.likes}} likes</li>
+          </ul>
+          <button (click)="loadChatstory(chatstory)" type="button" class="btn-wall pull-right" name="button">{{'chatstories_relevantes_leer' | translate}}</button>
+        </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>

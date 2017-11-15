@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="link" (click)="changeView('guardado')" [ngClass]="{'selected': this.router.url==='/home/guardado'}">
+    <div class="link" (click)="changeView('guardado')" [ngClass]="{'selected': this.router.url.includes('/home/guardado')}">
       {{'home_card_navegacion_5' | translate}}
     </div>
   </div>

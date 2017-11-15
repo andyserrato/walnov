@@ -1,13 +1,14 @@
 
-  <div #div class="launcher">
+
     <div class="c-popover" [ngClass]="{'visible': this.visible, 'down': this.direction==='down', 'up': this.direction==='up'}">
       <div class="simple-container">
-        <div class="title">
-          Únete para poder publicar
+        <div class="title d-flex flex-row align-items-center">
+          <span>{{'popover_unirse' | translate}}</span>
+          <span class="fa fa-times ml-auto" (click)="close()"></span>
         </div>
-        <div class="alternatives d-flex flex-column">
+        <div class="alternatives d-flex flex-column" style="min-width:100px;">
           <div class="d-flex flex-column">
-            <span class="simple-title">Regístrate con:</span>
+            <span class="simple-title">{{'popover_registro' | translate}}</span>
             <div class="icon facebook" (click)="doSocialLogin('/apiv1/users/oauth/facebook?url=')">
               <span class="fa fa-facebook mr-auto"></span>
               <span>FACEBOOK</span>
@@ -28,49 +29,49 @@
             <div class="relative-container d-flex flex-column">
               <span class="simple-title">Email</span>
               <input [formControl]="this.validateForm.controls['mail']" #mail type="text" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['mail'].valid && this.validateForm.controls['mail'].touched}">
-              <span class="error-span" *ngIf="!this.validateForm.controls['mail'].valid && this.validateForm.controls['mail'].touched">Introduce un mail valido</span>
+              <span class="error-span" *ngIf="!this.validateForm.controls['mail'].valid && this.validateForm.controls['mail'].touched">{{'popover_error_mail' | translate}}</span>
             </div>
             <div class="relative-container d-flex flex-column">
-              <span class="simple-title">Contraseña</span>
+              <span class="simple-title">{{'popover_contraseña'| translate}}</span>
               <input [formControl]="this.validateForm.controls['pass']" #pass type="password" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched}">
-              <span class="error-span" *ngIf="!this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched">Introduce una contraseña</span>
+              <span class="error-span" *ngIf="!this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched">{{'popover_error_contraseña' | translate}}</span>
             </div>
             <div class="relative-container d-flex flex-column">
-              <span class="simple-title">Nombre de Usuario</span>
+              <span class="simple-title">{{'all_nombre_usuario' | translate}}</span>
               <input [formControl]="this.validateForm.controls['user']" #user type="text" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched}">
-              <span class="error-span" *ngIf="!this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched">Introduce un nombre de usuario</span>
+              <span class="error-span" *ngIf="!this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched">{{'popover_error_nombre' | translate}}</span>
             </div>
 
           </div>
           <div class="d-flex flex-column" *ngIf="this.view==='login'">
             <div class="relative-container d-flex flex-column">
-              <span class="simple-title">Nombre de Usuario</span>
+              <span class="simple-title">{{'all_nombre_usuario' | translate}}</span>
               <input [formControl]="this.validateForm.controls['user']" #user type="text" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched}">
-              <span class="error-span" *ngIf="!this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched">Introduce un nombre de usuario</span>
+              <span class="error-span" *ngIf="!this.validateForm.controls['user'].valid && this.validateForm.controls['user'].touched">{{'popover_error_nombre' | translate}}</span>
             </div>
             <div class="relative-container d-flex flex-column">
-              <span class="simple-title">Contraseña</span>
+              <span class="simple-title">{{'popover_contraseña'| translate}}</span>
               <input [formControl]="this.validateForm.controls['pass']" #pass type="password" name="" value="" class="form-control" [ngClass]="{'error-input': !this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched}">
-              <span class="error-span" *ngIf="!this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched">Introduce una contraseña</span>
+              <span class="error-span" *ngIf="!this.validateForm.controls['pass'].valid && this.validateForm.controls['pass'].touched">{{'popover_error_contraseña' | translate}}</span>
             </div>
-            <div class="link">¿Has olvidado tu contraseña?</div>
+            <div class="link">{{'popover_error_olvidada' | translate}}</div>
           </div>
         </div>
         <div class="button-grid d-flex justify-content-end align-items-center">
           <div class="d-flex align-items-center justify-content-end">
             <div class="link" (click)="changeView('login')" [hidden]="this.view==='login'">
-              Ya tengo cuenta, entrar
-            </div>
+              {{'popover_ya_registrado' | translate}}
+             </div>
             <div class="link" (click)="changeView('register')" [hidden]="this.view==='register'">
-              No tengo cuenta, registrarme
+              {{'popover_no_registrado' | translate}}
             </div>
             <div class="button d-flex align-items-center" (click)="register()" *ngIf="this.view==='register'">
-              <span *ngIf="!loading">Unirme</span>
+              <span *ngIf="!loading">{{'popover_unirse_2' | translate}}</span>
               <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
               <span class="sr-only">Loading...</span>
             </div>
             <div class="button d-flex align-items-center" *ngIf="this.view==='login'" (click)="login()">
-              <span *ngIf="!loading">Entrar</span>
+              <span *ngIf="!loading">{{'popover_entrar' | translate}}</span>
               <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
               <span class="sr-only">Loading...</span>
             </div>
@@ -78,4 +79,3 @@
         </div>
       </div>
     </div>
-  </div>
