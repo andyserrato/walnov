@@ -99,6 +99,7 @@ import { LandingMobileComponent } from './landing/landing-mobile/landing-mobile.
 // import {TRANSLATION_PROVIDERS, TranslatePipe, TranslateService} from './translate'
 
 import { ShareButtonModule } from 'ngx-sharebuttons';
+import { MensajesComponent } from './mensajes/mensajes.component';
 
 @NgModule({
   declarations: [
@@ -170,6 +171,7 @@ import { ShareButtonModule } from 'ngx-sharebuttons';
     OrderByPipe,
     ModalDecorationComponent,
     LandingMobileComponent,
+    MensajesComponent,
     // TranslatePipe
   ],
   imports: [
