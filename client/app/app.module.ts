@@ -84,7 +84,7 @@ import {BibliotecaService} from './services/biblioteca.service';
 import {RegisterPopoverService} from './services/register-popover.service';
 import {LandingMobileComponent} from './landing/landing-mobile/landing-mobile.component';
 import {ShareButtonModule} from 'ngx-sharebuttons';
-
+import {MensajesComponent} from './mensajes/mensajes.component';
 @NgModule({
   declarations: [
     AppComponent,
