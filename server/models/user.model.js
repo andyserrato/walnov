@@ -151,7 +151,9 @@ const usuario = Schema({
   //Normal o partner
   tipo: {type: Number, default: Constantes.Usuario.TIPO_NORMAL},
   necesitaRevalidarPassword: {type: Boolean, default: false},
-  providers: [providerSchema]
+  providers: [providerSchema],
+  token: {type: String, required: true},
+  temporayToken: {type: String, required: true}
 });
 
 usuario.index({login: 'text'});

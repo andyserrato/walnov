@@ -8,7 +8,9 @@ const router = express.Router();
 const Constantes = require("../constantes/constantes");
 const Biblioteca = mongoose.model('Biblioteca');
 const GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
-
+const jwt = require('jsonwebtoken');
+const config = require('../config.json');
+const nodemailer = require('nodemailer');
 var redirection = '';
 // Rutas
 // Set up the 'signup' routes
@@ -131,6 +133,14 @@ function signin(req, res, next) {
   })(req, res, next);
 };
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'aserratocapote@gmail.com',
+    pass: '123456'
+  }
+});
+
 // Create a new controller method that creates new 'regular' users
 function signup(req, res) {
   if (!req.body) {
@@ -152,7 +162,9 @@ function signup(req, res) {
   });
   user.password = user.generateHash(req.body.password);
   user.provider = 'local';
-
+  user.token = jwt.sign({ login: user.login, email: user.perfil.login } , config.secret, {expiresIn: '24h'});
+  user.temporayToken = jwt.sign({ login: user.login, email: user.perfil.login } , config.secret, {expiresIn: '24h'});
+  user.activo = false;
   User.findLoginDuplicate(user, function (user) {
     // Ocurrió un error o el usuario ya se encuentra registrado
     if (!user) {
@@ -185,6 +197,27 @@ function signup(req, res) {
                   biblioteca.usuario = user.id;
                   biblioteca.save((err) => {
                     if (err) res.status(400).send({error: err});
+
+                    var mailOptions = {
+                      from: 'andy, aserratocapote@gmail.com',
+                      to: 'myfriend@yahoo.com',
+                      subject: 'Localhost Activation Link',
+                      text: 'Hello' + user.perfil.display_name + ' Thank you for registering ' +
+                      'at localhost.com. Please click on the link bellow to complete your activation:' +
+                        'http://localhost:3000/activate/' + user.temporayToken,
+                      html: 'Hello<strong>' + user.perfil.display_name + '</strong>,<br><br>Thank you for registering ' +
+                      'at localhost.com. Please click on the link bellow to complete your activation:<br><br>' +
+                      '<a href="http://localhost:3000/activate/' + user.temporayToken +'">Click Here</a>'
+                    };
+
+                    transporter.sendMail(mailOptions, function(error, info){
+                      if (error) {
+                        console.log(error);
+                      } else {
+                        console.log('Email sent: ' + info.response);
+                      }
+                    });
+
                     res.status(200).send(user);
                   });
                 }
