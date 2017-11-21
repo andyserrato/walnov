@@ -88,6 +88,13 @@ const notificacionGlobal = Schema({
   texto: String,
 });
 
+const pagoSchema = Schema({
+  token: {},
+  monto: Number,
+  descripcion: String,
+  charge: {}
+});
+
 const mensajePrivado = Schema({
   leido: {type: Boolean, default: false},
   destinatario: mongoose.Schema.Types.ObjectId,
@@ -124,7 +131,7 @@ const perfil = Schema({
   numWallsCreated: {type: Number , default: 0},
   numRelatosCreated: {type: Number , default: 0},
   numChatStoriesCreated: {type: Number , default: 0},
-  preferencias: [preferenciaSchema]
+  preferencias: [preferenciaSchema],
   // num likes recibidos en sus WCR
   // num veces compartidos recibidos en sus WCR
   // num comentarios realizados en relatos
@@ -151,7 +158,8 @@ const usuario = Schema({
   //Normal o partner
   tipo: {type: Number, default: Constantes.Usuario.TIPO_NORMAL},
   necesitaRevalidarPassword: {type: Boolean, default: false},
-  providers: [providerSchema]
+  providers: [providerSchema],
+  pagos: [pagoSchema]
 });
 
 usuario.index({login: 'text'});
@@ -165,6 +173,7 @@ usuario.plugin(datosComunes);
 notificacionFeed.plugin(datosComunes);
 mensajePrivado.plugin(datosComunes);
 notificacionGlobal.plugin(datosComunes);
+pagoSchema.plugin(datosComunes);
 // methods ======================
 // generating a hash
 usuario.methods.generateHash = function (password) {
@@ -282,4 +291,5 @@ const NotificacionNuevaOpinionChatStory = mongoose.model('notificacionNuevaOpini
 const NotificacionNuevoSeguidor = mongoose.model('notificacionNuevoSeguidor', notificacionNuevoSeguidor);
 const Perfil = mongoose.model('perfil', perfil);
 const ProviderSchema = mongoose.model('provider', providerSchema);
-const PreferenciaSchema = mongoose.model('preferencia', preferenciaSchema)
+const PreferenciaSchema = mongoose.model('preferencia', preferenciaSchema);
+const PagoSchema = mongoose.model('pago', pagoSchema);

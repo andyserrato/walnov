@@ -174,7 +174,8 @@ class Mensajes {
         errorSavingUser: "Error actualizando usuario",
         followMessage: "Ha conectado contigo",
         alreadyFollowing: "Ya sigue al usuario",
-        notFollowing: "Usuario no seguido"
+        notFollowing: "Usuario no seguido",
+        camposRequeridos: "Campos requeridos"
       },
       en : {
         error: "Bad Request",
@@ -186,7 +187,8 @@ class Mensajes {
         userNotFound: "User not found",
         errorSavingUser: "Error updating user",
         followMessage: "Has connected with you",
-        notFollowing: "User not followed"
+        notFollowing: "User not followed",
+        camposRequeridos: "Required Fields"
       }
     };
   }
