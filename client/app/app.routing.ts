@@ -30,7 +30,7 @@ import {UserAccountComponent} from './user-account/user-account.component';
 import {UserAccountModule} from './user-account/user-account.module';
 import {VerRelatoComponent} from './shared/ver-relato/ver-relato.component';
 import {RelatoComponent} from './relatos/relato/relato.component';
-
+import {MensajesComponent} from './mensajes/mensajes.component';
 const appRoutes: Routes = [
   {path: '', component: LandingComponent, canActivate: [AuthGuard] },
   {path: 'descarga-la-app', component: LandingMobileComponent},
@@ -44,6 +44,7 @@ const appRoutes: Routes = [
   {path: 'chatstories', component: ListadoChatstoriesComponent},
   {path: 'relatos', component: BuscadorRelatosComponent},
   {path: 'walls/listado-walls', component: ListadoWalls},
+  {path: 'mensajes', component: MensajesComponent},
   {
     path: 'walls', component: Walls,
     children: [

@@ -131,7 +131,7 @@ const perfil = Schema({
   numWallsCreated: {type: Number , default: 0},
   numRelatosCreated: {type: Number , default: 0},
   numChatStoriesCreated: {type: Number , default: 0},
-  preferencias: [preferenciaSchema],
+  preferencias: [preferenciaSchema]
   // num likes recibidos en sus WCR
   // num veces compartidos recibidos en sus WCR
   // num comentarios realizados en relatos
@@ -159,7 +159,9 @@ const usuario = Schema({
   tipo: {type: Number, default: Constantes.Usuario.TIPO_NORMAL},
   necesitaRevalidarPassword: {type: Boolean, default: false},
   providers: [providerSchema],
-  pagos: [pagoSchema]
+  pagos: [pagoSchema],
+  token: {type: String, required: true},
+  temporayToken: {type: String, required: true}
 });
 
 usuario.index({login: 'text'});

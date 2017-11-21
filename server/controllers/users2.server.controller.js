@@ -9,7 +9,9 @@ const Constantes = require("../constantes/constantes");
 const Biblioteca = mongoose.model('Biblioteca');
 const GestorNotificaciones = require("../services/notificaciones.service").GestorNotificaciones;
 const Pago = mongoose.model('pago');
-
+const jwt = require('jsonwebtoken');
+const config = require('../config.json');
+const nodemailer = require('nodemailer');
 var redirection = '';
 // Rutas
 // Set up the 'signup' routes
@@ -133,6 +135,14 @@ function signin(req, res, next) {
   })(req, res, next);
 };
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'aserratocapote@gmail.com',
+    pass: '123456'
+  }
+});
+
 // Create a new controller method that creates new 'regular' users
 function signup(req, res) {
   if (!req.body) {
@@ -154,25 +164,21 @@ function signup(req, res) {
   });
   user.password = user.generateHash(req.body.password);
   user.provider = 'local';
-
+  user.token = jwt.sign({ login: user.login, email: user.perfil.login } , config.secret, {expiresIn: '24h'});
+  user.temporayToken = jwt.sign({ login: user.login, email: user.perfil.login } , config.secret, {expiresIn: '24h'});
+  user.activo = false;
   User.findLoginDuplicate(user, function (user) {
     // Ocurrió un error o el usuario ya se encuentra registrado
     if (!user) {
-      res.status(400).send(req.body.lang === 'en' ? {
-          error: Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra,
-          tipo: 0
-        } :
-        {
-          error: Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra,
-          tipo: 0
-        });
+      res.status(400).send(req.body.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.usuarioYaSeEncuentra,
+                                                      tipo: 0}:
+                                                    {error: Constantes.Mensajes.MENSAJES.es.usuarioYaSeEncuentra,
+                                                    tipo: 0});
     } else {
       User.findEmailDuplicate(user, function (user) {
         if (!user) {
-          res.status(400).send(req.body.lang === 'en' ? {
-            error: Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra,
-            tipo: 1
-          } : {error: Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra, tipo: 1});
+          res.status(400).send(req.body.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.emailYaSeEncuentra,
+          tipo: 1} : {error: Constantes.Mensajes.MENSAJES.es.emailYaSeEncuentra, tipo: 1 });
         } else {
           // Try saving the User
           user.save((err) => {
@@ -193,6 +199,27 @@ function signup(req, res) {
                   biblioteca.usuario = user.id;
                   biblioteca.save((err) => {
                     if (err) res.status(400).send({error: err});
+
+                    var mailOptions = {
+                      from: 'andy, aserratocapote@gmail.com',
+                      to: 'myfriend@yahoo.com',
+                      subject: 'Localhost Activation Link',
+                      text: 'Hello' + user.perfil.display_name + ' Thank you for registering ' +
+                      'at localhost.com. Please click on the link bellow to complete your activation:' +
+                        'http://localhost:3000/activate/' + user.temporayToken,
+                      html: 'Hello<strong>' + user.perfil.display_name + '</strong>,<br><br>Thank you for registering ' +
+                      'at localhost.com. Please click on the link bellow to complete your activation:<br><br>' +
+                      '<a href="http://localhost:3000/activate/' + user.temporayToken +'">Click Here</a>'
+                    };
+
+                    transporter.sendMail(mailOptions, function(error, info){
+                      if (error) {
+                        console.log(error);
+                      } else {
+                        console.log('Email sent: ' + info.response);
+                      }
+                    });
+
                     res.status(200).send(user);
                   });
                 }
@@ -309,23 +336,21 @@ function getUserById(req, res) {
 
 function getUserFollowers(req, res) {
   if (!req.params.id)
-    res.status(400).send(req.body.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.error} : {error: Constantes.Mensajes.MENSAJES.es.error});
+  res.status(400).send(req.body.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.error } : { error: Constantes.Mensajes.MENSAJES.es.error });
 
-  const options = {
-    limit: (isNaN(req.query.top)) ? 12 : +req.query.top,
-    skip: (isNaN(req.query.skip)) ? 0 : +req.query.skip
-  };
+  const options = { limit: (isNaN(req.query.top)) ? 12 : +req.query.top,
+                    skip: (isNaN(req.query.skip)) ? 0 : +req.query.skip };
 
   User.findById(req.params.id)
     .select('seguidores')
-    .populate({path: 'seguidores', select: 'perfil id', options})
+    .populate({ path: 'seguidores', select: 'perfil id', options} )
     // .where('active').eq(true)
     .exec(function (err, user) {
-      if (err)
-        res.status(400).send(req.body.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.error} : {error: Constantes.Mensajes.MENSAJES.es.error});
+    if (err)
+      res.status(400).send(req.body.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.error } : { error: Constantes.Mensajes.MENSAJES.es.error });
 
-      res.status(200).send(user);
-    });
+    res.status(200).send(user);
+  });
 }
 
 function updateUserProfileById(req, res) {
@@ -414,26 +439,26 @@ function followUser(req, res) {
   let peticion = req.body;
 
   if (!peticion || !peticion.userId || !peticion.userIdToFollow) {
-    res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.follow} : {error: Constantes.Mensajes.MENSAJES.es.follow});
+    res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.follow }: { error: Constantes.Mensajes.MENSAJES.es.follow });
   } else {
     User.findById(peticion.userId, function (err, userFollowing) {
       if (err) {
-        res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.userNotFound} : {error: Constantes.Mensajes.MENSAJES.es.userNotFound});
+        res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.userNotFound }: { error: Constantes.Mensajes.MENSAJES.es.userNotFound });
       } else {
         User.findById(peticion.userIdToFollow, function (err, userFollowed) {
           if (err) {
-            res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.userNotFound} : {error: Constantes.Mensajes.MENSAJES.es.userNotFound});
+            res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.userNotFound }: { error: Constantes.Mensajes.MENSAJES.es.userNotFound });
           } else {
             if (userFollowing.siguiendo.indexOf(userFollowed.id) === -1) {
               userFollowing.siguiendo.push(userFollowed.id);
               userFollowing.save(function (err) {
                 if (err) {
-                  res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.errorSavingUser} : {error: Constantes.Mensajes.MENSAJES.es.errorSavingUser});
+                  res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.errorSavingUser } : { error: Constantes.Mensajes.MENSAJES.es.errorSavingUser });
                 } else {
                   userFollowed.seguidores.push(userFollowing.id);
                   userFollowed.save(function (err) {
                     if (err) {
-                      res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.errorSavingUser} : {error: Constantes.Mensajes.MENSAJES.es.errorSavingUser});
+                      res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.errorSavingUser }: { error: Constantes.Mensajes.MENSAJES.es.errorSavingUser });
                     } else {
                       // ha comenzado a seguirte el quetal jajajja
                       let notificacionNuevoSeguidor = GestorNotificaciones.crearNotificacionNuevoSeguidor(
@@ -443,14 +468,14 @@ function followUser(req, res) {
                       );
                       GestorNotificaciones.addNotificacionFeed(notificacionNuevoSeguidor, [userFollowed.id]);
                       res.status(200).send(peticion.lang === 'en' ?
-                        {mensaje: userFollowing.perfil.display_name + ' has followed user: ' + userFollowed.perfil.display_name} :
-                        {mensaje: userFollowing.perfil.display_name + ' has comenzado a seguir a: ' + userFollowed.perfil.display_name});
+                        { mensaje: userFollowing.perfil.display_name + ' has followed user: ' +  userFollowed.perfil.display_name }:
+                        { mensaje: userFollowing.perfil.display_name + ' has comenzado a seguir a: ' +  userFollowed.perfil.display_name });
                     }
                   });
                 }
               });
             } else {
-              res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.alreadyFollowing} : {error: Constantes.Mensajes.MENSAJES.es.alreadyFollowing});
+              res.status(400).send( peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.alreadyFollowing }: { error: Constantes.Mensajes.MENSAJES.es.alreadyFollowing });
             }
           }
         });
@@ -463,37 +488,37 @@ function unFollowUser(req, res) {
   let peticion = req.body;
 
   if (!peticion || !peticion.userId || !peticion.userIdToUnFollow) {
-    res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.unFollow} : {error: Constantes.Mensajes.MENSAJES.es.unFollow});
+    res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.unFollow }: { error: Constantes.Mensajes.MENSAJES.es.unFollow });
   } else {
     User.findById(peticion.userId, function (err, userFollowing) {
       if (err) {
-        res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.userNotFound} : {error: Constantes.Mensajes.MENSAJES.es.userNotFound});
+        res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.userNotFound }: { error: Constantes.Mensajes.MENSAJES.es.userNotFound });
       } else {
         User.findById(peticion.userIdToUnFollow, function (err, userFollowed) {
           if (err) {
-            res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.userNotFound} : {error: Constantes.Mensajes.MENSAJES.es.userNotFound});
+            res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.userNotFound }: { error: Constantes.Mensajes.MENSAJES.es.userNotFound });
           } else {
             if (userFollowing.siguiendo.indexOf(userFollowed.id) !== -1) {
               userFollowing.siguiendo.splice(userFollowing.siguiendo.indexOf(userFollowed.id), 1);
               userFollowing.save(function (err) {
                 if (err) {
-                  res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.errorSavingUser} : {error: Constantes.Mensajes.MENSAJES.es.errorSavingUser});
+                  res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.errorSavingUser }: { error: Constantes.Mensajes.MENSAJES.es.errorSavingUser });
                 } else {
                   userFollowed.seguidores.splice(userFollowed.seguidores.indexOf(userFollowing.id), 1);
                   userFollowed.save(function (err) {
                     if (err) {
-                      res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.errorSavingUser} : {error: Constantes.Mensajes.MENSAJES.es.errorSavingUser});
+                      res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.errorSavingUser }: { error: Constantes.Mensajes.MENSAJES.es.errorSavingUser });
                     } else {
                       // ha comenzado a seguirte el quetal jajajja
                       res.status(200).send(peticion.lang === 'en' ?
-                        {mensaje: userFollowing.perfil.display_name + ' has unfollowed user: ' + userFollowed.perfil.display_name} :
-                        {mensaje: userFollowing.perfil.display_name + ' has dejado de seguir a: ' + userFollowed.perfil.display_name});
+                        { mensaje: userFollowing.perfil.display_name + ' has unfollowed user: ' +  userFollowed.perfil.display_name } :
+                        { mensaje: userFollowing.perfil.display_name + ' has dejado de seguir a: ' +  userFollowed.perfil.display_name });
                     }
                   });
                 }
               });
             } else {
-              res.status(400).send(peticion.lang === 'en' ? {error: Constantes.Mensajes.MENSAJES.en.notFollowing} : {error: Constantes.Mensajes.MENSAJES.es.notFollowing});
+              res.status(400).send(peticion.lang === 'en' ? { error: Constantes.Mensajes.MENSAJES.en.notFollowing }: { error: Constantes.Mensajes.MENSAJES.es.notFollowing });
             }
           }
         });
