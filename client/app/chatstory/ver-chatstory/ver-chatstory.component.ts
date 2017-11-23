@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked, HostListener} from '@angular/core';
 import {RepositorioService} from '../../services/repositorio.service';
 import {AuthenticationService} from '../../services/authentication.service';
 import {BibliotecaService} from '../../services/biblioteca.service';
@@ -12,11 +12,7 @@ import {ShareButtonsService} from 'ngx-sharebuttons';
 @Component({
   selector: 'app-ver-chatstory',
   templateUrl: './ver-chatstory.component.html',
-  styleUrls: ['./ver-chatstory.component.scss'],
-  host: {
-    '(document:keydown)': 'nextMessageSpace($event)',
-    '(document:keyup)': 'released($event)'
-  }
+  styleUrls: ['./ver-chatstory.component.scss']
 })
 export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   @ViewChild('clickBox') clickBox: ElementRef;
@@ -47,37 +43,38 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
 
-    this.route.params.subscribe( params => {
-        this.chatstoryService.getChatStory(params['id'])
-          .subscribe(chatStory => {
-        this.chatStory = chatStory;
-        if (this.repositorio.categoriasHM.get(this.chatStory.categoria)) {
-          this.chatStory.categoria = this.repositorio.categoriasHM.get(this.chatStory.categoria);
-        } else {
-          this.chatStory.categoria = this.repositorio.categoriasAL[1];
-        }
-        ;
-        switch (this.chatStory.autor.tipo) {
-          case 0:
-            this.tipo = 'normal';
-            break;
-          case 1:
-            this.tipo = 'premium';
-            break;
-          default:
-            this.tipo = 'normal';
-            break;
-        }
-        this.messagesArray = [];
-        this.counter = 0;
-        this.lastclick = Date.now();
-        this.limite = 50;
-        this.stoped = false;
-        this.nextMessage();
-        this.scrollToBottom();
-        this.checkLibrary();
-        this.showAnyadirToBiblioteca();
-      })});
+    this.route.params.subscribe(params => {
+      this.chatstoryService.getChatStory(params['id'])
+        .subscribe(chatStory => {
+          this.chatStory = chatStory;
+          if (this.repositorio.categoriasHM.get(this.chatStory.categoria)) {
+            this.chatStory.categoria = this.repositorio.categoriasHM.get(this.chatStory.categoria);
+          } else {
+            this.chatStory.categoria = this.repositorio.categoriasAL[1];
+          }
+          ;
+          switch (this.chatStory.autor.tipo) {
+            case 0:
+              this.tipo = 'normal';
+              break;
+            case 1:
+              this.tipo = 'premium';
+              break;
+            default:
+              this.tipo = 'normal';
+              break;
+          }
+          this.messagesArray = [];
+          this.counter = 0;
+          this.lastclick = Date.now();
+          this.limite = 50;
+          this.stoped = false;
+          this.nextMessage();
+          this.scrollToBottom();
+          this.checkLibrary();
+          this.showAnyadirToBiblioteca();
+        })
+    });
   }
 
   ngAfterViewChecked() {
@@ -101,14 +98,12 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
 
   checkLibrary() {
     if (this.bibliotecaService.getCurrentBiblioteca() && this.chatStory) {
-      this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.
-      find(chat => chat === this.chatStory.id) ? true : false;
+      this.inLibrary = this.bibliotecaService.getCurrentBiblioteca().chatStories.find(chat => chat === this.chatStory.id) ? true : false;
     } else if (this.auth.isLoggedIn() && this.chatStory) {
       this.bibliotecaService.getBibliotecaByCurrentUserId().subscribe(
         (biblioteca) => {
           this.bibliotecaService.updateBiblioteca(biblioteca);
-          this.inLibrary = biblioteca.chatStories.
-          find(chat => chat === this.chatStory.id) ? true : false;
+          this.inLibrary = biblioteca.chatStories.find(chat => chat === this.chatStory.id) ? true : false;
         });
     } else {
       this.inLibrary = false;
@@ -182,6 +177,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
 
   }
 
+  @HostListener('document:keyup', ['$event'])
   released(event) {
     if (!this.autoplay) {
       this.clickBox.nativeElement.style.backgroundColor = 'rgba(0,0,0,0.50)';
@@ -196,6 +192,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
     this.nextMessage();
   }
 
+  @HostListener('document:keydown', ['$event'])
   nextMessageSpace(event) {
     if (this.autoplay) {
       this.clickBox.nativeElement.style.backgroundColor = 'rgba(0,0,0,0.15)';
