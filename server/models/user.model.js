@@ -152,8 +152,10 @@ const usuario = Schema({
   tipo: {type: Number, default: Constantes.Usuario.TIPO_NORMAL},
   necesitaRevalidarPassword: {type: Boolean, default: false},
   providers: [providerSchema],
-  token: {type: String, required: true},
-  temporayToken: {type: String, required: true}
+  // todo cambair a true cuando se pase a pro
+  token: {type: String, required: false},
+  // todo cambair a true cuando se pase a pro
+  temporayToken: {type: String, required: false}
 });
 
 usuario.index({login: 'text'});
