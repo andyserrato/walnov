@@ -4,13 +4,10 @@ import {AuthenticationService} from '../../services/authentication.service';
 import {BibliotecaService} from '../../services/biblioteca.service';
 import {ChatstoryMessage} from '../../models/chatstory-message';
 import {Observable} from 'rxjs/Rx';
-import 'rxjs/add/operator/switchMap';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {ChatstoryService} from '../../services/chatstory.service';
 import {TranslateService} from '../../translate';
-import {UserService} from '../../services/user.service';
 import {ShareButtonsService} from 'ngx-sharebuttons';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ver-chatstory',
@@ -38,14 +35,11 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   tipo: string;
 
   constructor(private repositorio: RepositorioService,
-              private router: Router,
               private auth: AuthenticationService,
               private bibliotecaService: BibliotecaService,
               private route: ActivatedRoute,
               private chatstoryService: ChatstoryService,
               private translate: TranslateService,
-              private userService: UserService,
-              private location: Location,
               public share: ShareButtonsService) {
 
 
@@ -53,10 +47,9 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
 
-    this.route.paramMap
-      .switchMap((params: ParamMap) =>
-        this.chatstoryService.getChatStory(params.get('id')))
-      .subscribe(chatStory => {
+    this.route.params.subscribe( params => {
+        this.chatstoryService.getChatStory(params['id'])
+          .subscribe(chatStory => {
         this.chatStory = chatStory;
         if (this.repositorio.categoriasHM.get(this.chatStory.categoria)) {
           this.chatStory.categoria = this.repositorio.categoriasHM.get(this.chatStory.categoria);
@@ -84,7 +77,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
         this.scrollToBottom();
         this.checkLibrary();
         this.showAnyadirToBiblioteca();
-      });
+      })});
   }
 
   ngAfterViewChecked() {
@@ -154,9 +147,9 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
 
   addLibraryText() {
     if (this.inLibrary) {
-      return this.translate.translate('chatstorie_added_biblioteca');
+      return this.translate.instant('chatstorie_added_biblioteca');
     } else {
-      return this.translate.translate('chatstorie_add_biblioteca');
+      return this.translate.instant('chatstorie_add_biblioteca');
     }
   }
 

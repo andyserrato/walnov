@@ -113,9 +113,9 @@ export class CardChatstoryComponent implements OnInit {
 
   addLibraryText() {
     if (this.inLibrary) {
-      return this.translate.translate('chatstorie_added_biblioteca');
+      return this.translate.instant('chatstorie_added_biblioteca');
     } else {
-      return this.translate.translate('chatstorie_add_biblioteca');
+      return this.translate.instant('chatstorie_add_biblioteca');
     }
   }
 
