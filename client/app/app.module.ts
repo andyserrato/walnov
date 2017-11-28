@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import {routing} from './app.routing';
 import {AppConfig} from './app.config';
@@ -158,6 +159,7 @@ import {MensajesComponent} from './mensajes/mensajes.component';
     ReactiveFormsModule,
     HttpModule,
     JsonpModule,
+    HttpClientModule,
     routing,
     BrowserAnimationsModule,
     UserAccountModule,
