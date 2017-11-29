@@ -85,6 +85,8 @@ import {RegisterPopoverService} from './services/register-popover.service';
 import {LandingMobileComponent} from './landing/landing-mobile/landing-mobile.component';
 import {ShareButtonModule} from 'ngx-sharebuttons';
 import {MensajesComponent} from './mensajes/mensajes.component';
+import { PersonasComponent } from './mensajes/personas/personas.component';
+import { ChatComponent } from './mensajes/chat/chat.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -147,6 +149,8 @@ import {MensajesComponent} from './mensajes/mensajes.component';
     ModalDecorationComponent,
     LandingMobileComponent,
     MensajesComponent,
+    PersonasComponent,
+    ChatComponent,
     // TranslatePipe
   ],
   imports: [
