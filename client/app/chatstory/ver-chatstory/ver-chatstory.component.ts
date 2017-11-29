@@ -29,6 +29,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
   timer: any;
   user: any;
   tipo: string;
+  chatStoryFullUrl: string;
 
   constructor(private repositorio: RepositorioService,
               private auth: AuthenticationService,
@@ -47,6 +48,7 @@ export class VerChatstoryComponent implements OnInit, AfterViewChecked {
       this.chatstoryService.getChatStory(params['id'])
         .subscribe(chatStory => {
           this.chatStory = chatStory;
+          this.chatStoryFullUrl = location.href;
           if (this.repositorio.categoriasHM.get(this.chatStory.categoria)) {
             this.chatStory.categoria = this.repositorio.categoriasHM.get(this.chatStory.categoria);
           } else {
