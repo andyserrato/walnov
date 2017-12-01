@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import {routing} from './app.routing';
 import {AppConfig} from './app.config';
@@ -85,8 +86,9 @@ import {RegisterPopoverService} from './services/register-popover.service';
 import {LandingMobileComponent} from './landing/landing-mobile/landing-mobile.component';
 import {ShareButtonModule} from 'ngx-sharebuttons';
 import {MensajesComponent} from './mensajes/mensajes.component';
+import { PersonasComponent } from './mensajes/personas/personas.component';
+import { ChatComponent } from './mensajes/chat/chat.component';
 import { PaymentModule } from './payments/payment.module';
-import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -149,7 +151,8 @@ import {HttpClientModule} from '@angular/common/http';
     ModalDecorationComponent,
     LandingMobileComponent,
     MensajesComponent,
-    // TranslatePipe
+    PersonasComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

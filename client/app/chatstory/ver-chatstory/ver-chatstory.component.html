@@ -33,10 +33,10 @@
                 </div>
                 <div class="d-flex flex-row justify-content-around">
                   <span class="compartir">{{'modal_compartir_redes' | translate}}</span>
-                  <button md-icon-button shareButton="twitter" (sbOpened)="onCompartir('twitter')" [sbUrl]="location.href" [sbDescription]="chatStory?.descripcion.substr(0, 50) + '...'" [sbTags]="'walnov'" [style.color]="share.meta.twitter.color">
+                  <button md-icon-button shareButton="twitter" (sbOpened)="onCompartir('twitter')" [sbUrl]="chatStoryFullUrl" [sbDescription]="chatStory?.descripcion.substr(0, 50) + '...'" [sbTags]="'walnov'" [style.color]="share.meta.twitter.color">
                     <i [class]="share.meta.twitter.icon"></i>
                   </button>
-                  <button md-icon-button shareButton="facebook" (sbOpened)="onCompartir('facebook')" [sbUrl]="location.href" [sbDescription]="chatStory?.descripcion.substr(0, 50) + '...'" [sbImage]="'http://lorempixel.com/400/200/'" [style.color]="share.meta.facebook.color">
+                  <button md-icon-button shareButton="facebook" (sbOpened)="onCompartir('facebook')" [sbUrl]="chatStoryFullUrl" [sbDescription]="chatStory?.descripcion.substr(0, 50) + '...'" [sbImage]="'http://lorempixel.com/400/200/'" [style.color]="share.meta.facebook.color">
                     <i [class]="share.meta.facebook.icon"></i>
                   </button>
                 </div>

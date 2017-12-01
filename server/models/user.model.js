@@ -160,8 +160,10 @@ const usuario = Schema({
   necesitaRevalidarPassword: {type: Boolean, default: false},
   providers: [providerSchema],
   pagos: [pagoSchema],
-  token: {type: String, required: true},
-  temporaryToken: {type: String, required: true}
+  // todo cambair a true cuando se pase a pro
+  token: {type: String, required: false},
+  // todo cambair a true cuando se pase a pro
+  temporayToken: {type: String, required: false}
 });
 
 usuario.index({login: 'text'});

@@ -15,11 +15,11 @@
             </button>
           </div>
           <div class="Rectangle-7-Copy-4 Categoria" [style.border] = 'getBorder(relato)' [style.color] = 'getColor(relato)'>
-            {{relato.categoria.nombre | translate}}
+            {{relato.categoria | translate}}
           </div>
           <ul class="list-unstyled Estadisticas-Usuario">
-            <li>{{relato.likes}} Likes</li>
-            <li>{{relato.coments}} {{'all_opiniones' | translate}}</li>
+            <li>{{relato.estadistica.likes}} Likes</li>
+            <li>{{relato.opiniones.length}} {{'all_opiniones' | translate}}</li>
           </ul>
           <button (click) = "loadRelato(relato)" type="button" class="btn-wall pull-right" name="button">{{'chatstories_relevantes_leer' | translate}}</button>
         </div>
