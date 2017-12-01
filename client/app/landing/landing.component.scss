@@ -1821,3 +1821,25 @@ input.error-input{
     height: 765px !important;
   }
 }
+
+
+.title{
+  /* autoprefixer: off */
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  background-color: #faf1ff;
+  color: $main-3;
+  display: flex;
+  align-items: center;
+  padding: .5em 1.5em;
+
+  & .fa-times{
+    color:$grey-5;
+    &:hover{
+      cursor: pointer;
+      color:$grey-10;
+    }
+  }
+}

@@ -161,7 +161,7 @@ const usuario = Schema({
   providers: [providerSchema],
   pagos: [pagoSchema],
   token: {type: String, required: true},
-  temporayToken: {type: String, required: true}
+  temporaryToken: {type: String, required: true}
 });
 
 usuario.index({login: 'text'});

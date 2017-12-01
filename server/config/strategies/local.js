@@ -13,12 +13,23 @@ module.exports = function() {
           return done(err);
         }
 
+        if (user && user.activo === false) {
+          return done(null, false, { success: false,
+                                      message: 'Oops! tu cuenta no se encuentra activa, revisa tu email',
+                                      error: 'Oops! tu cuenta no se encuentra activa, revisa tu email'});
+        }
+
         if (!user) {
-          return done(null, false, { message: 'Unknown user' });
+          return done(null, false, {
+            success: false,
+            message: 'Oops! no recuerdo ese nombre de usuario verifica que está bien escrito',
+            error: 'Oops! no recuerdo ese nombre de usuario verifica que está bien escrito'});
         }
         if (!user.authenticate(password)) {
           return done(null, false, {
-            message: 'Invalid password'
+            success: false,
+            message: 'Woow! contraseña inválida',
+            error: 'Woow! contraseña inválida'
           });
         }
         return done(null, user);

@@ -17,5 +17,10 @@ module.exports = {
     clientID: '155269873029-oho69f3pegkfqf6bqvgq6qjg1ig94qkp.apps.googleusercontent.com',
     clientSecret: 'hCe4TmzojLxbHMCFLAB7atMY',
     callbackURL: 'http://localhost:3000/apiv1/users/oauth/google/callback'
+  },
+  email: {
+    service: 'gmail',
+    user: 'walnovweb@gmail.com',
+    pass: 'tr1g873.!anBT'
   }
 };

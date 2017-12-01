@@ -24,8 +24,8 @@ export class RepositorioService {
   hists: Array<Historia> = new Array<Historia>();
   actRec: Array<any> = new Array();
   facebookAppId = '118102758792110';
-  emailDuplicado = 0;
-  nombreUsuarioDuplicado = 1;
+  emailDuplicado = 1;
+  nombreUsuarioDuplicado = 0;
   idUsuario: any; // Se actualiza cuando visitamos el perfil de un usuario.
 
   results: Object// Aquí se guadaran los resultados de busqueda

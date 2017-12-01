@@ -1,0 +1,51 @@
+<div class="outside-container" >
+  <div #content class="content-container d-flex flex-column zoomIn animated">
+
+    <div class="outside-container2">
+      <div class="check-circle d-flex align-items-center justify-content-center">
+        <span class="fa" [ngClass]="{'fa-check':isActivated,'fa-times':!isActivated}"></span>
+      </div>
+
+      <div class="triangle-lg triangle-1"></div>
+      <div class="triangle-lg triangle-2"></div>
+      <div class="triangle-lg triangle-3"></div>
+      <div class="triangle-lg triangle-4"></div>
+      <div class="triangle-lg triangle-5"></div>
+      <div class="triangle-lg triangle-6"></div>
+
+      <div class="triangle-md triangle-1"></div>
+      <div class="triangle-md triangle-2"></div>
+      <div class="triangle-md triangle-3"></div>
+
+      <div class="triangle-sm triangle-1"></div>
+      <div class="triangle-sm triangle-2"></div>
+      <div class="triangle-sm triangle-3"></div>
+      <div class="triangle-sm triangle-4"></div>
+      <div class="triangle-sm triangle-5"></div>
+
+      <div class="circle circle-1"></div>
+      <div class="circle circle-2"></div>
+      <div class="circle circle-3"></div>
+      <div class="circle circle-4"></div>
+      <div class="circle circle-5"></div>
+      <div class="circle circle-6"></div>
+      <div class="circle circle-7"></div>
+      <div class="circle circle-8"></div>
+      <div class="circle circle-9"></div>
+      <div class="circle circle-10"></div>
+      <div class="circle circle-11"></div>
+      <div class="circle circle-12"></div>
+      <div class="circle circle-13"></div>
+      <div class="circle circle-14"></div>
+    </div>
+
+    <div class="title-box d-flex align-items-center justify-content-center">
+      {{message?.text}}
+    </div>
+    <div *ngIf="message?.buttonText" class="button-box d-flex justify-content-end">
+      <div class="button d-flex align-items-center justify-content-center" (click)="navigate()">
+        {{ message?.buttonText }}
+      </div>
+    </div>
+  </div>
+</div>

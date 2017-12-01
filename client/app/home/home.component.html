@@ -3,12 +3,14 @@
     <div class="col-lg-2 col-md-3 col-sm-3 cols-no-padding custom-padding-1">
       <app-card-home-navigate></app-card-home-navigate>
       <app-card-info-premium [vista] = "'guardado'"></app-card-info-premium>
+      <!--<app-make-payment></app-make-payment>-->
     </div>
     <div class="col cols-no-padding">
       <router-outlet></router-outlet>
       <!-- <app-home-buscador></app-home-buscador> -->
     </div>
-    <div class="col-lg-3 hidden-md-down custom-padding-2" style="padding-left:0px;" *ngIf="this.router.url==='/home/actividad-reciente'">
+    <!--*ngIf="this.router.url==='/home/actividad-reciente'"-->
+    <div class="col-lg-3 hidden-md-down custom-padding-2" style="padding-left:0px;">
       <app-card-usuario-tendencia></app-card-usuario-tendencia>
       <app-card-wall-relevante></app-card-wall-relevante>
       <app-card-publicidad></app-card-publicidad>

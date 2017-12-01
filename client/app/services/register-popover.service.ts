@@ -5,15 +5,16 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class RegisterPopoverService {
   private visible: Subject<boolean> = new Subject<any>();
-  constructor() {
+  redirectUrl: string;
 
+  constructor() {
   }
 
   isVisible(): Observable<any> {
     return this.visible.asObservable();
   }
 
-  setVisible(b: boolean){
+  setVisible(b: boolean) {
     this.visible.next(b);
   }
 

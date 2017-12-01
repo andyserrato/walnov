@@ -85,6 +85,8 @@ import {RegisterPopoverService} from './services/register-popover.service';
 import {LandingMobileComponent} from './landing/landing-mobile/landing-mobile.component';
 import {ShareButtonModule} from 'ngx-sharebuttons';
 import {MensajesComponent} from './mensajes/mensajes.component';
+import { PaymentModule } from './payments/payment.module';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -158,6 +160,7 @@ import {MensajesComponent} from './mensajes/mensajes.component';
     ReactiveFormsModule,
     HttpModule,
     JsonpModule,
+    HttpClientModule,
     routing,
     BrowserAnimationsModule,
     UserAccountModule,
@@ -165,7 +168,8 @@ import {MensajesComponent} from './mensajes/mensajes.component';
     HomeModule,
     UserProfileModule,
     ClipboardModule,
-    ShareButtonModule.forRoot()
+    ShareButtonModule.forRoot(),
+    PaymentModule
   ],
   providers: [
     AppConfig,
@@ -180,7 +184,8 @@ import {MensajesComponent} from './mensajes/mensajes.component';
     ModalService,
     CapitalizePipe,
     BibliotecaService,
-    RegisterPopoverService
+    RegisterPopoverService,
+    HttpModule,
   ],
   bootstrap: [AppComponent]
 })

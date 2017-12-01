@@ -35,11 +35,11 @@ export const LANG_ES_TRANS = {
   'home_buscador_mas': 'Ver más',
   'home_buscador_nada': 'No se han encontrado resultados',
   'home_buscador_personas': 'Personas',
+  'home_account_activation_button_text': 'Login',
+  'home_account_activation_button_text_error': 'Obtener nuevo código',
+  'home_account_activation_text': 'Bienvenido, cuenta activada con éxito, disfruta del Walnov',
 
-
-
-
-  //todo
+  // todo
   'all_relatos_cortos': 'Relatos cortos',
   'all_relatos': 'Relatos',
   'all_relato_corto' : 'Relato',
@@ -146,6 +146,9 @@ export const LANG_ES_TRANS = {
   'alert_existent_email': 'Ya le has dedicado el relato a esta persona',
   'alert_existent_invitation': 'Ya has invitado a este amigo',
   'alert_bienvenido': 'Bienvenido',
+  'alert_cuenta_registrada': 'Bienvenido, cuenta registrada, revisa tu email para activar tu cuenta',
+  'alert_email_ya_existe': 'Ya existe una cuenta con este email',
+  'alert_user_name_ya_existe': 'El nombre de usuario no se encuentra disponible',
 
   'alert_popover_error': 'Ha ocurrido un error',
 
@@ -314,10 +317,12 @@ export const LANG_ES_TRANS = {
   'popover_error_contraseña': 'Introduce una contraseña válida (mínimo 8 caracteres)',
   'popover_error_nombre': 'Introduce un nombre de usuario',
   'popover_error_olvidada': '¿Has olvidado tu contraseña?',
+  'popover_request_account_activation_link': 'Correo de activación perdido?',
   'popover_ya_registrado': 'Ya tengo cuenta, entrar',
   'popover_no_registrado': 'No tengo cuenta, registrarme',
   'popover_unirse_2': 'Unirme',
   'popover_entrar': 'Entrar',
+  'popover_activacion': 'Enviar',
 
   //profile-popover
   'profile_popover_cuenta': 'Cuenta',

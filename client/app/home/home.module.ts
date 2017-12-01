@@ -19,12 +19,15 @@ import { RecienteNotificacionComponent } from './home-reciente/reciente-notifica
 import { HomeRoutingModule } from './home.routing';
 import { SharedModule } from '../shared/shared.module';
 import { HomeBuscadorComponent } from './home-buscador/home-buscador.component';
+import {PaymentModule} from "../payments/payment.module";
+import { UserAccountActivationComponent } from './user-account-activation/user-account-activation.component';
 @NgModule({
   imports: [
     CommonModule,
     HomeRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    PaymentModule
   ],
   declarations: [
     HomeComponent,
@@ -38,7 +41,8 @@ import { HomeBuscadorComponent } from './home-buscador/home-buscador.component';
     GuardadoWallsComponent,
     NuevoUserComponent,
     RecienteNotificacionComponent,
-    HomeBuscadorComponent
+    HomeBuscadorComponent,
+    UserAccountActivationComponent
 
   ]
 })

@@ -23,11 +23,12 @@ export class LandingComponent implements OnInit, OnDestroy {
   @Output() loged: EventEmitter<any>;
   @Output() focusOut: EventEmitter<any>;
   validateForm: FormGroup;
-  view = 'login';
+  view = 'register';
   loading = false;
   callbackURL = '/social-login/success';
   private subscription: Subscription;
-
+  showAlert = false;
+  alertMessage = '';
   constructor(private fb: FormBuilder,
               private authenticationService: AuthenticationService,
               private alertService: AlertService,
@@ -53,6 +54,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
 
   register() {
+    this.showAlert = false;
     if (this.validateForm.valid) {
       this.loading = true;
       const user = {
@@ -61,27 +63,25 @@ export class LandingComponent implements OnInit, OnDestroy {
         email: this.validateForm.controls['mail'].value
       };
       this.authenticationService.signup(user).subscribe(result  => {
-        // todo no se debe loguear el usuario de inmediato
-          localStorage.setItem('currentUser', JSON.stringify(result));
-          this.loged.emit();
           this.loading = false;
           this.router.navigate(['/home']);
-          this.alertService.success(this.translate.instant('alert_bienvenido') + ' ' + this.authenticationService.getUser().login);
+          this.alertService.success(this.translate.instant('alert_cuenta_registrada'), true);
         },
         error =>  {
           if (error.tipo === this.repositorio.emailDuplicado) {
-            console.log('email duplicado');
+            this.alertMessage = this.translate.instant('alert_email_ya_existe');
+            this.showAlert = true;
           } else if (error.tipo === this.repositorio.nombreUsuarioDuplicado) {
-            console.log('nombre usuario duplicado');
+            this.alertMessage = this.translate.instant('alert_user_name_ya_existe');
+            this.showAlert = true;
           }
           this.loading = false;
-
         });
-      this.alertService.clearTimeOutAlert();
     }
   }
 
   login() {
+    this.showAlert = false;
     if (this.validateForm.controls['user'].valid && this.validateForm.controls['pass'].valid) {
       this.loading = true;
       this.authenticationService.login(this.validateForm.controls['user'].value, this.validateForm.controls['pass'].value).subscribe(
@@ -93,7 +93,8 @@ export class LandingComponent implements OnInit, OnDestroy {
         },
         error =>  {
           this.loading = false;
-          this.alertService.error(error);
+          this.alertMessage = error;
+          this.showAlert = true;
         });
       this.alertService.clearTimeOutAlert();
     }
@@ -125,5 +126,9 @@ export class LandingComponent implements OnInit, OnDestroy {
       .flatMap(() => {
         return Observable.of(this.authenticationService.isLoggedIn());
       });
+  }
+
+  close() {
+    this.showAlert = false;
   }
 }

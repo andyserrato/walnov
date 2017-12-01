@@ -4,7 +4,8 @@ import {AuthenticationService} from '../../services/authentication.service';
 import {AlertService} from '../../services/alert.service';
 import {RegisterPopoverService} from '../../services/register-popover.service';
 import { TranslateService } from '../../translate';
-import {RepositorioService} from "../../services/repositorio.service";
+import {RepositorioService} from '../../services/repositorio.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-prot-popover-register',
@@ -24,13 +25,15 @@ export class ProtPopoverRegisterComponent implements OnInit {
   view = 'register';
   loading = false;
   callbackURL = '/social-login/success';
-
+  showAlert = false;
+  alertMessage = '';
   constructor(private fb: FormBuilder,
               private authenticationService: AuthenticationService,
               private alertService: AlertService,
               private translate: TranslateService,
               private popoverService: RegisterPopoverService,
-              private repositorio: RepositorioService) {
+              private repositorio: RepositorioService,
+              private router: Router) {
     this.loged = new EventEmitter<any>();
     this.focusOut = new EventEmitter<any>();
     this.validateForm = fb.group({
@@ -53,9 +56,11 @@ export class ProtPopoverRegisterComponent implements OnInit {
 
   changeView(str: string) {
     this.view = str;
+    this.showAlert = false;
   }
 
   register() {
+    this.showAlert = false;
     if (this.validateForm.valid) {
       this.loading = true;
       const user = {
@@ -64,23 +69,20 @@ export class ProtPopoverRegisterComponent implements OnInit {
         email: this.validateForm.controls['mail'].value
       };
       this.authenticationService.signup(user).subscribe(result  => {
-        // todo no se debe loguear el usuario de inmediato
-          localStorage.setItem('currentUser', JSON.stringify(result));
           this.visible = false;
-          this.loged.emit();
           this.loading = false;
-          this.alertService.success(this.translate.instant('alert_bienvenido') + ' ' + this.authenticationService.getUser().login);
+          this.alertService.success(this.translate.instant('alert_cuenta_registrada'));
         },
         error =>  {
           if (error.tipo === this.repositorio.emailDuplicado) {
-            console.log('email duplicado');
+            this.alertMessage = this.translate.instant('alert_email_ya_existe');
+            this.showAlert = true;
           } else if (error.tipo === this.repositorio.nombreUsuarioDuplicado) {
-            console.log('nombre usuario duplicado');
+            this.alertMessage = this.translate.instant('alert_user_name_ya_existe');
+            this.showAlert = true;
           }
           this.loading = false;
-
         });
-      this.alertService.clearTimeOutAlert();
     }
   }
 
@@ -93,10 +95,12 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.loged.emit();
           this.loading = false;
           this.alertService.success(this.translate.instant('alert_bienvenido') + ' ' + this.authenticationService.getUser().login);
+          this.redirectToUrlAfterLogin();
         },
         error =>  {
           this.loading = false;
-          this.alertService.error(error);
+          this.showAlert = true;
+          this.alertMessage = error;
         });
       this.alertService.clearTimeOutAlert();
     }
@@ -106,5 +110,40 @@ export class ProtPopoverRegisterComponent implements OnInit {
     this.authenticationService.doSocialLogin(url + this.callbackURL);
     this.visible = false;
     this.loged.emit();
+  }
+
+  dismissAlert() {
+    this.showAlert = false;
+  }
+
+  redirectToUrlAfterLogin() {
+    if (this.popoverService.redirectUrl !== null) {
+      const redirectUrl = this.popoverService.redirectUrl;
+      this.popoverService.redirectUrl = null;
+      this.router.navigate([redirectUrl]);
+    }
+  }
+
+  reRequestAccountActivationLink() {
+    this.showAlert = false;
+    if (this.validateForm.controls['mail'].valid) {
+      this.loading = true;
+      this.authenticationService.reRequestAccountActivationLink(this.validateForm.controls['mail'].value).subscribe(
+        result => {
+          this.loading = false;
+          this.showAlert = true;
+          this.alertMessage = result.message;
+        },
+        error =>  {
+          this.loading = false;
+          this.showAlert = true;
+          this.alertMessage = error;
+        });
+      this.alertService.clearTimeOutAlert();
+    }
+  }
+
+  passwordReset() {
+
   }
 }

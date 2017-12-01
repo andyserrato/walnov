@@ -35,6 +35,9 @@ export const LANG_EN_TRANS = {
   'home_buscador_mas': 'Show more',
   'home_buscador_nada': 'We have not found any result',
   'home_buscador_personas': 'People',
+  'home_account_activation_button_text': 'Login',
+  'home_account_activation_button_text_error': 'Get a new code',
+  'home_account_activation_text': 'Welcome, your account has been activated, enjoy Walnov',
 
   // todo
   'all_relatos_cortos': 'Short stories',
@@ -145,6 +148,9 @@ export const LANG_EN_TRANS = {
 
   'alert_bienvenido': 'Welcome',
 
+  'alert_cuenta_registrada': 'Welcome, account registered check your email for activation link',
+  'alert_email_ya_existe': 'Email already registered try another one',
+  'alert_user_name_ya_existe': 'User name is associated with an existing account try another',
   'alert_sesion_terminada': 'Session finished',
 
   'alert_card_tags': 'Write a valid tag (Only letters/numbers)',
@@ -310,10 +316,12 @@ export const LANG_EN_TRANS = {
   'popover_error_contraseña': 'Write a valid password (8 characters min)',
   'popover_error_nombre': 'Write a valid username',
   'popover_error_olvidada': 'I have forgot my password',
+  'popover_request_account_activation_link': 'Activation link lost?',
   'popover_ya_registrado': 'I have an account, log in',
   'popover_no_registrado': 'I don’t have an account, sign in',
   'popover_unirse_2': 'Join',
   'popover_entrar': 'Log in',
+  'popover_activacion': 'Send',
 
   // profile-popover
   'profile_popover_cuenta': 'Account',
@@ -401,11 +409,11 @@ export const LANG_EN_TRANS = {
   'landing_mobile_mensaje': 'Leave your mark',
   'landing_mobile_descarga': 'Get the app on your phone',
 
-  //404
+  // 404
   'pagina_no_encontrada': 'Page not found',
   'pagina_no_encontrada_mensaje': 'Ups! It seems our writers have lost their papers and we can’t find what you’re looking for...',
   'pagina_no_encontrada_mensaje_2': 'You can keep browsing if you want:',
 
-  //Notificaciones
+  // Notificaciones
   'notificaciones_ver_todas': 'See all notifications',
 };

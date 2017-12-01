@@ -91,6 +91,26 @@ export class AuthenticationService {
       }).catch(this.handleError);
   }
 
+  activateAccount(temporaryToken: string): Observable<any> {
+    const token = JSON.stringify(
+      { token: temporaryToken}); // Stringify payload
+    const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
+    const options = new RequestOptions({headers: headers}); // Create a request option
+    return this.http.put(`${this.config.USERS_ENDPOINT}/activate/${temporaryToken}`, token, options) // ...using put request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error || 'Server error')); // ...errors if any
+  }
+
+  reRequestAccountActivationLink(email: string): Observable<any> {
+    const emailJson = JSON.stringify(
+      { email: email}); // Stringify payload
+    const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
+    const options = new RequestOptions({headers: headers}); // Create a request option
+    return this.http.post(`${this.config.USERS_ENDPOINT}/activate/resend`, emailJson, options) // ...using put request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => this.handleError(error)); // ...errors if any
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error.json().error || 'Server error');
   }

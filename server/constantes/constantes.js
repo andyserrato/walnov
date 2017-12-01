@@ -175,7 +175,14 @@ class Mensajes {
         followMessage: "Ha conectado contigo",
         alreadyFollowing: "Ya sigue al usuario",
         notFollowing: "Usuario no seguido",
-        camposRequeridos: "Campos requeridos"
+        camposRequeridos: "Campos requeridos",
+        temporaryActivationCodeNotFound: "Código de activación no encontrado",
+        errorOnAccountActivation:"Ha ocurrido un error activando la cuenta",
+        tokenExpired: "El token ha expirado",
+        accountAlreadyActivated: "Cuenta ya está Activada",
+        accountActivatedSuccess: "Éxito cuenta ha sido activada",
+        emailNotFound: 'Email no se encuentra',
+        accountActivationLinkSent: 'Revisa tu email se ha reenviado el código de activación'
       },
       en : {
         error: "Bad Request",
@@ -188,7 +195,14 @@ class Mensajes {
         errorSavingUser: "Error updating user",
         followMessage: "Has connected with you",
         notFollowing: "User not followed",
-        camposRequeridos: "Required Fields"
+        camposRequeridos: "Required Fields",
+        temporaryActivationCodeNotFound: "Activation code not found",
+        errorOnAccountActivation:"An error has ocurred during account activation",
+        tokenExpired: "Token has expired",
+        accountAlreadyActivated: "Account Activated",
+        accountActivatedSuccess: "Success, your account is now active",
+        emailNotFound: 'Email not found',
+        accountActivationLinkSent: 'Account activation link sent'
       }
     };
   }
