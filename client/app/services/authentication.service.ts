@@ -111,7 +111,36 @@ export class AuthenticationService {
       .catch((error: any) => this.handleError(error)); // ...errors if any
   }
 
+  requestUserNameRemind(email: string): Observable<any> {
+    const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
+    const options = new RequestOptions({headers: headers}); // Create a request option
+    return this.http.get(`${this.config.USERS_ENDPOINT}/auth/username/${email}`, options) // ...using put request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error.json() || 'Server error')); // ...errors if any
+  }
+
+  requestPassChangeEmail(email: string): Observable<any> {
+    const emailJson = JSON.stringify(
+      { email: email}); // Stringify payload
+    const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
+    const options = new RequestOptions({headers: headers}); // Create a request option
+    return this.http.post(`${this.config.USERS_ENDPOINT}/auth/password`, emailJson, options) // ...using put request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => this.handleError(error)); // ...errors if any
+  }
+
+  passwordChange(temporaryToken: string, password: string): Observable<any> {
+    const passwordJson = JSON.stringify(
+      { password: password}); // Stringify payload
+    const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
+    const options = new RequestOptions({headers: headers}); // Create a request option
+    return this.http.put(`${this.config.USERS_ENDPOINT}/auth/password/${temporaryToken}`, passwordJson, options) // ...using put request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => this.handleError(error)); // ...errors if any
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error.json().error || 'Server error');
   }
+
 }

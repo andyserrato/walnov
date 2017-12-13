@@ -22,8 +22,8 @@
         </div>
       </div>
     </div>
-    <!--INICIO VISTA REGISTRO-->
-    <div class="register-form d-flex flex-column" style="justify-content: center">
+    <!-- VISTA REGISTRO-->
+    <div class="register-form d-flex flex-column" [ngClass]="{'account-problems' : view==='problemas'}">
       <div class="d-flex flex-column" *ngIf="view==='register'">
         <div class="relative-container d-flex flex-column">
           <span class="simple-title">Email</span>
@@ -49,12 +49,12 @@
           <span class="error-span"
                 *ngIf="!validateForm.controls['user'].valid && validateForm.controls['user'].touched">{{'popover_error_nombre' | translate}}</span>
         </div>
-        <div class="link" (click)="changeView('activacion')">
-          {{'popover_request_account_activation_link' | translate}}
+        <div class="link" (click)="changeView('problemas')">
+          {{'popover_problemas' | translate}}
         </div>
       </div>
 
-      <!--INICIO VISTA LOGIN-->
+      <!-- VISTA LOGIN-->
       <div class="d-flex flex-column" *ngIf="view==='login'">
         <div class="relative-container d-flex flex-column">
           <span class="simple-title">{{'all_nombre_usuario' | translate}}</span>
@@ -72,12 +72,32 @@
           <span class="error-span"
                 *ngIf="!validateForm.controls['pass'].valid && validateForm.controls['pass'].touched">{{'popover_error_contraseña' | translate}}</span>
         </div>
-        <div class="link" (click)="changeView('passwordResetRequest')">
-          {{'popover_error_olvidada' | translate}}
+        <div class="link" (click)="changeView('problemas')">
+          {{'popover_problemas' | translate}}
         </div>
       </div>
 
-      <!--INICIO VISTA PEDIR NUEVO LINK PARA ACTIVAR CUENTA-->
+      <!-- VISTA DE PROBLEMAS QUE REDIRIGE A PASSWORD RESET, ACTIVATION LINK RE REQUEST Y USER NAME REMIND -->
+      <div class="d-flex flex-column button-grid" *ngIf="view==='problemas'" style="align-items: center">
+        <div class="relative-container d-flex flex-column">
+          <div class="button d-flex align-items-center" (click)="changeView('passwordResetRequest')" style="margin-bottom: 1.4em; margin-top: 1.3em">
+            <span>{{'popover_error_olvidada' | translate}}</span>
+          </div>
+
+        </div>
+        <div class="relative-container d-flex flex-column">
+          <div class="button d-flex align-items-center" (click)="changeView('userNameRemindRequest')" style="margin-bottom: 1.4em">
+            <span>{{'popover_error_user_name_olvidado' | translate}}</span>
+          </div>
+        </div>
+        <div class="relative-container d-flex flex-column">
+          <div class="button d-flex align-items-center" (click)="changeView('activacion')" style="margin-bottom: 1.4em">
+            <span>{{'popover_request_account_activation_link' | translate}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISTA PEDIR NUEVO LINK PARA ACTIVAR CUENTA-->
       <div class="d-flex flex-column" *ngIf="view==='activacion'">
         <div class="relative-container d-flex flex-column">
           <span class="simple-title">Email</span>
@@ -89,8 +109,20 @@
         </div>
       </div>
 
-      <!--INICIO VISTA CONTRASEÑA PERDIDA-->
+      <!-- VISTA CONTRASEÑA PERDIDA-->
       <div class="d-flex flex-column" *ngIf="view==='passwordResetRequest'">
+        <div class="relative-container d-flex flex-column">
+          <span class="simple-title">Email</span>
+          <input [formControl]="validateForm.controls['mail']" #mail type="text" name="" value=""
+                 class="form-control"
+                 [ngClass]="{'error-input': !validateForm.controls['mail'].valid && validateForm.controls['mail'].touched}">
+          <span class="error-span"
+                *ngIf="!validateForm.controls['mail'].valid && validateForm.controls['mail'].touched">{{'popover_error_mail' | translate}}</span>
+        </div>
+      </div>
+
+      <!-- VISTA NOMBRE USUARIO PERDIDO-->
+      <div class="d-flex flex-column" *ngIf="view==='userNameRemindRequest'">
         <div class="relative-container d-flex flex-column">
           <span class="simple-title">Email</span>
           <input [formControl]="validateForm.controls['mail']" #mail type="text" name="" value=""
@@ -110,10 +142,10 @@
     </div>
     <div class="button-grid d-flex justify-content-end align-items-center">
       <div class="d-flex align-items-center justify-content-end">
-        <div class="link" (click)="changeView('login')" [hidden]="view==='login' || view==='passwordResetRequest'">
+        <div class="link" (click)="changeView('login')" [hidden]="view==='login'">
           {{'popover_ya_registrado' | translate}}
         </div>
-        <div class="link" (click)="changeView('register')" [hidden]="view==='register' || view==='activacion'">
+        <div class="link" (click)="changeView('register')" [hidden]="view==='register'">
           {{'popover_no_registrado' | translate}}
         </div>
         <div class="button d-flex align-items-center" (click)="register()" *ngIf="view==='register'">
@@ -126,12 +158,20 @@
           <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
           <span class="sr-only">Loading...</span>
         </div>
-        <div class="button d-flex align-items-center" *ngIf="view==='activacion'" (click)="reRequestAccountActivationLink()">
+        <div class="button d-flex align-items-center" *ngIf="view==='activacion'"
+             (click)="reRequestAccountActivationLink()">
           <span *ngIf="!loading">{{'popover_activacion' | translate}}</span>
           <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
           <span class="sr-only">Loading...</span>
         </div>
-        <div class="button d-flex align-items-center" *ngIf="view==='passwordResetRequest'" (click)="requestPasswordReset()">
+        <div class="button d-flex align-items-center" *ngIf="view==='passwordResetRequest'"
+             (click)="requestPasswordReset()">
+          <span *ngIf="!loading">{{'popover_activacion' | translate}}</span>
+          <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="button d-flex align-items-center" *ngIf="view==='userNameRemindRequest'"
+             (click)="userNameRemindRequest()">
           <span *ngIf="!loading">{{'popover_activacion' | translate}}</span>
           <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
           <span class="sr-only">Loading...</span>

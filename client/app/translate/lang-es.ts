@@ -147,6 +147,7 @@ export const LANG_ES_TRANS = {
   'alert_existent_invitation': 'Ya has invitado a este amigo',
   'alert_bienvenido': 'Bienvenido',
   'alert_cuenta_registrada': 'Bienvenido, cuenta registrada, revisa tu email para activar tu cuenta',
+  'alert_campos_no_validos': 'Campos no válidos',
   'alert_email_ya_existe': 'Ya existe una cuenta con este email',
   'alert_user_name_ya_existe': 'El nombre de usuario no se encuentra disponible',
 
@@ -266,7 +267,7 @@ export const LANG_ES_TRANS = {
   'ruso': 'Ruso',
 
   //Intereses
-  'deportes':'Deportes',
+  'deportes': 'Deportes',
   'cultura': 'Cultura',
   'historia': 'Historia',
   'arte': 'Arte',
@@ -309,14 +310,21 @@ export const LANG_ES_TRANS = {
   'relatos_eliminar': 'Eliminar de mis listas',
   'relatos_relevantes': 'Relatos relevantes',
 
-  //popover
-  'popover_unirse':'Únete para poder publicar',
+  // cambio password
+  'cambio_password_title': 'Cambia tu contraseña',
+
+  // popover
+  'popover_unirse': 'Únete para poder publicar',
   'popover_registro': 'Regístrate con:',
   'popover_contraseña': 'Contraseña',
+  'popover_confirmar_contraseña': 'Confirmar contraseña',
   'popover_error_mail': 'Introduce un mail valido',
   'popover_error_contraseña': 'Introduce una contraseña válida (mínimo 8 caracteres)',
+  'popover_error_pass_missmatch': 'Contraseñas no son iguales',
   'popover_error_nombre': 'Introduce un nombre de usuario',
   'popover_error_olvidada': '¿Has olvidado tu contraseña?',
+  'popover_error_user_name_olvidado': '¿Has olvidado tu nombre de usuario?',
+  'popover_problemas': '¿Problemas con mi cuenta?',
   'popover_request_account_activation_link': 'Correo de activación perdido?',
   'popover_ya_registrado': 'Ya tengo cuenta, entrar',
   'popover_no_registrado': 'No tengo cuenta, registrarme',
@@ -324,12 +332,12 @@ export const LANG_ES_TRANS = {
   'popover_entrar': 'Entrar',
   'popover_activacion': 'Enviar',
 
-  //profile-popover
+  // profile-popover
   'profile_popover_cuenta': 'Cuenta',
   'profile_popover_salir': 'Salir',
   'profile_popover_nivel': '¡Sube de nivel!',
 
-  //nav
+  // nav
   'nav_crear': 'Crear',
   'nav_crear_un': 'Crear un',
   'nav_como_funciona': 'Cómo Funciona',

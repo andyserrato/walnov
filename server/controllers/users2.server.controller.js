@@ -17,6 +17,9 @@ var redirection = '';
 
 // Set up the 'signup' routes
 router.post('/auth/signup', signup);
+router.post('/auth/password/', sendChangePassEmail);
+router.put('/auth/password/:token', changePassword);
+router.get('/auth/username/:email', sendUsernameRemindEmail);
 // Set up the 'signin' routes
 router.post('/auth/signin', signin);
 // Set up the 'signout' route
@@ -161,8 +164,8 @@ function signup(req, res) {
     });
     user.password = user.generateHash(req.body.password);
     user.provider = 'local';
-    user.token = jwt.sign({login: user.login, email: user.perfil.login}, config.jwtSecret, {expiresIn: '24h'});
-    user.temporaryToken = jwt.sign({login: user.login, email: user.perfil.login}, config.jwtSecret, {expiresIn: '24h'});
+    user.token = jwt.sign({login: user.login, email: user.perfil.email}, config.jwtSecret, {expiresIn: '24h'});
+    user.temporaryToken = jwt.sign({login: user.login, email: user.perfil.email}, config.jwtSecret, {expiresIn: '24h'});
     user.activo = false;
     User.findLoginDuplicate(user, function (user) {
       // Ocurrió un error o el usuario ya se encuentra registrado
@@ -620,26 +623,28 @@ function resendActivationLink(req, res) {
         jwt.verify(user.temporaryToken, config.jwtSecret, function (err, userVerified) {
           // token caducado tenemos que regenrar
           if (err) {
-            if (err.name === 'TokenExpiredError') {
-              user.temporaryToken = jwt.sign({
+            if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
+              jwt.sign({
                 login: user.login,
-                email: user.perfil.login
-              }, config.jwtSecret, {expiresIn: '24h'});
-              user.save(function (err, userNewTempToken) {
-                if (err) {
-                  res.status(400).send({
-                    success: false,
-                    message: '',
-                    error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error
-                  });
-                } else {
-                  GestorEmail.sendActivationLink(userNewTempToken);
-                  res.status(200).send({
-                    success: true,
-                    message: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.accountActivationLinkSent : Constantes.Mensajes.MENSAJES.es.accountActivationLinkSent,
-                    error: ''
-                  });
-                }
+                email: user.perfil.email
+              }, config.jwtSecret, {expiresIn: '24h'}, function (err, token) {
+                user.temporaryToken = token;
+                user.save(function (err, userNewTempToken) {
+                  if (err) {
+                    res.status(400).send({
+                      success: false,
+                      message: '',
+                      error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error
+                    });
+                  } else {
+                    GestorEmail.sendActivationLink(userNewTempToken);
+                    res.status(200).send({
+                      success: true,
+                      message: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.accountActivationLinkSent : Constantes.Mensajes.MENSAJES.es.accountActivationLinkSent,
+                      error: ''
+                    });
+                  }
+                });
               });
             } else {
               res.status(400).send({
@@ -656,6 +661,177 @@ function resendActivationLink(req, res) {
               error: ''
             })
           }
+        });
+      }
+    });
+  }
+}
+
+function sendChangePassEmail(req, res) {
+  peticion = req.body;
+  email = peticion.email;
+
+  if (!email) {
+    res.status(400).send({
+      success: false,
+      message: '',
+      error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.camposRequeridos : Constantes.Mensajes.MENSAJES.es.camposRequeridos
+    });
+  } else {
+    User.findOne({'perfil.email': email}, (err, user) => {
+      if (err) {
+        res.status(400).send({
+          success: false,
+          message: '',
+          error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error
+        });
+      } else if (!user) {
+        res.status(400).send({
+          success: false,
+          message: '',
+          error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.emailNotFound : Constantes.Mensajes.MENSAJES.es.emailNotFound
+        });
+      } else if (!user.activo) {
+        // usuario ya está activo
+        res.status(200).send({
+          success: true,
+          message: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.accountNotActive : Constantes.Mensajes.MENSAJES.es.accountNotActive,
+          error: ''
+        });
+      } else {
+        jwt.sign({
+          login: user.login,
+          email: user.perfil.email
+        }, config.jwtSecret, {expiresIn: '24h'}, function (err, token) {
+          user.temporaryToken = token;
+          user.save(function (err, userNewTempToken) {
+            if (err) {
+              res.status(400).send({
+                success: false,
+                message: '',
+                error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error
+              });
+            } else {
+              GestorEmail.sendPassChangeLink(userNewTempToken);
+              res.status(200).send({
+                success: true,
+                message: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.checkYourEmail : Constantes.Mensajes.MENSAJES.es.checkYourEmail,
+                error: ''
+              });
+            }
+          });
+        });
+      }
+    });
+  }
+
+}
+
+function changePassword(req, res) {
+  const peticion = req.params;
+  const token = req.params.token;
+  const password = req.body.password;
+  if (!peticion || !token || !password) {
+    res.status(400).send({
+      success: false,
+      message: '',
+      error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.camposRequeridos : Constantes.Mensajes.MENSAJES.es.camposRequeridos
+    });
+  } else {
+    User.findOne({temporaryToken: token}, function (err, user) {
+      if (err) {
+        res.status(400).send({
+          success: false,
+          message: '',
+          error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error
+        });
+      } else if (user === null) {
+        res.status(400).send({
+          success: false,
+          message: '',
+          error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.expiredLink : Constantes.Mensajes.MENSAJES.es.expiredLink
+        });
+      } else {
+        jwt.verify(token, config.jwtSecret, function (err, userVerified) {
+          if (err) {
+            if (err.name === 'TokenExpiredError') {
+              res.status(401).send({
+                success: false,
+                message: '',
+                error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.tokenExpired : Constantes.Mensajes.MENSAJES.es.tokenExpired
+              });
+            } else {
+              res.status(400).send({
+                success: false,
+                message: '',
+                error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error
+              });
+            }
+          } else {
+            user.temporaryToken = 'none';
+            user.activo = true;
+            user.password = user.generateHash(password);
+            user.save(function (err, user) {
+              if (err) {
+                res.status(400).send({
+                  success: false,
+                  message: '',
+                  error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error
+                });
+              } else {
+                res.status(200).send({
+                  success: true,
+                  message: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.passwordChanged : Constantes.Mensajes.MENSAJES.es.passwordChanged,
+                  error: ''
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+}
+
+function sendUsernameRemindEmail(req, res) {
+  const peticion = req.params;
+  const email = req.params.email;
+  if (!peticion || !email) {
+    res.status(400).send(
+      {
+        success: false,
+        message: '',
+        error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.camposRequeridos : Constantes.Mensajes.MENSAJES.es.camposRequeridos
+      });
+  } else {
+    User.findOne({'perfil.email': email}, (err, user) => {
+      if (err) {
+        res.status(400).send(
+          {
+            success: false,
+            message: '',
+            error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.error : Constantes.Mensajes.MENSAJES.es.error
+          });
+      } else if (user === null) {
+        res.status(400).send(
+          {
+            success: false,
+            message: '',
+            error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.userNotFound : Constantes.Mensajes.MENSAJES.es.userNotFound
+          });
+      } else if (user.activo === false) {
+        res.status(401).send(
+          {
+            success: false,
+            message: '',
+            error: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.accountNotActive : Constantes.Mensajes.MENSAJES.es.accountNotActive
+          });
+      } else {
+        GestorEmail.sendUsernameReminder(user);
+        res.status(200).send({
+          success: true,
+          message: peticion.lang === 'en' ? Constantes.Mensajes.MENSAJES.en.checkYourEmail : Constantes.Mensajes.MENSAJES.es.checkYourEmail,
+          error: ''
         });
       }
     });

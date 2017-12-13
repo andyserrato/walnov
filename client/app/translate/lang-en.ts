@@ -141,14 +141,11 @@ export const LANG_EN_TRANS = {
   'alert_existent_email': 'This dedication already exists',
   'alert_existent_invitation': 'This invitation already exists',
   'alert_comment_length': 'Your comment must have at least 10 characters to be posted',
-
   'alert_relato_no_encontrado': 'ShortStory not found',
-
   'alert_popover_error': 'An error has occurred',
-
   'alert_bienvenido': 'Welcome',
-
   'alert_cuenta_registrada': 'Welcome, account registered check your email for activation link',
+  'alert_campos_no_validos': 'Not valid fields',
   'alert_email_ya_existe': 'Email already registered try another one',
   'alert_user_name_ya_existe': 'User name is associated with an existing account try another',
   'alert_sesion_terminada': 'Session finished',
@@ -307,6 +304,8 @@ export const LANG_EN_TRANS = {
   'relatos_eliminar': 'Remove from my lists',
   'relatos_relevantes': 'Relevant Short stories',
 
+  // cambio password
+  'cambio_password_title': 'Change your password',
 
   // popover
   'popover_unirse': 'Join us to post your content',
@@ -314,8 +313,12 @@ export const LANG_EN_TRANS = {
   'popover_contraseña': 'Password',
   'popover_error_mail': 'Write a valid mail',
   'popover_error_contraseña': 'Write a valid password (8 characters min)',
+  'popover_error_pass_missmatch': 'Password missmatch',
+  'popover_confirmar_contraseña': 'Confirm Password',
   'popover_error_nombre': 'Write a valid username',
-  'popover_error_olvidada': 'I have forgot my password',
+  'popover_error_olvidada': 'Forgot my password',
+  'popover_error_user_name_olvidado': 'Forgot my Username',
+  'popover_problemas': '¿Account Problems?',
   'popover_request_account_activation_link': 'Activation link lost?',
   'popover_ya_registrado': 'I have an account, log in',
   'popover_no_registrado': 'I don’t have an account, sign in',

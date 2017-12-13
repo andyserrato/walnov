@@ -143,7 +143,39 @@ export class ProtPopoverRegisterComponent implements OnInit {
     }
   }
 
-  passwordReset() {
+  userNameRemindRequest() {
+    this.showAlert = false;
+    if (this.validateForm.controls['mail'].valid) {
+      this.loading = true;
+      this.authenticationService.requestUserNameRemind(this.validateForm.controls['mail'].value).subscribe(
+        result => {
+          this.loading = false;
+          this.showAlert = true;
+          this.alertMessage = result.message;
+        },
+        error =>  {
+          this.loading = false;
+          this.showAlert = true;
+          this.alertMessage = error.error;
+        });
+    }
+  }
 
+  requestPasswordReset() {
+    this.showAlert = false;
+    if (this.validateForm.controls['mail'].valid) {
+      this.loading = true;
+      this.authenticationService.requestPassChangeEmail(this.validateForm.controls['mail'].value).subscribe(
+        result => {
+          this.loading = false;
+          this.showAlert = true;
+          this.alertMessage = result.message;
+        },
+        error =>  {
+          this.loading = false;
+          this.showAlert = true;
+          this.alertMessage = error;
+        });
+    }
   }
 }

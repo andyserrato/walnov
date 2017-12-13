@@ -11,6 +11,7 @@ import {GuardadoRelatosComponent} from './home-guardado/guardado-relatos/guardad
 import {GuardadoChatstoriesComponent} from './home-guardado/guardado-chatstories/guardado-chatstories.component';
 import {UserAccountActivationComponent} from './user-account-activation/user-account-activation.component';
 import {AuthGuard} from "../guards/auth-guard.guard";
+import {UserPasswordChangeComponent} from "./user-password-change/user-password-change.component";
 
 const routes: Routes = [{
   path: 'home',
@@ -29,7 +30,8 @@ const routes: Routes = [{
     },
     {path: 'mis-walls', redirectTo: '/home/actividad-reciente', pathMatch: 'full'},
     {path: 'buscador', component: HomeBuscadorComponent},
-    {path: 'activate/:id', component: UserAccountActivationComponent, canActivate: [AuthGuard] },
+    {path: 'activate/:token', component: UserAccountActivationComponent, canActivate: [AuthGuard] },
+    {path: 'passChange/:token', component: UserPasswordChangeComponent, canActivate: [AuthGuard] },
     {path: '', redirectTo: '/home/actividad-reciente', pathMatch: 'full'}
 
   ],

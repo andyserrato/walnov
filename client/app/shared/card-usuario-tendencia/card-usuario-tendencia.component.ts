@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { AuthenticationService } from '../../services/authentication.service';
-import { UserService } from '../../services/user.service';
-import { Usuario } from '../../models/usuario.model';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {AuthenticationService} from '../../services/authentication.service';
+import {UserService} from '../../services/user.service';
+import {Usuario} from '../../models/usuario.model';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-card-usuario-tendencia',
@@ -12,7 +13,8 @@ import { Usuario } from '../../models/usuario.model';
 export class CardUsuarioTendenciaComponent implements OnInit {
   users: any;
 
-  constructor(private userService: UserService, private auth: AuthenticationService, private router: Router, private route: ActivatedRoute, ) { }
+  constructor(private userService: UserService, private auth: AuthenticationService, private router: Router, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.users = new Array();
@@ -27,10 +29,6 @@ export class CardUsuarioTendenciaComponent implements OnInit {
     });
 
     setInterval(this.showAnother.bind(this), 30000, );
-
-  }
-
-  ngAfterViewInit() {
 
   }
 

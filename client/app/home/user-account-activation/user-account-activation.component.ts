@@ -19,7 +19,7 @@ export class UserAccountActivationComponent implements OnInit {
               private auth: AuthenticationService,
               private popOver: RegisterPopoverService,
               private translate: TranslateService) {
-      this.temporaryToken = route.snapshot.paramMap.get('id');
+      this.temporaryToken = route.snapshot.paramMap.get('token');
   }
 
   ngOnInit() {

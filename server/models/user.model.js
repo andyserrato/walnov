@@ -163,7 +163,7 @@ const usuario = Schema({
   // todo cambair a true cuando se pase a pro
   token: {type: String, required: false},
   // todo cambair a true cuando se pase a pro
-  temporayToken: {type: String, required: false}
+  temporaryToken: {type: String, required: false}
 });
 
 usuario.index({login: 'text'});

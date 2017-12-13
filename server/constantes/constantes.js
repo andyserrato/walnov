@@ -181,8 +181,12 @@ class Mensajes {
         tokenExpired: "El token ha expirado",
         accountAlreadyActivated: "Cuenta ya está Activada",
         accountActivatedSuccess: "Éxito cuenta ha sido activada",
+        accountNotActive: "La cuenta no se encuentra activada",
         emailNotFound: 'Email no se encuentra',
-        accountActivationLinkSent: 'Revisa tu email se ha reenviado el código de activación'
+        accountActivationLinkSent: 'Revisa tu email se ha reenviado el código de activación',
+        checkYourEmail: "Revisa tu email",
+        passwordChanged: 'Éxito! contraseña cambiada',
+        expiredLink: 'Enlace expirado'
       },
       en : {
         error: "Bad Request",
@@ -201,8 +205,12 @@ class Mensajes {
         tokenExpired: "Token has expired",
         accountAlreadyActivated: "Account Activated",
         accountActivatedSuccess: "Success, your account is now active",
+        accountNotActive: "Account is not active",
         emailNotFound: 'Email not found',
-        accountActivationLinkSent: 'Account activation link sent'
+        accountActivationLinkSent: 'Account activation link sent',
+        checkYourEmail: "Check your email",
+        passwordChanged: 'Password changes successfully',
+        expiredLink: 'Link expired'
       }
     };
   }
