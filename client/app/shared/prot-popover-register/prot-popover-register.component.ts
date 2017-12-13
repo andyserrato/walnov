@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter} from '@angular/core';
+import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {AuthenticationService} from '../../services/authentication.service';
 import {AlertService} from '../../services/alert.service';
 import {RegisterPopoverService} from '../../services/register-popover.service';
-import { TranslateService } from '../../translate';
+import {TranslateService} from '../../translate';
 import {RepositorioService} from '../../services/repositorio.service';
 import {Router} from '@angular/router';
 
@@ -27,6 +27,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
   callbackURL = '/social-login/success';
   showAlert = false;
   alertMessage = '';
+
   constructor(private fb: FormBuilder,
               private authenticationService: AuthenticationService,
               private alertService: AlertService,
@@ -38,11 +39,12 @@ export class ProtPopoverRegisterComponent implements OnInit {
     this.focusOut = new EventEmitter<any>();
     this.validateForm = fb.group({
       'mail': [null, Validators.compose([Validators.required, Validators.email])],
-      'user': [null, Validators.required],
+      'user': [null, Validators.compose([Validators.required, Validators.minLength(6),
+        Validators.maxLength(15), Validators.pattern('^[a-zA-Z]+$')])],
       'pass': [null, Validators.compose([Validators.required, Validators.minLength(8)])]
     });
     this.popoverService.isVisible().subscribe(b => {
-        this.visible = b ? true : false;
+      this.visible = b ? true : false;
     });
   }
 
@@ -65,15 +67,15 @@ export class ProtPopoverRegisterComponent implements OnInit {
       this.loading = true;
       const user = {
         login: this.validateForm.controls['user'].value,
-        password : this.validateForm.controls['pass'].value,
+        password: this.validateForm.controls['pass'].value,
         email: this.validateForm.controls['mail'].value
       };
-      this.authenticationService.signup(user).subscribe(result  => {
+      this.authenticationService.signup(user).subscribe(result => {
           this.visible = false;
           this.loading = false;
           this.alertService.success(this.translate.instant('alert_cuenta_registrada'));
         },
-        error =>  {
+        error => {
           if (error.tipo === this.repositorio.emailDuplicado) {
             this.alertMessage = this.translate.instant('alert_email_ya_existe');
             this.showAlert = true;
@@ -97,7 +99,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.alertService.success(this.translate.instant('alert_bienvenido') + ' ' + this.authenticationService.getUser().login);
           this.redirectToUrlAfterLogin();
         },
-        error =>  {
+        error => {
           this.loading = false;
           this.showAlert = true;
           this.alertMessage = error;
@@ -134,7 +136,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.showAlert = true;
           this.alertMessage = result.message;
         },
-        error =>  {
+        error => {
           this.loading = false;
           this.showAlert = true;
           this.alertMessage = error;
@@ -153,7 +155,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.showAlert = true;
           this.alertMessage = result.message;
         },
-        error =>  {
+        error => {
           this.loading = false;
           this.showAlert = true;
           this.alertMessage = error.error;
@@ -171,7 +173,7 @@ export class ProtPopoverRegisterComponent implements OnInit {
           this.showAlert = true;
           this.alertMessage = result.message;
         },
-        error =>  {
+        error => {
           this.loading = false;
           this.showAlert = true;
           this.alertMessage = error;

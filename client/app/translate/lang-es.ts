@@ -321,7 +321,7 @@ export const LANG_ES_TRANS = {
   'popover_error_mail': 'Introduce un mail valido',
   'popover_error_contraseña': 'Introduce una contraseña válida (mínimo 8 caracteres)',
   'popover_error_pass_missmatch': 'Contraseñas no son iguales',
-  'popover_error_nombre': 'Introduce un nombre de usuario',
+  'popover_error_nombre': 'Introduce un nombre de usuario válido',
   'popover_error_olvidada': '¿Has olvidado tu contraseña?',
   'popover_error_user_name_olvidado': '¿Has olvidado tu nombre de usuario?',
   'popover_problemas': '¿Problemas con mi cuenta?',
