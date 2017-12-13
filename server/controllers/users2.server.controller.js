@@ -370,7 +370,7 @@ function getUserByParams(req, res) {
     }
 
     if (queries && queries.login) {
-      query.where('perfil.login').equals(queries.login);
+      query.where('login').equals(queries.login);
     }
 
     if (queries && queries.nombre) {
