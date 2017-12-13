@@ -53,25 +53,49 @@ module.exports = function() {
 
       usuario.findByUserProviderId(function (err, userResult) {
         if (err) {
-          return cb(err,null);
+          return cb(err, null);
         } else if (userResult) {
           req.session.user = userResult;
-          return cb(err, userResult)
+          return cb(err, userResult);
         } else if (!userResult) {
-          usuario.save(function (err, usuarioGuardado) {
+          User.findOne({
+            'login': {'$regex': '^' + usuario.login + '$', $options: 'i'}
+          }, (err, usu) => {
             if (err) {
-              return cb(err,usuarioGuardado);
-            }
-            let biblioteca = new Biblioteca();
-            biblioteca.usuario = usuarioGuardado.id;
-            biblioteca.save( (err) => {
-              if (err) { return cb(err,usuarioGuardado); }
-              else {
-                req.session.user = usuarioGuardado;
-                return cb(null, usuarioGuardado);
+              return cb(err, usuario);
+            } else {
+              if (usu !== null) {
+                usuario.login = '';
               }
-            });
-          })
+              User.findOne({
+                'perfil.email': usuario.perfil.email
+              }, (err, usuRes) => {
+                if (err) {
+                  return cb(err, usuRes);
+                } else {
+                  if (usuRes !== null) {
+                    usuario.perfil.email = '';
+                  }
+                  usuario.save(function (err, usuarioGuardado) {
+                    if (err) {
+                      return cb(err, usuarioGuardado);
+                    }
+                    let biblioteca = new Biblioteca();
+                    biblioteca.usuario = usuarioGuardado.id;
+                    biblioteca.save((err) => {
+                      if (err) {
+                        return cb(err, usuarioGuardado);
+                      }
+                      else {
+                        req.session.user = usuarioGuardado;
+                        return cb(null, usuarioGuardado);
+                      }
+                    });
+                  });
+                }
+              });
+            }
+          });
         }
       });
 		}

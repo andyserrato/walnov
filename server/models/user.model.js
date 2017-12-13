@@ -243,7 +243,6 @@ usuario.statics.findLoginDuplicate= function (user, callback) {
 };
 
 usuario.statics.findEmailDuplicate = function (user, callback) {
-  console.log(user);
   this.findOne({
     'perfil.email': user.perfil.email
   }, (err, userResult) => {

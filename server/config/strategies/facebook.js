@@ -10,35 +10,35 @@ const Constantes = require("../../constantes/constantes");
 const users = require('../../controllers/users2.server.controller');
 
 // Create the Facebook strategy configuration method
-module.exports = function() {
-	// Use the Passport's Facebook strategy
-	passport.use(new FacebookStrategy({
-			clientID: config.facebook.clientID,
-			clientSecret: config.facebook.clientSecret,
-			callbackURL: config.facebook.callbackURL,
-			passReqToCallback: true,
+module.exports = function () {
+  // Use the Passport's Facebook strategy
+  passport.use(new FacebookStrategy({
+      clientID: config.facebook.clientID,
+      clientSecret: config.facebook.clientSecret,
+      callbackURL: config.facebook.callbackURL,
+      passReqToCallback: true,
       enableProof: true,
       profileFields: ['id', 'name', 'email',
         'about', 'cover', 'picture', 'locale', 'location', 'gender']
-		},
-		(req, accessToken, refreshToken, profile, cb) => {
-			// Set the user's provider da|ta and include tokens
+    },
+    (req, accessToken, refreshToken, profile, cb) => {
+      // Set the user's provider da|ta and include tokens
       if (!profile || !profile._json) {
         return cb('Ha ocurrido un error inesperado', null);
       }
 
-			const providerData = profile._json;
-			providerData.accessToken = accessToken;
-			providerData.refreshToken = refreshToken;
+      const providerData = profile._json;
+      providerData.accessToken = accessToken;
+      providerData.refreshToken = refreshToken;
 
-			// Create the user OAuth profile
+      // Create the user OAuth profile
       usuario = new User();
 
-			usuario.providers.push({
-				provider: profile.provider,
-				providerId: profile.id,
-				providerData: providerData
-			});
+      usuario.providers.push({
+        provider: profile.provider,
+        providerId: profile.id,
+        providerData: providerData
+      });
 
       usuario.login = profile.username ? profile.username : '';
       usuario.estado = Constantes.Usuario.ESTADO_SIN_VERIFICAR;
@@ -46,7 +46,7 @@ module.exports = function() {
         nombre: providerData.first_name ? providerData.first_name : '',
         apellidos: providerData.last_name ? providerData.last_name : '',
         sexo: providerData.gender ? providerData.gender : '',
-        foto_portada:  providerData.cover ? providerData.cover.source ? providerData.cover.source : '' : '',
+        foto_portada: providerData.cover ? providerData.cover.source ? providerData.cover.source : '' : '',
         foto_perfil: profile.photos !== undefined && profile.photos.length > 0 ? profile.photos[0].value : '',
         // foto_perfil: providerData.picture ? providerData.picture.data.url : '',
         email: providerData.email ? providerData.email : '',
@@ -59,27 +59,51 @@ module.exports = function() {
 
       usuario.findByUserProviderId(function (err, userResult) {
         if (err) {
-          return cb(err,null);
+          return cb(err, null);
         } else if (userResult) {
           req.session.user = userResult;
           return cb(err, userResult);
         } else if (!userResult) {
-          usuario.save(function (err, usuarioGuardado) {
+          User.findOne({
+            'login': {'$regex': '^' + usuario.login + '$', $options: 'i'}
+          }, (err, usu) => {
             if (err) {
-              return cb(err,usuarioGuardado);
-            }
-            let biblioteca = new Biblioteca();
-            biblioteca.usuario = usuarioGuardado.id;
-            biblioteca.save( (err) => {
-              if (err) { return cb(err,usuarioGuardado); }
-              else {
-                req.session.user = usuarioGuardado;
-                return cb(null, usuarioGuardado);
+              return cb(err, usuario);
+            } else {
+              if (usu !== null) {
+                usuario.login = '';
               }
-            });
-          })
+              User.findOne({
+                'perfil.email': usuario.perfil.email
+              }, (err, usuRes) => {
+                if (err) {
+                  return cb(err, usuRes);
+                } else {
+                  if (usuRes !== null) {
+                    usuario.perfil.email = '';
+                  }
+                  usuario.save(function (err, usuarioGuardado) {
+                    if (err) {
+                      return cb(err, usuarioGuardado);
+                    }
+                    let biblioteca = new Biblioteca();
+                    biblioteca.usuario = usuarioGuardado.id;
+                    biblioteca.save((err) => {
+                      if (err) {
+                        return cb(err, usuarioGuardado);
+                      }
+                      else {
+                        req.session.user = usuarioGuardado;
+                        return cb(null, usuarioGuardado);
+                      }
+                    });
+                  });
+                }
+              });
+            }
+          });
         }
       });
-		}
-	));
+    }
+  ));
 };
