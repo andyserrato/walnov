@@ -1,0 +1,12 @@
+<div class="outside-container margin-right d-flex flex-column">
+    <div class="d-flex flex-row mensaje" *ngFor="let m of this.mensajes" [ngClass]="{'mi-mensaje': m.user==='yo', 'su-mensaje': m.user!='yo'}">
+        <div class="d-flex flex-column content">
+            <span class="texto">{{m.text}}</span>
+            <span class="hour" *ngIf="m.hour">{{m.hour | dateformat}}</span>
+        </div>
+    </div>
+    <div class="d-flex flex-row" *ngIf="this.mensajes">
+        <input class="input-text" type="text" #textomensaje (keydown.enter)="newMessage(textomensaje.value)" />
+        <div class="send-button" (click)="newMessage(textomensaje.value)">Enviar</div>
+    </div>
+</div>

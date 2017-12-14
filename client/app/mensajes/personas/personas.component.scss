@@ -1,0 +1,46 @@
+@import 'main';
+
+.outside-container{
+    padding: 2.5em;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+    height: 100%;
+    &.margin-right{
+        margin-right: 1em;
+    }
+}
+
+.persona {
+    font-family: 'Raleway';
+    border-bottom: solid 1px #767676;
+    font-size: 1.5em;
+    padding: .1em;
+    &:hover{
+        cursor: pointer;
+        background-color: rgba($color: #b16bdf, $alpha: .3);
+    }
+    & .persona-img{
+        height: 2em;
+        background-position: center;
+        width: 2em;
+        background-size: contain;
+        margin-right: 1em;
+        min-width: 2em;
+        min-height: 2em;
+    }
+    & .persona-last{
+        font-size: .5em;
+        font-style: italic;
+        width: 25%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block !important;
+    }
+
+    &.selected{
+        background-color: rgba($color: #8427bf, $alpha: .3);
+    }
+
+}

@@ -1,3 +1,15 @@
-<p>
-  mensajes works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 cols-no-padding">
+      <app-personas (select)="select($event)" [personas]="this.personas" [selected]="this.selected"></app-personas>
+    </div>
+    <!-- /.col -->
+    <div class="col col-md-9 cols-no-padding">
+      <app-chat [mensajes]="this.mensajes" (nuevoMensaje)="newMessage($event)"></app-chat>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
+

@@ -1,0 +1,68 @@
+.outside-container{
+    padding: 2.5em;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+    height: 100%;
+    &.margin-right{
+        margin-right: 1em;
+    }
+}
+
+.mensaje{
+    margin-bottom: 1em;
+    & .content {
+        background-color: #d9bdeb;
+        padding: .5em;
+        border-radius: .5em;
+    }
+}
+
+.su-mensaje{
+    justify-content: flex-start ;
+    & .content {
+        & .hour {
+            color: rgba(0, 0, 0, 0.431);
+        }
+    }
+}
+.mi-mensaje{
+    justify-content: flex-end ;
+    & .content {
+        text-align: right;
+        background-color: #b369e4;
+        color: #fff;
+        & .hour {
+            font-style: italic;
+            color: #f5f5f56b;
+        }
+    }
+}
+
+.input-text{
+    width: 100%;
+    border: 1px solid #b7b7b7;
+    border-top-left-radius: .3em;
+    border-bottom-left-radius: .3em;
+    font-size: 1.5em;
+    font-family: 'Raleway';
+    outline: none;
+    padding: .5em 1em;
+    border-right: 0;
+}
+
+.send-button{
+    /*send nudes*/
+    padding: 0em 1em;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #5f2c82;
+    border-top-right-radius: .3em;
+    border-bottom-right-radius: .3em;
+    &:hover{
+        cursor: pointer;
+        background-color: #5f2c82;
+        color: #fff;
+    }
+}

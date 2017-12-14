@@ -44,7 +44,7 @@ const appRoutes: Routes = [
   {path: 'chatstories', component: ListadoChatstoriesComponent},
   {path: 'relatos', component: BuscadorRelatosComponent},
   {path: 'walls/listado-walls', component: ListadoWalls},
-  {path: 'mensajes', component: MensajesComponent},
+  {path: 'mensajes', loadChildren: './mensajes/mensajes.module#MensajesModule'},
   {
     path: 'walls', component: Walls,
     children: [

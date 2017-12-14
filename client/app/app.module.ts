@@ -85,9 +85,7 @@ import {BibliotecaService} from './services/biblioteca.service';
 import {RegisterPopoverService} from './services/register-popover.service';
 import {LandingMobileComponent} from './landing/landing-mobile/landing-mobile.component';
 import {ShareButtonModule} from 'ngx-sharebuttons';
-import {MensajesComponent} from './mensajes/mensajes.component';
-// import { PersonasComponent } from './mensajes/personas/personas.component';
-// import { ChatComponent } from './mensajes/chat/chat.component';
+import {MensajesModule} from './mensajes/mensajes.module';
 import { PaymentModule } from './payments/payment.module';
 @NgModule({
   declarations: [
@@ -149,10 +147,7 @@ import { PaymentModule } from './payments/payment.module';
     ContactoComponent,
     OrderByPipe,
     ModalDecorationComponent,
-    LandingMobileComponent,
-    MensajesComponent,
-    // PersonasComponent,
-    // ChatComponent,
+    LandingMobileComponent
   ],
   imports: [
     BrowserModule,
@@ -170,6 +165,7 @@ import { PaymentModule } from './payments/payment.module';
     SharedModule,
     HomeModule,
     UserProfileModule,
+    MensajesModule,
     ClipboardModule,
     ShareButtonModule.forRoot(),
     PaymentModule
